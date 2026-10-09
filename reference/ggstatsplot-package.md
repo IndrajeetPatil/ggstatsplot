@@ -59,7 +59,7 @@ The main functions are:
   [`patchwork::wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html).
 
 References: Patil (2021)
-[doi:10.21105/joss.03236](https://doi.org/10.21105/joss.03236) .
+[doi:10.21105/joss.03167](https://doi.org/10.21105/joss.03167) .
 
 For more documentation, see the dedicated
 [Website](https://www.indrapatil.com/ggstatsplot/).

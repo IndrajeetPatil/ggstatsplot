@@ -28,7 +28,7 @@ You can cite this package/vignette as:
 ------------------------------------------------------------------------
 
 Lifecycle:
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 The function `ggdotplotstats` can be used for **data exploration** and
 to provide an easy way to make **publication-ready dot plots/charts**
@@ -37,7 +37,13 @@ itself. In this vignette, we will explore several examples of how to use
 it.
 
 This function is a sister function of `gghistostats` with the difference
-being it expects a labeled numeric variable.
+being it expects a labeled numeric variable: a numeric variable (`x`)
+along with a variable containing labels (`y`). If there are multiple
+observations per label, they are first summarized into a single
+centrality measure per label (mean, median, trimmed mean, or MAP
+estimate, depending on `type`), shown as a dot with its confidence
+interval. The one-sample test is then carried out on these per-label
+summaries, i.e., the sample size is the number of labels.
 
 ## Distribution of a sample with `ggdotplotstats`
 
@@ -45,7 +51,7 @@ Let’s begin with a very simple example from the
 [ggplot2](https://ggplot2.tidyverse.org) package
 ([`ggplot2::mpg`](https://ggplot2.tidyverse.org/reference/mpg.html)), a
 subset of the fuel economy data that the EPA makes available on
-<http://fueleconomy.gov>.
+<https://fueleconomy.gov>.
 
 \
 `## looking at the structure of the data using glimpse`\
@@ -72,7 +78,7 @@ manufacturer.
 `df`` ``<-`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``ggplot2``::`[`mpg`](https://ggplot2.tidyverse.org/reference/mpg.html)`, ``cyl`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"4"``, ``"6"``)``)`\
 \
 `` ## creating a vector of colors using `paletteer` package ``\
-`paletter_vector`` ``<-`` ``paletteer``::`[`paletteer_d`](https://emilhvitfeldt.github.io/paletteer/reference/paletteer_d.html)`(`\
+`palette_vector`` ``<-`` ``paletteer``::`[`paletteer_d`](https://emilhvitfeldt.github.io/paletteer/reference/paletteer_d.html)`(`\
 `  palette ``=`` ``"palettetown::venusaur"``,`\
 `  n ``=`` `[`nlevels`](https://rdrr.io/r/base/nlevels.html)`(`[`as.factor`](https://rdrr.io/r/base/factor.html)`(``df``$``manufacturer``)``)``,`\
 `  type ``=`` ``"discrete"`\
@@ -87,7 +93,7 @@ manufacturer.
 `  test.value ``=`` ``15.5``,`\
 `  point.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `    shape ``=`` ``16``,`\
-`    color ``=`` ``paletter_vector``,`\
+`    color ``=`` ``palette_vector``,`\
 `    size ``=`` ``5`\
 `  ``)``,`\
 `  title ``=`` ``"Distribution of mileage of cars"``,`\
@@ -106,13 +112,12 @@ special helper function for such instances: `grouped_ggdotplotstats`.
 This is merely a wrapper function around `combine_plots`. It applies
 `ggdotplotstats` across all **levels** of a specified **grouping
 variable** and then combines the individual plots into a single plot.
+Note that the grouping variable can be anything: conditions in a given
+study, groups in a study sample, different studies, etc.
 
 Let’s see how we can use this function to apply `ggdotplotstats` to
 accomplish our task.
 
-\
-`## removing factor level with very few no. of observations`\
-`df`` ``<-`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``ggplot2``::`[`mpg`](https://ggplot2.tidyverse.org/reference/mpg.html)`, ``cyl`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"4"``, ``"6"``)``)`\
 \
 [`grouped_ggdotplotstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggdotplotstats.md)`(`\
 `  ``## arguments relevant for ggdotplotstats`\
@@ -136,10 +141,10 @@ accomplish our task.
 Although this is a quick and dirty way to explore a large amount of data
 with minimal effort, it does come with an important limitation: reduced
 flexibility. For example, if we wanted to add, let’s say, a separate
-`test.value` argument for each gender, this is not possible with
-`grouped_ggdotplotstats`. For cases like these, or to run separate kinds
-of tests (robust for some, parametric for other, while Bayesian for some
-other levels of the group) it would be better to use
+`test.value` argument for each number of cylinders, this is not possible
+with `grouped_ggdotplotstats`. For cases like these, or to run separate
+kinds of tests (robust for some, parametric for other, while Bayesian
+for some other levels of the group) it would be better to use
 [purrr](https://purrr.tidyverse.org/).
 
 See the associated vignette here:
@@ -147,10 +152,44 @@ See the associated vignette here:
 
 ## Summary of graphics and tests
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
+| graphical element | `geom` used | argument for further modification |
+|:---|:---|:---|
+| point estimates | [`ggplot2::geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html) | `point.args` |
+| error bars | [`ggplot2::geom_errorbar()`](https://ggplot2.tidyverse.org/reference/geom_linerange.html) | `errorbar.args` |
+| centrality measure line | [`ggplot2::geom_vline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html) | `centrality.line.args` |
+
+The statistical tests and effect sizes carried out for each `type` are
+listed in the function documentation:
 <https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.html>
+
+## Extracting statistical details
+
+All statistical details shown in the plot are also available as data
+frames, which can be extracted with
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md).
+The returned list contains results from the test in the subtitle
+(`subtitle_data`) and the Bayesian test in the caption (`caption_data`).
+
+\
+`p`` ``<-`` `[`ggdotplotstats`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md)`(``morley``, ``Speed``, ``Expt``, test.value ``=`` ``800``)`\
+\
+[`extract_stats`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)`(``p``)``$``subtitle_data`\
+`#> ``# A tibble: 1 × 15`\
+`#>      ``mu`` ``statistic`` ``df.error`` ``p.value`` ``method``            ``alternative`` ``effectsize`\
+`#>   ``<dbl>``     ``<dbl>``    ``<dbl>``   ``<dbl>`` ``<chr>``             ``<chr>``       ``<chr>``     `\
+`#> ``1``   800      3.41        4  ``0.0``27``1`` One Sample t-test two.sided   Hedges' g `\
+`#>   ``estimate`` ``conf.level`` ``conf.low`` ``conf.high`` ``conf.method`` ``conf.distribution`` ``n.obs`\
+`#>      ``<dbl>``      ``<dbl>``    ``<dbl>``     ``<dbl>`` ``<chr>``       ``<chr>``             ``<int>`\
+`#> ``1``     1.22       ``0.``95    ``0.``119      2.26 ncp         t                     5`\
+`#>   ``expression`\
+`#>   ``<list>``    `\
+`#> ``1`` ``<language>`
+
+For
+[`grouped_ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggdotplotstats.md)
+plots,
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+returns one such list for each level of the grouping variable.
 
 ## Reporting
 

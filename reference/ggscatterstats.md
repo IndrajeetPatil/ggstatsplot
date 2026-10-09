@@ -132,8 +132,7 @@ ggscatterstats(
 - marginal:
 
   Decides whether marginal distributions will be plotted on axes using
-  `{ggside}` functions. The default is `TRUE`. The package `{ggside}`
-  must already be installed by the user.
+  `{ggside}` functions. The default is `TRUE`.
 
 - point.args:
 
@@ -146,18 +145,20 @@ ggscatterstats(
   `0` (0%) of the resolution of the data. Note that the jitter should
   not be specified in the `point.args` because this information will be
   passed to two different `geom`s: one displaying the **points** and the
-  other displaying the \***labels** for these points.
+  other displaying the **labels** for these points.
 
 - point.label.args:
 
   A list of additional aesthetic arguments to be passed to
-  [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html)geom
-  used to display the labels.
+  [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html)
+  geom used to display the labels.
 
 - smooth.line.args:
 
-  A list of additional aesthetic arguments to be passed to `geom_smooth`
-  geom used to display the regression line.
+  A list of additional aesthetic arguments to be passed to
+  [`ggplot2::geom_smooth()`](https://ggplot2.tidyverse.org/reference/geom_smooth.html)
+  geom used to display the regression line. Its confidence band uses
+  `conf.level`.
 
 - xsidehistogram.args, ysidehistogram.args:
 
@@ -195,8 +196,8 @@ ggscatterstats(
 
 - caption:
 
-  The text for the plot caption. This argument is relevant only if
-  `bf.message = FALSE`.
+  The text for the plot caption. It will be replaced by the Bayes Factor
+  caption whenever that is displayed (see `bf.message`).
 
 - ggtheme:
 
@@ -227,7 +228,17 @@ ggscatterstats(
 
   Currently ignored.
 
+## Value
+
+A `ggplot` object, which can be further modified with `{ggplot2}`
+functions. Use
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+to get the statistical details shown in the plot as data frames.
+
 ## Details
+
+Rows with a missing value in either `x` or `y` are removed before
+plotting and analysis.
 
 For details, see:
 <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html>

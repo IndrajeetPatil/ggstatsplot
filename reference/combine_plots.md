@@ -56,7 +56,7 @@ combine_plots(
 
 ## Value
 
-A combined plot with annotation labels.
+A `patchwork` object: a combined plot with annotation labels.
 
 ## Examples
 

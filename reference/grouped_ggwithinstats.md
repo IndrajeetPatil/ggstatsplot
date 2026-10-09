@@ -1,4 +1,4 @@
-# Violin plots for group or condition comparisons in within-subjects designs repeated across all levels of a grouping variable.
+# Violin plots for group or condition comparisons in within-subjects designs repeated across all levels of a grouping variable
 
 A combined plot of comparison plot created for levels of a grouping
 variable.
@@ -86,16 +86,21 @@ grouped_ggwithinstats(
 
     - `"all"`
 
+    - `"none"`
+
     You can use this argument to make sure that your plot is not
     uber-cluttered when you have multiple groups being compared and
-    scores of pairwise comparisons being displayed. If set to `"none"`,
-    no pairwise comparisons will be displayed.
+    scores of pairwise comparisons being displayed. Pairwise comparisons
+    are carried out (and displayed) only when `x` has three or more
+    levels. For `type = "bayes"`, there are no *p*-values, so all
+    comparisons are displayed unless this is `"none"`.
 
   `pairwise.alpha`
 
   : Numeric alpha threshold used to decide which pairwise comparisons
     are displayed when `pairwise.display = "significant"` or
-    `pairwise.display = "non-significant"` (Default: `0.05`).
+    `pairwise.display = "non-significant"` (Default: `0.05`). It is
+    compared against *p*-values adjusted using `p.adjust.method`.
 
   `bf.message`
 
@@ -116,8 +121,8 @@ grouped_ggwithinstats(
 
   `caption`
 
-  : The text for the plot caption. This argument is relevant only if
-    `bf.message = FALSE`.
+  : The text for the plot caption. It will be replaced by the Bayes
+    Factor caption whenever that is displayed (see `bf.message`).
 
   `centrality.plotting`
 
@@ -134,8 +139,8 @@ grouped_ggwithinstats(
 
     - **MAP estimator** for Bayesian statistics
 
-    If you want default centrality parameter, you can specify this using
-    `centrality.type` argument.
+    If you want a different centrality parameter, you can specify this
+    using `centrality.type` argument.
 
   `centrality.type`
 
@@ -147,9 +152,9 @@ grouped_ggwithinstats(
 
     - `"nonparametric"` (for **median**)
 
-    - `robust` (for **trimmed mean**)
+    - `"robust"` (for **trimmed mean**)
 
-    - `bayes` (for **MAP estimator**)
+    - `"bayes"` (for **MAP estimator**)
 
     Just as `type` argument, abbreviations are also accepted.
 
@@ -183,11 +188,9 @@ grouped_ggwithinstats(
 
   `palette`
 
-  : Name of the palette in `"package::palette"` format to be used for
-    coloring. Passed to
-    [`paletteer::scale_color_paletteer_d()`](https://emilhvitfeldt.github.io/paletteer/reference/ggplot2-scales-discrete.html).
-    Run `View(paletteer::palettes_d_names)` to see all available
-    options.
+  : Name of the discrete palette in `"package::palette"` format to be
+    used for coloring (via `{paletteer}`). Run
+    `View(paletteer::palettes_d_names)` to see all available options.
 
   `centrality.point.args,centrality.label.args`
 
@@ -195,7 +198,7 @@ grouped_ggwithinstats(
     [`ggplot2::geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html)
     and
     [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html)
-    geoms, which are involved in mean plotting.
+    geoms, which are involved in centrality plotting.
 
   `ggsignif.args`
 
@@ -287,7 +290,9 @@ grouped_ggwithinstats(
 
 - grouping.var:
 
-  A single grouping variable.
+  A single grouping variable. A separate plot is created for each of its
+  levels (in factor level order, or in order of appearance for character
+  variables). Rows with a missing value in this variable are removed.
 
 - plotgrid.args:
 
@@ -300,6 +305,15 @@ grouped_ggwithinstats(
 
   A `list` of additional arguments passed to
   [`patchwork::plot_annotation()`](https://patchwork.data-imaginist.com/reference/plot_annotation.html).
+
+## Value
+
+A `patchwork` object combining one plot per level of `grouping.var` (see
+[`combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)).
+Applying
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+to it returns a list with the statistical details for each of these
+plots.
 
 ## See also
 

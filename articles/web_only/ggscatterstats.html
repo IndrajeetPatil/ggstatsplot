@@ -37,7 +37,6 @@
     "name": "R"
   },
   "license": "https://opensource.org/licenses/MIT",
-  "version": "1.0.0",
   "author": {
     "@type": "Person",
     "name": "Indrajeet Patil",
@@ -46,11 +45,14 @@
   },
   "keywords": ["R", "ggplot2", "statistics", "data visualization", "Bayesian", "frequentist", "nonparametric", "robust statistics", "ANOVA", "correlation"]
 }
-</script><meta name="citation_title" content="ggstatsplot: ggplot2 Based Plots with Statistical Details">
+</script><meta name="citation_title" content="Visualizations with statistical details: The 'ggstatsplot' approach">
 <meta name="citation_author" content="Indrajeet Patil">
-<meta name="citation_year" content="2021">
-<meta name="citation_doi" content="10.21105/joss.03236">
+<meta name="citation_publication_date" content="2021/05/25">
+<meta name="citation_doi" content="10.21105/joss.03167">
 <meta name="citation_journal_title" content="Journal of Open Source Software">
+<meta name="citation_volume" content="6">
+<meta name="citation_issue" content="61">
+<meta name="citation_firstpage" content="3167">
 <link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary">
 </head>
 <body>
@@ -61,7 +63,7 @@
 
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -132,7 +134,30 @@
 
     
     
-<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
+<hr>
+<p>You can cite this package/vignette as:</p>
+<pre><code>To cite package 'ggstatsplot' in publications use:
+
+  Patil, I. (2021). Visualizations with statistical details: The
+  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+  doi:10.21105/joss.03167
+
+A BibTeX entry for LaTeX users is
+
+  @Article{,
+    doi = {10.21105/joss.03167},
+    url = {https://doi.org/10.21105/joss.03167},
+    year = {2021},
+    publisher = {{The Open Journal}},
+    volume = {6},
+    number = {61},
+    pages = {3167},
+    author = {Indrajeet Patil},
+    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+    journal = {{Journal of Open Source Software}},
+  }</code></pre>
+<hr>
+<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></p>
 <p>The function <code>ggscatterstats</code> is meant to provide a
 <strong>publication-ready scatterplot</strong> with all statistical
 details included in the plot itself to show association between two
@@ -146,9 +171,6 @@ dataset.</p>
 <li>to check linear association between two continuous variables</li>
 <li>to check distribution of two continuous variables</li>
 </ul>
-<p><strong>Note before</strong>: The following demo uses the pipe
-operator (<code>|&gt;</code>), so in case you are not familiar with this
-operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="external-link uri">http://r4ds.had.co.nz/pipes.html</a></p>
 <div class="section level2">
 <h2 id="correlation-plot-with-ggscatterstats">Correlation plot with <code>ggscatterstats</code><a class="anchor" aria-label="anchor" href="#correlation-plot-with-ggscatterstats"></a>
 </h2>
@@ -157,8 +179,8 @@ operator, here is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html"
 about movies scraped from <a href="https://www.imdb.com/" class="external-link">IMDB</a>.
 Specifically, we will be using cleaned version of this dataset included
 in the <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> package itself.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## see the selected data (we have data from 1813 movies)</span></span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## see the selected data</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">movies_long</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 1,579</span></span>
 <span><span class="co">#&gt; Columns: 8</span></span>
@@ -175,9 +197,10 @@ interesting questions. For example, let’s see if the average IMDB rating
 for a movie has any relationship to its budget. Additionally, let’s also
 see which movies had a high budget but low IMDB rating by labeling those
 data points.</p>
-<p>To reduce the processing time, let’s only work with 30% of the
-dataset.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<p>Note that the marginal histograms are drawn with the
+<a href="https://github.com/jtlandis/ggside" class="external-link">ggside</a> package; set <code>marginal = FALSE</code> to turn
+them off.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">movies_long</span>, <span class="co">## data frame from which variables are taken</span></span>
 <span>  x <span class="op">=</span> <span class="va">budget</span>, <span class="co">## predictor/independent variable</span></span>
@@ -194,19 +217,19 @@ dataset.</p>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggscatterstats_files/figure-html/ggscatterstats1-1.png" class="r-plt" alt="" width="100%"></p>
 <p>There is indeed a small, but significant, positive correlation
-between the amount of money studio invests in a movie and the ratings
+between the amount of money a studio invests in a movie and the ratings
 given by the audiences.</p>
 </div>
 <div class="section level2">
 <h2 id="grouped-analysis-with-grouped_ggscatterstats">Grouped analysis with <code>grouped_ggscatterstats</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-grouped_ggscatterstats"></a>
 </h2>
-<p>What if we want to do the same analysis do the same analysis for
-movies with different MPAA (Motion Picture Association of America) film
-ratings (NC-17, PG, PG-13, R)?</p>
+<p>What if we want to do the same analysis for movies with different
+MPAA (Motion Picture Association of America) film ratings (PG, PG-13,
+R)?</p>
 <p><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> provides a special helper function for
-such instances: <code>grouped_ggstatsplot</code>. This is merely a
+such instances: <code>grouped_ggscatterstats</code>. This is merely a
 wrapper function around <code>combine_plots</code>. It applies
-<a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> across all <strong>levels</strong> of a
+<code>ggscatterstats</code> across all <strong>levels</strong> of a
 specified <strong>grouping variable</strong> and then combines list of
 individual plots into a single plot. Note that the grouping variable can
 be anything: conditions in a given study, groups in a study sample,
@@ -214,7 +237,7 @@ different studies, etc.</p>
 <p>Let’s see how we can use this function to apply
 <code>ggscatterstats</code> for all MPAA ratings. Also, let’s run a
 robust test this time.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span><span class="op">(</span></span>
 <span>  <span class="co">## arguments relevant for ggscatterstats</span></span>
 <span>  data <span class="op">=</span> <span class="va">movies_long</span>,</span>
@@ -224,7 +247,6 @@ robust test this time.</p>
 <span>  label.var <span class="op">=</span> <span class="va">title</span>,</span>
 <span>  label.expression <span class="op">=</span> <span class="va">rating</span> <span class="op">&lt;</span> <span class="fl">5</span> <span class="op">&amp;</span> <span class="va">budget</span> <span class="op">&gt;</span> <span class="fl">80</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"r"</span>,</span>
-<span>  <span class="co"># ggtheme = ggthemes::theme_tufte(),</span></span>
 <span>  <span class="co">## arguments relevant for combine_plots</span></span>
 <span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>    title <span class="op">=</span> <span class="st">"Relationship between movie budget and IMDB rating"</span>,</span>
@@ -246,17 +268,82 @@ data with minimal effort, it does come with an important limitation:
 reduced flexibility. For example, if we wanted to add, let’s say, a
 separate type of marginal distribution plot for each MPAA rating or if
 we wanted to use different types of correlations across different levels
-of MPAA ratings (NC-17 has only 6 movies, so a robust correlation would
-be a good idea), this is not possible. But this can be easily done using
+of MPAA ratings, this is not possible. But this can be easily done using
 <a href="https://purrr.tidyverse.org/" class="external-link">purrr</a>.</p>
 <p>See the associated vignette here: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
 <div class="section level2">
 <h2 id="summary-of-graphics-and-tests">Summary of graphics and tests<a class="anchor" aria-label="anchor" href="#summary-of-graphics-and-tests"></a>
 </h2>
-<p>Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.html</a></p>
+<table class="table">
+<colgroup>
+<col width="14%">
+<col width="50%">
+<col width="34%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">graphical element</th>
+<th align="left">
+<code>geom</code> used</th>
+<th align="left">argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">raw data</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code></td>
+<td align="left"><code>point.args</code></td>
+</tr>
+<tr class="even">
+<td align="left">labels for raw data</td>
+<td align="left"><code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code></td>
+<td align="left"><code>point.label.args</code></td>
+</tr>
+<tr class="odd">
+<td align="left">smooth line</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">ggplot2::geom_smooth()</a></code></td>
+<td align="left"><code>smooth.line.args</code></td>
+</tr>
+<tr class="even">
+<td align="left">marginal histograms</td>
+<td align="left">
+<code><a href="https://rdrr.io/pkg/ggside/man/geom_xsidehistogram.html" class="external-link">ggside::geom_xsidehistogram()</a></code>,
+<code><a href="https://rdrr.io/pkg/ggside/man/geom_xsidehistogram.html" class="external-link">ggside::geom_ysidehistogram()</a></code>
+</td>
+<td align="left">
+<code>xsidehistogram.args</code>,
+<code>ysidehistogram.args</code>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The statistical tests and effect sizes carried out for each
+<code>type</code> are listed in the function documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.html</a></p>
+</div>
+<div class="section level2">
+<h2 id="extracting-statistical-details">Extracting statistical details<a class="anchor" aria-label="anchor" href="#extracting-statistical-details"></a>
+</h2>
+<p>All statistical details shown in the plot are also available as data
+frames, which can be extracted with <code><a href="../../reference/extract_stats.html">extract_stats()</a></code>. The
+returned list contains results from the test in the subtitle
+(<code>subtitle_data</code>) and the Bayesian test in the caption
+(<code>caption_data</code>).</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">qsec</span>, <span class="va">drat</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">subtitle_data</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 14</span></span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">parameter1</span> <span style="font-weight: bold;">parameter2</span> <span style="font-weight: bold;">effectsize</span>          <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> qsec       drat       Pearson correlation   <span style="color: #949494;">0.0</span>91<span style="text-decoration: underline;">2</span>       <span style="color: #949494;">0.</span>95   -<span style="color: #949494;">0.</span><span style="color: #BB0000;">266</span></span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">conf.high</span> <span style="font-weight: bold;">statistic</span> <span style="font-weight: bold;">df.error</span> <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">method</span>              <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">conf.method</span></span></span>
+<span><span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     <span style="color: #949494;">0.</span>426     <span style="color: #949494;">0.</span>502       30   <span style="color: #949494;">0.</span>620 Pearson correlation    32 normal     </span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">expression</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;language&gt;</span></span></span></code></pre></div>
+<p>For <code><a href="../../reference/grouped_ggscatterstats.html">grouped_ggscatterstats()</a></code> plots,
+<code><a href="../../reference/extract_stats.html">extract_stats()</a></code> returns one such list for each level of the
+grouping variable.</p>
 </div>
 <div class="section level2">
 <h2 id="reporting">Reporting<a class="anchor" aria-label="anchor" href="#reporting"></a>
@@ -272,7 +359,7 @@ and</p></li>
 interpretive context for the reported statistics.</p></li>
 </ul>
 <p>For example, let’s see the following example:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">qsec</span>, <span class="va">drat</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggscatterstats_files/figure-html/reporting-1.png" class="r-plt" alt="" width="100%"></p>
 <p>The narrative context (assuming <code>type = "parametric"</code>) can

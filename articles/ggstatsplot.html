@@ -37,7 +37,6 @@
     "name": "R"
   },
   "license": "https://opensource.org/licenses/MIT",
-  "version": "1.0.0",
   "author": {
     "@type": "Person",
     "name": "Indrajeet Patil",
@@ -46,11 +45,14 @@
   },
   "keywords": ["R", "ggplot2", "statistics", "data visualization", "Bayesian", "frequentist", "nonparametric", "robust statistics", "ANOVA", "correlation"]
 }
-</script><meta name="citation_title" content="ggstatsplot: ggplot2 Based Plots with Statistical Details">
+</script><meta name="citation_title" content="Visualizations with statistical details: The 'ggstatsplot' approach">
 <meta name="citation_author" content="Indrajeet Patil">
-<meta name="citation_year" content="2021">
-<meta name="citation_doi" content="10.21105/joss.03236">
+<meta name="citation_publication_date" content="2021/05/25">
+<meta name="citation_doi" content="10.21105/joss.03167">
 <meta name="citation_journal_title" content="Journal of Open Source Software">
+<meta name="citation_volume" content="6">
+<meta name="citation_issue" content="61">
+<meta name="citation_firstpage" content="3167">
 <link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary">
 </head>
 <body>
@@ -61,7 +63,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -203,7 +205,7 @@ Moreover, these details are juxtaposed with informative and well-labeled
 visualizations. The defaults are designed to follow best practices in
 both data visualization <span class="citation">(<a href="#ref-cleveland1985">Cleveland, 1985</a>; <a href="#ref-grant2018data">Grant, 2018</a>; <a href="#ref-healy2018data">Healy, 2018</a>; <a href="#ref-tufte2001">Tufte, 2001</a>; <a href="#ref-wilke2019fundamentals">Wilke, 2019</a>)</span> and
 (frequentist/Bayesian) statistical reporting <span class="citation">(<a href="#ref-apa2019">American Psychological Association, 2019</a>; <a href="#ref-van2020jasp"><span class="nocase">van Doorn et al.</span>,
-2020</a>)</span>. Without <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a>, getting these
+2021</a>)</span>. Without <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a>, getting these
 statistical details and customizing a plot would require significant
 amount of time and effort. In other words, this package removes the
 trade-off often faced by researchers between ease and thoroughness of
@@ -276,10 +278,22 @@ expanding to support an increasing collection of statistical analyses
 and visualizations.</p>
 </div>
 <div class="section level2">
+<h2 id="learn-more">Learn More<a class="anchor" aria-label="anchor" href="#learn-more"></a>
+</h2>
+<ul>
+<li><p>Articles for each function, frequently asked questions, and other
+topics are available on the package website: <a href="https://www.indrapatil.com/ggstatsplot/articles/" class="uri">https://www.indrapatil.com/ggstatsplot/articles/</a></p></li>
+<li><p>The statistical details displayed in any plot can be retrieved as
+data frames with <code><a href="../reference/extract_stats.html">extract_stats()</a></code> (and the expressions with
+<code><a href="../reference/extract_stats.html">extract_subtitle()</a></code> and <code><a href="../reference/extract_stats.html">extract_caption()</a></code>),
+e.g. <code>extract_stats(ggbetweenstats(iris, Species, Sepal.Length))</code>.</p></li>
+</ul>
+</div>
+<div class="section level2">
 <h2 id="licensing-and-availability">Licensing and Availability<a class="anchor" aria-label="anchor" href="#licensing-and-availability"></a>
 </h2>
-<p><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> is licensed under the GNU General Public
-License (v3.0), with all source code stored at <a href="https://github.com/IndrajeetPatil/ggstatsplot/" class="external-link">GitHub</a>. In the
+<p><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> is licensed under the MIT License, with
+all source code stored at <a href="https://github.com/IndrajeetPatil/ggstatsplot/" class="external-link">GitHub</a>. In the
 spirit of honest and open science, requests and suggestions for fixes,
 feature updates, as well as general questions and concerns are
 encouraged via direct interaction with contributors and developers by
@@ -374,9 +388,9 @@ Press</span>.
 Dablander, F., Derks, K., Draws, T., Etz, A., Evans, N. J., Gronau, Q.
 F., Haaf, J. M., Hinne, M., Kucharský, Š., Ly, A., Marsman, M., Matzke,
 D., Gupta, A. R. K. N., Sarafoglou, A., Stefan, A., Voelkel, J. G.,
-&amp; Wagenmakers, E.-J.</span> (2020). The JASP guidelines for
+&amp; Wagenmakers, E.-J.</span> (2021). The JASP guidelines for
 conducting and reporting a <span>B</span>ayesian analysis.
-<em>Psychonomic Bulletin &amp; Review</em>, 1–14. <a href="https://doi.org/10.3758/s13423-020-01798-5" class="external-link">https://doi.org/10.3758/s13423-020-01798-5</a>
+<em>Psychonomic Bulletin &amp; Review</em>, <em>28</em>(3), 813–826. <a href="https://doi.org/10.3758/s13423-020-01798-5" class="external-link">https://doi.org/10.3758/s13423-020-01798-5</a>
 </div>
 <div id="ref-Wickham2016" class="csl-entry">
 Wickham, H. (2016). <em><span class="nocase">ggplot2</span>: Elegant

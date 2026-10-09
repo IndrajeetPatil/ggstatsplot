@@ -18,7 +18,6 @@
     "name": "R"
   },
   "license": "https://opensource.org/licenses/MIT",
-  "version": "1.0.0",
   "author": {
     "@type": "Person",
     "name": "Indrajeet Patil",
@@ -27,7 +26,7 @@
   },
   "keywords": ["R", "ggplot2", "statistics", "data visualization", "Bayesian", "frequentist", "nonparametric", "robust statistics", "ANOVA", "correlation"]
 }
-</script><meta name="citation_title" content="ggstatsplot: ggplot2 Based Plots with Statistical Details"><meta name="citation_author" content="Indrajeet Patil"><meta name="citation_year" content="2021"><meta name="citation_doi" content="10.21105/joss.03236"><meta name="citation_journal_title" content="Journal of Open Source Software"><link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary"></head><body>
+</script><meta name="citation_title" content="Visualizations with statistical details: The 'ggstatsplot' approach"><meta name="citation_author" content="Indrajeet Patil"><meta name="citation_publication_date" content="2021/05/25"><meta name="citation_doi" content="10.21105/joss.03167"><meta name="citation_journal_title" content="Journal of Open Source Software"><meta name="citation_volume" content="6"><meta name="citation_issue" content="61"><meta name="citation_firstpage" content="3167"><link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -35,7 +34,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -119,48 +118,59 @@
 </ul></div>
 <div class="section level3">
 <h3 id="dependencies">Dependencies<a class="anchor" aria-label="anchor" href="#dependencies"></a></h3>
-<p>Core dependencies include <code>ggplot2</code>, <code>statsExpressions</code>, the tidyverse stack (<code>dplyr</code>, <code>purrr</code>, <code>tidyr</code>, and <code>rlang</code>), <code>patchwork</code>, <code>paletteer</code>, and the easystats ecosystem (<code>insight</code>, <code>parameters</code>, <code>performance</code>, <code>datawizard</code>, and <code>correlation</code>). Treat <code>DESCRIPTION</code> as the source of truth for dependency constraints.</p>
-<p>The minimum supported R version is 4.5. CI covers R-devel, the current R release, and the previous R release; keep README support wording independent of specific version numbers.</p>
+<p>Core dependencies include <code>ggplot2</code>, <code>statsExpressions</code>, the tidyverse stack (<code>dplyr</code>, <code>purrr</code>, <code>tidyr</code>, and <code>rlang</code>), <code>patchwork</code>, <code>paletteer</code>, and the easystats ecosystem (<code>insight</code>, <code>parameters</code>, <code>performance</code>, <code>datawizard</code>, and <code>correlation</code>). Treat <code>DESCRIPTION</code> as the source of truth for dependency constraints and the minimum supported R version.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="developer-workflow">Developer workflow<a class="anchor" aria-label="anchor" href="#developer-workflow"></a></h2>
 <p>Use the repository <code>Makefile</code> for routine package tasks:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">make</span> install_deps <span class="co"># Install dependencies declared in DESCRIPTION</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">make</span> build        <span class="co"># Build the package tarball</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">make</span> check        <span class="co"># Build and run R CMD check --no-manual</span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">make</span> install      <span class="co"># Build and install the package locally</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">make</span> document     <span class="co"># Build, install into .local-lib, and render README.Rmd</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">make</span> lint         <span class="co"># Run lintr::lint_package()</span></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">make</span> format       <span class="co"># Run styler::style_pkg()</span></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">make</span> hooks        <span class="co"># Run all prek hooks</span></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="fu">make</span> clean        <span class="co"># Remove package build and check artifacts</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="fu">make</span> update_deps  <span class="co"># Refresh dependency constraints, docs, and codemeta</span></span></code></pre></div>
-<p><code>make update_deps</code> is a maintenance operation that can rewrite dependency constraints and generated metadata. Do not use it merely to install the current dependency set.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">make</span> install_deps  <span class="co"># Install dependencies declared in DESCRIPTION</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">make</span> build         <span class="co"># Install dependencies, then build the package tarball</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">make</span> check         <span class="co"># Build and run R CMD check --no-manual</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">make</span> install       <span class="co"># Build and install the package locally</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">make</span> document      <span class="co"># Build, install into .local-lib, and render README.Rmd</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">make</span> lint          <span class="co"># Run lintr::lint_package()</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">make</span> format        <span class="co"># Format R code with Air (air format .)</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">make</span> hooks         <span class="co"># Run all prek hooks on all files</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="fu">make</span> hooks_install <span class="co"># Install the prek Git hooks</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="fu">make</span> clean         <span class="co"># Remove package build and check artifacts</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="fu">make</span> update_deps   <span class="co"># Refresh dependency constraints (maintenance only)</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="validation-gate">Validation gate<a class="anchor" aria-label="anchor" href="#validation-gate"></a></h3>
+<p>This is the single source of truth for the full local validation gate used by the repository prompts and skills:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">air</span> format . <span class="at">--check</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">make</span> lint</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">make</span> hooks</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">make</span> check</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">git</span> diff <span class="at">--check</span></span></code></pre></div>
+<p>If Air reports drift, run <code>make format</code> (or <code>air format .</code>), inspect the result, and rerun the check. Run <code>make document</code> when <code>README.Rmd</code> or generated README content changes. Run the narrowest relevant <code>testthat</code> file first, for example <code>Rscript -e 'testthat::test_local(filter = "ggbetweenstats")'</code>.</p>
+</div>
 <div class="section level3">
 <h3 id="versioning-and-changelog">Versioning and changelog<a class="anchor" aria-label="anchor" href="#versioning-and-changelog"></a></h3>
 <ul><li>Development versions use a fourth-component <code>.9000</code> suffix.</li>
 <li>Keep the version in <code>DESCRIPTION</code>, <code>codemeta.json</code>, and the first <code>NEWS.md</code> heading synchronized.</li>
-<li>Record user-facing compatibility changes in <code>NEWS.md</code>; omit routine dependency updates and internal lint or CI maintenance.</li>
+<li>Record user-facing compatibility or behavior changes in <code>NEWS.md</code>; omit routine dependency, formatting, lint, test, CI, and generated-file maintenance.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="repository-skills">Repository skills<a class="anchor" aria-label="anchor" href="#repository-skills"></a></h3>
-<ul><li>Use <code>.agents/skills/create-release/SKILL.md</code> only when asked to prepare, submit, resume, or publish a CRAN release.</li>
-</ul></div>
+<h3 id="pkgdown-site">pkgdown site<a class="anchor" aria-label="anchor" href="#pkgdown-site"></a></h3>
+<p>The site configuration is <code>pkgdown/_pkgdown.yml</code>, and web-only articles live in <code>vignettes/web_only/</code>. Build it locally with <code>Rscript -e 'pkgdown::build_site()'</code>; the output in <code>docs/</code> is ignored by Git.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="testing">Testing<a class="anchor" aria-label="anchor" href="#testing"></a></h2>
 <ul><li>The package uses <code>testthat</code> edition 3 with parallel execution.</li>
 <li>
-<code>make check</code> is the canonical full local validation command.</li>
+<code>make check</code> runs <code>R CMD check</code>, including the tests; see the validation gate above for the full local gate.</li>
 <li>Tests mirror the relevant source area, but helper and shared source files may be covered by broader test files rather than a one-to-one filename match.</li>
 <li>Plot output is covered by <code>vdiffr</code> snapshots using <code>expect_doppelganger()</code> after <code>vdiffr</code> is attached by the test helper.</li>
 <li>Treat broad snapshot diffs after dependency updates as potentially renderer-specific. Before accepting them, compare the old and new dependency builds under the same R and graphics stack and verify whether rendered text, statistics, or geometry actually changed.</li>
 <li>If both dependency builds reproduce the same SVG changes, restore the repository snapshots instead of committing local renderer churn. Confirm legitimate baseline updates with CI-native output across supported platforms.</li>
-<li>The top-level test runner executes package tests only with R 4.5 or newer on Linux or macOS because graphics and text rendering changed across R versions.</li>
+<li>The top-level test runner (<code>tests/testthat.R</code>) executes package tests only with R 4.5 or newer on Linux or macOS because graphics and text rendering changed across R versions.</li>
+<li>Snapshots live in <code>tests/testthat/_snaps/</code>. A few plots use <code>variant =</code> in <code>expect_doppelganger()</code> for platform (<code>darwin/</code>, <code>linux/</code>) or R-version (<code>r-4.7/</code>) differences; add a variant only when the difference is confirmed renderer-specific.</li>
+<li>Failing snapshot tests write <code>.new.svg</code> files next to the baselines. Inspect them with <code><a href="https://testthat.r-lib.org/reference/snapshot_accept.html" class="external-link">testthat::snapshot_review()</a></code> in an interactive R session, then accept intentional changes with <code>testthat::snapshot_accept("ggbetweenstats/")</code> or discard them with <code><a href="https://testthat.r-lib.org/reference/snapshot_accept.html" class="external-link">testthat::snapshot_reject()</a></code>. When local and CI renderers disagree, use the snapshot artifact that the R-CMD-check workflow uploads on failure.</li>
 <li>Codecov requires 100% project and patch coverage.</li>
 </ul><p>When adding visual tests, use the repository’s existing style:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">test_that</span><span class="op">(</span><span class="st">"descriptive name"</span>, <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span>  <span class="fu">expect_doppelganger</span><span class="op">(</span></span>
@@ -171,7 +181,7 @@
 </div>
 <div class="section level2">
 <h2 id="code-conventions">Code conventions<a class="anchor" aria-label="anchor" href="#code-conventions"></a></h2>
-<ul><li>Use <code>lintr</code> for linting and <code>styler</code> for formatting.</li>
+<ul><li>Use <code>lintr</code> (configured in <code>.lintr</code>) for linting and Air (configured in <code>air.toml</code>) for formatting.</li>
 <li>Use snake_case for functions and variables.</li>
 <li>Use the base R pipe (<code>|&gt;</code>), not the magrittr pipe (<code>%&gt;%</code>).</li>
 <li>Set seeds before tests that use random or Bayesian computations.</li>
@@ -181,8 +191,12 @@
 <h3 id="roxygen-documentation">Roxygen documentation<a class="anchor" aria-label="anchor" href="#roxygen-documentation"></a></h3>
 <ul><li>Roxygen uses Markdown and the <code>pkgapi</code> and <code>roxyglobals</code> roclets configured in <code>DESCRIPTION</code>.</li>
 <li>Use <code>@autoglobal</code> from <code>roxyglobals</code> where appropriate.</li>
-<li>Shared documentation lives in <code>man/md-fragments/</code> and <code>man/rmd-fragments/</code>.</li>
-<li>After changing roxygen comments, run <code>Rscript -e 'roxygen2::roxygenise()'</code> and commit the generated <code>NAMESPACE</code> or <code>man/*.Rd</code> changes. Do not edit generated <code>.Rd</code> files by hand.</li>
+<li>
+<code>pkgapi</code> is not on CRAN; install it with <code>pak::pak("r-lib/pkgapi")</code> before regenerating documentation.</li>
+<li>Shared documentation lives in two places. <code>man/rmd-fragments/*.Rmd</code> are pulled into function docs by roxygen Markdown chunks such as <code>```{r child="man/rmd-fragments/ggbetweenstats_graphics.Rmd"}</code>. <code>man/md-fragments/*.md</code> are included by vignettes with <code>```{asis, file="../../man/md-fragments/reporting.md"}</code>. The per-function articles in <code>vignettes/web_only/</code> include the graphics tables from <code>man/rmd-fragments/</code> the same way. Use <code>asis</code> file chunks rather than knitr <code>child=</code> in articles: pkgdown renders them from a temporary file, so relative child paths do not resolve. Edit the fragment, not the generated output.</li>
+<li>After changing roxygen comments, run <code>Rscript -e 'roxygen2::roxygenise()'</code> and commit the generated <code>NAMESPACE</code>, <code>man/*.Rd</code>, <code>API</code> (from <code>pkgapi</code>), and <code>R/globals.R</code> (from <code>roxyglobals</code>) changes. Do not edit generated files by hand.</li>
+<li>Regenerate with the roxygen2 release recorded in <code>Config/roxygen2/version</code>. A newer roxygen2 rewrites that field (and may reformat <code>NAMESPACE</code>); commit that bump deliberately, together with the regenerated output, rather than as incidental churn.</li>
+<li>Several parameters are inherited from <code>statsExpressions</code> via <code>@inheritParams</code>, so the generated <code>.Rd</code> text depends on the installed <code>statsExpressions</code>. Regenerate against its CRAN release, not a local development build.</li>
 <li>
 <code>make document</code> renders <code>README.Rmd</code>; it is not the roxygen regeneration command in this repository.</li>
 </ul></div>
@@ -205,7 +219,7 @@
 <li>
 <code>ggtheme</code>: The ggplot2 theme to use.</li>
 <li>
-<code>palette</code>, <code>package</code>: Color palette specifications.</li>
+<code>palette</code>: A single <code>"package::palette"</code> string understood by <code>paletteer</code> (default <code>"ggthemes::gdoc"</code>).</li>
 </ul></div>
 </div>
 <div class="section level2">
@@ -236,9 +250,18 @@
 <code>NEWS.md</code> for user-facing changes.</li>
 </ol></div>
 <div class="section level2">
-<h2 id="cicd">CI/CD<a class="anchor" aria-label="anchor" href="#cicd"></a></h2>
-<p>Workflows under <code>.github/workflows/</code> run standard and hard R CMD checks, coverage, documentation and extra checks, formatting, linting, prek hooks, pkgdown builds, and deployment tasks. Most jobs call reusable workflows from <code>IndrajeetPatil/workflows</code>; update the callers rather than copying those workflows into this repository.</p>
-<p>The shared R CMD check matrix intentionally covers R-devel, release, and oldrel. Do not reintroduce <code>oldrel-2</code> unless the package support policy changes.</p>
+<h2 id="repository-skills">Repository skills<a class="anchor" aria-label="anchor" href="#repository-skills"></a></h2>
+<p>Task-specific instructions live in <code>.agents/skills/</code>. Read a skill only when the task matches it:</p>
+<ul><li>
+<code>create-release</code>: prepare, submit, resume, or publish a CRAN release.</li>
+<li>
+<code>update-dependencies</code>: update dependencies to their latest versions, change the minimum R version, or add, remove, or move a dependency.</li>
+<li>
+<code>maintain-ci</code>: change or debug workflows under <code>.github/workflows/</code>.</li>
+</ul><p>User-invoked prompts for other tasks (<code>address-review.md</code> and <code>simplify-codebase.md</code>) live in <code>.github/prompts/</code>. Keep each topic in exactly one place: <code>AGENTS.md</code> for every-session rules, a skill or a prompt for task-specific procedures.</p>
+</div>
+<div class="section level2">
+<h2 id="pull-requests">Pull requests<a class="anchor" aria-label="anchor" href="#pull-requests"></a></h2>
 <p>Open pull requests as ready for review rather than as drafts. Unless explicitly requested, do not wait for CI/CD checks to finish after pushing; report that the checks were triggered and include the pull request or workflow link.</p>
 </div>
 </div>

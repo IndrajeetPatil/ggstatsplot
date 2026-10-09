@@ -1,6 +1,6 @@
-# Movie information and user ratings from IMDB.com (long format).
+# Movie information and user ratings from IMDB.com (long format)
 
-Movie information and user ratings from IMDB.com (long format).
+Movie information and user ratings from IMDB.com (long format)
 
 ## Usage
 
@@ -26,8 +26,8 @@ A data frame with 1,579 rows and 8 variables
 
 - mpaa. MPAA rating.
 
-- genre. Different genres of movies (action, animation, comedy, drama,
-  documentary, romance, short).
+- genre. Different genres of movies (Action, Action Comedy, Action
+  Drama, Animated, Comedy, Comedy Drama, Drama, RomCom, Romance Drama).
 
 ## Source
 

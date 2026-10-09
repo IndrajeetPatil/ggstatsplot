@@ -38,9 +38,9 @@ in graphs. [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)
 incorporates the paradigm proposed in ((Cleveland, 1985), Chapter 4) to
 facilitate making visual judgments about quantitative information
 effortless and almost instantaneous. Based on experiments, Cleveland
-proposes that there are ten elementary graphical-perception tasks that
-we perform to visually decode quantitative information in graphs
-(organized from most to least accurate; (Cleveland, 1985), p.254)-
+proposes a set of elementary graphical-perception tasks that we perform
+to visually decode quantitative information in graphs (organized from
+most to least accurate; (Cleveland, 1985), p.254)-
 
 - Position along a common scale
 
@@ -96,9 +96,9 @@ recommendations made in Cleveland’s paradigm:
   to bar graphs, e.g., which require *position* judgments). This
   shortcoming is assuaged to some degree by using plenty of labels that
   describe percentages for all slices. This makes angle judgment
-  unnecessary and pre-vacates any concerns about inaccurate judgments
-  about percentages. Additionally, it also provides alternative function
-  to `ggpiestats` for working with categorical variables: `ggbarstats`.
+  unnecessary and obviates any concerns about inaccurate judgments about
+  percentages. Additionally, it also provides an alternative function to
+  `ggpiestats` for working with categorical variables: `ggbarstats`.
 
 \
 [`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)`(`\
@@ -198,20 +198,18 @@ of context. The package follows the principles for *graphical integrity*
 (Tufte, 2001):
 
 - The physical representation of numbers is proportional to the
-  numerical quantities they represent. The plot show how means (in
-  `ggbetweenstats`) or percentages (`ggpiestats`) are proportional to
-  the vertical distance or the area, respectively).
+  numerical quantities they represent. The plots show how means (in
+  `ggbetweenstats`) or percentages (in `ggpiestats`) are proportional to
+  the vertical distance or the area, respectively.
 
 - All important events in the data have clear, detailed, and thorough
-  labeling plot shows how `ggbetweenstats` labels means, sample size
-  information, outliers, and pairwise comparisons; same can be
-  appreciated for `ggpiestats` and `gghistostats` plots. Note that data
-  labels in the data region are designed in a way that they don’t
-  interfere with our ability to assess the overall pattern of the data
-  ((Cleveland, 1985);
-
-p.44-45). This is achieved by using `ggrepel` package to place labels in
-a way that reduces their visual prominence.
+  labeling. The plot shows how `ggbetweenstats` labels means, sample
+  size information, and pairwise comparisons; same can be appreciated
+  for `ggpiestats` and `gghistostats` plots. Note that data labels in
+  the data region are designed in a way that they don’t interfere with
+  our ability to assess the overall pattern of the data ((Cleveland,
+  1985), p.44-45). This is achieved by using `ggrepel` package to place
+  labels in a way that reduces their visual prominence.
 
 - None of the plots have *design* variation (e.g., abrupt change in
   scales) over the surface of a same graphic because this can lead to a
@@ -251,7 +249,6 @@ graphic without adding any new information. But this redundancy is
 tolerated for the sake of beauty that such symmetrical shapes can bring
 to the graphic. Even Tufte admits that efficiency is but one
 consideration in the design of statistical graphics ((Tufte, 2001),
-
 p. 137). Additionally, these principles were formulated in an era in
 which computer graphics had yet to revolutionize the ease with which
 graphics could be produced and thus some of the concerns about
@@ -277,6 +274,7 @@ data, which comes in two forms:
 `  data ``=`` ``morley``,`\
 `  x ``=`` ``Speed``,`\
 `  test.value ``=`` ``792``,`\
+`  bf.message ``=`` ``FALSE``,`\
 `  xlab ``=`` ``"Speed of light (km/sec, with 299000 subtracted)"``,`\
 `  title ``=`` ``"Distribution of measured Speed of light"``,`\
 `  caption ``=`` ``"Note: Data collected across 5 experiments (20 measurements each)"`\
@@ -359,7 +357,7 @@ expectations about the structure of the data. More specifically,
 `    cor.vars ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``sleep_rem``, ``awake``:``bodywt``)``,`\
 `    cor.vars.names ``=`` ``var_names``,`\
 `    colors ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"#B2182B"``, ``"white"``, ``"#4D4D4D"``)``,`\
-`    title ``=`` ``"Correlalogram for mammals sleep dataset"``,`\
+`    title ``=`` ``"Correlogram for mammals sleep dataset"``,`\
 `    subtitle ``=`` ``"sleep units: hours; weight units: kilograms"`\
 `  ``)``,`\
 `  plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``1``)`\
@@ -370,7 +368,7 @@ and display total sample size \textit{n}, but they can give more nuanced
 information about sample sizes when \textit{n} differs across tests. For
 example, \`ggcorrmat\` will display (\textit{a}) only one total sample
 size once when no \`NA\`s present, but (\textit{b}) will instead show
-minimum, median, and maximum sample sizes across all correlation tests
+minimum, mode, and maximum sample sizes across all correlation tests
 when \`NA\`s are present across correlation
 variables.](principles_files/figure-html/fig4-1.png)
 
@@ -379,7 +377,7 @@ variables.](principles_files/figure-html/fig4-1.png)
 they can give more nuanced information about sample sizes when differs
 across tests. For example, `ggcorrmat` will display () only one total
 sample size once when no `NA`s present, but () will instead show
-minimum, median, and maximum sample sizes across all correlation tests
+minimum, mode, and maximum sample sizes across all correlation tests
 when `NA`s are present across correlation variables.
 
 ### Statistical reporting
@@ -400,7 +398,7 @@ helpful? We list few reasons below-
 
 The default setting in
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) is to produce
-plots with statistical details included. Most often than not, these
+plots with statistical details included. More often than not, these
 results are displayed as a `subtitle` in the plot. Great care has been
 taken into which details are included in statistical reporting and why.
 
@@ -428,17 +426,20 @@ reporting statistical details:
 - With the exception of *p*-values, most statistics are rounded to two
   decimal places by default.
 
-### Dealing with **null results**:
+### Dealing with null results
 
-All functions therefore by default return Bayesian in favor of the null
-hypothesis by default. If the null hypothesis can’t be rejected with the
-null hypothesis significance testing (NHST) approach, the Bayesian
-approach can help index evidence in favor of the null hypothesis (i.e.,
-$`BF_{01}`$). By default, natural logarithms are shown because Bayesian
-values can sometimes be pretty large. Having values on logarithmic scale
-also makes it easy to compare evidence in favor alternative
-($`BF_{10}`$) versus null ($`BF_{01}`$) hypotheses (since
-$`log_{e}(BF_{01}) = - log_{e}(BF_{10})`$).
+For parametric tests (the default `type`), functions also display, by
+default, the Bayes Factor in favor of the null hypothesis ($`BF_{01}`$)
+in the caption (this can be turned off with `bf.message = FALSE`). If
+the null hypothesis can’t be rejected with the null hypothesis
+significance testing (NHST) approach, the Bayesian approach can help
+index evidence in favor of the null hypothesis. By default, natural
+logarithms are shown because Bayes Factor values can sometimes be pretty
+large. Having values on logarithmic scale also makes it easy to compare
+evidence in favor of alternative ($`BF_{10}`$) versus null ($`BF_{01}`$)
+hypotheses (since $`log_{e}(BF_{01}) = - log_{e}(BF_{10})`$). See [this
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/interpretation.html)
+for more on interpreting these values.
 
 ## Suggestions
 
@@ -460,11 +461,11 @@ errors in psychology (19852013). *Behavior Research Methods*, *48*(4),
 doi:[10.3758/s13428-015-0664-2](https://doi.org/10.3758/s13428-015-0664-2)
 
 Tufte, E. R. (2001). *The Visual Display of Quantitative Information*
-(2nd edition edition.). Cheshire, Conn: Graphics Press.
+(2nd ed.). Cheshire, Conn: Graphics Press.
 
 Wickham, H. (2014). Tidy Data. *Journal of Statistical Software*,
 *59*(1), 1–23.
 doi:[10.18637/jss.v059.i10](https://doi.org/10.18637/jss.v059.i10)
 
 Wickham, H. (2016). *Ggplot2: Elegant Graphics for Data Analysis* (2nd
-ed. 2016 edition.). New York, NY: Springer.
+ed.). New York, NY: Springer.

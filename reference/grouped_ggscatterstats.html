@@ -20,7 +20,6 @@ plots with statistical details added as a subtitle."><meta property="og:image" c
     "name": "R"
   },
   "license": "https://opensource.org/licenses/MIT",
-  "version": "1.0.0",
   "author": {
     "@type": "Person",
     "name": "Indrajeet Patil",
@@ -29,7 +28,7 @@ plots with statistical details added as a subtitle."><meta property="og:image" c
   },
   "keywords": ["R", "ggplot2", "statistics", "data visualization", "Bayesian", "frequentist", "nonparametric", "robust statistics", "ANOVA", "correlation"]
 }
-</script><meta name="citation_title" content="ggstatsplot: ggplot2 Based Plots with Statistical Details"><meta name="citation_author" content="Indrajeet Patil"><meta name="citation_year" content="2021"><meta name="citation_doi" content="10.21105/joss.03236"><meta name="citation_journal_title" content="Journal of Open Source Software"><link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary"></head><body>
+</script><meta name="citation_title" content="Visualizations with statistical details: The 'ggstatsplot' approach"><meta name="citation_author" content="Indrajeet Patil"><meta name="citation_publication_date" content="2021/05/25"><meta name="citation_doi" content="10.21105/joss.03167"><meta name="citation_journal_title" content="Journal of Open Source Software"><meta name="citation_volume" content="6"><meta name="citation_issue" content="61"><meta name="citation_firstpage" content="3167"><link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -37,7 +36,7 @@ plots with statistical details added as a subtitle."><meta property="og:image" c
 
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -131,23 +130,23 @@ a quoted expression  (e.g. <code>quote(y &lt; 4 &amp; z &lt; 20)</code>).</p></d
 
     <dt><code>point.label.args</code></dt>
 <dd><p>A list of additional aesthetic arguments to be passed
-to <code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code>geom used to display the labels.</p></dd>
+to <code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code> geom used to display the labels.</p></dd>
 
     <dt><code>smooth.line.args</code></dt>
 <dd><p>A list of additional aesthetic arguments to be passed
-to <code>geom_smooth</code> geom used to display the regression line.</p></dd>
+to <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">ggplot2::geom_smooth()</a></code> geom used to display the regression line. Its
+confidence band uses <code>conf.level</code>.</p></dd>
 
     <dt><code>marginal</code></dt>
 <dd><p>Decides whether marginal distributions will be plotted on
-axes using <code>{ggside}</code> functions. The default is <code>TRUE</code>. The package
-<code>{ggside}</code> must already be installed by the user.</p></dd>
+axes using <code>{ggside}</code> functions. The default is <code>TRUE</code>.</p></dd>
 
     <dt><code>point.width.jitter,point.height.jitter</code></dt>
 <dd><p>Degree of jitter in <code>x</code> and <code>y</code>
 direction, respectively. Defaults to <code>0</code> (0%) of the resolution of the
 data. Note that the jitter should not be specified in the <code>point.args</code>
 because this information will be passed to two different <code>geom</code>s: one
-displaying the <strong>points</strong> and the other displaying the *<strong>labels</strong> for
+displaying the <strong>points</strong> and the other displaying the <strong>labels</strong> for
 these points.</p></dd>
 
     <dt><code>xsidehistogram.args,ysidehistogram.args</code></dt>
@@ -226,8 +225,8 @@ the plot will be returned.</p></dd>
 <code>results.subtitle = FALSE</code>.</p></dd>
 
     <dt><code>caption</code></dt>
-<dd><p>The text for the plot caption. This argument is relevant only
-if <code>bf.message = FALSE</code>.</p></dd>
+<dd><p>The text for the plot caption. It will be replaced by the
+Bayes Factor caption whenever that is displayed (see <code>bf.message</code>).</p></dd>
 
     <dt><code>point.args</code></dt>
 <dd><p>A list of additional aesthetic arguments to be passed to
@@ -256,7 +255,10 @@ thus the details as well.</p></dd>
 
 
 <dt id="arg-grouping-var">grouping.var<a class="anchor" aria-label="anchor" href="#arg-grouping-var"></a></dt>
-<dd><p>A single grouping variable.</p></dd>
+<dd><p>A single grouping variable. A separate plot is created
+for each of its levels (in factor level order, or in order of appearance
+for character variables). Rows with a missing value in this variable are
+removed.</p></dd>
 
 
 <dt id="arg-plotgrid-args">plotgrid.args<a class="anchor" aria-label="anchor" href="#arg-plotgrid-args"></a></dt>
@@ -271,8 +273,16 @@ separately specified here.</p></dd>
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    <p>A <code>patchwork</code> object combining one plot per level of
+<code>grouping.var</code> (see <code><a href="combine_plots.html">combine_plots()</a></code>). Applying <code><a href="extract_stats.html">extract_stats()</a></code> to
+it returns a list with the statistical details for each of these plots.</p>
+    </div>
+    <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>For details, see:
+    <p>Rows with a missing value in either <code>x</code> or <code>y</code> are removed before
+plotting and analysis.</p>
+<p>For details, see:
 <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html">https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html</a></p>
     </div>
     <div class="section level2">

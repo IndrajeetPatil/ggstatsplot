@@ -27,8 +27,6 @@ You can cite this package/vignette as:
 
 ------------------------------------------------------------------------
 
-------------------------------------------------------------------------
-
 This is an extremely time-consuming vignette, and so it is not evaluated
 here. You can still use the code as a reference for writing your own
 [purrr](https://purrr.tidyverse.org/) code.
@@ -58,8 +56,10 @@ We will see how to overcome this limitation by combining
 **Note:**
 
 - While using
-  [`purrr::pmap()`](https://purrr.tidyverse.org/reference/pmap.html), we
-  **must** input the arguments as strings.
+  [`purrr::pmap()`](https://purrr.tidyverse.org/reference/pmap.html),
+  the variable names (e.g., `x`, `y`) should be entered as strings (or
+  as symbols created with [`alist()`](https://rdrr.io/r/base/list.html);
+  see the `grouped_` example below).
 
 - You can use [ggplot2](https://ggplot2.tidyverse.org) themes from
   extension packages (e.g. `ggthemes`).
@@ -88,29 +88,27 @@ themes.
 You can pass:
 
 - A single character string such as `xlab = "Continent"` or numeric such
-  as `nboot = 25` in which case it will be reused/recycled as many times
-  as needed.
+  as `conf.level = 0.99` in which case it will be reused/recycled as
+  many times as needed.
 
-- A vector of values such as `nboot = c(50, 100, 200)` in which case it
-  will be coerced to a list and checked for the right class (in this
-  case integer) and the right quantity of entries in the vector i.e.,
-  `nboot = c(50, 100)` will fail if we’re trying to make three plots.
+- A vector of values such as `conf.level = c(0.90, 0.95, 0.99)` in which
+  case each plot gets the corresponding element. All inputs must have
+  either length 1 or the same length as the number of plots, i.e.,
+  `conf.level = c(0.90, 0.95)` will fail if we’re trying to make three
+  plots.
 
 - A list; either named `data = year_list` or created as you go
-  `palette = list("Dark2", "Set1")`. Any list will be checked for the
-  right class (in this case character) and the right quantity of entries
-  in the list.
+  `palette = list("RColorBrewer::Dark2", "RColorBrewer::Set1")`. Use a
+  list when each element is itself a vector or a list (e.g., `cor.vars`
+  or `*.args` arguments).
 
 ## `ggbetweenstats`
 
-Let’s start with `ggebtweenstats`. We’ll use the `gapminder` dataset.
+Let’s start with `ggbetweenstats`. We’ll use the `gapminder` dataset.
 We’ll make a 3 item `list` called `year_list` using
 [`dplyr::filter`](https://dplyr.tidyverse.org/reference/filter.html) and
 `split`.
 
-\
-\
-\
 \
 `## let's split the data frame and create a list by years of interest`\
 `year_list`` ``<-`` ``gapminder``::`[`gapminder`](https://jennybc.github.io/gapminder/reference/gapminder.html)` ``|>`\
@@ -155,13 +153,7 @@ so we pass the variable name as a string `x = "continent"`.
 `    p.adjust.method ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"hommel"``, ``"bonferroni"``, ``"BH"``)``,`\
 `    conf.level ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``0.99``, ``0.95``, ``0.90``)``,`\
 `    digits ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``1``, ``2``, ``3``)``,`\
-`    effsize.type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
-`      ``NULL``,`\
-`      ``"partial_omega"``,`\
-`      ``"partial_eta"`\
-`    ``)``,`\
-`    package ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"nord"``, ``"ochRe"``, ``"awtools"``)``,`\
-`    palette ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"aurora"``, ``"parliament"``, ``"bpalette"``)``,`\
+`    palette ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"nord::aurora"``, ``"ochRe::parliament"``, ``"awtools::bpalette"``)``,`\
 `    ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `      ``ggthemes``::``theme_stata``(``)``,`\
 `      ``ggplot2``::`[`theme_classic`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
@@ -186,16 +178,20 @@ details to the merged plots and specify the layout in rows and columns.
 
 ## `ggwithinstats`
 
-We will be using simulated data from then Attention Network Test
-provided in ANT dataset in `ez` package.
+We will be using simulated data from the Attention Network Test provided
+in ANT dataset in `ez` package. Since within-subjects tests require
+exactly one observation per subject per condition, we first average
+response times across trials.
 
-\
 \
 [`library`](https://rdrr.io/r/base/library.html)`(`[`ez`](https://github.com/bucky2177/ez)`)`\
 [`data`](https://rdrr.io/r/utils/data.html)`(``"ANT"``)`` ``` ## loading data from `ez` package ``\
 \
-`## let's split the data frame and create a list by years of interest`\
-`cue_list`` ``<-`` ``ANT`` ``|>`` ``(``\``(``d``)`` `[`split`](https://rdrr.io/r/base/split.html)`(``d``, f ``=`` ``d``$``cue``, drop ``=`` ``TRUE``)``)``(``)`\
+`## average response times for each subject in each condition and`\
+`## split the data frame by type of cue`\
+`cue_list`` ``<-`` ``ANT`` ``|>`\
+`  ``dplyr``::`[`summarise`](https://dplyr.tidyverse.org/reference/summarise.html)`(``rt ``=`` `[`mean`](https://rdrr.io/r/base/mean.html)`(``rt``, na.rm ``=`` ``TRUE``)``, .by ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``subnum``, ``cue``, ``flank``)``)`` ``|>`\
+`  ``(``\``(``d``)`` `[`split`](https://rdrr.io/r/base/split.html)`(``d``, f ``=`` ``d``$``cue``, drop ``=`` ``TRUE``)``)``(``)`\
 \
 `## checking the length of the list and the names of each element`\
 [`length`](https://rdrr.io/r/base/length.html)`(``cue_list``)`\
@@ -206,6 +202,7 @@ provided in ANT dataset in `ez` package.
 `    data ``=`` ``cue_list``,`\
 `    x ``=`` ``"flank"``,`\
 `    y ``=`` ``"rt"``,`\
+`    subject.id ``=`` ``"subnum"``,`\
 `    xlab ``=`` ``"Flank"``,`\
 `    ylab ``=`` ``"Response time"``,`\
 `    title ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
@@ -219,17 +216,15 @@ provided in ANT dataset in `ez` package.
 `    p.adjust.method ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"fdr"``, ``"hommel"``, ``"bonferroni"``, ``"BH"``)``,`\
 `    conf.level ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``0.99``, ``0.99``, ``0.95``, ``0.90``)``,`\
 `    digits ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``3``, ``2``, ``2``, ``3``)``,`\
-`    effsize.type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
-`      ``"omega"``,`\
-`      ``"eta"``,`\
-`      ``"partial_omega"``,`\
-`      ``"partial_eta"`\
+`    palette ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
+`      ``"ggsci::lanonc_lancet"``,`\
+`      ``"palettetown::venomoth"``,`\
+`      ``"palettetown::blastoise"``,`\
+`      ``"wesanderson::GrandBudapest1"`\
 `    ``)``,`\
-`    package ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"ggsci"``, ``"palettetown"``, ``"palettetown"``, ``"wesanderson"``)``,`\
-`    palette ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"lanonc_lancet"``, ``"venomoth"``, ``"blastoise"``, ``"GrandBudapest1"``)``,`\
 `    ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `      ``ggplot2``::`[`theme_linedraw`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
-`      ``hrbrthemes``::``theme_ft_rc``(``)``,`\
+`      ``ggthemes``::``theme_few``(``)``,`\
 `      ``ggthemes``::``theme_solarized``(``)``,`\
 `      ``ggthemes``::``theme_gdocs``(``)`\
 `    ``)`\
@@ -342,7 +337,6 @@ methodology as the earlier examples.
 `    partial ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``TRUE``, ``FALSE``, ``TRUE``, ``FALSE``)``,`\
 `    title ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"Cut: Good"``, ``"Cut: Very Good"``, ``"Cut: Premium"``, ``"Cut: Ideal"``)``,`\
 `    p.adjust.method ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"hommel"``, ``"fdr"``, ``"BY"``, ``"hochberg"``)``,`\
-`    lab.size ``=`` ``3.5``,`\
 `    colors ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `      `[`c`](https://rdrr.io/r/base/c.html)`(``"#56B4E9"``, ``"white"``, ``"#999999"``)``,`\
 `      `[`c`](https://rdrr.io/r/base/c.html)`(``"#CC79A7"``, ``"white"``, ``"#F0E442"``)``,`\
@@ -403,12 +397,11 @@ methodology as the earlier examples.
 `        ``"Continent: Asia"``,`\
 `        ``"Continent: Europe"`\
 `      ``)``,`\
-`      effsize.type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"d"``, ``"d"``, ``"g"``, ``"g"``)``,`\
 `      ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `        ``ggplot2``::`[`theme_classic`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
-`        ``hrbrthemes``::``theme_ipsum_tw``(``)``,`\
+`        ``ggplot2``::`[`theme_bw`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
 `        ``ggplot2``::`[`theme_minimal`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
-`        ``hrbrthemes``::``theme_modern_rc``(``)`\
+`        ``ggthemes``::``theme_clean``(``)`\
 `      ``)`\
 `    ``)``,`\
 `    .f ``=`` ``gghistostats`\
@@ -418,17 +411,14 @@ methodology as the earlier examples.
 [`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`\
 `  plotlist ``=`` ``plot_list``,`\
 `  annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
-`    title ``=`` ``"Improvement in life expectancy worldwide since 1950"``,`\
-`    caption ``=`` ``"Note: black line - 1950; blue line - 2007"`\
+`    title ``=`` ``"Life expectancy in 2007 compared to 1952 continental averages"``,`\
+`    caption ``=`` ``"Test values: average life expectancy in each continent in 1952"`\
 `  ``)``,`\
 `  plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``4``)`\
 `)`
 
 ## `ggdotplotstats`
 
-\
-[`library`](https://rdrr.io/r/base/library.html)`(`[`ggthemes`](https://jrnold.github.io/ggthemes/)`)`\
-[`library`](https://rdrr.io/r/base/library.html)`(``hrbrthemes``)`\
 \
 `## let's split the data frame and create a list by continent`\
 `## let's leave out Oceania because it has just two data points`\
@@ -459,7 +449,6 @@ methodology as the earlier examples.
 `        ``"Continent: Asia"``,`\
 `        ``"Continent: Europe"`\
 `      ``)``,`\
-`      effsize.type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"d"``, ``"d"``, ``"g"``, ``"g"``)``,`\
 `      centrality.line.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `        `[`list`](https://rdrr.io/r/base/list.html)`(``color ``=`` ``"red"``)``,`\
 `        `[`list`](https://rdrr.io/r/base/list.html)`(``color ``=`` ``"#0072B2"``)``,`\
@@ -469,8 +458,8 @@ methodology as the earlier examples.
 `      ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `        ``ggplot2``::`[`theme_minimal`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``base_family ``=`` ``"serif"``)``,`\
 `        ``ggthemes``::``theme_tufte``(``)``,`\
-`        ``hrbrthemes``::``theme_ipsum_rc``(``axis_title_size ``=`` ``10``)``,`\
-`        ``ggthemes``::``theme_hc``(``bgcolor ``=`` ``"darkunica"``)`\
+`        ``ggthemes``::``theme_calc``(``)``,`\
+`        ``ggthemes``::``theme_hc``(``style ``=`` ``"darkunica"``)`\
 `      ``)`\
 `    ``)``,`\
 `    .f ``=`` ``ggdotplotstats`\
@@ -508,16 +497,20 @@ methodology as the earlier examples.
 `        ``"Passenger class: 1st"``,`\
 `        ``"Passenger class: 2nd"``,`\
 `        ``"Passenger class: 3rd"``,`\
-`        ``"Passenger class: Crew"`\
+`        ``"Crew"`\
 `      ``)``,`\
 `      caption ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
-`        ``"Total: 319, Died: 120, Survived: 199, % Survived: 62%"``,`\
-`        ``"Total: 272, Died: 155, Survived: 117, % Survived: 43%"``,`\
-`        ``"Total: 709, Died: 537, Survived: 172, % Survived: 25%"``,`\
-`        ``"Data not available for crew passengers"`\
+`        ``"Total: 325, Died: 122, Survived: 203, % Survived: 62%"``,`\
+`        ``"Total: 285, Died: 167, Survived: 118, % Survived: 41%"``,`\
+`        ``"Total: 706, Died: 528, Survived: 178, % Survived: 25%"``,`\
+`        ``"Total: 885, Died: 673, Survived: 212, % Survived: 24%"`\
 `      ``)``,`\
-`      package ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"RColorBrewer"``, ``"ghibli"``, ``"palettetown"``, ``"yarrr"``)``,`\
-`      palette ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"Accent"``, ``"MarnieMedium1"``, ``"pikachu"``, ``"nemo"``)``,`\
+`      palette ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
+`        ``"RColorBrewer::Accent"``,`\
+`        ``"ghibli::MarnieMedium1"``,`\
+`        ``"palettetown::pikachu"``,`\
+`        ``"yarrr::nemo"`\
+`      ``)``,`\
 `      ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `        ``ggplot2``::`[`theme_grey`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
 `        ``ggplot2``::`[`theme_bw`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
@@ -563,16 +556,20 @@ methodology as the earlier examples.
 `        ``"Passenger class: 1st"``,`\
 `        ``"Passenger class: 2nd"``,`\
 `        ``"Passenger class: 3rd"``,`\
-`        ``"Passenger class: Crew"`\
+`        ``"Crew"`\
 `      ``)``,`\
 `      caption ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
-`        ``"Total: 319, Died: 120, Survived: 199, % Survived: 62%"``,`\
-`        ``"Total: 272, Died: 155, Survived: 117, % Survived: 43%"``,`\
-`        ``"Total: 709, Died: 537, Survived: 172, % Survived: 25%"``,`\
-`        ``"Data not available for crew passengers"`\
+`        ``"Total: 325, Died: 122, Survived: 203, % Survived: 62%"``,`\
+`        ``"Total: 285, Died: 167, Survived: 118, % Survived: 41%"``,`\
+`        ``"Total: 706, Died: 528, Survived: 178, % Survived: 25%"``,`\
+`        ``"Total: 885, Died: 673, Survived: 212, % Survived: 24%"`\
 `      ``)``,`\
-`      package ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"RColorBrewer"``, ``"ghibli"``, ``"palettetown"``, ``"yarrr"``)``,`\
-`      palette ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"Accent"``, ``"MarnieMedium1"``, ``"pikachu"``, ``"nemo"``)``,`\
+`      palette ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
+`        ``"RColorBrewer::Accent"``,`\
+`        ``"ghibli::MarnieMedium1"``,`\
+`        ``"palettetown::pikachu"``,`\
+`        ``"yarrr::nemo"`\
+`      ``)``,`\
 `      ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `        ``ggplot2``::`[`theme_grey`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
 `        ``ggplot2``::`[`theme_bw`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
@@ -586,10 +583,7 @@ methodology as the earlier examples.
 `## combining all individual plots from the list into a single plot using combine_plots function`\
 [`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(`\
 `  plotlist ``=`` ``plot_list``,`\
-`  annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
-`    title ``=`` ``"Survival in Titanic disaster by gender for all passenger classes"``,`\
-`    caption ``=`` ``"Asterisks denote results from proportion tests: \n***: p < 0.001, ns: non-significant"`\
-`  ``)``,`\
+`  annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Survival in Titanic disaster by gender for all passenger classes"``)``,`\
 `  plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``ncol ``=`` ``1``)``,`\
 `  guides ``=`` ``"keep"`\
 `)`
@@ -625,7 +619,6 @@ you can run the following code and check the individual `grouped_` plots
 
 ## Repeating function execution across multiple columns in a data frame
 
-\
 \
 [`library`](https://rdrr.io/r/base/library.html)`(`[`patchwork`](https://patchwork.data-imaginist.com)`)`\
 \

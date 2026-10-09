@@ -37,7 +37,6 @@
     "name": "R"
   },
   "license": "https://opensource.org/licenses/MIT",
-  "version": "1.0.0",
   "author": {
     "@type": "Person",
     "name": "Indrajeet Patil",
@@ -46,11 +45,14 @@
   },
   "keywords": ["R", "ggplot2", "statistics", "data visualization", "Bayesian", "frequentist", "nonparametric", "robust statistics", "ANOVA", "correlation"]
 }
-</script><meta name="citation_title" content="ggstatsplot: ggplot2 Based Plots with Statistical Details">
+</script><meta name="citation_title" content="Visualizations with statistical details: The 'ggstatsplot' approach">
 <meta name="citation_author" content="Indrajeet Patil">
-<meta name="citation_year" content="2021">
-<meta name="citation_doi" content="10.21105/joss.03236">
+<meta name="citation_publication_date" content="2021/05/25">
+<meta name="citation_doi" content="10.21105/joss.03167">
 <meta name="citation_journal_title" content="Journal of Open Source Software">
+<meta name="citation_volume" content="6">
+<meta name="citation_issue" content="61">
+<meta name="citation_firstpage" content="3167">
 <link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary">
 </head>
 <body>
@@ -61,7 +63,7 @@
 
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -155,7 +157,7 @@ A BibTeX entry for LaTeX users is
     journal = {{Journal of Open Source Software}},
   }</code></pre>
 <hr>
-<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
+<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></p>
 <p>The function <code>gghistostats</code> can be used for <strong>data
 exploration</strong> and to provide an easy way to make
 <strong>publication-ready histograms</strong> with appropriate and
@@ -177,9 +179,7 @@ scores on the SAT Verbal, SAT Quantitative and ACT tests. ACT composite
 scores may range from 1 - 36. National norms have a mean of 20.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## loading needed libraries</span></span>
-<span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://personality-project.org/r/psych/" class="external-link">psych</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## looking at the structure of the data using glimpse</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">psych</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/psych/man/sat.act.html" class="external-link">sat.act</a></span><span class="op">)</span></span>
@@ -191,18 +191,20 @@ scores may range from 1 - 36. National norms have a mean of 20.</p>
 <span><span class="co">#&gt; $ <span style="font-weight: bold;">ACT      </span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 24<span style="color: #949494;">, </span>35<span style="color: #949494;">, </span>21<span style="color: #949494;">, </span>26<span style="color: #949494;">, </span>31<span style="color: #949494;">, </span>28<span style="color: #949494;">, </span>36<span style="color: #949494;">, </span>22<span style="color: #949494;">, </span>22<span style="color: #949494;">, </span>35<span style="color: #949494;">, </span>32<span style="color: #949494;">, </span>29<span style="color: #949494;">, </span>21<span style="color: #949494;">, </span>35<span style="color: #949494;">, </span>27<span style="color: #949494;">, </span>…</span></span>
 <span><span class="co">#&gt; $ <span style="font-weight: bold;">SATV     </span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 500<span style="color: #949494;">, </span>600<span style="color: #949494;">, </span>480<span style="color: #949494;">, </span>550<span style="color: #949494;">, </span>600<span style="color: #949494;">, </span>640<span style="color: #949494;">, </span>610<span style="color: #949494;">, </span>520<span style="color: #949494;">, </span>400<span style="color: #949494;">, </span>730<span style="color: #949494;">, </span>760<span style="color: #949494;">, </span>710<span style="color: #949494;">, </span>…</span></span>
 <span><span class="co">#&gt; $ <span style="font-weight: bold;">SATQ     </span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 500<span style="color: #949494;">, </span>500<span style="color: #949494;">, </span>470<span style="color: #949494;">, </span>520<span style="color: #949494;">, </span>550<span style="color: #949494;">, </span>640<span style="color: #949494;">, </span>500<span style="color: #949494;">, </span>560<span style="color: #949494;">, </span>600<span style="color: #949494;">, </span>800<span style="color: #949494;">, </span>710<span style="color: #949494;">, </span>600<span style="color: #949494;">, </span>…</span></span></code></pre></div>
-<p>To get a simple histogram with no statistics and no special
-information. <code>gghistostats</code> will by default choose a binwidth
-<code>max(x) - min(x) / sqrt(N)</code>. You should always check this
-value and explore multiple widths to find the best to illustrate the
-stories in your data since histograms are sensitive to binwidth.</p>
-<p>Let’s display the national norms (labeled as “Test”) and test the
-hypothesis that our sample mean is the same as our national population
-mean of 20 using a parametric one sample <em>t</em>-test
-(<code>type = "p"</code>).</p>
+<p>By default, <code>gghistostats</code> chooses a binwidth of
+<code>(max(x) - min(x)) / sqrt(N)</code>. You should always check this
+value and explore multiple widths (via the <code>binwidth</code>
+argument) to find the best to illustrate the stories in your data since
+histograms are sensitive to binwidth. If you want a simple histogram
+without any statistical details, set
+<code>results.subtitle = FALSE</code> (and
+<code>centrality.plotting = FALSE</code> to also remove the centrality
+line).</p>
+<p>Let’s test the hypothesis that our sample mean is the same as our
+national population mean of 20 using a parametric one sample
+<em>t</em>-test (the default <code>type = "parametric"</code>).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="../../reference/gghistostats.html">gghistostats</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/gghistostats.html">gghistostats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="fu">psych</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/psych/man/sat.act.html" class="external-link">sat.act</a></span>, <span class="co">## data from which variable is to be taken</span></span>
 <span>  x <span class="op">=</span> <span class="va">ACT</span>, <span class="co">## numeric variable</span></span>
 <span>  xlab <span class="op">=</span> <span class="st">"ACT Score"</span>, <span class="co">## x-axis label</span></span>
@@ -211,13 +213,13 @@ mean of 20 using a parametric one sample <em>t</em>-test
 <span>  caption <span class="op">=</span> <span class="st">"Data courtesy of: SAPA project (https://sapa-project.org)"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="gghistostats_files/figure-html/psychact3-1.png" class="r-plt" alt="" width="100%"></p>
-<p><code>gghistostats</code> computed Bayes Factors to quantify the
+<p><code>gghistostats</code> also computed Bayes Factors to quantify the
 likelihood of the <strong>research</strong> (BF10) and the
 <strong>null</strong> hypothesis (BF01). In our current example, the
-Bayes Factor value provides <strong>very strong evidence</strong> <a href="https://www.stat.washington.edu/raftery/Research/PDF/kass1995.pdf" class="external-link">(Kass
-and Rafferty, 1995)</a> in favor of the research hypothesis: these ACT
-scores are much higher than the national average. The log(Bayes factor)
-of 492.5 means the odds are 7.54e+213:1 that this sample is
+Bayes Factor value provides <strong>very strong evidence</strong> <a href="https://sites.stat.washington.edu/raftery/Research/PDF/kass1995.pdf" class="external-link">(Kass
+and Raftery, 1995)</a> in favor of the research hypothesis: these ACT
+scores are much higher than the national average. The natural log of the
+Bayes factor of 492.5 means the odds are 7.54e+213:1 that this sample is
 different.</p>
 </div>
 <div class="section level2">
@@ -235,18 +237,15 @@ different studies, etc.</p>
 <p>Let’s see how we can use this function to apply
 <code>gghistostats</code> to accomplish our task.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="../../reference/grouped_gghistostats.html">grouped_gghistostats</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/grouped_gghistostats.html">grouped_gghistostats</a></span><span class="op">(</span></span>
 <span>  <span class="co">## arguments relevant for gghistostats</span></span>
 <span>  data <span class="op">=</span> <span class="fu">psych</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/psych/man/sat.act.html" class="external-link">sat.act</a></span>,</span>
 <span>  x <span class="op">=</span> <span class="va">ACT</span>, <span class="co">## same outcome variable</span></span>
 <span>  xlab <span class="op">=</span> <span class="st">"ACT Score"</span>,</span>
 <span>  grouping.var <span class="op">=</span> <span class="va">gender</span>, <span class="co">## grouping variable males = 1, females = 2</span></span>
-<span>  type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co">## robust test: one-sample percentile bootstrap</span></span>
-<span>  test.value <span class="op">=</span> <span class="fl">20</span>, <span class="co">## test value against which sample mean is to be compared</span></span>
+<span>  type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co">## robust test: bootstrap-t test for one-sample trimmed mean</span></span>
+<span>  test.value <span class="op">=</span> <span class="fl">20</span>, <span class="co">## test value against which sample trimmed mean is to be compared</span></span>
 <span>  centrality.line.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#D55E00"</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span><span class="op">)</span>,</span>
-<span>  <span class="co"># ggtheme = ggthemes::theme_stata(), ## changing default theme</span></span>
-<span>  <span class="co">## turn off ggstatsplot theme layer</span></span>
 <span>  <span class="co">## arguments relevant for combine_plots</span></span>
 <span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>    title <span class="op">=</span> <span class="st">"Distribution of ACT scores across genders"</span>,</span>
@@ -276,9 +275,59 @@ group) it would be better to use <a href="https://purrr.tidyverse.org/" class="e
 <div class="section level2">
 <h2 id="summary-of-graphics-and-tests">Summary of graphics and tests<a class="anchor" aria-label="anchor" href="#summary-of-graphics-and-tests"></a>
 </h2>
-<p>Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/gghistostats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/gghistostats.html</a></p>
+<table class="table">
+<colgroup>
+<col width="28%">
+<col width="31%">
+<col width="40%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">graphical element</th>
+<th align="left">
+<code>geom</code> used</th>
+<th align="left">argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">histogram bin</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">ggplot2::stat_bin()</a></code></td>
+<td align="left"><code>bin.args</code></td>
+</tr>
+<tr class="even">
+<td align="left">centrality measure line</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline()</a></code></td>
+<td align="left"><code>centrality.line.args</code></td>
+</tr>
+</tbody>
+</table>
+<p>The statistical tests and effect sizes carried out for each
+<code>type</code> are listed in the function documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/gghistostats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/gghistostats.html</a></p>
+</div>
+<div class="section level2">
+<h2 id="extracting-statistical-details">Extracting statistical details<a class="anchor" aria-label="anchor" href="#extracting-statistical-details"></a>
+</h2>
+<p>All statistical details shown in the plot are also available as data
+frames, which can be extracted with <code><a href="../../reference/extract_stats.html">extract_stats()</a></code>. The
+returned list contains results from the test in the subtitle
+(<code>subtitle_data</code>) and the Bayesian test in the caption
+(<code>caption_data</code>).</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/gghistostats.html">gghistostats</a></span><span class="op">(</span><span class="fu">psych</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/psych/man/sat.act.html" class="external-link">sat.act</a></span>, <span class="va">ACT</span>, test.value <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">subtitle_data</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 15</span></span></span>
+<span><span class="co">#&gt;      <span style="font-weight: bold;">mu</span> <span style="font-weight: bold;">statistic</span> <span style="font-weight: bold;">df.error</span>   <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">method</span>            <span style="font-weight: bold;">alternative</span> <span style="font-weight: bold;">effectsize</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    20      46.9      699 5.49<span style="color: #949494;">e</span><span style="color: #BB0000;">-218</span> One Sample t-test two.sided   Hedges' g </span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span> <span style="font-weight: bold;">conf.high</span> <span style="font-weight: bold;">conf.method</span> <span style="font-weight: bold;">conf.distribution</span> <span style="font-weight: bold;">n.obs</span></span></span>
+<span><span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     1.77       <span style="color: #949494;">0.</span>95     1.65      1.89 ncp         t                   700</span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">expression</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;language&gt;</span></span></span></code></pre></div>
+<p>For <code><a href="../../reference/grouped_gghistostats.html">grouped_gghistostats()</a></code> plots,
+<code><a href="../../reference/extract_stats.html">extract_stats()</a></code> returns one such list for each level of the
+grouping variable.</p>
 </div>
 <div class="section level2">
 <h2 id="reporting">Reporting<a class="anchor" aria-label="anchor" href="#reporting"></a>
@@ -294,7 +343,7 @@ and</p></li>
 interpretive context for the reported statistics.</p></li>
 </ul>
 <p>For example, let’s see the following example:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/gghistostats.html">gghistostats</a></span><span class="op">(</span><span class="va">trees</span>, <span class="va">Height</span>, test.value <span class="op">=</span> <span class="fl">75</span><span class="op">)</span></span></code></pre></div>
 <p><img src="gghistostats_files/figure-html/reporting-1.png" class="r-plt" alt="" width="100%"></p>
 <p>The narrative context (assuming <code>type = "parametric"</code>) can

@@ -32,31 +32,55 @@ grouped_ggbarstats(
   Arguments passed on to
   [`ggbarstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
 
+  `label.args`
+
+  : Additional aesthetic arguments that will be passed to
+    [`ggplot2::geom_label()`](https://ggplot2.tidyverse.org/reference/geom_text.html).
+
   `sample.size.label.args`
 
   : Additional aesthetic arguments that will be passed to
     [`ggplot2::geom_text()`](https://ggplot2.tidyverse.org/reference/geom_text.html).
 
+  `xlab`
+
+  : Label for `x` axis. If `NULL` (default), the name of the `y`
+    variable is used (no label if `y` is `NULL`), since bars are drawn
+    for each level of `y`.
+
+  `ylab`
+
+  : Label for `y` axis. If `NULL` (default), no label is shown.
+
   `x`
 
-  : The variable to use as the **rows** in the contingency table. Please
-    note that if there are empty factor levels in your variable, they
-    will be dropped.
+  : The variable to use as the **rows** in the contingency table. Note
+    that empty factor levels are *not* dropped: they are shown in the
+    legend and counted (with zero observations) in the statistical test.
+    Use [`droplevels()`](https://rdrr.io/r/base/droplevels.html)
+    beforehand if this is not intended.
 
   `y`
 
   : The variable to use as the **columns** in the contingency table.
-    Please note that if there are empty factor levels in your variable,
-    they will be dropped. Default is `NULL`. If `NULL`, one-sample
-    proportion test (a goodness of fit test) will be run for the `x`
-    variable. Otherwise an appropriate association test will be run.
+    Default is `NULL`. If `NULL`, one-sample proportion test (a goodness
+    of fit test) will be run for the `x` variable. Otherwise an
+    appropriate association test will be run.
 
   `proportion.test`
 
   : Decides whether proportion test for `x` variable is to be carried
     out for each level of `y`. Defaults to `results.subtitle`. In
     [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md),
-    only *p*-values from this test will be displayed.
+    only *p*-values from this test will be displayed. Always `FALSE`
+    when `type = "bayes"` or when `y` is `NULL`.
+
+  `bf.message`
+
+  : Logical that decides whether to display Bayes Factor in favor of the
+    *null* hypothesis as a caption. This argument is relevant only for
+    non-Bayesian `type`s and unpaired designs (`paired = FALSE`)
+    (Default: `TRUE`).
 
   `digits.perc`
 
@@ -69,26 +93,16 @@ grouped_ggbarstats(
     label in each pie slice. Possible options are `"percentage"`
     (default), `"counts"`, `"both"`.
 
-  `label.args`
-
-  : Additional aesthetic arguments that will be passed to
-    [`ggplot2::geom_label()`](https://ggplot2.tidyverse.org/reference/geom_text.html).
-
   `legend.title`
 
-  : Title text for the legend.
+  : Title text for the legend. If `NULL` (default), the name of the `x`
+    variable is used.
 
   `p.adjust.method`
 
   : Adjustment method for *p*-values for multiple comparisons. Possible
     methods are: `"holm"` (default), `"hochberg"`, `"hommel"`,
     `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, `"none"`.
-
-  `bf.message`
-
-  : Logical that decides whether to display Bayes Factor in favor of the
-    *null* hypothesis. This argument is relevant only **for parametric
-    test** (Default: `TRUE`).
 
   `results.subtitle`
 
@@ -103,8 +117,8 @@ grouped_ggbarstats(
 
   `caption`
 
-  : The text for the plot caption. This argument is relevant only if
-    `bf.message = FALSE`.
+  : The text for the plot caption. It will be replaced by the Bayes
+    Factor caption whenever that is displayed (see `bf.message`).
 
   `ggplot.component`
 
@@ -116,11 +130,9 @@ grouped_ggbarstats(
 
   `palette`
 
-  : Name of the palette in `"package::palette"` format to be used for
-    coloring. Passed to
-    [`paletteer::scale_color_paletteer_d()`](https://emilhvitfeldt.github.io/paletteer/reference/ggplot2-scales-discrete.html).
-    Run `View(paletteer::palettes_d_names)` to see all available
-    options.
+  : Name of the discrete palette in `"package::palette"` format to be
+    used for coloring (via `{paletteer}`). Run
+    `View(paletteer::palettes_d_names)` to see all available options.
 
   `ggtheme`
 
@@ -193,19 +205,11 @@ grouped_ggbarstats(
     variable. E.g., `ratio = c(0.5, 0.5)` for two levels,
     `ratio = c(0.25, 0.25, 0.25, 0.25)` for four levels, etc.
 
-  `xlab`
-
-  : Label for `x` axis variable. If `NULL` (default), variable name for
-    `x` will be used.
-
-  `ylab`
-
-  : Labels for `y` axis variable. If `NULL` (default), variable name for
-    `y` will be used.
-
 - grouping.var:
 
-  A single grouping variable.
+  A single grouping variable. A separate plot is created for each of its
+  levels (in factor level order, or in order of appearance for character
+  variables). Rows with a missing value in this variable are removed.
 
 - plotgrid.args:
 
@@ -219,10 +223,22 @@ grouped_ggbarstats(
   A `list` of additional arguments passed to
   [`patchwork::plot_annotation()`](https://patchwork.data-imaginist.com/reference/plot_annotation.html).
 
+## Value
+
+A `patchwork` object combining one plot per level of `grouping.var` (see
+[`combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)).
+Applying
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+to it returns a list with the statistical details for each of these
+plots.
+
 ## Details
 
+Rows with a missing value in `x`, `y`, or `counts` are removed before
+plotting and analysis.
+
 For details, see:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html>
 
 ## See also
 

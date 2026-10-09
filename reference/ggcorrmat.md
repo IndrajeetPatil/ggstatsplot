@@ -42,9 +42,10 @@ ggcorrmat(
 
 - cor.vars:
 
-  List of variables for which the correlation matrix is to be computed
-  and visualized. If `NULL` (default), all numeric variables from `data`
-  will be used.
+  Variables for which the correlation matrix is to be computed and
+  visualized, specified using `{tidyselect}` syntax (e.g.,
+  `c(var1, var2)` or `starts_with("Sepal")`). If `NULL` (default), all
+  numeric variables from `data` will be used.
 
 - cor.vars.names:
 
@@ -53,8 +54,8 @@ ggcorrmat(
 
 - matrix.type:
 
-  Character, `"upper"` (default), `"lower"`, or `"full"`, display full
-  matrix, lower triangular or upper triangular matrix.
+  Character, `"upper"` (default), `"lower"`, or `"full"`, to display the
+  upper triangular, lower triangular, or full matrix, respectively.
 
 - type:
 
@@ -94,10 +95,10 @@ ggcorrmat(
 
 - sig.level:
 
-  Significance level (Default: `0.05`). If the *p*-value in *p*-value
-  matrix is bigger than `sig.level`, then the corresponding correlation
-  coefficient is regarded as insignificant and flagged as such in the
-  plot.
+  Significance level (Default: `0.05`). If the (adjusted; see
+  `p.adjust.method`) *p*-value is bigger than `sig.level`, then the
+  corresponding correlation coefficient is regarded as insignificant and
+  flagged as such in the plot. Ignored for `type = "bayes"`.
 
 - conf.level:
 
@@ -131,8 +132,8 @@ ggcorrmat(
 - pch:
 
   Decides the point shape to be used for insignificant correlation
-  coefficients (only valid when `insig = "pch"`). Default:
-  `pch = "cross"`.
+  coefficients. Default: `pch = "cross"`. The caption explaining the
+  insignificance marker is added only for `pch = "cross"` (or `4`).
 
 - ggcorrplot.args:
 
@@ -140,9 +141,8 @@ ggcorrmat(
   to
   [`ggcorrplot::ggcorrplot()`](https://rpkgs.datanovia.com/ggcorrplot/reference/ggcorrplot.html)
   function. The list should avoid any of the following arguments since
-  they are already internally being used: `corr`, `method`, `p.mat`,
-  `sig.level`, `ggtheme`, `colors`, `lab`, `pch`, `legend.title`,
-  `digits`.
+  they are already internally being used: `corr`, `p.mat`, `sig.level`,
+  `ggtheme`, `colors`, `type`, `lab`, `pch`, `legend.title`, `digits`.
 
 - ggtheme:
 
@@ -175,19 +175,32 @@ ggcorrmat(
 
 - subtitle:
 
-  The text for the plot subtitle. Will work only if
-  `results.subtitle = FALSE`.
+  The text for the plot subtitle.
 
 - caption:
 
-  The text for the plot caption. This argument is relevant only if
-  `bf.message = FALSE`.
+  The text for the plot caption. If the insignificance marker caption is
+  shown (see `pch`), this text is displayed above it.
 
 - ...:
 
   Currently ignored.
 
+## Value
+
+A `ggplot` object, which can be further modified with `{ggplot2}`
+functions. Note that
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+does not return statistical details for this plot; use
+[`correlation::correlation()`](https://easystats.github.io/correlation/reference/correlation.html)
+instead.
+
 ## Details
+
+Missing values are handled using pairwise deletion (each correlation
+uses all complete pairs of observations), in which case the legend shows
+the minimum, mode, and maximum sample size across pairs. Partial
+correlations use only complete cases.
 
 For details, see:
 <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html>

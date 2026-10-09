@@ -20,7 +20,6 @@ as a subtitle."><meta property="og:image" content="https://www.indrapatil.com/gg
     "name": "R"
   },
   "license": "https://opensource.org/licenses/MIT",
-  "version": "1.0.0",
   "author": {
     "@type": "Person",
     "name": "Indrajeet Patil",
@@ -29,7 +28,7 @@ as a subtitle."><meta property="og:image" content="https://www.indrapatil.com/gg
   },
   "keywords": ["R", "ggplot2", "statistics", "data visualization", "Bayesian", "frequentist", "nonparametric", "robust statistics", "ANOVA", "correlation"]
 }
-</script><meta name="citation_title" content="ggstatsplot: ggplot2 Based Plots with Statistical Details"><meta name="citation_author" content="Indrajeet Patil"><meta name="citation_year" content="2021"><meta name="citation_doi" content="10.21105/joss.03236"><meta name="citation_journal_title" content="Journal of Open Source Software"><link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary"></head><body>
+</script><meta name="citation_title" content="Visualizations with statistical details: The 'ggstatsplot' approach"><meta name="citation_author" content="Indrajeet Patil"><meta name="citation_publication_date" content="2021/05/25"><meta name="citation_doi" content="10.21105/joss.03167"><meta name="citation_journal_title" content="Journal of Open Source Software"><meta name="citation_volume" content="6"><meta name="citation_issue" content="61"><meta name="citation_firstpage" content="3167"><link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -37,7 +36,7 @@ as a subtitle."><meta property="og:image" content="https://www.indrapatil.com/gg
 
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -143,7 +142,7 @@ ungrouped before they are entered as <code>data</code>.</p></dd>
 <dt id="arg-binwidth">binwidth<a class="anchor" aria-label="anchor" href="#arg-binwidth"></a></dt>
 <dd><p>The width of the histogram bins. Can be specified as a
 numeric value, or a function that calculates width from <code>x</code>. The default is
-to use the <code>max(x) - min(x) / sqrt(N)</code>. You should always check this value
+to use <code>(max(x) - min(x)) / sqrt(N)</code>. You should always check this value
 and explore multiple widths to find the best to illustrate the stories in
 your data.</p></dd>
 
@@ -163,8 +162,8 @@ variable name for <code>x</code> will be used.</p></dd>
 
 
 <dt id="arg-caption">caption<a class="anchor" aria-label="anchor" href="#arg-caption"></a></dt>
-<dd><p>The text for the plot caption. This argument is relevant only
-if <code>bf.message = FALSE</code>.</p></dd>
+<dd><p>The text for the plot caption. It will be replaced by the
+Bayes Factor caption whenever that is displayed (see <code>bf.message</code>).</p></dd>
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
@@ -244,8 +243,9 @@ the plot will be returned.</p></dd>
 
 <dt id="arg-bin-args">bin.args<a class="anchor" aria-label="anchor" href="#arg-bin-args"></a></dt>
 <dd><p>A list of additional aesthetic arguments to be passed to the
-<code>stat_bin</code> used to display the bins. Do not specify <code>binwidth</code> argument in
-this list since it has already been specified using the dedicated argument.</p></dd>
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">ggplot2::stat_bin()</a></code> used to display the bins. Do not specify <code>binwidth</code>
+argument in this list since it has already been specified using the
+dedicated argument.</p></dd>
 
 
 <dt id="arg-centrality-plotting">centrality.plotting<a class="anchor" aria-label="anchor" href="#arg-centrality-plotting"></a></dt>
@@ -256,7 +256,7 @@ Function decides which central tendency measure to show depending on the
 <li><p><strong>median</strong> for non-parametric statistics</p></li>
 <li><p><strong>trimmed mean</strong> for robust statistics</p></li>
 <li><p><strong>MAP estimator</strong> for Bayesian statistics</p></li>
-</ul><p>If you want default centrality parameter, you can specify this using
+</ul><p>If you want a different centrality parameter, you can specify this using
 <code>centrality.type</code> argument.</p></dd>
 
 
@@ -265,14 +265,14 @@ Function decides which central tendency measure to show depending on the
 The default is to choose the same as <code>type</code> argument. You can specify this
 to be:</p><ul><li><p><code>"parametric"</code> (for <strong>mean</strong>)</p></li>
 <li><p><code>"nonparametric"</code> (for <strong>median</strong>)</p></li>
-<li><p><code>robust</code> (for <strong>trimmed mean</strong>)</p></li>
-<li><p><code>bayes</code> (for <strong>MAP estimator</strong>)</p></li>
+<li><p><code>"robust"</code> (for <strong>trimmed mean</strong>)</p></li>
+<li><p><code>"bayes"</code> (for <strong>MAP estimator</strong>)</p></li>
 </ul><p>Just as <code>type</code> argument, abbreviations are also accepted.</p></dd>
 
 
 <dt id="arg-centrality-line-args">centrality.line.args<a class="anchor" aria-label="anchor" href="#arg-centrality-line-args"></a></dt>
 <dd><p>A list of additional aesthetic arguments to be
-passed to the <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">ggplot2::geom_line()</a></code> used to display the lines
+passed to the <code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline()</a></code> used to display the lines
 corresponding to the centrality parameter.</p></dd>
 
 
@@ -288,8 +288,15 @@ be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</co
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    <p>A <code>ggplot</code> object, which can be further modified with <code>{ggplot2}</code>
+functions. Use <code><a href="extract_stats.html">extract_stats()</a></code> to get the statistical details shown in
+the plot as data frames.</p>
+    </div>
+    <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>For details, see:
+    <p>Missing values in <code>x</code> are removed before plotting and analysis.</p>
+<p>For details, see:
 <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html">https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html</a></p>
     </div>
     <div class="section level2">

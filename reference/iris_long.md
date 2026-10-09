@@ -1,6 +1,6 @@
-# Edgar Anderson's Iris Data in long format.
+# Edgar Anderson's Iris Data in long format
 
-Edgar Anderson's Iris Data in long format.
+Edgar Anderson's Iris Data in long format
 
 ## Usage
 
@@ -10,7 +10,7 @@ iris_long
 
 ## Format
 
-A data frame with 600 rows and 5 variables
+A data frame with 600 rows and 6 variables
 
 - id. Dummy identity number for each flower (150 flowers in total).
 
@@ -20,7 +20,7 @@ A data frame with 600 rows and 5 variables
   levels: `"Petal.Length"`, `"Petal.Width"`, `"Sepal.Length"`,
   `"Sepal.Width"`).
 
-- attribute. What attribute is being measured (`"Sepal"` or `"Pepal"`).
+- attribute. What attribute is being measured (`"Sepal"` or `"Petal"`).
 
 - measure. What aspect of the attribute is being measured (`"Length"` or
   `"Width"`).

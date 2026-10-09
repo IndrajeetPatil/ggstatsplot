@@ -37,7 +37,6 @@
     "name": "R"
   },
   "license": "https://opensource.org/licenses/MIT",
-  "version": "1.0.0",
   "author": {
     "@type": "Person",
     "name": "Indrajeet Patil",
@@ -46,11 +45,14 @@
   },
   "keywords": ["R", "ggplot2", "statistics", "data visualization", "Bayesian", "frequentist", "nonparametric", "robust statistics", "ANOVA", "correlation"]
 }
-</script><meta name="citation_title" content="ggstatsplot: ggplot2 Based Plots with Statistical Details">
+</script><meta name="citation_title" content="Visualizations with statistical details: The 'ggstatsplot' approach">
 <meta name="citation_author" content="Indrajeet Patil">
-<meta name="citation_year" content="2021">
-<meta name="citation_doi" content="10.21105/joss.03236">
+<meta name="citation_publication_date" content="2021/05/25">
+<meta name="citation_doi" content="10.21105/joss.03167">
 <meta name="citation_journal_title" content="Journal of Open Source Software">
+<meta name="citation_volume" content="6">
+<meta name="citation_issue" content="61">
+<meta name="citation_firstpage" content="3167">
 <link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary">
 </head>
 <body>
@@ -61,7 +63,7 @@
 
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -155,13 +157,21 @@ A BibTeX entry for LaTeX users is
     journal = {{Journal of Open Source Software}},
   }</code></pre>
 <hr>
-<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
+<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></p>
 <p>The function <code>ggcoefstats</code> generates
-<strong>dot-and-whisker plots</strong> for regression models saved in a
-tidy data frame. The tidy data frames are prepared using
-<code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters</a></code>. Additionally, if available,
-the model summary indices are also extracted from
-<code><a href="https://easystats.github.io/performance/reference/model_performance.html" class="external-link">performance::model_performance</a></code>.</p>
+<strong>dot-and-whisker plots</strong> for regression models (or for
+data frames containing estimates). For model objects, the tidy data
+frames are prepared using <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code>.
+Additionally, if available, the model summary indices are also extracted
+from <code><a href="https://easystats.github.io/performance/reference/model_performance.html" class="external-link">performance::model_performance()</a></code>.</p>
+<p>Unlike other <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> functions,
+<code><a href="../../reference/ggcoefstats.html">ggcoefstats()</a></code> does not have a <code>type</code> argument or
+a <code>grouped_</code> variant. Instead, it has model-specific controls
+such as <code>effectsize.type</code> (for ANOVA-type models),
+<code>meta.analytic.effect</code> and <code>meta.type</code> (for
+meta-analysis), <code>sort</code> (to order the terms by their
+estimates), and <code>only.significant</code> (to label only significant
+terms).</p>
 <p>In this vignette, we will see examples of how to use this function.
 We will try to cover as many classes of objects as possible.
 Unfortunately, there is no single dataset that will be helpful for
@@ -337,7 +347,7 @@ packages are also supported by <code><a href="../../reference/ggcoefstats.html">
 <p>The following examples are organized by statistics type.</p>
 <p>There used to be a much longer vignette with examples of a wide
 collection of regression models, but for the sake of maintainability, I
-have removed it. The old version can be found <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/master/old/effsize_interpretation.Rmd" class="external-link">here</a>.</p>
+have removed it. The old version can be found <a href="https://github.com/IndrajeetPatil/ggstatsplot/blob/423d06e9d71db8c7bdd2b7c008bcc68c6bc6adb5/old/ggcoefstats_old.Rmd" class="external-link">here</a>.</p>
 <div class="section level3">
 <h3 id="t-statistic">
 <em>t</em>-statistic<a class="anchor" aria-label="anchor" href="#t-statistic"></a>
@@ -359,19 +369,18 @@ have removed it. The old version can be found <a href="https://github.com/Indraj
 <span>    <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>      <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="st">"'regression coefficient' ~italic(beta)"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    <span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod2</span><span class="op">)</span> <span class="op">+</span></span>
-<span>      <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
-<span>        x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="st">"'regression coefficient' ~italic(beta)"</span><span class="op">)</span>,</span>
-<span>        y <span class="op">=</span> <span class="st">"fixed effects"</span></span>
-<span>      <span class="op">)</span></span>
+<span>      <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/parse.html" class="external-link">parse</a></span><span class="op">(</span>text <span class="op">=</span> <span class="st">"'regression coefficient' ~italic(beta)"</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span>,</span>
 <span>  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span>,</span>
-<span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Relationship between movie budget and its IMDB rating"</span><span class="op">)</span></span>
+<span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Relationship between reaction time and sleep deprivation"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/lmer1-1.png" class="r-plt" alt="" width="100%"></p>
-<p>Note that for mixed-effects models, only the <em>fixed</em> effects
-are shown because there are no confidence intervals for <em>random</em>
-effects terms. In case, you would like to see these terms, you can use
-<code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code>.</p>
+<p>Note that, for mixed-effects models, the random effects variance
+components (e.g., <code>SD (Intercept)</code>) are also shown, but
+without statistical details or confidence intervals, because these are
+not computed by <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code> by default.
+For more details about these terms, you can use
+<code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code> directly.</p>
 </div>
 <div class="section level3">
 <h3 id="z-statistic">
@@ -456,16 +465,17 @@ effects terms. In case, you would like to see these terms, you can use
 <span></span>
 <span><span class="fu"><a href="../../reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">mod_aov</span>,</span>
-<span>  effectsize.type <span class="op">=</span> <span class="st">"omega"</span>, <span class="co"># changing the effect size estimate being displayed</span></span>
+<span>  effectsize.type <span class="op">=</span> <span class="st">"eta"</span>, <span class="co"># changing the effect size estimate being displayed</span></span>
 <span>  point.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">4</span>, shape <span class="op">=</span> <span class="fl">15</span><span class="op">)</span>, <span class="co"># changing the point geom</span></span>
 <span>  palette <span class="op">=</span> <span class="st">"dutchmasters::milkmaid"</span>, <span class="co"># color palette for labels</span></span>
 <span>  title <span class="op">=</span> <span class="st">"omnibus ANOVA"</span>, <span class="co"># title for the plot</span></span>
 <span>  exclude.intercept <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># further modification with the ggplot2 commands</span></span>
-<span>  <span class="co"># note the order in which the labels are entered</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_y_discrete</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MPAA"</span>, <span class="st">"Genre"</span>, <span class="st">"Interaction term"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"effect size estimate (eta-squared)"</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_y_discrete</a></span><span class="op">(</span></span>
+<span>    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>mpaa <span class="op">=</span> <span class="st">"MPAA"</span>, genre <span class="op">=</span> <span class="st">"Genre"</span>, `mpaa:genre` <span class="op">=</span> <span class="st">"Interaction term"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"effect size estimate (partial eta-squared)"</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/aov1-1.png" class="r-plt" alt="" width="100%"></p>
 <p>Note that we can also use this function for model selection. You can
 try out different models with the code below and see how the AIC and BIC
@@ -516,7 +526,7 @@ values change.</p>
 <span><span class="co"># correlation</span></span>
 <span><span class="va">mod4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BayesFactor/man/correlationBF.html" class="external-link">correlationBF</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Length</span>, x <span class="op">=</span> <span class="va">iris</span><span class="op">$</span><span class="va">Sepal.Width</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># contingency tabs (not supported)</span></span>
+<span><span class="co"># contingency table (needs an effect size type to be specified)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"raceDolls"</span><span class="op">)</span></span>
 <span><span class="va">mod5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BayesFactor/man/contingencyTableBF.html" class="external-link">contingencyTableBF</a></span><span class="op">(</span></span>
 <span>  <span class="va">raceDolls</span>,</span>
@@ -612,9 +622,12 @@ to plot the regression coefficients.</p>
 <h2 id="meta-analysis">Meta-analysis<a class="anchor" aria-label="anchor" href="#meta-analysis"></a>
 </h2>
 <p>In case the estimates you are displaying come from multiple studies,
-you can also use this function to carry out random-effects
-meta-analysis. The data frame you enter <strong>must</strong> contain at
-the minimum the following three columns-</p>
+you can also use this function to carry out random-effects meta-analysis
+by setting <code>meta.analytic.effect = TRUE</code>. The type of
+meta-analysis is chosen with <code>meta.type</code>
+(<code>"parametric"</code>, <code>"robust"</code>, or
+<code>"bayes"</code>). The data frame you enter <strong>must</strong>
+contain at the minimum the following three columns-</p>
 <ul>
 <li>
 <code>term</code>: a column with names/identifiers to annotate each
@@ -623,7 +636,7 @@ study/effect</li>
 <code>estimate</code>: a column with the observed effect sizes or
 outcomes</li>
 <li>
-<code>std.error</code>: a column the corresponding standard
+<code>std.error</code>: a column with the corresponding standard
 errors</li>
 </ul>
 <div class="section level3">
@@ -686,13 +699,14 @@ errors</li>
 <h2 id="data-frames">Data frames<a class="anchor" aria-label="anchor" href="#data-frames"></a>
 </h2>
 <p>Sometimes you don’t have a model object but a custom data frame that
-you want display using this function. If a data frame is to be plotted,
-it <strong>must</strong> contain columns named <code>term</code> (names
-of predictors), and <code>estimate</code> (corresponding estimates of
-coefficients or other quantities of interest). Other optional columns
-are <code>conf.low</code> and <code>conf.high</code> (for confidence
-intervals), and <code>p.value</code>. You will also have to specify the
-type of statistic relevant for regression models (<code>"t"</code>,
+you want to display using this function. If a data frame is to be
+plotted, it <strong>must</strong> contain columns named
+<code>term</code> (names of predictors), and <code>estimate</code>
+(corresponding estimates of coefficients or other quantities of
+interest). Other optional columns are <code>conf.low</code> and
+<code>conf.high</code> (for confidence intervals), and
+<code>p.value</code>. You will also have to specify the type of
+statistic relevant for regression models (<code>"t"</code>,
 <code>"z"</code>, <code>"f"</code>, <code>"chi"</code>) in case you want
 to display statistical labels.</p>
 <p>You can also provide a data frame containing all the other relevant
@@ -721,9 +735,14 @@ information.</p>
 <div class="section level2">
 <h2 id="non-plot-outputs">Non-plot outputs<a class="anchor" aria-label="anchor" href="#non-plot-outputs"></a>
 </h2>
-<p>This function can also be used to extract outputs other than a plot,
-although it is much more preferable to use the underlying functions
-instead (<code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters</a></code>).</p>
+<p>The data frames underlying the plot can be extracted with
+<code><a href="../../reference/extract_stats.html">extract_stats()</a></code>: <code>tidy_data</code> contains the
+estimates and statistical details for each term, while
+<code>glance_data</code> contains the model performance indices (e.g.,
+AIC and BIC). That said, if you only need these data frames, it is
+preferable to use the underlying functions
+(<code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code> and
+<code><a href="https://easystats.github.io/performance/reference/model_performance.html" class="external-link">performance::model_performance()</a></code>) directly.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># data</span></span>
 <span><span class="va">DNase1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">DNase</span>, <span class="va">Run</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -770,22 +789,55 @@ instead (<code><a href="https://easystats.github.io/parameters/reference/model_p
 <div class="section level2">
 <h2 id="summary-of-graphics-and-tests">Summary of graphics and tests<a class="anchor" aria-label="anchor" href="#summary-of-graphics-and-tests"></a>
 </h2>
-<p>Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html</a></p>
+<table class="table">
+<colgroup>
+<col width="32%">
+<col width="31%">
+<col width="35%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">graphical element</th>
+<th align="left">
+<code>geom</code> used</th>
+<th align="left">argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">regression estimate</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code></td>
+<td align="left"><code>point.args</code></td>
+</tr>
+<tr class="even">
+<td align="left">error bars</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">ggplot2::geom_errorbar()</a></code></td>
+<td align="left"><code>errorbar.args</code></td>
+</tr>
+<tr class="odd">
+<td align="left">vertical line</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline()</a></code></td>
+<td align="left"><code>vline.args</code></td>
+</tr>
+<tr class="even">
+<td align="left">label with statistical details</td>
+<td align="left"><code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code></td>
+<td align="left"><code>stats.label.args</code></td>
+</tr>
+</tbody>
+</table>
+<p>More details about the statistical details displayed for different
+models can be found in the function documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html</a></p>
 </div>
 <div class="section level2">
 <h2 id="not-supported">Not supported<a class="anchor" aria-label="anchor" href="#not-supported"></a>
 </h2>
-<p>This vignette was supposed to give a comprehensive account of
-regression models supported by <code>ggcoefstats</code>. The list of
-supported models will keep expanding as additional tidiers are added to
-the <code>parameters</code> and <code>performance</code> packages.</p>
-<p>Note that not <strong>all</strong> models supported in these packages
-will be supported by <code><a href="../../reference/ggcoefstats.html">ggcoefstats()</a></code>. In particular, classes
-of objects for which there is no column for <code>estimate</code> (e.g.,
-<code>kmeans</code>, <code>optim</code>, <code>muhaz</code>,
-<code>survdiff</code>, <code>zoo</code>, etc.) are not supported.</p>
+<p>The list of supported models will keep expanding as additional
+tidiers are added to the <code>parameters</code> and
+<code>performance</code> packages. Note that not <strong>all</strong>
+models supported in these packages will be supported by
+<code><a href="../../reference/ggcoefstats.html">ggcoefstats()</a></code>. In particular, classes of objects for which
+there is no column for <code>estimate</code> (e.g., <code>kmeans</code>,
+<code>optim</code>, <code>muhaz</code>, <code>survdiff</code>,
+<code>zoo</code>, etc.) are not supported.</p>
 </div>
 <div class="section level2">
 <h2 id="suggestions">Suggestions<a class="anchor" aria-label="anchor" href="#suggestions"></a>

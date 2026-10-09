@@ -1,5 +1,11 @@
 # Interpretation of Bayes Factors
 
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) reports Bayes
+Factors as $`\log_{e}(BF_{01})`$: in the caption for parametric tests
+(controlled by `bf.message`), in the subtitle for `type = "bayes"`, and
+on the brackets for Bayesian pairwise comparisons. This article explains
+how to read these values.
+
 Bayes Factors (BFs) are a fundamental tool in Bayesian analysis for
 comparing two hypotheses: typically the **null hypothesis (H₀)** and the
 **alternative hypothesis (H₁)**. The Bayes Factor in favor of the null
@@ -69,7 +75,11 @@ Bayes Factors add**:
 - ln(BF₀₁ from study 1) + ln(BF₀₁ from study 2) = ln(total BF₀₁)
 
 This makes it easy to combine studies without recalculating everything
-in raw terms. For example:
+in raw terms. Note that this holds only when the Bayes Factor for the
+second study is computed *conditional* on the first one (i.e., using the
+posterior from study 1 as the prior for study 2); multiplying Bayes
+Factors that were each computed from the same default prior does not, in
+general, give the Bayes Factor for the combined data. For example:
 
 - Study 1: BF₀₁ = 3 → ln(BF₀₁) ≈ 1.1
 - Study 2: BF₀₁ = 5 → ln(BF₀₁) ≈ 1.6
@@ -87,18 +97,23 @@ If you always report **log BF₀₁**, then:
   hypothesis
 - **Zero ln(BF₀₁)** → No evidence either way (BF₀₁ = 1)
 
-**Examples:**
+A commonly used classification scheme (Lee & Wagenmakers, 2014, adapted
+from Jeffreys, 1961) labels the strength of evidence as follows:
 
-| BF₀₁ | ln(BF₀₁) | Interpretation                  |
-|------|----------|---------------------------------|
-| 100  | 4.61     | Strong evidence **for H₀**      |
-| 10   | 2.30     | Moderate evidence **for H₀**    |
-| 1    | 0        | No preference between H₀ and H₁ |
-| 0.1  | –2.30    | Moderate evidence **for H₁**    |
-| 0.01 | –4.61    | Strong evidence **for H₁**      |
+| BF₀₁     | ln(BF₀₁)    | Evidence **for H₀** |
+|----------|-------------|---------------------|
+| \> 100   | \> 4.61     | Extreme             |
+| 30 – 100 | 3.40 – 4.61 | Very strong         |
+| 10 – 30  | 2.30 – 3.40 | Strong              |
+| 3 – 10   | 1.10 – 2.30 | Moderate            |
+| 1 – 3    | 0 – 1.10    | Anecdotal           |
+| 1        | 0           | No evidence         |
 
-The further the value is from 0, the stronger the evidence—positive
-values favor the **null**, negative values favor the **alternative**.
+The same labels apply to evidence **for H₁** when ln(BF₀₁) is negative
+(e.g., ln(BF₀₁) between –3.40 and –2.30 is strong evidence for H₁).
+These labels are only rough guides; the further the value is from 0, the
+stronger the evidence—positive values favor the **null**, negative
+values favor the **alternative**.
 
 ## Summary
 

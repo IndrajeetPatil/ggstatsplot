@@ -37,7 +37,6 @@
     "name": "R"
   },
   "license": "https://opensource.org/licenses/MIT",
-  "version": "1.0.0",
   "author": {
     "@type": "Person",
     "name": "Indrajeet Patil",
@@ -46,11 +45,14 @@
   },
   "keywords": ["R", "ggplot2", "statistics", "data visualization", "Bayesian", "frequentist", "nonparametric", "robust statistics", "ANOVA", "correlation"]
 }
-</script><meta name="citation_title" content="ggstatsplot: ggplot2 Based Plots with Statistical Details">
+</script><meta name="citation_title" content="Visualizations with statistical details: The 'ggstatsplot' approach">
 <meta name="citation_author" content="Indrajeet Patil">
-<meta name="citation_year" content="2021">
-<meta name="citation_doi" content="10.21105/joss.03236">
+<meta name="citation_publication_date" content="2021/05/25">
+<meta name="citation_doi" content="10.21105/joss.03167">
 <meta name="citation_journal_title" content="Journal of Open Source Software">
+<meta name="citation_volume" content="6">
+<meta name="citation_issue" content="61">
+<meta name="citation_firstpage" content="3167">
 <link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary">
 </head>
 <body>
@@ -61,7 +63,7 @@
 
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -158,121 +160,69 @@ A BibTeX entry for LaTeX users is
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>Pairwise comparisons with <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a>.</p>
+<p>When the grouping variable <code>x</code> has more than two levels,
+<code><a href="../../reference/ggbetweenstats.html">ggbetweenstats()</a></code> and <code><a href="../../reference/ggwithinstats.html">ggwithinstats()</a></code> follow up
+the omnibus test (ANOVA or its non-parametric, robust, or Bayesian
+counterpart) with pairwise comparisons between all pairs of groups and
+display them using <a href="https://const-ae.github.io/ggsignif/" class="external-link">ggsignif</a> brackets. The comparisons
+themselves are carried out by
+<code><a href="https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html" class="external-link">statsExpressions::pairwise_comparisons()</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="summary-of-types-of-statistical-analyses">Summary of types of statistical analyses<a class="anchor" aria-label="anchor" href="#summary-of-types-of-statistical-analyses"></a>
 </h2>
-<p>Following table contains a brief summary of the currently supported
-pairwise comparison tests-</p>
-<div class="section level3">
-<h3 id="between-subjects-design">Between-subjects design<a class="anchor" aria-label="anchor" href="#between-subjects-design"></a>
-</h3>
-<table class="table">
-<colgroup>
-<col width="23%">
-<col width="6%">
-<col width="53%">
-<col width="6%">
-<col width="10%">
-</colgroup>
-<thead><tr class="header">
-<th>Type</th>
-<th>Equal variance?</th>
-<th>Test</th>
-<th>
-<em>p</em>-value adjustment?</th>
-<th>Function used</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>Parametric</td>
-<td>No</td>
-<td>Games-Howell test</td>
-<td>✅</td>
-<td><code><a href="https://rdrr.io/pkg/PMCMRplus/man/gamesHowellTest.html" class="external-link">PMCMRplus::gamesHowellTest</a></code></td>
-</tr>
-<tr class="even">
-<td>Parametric</td>
-<td>Yes</td>
-<td>Student’s <em>t</em>-test</td>
-<td>✅</td>
-<td><code><a href="https://rdrr.io/r/stats/pairwise.t.test.html" class="external-link">stats::pairwise.t.test</a></code></td>
-</tr>
-<tr class="odd">
-<td>Non-parametric</td>
-<td>No</td>
-<td>Dunn test</td>
-<td>✅</td>
-<td><code><a href="https://rdrr.io/pkg/PMCMRplus/man/kwAllPairsDunnTest.html" class="external-link">PMCMRplus::kwAllPairsDunnTest</a></code></td>
-</tr>
-<tr class="even">
-<td>Robust</td>
-<td>No</td>
-<td>Yuen’s trimmed means test</td>
-<td>✅</td>
-<td><code><a href="https://rdrr.io/pkg/WRS2/man/t1way.html" class="external-link">WRS2::lincon</a></code></td>
-</tr>
-<tr class="odd">
-<td>Bayesian</td>
-<td><code>NA</code></td>
-<td>Student’s <em>t</em>-test</td>
-<td><code>NA</code></td>
-<td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html" class="external-link">BayesFactor::ttestBF</a></code></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section level3">
-<h3 id="within-subjects-design">Within-subjects design<a class="anchor" aria-label="anchor" href="#within-subjects-design"></a>
-</h3>
-<table class="table">
-<colgroup>
-<col width="23%">
-<col width="59%">
-<col width="6%">
-<col width="10%">
-</colgroup>
-<thead><tr class="header">
-<th>Type</th>
-<th>Test</th>
-<th>
-<em>p</em>-value adjustment?</th>
-<th>Function used</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>Parametric</td>
-<td>Student’s <em>t</em>-test</td>
-<td>✅</td>
-<td><code><a href="https://rdrr.io/r/stats/pairwise.t.test.html" class="external-link">stats::pairwise.t.test</a></code></td>
-</tr>
-<tr class="even">
-<td>Non-parametric</td>
-<td>Durbin-Conover test</td>
-<td>✅</td>
-<td><code><a href="https://rdrr.io/pkg/PMCMRplus/man/durbinAllPairsTest.html" class="external-link">PMCMRplus::durbinAllPairsTest</a></code></td>
-</tr>
-<tr class="odd">
-<td>Robust</td>
-<td>Yuen’s trimmed means test</td>
-<td>✅</td>
-<td><code><a href="https://rdrr.io/pkg/WRS2/man/rmanova.html" class="external-link">WRS2::rmmcp</a></code></td>
-</tr>
-<tr class="even">
-<td>Bayesian</td>
-<td>Student’s <em>t</em>-test</td>
-<td><code>NA</code></td>
-<td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html" class="external-link">BayesFactor::ttestBF</a></code></td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>The tests used for each <code>type</code> (and the functions used
+internally to compute them) are listed in the <em>Pairwise comparison
+tests</em> section of the documentation for <a href="https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html"><code>ggbetweenstats()</code></a>
+(between-subjects designs) and <a href="https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.html"><code>ggwithinstats()</code></a>
+(within-subjects designs).</p>
+<p>A few points worth noting:</p>
+<ul>
+<li>For between-subjects designs, <code><a href="../../reference/ggbetweenstats.html">ggbetweenstats()</a></code> always
+uses the Games-Howell test for <code>type = "parametric"</code>, which
+doesn’t assume equal variances. If you want Student’s <em>t</em>-test
+instead, call <code><a href="https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html" class="external-link">statsExpressions::pairwise_comparisons()</a></code>
+directly with <code>var.equal = TRUE</code>.</li>
+<li>
+<em>p</em>-values are adjusted for multiple comparisons using the
+method specified in <code>p.adjust.method</code> (default:
+<code>"holm"</code>); use <code>"none"</code> for no adjustment.</li>
+<li>
+<code>pairwise.display</code> decides which comparisons are shown
+(<code>"significant"</code>, <code>"non-significant"</code>,
+<code>"all"</code>, or <code>"none"</code>), and
+<code>pairwise.alpha</code> sets the cutoff used for this decision.</li>
+<li>For <code>type = "bayes"</code>, there is no <em>p</em>-value
+adjustment, and all comparisons are displayed with
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mi>e</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\log_{e}(BF_{01})</annotation></semantics></math>
+values unless <code>pairwise.display = "none"</code>.</li>
+<li>For within-subjects designs, specify <code>subject.id</code> and
+make sure that there is exactly one observation per subject per
+condition.</li>
+</ul>
 </div>
 <div class="section level2">
 <h2 id="data-frame-outputs">Data frame outputs<a class="anchor" aria-label="anchor" href="#data-frame-outputs"></a>
 </h2>
-<p>See data frame outputs <a href="https://www.indrapatil.com/statsExpressions/articles/web_only/dataframe_outputs.html#pairwise-comparisons" class="external-link">here</a>.</p>
+<p>The results of the pairwise comparisons shown in a plot can be
+extracted with <code><a href="../../reference/extract_stats.html">extract_stats()</a></code>:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">pairwise_comparisons_data</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 9</span></span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">group1</span> <span style="font-weight: bold;">group2</span> <span style="font-weight: bold;">statistic</span>   <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">alternative</span> <span style="font-weight: bold;">distribution</span> <span style="font-weight: bold;">p.adjust.method</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 4      6           5.39 <span style="color: #949494;">0.00</span>8<span style="text-decoration: underline;">31</span>   two.sided   q            Holm           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 4      8           9.11 <span style="color: #949494;">0.000</span><span style="color: #949494; text-decoration: underline;">0</span><span style="text-decoration: underline;">12</span>4 two.sided   q            Holm           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 6      8           5.12 <span style="color: #949494;">0.00</span>8<span style="text-decoration: underline;">31</span>   two.sided   q            Holm           </span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">test</span>         <span style="font-weight: bold;">expression</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span></span></span></code></pre></div>
+<p>For more examples of data frame outputs from
+<code><a href="https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html" class="external-link">statsExpressions::pairwise_comparisons()</a></code>, see <a href="https://www.indrapatil.com/statsExpressions/articles/web_only/dataframe_outputs.html#pairwise-comparisons-for-one-way-design" class="external-link">here</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="using-statsexpressionspairwise_comparisons-with-ggsignif">Using <code>statsExpressions::pairwise_comparisons()</code> with
@@ -281,7 +231,7 @@ pairwise comparison tests-</p>
 <div class="section level3">
 <h3 id="example-1-between-subjects">Example-1: between-subjects<a class="anchor" aria-label="anchor" href="#example-1-between-subjects"></a>
 </h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://const-ae.github.io/ggsignif/" class="external-link">ggsignif</a></span><span class="op">)</span></span>
 <span></span>
@@ -292,7 +242,7 @@ pairwise comparison tests-</p>
 <span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">cyl</span>, <span class="va">wt</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## using `statsExpressions::pairwise_comparisons()` package to create a data frame with results</span></span>
+<span><span class="co">## using `statsExpressions::pairwise_comparisons()` function to create a data frame with results</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">statsExpressions</span><span class="fu">::</span><span class="fu"><a href="https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>groups <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/pmap.html" class="external-link">pmap</a></span><span class="op">(</span>.l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">group1</span>, <span class="va">group2</span><span class="op">)</span>, .f <span class="op">=</span> <span class="va">c</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -326,7 +276,7 @@ pairwise comparison tests-</p>
 <div class="section level3">
 <h3 id="example-2-within-subjects">Example-2: within-subjects<a class="anchor" aria-label="anchor" href="#example-2-within-subjects"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://const-ae.github.io/ggsignif/" class="external-link">ggsignif</a></span><span class="op">)</span></span>
 <span></span>
@@ -334,7 +284,7 @@ pairwise comparison tests-</p>
 <span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu">WRS2</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/WRS2/man/WineTasting.html" class="external-link">WineTasting</a></span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">Wine</span>, <span class="va">Taste</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## using `statsExpressions::pairwise_comparisons()` package to create a data frame with results</span></span>
+<span><span class="co">## using `statsExpressions::pairwise_comparisons()` function to create a data frame with results</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">statsExpressions</span><span class="fu">::</span><span class="fu"><a href="https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html" class="external-link">pairwise_comparisons</a></span><span class="op">(</span></span>
 <span>    <span class="fu">WRS2</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/WRS2/man/WineTasting.html" class="external-link">WineTasting</a></span>,</span>
@@ -351,13 +301,13 @@ pairwise comparison tests-</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 19</span></span></span>
 <span><span class="co">#&gt;   <span style="font-weight: bold;">group1</span> <span style="font-weight: bold;">group2</span> <span style="font-weight: bold;">term</span>       <span style="font-weight: bold;">effectsize</span>      <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span></span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Wine A Wine B Difference Bayesian t-test  <span style="color: #949494;">0.00</span>7<span style="text-decoration: underline;">21</span>       <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.0</span><span style="color: #BB0000;">41</span><span style="color: #BB0000; text-decoration: underline;">8</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Wine A Wine C Difference Bayesian t-test  <span style="color: #949494;">0.0</span>75<span style="text-decoration: underline;">5</span>        <span style="color: #949494;">0.</span>95   <span style="color: #949494;">0.0</span>12<span style="text-decoration: underline;">7</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Wine B Wine C Difference Bayesian t-test  <span style="color: #949494;">0.0</span>69<span style="text-decoration: underline;">3</span>        <span style="color: #949494;">0.</span>95   <span style="color: #949494;">0.0</span>30<span style="text-decoration: underline;">3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Wine A Wine B Difference Bayesian t-test  <span style="color: #949494;">0.00</span>8<span style="text-decoration: underline;">39</span>       <span style="color: #949494;">0.</span>95  -<span style="color: #949494;">0.0</span><span style="color: #BB0000;">41</span><span style="color: #BB0000; text-decoration: underline;">1</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Wine A Wine C Difference Bayesian t-test  <span style="color: #949494;">0.0</span>74<span style="text-decoration: underline;">8</span>        <span style="color: #949494;">0.</span>95   <span style="color: #949494;">0.0</span>13<span style="text-decoration: underline;">7</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Wine B Wine C Difference Bayesian t-test  <span style="color: #949494;">0.0</span>69<span style="text-decoration: underline;">6</span>        <span style="color: #949494;">0.</span>95   <span style="color: #949494;">0.0</span>31<span style="text-decoration: underline;">8</span></span></span>
 <span><span class="co">#&gt;   <span style="font-weight: bold;">conf.high</span>    <span style="font-weight: bold;">pd</span> <span style="font-weight: bold;">prior.distribution</span> <span style="font-weight: bold;">prior.location</span> <span style="font-weight: bold;">prior.scale</span>   <span style="font-weight: bold;">bf10</span></span></span>
 <span><span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    <span style="color: #949494;">0.0</span>56<span style="text-decoration: underline;">2</span> <span style="color: #949494;">0.</span>624 cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707  <span style="color: #949494;">0.</span>235</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>    <span style="color: #949494;">0.</span>140  <span style="color: #949494;">0.</span>990 cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707  3.71 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    <span style="color: #949494;">0.0</span>58<span style="text-decoration: underline;">1</span> <span style="color: #949494;">0.</span>634 cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707  <span style="color: #949494;">0.</span>235</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>    <span style="color: #949494;">0.</span>139  <span style="color: #949494;">0.</span>990 cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707  3.71 </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>    <span style="color: #949494;">0.</span>110  1.000 cauchy                          <span style="color: #949494;">0</span>       <span style="color: #949494;">0.</span>707 50.5  </span></span>
 <span><span class="co">#&gt;   <span style="font-weight: bold;">conf.method</span> <span style="font-weight: bold;">log_e_bf10</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span> <span style="font-weight: bold;">test</span>        <span style="font-weight: bold;">groups</span>   </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>   </span></span>

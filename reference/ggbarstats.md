@@ -49,17 +49,18 @@ ggbarstats(
 
 - x:
 
-  The variable to use as the **rows** in the contingency table. Please
-  note that if there are empty factor levels in your variable, they will
-  be dropped.
+  The variable to use as the **rows** in the contingency table. Note
+  that empty factor levels are *not* dropped: they are shown in the
+  legend and counted (with zero observations) in the statistical test.
+  Use [`droplevels()`](https://rdrr.io/r/base/droplevels.html)
+  beforehand if this is not intended.
 
 - y:
 
   The variable to use as the **columns** in the contingency table.
-  Please note that if there are empty factor levels in your variable,
-  they will be dropped. Default is `NULL`. If `NULL`, one-sample
-  proportion test (a goodness of fit test) will be run for the `x`
-  variable. Otherwise an appropriate association test will be run.
+  Default is `NULL`. If `NULL`, one-sample proportion test (a goodness
+  of fit test) will be run for the `x` variable. Otherwise an
+  appropriate association test will be run.
 
 - counts:
 
@@ -121,6 +122,7 @@ ggbarstats(
   Decides whether proportion test for `x` variable is to be carried out
   for each level of `y`. Defaults to `results.subtitle`. In
   `ggbarstats()`, only *p*-values from this test will be displayed.
+  Always `FALSE` when `type = "bayes"` or when `y` is `NULL`.
 
 - digits.perc:
 
@@ -130,8 +132,9 @@ ggbarstats(
 - bf.message:
 
   Logical that decides whether to display Bayes Factor in favor of the
-  *null* hypothesis. This argument is relevant only **for parametric
-  test** (Default: `TRUE`).
+  *null* hypothesis as a caption. This argument is relevant only for
+  non-Bayesian `type`s and unpaired designs (`paired = FALSE`) (Default:
+  `TRUE`).
 
 - ratio:
 
@@ -170,22 +173,23 @@ ggbarstats(
 
 - caption:
 
-  The text for the plot caption. This argument is relevant only if
-  `bf.message = FALSE`.
+  The text for the plot caption. It will be replaced by the Bayes Factor
+  caption whenever that is displayed (see `bf.message`).
 
 - legend.title:
 
-  Title text for the legend.
+  Title text for the legend. If `NULL` (default), the name of the `x`
+  variable is used.
 
 - xlab:
 
-  Label for `x` axis variable. If `NULL` (default), variable name for
-  `x` will be used.
+  Label for `x` axis. If `NULL` (default), the name of the `y` variable
+  is used (no label if `y` is `NULL`), since bars are drawn for each
+  level of `y`.
 
 - ylab:
 
-  Labels for `y` axis variable. If `NULL` (default), variable name for
-  `y` will be used.
+  Label for `y` axis. If `NULL` (default), no label is shown.
 
 - ggtheme:
 
@@ -206,10 +210,9 @@ ggbarstats(
 
 - palette:
 
-  Name of the palette in `"package::palette"` format to be used for
-  coloring. Passed to
-  [`paletteer::scale_color_paletteer_d()`](https://emilhvitfeldt.github.io/paletteer/reference/ggplot2-scales-discrete.html).
-  Run `View(paletteer::palettes_d_names)` to see all available options.
+  Name of the discrete palette in `"package::palette"` format to be used
+  for coloring (via `{paletteer}`). Run
+  `View(paletteer::palettes_d_names)` to see all available options.
 
 - ggplot.component:
 
@@ -223,10 +226,20 @@ ggbarstats(
 
   Currently ignored.
 
+## Value
+
+A `ggplot` object, which can be further modified with `{ggplot2}`
+functions. Use
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+to get the statistical details shown in the plot as data frames.
+
 ## Details
 
+Rows with a missing value in `x`, `y`, or `counts` are removed before
+plotting and analysis.
+
 For details, see:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html>
+<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html>
 
 ## Summary of graphics
 
@@ -290,8 +303,9 @@ The table below provides summary about:
 
 ## Pairwise comparisons
 
-When there is a two-way table and `x` has more than two levels, pairwise
-contingency table analyses (Fisher's exact tests) are computed using
+When there is a two-way table, `x` has more than two levels, and
+`paired = FALSE`, pairwise contingency table analyses (Fisher's exact
+tests) are computed using
 [`statsExpressions::pairwise_contingency_table()`](https://www.indrapatil.com/statsExpressions/reference/pairwise_contingency_table.html).
 These pairwise results are **not** displayed in the plot because bar and
 pie charts lack a natural visual representation for pairwise

@@ -37,7 +37,6 @@
     "name": "R"
   },
   "license": "https://opensource.org/licenses/MIT",
-  "version": "1.0.0",
   "author": {
     "@type": "Person",
     "name": "Indrajeet Patil",
@@ -46,11 +45,14 @@
   },
   "keywords": ["R", "ggplot2", "statistics", "data visualization", "Bayesian", "frequentist", "nonparametric", "robust statistics", "ANOVA", "correlation"]
 }
-</script><meta name="citation_title" content="ggstatsplot: ggplot2 Based Plots with Statistical Details">
+</script><meta name="citation_title" content="Visualizations with statistical details: The 'ggstatsplot' approach">
 <meta name="citation_author" content="Indrajeet Patil">
-<meta name="citation_year" content="2021">
-<meta name="citation_doi" content="10.21105/joss.03236">
+<meta name="citation_publication_date" content="2021/05/25">
+<meta name="citation_doi" content="10.21105/joss.03167">
 <meta name="citation_journal_title" content="Journal of Open Source Software">
+<meta name="citation_volume" content="6">
+<meta name="citation_issue" content="61">
+<meta name="citation_firstpage" content="3167">
 <link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary">
 </head>
 <body>
@@ -61,7 +63,7 @@
 
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -155,7 +157,7 @@ A BibTeX entry for LaTeX users is
     journal = {{Journal of Open Source Software}},
   }</code></pre>
 <hr>
-<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
+<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></p>
 <p>The function <code>ggbetweenstats</code> is designed to facilitate
 <strong>data exploration</strong>, and for making highly customizable
 <strong>publication-ready plots</strong>, with relevant statistical
@@ -168,9 +170,6 @@ how to use this function in this vignette.</p>
 groups/conditions</p></li>
 <li><p>to compare distributions visually</p></li>
 </ul>
-<p><strong>Note</strong>: This vignette uses the pipe operator
-(<code>|&gt;</code>), if you are not familiar with this operator, here
-is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="external-link uri">http://r4ds.had.co.nz/pipes.html</a></p>
 <div class="section level2">
 <h2 id="comparisons-between-groups-with-ggbetweenstats">Comparisons between groups with <code>ggbetweenstats</code><a class="anchor" aria-label="anchor" href="#comparisons-between-groups-with-ggbetweenstats"></a>
 </h2>
@@ -210,21 +209,23 @@ continents is statistically significant.</p>
 <p><strong>Note</strong>:</p>
 <ul>
 <li><p>The function automatically decides whether an independent samples
-<em>t</em>-test is preferred (for 2 groups) or a Oneway ANOVA (3 or more
-groups). based on the number of levels in the grouping
-variable.</p></li>
+<em>t</em>-test (for 2 groups) or a one-way ANOVA (3 or more groups) is
+carried out, based on the number of levels in the grouping variable. By
+default, Welch’s versions of these tests are used, i.e., equal variances
+are not assumed.</p></li>
 <li><p>The output of the function is a <code>ggplot</code> object which
 means that it can be further modified with <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>
 functions.</p></li>
 </ul>
-<p>As can be seen from the plot, the function by default returns Bayes
-Factor for the test. If the null hypothesis can’t be rejected with the
-null hypothesis significance testing (NHST) approach, the Bayesian
-approach can help index evidence in favor of the null hypothesis (i.e.,
+<p>As can be seen from the plot, the function by default also returns
+Bayes Factor for the test in the caption. If the null hypothesis can’t
+be rejected with the null hypothesis significance testing (NHST)
+approach, the Bayesian approach can help index evidence in favor of the
+null hypothesis (i.e.,
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub></mrow><annotation encoding="application/x-tex">BF_{01}</annotation></semantics></math>).</p>
 <p>By default, natural logarithms are shown because Bayes Factor values
 can sometimes be pretty large. Having values on logarithmic scale also
-makes it easy to compare evidence in favor alternative
+makes it easy to compare evidence in favor of alternative
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><msub><mi>F</mi><mn>10</mn></msub></mrow><annotation encoding="application/x-tex">BF_{10}</annotation></semantics></math>)
 versus null
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub></mrow><annotation encoding="application/x-tex">BF_{01}</annotation></semantics></math>)
@@ -234,7 +235,8 @@ hypotheses (since
 informative by making use of the many optional parameters in
 <code>ggbetweenstats</code>. We’ll add a title and caption, better
 <code>x</code> and <code>y</code> axis labels. We can and will change
-the overall theme as well as the color palette in use.</p>
+the overall theme as well as the color palette in use. This time, let’s
+also use a robust test.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span>,</span>
@@ -243,7 +245,6 @@ the overall theme as well as the color palette in use.</p>
 <span>  type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co">## type of statistics</span></span>
 <span>  xlab <span class="op">=</span> <span class="st">"Continent"</span>, <span class="co">## label for the x-axis</span></span>
 <span>  ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>, <span class="co">## label for the y-axis</span></span>
-<span>  <span class="co">## turn off messages</span></span>
 <span>  ggtheme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_gray</a></span><span class="op">(</span><span class="op">)</span>, <span class="co">## a different theme</span></span>
 <span>  palette <span class="op">=</span> <span class="st">"yarrr::info2"</span>, <span class="co">## choosing a different color palette</span></span>
 <span>  title <span class="op">=</span> <span class="st">"Comparison of life expectancy across continents (Year: 2007)"</span>,</span>
@@ -254,33 +255,40 @@ the overall theme as well as the color palette in use.</p>
 <span>    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">35</span>, to <span class="op">=</span> <span class="fl">85</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/ggbetweenstats2-1.png" class="r-plt" alt="" width="100%"></p>
-<p>As can be appreciated from the effect size (partial eta squared) of
-0.635, there are large differences in the mean life expectancy across
-continents. Importantly, this plot also helps us appreciate the
-distributions within any given continent. For example, although Asian
-countries are doing much better than African countries, on average,
-Afghanistan has a particularly grim average for the Asian continent,
-possibly reflecting the war and the political turmoil.</p>
-<p>So far we have only used a classic parametric test and a boxviolin
-plot, but we can also use other available options:</p>
+<p>As can be appreciated from the robust effect size (explanatory
+measure of effect size
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ξ</mi><annotation encoding="application/x-tex">\xi</annotation></semantics></math>)
+of 0.96, there are large differences in the (trimmed) mean life
+expectancy across continents. Importantly, this plot also helps us
+appreciate the distributions within any given continent. For example,
+although Asian countries are doing much better than African countries,
+on average, Afghanistan has a particularly grim average for the Asian
+continent, possibly reflecting the war and the political turmoil.</p>
+<p>So far we have used the default box + violin plot, but there are
+other available options:</p>
 <ul>
 <li><p>The <code>type</code> (of test) argument also accepts the
 following abbreviations: <code>"p"</code> (for <em>parametric</em>),
 <code>"np"</code> (for <em>nonparametric</em>), <code>"r"</code> (for
 <em>robust</em>), <code>"bf"</code> (for <em>Bayes
 Factor</em>).</p></li>
-<li><p>The type of plot to be displayed can also be modified
-(<code>"box"</code>, <code>"violin"</code>, or
-<code>"boxviolin"</code>).</p></li>
-<li><p>The color palettes can be modified.</p></li>
+<li><p>Any of the plot components can be hidden via its
+<code>*.args</code> argument: e.g.,
+<code>violin.args = list(width = 0)</code> removes the violin plot,
+<code>boxplot.args = list(width = 0)</code> removes the box plot, and
+<code>point.args = list(alpha = 0)</code> hides the raw data
+points.</p></li>
+<li><p>The color palettes can be modified (<code>palette</code> takes a
+<code>"package::palette"</code> string from
+<a href="https://emilhvitfeldt.github.io/paletteer/" class="external-link">paletteer</a>).</p></li>
 </ul>
 <p>Let’s use the <code>combine_plots</code> function to make one plot
 from four separate plots that demonstrates all of these options. Let’s
-compare life expectancy for all countries for the first and last year of
-available data 1957 and 2007. We will generate the plots one by one and
-then use <code>combine_plots</code> to merge them into one plot with
-some common labeling. It is possible, but not necessarily recommended,
-to make each plot have different colors or themes.</p>
+compare life expectancy for all countries between 1957 and 2007. We will
+generate the plots one by one and then use <code>combine_plots</code> to
+merge them into one plot with some common labeling. It is possible, but
+not necessarily recommended, to make each plot have different colors or
+themes.</p>
 <p>For example,</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## selecting subset of the data</span></span>
@@ -328,7 +336,7 @@ to make each plot have different colors or themes.</p>
 <span>  digits <span class="op">=</span> <span class="fl">3</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## Bayes Factor for parametric t-test and boxviolin plot</span></span>
+<span><span class="co">## Bayes Factor for parametric t-test, showing only centrality measures</span></span>
 <span><span class="va">p4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">df_year</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">year</span>,</span>
@@ -369,7 +377,7 @@ be anything: conditions in a given study, groups in a study sample,
 different studies, etc.</p>
 <p>Let’s focus on the same 4 continents for the following years: 1967,
 1987, 2007. Also, let’s carry out pairwise comparisons to see if there
-differences between every pair of continents.</p>
+are differences between every pair of continents.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## select part of the dataset and use it for plotting</span></span>
 <span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://jennybc.github.io/gapminder/reference/gapminder.html" class="external-link">gapminder</a></span> <span class="op">|&gt;</span></span>
@@ -384,7 +392,6 @@ differences between every pair of continents.</p>
 <span>    pairwise.display <span class="op">=</span> <span class="st">"significant"</span>, <span class="co">## display only significant pairwise comparisons</span></span>
 <span>    pairwise.alpha <span class="op">=</span> <span class="fl">0.01</span>, <span class="co">## use a stricter alpha threshold to reduce clutter</span></span>
 <span>    p.adjust.method <span class="op">=</span> <span class="st">"fdr"</span>, <span class="co">## adjust p-values for multiple tests using this method</span></span>
-<span>    <span class="co"># ggtheme = ggthemes::theme_tufte(),</span></span>
 <span>    palette <span class="op">=</span> <span class="st">"ggsci::default_jco"</span>,</span>
 <span>    <span class="co">## arguments relevant for combine_plots</span></span>
 <span>    annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Changes in life expectancy across continents (1967-2007)"</span><span class="op">)</span>,</span>
@@ -396,7 +403,7 @@ improving steadily across all continents as we go from 1967 to 2007,
 this improvement has not been happening at the same rate for all
 continents. Additionally, irrespective of which year we look at, we
 still find significant differences in life expectancy across continents
-which have been surprisingly consistent across five decades (based on
+which have been surprisingly consistent across four decades (based on
 the observed effect sizes).</p>
 </div>
 <div class="section level2">
@@ -406,7 +413,7 @@ the observed effect sizes).</p>
 <p>Although this grouping function provides a quick way to explore the
 data, it leaves much to be desired. For example, the same type of plot
 and test is applied for all years, but maybe we want to change this for
-different years, or maybe we want to gave different effect sizes for
+different years, or maybe we want to have different effect sizes for
 different years. This type of customization for different levels of a
 grouping variable is not possible with
 <code>grouped_ggbetweenstats</code>, but this can be easily achieved
@@ -422,9 +429,93 @@ can be used: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/g
 <div class="section level2">
 <h2 id="summary-of-graphics-and-tests">Summary of graphics and tests<a class="anchor" aria-label="anchor" href="#summary-of-graphics-and-tests"></a>
 </h2>
-<p>Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html</a></p>
+<table class="table">
+<colgroup>
+<col width="27%">
+<col width="33%">
+<col width="38%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">graphical element</th>
+<th align="left">
+<code>geom</code> used</th>
+<th align="left">argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">raw data</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code></td>
+<td align="left"><code>point.args</code></td>
+</tr>
+<tr class="even">
+<td align="left">box plot</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">ggplot2::geom_boxplot()</a></code></td>
+<td align="left"><code>boxplot.args</code></td>
+</tr>
+<tr class="odd">
+<td align="left">density plot</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" class="external-link">ggplot2::geom_violin()</a></code></td>
+<td align="left"><code>violin.args</code></td>
+</tr>
+<tr class="even">
+<td align="left">centrality measure point</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code></td>
+<td align="left"><code>centrality.point.args</code></td>
+</tr>
+<tr class="odd">
+<td align="left">centrality measure label</td>
+<td align="left"><code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code></td>
+<td align="left"><code>centrality.label.args</code></td>
+</tr>
+<tr class="even">
+<td align="left">pairwise comparisons</td>
+<td align="left"><code><a href="https://const-ae.github.io/ggsignif/reference/stat_signif.html" class="external-link">ggsignif::geom_signif()</a></code></td>
+<td align="left"><code>ggsignif.args</code></td>
+</tr>
+</tbody>
+</table>
+<p>The statistical tests and effect sizes carried out for each
+<code>type</code> are listed in the function documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html</a></p>
+</div>
+<div class="section level2">
+<h2 id="extracting-statistical-details">Extracting statistical details<a class="anchor" aria-label="anchor" href="#extracting-statistical-details"></a>
+</h2>
+<p>All statistical details shown in the plot are also available as data
+frames, which can be extracted with <code><a href="../../reference/extract_stats.html">extract_stats()</a></code>. The
+returned list contains results from the test in the subtitle
+(<code>subtitle_data</code>), the Bayesian test in the caption
+(<code>caption_data</code>), and the pairwise comparisons
+(<code>pairwise_comparisons_data</code>).</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">mpg</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">subtitle_data</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 14</span></span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">statistic</span>    <span style="font-weight: bold;">df</span> <span style="font-weight: bold;">df.error</span>    <span style="font-weight: bold;">p.value</span></span></span>
+<span><span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>      31.6     2     18.0 <span style="color: #949494;">0.000</span><span style="color: #949494; text-decoration: underline;">00</span><span style="text-decoration: underline;">1</span>27</span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">method</span>                                                   <span style="font-weight: bold;">effectsize</span> <span style="font-weight: bold;">estimate</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> One-way analysis of means (not assuming equal variances) Omega2        <span style="color: #949494;">0.</span>744</span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span> <span style="font-weight: bold;">conf.high</span> <span style="font-weight: bold;">conf.method</span> <span style="font-weight: bold;">conf.distribution</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span></span></span>
+<span><span class="co">#&gt;        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>       <span style="color: #949494;">0.</span>95    <span style="color: #949494;">0.</span>531         1 ncp         F                    32 <span style="color: #949494;">&lt;language&gt;</span></span></span>
+<span></span>
+<span><span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">pairwise_comparisons_data</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 9</span></span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">group1</span> <span style="font-weight: bold;">group2</span> <span style="font-weight: bold;">statistic</span>   <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">alternative</span> <span style="font-weight: bold;">distribution</span> <span style="font-weight: bold;">p.adjust.method</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 4      6          -<span style="color: #BB0000;">6.67</span> <span style="color: #949494;">0.00</span>1<span style="text-decoration: underline;">10</span>   two.sided   q            Holm           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 4      8         -<span style="color: #BB0000;">10.7</span>  <span style="color: #949494;">0.000</span><span style="color: #949494; text-decoration: underline;">0</span><span style="text-decoration: underline;">14</span>0 two.sided   q            Holm           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 6      8          -<span style="color: #BB0000;">7.48</span> <span style="color: #949494;">0.000</span><span style="text-decoration: underline;">257</span>  two.sided   q            Holm           </span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">test</span>         <span style="font-weight: bold;">expression</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span></span></span></code></pre></div>
+<p>For <code><a href="../../reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats()</a></code> plots,
+<code><a href="../../reference/extract_stats.html">extract_stats()</a></code> returns one such list for each level of the
+grouping variable.</p>
 </div>
 <div class="section level2">
 <h2 id="reporting">Reporting<a class="anchor" aria-label="anchor" href="#reporting"></a>
@@ -440,7 +531,7 @@ and</p></li>
 interpretive context for the reported statistics.</p></li>
 </ul>
 <p>For example, let’s see the following example:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">ToothGrowth</span>, <span class="va">supp</span>, <span class="va">len</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/reporting-1.png" class="r-plt" alt="" width="100%"></p>
 <p>The narrative context (assuming <code>type = "parametric"</code>) can

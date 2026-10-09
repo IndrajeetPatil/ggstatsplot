@@ -20,8 +20,37 @@ extract_caption(p)
 
 ## Value
 
-A list of tibbles containing summaries of various statistical analyses.
-The exact details included will depend on the function.
+For `extract_stats()`, a list with the following elements, each either a
+data frame or `NULL` if not relevant for the given plot:
+
+- `subtitle_data`: results of the test displayed in the subtitle
+
+- `caption_data`: results of the test displayed in the caption
+  (typically, the Bayesian test)
+
+- `pairwise_comparisons_data`: results of pairwise comparisons
+
+- `descriptive_data`: counts and percentages
+  ([`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)
+  and
+  [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md))
+
+- `one_sample_data`: proportion tests for each level of `y`
+  ([`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)
+  and
+  [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md))
+
+- `tidy_data`: tidy model parameters
+  ([`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md))
+
+- `glance_data`: model performance indices
+  ([`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md))
+
+For `extract_subtitle()` and `extract_caption()`, the expression
+displayed in the subtitle or caption, respectively (or `NULL`).
+
+For plots from `grouped_*` functions, a list with one such element per
+plot.
 
 ## Details
 
@@ -35,7 +64,8 @@ off using that package.
 
 The only exception is the
 [`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
-function. But, if a data frame is what you want, you shouldn't be using
+function, for which all elements are `NULL`. But, if a data frame is
+what you want, you shouldn't be using
 [`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
 anyway. You can use
 [`correlation::correlation()`](https://easystats.github.io/correlation/reference/correlation.html)

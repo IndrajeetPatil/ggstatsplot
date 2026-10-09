@@ -28,7 +28,7 @@ You can cite this package/vignette as:
 ------------------------------------------------------------------------
 
 Lifecycle:
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 The function `gghistostats` can be used for **data exploration** and to
 provide an easy way to make **publication-ready histograms** with
@@ -52,9 +52,7 @@ norms have a mean of 20.
 
 \
 `## loading needed libraries`\
-\
 [`library`](https://rdrr.io/r/base/library.html)`(`[`psych`](https://personality-project.org/r/psych/)`)`\
-[`library`](https://rdrr.io/r/base/library.html)`(`[`dplyr`](https://dplyr.tidyverse.org)`)`\
 \
 `## looking at the structure of the data using glimpse`\
 `dplyr``::`[`glimpse`](https://pillar.r-lib.org/reference/glimpse.html)`(``psych``::`[`sat.act`](https://rdrr.io/pkg/psych/man/sat.act.html)`)`\
@@ -67,17 +65,18 @@ norms have a mean of 20.
 `#> $ ``SATV     `` ``<int>`` 500``, ``600``, ``480``, ``550``, ``600``, ``640``, ``610``, ``520``, ``400``, ``730``, ``760``, ``710``, ``…`\
 `#> $ ``SATQ     `` ``<int>`` 500``, ``500``, ``470``, ``520``, ``550``, ``640``, ``500``, ``560``, ``600``, ``800``, ``710``, ``600``, ``…`
 
-To get a simple histogram with no statistics and no special information.
-`gghistostats` will by default choose a binwidth
-`max(x) - min(x) / sqrt(N)`. You should always check this value and
-explore multiple widths to find the best to illustrate the stories in
-your data since histograms are sensitive to binwidth.
+By default, `gghistostats` chooses a binwidth of
+`(max(x) - min(x)) / sqrt(N)`. You should always check this value and
+explore multiple widths (via the `binwidth` argument) to find the best
+to illustrate the stories in your data since histograms are sensitive to
+binwidth. If you want a simple histogram without any statistical
+details, set `results.subtitle = FALSE` (and
+`centrality.plotting = FALSE` to also remove the centrality line).
 
-Let’s display the national norms (labeled as “Test”) and test the
-hypothesis that our sample mean is the same as our national population
-mean of 20 using a parametric one sample *t*-test (`type = "p"`).
+Let’s test the hypothesis that our sample mean is the same as our
+national population mean of 20 using a parametric one sample *t*-test
+(the default `type = "parametric"`).
 
-\
 \
 [`gghistostats`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)`(`\
 `  data ``=`` ``psych``::`[`sat.act`](https://rdrr.io/pkg/psych/man/sat.act.html)`, ``## data from which variable is to be taken`\
@@ -90,14 +89,14 @@ mean of 20 using a parametric one sample *t*-test (`type = "p"`).
 
 ![](gghistostats_files/figure-html/psychact3-1.png)
 
-`gghistostats` computed Bayes Factors to quantify the likelihood of the
-**research** (BF10) and the **null** hypothesis (BF01). In our current
-example, the Bayes Factor value provides **very strong evidence** [(Kass
-and Rafferty,
-1995)](https://www.stat.washington.edu/raftery/Research/PDF/kass1995.pdf)
+`gghistostats` also computed Bayes Factors to quantify the likelihood of
+the **research** (BF10) and the **null** hypothesis (BF01). In our
+current example, the Bayes Factor value provides **very strong
+evidence** [(Kass and Raftery,
+1995)](https://sites.stat.washington.edu/raftery/Research/PDF/kass1995.pdf)
 in favor of the research hypothesis: these ACT scores are much higher
-than the national average. The log(Bayes factor) of 492.5 means the odds
-are 7.54e+213:1 that this sample is different.
+than the national average. The natural log of the Bayes factor of 492.5
+means the odds are 7.54e+213:1 that this sample is different.
 
 ## Grouped analysis with `grouped_gghistostats`
 
@@ -114,18 +113,15 @@ Let’s see how we can use this function to apply `gghistostats` to
 accomplish our task.
 
 \
-\
 [`grouped_gghistostats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_gghistostats.md)`(`\
 `  ``## arguments relevant for gghistostats`\
 `  data ``=`` ``psych``::`[`sat.act`](https://rdrr.io/pkg/psych/man/sat.act.html)`,`\
 `  x ``=`` ``ACT``, ``## same outcome variable`\
 `  xlab ``=`` ``"ACT Score"``,`\
 `  grouping.var ``=`` ``gender``, ``## grouping variable males = 1, females = 2`\
-`  type ``=`` ``"robust"``, ``## robust test: one-sample percentile bootstrap`\
-`  test.value ``=`` ``20``, ``## test value against which sample mean is to be compared`\
+`  type ``=`` ``"robust"``, ``## robust test: bootstrap-t test for one-sample trimmed mean`\
+`  test.value ``=`` ``20``, ``## test value against which sample trimmed mean is to be compared`\
 `  centrality.line.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``color ``=`` ``"#D55E00"``, linetype ``=`` ``"dashed"``)``,`\
-`  ``# ggtheme = ggthemes::theme_stata(), ## changing default theme`\
-`  ``## turn off ggstatsplot theme layer`\
 `  ``## arguments relevant for combine_plots`\
 `  annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `    title ``=`` ``"Distribution of ACT scores across genders"``,`\
@@ -158,10 +154,43 @@ See the associated vignette here:
 
 ## Summary of graphics and tests
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
+| graphical element | `geom` used | argument for further modification |
+|:---|:---|:---|
+| histogram bin | [`ggplot2::stat_bin()`](https://ggplot2.tidyverse.org/reference/geom_histogram.html) | `bin.args` |
+| centrality measure line | [`ggplot2::geom_vline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html) | `centrality.line.args` |
+
+The statistical tests and effect sizes carried out for each `type` are
+listed in the function documentation:
 <https://www.indrapatil.com/ggstatsplot/reference/gghistostats.html>
+
+## Extracting statistical details
+
+All statistical details shown in the plot are also available as data
+frames, which can be extracted with
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md).
+The returned list contains results from the test in the subtitle
+(`subtitle_data`) and the Bayesian test in the caption (`caption_data`).
+
+\
+`p`` ``<-`` `[`gghistostats`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)`(``psych``::`[`sat.act`](https://rdrr.io/pkg/psych/man/sat.act.html)`, ``ACT``, test.value ``=`` ``20``)`\
+\
+[`extract_stats`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)`(``p``)``$``subtitle_data`\
+`#> ``# A tibble: 1 × 15`\
+`#>      ``mu`` ``statistic`` ``df.error``   ``p.value`` ``method``            ``alternative`` ``effectsize`\
+`#>   ``<dbl>``     ``<dbl>``    ``<dbl>``     ``<dbl>`` ``<chr>``             ``<chr>``       ``<chr>``     `\
+`#> ``1``    20      46.9      699 5.49``e``-218`` One Sample t-test two.sided   Hedges' g `\
+`#>   ``estimate`` ``conf.level`` ``conf.low`` ``conf.high`` ``conf.method`` ``conf.distribution`` ``n.obs`\
+`#>      ``<dbl>``      ``<dbl>``    ``<dbl>``     ``<dbl>`` ``<chr>``       ``<chr>``             ``<int>`\
+`#> ``1``     1.77       ``0.``95     1.65      1.89 ncp         t                   700`\
+`#>   ``expression`\
+`#>   ``<list>``    `\
+`#> ``1`` ``<language>`
+
+For
+[`grouped_gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_gghistostats.md)
+plots,
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+returns one such list for each level of the grouping variable.
 
 ## Reporting
 

@@ -37,12 +37,23 @@ that display results from statistical analysis in a subtitle have
 argument `results.subtitle`. Setting it to `FALSE` will return only the
 plot.
 
+For parametric tests, the Bayes Factor shown in the caption is
+controlled separately by the `bf.message` argument. Set it to `FALSE` to
+drop the caption:
+
+\
+[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(``mtcars``, ``am``, ``mpg``, bf.message ``=`` ``FALSE``)`
+
+![](faq_files/figure-html/no_caption-1.png)
+
+Your own `subtitle` text is used only when `results.subtitle = FALSE`.
+
 ## 2. How can I customize the details contained in the subtitle?
 
-Sometimes you may not wish include so many details in the subtitle. In
-that case, you can extract the expression and copy-paste only the part
-you wish to include. For example, here only statistic and *p*-values are
-included:
+Sometimes you may not wish to include so many details in the subtitle.
+In that case, you can extract the expression and copy-paste only the
+part you wish to include. For example, here only statistic and
+*p*-values are included:
 
 \
 [`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`\
@@ -89,11 +100,12 @@ the analysis is failing, you will have to do so using the underlying
 function used to carry out statistical analysis.
 
 For example, the following returns only the plot but not the statistical
-details in a subtitle.
+details in a subtitle or caption, because the outcome is constant within
+each group.
 
 \
-`df`` ``<-`` `[`data.frame`](https://rdrr.io/r/base/data.frame.html)`(``x ``=`` ``1``, y ``=`` ``2``)`\
-[`ggscatterstats`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)`(``df``, ``x``, ``y``, type ``=`` ``"robust"``)`
+`df`` ``<-`` `[`data.frame`](https://rdrr.io/r/base/data.frame.html)`(``x ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"a"``, ``"a"``, ``"b"``, ``"b"``)``, y ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``1``, ``1``, ``2``, ``2``)``)`\
+[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(``df``, ``x``, ``y``)`
 
 ![](faq_files/figure-html/null_subtitle-1.png)
 
@@ -102,18 +114,9 @@ from the underlying function:
 
 \
 [`library`](https://rdrr.io/r/base/library.html)`(`[`statsExpressions`](https://www.indrapatil.com/statsExpressions/)`)`\
-`df`` ``<-`` `[`data.frame`](https://rdrr.io/r/base/data.frame.html)`(``x ``=`` ``1``, y ``=`` ``2``)`\
-[`corr_test`](https://www.indrapatil.com/statsExpressions/reference/corr_test.html)`(``df``, ``x``, ``y``, type ``=`` ``"robust"``)`\
-`#> ``# A tibble: 1 × 14`\
-`#>   ``parameter1`` ``parameter2`` ``effectsize``                ``estimate`` ``conf.level`` ``conf.low`\
-`#>   ``<chr>``      ``<chr>``      ``<chr>``                     ``<lgl>``         ``<dbl>`` ``<lgl>``   `\
-`#> ``1`` x          y          Winsorized NA correlation ``NA``             ``0.``95 ``NA``      `\
-`#>   ``conf.high`` ``statistic`` ``df.error`` ``p.value`` ``method``                    ``n.obs`\
-`#>   ``<lgl>``     ``<lgl>``     ``<lgl>``      ``<dbl>`` ``<chr>``                     ``<int>`\
-`#> ``1`` ``NA``        ``NA``        ``NA``            ``NA`` Winsorized NA correlation     1`\
-`#>   ``conf.method`` ``expression`\
-`#>   ``<chr>``       ``<list>``    `\
-`#> ``1`` normal      ``<language>`
+[`two_sample_test`](https://www.indrapatil.com/statsExpressions/reference/two_sample_test.html)`(``df``, ``x``, ``y``)`\
+`#> ``Error```  in `t.test.default()`: ``\
+`#> ``!`` data are essentially constant`
 
 ## 5. What statistical test was carried out?
 
@@ -122,8 +125,14 @@ results shown in the subtitle of the plot, the best way to get that
 information is to either look at the documentation for the function used
 or check out the associated vignette.
 
-Summary of all analysis is handily available in `README`:
-<https://github.com/IndrajeetPatil/ggstatsplot/blob/master/README.md>
+All statistical analyses are carried out by
+[statsExpressions](https://www.indrapatil.com/statsExpressions/), and a
+summary of every supported test and effect size is available in its
+[documentation](https://www.indrapatil.com/statsExpressions/articles/stats_details.html).
+
+You can also check the `method` column of the data frames returned by
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+(see question 14).
 
 ## 6. How can I use `{ggstatsplot}` functions in a `for` loop?
 
@@ -134,23 +143,28 @@ adjustment to how inputs are entered:
 
 \
 `col.name`` ``<-`` `[`colnames`](https://rdrr.io/r/base/colnames.html)`(``mtcars``)`\
+`plot_list`` ``<-`` `[`list`](https://rdrr.io/r/base/list.html)`(``)`\
 \
 `` # executing the function in a `for` loop ``\
 `for`` ``(``i`` ``in`` ``3``:`[`length`](https://rdrr.io/r/base/length.html)`(``col.name``)``)`` ``{`\
-`  `[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(`\
+`  ``plot_list``[[``col.name``[``i``]``]``]`` ``<-`` `[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(`\
 `    data ``=`` ``mtcars``,`\
 `    x ``=`` ``cyl``,`\
 `    y ``=`` ``!``!``col.name``[``i``]`\
 `  ``)`\
 `}`
 
+Note that plots created inside a `for` loop are not printed
+automatically; either store them (as above) or wrap the call in
+[`print()`](https://rdrr.io/r/base/print.html).
+
 That said, if repeating function execution across multiple columns in a
-data frame in what you want to do, I will recommend
+data frame is what you want to do, I will recommend a
 [purrr](https://purrr.tidyverse.org/)-based solution:
 
 <https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data-frame>
 
-This solution would work for `x` and `y` arguments, but not for
+This solution would work for `x` and `y` arguments, but not for the
 `grouping.var` argument, which first needs to be converted to a symbol:
 
 \
@@ -168,7 +182,9 @@ This solution would work for `x` and `y` arguments, but not for
 
 Across different facets of a `grouped_` plot, the axes ranges might
 sometimes differ. You can use the `ggplot.component` parameter (present
-in all functions) to have the same scale across the individual plots:
+in all functions except
+[`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md))
+to have the same scale across the individual plots:
 
 \
 `` # provide a list of further `{ggplot2}` modifications using `ggplot.component` ``\
@@ -207,9 +223,10 @@ compatible with `plotly`.
 
 Currently, the `grouped_` variants of functions only support repeating
 the analysis across a *single* grouping variable. Often, you have to run
-the same analysis across a combination of more than two grouping
+the same analysis across a combination of two or more grouping
 variables. This can be easily achieved using
-[purrr](https://purrr.tidyverse.org/) package.
+[purrr](https://purrr.tidyverse.org/) package (see also [this
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html)).
 
 Here is an example-
 
@@ -225,7 +242,7 @@ Here is an example-
 [`length`](https://rdrr.io/r/base/length.html)`(``df_list``)`\
 `#> [1] 4`\
 \
-`# running correlation analyses between; this will return a *list* of plots`\
+`# running correlation analyses; this will return a *list* of plots`\
 `plot_list`` ``<-`` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(`\
 `  .l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `    data ``=`` ``df_list``,`\
@@ -297,17 +314,17 @@ Here is a workaround using
 
 ## 12. How to access data frame with results from pairwise comparisons?
 
-Behind the scenes,
-[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) uses
-`statsExpressions::statsExpressions::pairwise_comparisons()` function.
-
-You can use it to extract actual data frames used in
-[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) functions.
+The pairwise comparisons displayed in a
+[`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
+or
+[`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
+plot are stored in the plot and can be retrieved with
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md):
 
 \
-[`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`\
+`p`` ``<-`` `[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(``mtcars``, ``cyl``, ``wt``)`\
 \
-`statsExpressions``::`[`pairwise_comparisons`](https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html)`(``mtcars``, ``cyl``, ``wt``)`\
+[`extract_stats`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)`(``p``)``$``pairwise_comparisons_data`\
 `#> ``# A tibble: 3 × 9`\
 `#>   ``group1`` ``group2`` ``statistic``   ``p.value`` ``alternative`` ``distribution`` ``p.adjust.method`\
 `#>   ``<chr>``  ``<chr>``      ``<dbl>``     ``<dbl>`` ``<chr>``       ``<chr>``        ``<chr>``          `\
@@ -320,12 +337,18 @@ You can use it to extract actual data frames used in
 `#> ``2`` Games-Howell ``<language>`\
 `#> ``3`` Games-Howell ``<language>`
 
+Behind the scenes,
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) uses the
+[`statsExpressions::pairwise_comparisons()`](https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html)
+function, which you can also call directly without creating a plot (see
+the [pairwise comparisons
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/pairwise.html)).
+
 ## 13. How can I change annotation in pairwise comparisons?
 
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) defaults to
-displaying exact p-values or logged Bayes Factor values for pairwise
-comparisons. But what if you wish to adopt a different annotation
-labels?
+displaying exact *p*-values or logged Bayes Factor values for pairwise
+comparisons. But what if you wish to adopt different annotation labels?
 
 You will have to customize them yourself:
 
@@ -343,7 +366,12 @@ You will have to customize them yourself:
 `df`` ``<-`` ``statsExpressions``::`[`pairwise_comparisons`](https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html)`(``mtcars``, ``cyl``, ``wt``)`` ``|>`\
 `  ``dplyr``::`[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``groups ``=`` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(``.l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``group1``, ``group2``)``, .f ``=`` ``c``)``)`` ``|>`\
 `  ``dplyr``::`[`arrange`](https://dplyr.tidyverse.org/reference/arrange.html)`(``group1``)`` ``|>`\
-`  ``dplyr``::`[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``asterisk_label ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"**"``, ``"***"``, ``"**"``)``)`\
+`  ``dplyr``::`[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``asterisk_label ``=`` ``dplyr``::`[`case_when`](https://dplyr.tidyverse.org/reference/case-and-replace-when.html)`(`\
+`    ``p.value`` ``<`` ``0.001`` ``~`` ``"***"``,`\
+`    ``p.value`` ``<`` ``0.01`` ``~`` ``"**"``,`\
+`    ``p.value`` ``<`` ``0.05`` ``~`` ``"*"``,`\
+`    .default ``=`` ``"ns"`\
+`  ``)``)`\
 \
 `df`\
 `#> ``# A tibble: 3 × 11`\
@@ -373,12 +401,15 @@ You will have to customize them yourself:
 
 ## 14. How to access data frame containing statistical analyses?
 
-You can use the
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) displays
+expressions in the subtitle and caption, but you can get back the
+underlying data frames with the
 [`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
-helper function for this.
+helper function. It returns a list with the following components (`NULL`
+when not relevant for a given plot): `subtitle_data`, `caption_data`,
+`pairwise_comparisons_data`, `descriptive_data`, `one_sample_data`,
+`tidy_data`, and `glance_data`.
 
-\
-[`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`\
 \
 `p`` ``<-`` `[`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)`(``mtcars``, ``am``, ``cyl``)`\
 \
@@ -397,7 +428,7 @@ helper function for this.
 `#> ``# A tibble: 1 × 15`\
 `#>   ``term``  ``conf.level`` ``effectsize`` ``estimate`` ``conf.low`` ``conf.high`\
 `#>   ``<chr>``      ``<dbl>`` ``<chr>``         ``<dbl>``    ``<dbl>``     ``<dbl>`\
-`#> ``1`` Ratio       ``0.``95 Cramers_v     ``0.``415        ``0``     ``0.``669`\
+`#> ``1`` Ratio       ``0.``95 Cramers_v     ``0.``414        ``0``     ``0.``666`\
 `#>   ``prior.distribution``      ``prior.location`` ``prior.scale``  ``bf10`\
 `#>   ``<chr>``                            ``<dbl>``       ``<dbl>`` ``<dbl>`\
 `#> ``1`` independent multinomial              ``0``           1  16.8`\
@@ -456,6 +487,20 @@ helper function for this.
 `#> attr(,"class")`\
 `#> [1] "ggstatsplot_stats" "list"`
 
+For `grouped_` plots,
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+returns one such list per group.
+[`extract_subtitle()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+and
+[`extract_caption()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+return just the expressions.
+
+If you only need the results and not the plot, you can call the
+functions from the source package
+[statsExpressions](https://www.indrapatil.com/statsExpressions/)
+directly (see
+[examples](https://www.indrapatil.com/statsExpressions/articles/web_only/dataframe_outputs.html)).
+
 ## 15. How can I remove a particular `geom` layer from the plot?
 
 Sometimes you may not want a particular `geom` layer to be displayed.
@@ -463,7 +508,8 @@ You can remove them by setting transparency (`alpha`) for that layer to
 0.
 
 For example, let’s say I want to remove the points from
-`ggwithintstats()` plot:
+[`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
+plot:
 
 \
 \
@@ -472,6 +518,7 @@ For example, let’s say I want to remove the points from
 `  data ``=`` ``bugs_long``,`\
 `  x ``=`` ``condition``,`\
 `  y ``=`` ``desire``,`\
+`  subject.id ``=`` ``subject``,`\
 `  results.subtitle ``=`` ``FALSE``,`\
 `  pairwise.display ``=`` ``"none"`\
 `)`
@@ -485,6 +532,7 @@ For example, let’s say I want to remove the points from
 `  data ``=`` ``bugs_long``,`\
 `  x ``=`` ``condition``,`\
 `  y ``=`` ``desire``,`\
+`  subject.id ``=`` ``subject``,`\
 `  point.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``alpha ``=`` ``0``)``,`\
 `  results.subtitle ``=`` ``FALSE``,`\
 `  pairwise.display ``=`` ``"none"`\
@@ -494,9 +542,11 @@ For example, let’s say I want to remove the points from
 
 ## 16. How can I modify the fill colors with custom values?
 
-Sometimes you may not be satisfied with the available color palette
-values. In this case, you can also change the colors by manually
-specifying these values.
+Functions with a `palette` argument accept any discrete
+[paletteer](https://emilhvitfeldt.github.io/paletteer/) palette in the
+`"package::palette"` format (see question 18). But if you are not
+satisfied with the available palettes, you can also change the colors by
+manually specifying these values.
 
 \
 [`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`\
@@ -520,10 +570,12 @@ The same can also be done for `grouped_` functions:
 
 ## 17. How can I modify `grouped_` outputs using `{ggplot2}` functions?
 
-All [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) are `ggplot`
-objects, which can be further modified, just like any other `ggplot`
-object. But exception to these are all plots returned by `grouped_`
-functions, but there is a way to tackle this.
+All [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) plots are
+`ggplot` objects, which can be further modified, just like any other
+`ggplot` object. The exception is plots returned by `grouped_`
+functions, which are [patchwork](https://patchwork.data-imaginist.com)
+objects combining several plots. To modify each of the individual plots,
+use the `ggplot.component` argument:
 
 \
 [`library`](https://rdrr.io/r/base/library.html)`(`[`paletteer`](https://emilhvitfeldt.github.io/paletteer/)`)`\
@@ -545,36 +597,62 @@ functions, but there is a way to tackle this.
 
 ![](faq_files/figure-html/grouped_modify-1.png)
 
-## 18. How can I extract data frame containing results from `{ggstatsplot}`?
+Alternatively, [patchwork](https://patchwork.data-imaginist.com)’s `&`
+operator applies a [ggplot2](https://ggplot2.tidyverse.org) component to
+all plots in a `grouped_` output:
 
-[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) can return
-expressions in the subtitle and caption, but what if you want to
-actually get back data frame containing the results?
+\
+[`grouped_ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbetweenstats.md)`(``mtcars``, ``cyl``, ``wt``, grouping.var ``=`` ``am``)`` ``&`\
+`  `[`theme`](https://ggplot2.tidyverse.org/reference/theme.html)`(``axis.text.x ``=`` `[`element_text`](https://ggplot2.tidyverse.org/reference/element.html)`(``angle ``=`` ``90``)``)`
 
-You have two options:
+## 18. How can I change the theme or color palette?
 
-- Use
-  [`ggstatsplot::extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
-  function
-- Or go to the source package
-  [statsExpressions](https://www.indrapatil.com/statsExpressions/) (see
-  [examples](https://www.indrapatil.com/statsExpressions/articles/dataframe_outputs.html))
+Use the `ggtheme` argument to supply any
+[ggplot2](https://ggplot2.tidyverse.org) theme (the default is
+[`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md)),
+and the `palette` argument to choose any discrete palette from
+[paletteer](https://emilhvitfeldt.github.io/paletteer/) in the
+`"package::palette"` format. Run `View(paletteer::palettes_d_names)` to
+see all available palettes.
+
+\
+[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(`\
+`  ``mtcars``,`\
+`  ``cyl``,`\
+`  ``wt``,`\
+`  ggtheme ``=`` ``ggplot2``::`[`theme_classic`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
+`  palette ``=`` ``"ggsci::nrc_npg"`\
+`)`
+
+![](faq_files/figure-html/theme_palette-1.png)
+
+The palette must have at least as many colors as there are levels in the
+grouping variable; otherwise an error is thrown.
+[`ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md),
+[`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md),
+[`ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md),
+and
+[`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
+don’t have a `palette` argument; use the relevant `*.args` arguments (or
+`colors` in
+[`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md))
+instead.
 
 ## 19. How can I remove sample size labels for `ggbarstats`?
 
-    library(gginnards)
+Set the transparency of the sample size labels to 0 using the
+`sample.size.label.args` argument:
 
-    ## create a plot
-    p <- ggbarstats(mtcars, am, cyl)
+\
+[`ggbarstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)`(``mtcars``, ``am``, ``cyl``, sample.size.label.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``alpha ``=`` ``0``)``)`
 
-    ## remove layer corresponding to sample size
-    delete_layers(p, "GeomText")
+![](faq_files/figure-html/ggbar_no_n-1.png)
 
 ## 20. Statistical analysis I want to carry out is not available. What can I do?
 
-By default, since [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)
-always allows just **one** type of test per statistical approach,
-sometimes your favorite test might not be available. For example,
+Since [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) always
+allows just **one** type of test per statistical approach, sometimes
+your favorite test might not be available. For example,
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) provides only
 Spearman’s $`\rho`$, but not Kendall’s $`\tau`$ as a non-parametric
 correlation test.
@@ -613,14 +691,29 @@ stable yet.
 
 ![](faq_files/figure-html/custom_test-1.png)
 
-## 21. Is there way to adjust my alpha level?
+## 21. Is there a way to adjust my alpha level?
 
-No, there is no way to adjust alpha if you use `grouped_` functions
-(e.g., `grouped_ggwithinstats`). You will have to just report in the
-paper/article/report, what your adjusted alpha is.
+Within a single plot, some functions let you choose the cutoff used to
+decide what is displayed as significant:
 
-So, for example, iif 2 tests are being carried out, the alpha is going
-to be `0.05/2 = 0.025`. So, when you describe the *Methods* section, you
+- `pairwise.alpha` in
+  [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
+  and
+  [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
+  (together with `p.adjust.method` for multiple comparisons correction).
+- `sig.level` in
+  [`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md).
+- `conf.level` (in all functions) sets the width of the confidence
+  intervals.
+
+But there is no way to adjust alpha *across* the plots produced by
+`grouped_` functions (e.g.,
+[`grouped_ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggwithinstats.md)),
+since each group is analyzed independently. You will have to just report
+in the paper/article/report what your adjusted alpha is.
+
+So, for example, if 2 tests are being carried out, the alpha is going to
+be `0.05/2 = 0.025`. So, when you describe the *Methods* section, you
 can mention that only those tests should be considered significant where
 `p < 0.025`. Or you can even mention this in the caption.
 
@@ -630,13 +723,13 @@ Below is an example using `ggbetweenstats` function.
 
 \
 [`library`](https://rdrr.io/r/base/library.html)`(`[`shiny`](https://shiny.posit.co/)`)`\
-[`library`](https://rdrr.io/r/base/library.html)`(`[`rlang`](https://rlang.r-lib.org)`)`\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`ggstatsplot`](https://www.indrapatil.com/ggstatsplot/)`)`\
 \
 `ui`` ``<-`` `[`fluidPage`](https://rdrr.io/pkg/shiny/man/fluidPage.html)`(`\
 `  `[`headerPanel`](https://rdrr.io/pkg/shiny/man/headerPanel.html)`(``"Example - ggbetweenstats"``)``,`\
 `  `[`sidebarPanel`](https://rdrr.io/pkg/shiny/man/sidebarLayout.html)`(`\
-`    `[`selectInput`](https://rdrr.io/pkg/shiny/man/selectInput.html)`(``"x"``, ``"xcol"``, ``"X Variable"``, choices ``=`` `[`names`](https://rdrr.io/r/base/names.html)`(``iris``)``[``5``]``)``,`\
-`    `[`selectInput`](https://rdrr.io/pkg/shiny/man/selectInput.html)`(``"y"``, ``"ycol"``, ``"Y Variable"``, choices ``=`` `[`names`](https://rdrr.io/r/base/names.html)`(``iris``)``[``1``:``4``]``)`\
+`    `[`selectInput`](https://rdrr.io/pkg/shiny/man/selectInput.html)`(``"x"``, ``"X Variable"``, choices ``=`` `[`names`](https://rdrr.io/r/base/names.html)`(``iris``)``[``5``]``)``,`\
+`    `[`selectInput`](https://rdrr.io/pkg/shiny/man/selectInput.html)`(``"y"``, ``"Y Variable"``, choices ``=`` `[`names`](https://rdrr.io/r/base/names.html)`(``iris``)``[``1``:``4``]``)`\
 `  ``)``,`\
 `  `[`mainPanel`](https://rdrr.io/pkg/shiny/man/sidebarLayout.html)`(`[`plotOutput`](https://rdrr.io/pkg/shiny/man/plotOutput.html)`(``"plot"``)``)`\
 `)`\
@@ -704,9 +797,10 @@ To check these assumptions, you can use a different package called
 
 ## 27. I am on Ubuntu and have trouble installing `{PMCMRplus}`?
 
-Linux users may encounter some installation problems. In particular, the
-[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package depends
-on the `{PMCMRplus}` package.
+Linux users may encounter some installation problems. In particular,
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) depends (via
+[statsExpressions](https://www.indrapatil.com/statsExpressions/)) on the
+`{PMCMRplus}` package.
 
 ``` r
 ERROR: dependencies ‘gmp’, ‘Rmpfr’ are not available for package ‘PMCMRplus’
@@ -739,6 +833,10 @@ For MacOS, have a look at this
 ![](faq_files/figure-html/faq5-1.png)
 
 ## 29. How to turn off scientific notation in expressions?
+
+Increase the number of digits with the `digits` argument. Note that very
+small *p*-values can still be shown in scientific notation if they would
+otherwise be rounded to zero.
 
 \
 [`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`\
@@ -930,6 +1028,43 @@ and pass it to
 `  `[`labs`](https://ggplot2.tidyverse.org/reference/labs.html)`(``subtitle ``=`` ``expr``)`
 
 ![](faq_files/figure-html/annotation_manual-1.png)
+
+## 34. How are missing values handled?
+
+Rows with missing values (`NA`) in the variables of interest are removed
+before the analysis, and the subtitle reports the sample size that was
+actually used. Other columns in the data are ignored.
+
+- In
+  [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md),
+  specify `subject.id`: any subject with a missing value in *any*
+  condition is then excluded from the statistical analysis, so that only
+  complete pairs are analyzed (the subtitle reports *n*_(pairs)). The
+  subject’s non-missing observations are still shown in the plot.
+- In
+  [`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md),
+  missing values are removed separately for each pair of variables, and
+  the legend shows the minimum, mode, and maximum sample sizes across
+  pairs.
+- In `grouped_` functions, rows with missing values in `grouping.var`
+  are dropped.
+
+\
+`` # 5 of the 93 subjects in `bugs_long` have a missing value, so n_pairs = 88 ``\
+[`ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)`(``bugs_long``, ``condition``, ``desire``, subject.id ``=`` ``subject``)`
+
+![](faq_files/figure-html/missing_values-1.png)
+
+## 35. How should I cite and report the results?
+
+You can cite the package with `citation("ggstatsplot")` (see top of this
+article). For reporting, the expressions shown in the plots follow a
+standard template (see the [principles
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/principles.html#statistical-reporting)),
+and all numbers can be retrieved as data frames with
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+(see question 14). For interpreting logged Bayes Factors, see [this
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/interpretation.html).
 
 ## Suggestions
 

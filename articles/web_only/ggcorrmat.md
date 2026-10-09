@@ -28,17 +28,20 @@ You can cite this package/vignette as:
 ------------------------------------------------------------------------
 
 Lifecycle:
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 The function
 [`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
 provides a quick way to produce **publication-ready correlation matrix**
-(aka *correlalogram*) plot. The function can also be used for quick
-**data exploration**. In addition to the plot, it can also be used to
-get a correlation coefficient matrix or the associated *p*-value matrix.
-This function is a convenient wrapper around
-[`ggcorrplot::ggcorrplot()`](https://rpkgs.datanovia.com/ggcorrplot/reference/ggcorrplot.html)
-function with some additional functionality.
+(aka *correlogram*) plot. The function can also be used for quick **data
+exploration**. The correlations are computed with
+[`correlation::correlation()`](https://easystats.github.io/correlation/reference/correlation.html)
+and the plot is produced with
+[`ggcorrplot::ggcorrplot()`](https://rpkgs.datanovia.com/ggcorrplot/reference/ggcorrplot.html).
+The `type` argument decides which correlation coefficient is computed:
+Pearson’s *r* (`"parametric"`), Spearman’s $`\rho`$ (`"nonparametric"`),
+Winsorized Pearson’s *r* (`"robust"`), or Bayesian Pearson’s *r*
+(`"bayes"`).
 
 We will see examples of how to use this function in this vignette with
 the `gapminder` and `diamonds` dataset.
@@ -62,7 +65,6 @@ Let’s have a look at the data-
 
 \
 [`library`](https://rdrr.io/r/base/library.html)`(`[`gapminder`](https://github.com/jennybc/gapminder)`)`\
-[`library`](https://rdrr.io/r/base/library.html)`(`[`dplyr`](https://dplyr.tidyverse.org)`)`\
 \
 `dplyr``::`[`glimpse`](https://pillar.r-lib.org/reference/glimpse.html)`(``gapminder``)`\
 `#> Rows: 1,704`\
@@ -105,9 +107,7 @@ This plot can be further modified with additional arguments-
 `    ``"GDP (per capita)"`\
 `  ``)``,`\
 `  type ``=`` ``"np"``, ``## which correlation coefficient is to be computed`\
-`  lab.col ``=`` ``"red"``, ``## label color`\
 `  ggtheme ``=`` ``ggplot2``::`[`theme_light`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``, ``## selected ggplot2 theme`\
-`  ``## turn off default ggestatsplot theme overlay`\
 `  matrix.type ``=`` ``"lower"``, ``## correlation matrix structure`\
 `  title ``=`` ``"Gapminder correlation matrix"``, ``## custom title`\
 `  subtitle ``=`` ``"Source: Gapminder Foundation"`` ``## custom subtitle`\
@@ -117,13 +117,14 @@ This plot can be further modified with additional arguments-
 
 As seen from this correlation matrix, although there is no relationship
 between population and life expectancy worldwide, at least in 2007,
-there is a strong positive relationship between GDP, a well-established
-indicator of a country’s economic performance.
+there is a strong positive relationship between life expectancy and GDP
+per capita, a well-established indicator of a country’s economic
+performance.
 
 Given that there were only three variables, this doesn’t look that
 impressive. So let’s work with another example from
 [ggplot2](https://ggplot2.tidyverse.org) package: the `diamonds`
-[dataset](http://ggplot2.tidyverse.org/reference/diamonds.md). This
+[dataset](https://ggplot2.tidyverse.org/reference/diamonds.html). This
 dataset contains the prices and other attributes of almost 54,000
 diamonds.
 
@@ -151,8 +152,10 @@ diamond and the price.
 
 \
 `## let's use just 5% of the data to speed it up`\
+`diamonds_sample`` ``<-`` ``dplyr``::`[`slice_sample`](https://dplyr.tidyverse.org/reference/slice.html)`(``ggplot2``::`[`diamonds`](https://ggplot2.tidyverse.org/reference/diamonds.html)`, prop ``=`` ``0.05``)`\
+\
 [`ggcorrmat`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)`(`\
-`  data ``=`` ``dplyr``::`[`sample_frac`](https://dplyr.tidyverse.org/reference/sample_n.html)`(``ggplot2``::`[`diamonds`](https://ggplot2.tidyverse.org/reference/diamonds.html)`, size ``=`` ``0.05``)``,`\
+`  data ``=`` ``diamonds_sample``,`\
 `  cor.vars ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``carat``, ``depth``:``z``)``, ``## note how the variables are getting selected`\
 `  cor.vars.names ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`\
 `    ``"carat"``,`\
@@ -170,12 +173,16 @@ diamond and the price.
 
 We can make a number of changes to this basic correlation matrix. For
 example, since we were interested in relationship between price and
-other attributes, let’s make the `price` column to the the first column.
+other attributes, let’s make the `price` column the first column.
+Additional arguments for
+[`ggcorrplot::ggcorrplot()`](https://rpkgs.datanovia.com/ggcorrplot/reference/ggcorrplot.html)
+can be passed via `ggcorrplot.args`. Note that a list supplied to
+`ggcorrplot.args` replaces the default list (see
+`formals(ggcorrmat)$ggcorrplot.args`) instead of being merged with it.
 
 \
-`## let's use just 5% of the data to speed it up`\
 [`ggcorrmat`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)`(`\
-`  data ``=`` ``dplyr``::`[`sample_frac`](https://dplyr.tidyverse.org/reference/sample_n.html)`(``ggplot2``::`[`diamonds`](https://ggplot2.tidyverse.org/reference/diamonds.html)`, size ``=`` ``0.05``)``,`\
+`  data ``=`` ``diamonds_sample``,`\
 `  cor.vars ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``price``, ``carat``, ``depth``:``table``, ``x``:``z``)``, ``## note how the variables are getting selected`\
 `  cor.vars.names ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`\
 `    ``"price"``,`\
@@ -190,7 +197,7 @@ other attributes, let’s make the `price` column to the the first column.
 `  title ``=`` ``"Relationship between diamond attributes and price"``,`\
 `  subtitle ``=`` ``"Dataset: Diamonds from ggplot2 package"``,`\
 `  pch ``=`` ``"square cross"``,`\
-`  ``` ## additional aesthetic arguments passed to `ggcorrmat()` ``\
+`  ``` ## additional aesthetic arguments passed to `ggcorrplot::ggcorrplot()` ``\
 `  ggcorrplot.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `    lab_col ``=`` ``"yellow"``,`\
 `    lab_size ``=`` ``6``,`\
@@ -208,8 +215,9 @@ other attributes, let’s make the `price` column to the the first column.
 ![](ggcorrmat_files/figure-html/ggcorrmat4-1.png)
 
 As seen here, and unsurprisingly, the strongest predictor of the diamond
-price is its carat value, which a unit of mass equal to 200 mg. In other
-words, the heavier the diamond, the more expensive it is going to be.
+price is its carat value, which is a unit of mass equal to 200 mg. In
+other words, the heavier the diamond, the more expensive it is going to
+be.
 
 ## Custom gradient colors
 
@@ -262,29 +270,53 @@ matrix across different levels of a factor/grouping variable.
 
 ## Data frame
 
+Unlike other [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)
+functions,
+[`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
+does not store its statistical details for
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md).
 If you want a data frame of (grouped) correlation matrix, use
 [`correlation::correlation()`](https://easystats.github.io/correlation/reference/correlation.html)
-instead. It can also do grouped analysis when used with output from
+instead, which is also what
+[`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
+uses internally. It can also do grouped analysis when used with output
+from
 [`dplyr::group_by()`](https://dplyr.tidyverse.org/reference/group_by.html).
+
+\
+`correlation``::`[`correlation`](https://easystats.github.io/correlation/reference/correlation.html)`(``dplyr``::`[`select`](https://dplyr.tidyverse.org/reference/select.html)`(``gapminder_2007``, ``lifeExp``:``gdpPercap``)``)`\
+`#> # Correlation Matrix (pearson-method)`\
+`#> `\
+`#> Parameter1 | Parameter2 |     r |        95% CI | t(140) |         p`\
+`#> --------------------------------------------------------------------`\
+`#> lifeExp    |        pop |  0.05 | [-0.12, 0.21] |   0.56 | > .999   `\
+`#> lifeExp    |  gdpPercap |  0.68 | [ 0.58, 0.76] |  10.93 | < .001***`\
+`#> pop        |  gdpPercap | -0.06 | [-0.22, 0.11] |  -0.66 | > .999   `\
+`#> `\
+`#> p-value adjustment method: Holm (1979)`\
+`#> Observations: 142`
 
 ## Grouped analysis with `ggcorrmat()` + `{purrr}`
 
 Although `grouped_` function is good for quickly exploring the data, it
 reduces the flexibility with which this function can be used. This is
-the because the common parameters used are applied to plots
-corresponding to all levels of the grouping variable and there is no way
-to customize the arguments for different levels of the grouping
-variable. We will see how this can be done using the
-[purrr](https://purrr.tidyverse.org/) package.
+because the common parameters used are applied to plots corresponding to
+all levels of the grouping variable and there is no way to customize the
+arguments for different levels of the grouping variable. We will see how
+this can be done using the [purrr](https://purrr.tidyverse.org/)
+package.
 
 See the associated vignette here:
 <https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
 
 ## Summary of graphics and tests
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
+| graphical element | `geom` used | argument for further modification |
+|:---|:---|:---|
+| correlation matrix | [`ggcorrplot::ggcorrplot()`](https://rpkgs.datanovia.com/ggcorrplot/reference/ggcorrplot.html) | `ggcorrplot.args` |
+
+More details about the correlation coefficients computed for each `type`
+can be found in the function documentation:
 <https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.html>
 
 ## Suggestions

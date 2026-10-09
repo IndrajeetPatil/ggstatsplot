@@ -1,4 +1,4 @@
-# Dot plot/chart for labeled numeric data.
+# Dot plot/chart for labeled numeric data
 
 A dot chart (as described by William S. Cleveland) with statistical
 details from one-sample test.
@@ -62,7 +62,11 @@ ggdotplotstats(
 
 - y:
 
-  Label or grouping variable.
+  Label or grouping variable. Each level of `y` is shown as a single
+  dot: if a level has several rows, `x` is summarized using the
+  centrality measure for the chosen `type` (see above), and the
+  one-sample test is then carried out on these per-level summaries
+  (i.e., the sample size is the number of levels of `y`).
 
 - xlab:
 
@@ -85,8 +89,8 @@ ggdotplotstats(
 
 - caption:
 
-  The text for the plot caption. This argument is relevant only if
-  `bf.message = FALSE`.
+  The text for the plot caption. It will be replaced by the Bayes Factor
+  caption whenever that is displayed (see `bf.message`).
 
 - type:
 
@@ -167,7 +171,7 @@ ggdotplotstats(
 - errorbar.args:
 
   Additional arguments that will be passed to
-  [`geom_errorbar()`](https://ggplot2.tidyverse.org/reference/geom_linerange.html)
+  [`ggplot2::geom_errorbar()`](https://ggplot2.tidyverse.org/reference/geom_linerange.html)
   geom. Please see documentation for that function to know more about
   these arguments.
 
@@ -186,8 +190,8 @@ ggdotplotstats(
 
   - **MAP estimator** for Bayesian statistics
 
-  If you want default centrality parameter, you can specify this using
-  `centrality.type` argument.
+  If you want a different centrality parameter, you can specify this
+  using `centrality.type` argument.
 
 - centrality.type:
 
@@ -198,16 +202,16 @@ ggdotplotstats(
 
   - `"nonparametric"` (for **median**)
 
-  - `robust` (for **trimmed mean**)
+  - `"robust"` (for **trimmed mean**)
 
-  - `bayes` (for **MAP estimator**)
+  - `"bayes"` (for **MAP estimator**)
 
   Just as `type` argument, abbreviations are also accepted.
 
 - centrality.line.args:
 
   A list of additional aesthetic arguments to be passed to the
-  [`ggplot2::geom_line()`](https://ggplot2.tidyverse.org/reference/geom_path.html)
+  [`ggplot2::geom_vline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html)
   used to display the lines corresponding to the centrality parameter.
 
 - ggplot.component:
@@ -239,7 +243,17 @@ ggdotplotstats(
 
   Currently ignored.
 
+## Value
+
+A `ggplot` object, which can be further modified with `{ggplot2}`
+functions. Use
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+to get the statistical details shown in the plot as data frames.
+
 ## Details
+
+Rows with a missing value in either `x` or `y` are removed before
+plotting and analysis.
 
 For details, see:
 <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html>
@@ -249,8 +263,8 @@ For details, see:
 |  |  |  |
 |----|----|----|
 | graphical element | `geom` used | argument for further modification |
-| raw data | [`ggplot2::geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html) | `point.args` |
-| error bars | [`ggplot2::geom_errorbarh()`](https://ggplot2.tidyverse.org/reference/geom_linerange.html) | `errorbar.args` |
+| point estimates | [`ggplot2::geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html) | `point.args` |
+| error bars | [`ggplot2::geom_errorbar()`](https://ggplot2.tidyverse.org/reference/geom_linerange.html) | `errorbar.args` |
 | centrality measure line | [`ggplot2::geom_vline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html) | `centrality.line.args` |
 
 ## One-sample tests

@@ -37,7 +37,6 @@
     "name": "R"
   },
   "license": "https://opensource.org/licenses/MIT",
-  "version": "1.0.0",
   "author": {
     "@type": "Person",
     "name": "Indrajeet Patil",
@@ -46,11 +45,14 @@
   },
   "keywords": ["R", "ggplot2", "statistics", "data visualization", "Bayesian", "frequentist", "nonparametric", "robust statistics", "ANOVA", "correlation"]
 }
-</script><meta name="citation_title" content="ggstatsplot: ggplot2 Based Plots with Statistical Details">
+</script><meta name="citation_title" content="Visualizations with statistical details: The 'ggstatsplot' approach">
 <meta name="citation_author" content="Indrajeet Patil">
-<meta name="citation_year" content="2021">
-<meta name="citation_doi" content="10.21105/joss.03236">
+<meta name="citation_publication_date" content="2021/05/25">
+<meta name="citation_doi" content="10.21105/joss.03167">
 <meta name="citation_journal_title" content="Journal of Open Source Software">
+<meta name="citation_volume" content="6">
+<meta name="citation_issue" content="61">
+<meta name="citation_firstpage" content="3167">
 <link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary">
 </head>
 <body>
@@ -61,7 +63,7 @@
 
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -169,9 +171,9 @@ information in graphs. <a href="https://www.indrapatil.com/ggstatsplot/">ggstats
 paradigm proposed in (<span class="citation">(Cleveland, 1985)</span>,
 Chapter 4) to facilitate making visual judgments about quantitative
 information effortless and almost instantaneous. Based on experiments,
-Cleveland proposes that there are ten elementary graphical-perception
-tasks that we perform to visually decode quantitative information in
-graphs (organized from most to least accurate; <span class="citation">(Cleveland, 1985)</span>, p.254)-</p>
+Cleveland proposes a set of elementary graphical-perception tasks that
+we perform to visually decode quantitative information in graphs
+(organized from most to least accurate; <span class="citation">(Cleveland, 1985)</span>, p.254)-</p>
 <ul>
 <li><p>Position along a common scale</p></li>
 <li><p>Position along identical, non-aligned scales</p></li>
@@ -219,10 +221,10 @@ pie charts which rely on <em>angle</em> judgments, which are less
 accurate (as compared to bar graphs, e.g., which require
 <em>position</em> judgments). This shortcoming is assuaged to some
 degree by using plenty of labels that describe percentages for all
-slices. This makes angle judgment unnecessary and pre-vacates any
-concerns about inaccurate judgments about percentages. Additionally, it
-also provides alternative function to <code>ggpiestats</code> for
-working with categorical variables: <code>ggbarstats</code>.</li>
+slices. This makes angle judgment unnecessary and obviates any concerns
+about inaccurate judgments about percentages. Additionally, it also
+provides an alternative function to <code>ggpiestats</code> for working
+with categorical variables: <code>ggbarstats</code>.</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span></span>
@@ -319,21 +321,19 @@ of context. The package follows the principles for <em>graphical
 integrity</em> <span class="citation">(Tufte, 2001)</span>:</p>
 <ul>
 <li><p>The physical representation of numbers is proportional to the
-numerical quantities they represent. The plot show how means (in
-<code>ggbetweenstats</code>) or percentages (<code>ggpiestats</code>)
+numerical quantities they represent. The plots show how means (in
+<code>ggbetweenstats</code>) or percentages (in <code>ggpiestats</code>)
 are proportional to the vertical distance or the area,
-respectively).</p></li>
+respectively.</p></li>
 <li><p>All important events in the data have clear, detailed, and
-thorough labeling plot shows how <code>ggbetweenstats</code> labels
-means, sample size information, outliers, and pairwise comparisons; same
-can be appreciated for <code>ggpiestats</code> and
-<code>gghistostats</code> plots. Note that data labels in the data
-region are designed in a way that they don’t interfere with our ability
-to assess the overall pattern of the data (<span class="citation">(Cleveland, 1985)</span>;</p></li>
-</ul>
-<p>p.44-45). This is achieved by using <code>ggrepel</code> package to
-place labels in a way that reduces their visual prominence.</p>
-<ul>
+thorough labeling. The plot shows how <code>ggbetweenstats</code> labels
+means, sample size information, and pairwise comparisons; same can be
+appreciated for <code>ggpiestats</code> and <code>gghistostats</code>
+plots. Note that data labels in the data region are designed in a way
+that they don’t interfere with our ability to assess the overall pattern
+of the data (<span class="citation">(Cleveland, 1985)</span>, p.44-45).
+This is achieved by using <code>ggrepel</code> package to place labels
+in a way that reduces their visual prominence.</p></li>
 <li><p>None of the plots have <em>design</em> variation (e.g., abrupt
 change in scales) over the surface of a same graphic because this can
 lead to a false impression about variation in <em>data</em>.</p></li>
@@ -363,12 +363,11 @@ the box and violin plots are mirrored, which consumes twice the space in
 the graphic without adding any new information. But this redundancy is
 tolerated for the sake of beauty that such symmetrical shapes can bring
 to the graphic. Even Tufte admits that efficiency is but one
-consideration in the design of statistical graphics (<span class="citation">(Tufte, 2001)</span>,</p>
-<p>p. 137). Additionally, these principles were formulated in an era in
-which computer graphics had yet to revolutionize the ease with which
-graphics could be produced and thus some of the concerns about
-minimizing data-ink for easier production of graphics are not as
-relevant as they were.</p>
+consideration in the design of statistical graphics (<span class="citation">(Tufte, 2001)</span>, p. 137). Additionally, these
+principles were formulated in an era in which computer graphics had yet
+to revolutionize the ease with which graphics could be produced and thus
+some of the concerns about minimizing data-ink for easier production of
+graphics are not as relevant as they were.</p>
 </div>
 <div class="section level3">
 <h3 id="statistical-variation">Statistical variation<a class="anchor" aria-label="anchor" href="#statistical-variation"></a>
@@ -390,6 +389,7 @@ outliers (<span class="citation">(Cleveland, 1985)</span>, p.220).</li>
 <span>  data <span class="op">=</span> <span class="va">morley</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">Speed</span>,</span>
 <span>  test.value <span class="op">=</span> <span class="fl">792</span>,</span>
+<span>  bf.message <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="st">"Speed of light (km/sec, with 299000 subtracted)"</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Distribution of measured Speed of light"</span>,</span>
 <span>  caption <span class="op">=</span> <span class="st">"Note: Data collected across 5 experiments (20 measurements each)"</span></span>
@@ -472,7 +472,7 @@ may vary.</p></li>
 <span>    cor.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">sleep_rem</span>, <span class="va">awake</span><span class="op">:</span><span class="va">bodywt</span><span class="op">)</span>,</span>
 <span>    cor.vars.names <span class="op">=</span> <span class="va">var_names</span>,</span>
 <span>    colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#B2182B"</span>, <span class="st">"white"</span>, <span class="st">"#4D4D4D"</span><span class="op">)</span>,</span>
-<span>    title <span class="op">=</span> <span class="st">"Correlalogram for mammals sleep dataset"</span>,</span>
+<span>    title <span class="op">=</span> <span class="st">"Correlogram for mammals sleep dataset"</span>,</span>
 <span>    subtitle <span class="op">=</span> <span class="st">"sleep units: hours; weight units: kilograms"</span></span>
 <span>  <span class="op">)</span>,</span>
 <span>  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -482,14 +482,14 @@ may vary.</p></li>
 sample size \textit{n}, but they can give more nuanced information about sample sizes when
 \textit{n} differs across tests. For example, `ggcorrmat` will display (\textit{a}) only one
 total sample size once when no `NA`s present, but (\textit{b}) will instead show minimum,
-median, and maximum sample sizes across all correlation tests when `NA`s are present across
+mode, and maximum sample sizes across all correlation tests when `NA`s are present across
 correlation variables." width="100%"><p class="caption">
 <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> functions remove <code>NA</code>s from
 variables of interest and display total sample size , but they can give
 more nuanced information about sample sizes when differs across tests.
 For example, <code>ggcorrmat</code> will display () only one total
 sample size once when no <code>NA</code>s present, but () will instead
-show minimum, median, and maximum sample sizes across all correlation
+show minimum, mode, and maximum sample sizes across all correlation
 tests when <code>NA</code>s are present across correlation variables.
 </p>
 </div>
@@ -511,7 +511,7 @@ write the results manually or copy-paste them from a different
 statistics software program (like SPSS, SAS, and so on).</li>
 </ul>
 <p>The default setting in <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> is to produce plots
-with statistical details included. Most often than not, these results
+with statistical details included. More often than not, these results
 are displayed as a <code>subtitle</code> in the plot. Great care has
 been taken into which details are included in statistical reporting and
 why.</p>
@@ -538,22 +538,26 @@ rounded to two decimal places by default.</p></li>
 </ul>
 </div>
 <div class="section level3">
-<h3 id="dealing-with-null-results">Dealing with <strong>null results</strong>:<a class="anchor" aria-label="anchor" href="#dealing-with-null-results"></a>
+<h3 id="dealing-with-null-results">Dealing with null results<a class="anchor" aria-label="anchor" href="#dealing-with-null-results"></a>
 </h3>
-<p>All functions therefore by default return Bayesian in favor of the
-null hypothesis by default. If the null hypothesis can’t be rejected
-with the null hypothesis significance testing (NHST) approach, the
-Bayesian approach can help index evidence in favor of the null
-hypothesis (i.e.,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub></mrow><annotation encoding="application/x-tex">BF_{01}</annotation></semantics></math>).
-By default, natural logarithms are shown because Bayesian values can
-sometimes be pretty large. Having values on logarithmic scale also makes
-it easy to compare evidence in favor alternative
+<p>For parametric tests (the default <code>type</code>), functions also
+display, by default, the Bayes Factor in favor of the null hypothesis
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub></mrow><annotation encoding="application/x-tex">BF_{01}</annotation></semantics></math>)
+in the caption (this can be turned off with
+<code>bf.message = FALSE</code>). If the null hypothesis can’t be
+rejected with the null hypothesis significance testing (NHST) approach,
+the Bayesian approach can help index evidence in favor of the null
+hypothesis. By default, natural logarithms are shown because Bayes
+Factor values can sometimes be pretty large. Having values on
+logarithmic scale also makes it easy to compare evidence in favor of
+alternative
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><msub><mi>F</mi><mn>10</mn></msub></mrow><annotation encoding="application/x-tex">BF_{10}</annotation></semantics></math>)
 versus null
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub></mrow><annotation encoding="application/x-tex">BF_{01}</annotation></semantics></math>)
 hypotheses (since
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>o</mi><msub><mi>g</mi><mi>e</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mi>l</mi><mi>o</mi><msub><mi>g</mi><mi>e</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>B</mi><msub><mi>F</mi><mn>10</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">log_{e}(BF_{01}) = - log_{e}(BF_{10})</annotation></semantics></math>).</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>o</mi><msub><mi>g</mi><mi>e</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mi>l</mi><mi>o</mi><msub><mi>g</mi><mi>e</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>B</mi><msub><mi>F</mi><mn>10</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">log_{e}(BF_{01}) = - log_{e}(BF_{10})</annotation></semantics></math>).
+See <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/interpretation.html">this
+article</a> for more on interpreting these values.</p>
 </div>
 </div>
 <div class="section level2">
@@ -581,8 +585,8 @@ prevalence of statistical reporting errors in psychology (19852013).
 </div>
 <div id="ref-tufte2001" class="csl-entry">
 Tufte, E. R. (2001). <em>The <span>Visual Display</span> of
-<span>Quantitative Information</span></em> (2nd edition edition.).
-<span>Cheshire, Conn</span>: <span>Graphics Press</span>.
+<span>Quantitative Information</span></em> (2nd ed.). <span>Cheshire,
+Conn</span>: <span>Graphics Press</span>.
 </div>
 <div id="ref-wickhamTidyData2014" class="csl-entry">
 Wickham, H. (2014). Tidy <span>Data</span>. <em>Journal of Statistical
@@ -590,8 +594,8 @@ Software</em>, <em>59</em>(1), 1–23. doi:<a href="https://doi.org/10.18637/jss
 </div>
 <div id="ref-wickham2016" class="csl-entry">
 Wickham, H. (2016). <em>Ggplot2: <span>Elegant Graphics</span> for
-<span>Data Analysis</span></em> (2nd ed. 2016 edition.). <span>New York,
-NY</span>: <span>Springer</span>.
+<span>Data Analysis</span></em> (2nd ed.). <span>New York, NY</span>:
+<span>Springer</span>.
 </div>
 </div>
 </div>

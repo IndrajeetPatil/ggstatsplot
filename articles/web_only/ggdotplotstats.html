@@ -37,7 +37,6 @@
     "name": "R"
   },
   "license": "https://opensource.org/licenses/MIT",
-  "version": "1.0.0",
   "author": {
     "@type": "Person",
     "name": "Indrajeet Patil",
@@ -46,11 +45,14 @@
   },
   "keywords": ["R", "ggplot2", "statistics", "data visualization", "Bayesian", "frequentist", "nonparametric", "robust statistics", "ANOVA", "correlation"]
 }
-</script><meta name="citation_title" content="ggstatsplot: ggplot2 Based Plots with Statistical Details">
+</script><meta name="citation_title" content="Visualizations with statistical details: The 'ggstatsplot' approach">
 <meta name="citation_author" content="Indrajeet Patil">
-<meta name="citation_year" content="2021">
-<meta name="citation_doi" content="10.21105/joss.03236">
+<meta name="citation_publication_date" content="2021/05/25">
+<meta name="citation_doi" content="10.21105/joss.03167">
 <meta name="citation_journal_title" content="Journal of Open Source Software">
+<meta name="citation_volume" content="6">
+<meta name="citation_issue" content="61">
+<meta name="citation_firstpage" content="3167">
 <link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary">
 </head>
 <body>
@@ -61,7 +63,7 @@
 
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -155,20 +157,27 @@ A BibTeX entry for LaTeX users is
     journal = {{Journal of Open Source Software}},
   }</code></pre>
 <hr>
-<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
+<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></p>
 <p>The function <code>ggdotplotstats</code> can be used for <strong>data
 exploration</strong> and to provide an easy way to make
 <strong>publication-ready dot plots/charts</strong> with appropriate and
 selected statistical details embedded in the plot itself. In this
 vignette, we will explore several examples of how to use it.</p>
 <p>This function is a sister function of <code>gghistostats</code> with
-the difference being it expects a labeled numeric variable.</p>
+the difference being it expects a labeled numeric variable: a numeric
+variable (<code>x</code>) along with a variable containing labels
+(<code>y</code>). If there are multiple observations per label, they are
+first summarized into a single centrality measure per label (mean,
+median, trimmed mean, or MAP estimate, depending on <code>type</code>),
+shown as a dot with its confidence interval. The one-sample test is then
+carried out on these per-label summaries, i.e., the sample size is the
+number of labels.</p>
 <div class="section level2">
 <h2 id="distribution-of-a-sample-with-ggdotplotstats">Distribution of a sample with <code>ggdotplotstats</code><a class="anchor" aria-label="anchor" href="#distribution-of-a-sample-with-ggdotplotstats"></a>
 </h2>
 <p>Let’s begin with a very simple example from the
 <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> package (<code><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">ggplot2::mpg</a></code>), a subset of
-the fuel economy data that the EPA makes available on <a href="http://fueleconomy.gov" class="external-link uri">http://fueleconomy.gov</a>.</p>
+the fuel economy data that the EPA makes available on <a href="https://fueleconomy.gov" class="external-link uri">https://fueleconomy.gov</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## looking at the structure of the data using glimpse</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span><span class="op">)</span></span>
@@ -192,7 +201,7 @@ manufacturer.</p>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">cyl</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## creating a vector of colors using `paletteer` package</span></span>
-<span><span class="va">paletter_vector</span> <span class="op">&lt;-</span> <span class="fu">paletteer</span><span class="fu">::</span><span class="fu"><a href="https://emilhvitfeldt.github.io/paletteer/reference/paletteer_d.html" class="external-link">paletteer_d</a></span><span class="op">(</span></span>
+<span><span class="va">palette_vector</span> <span class="op">&lt;-</span> <span class="fu">paletteer</span><span class="fu">::</span><span class="fu"><a href="https://emilhvitfeldt.github.io/paletteer/reference/paletteer_d.html" class="external-link">paletteer_d</a></span><span class="op">(</span></span>
 <span>  palette <span class="op">=</span> <span class="st">"palettetown::venusaur"</span>,</span>
 <span>  n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nlevels.html" class="external-link">nlevels</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">manufacturer</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"discrete"</span></span>
@@ -207,7 +216,7 @@ manufacturer.</p>
 <span>  test.value <span class="op">=</span> <span class="fl">15.5</span>,</span>
 <span>  point.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>    shape <span class="op">=</span> <span class="fl">16</span>,</span>
-<span>    color <span class="op">=</span> <span class="va">paletter_vector</span>,</span>
+<span>    color <span class="op">=</span> <span class="va">palette_vector</span>,</span>
 <span>    size <span class="op">=</span> <span class="fl">5</span></span>
 <span>  <span class="op">)</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Distribution of mileage of cars"</span>,</span>
@@ -225,14 +234,13 @@ such instances: <code>grouped_ggdotplotstats</code>. This is merely a
 wrapper function around <code>combine_plots</code>. It applies
 <code>ggdotplotstats</code> across all <strong>levels</strong> of a
 specified <strong>grouping variable</strong> and then combines the
-individual plots into a single plot.</p>
+individual plots into a single plot. Note that the grouping variable can
+be anything: conditions in a given study, groups in a study sample,
+different studies, etc.</p>
 <p>Let’s see how we can use this function to apply
 <code>ggdotplotstats</code> to accomplish our task.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## removing factor level with very few no. of observations</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">cyl</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="../../reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></span><span class="op">(</span></span>
 <span>  <span class="co">## arguments relevant for ggdotplotstats</span></span>
 <span>  data <span class="op">=</span> <span class="va">df</span>,</span>
 <span>  grouping.var <span class="op">=</span> <span class="va">cyl</span>, <span class="co">## grouping variable</span></span>
@@ -254,19 +262,74 @@ individual plots into a single plot.</p>
 <p>Although this is a quick and dirty way to explore a large amount of
 data with minimal effort, it does come with an important limitation:
 reduced flexibility. For example, if we wanted to add, let’s say, a
-separate <code>test.value</code> argument for each gender, this is not
-possible with <code>grouped_ggdotplotstats</code>. For cases like these,
-or to run separate kinds of tests (robust for some, parametric for
-other, while Bayesian for some other levels of the group) it would be
-better to use <a href="https://purrr.tidyverse.org/" class="external-link">purrr</a>.</p>
+separate <code>test.value</code> argument for each number of cylinders,
+this is not possible with <code>grouped_ggdotplotstats</code>. For cases
+like these, or to run separate kinds of tests (robust for some,
+parametric for other, while Bayesian for some other levels of the group)
+it would be better to use <a href="https://purrr.tidyverse.org/" class="external-link">purrr</a>.</p>
 <p>See the associated vignette here: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
 </div>
 <div class="section level2">
 <h2 id="summary-of-graphics-and-tests">Summary of graphics and tests<a class="anchor" aria-label="anchor" href="#summary-of-graphics-and-tests"></a>
 </h2>
-<p>Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.html</a></p>
+<table class="table">
+<colgroup>
+<col width="27%">
+<col width="32%">
+<col width="39%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">graphical element</th>
+<th align="left">
+<code>geom</code> used</th>
+<th align="left">argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">point estimates</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code></td>
+<td align="left"><code>point.args</code></td>
+</tr>
+<tr class="even">
+<td align="left">error bars</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">ggplot2::geom_errorbar()</a></code></td>
+<td align="left"><code>errorbar.args</code></td>
+</tr>
+<tr class="odd">
+<td align="left">centrality measure line</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline()</a></code></td>
+<td align="left"><code>centrality.line.args</code></td>
+</tr>
+</tbody>
+</table>
+<p>The statistical tests and effect sizes carried out for each
+<code>type</code> are listed in the function documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.html</a></p>
+</div>
+<div class="section level2">
+<h2 id="extracting-statistical-details">Extracting statistical details<a class="anchor" aria-label="anchor" href="#extracting-statistical-details"></a>
+</h2>
+<p>All statistical details shown in the plot are also available as data
+frames, which can be extracted with <code><a href="../../reference/extract_stats.html">extract_stats()</a></code>. The
+returned list contains results from the test in the subtitle
+(<code>subtitle_data</code>) and the Bayesian test in the caption
+(<code>caption_data</code>).</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggdotplotstats.html">ggdotplotstats</a></span><span class="op">(</span><span class="va">morley</span>, <span class="va">Speed</span>, <span class="va">Expt</span>, test.value <span class="op">=</span> <span class="fl">800</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">subtitle_data</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 15</span></span></span>
+<span><span class="co">#&gt;      <span style="font-weight: bold;">mu</span> <span style="font-weight: bold;">statistic</span> <span style="font-weight: bold;">df.error</span> <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">method</span>            <span style="font-weight: bold;">alternative</span> <span style="font-weight: bold;">effectsize</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>   800      3.41        4  <span style="color: #949494;">0.0</span>27<span style="text-decoration: underline;">1</span> One Sample t-test two.sided   Hedges' g </span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span> <span style="font-weight: bold;">conf.high</span> <span style="font-weight: bold;">conf.method</span> <span style="font-weight: bold;">conf.distribution</span> <span style="font-weight: bold;">n.obs</span></span></span>
+<span><span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     1.22       <span style="color: #949494;">0.</span>95    <span style="color: #949494;">0.</span>119      2.26 ncp         t                     5</span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">expression</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;language&gt;</span></span></span></code></pre></div>
+<p>For <code><a href="../../reference/grouped_ggdotplotstats.html">grouped_ggdotplotstats()</a></code> plots,
+<code><a href="../../reference/extract_stats.html">extract_stats()</a></code> returns one such list for each level of the
+grouping variable.</p>
 </div>
 <div class="section level2">
 <h2 id="reporting">Reporting<a class="anchor" aria-label="anchor" href="#reporting"></a>
@@ -282,7 +345,7 @@ and</p></li>
 interpretive context for the reported statistics.</p></li>
 </ul>
 <p>For example, let’s see the following example:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggdotplotstats.html">ggdotplotstats</a></span><span class="op">(</span><span class="va">morley</span>, <span class="va">Speed</span>, <span class="va">Expt</span>, test.value <span class="op">=</span> <span class="fl">800</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggdotplotstats_files/figure-html/reporting-1.png" class="r-plt" alt="" width="100%"></p>
 <p>The narrative context (assuming <code>type = "parametric"</code>) can

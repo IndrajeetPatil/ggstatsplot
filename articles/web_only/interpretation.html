@@ -37,7 +37,6 @@
     "name": "R"
   },
   "license": "https://opensource.org/licenses/MIT",
-  "version": "1.0.0",
   "author": {
     "@type": "Person",
     "name": "Indrajeet Patil",
@@ -46,11 +45,14 @@
   },
   "keywords": ["R", "ggplot2", "statistics", "data visualization", "Bayesian", "frequentist", "nonparametric", "robust statistics", "ANOVA", "correlation"]
 }
-</script><meta name="citation_title" content="ggstatsplot: ggplot2 Based Plots with Statistical Details">
+</script><meta name="citation_title" content="Visualizations with statistical details: The 'ggstatsplot' approach">
 <meta name="citation_author" content="Indrajeet Patil">
-<meta name="citation_year" content="2021">
-<meta name="citation_doi" content="10.21105/joss.03236">
+<meta name="citation_publication_date" content="2021/05/25">
+<meta name="citation_doi" content="10.21105/joss.03167">
 <meta name="citation_journal_title" content="Journal of Open Source Software">
+<meta name="citation_volume" content="6">
+<meta name="citation_issue" content="61">
+<meta name="citation_firstpage" content="3167">
 <link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary">
 </head>
 <body>
@@ -61,7 +63,7 @@
 
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -132,6 +134,12 @@
 
     
     
+<p><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> reports Bayes Factors as
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mi>e</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\log_{e}(BF_{01})</annotation></semantics></math>:
+in the caption for parametric tests (controlled by
+<code>bf.message</code>), in the subtitle for
+<code>type = "bayes"</code>, and on the brackets for Bayesian pairwise
+comparisons. This article explains how to read these values.</p>
 <p>Bayes Factors (BFs) are a fundamental tool in Bayesian analysis for
 comparing two hypotheses: typically the <strong>null hypothesis
 (H₀)</strong> and the <strong>alternative hypothesis (H₁)</strong>. The
@@ -224,7 +232,12 @@ This makes Bayesian computation more robust in practice.</p>
 <li>ln(BF₀₁ from study 1) + ln(BF₀₁ from study 2) = ln(total BF₀₁)</li>
 </ul>
 <p>This makes it easy to combine studies without recalculating
-everything in raw terms. For example:</p>
+everything in raw terms. Note that this holds only when the Bayes Factor
+for the second study is computed <em>conditional</em> on the first one
+(i.e., using the posterior from study 1 as the prior for study 2);
+multiplying Bayes Factors that were each computed from the same default
+prior does not, in general, give the Bayes Factor for the combined data.
+For example:</p>
 <ul>
 <li>Study 1: BF₀₁ = 3 → ln(BF₀₁) ≈ 1.1</li>
 <li>Study 2: BF₀₁ = 5 → ln(BF₀₁) ≈ 1.6</li>
@@ -249,47 +262,54 @@ alternative hypothesis</li>
 <strong>Zero ln(BF₀₁)</strong> → No evidence either way (BF₀₁ =
 1)</li>
 </ul>
-<p><strong>Examples:</strong></p>
+<p>A commonly used classification scheme (Lee &amp; Wagenmakers, 2014,
+adapted from Jeffreys, 1961) labels the strength of evidence as
+follows:</p>
 <table class="table">
 <thead><tr class="header">
 <th>BF₀₁</th>
 <th>ln(BF₀₁)</th>
-<th>Interpretation</th>
+<th>Evidence <strong>for H₀</strong>
+</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>100</td>
-<td>4.61</td>
-<td>Strong evidence <strong>for H₀</strong>
-</td>
+<td>&gt; 100</td>
+<td>&gt; 4.61</td>
+<td>Extreme</td>
 </tr>
 <tr class="even">
-<td>10</td>
-<td>2.30</td>
-<td>Moderate evidence <strong>for H₀</strong>
-</td>
+<td>30 – 100</td>
+<td>3.40 – 4.61</td>
+<td>Very strong</td>
 </tr>
 <tr class="odd">
+<td>10 – 30</td>
+<td>2.30 – 3.40</td>
+<td>Strong</td>
+</tr>
+<tr class="even">
+<td>3 – 10</td>
+<td>1.10 – 2.30</td>
+<td>Moderate</td>
+</tr>
+<tr class="odd">
+<td>1 – 3</td>
+<td>0 – 1.10</td>
+<td>Anecdotal</td>
+</tr>
+<tr class="even">
 <td>1</td>
 <td>0</td>
-<td>No preference between H₀ and H₁</td>
-</tr>
-<tr class="even">
-<td>0.1</td>
-<td>–2.30</td>
-<td>Moderate evidence <strong>for H₁</strong>
-</td>
-</tr>
-<tr class="odd">
-<td>0.01</td>
-<td>–4.61</td>
-<td>Strong evidence <strong>for H₁</strong>
-</td>
+<td>No evidence</td>
 </tr>
 </tbody>
 </table>
-<p>The further the value is from 0, the stronger the evidence—positive
-values favor the <strong>null</strong>, negative values favor the
+<p>The same labels apply to evidence <strong>for H₁</strong> when
+ln(BF₀₁) is negative (e.g., ln(BF₀₁) between –3.40 and –2.30 is strong
+evidence for H₁). These labels are only rough guides; the further the
+value is from 0, the stronger the evidence—positive values favor the
+<strong>null</strong>, negative values favor the
 <strong>alternative</strong>.</p>
 </div>
 <div class="section level2">

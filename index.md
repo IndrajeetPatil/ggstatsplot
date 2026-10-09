@@ -86,14 +86,22 @@ hours working on this package rather than what I was paid to do. 😁
 
 ## Documentation and Examples
 
-To see the detailed documentation for each function in the stable
-**CRAN** version of the package, see:
+In addition to the examples below, see:
+
+- [Function
+  reference](https://www.indrapatil.com/ggstatsplot/reference/)
+
+- [Articles](https://www.indrapatil.com/ggstatsplot/articles/)
 
 - [Publication](https://joss.theoj.org/papers/10.21105/joss.03167)
 
-- [Presentation](https://www.indrapatil.com/intro-to-ggstatsplot/#/ggstatsplot-informative-statistical-visualizations)
+- [Presentation](https://www.indrapatil.com/intro-to-ggstatsplot/)
 
-- [Vignettes](https://www.indrapatil.com/ggstatsplot/articles/)
+## Getting help
+
+If you find a bug, have a question, or want to suggest a feature, please
+file an issue on GitHub:
+<https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 ## Summary of available plots
 
@@ -111,8 +119,10 @@ To see the detailed documentation for each function in the stable
 
 In addition to these basic plots,
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) also provides
-**`grouped_`** versions (see below) that makes it easy to repeat the
-same analysis for any grouping variable.
+**`grouped_`** versions of all of these functions except
+[`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)
+(see below) that make it easy to repeat the same analysis for any
+grouping variable.
 
 ## Summary of types of statistical analyses
 
@@ -124,23 +134,12 @@ supported in this package-
 | [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md) | Between group/condition comparisons | ✅ | ✅ | ✅ | ✅ |
 | [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md) | Within group/condition comparisons | ✅ | ✅ | ✅ | ✅ |
 | [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md), [`ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md) | Distribution of a numeric variable | ✅ | ✅ | ✅ | ✅ |
-| `ggcorrmat` | Correlation matrix | ✅ | ✅ | ✅ | ✅ |
+| [`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md) | Correlation matrix | ✅ | ✅ | ✅ | ✅ |
 | [`ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md) | Correlation between two variables | ✅ | ✅ | ✅ | ✅ |
 | [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md), [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md) | Association between categorical variables | ✅ | ✅ | ❌ | ✅ |
 | [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md), [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md) | Equal proportions for categorical variable levels | ✅ | ✅ | ❌ | ✅ |
 | [`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md) | Regression model coefficients | ✅ | ✅ | ✅ | ✅ |
 | [`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md) | Random-effects meta-analysis | ✅ | ❌ | ✅ | ✅ |
-
-Summary of Bayesian analysis
-
-| Analysis                     | Hypothesis testing | Estimation |
-|:-----------------------------|:-------------------|:-----------|
-| (one/two-sample) *t*-test    | ✅                 | ✅         |
-| one-way ANOVA                | ✅                 | ✅         |
-| correlation                  | ✅                 | ✅         |
-| (unpaired) contingency table | ✅                 | ✅         |
-| (paired) contingency table   | ✅                 | ❌         |
-| random-effects meta-analysis | ✅                 | ✅         |
 
 ## Statistical reporting
 
@@ -157,9 +156,10 @@ confidence interval](reference/figures/stats_reporting_format.png)
 
 Statistical analysis is carried out by
 [statsExpressions](https://www.indrapatil.com/statsExpressions/)
-package, and thus a summary table of all the statistical tests currently
-supported across various functions can be found in article for that
-package:
+package, and thus a summary table of all the statistical tests and
+effect sizes currently supported across various functions (including
+which Bayesian analyses support hypothesis testing and estimation) can
+be found in an article for that package:
 <https://www.indrapatil.com/statsExpressions/articles/stats_details.html>
 
 ## Primary functions
@@ -286,7 +286,7 @@ example with only repeated measurements-
 `  subject.id      ``=`` ``subject``,`\
 `  type            ``=`` ``"np"``,`\
 `  xlab            ``=`` ``"Condition"``,`\
-`  ylab            ``=`` ``"Desire to kill an artrhopod"``,`\
+`  ylab            ``=`` ``"Desire to kill an arthropod"``,`\
 `  grouping.var    ``=`` ``region`\
 `)`
 
@@ -395,9 +395,9 @@ results](reference/figures/README-ggdotplotstats1-1.png)
 ✅ Bayesian hypothesis-testing\
 ✅ Bayesian estimation\
 
-As with the rest of the functions in this package, there is also a
-`grouped_` variant of this function to facilitate looping the same
-operation for all levels of a single grouping variable.
+As with most other functions in this package, there is also a `grouped_`
+variant of this function to facilitate looping the same operation for
+all levels of a single grouping variable.
 
 \
 [`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`\
@@ -487,14 +487,15 @@ documentation:
 For more, also read the following vignette:
 <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html>
 
-### `ggcorrmat`
+### `ggcorrmat()`
 
-`ggcorrmat` makes a correlalogram (a matrix of correlation coefficients)
-with minimal amount of code. Just sticking to the defaults itself
-produces publication-ready correlation matrices. But, for the sake of
-exploring the available options, let’s change some of the defaults. For
-example, multiple aesthetics-related arguments can be modified to change
-the appearance of the correlation matrix.
+[`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
+makes a correlogram (a matrix of correlation coefficients) with minimal
+amount of code. Just sticking to the defaults itself produces
+publication-ready correlation matrices. But, for the sake of exploring
+the available options, let’s change some of the defaults. For example,
+multiple aesthetics-related arguments can be modified to change the
+appearance of the correlation matrix.
 
 \
 [`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`\
@@ -503,7 +504,7 @@ the appearance of the correlation matrix.
 [`ggcorrmat`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)`(`\
 `  data     ``=`` ``ggplot2``::`[`msleep`](https://ggplot2.tidyverse.org/reference/msleep.html)`,`\
 `  colors   ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"#B2182B"``, ``"white"``, ``"#4D4D4D"``)``,`\
-`  title    ``=`` ``"Correlalogram for mammals sleep dataset"``,`\
+`  title    ``=`` ``"Correlogram for mammals sleep dataset"``,`\
 `  subtitle ``=`` ``"sleep units: hours; weight units: kilograms"`\
 `)`
 
@@ -517,8 +518,8 @@ indicators](reference/figures/README-ggcorrmat1-1.png)
 ✅ careful handling of `NA`s
 
 If there are `NA`s present in the selected variables, the legend will
-display minimum, median, and maximum number of pairs used for
-correlation tests.
+display minimum, mode, and maximum number of pairs used for correlation
+tests.
 
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable:
@@ -838,8 +839,8 @@ extracting expression:
 `  `[`labs`](https://ggplot2.tidyverse.org/reference/labs.html)`(`\
 `    title ``=`` ``"Michelson-Morley experiments"``,`\
 `    subtitle ``=`` ``stats_results``,`\
-`    x ``=`` ``"Speed of light"``,`\
-`    y ``=`` ``"Experiment number"`\
+`    x ``=`` ``"Experiment number"``,`\
+`    y ``=`` ``"Speed of light"`\
 `  ``)`
 
 ![Custom boxplot of Michelson-Morley experiment data with

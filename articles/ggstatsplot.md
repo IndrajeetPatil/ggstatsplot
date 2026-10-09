@@ -79,7 +79,7 @@ both data visualization ([Cleveland, 1985](#ref-cleveland1985); [Grant,
 2001](#ref-tufte2001); [Wilke, 2019](#ref-wilke2019fundamentals)) and
 (frequentist/Bayesian) statistical reporting ([American Psychological
 Association, 2019](#ref-apa2019); [van Doorn et al.,
-2020](#ref-van2020jasp)). Without
+2021](#ref-van2020jasp)). Without
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/), getting these
 statistical details and customizing a plot would require significant
 amount of time and effort. In other words, this package removes the
@@ -159,10 +159,25 @@ dot-and-whisker plot, pie chart, bar chart, etc.). It will continue
 expanding to support an increasing collection of statistical analyses
 and visualizations.
 
+## Learn More
+
+- Articles for each function, frequently asked questions, and other
+  topics are available on the package website:
+  <https://www.indrapatil.com/ggstatsplot/articles/>
+
+- The statistical details displayed in any plot can be retrieved as data
+  frames with
+  [`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+  (and the expressions with
+  [`extract_subtitle()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+  and
+  [`extract_caption()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)),
+  e.g. `extract_stats(ggbetweenstats(iris, Species, Sepal.Length))`.
+
 ## Licensing and Availability
 
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) is licensed under
-the GNU General Public License (v3.0), with all source code stored at
+the MIT License, with all source code stored at
 [GitHub](https://github.com/IndrajeetPatil/ggstatsplot/). In the spirit
 of honest and open science, requests and suggestions for fixes, feature
 updates, as well as general questions and concerns are encouraged via
@@ -240,9 +255,9 @@ Tufte, E. R. (2001). *The Visual Display of Quantitative Information*
 van Doorn, J., van den Bergh, D., Böhm, U., Dablander, F., Derks, K.,
 Draws, T., Etz, A., Evans, N. J., Gronau, Q. F., Haaf, J. M., Hinne, M.,
 Kucharský, Š., Ly, A., Marsman, M., Matzke, D., Gupta, A. R. K. N.,
-Sarafoglou, A., Stefan, A., Voelkel, J. G., & Wagenmakers, E.-J. (2020).
+Sarafoglou, A., Stefan, A., Voelkel, J. G., & Wagenmakers, E.-J. (2021).
 The JASP guidelines for conducting and reporting a Bayesian analysis.
-*Psychonomic Bulletin & Review*, 1–14.
+*Psychonomic Bulletin & Review*, *28*(3), 813–826.
 <https://doi.org/10.3758/s13423-020-01798-5>
 
 Wickham, H. (2016). *ggplot2: Elegant graphics for data analysis*.

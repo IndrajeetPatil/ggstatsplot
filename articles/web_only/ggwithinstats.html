@@ -37,7 +37,6 @@
     "name": "R"
   },
   "license": "https://opensource.org/licenses/MIT",
-  "version": "1.0.0",
   "author": {
     "@type": "Person",
     "name": "Indrajeet Patil",
@@ -46,11 +45,14 @@
   },
   "keywords": ["R", "ggplot2", "statistics", "data visualization", "Bayesian", "frequentist", "nonparametric", "robust statistics", "ANOVA", "correlation"]
 }
-</script><meta name="citation_title" content="ggstatsplot: ggplot2 Based Plots with Statistical Details">
+</script><meta name="citation_title" content="Visualizations with statistical details: The 'ggstatsplot' approach">
 <meta name="citation_author" content="Indrajeet Patil">
-<meta name="citation_year" content="2021">
-<meta name="citation_doi" content="10.21105/joss.03236">
+<meta name="citation_publication_date" content="2021/05/25">
+<meta name="citation_doi" content="10.21105/joss.03167">
 <meta name="citation_journal_title" content="Journal of Open Source Software">
+<meta name="citation_volume" content="6">
+<meta name="citation_issue" content="61">
+<meta name="citation_firstpage" content="3167">
 <link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary">
 </head>
 <body>
@@ -61,7 +63,7 @@
 
     <a class="navbar-brand me-2" href="../../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -155,7 +157,7 @@ A BibTeX entry for LaTeX users is
     journal = {{Journal of Open Source Software}},
   }</code></pre>
 <hr>
-<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></p>
+<p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></p>
 <p>The function <code>ggwithinstats</code> is designed to facilitate
 <strong>data exploration</strong>, and for making highly customizable
 <strong>publication-ready plots</strong>, with relevant statistical
@@ -165,31 +167,88 @@ how to use this function in this vignette.</p>
 <code>ggwithinstats</code>-</p>
 <ul>
 <li><p>to check if a continuous variable differs across multiple
-groups/conditions</p></li>
+conditions measured on the same subjects (repeated measures or
+within-subjects designs)</p></li>
 <li><p>to compare distributions visually</p></li>
 </ul>
-<p><strong>Note</strong>: This vignette uses the pipe operator
-(<code>|&gt;</code>), if you are not familiar with this operator, here
-is a good explanation: <a href="http://r4ds.had.co.nz/pipes.html" class="external-link uri">http://r4ds.had.co.nz/pipes.html</a></p>
-<div class="section level2">
-<h2 id="comparisons-between-groups-with-ggwithinstats">Comparisons between groups with <code>ggwithinstats</code><a class="anchor" aria-label="anchor" href="#comparisons-between-groups-with-ggwithinstats"></a>
-</h2>
 <p>To illustrate how this function can be used, we will use the
-<code>bugs</code> dataset throughout this vignette. This data set,
+<code>bugs_long</code> dataset throughout this vignette. This data set,
 “Bugs”, provides the extent to which men and women want to kill
-arthropods that vary in freighteningness (low, high) and disgustingness
+arthropods that vary in frighteningness (low, high) and disgustingness
 (low, high). Each participant rates their attitudes towards all
-anthropods. Subset of the data reported by <a href="https://www.sciencedirect.com/science/article/pii/S0747563213000277" class="external-link">Ryan
+arthropods. Subset of the data reported by <a href="https://www.sciencedirect.com/science/article/pii/S0747563213000277" class="external-link">Ryan
 et al. (2013)</a>. Note that this is a repeated measures design because
 the same participant gave four different ratings across four different
 conditions (LDLF, LDHF, HDLF, HDHF).</p>
+<div class="section level2">
+<h2 id="data-format">Data format<a class="anchor" aria-label="anchor" href="#data-format"></a>
+</h2>
+<p><code><a href="../../reference/ggwithinstats.html">ggwithinstats()</a></code> expects data in the
+<strong>long</strong> format: one row per observation, with one column
+for the condition (<code>x</code>), one for the measurement
+(<code>y</code>), and, ideally, one identifying the subject
+(<code>subject.id</code>). This is how <code>bugs_long</code> is
+organized:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">bugs_long</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 372</span></span>
+<span><span class="co">#&gt; Columns: 6</span></span>
+<span><span class="co">#&gt; $ <span style="font-weight: bold;">subject  </span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 1<span style="color: #949494;">, </span>2<span style="color: #949494;">, </span>3<span style="color: #949494;">, </span>4<span style="color: #949494;">, </span>5<span style="color: #949494;">, </span>6<span style="color: #949494;">, </span>7<span style="color: #949494;">, </span>8<span style="color: #949494;">, </span>9<span style="color: #949494;">, </span>10<span style="color: #949494;">, </span>11<span style="color: #949494;">, </span>12<span style="color: #949494;">, </span>13<span style="color: #949494;">, </span>14<span style="color: #949494;">, </span>15<span style="color: #949494;">, </span>16<span style="color: #949494;">, </span>17<span style="color: #949494;">, </span>1…</span></span>
+<span><span class="co">#&gt; $ <span style="font-weight: bold;">gender   </span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Female<span style="color: #949494;">, </span>Female<span style="color: #949494;">, </span>Female<span style="color: #949494;">, </span>Female<span style="color: #949494;">, </span>Female<span style="color: #949494;">, </span>Female<span style="color: #949494;">, </span>Female<span style="color: #949494;">, </span>Fema…</span></span>
+<span><span class="co">#&gt; $ <span style="font-weight: bold;">region   </span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> North America<span style="color: #949494;">, </span>North America<span style="color: #949494;">, </span>Europe<span style="color: #949494;">, </span>North America<span style="color: #949494;">, </span>North A…</span></span>
+<span><span class="co">#&gt; $ <span style="font-weight: bold;">education</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> some<span style="color: #949494;">, </span>advance<span style="color: #949494;">, </span>college<span style="color: #949494;">, </span>college<span style="color: #949494;">, </span>some<span style="color: #949494;">, </span>some<span style="color: #949494;">, </span>some<span style="color: #949494;">, </span>high<span style="color: #949494;">, </span>hig…</span></span>
+<span><span class="co">#&gt; $ <span style="font-weight: bold;">condition</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "LDLF"<span style="color: #949494;">, </span>"LDLF"<span style="color: #949494;">, </span>"LDLF"<span style="color: #949494;">, </span>"LDLF"<span style="color: #949494;">, </span>"LDLF"<span style="color: #949494;">, </span>"LDLF"<span style="color: #949494;">, </span>"LDLF"<span style="color: #949494;">, </span>"LDL…</span></span>
+<span><span class="co">#&gt; $ <span style="font-weight: bold;">desire   </span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 6.0<span style="color: #949494;">, </span>10.0<span style="color: #949494;">, </span>5.0<span style="color: #949494;">, </span>6.0<span style="color: #949494;">, </span>3.0<span style="color: #949494;">, </span>2.0<span style="color: #949494;">, </span>10.0<span style="color: #949494;">, </span>10.0<span style="color: #949494;">, </span>9.5<span style="color: #949494;">, </span>8.5<span style="color: #949494;">, </span>0.0<span style="color: #949494;">, </span>9.…</span></span></code></pre></div>
+<p>If your data are in the <strong>wide</strong> format (one row per
+subject and one column per condition), first reshape them with
+<code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">tidyr::pivot_longer()</a></code>:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># a data frame in the wide format</span></span>
+<span><span class="va">df_wide</span> <span class="op">&lt;-</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span><span class="va">bugs_long</span>, names_from <span class="op">=</span> <span class="va">condition</span>, values_from <span class="op">=</span> <span class="va">desire</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_wide</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 8</span></span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">subject</span> <span style="font-weight: bold;">gender</span> <span style="font-weight: bold;">region</span>        <span style="font-weight: bold;">education</span>  <span style="font-weight: bold;">LDLF</span>  <span style="font-weight: bold;">LDHF</span>  <span style="font-weight: bold;">HDLF</span>  <span style="font-weight: bold;">HDHF</span></span></span>
+<span><span class="co">#&gt;     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>       1 Female North America some          6   6     9    10  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>       2 Female North America advance      10  <span style="color: #BB0000;">NA</span>    10    10  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>       3 Female Europe        college       5  10    10    10  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>       4 Female North America college       6   9     6     9  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>       5 Female North America some          3   6.5   5.5   8.5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>       6 Female Europe        some          2   <span style="color: #949494;">0.</span>5   7.5   3</span></span>
+<span></span>
+<span><span class="co"># converting it to the long format</span></span>
+<span><span class="va">df_long</span> <span class="op">&lt;-</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span></span>
+<span>  <span class="va">df_wide</span>,</span>
+<span>  cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">LDLF</span>, <span class="va">LDHF</span>, <span class="va">HDLF</span>, <span class="va">HDHF</span><span class="op">)</span>,</span>
+<span>  names_to <span class="op">=</span> <span class="st">"condition"</span>,</span>
+<span>  values_to <span class="op">=</span> <span class="st">"desire"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df_long</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 6</span></span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">subject</span> <span style="font-weight: bold;">gender</span> <span style="font-weight: bold;">region</span>        <span style="font-weight: bold;">education</span> <span style="font-weight: bold;">condition</span> <span style="font-weight: bold;">desire</span></span></span>
+<span><span class="co">#&gt;     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>       1 Female North America some      LDLF           6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>       1 Female North America some      LDHF           6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>       1 Female North America some      HDLF           9</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>       1 Female North America some      HDHF          10</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>       2 Female North America advance   LDLF          10</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>       2 Female North America advance   LDHF          <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
+<p>Supplying <code>subject.id</code> is strongly recommended: it is used
+to pair observations of the same subject across conditions. If it is
+omitted, the function assumes that the rows are already sorted in the
+same subject order within every condition. Subjects with missing values
+in any condition are excluded from the statistical analysis.</p>
+</div>
+<div class="section level2">
+<h2 id="comparisons-between-conditions-with-ggwithinstats">Comparisons between conditions with <code>ggwithinstats</code><a class="anchor" aria-label="anchor" href="#comparisons-between-conditions-with-ggwithinstats"></a>
+</h2>
 <p>Suppose the first thing we want to inspect is the distribution of
 desire to kill across all conditions (disregarding the factorial
 structure of the experiment). We also want to know if the mean
 differences in this desire across conditions is statistically
 significant.</p>
 <p>The simplest form of the function call is-</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
 <span>  data       <span class="op">=</span> <span class="va">bugs_long</span>,</span>
 <span>  x          <span class="op">=</span> <span class="va">condition</span>,</span>
@@ -199,21 +258,23 @@ significant.</p>
 <p><img src="ggwithinstats_files/figure-html/ggwithinstats1-1.png" class="r-plt" alt="" width="100%"></p>
 <p><strong>Note</strong>:</p>
 <ul>
-<li><p>The function automatically decides whether a dependent samples
-test is preferred (for 2 groups) or an ANOVA (3 or more groups). based
-on the number of levels in the grouping variable.</p></li>
+<li><p>The function automatically decides whether a paired samples test
+(for 2 conditions) or a repeated measures ANOVA (3 or more conditions)
+is carried out, based on the number of levels in the <code>x</code>
+variable.</p></li>
 <li><p>The output of the function is a <code>ggplot</code> object which
 means that it can be further modified with <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>
 functions.</p></li>
 </ul>
-<p>As can be seen from the plot, the function by default returns Bayes
-Factor for the test. If the null hypothesis can’t be rejected with the
-null hypothesis significance testing (NHST) approach, the Bayesian
-approach can help index evidence in favor of the null hypothesis (i.e.,
+<p>As can be seen from the plot, the function by default also returns
+Bayes Factor for the test in the caption. If the null hypothesis can’t
+be rejected with the null hypothesis significance testing (NHST)
+approach, the Bayesian approach can help index evidence in favor of the
+null hypothesis (i.e.,
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub></mrow><annotation encoding="application/x-tex">BF_{01}</annotation></semantics></math>).</p>
 <p>By default, natural logarithms are shown because Bayes Factor values
 can sometimes be pretty large. Having values on logarithmic scale also
-makes it easy to compare evidence in favor alternative
+makes it easy to compare evidence in favor of alternative
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><msub><mi>F</mi><mn>10</mn></msub></mrow><annotation encoding="application/x-tex">BF_{10}</annotation></semantics></math>)
 versus null
 (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub></mrow><annotation encoding="application/x-tex">BF_{01}</annotation></semantics></math>)
@@ -223,8 +284,9 @@ hypotheses (since
 informative by making use of the many optional parameters in
 <code>ggwithinstats</code>. We’ll add a title and caption, better
 <code>x</code> and <code>y</code> axis labels. We can and will change
-the overall theme as well as the color palette in use.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+the color palette in use as well. This time, let’s also use a
+nonparametric test.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
 <span>  data       <span class="op">=</span> <span class="va">bugs_long</span>,</span>
 <span>  x          <span class="op">=</span> <span class="va">condition</span>,</span>
@@ -232,7 +294,7 @@ the overall theme as well as the color palette in use.</p>
 <span>  subject.id <span class="op">=</span> <span class="va">subject</span>,</span>
 <span>  type       <span class="op">=</span> <span class="st">"nonparametric"</span>, <span class="co">## type of statistical test</span></span>
 <span>  xlab       <span class="op">=</span> <span class="st">"Condition"</span>, <span class="co">## label for the x-axis</span></span>
-<span>  ylab       <span class="op">=</span> <span class="st">"Desire to kill an artrhopod"</span>, <span class="co">## label for the y-axis</span></span>
+<span>  ylab       <span class="op">=</span> <span class="st">"Desire to kill an arthropod"</span>, <span class="co">## label for the y-axis</span></span>
 <span>  palette    <span class="op">=</span> <span class="st">"yarrr::info2"</span>, <span class="co">## choosing a different color palette</span></span>
 <span>  title      <span class="op">=</span> <span class="st">"Comparison of desire to kill bugs"</span>,</span>
 <span>  caption    <span class="op">=</span> <span class="st">"Source: Ryan et al., 2013"</span></span>
@@ -242,16 +304,15 @@ the overall theme as well as the color palette in use.</p>
 <span>    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">10</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="ggwithinstats_files/figure-html/ggwithinstats2-1.png" class="r-plt" alt="" width="100%"></p>
-<p>As can be appreciated from the effect size (partial eta squared) of
-0.18, there are small differences in the mean desire to kill across
+<p>As can be appreciated from the effect size (Kendall’s <em>W</em>) of
+0.21, there are small differences in the desire to kill across
 conditions. Importantly, this plot also helps us appreciate the
 distributions within any given condition.</p>
-<p>So far we have only used a classic parametric test, but we can also
-use other available options: The <code>type</code> (of test) argument
-also accepts the following abbreviations: <code>"p"</code> (for
-<em>parametric</em>), <code>"np"</code> (for <em>nonparametric</em>),
-<code>"r"</code> (for <em>robust</em>), <code>"bf"</code> (for <em>Bayes
-Factor</em>).</p>
+<p>We can also use other available options: The <code>type</code> (of
+test) argument also accepts the following abbreviations:
+<code>"p"</code> (for <em>parametric</em>), <code>"np"</code> (for
+<em>nonparametric</em>), <code>"r"</code> (for <em>robust</em>),
+<code>"bf"</code> (for <em>Bayes Factor</em>).</p>
 <p>Let’s use the <code>combine_plots</code> function to make one plot
 from four separate plots that demonstrates all of these options. Let’s
 compare desire to kill bugs only for low versus high disgust conditions
@@ -261,7 +322,7 @@ by one and then use <code>combine_plots</code> to merge them into one
 plot with some common labeling. It is possible, but not necessarily
 recommended, to make each plot have different colors or themes.</p>
 <p>For example,</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## selecting subset of the data</span></span>
 <span><span class="va">df_disgust</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">bugs_long</span>, <span class="va">condition</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"LDHF"</span>, <span class="st">"HDHF"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -271,14 +332,15 @@ recommended, to make each plot have different colors or themes.</p>
 <span>  x <span class="op">=</span> <span class="va">condition</span>,</span>
 <span>  y <span class="op">=</span> <span class="va">desire</span>,</span>
 <span>  subject.id <span class="op">=</span> <span class="va">subject</span>,</span>
+<span>  xlab <span class="op">=</span> <span class="st">"Condition"</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="st">"Desire to kill bugs"</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"p"</span>,</span>
-<span>  effsize.type <span class="op">=</span> <span class="st">"d"</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.99</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Parametric test"</span>,</span>
 <span>  palette <span class="op">=</span> <span class="st">"ggsci::nrc_npg"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## Mann-Whitney U test (nonparametric test)</span></span>
+<span><span class="co">## Wilcoxon signed-rank test (nonparametric test)</span></span>
 <span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
 <span>  data       <span class="op">=</span> <span class="va">df_disgust</span>,</span>
 <span>  x          <span class="op">=</span> <span class="va">condition</span>,</span>
@@ -292,7 +354,7 @@ recommended, to make each plot have different colors or themes.</p>
 <span>  palette    <span class="op">=</span> <span class="st">"ggsci::uniform_startrek"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## robust t-test</span></span>
+<span><span class="co">## Yuen's paired trimmed means test (robust test)</span></span>
 <span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
 <span>  data       <span class="op">=</span> <span class="va">df_disgust</span>,</span>
 <span>  x          <span class="op">=</span> <span class="va">condition</span>,</span>
@@ -324,7 +386,7 @@ recommended, to make each plot have different colors or themes.</p>
 <span>  plotlist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span>, <span class="va">p3</span>, <span class="va">p4</span><span class="op">)</span>,</span>
 <span>  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span>,</span>
 <span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>    title <span class="op">=</span> <span class="st">"Effect of disgust on desire to kill bugs "</span>,</span>
+<span>    title <span class="op">=</span> <span class="st">"Effect of disgust on desire to kill bugs"</span>,</span>
 <span>    caption <span class="op">=</span> <span class="st">"Source: Bugs dataset from `jmv` R package"</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -343,10 +405,10 @@ specified <strong>grouping variable</strong> and then combines list of
 individual plots into a single plot. Note that the grouping variable can
 be anything: conditions in a given study, groups in a study sample,
 different studies, etc.</p>
-<p>Let’s focus on the two regions and for years: 1967, 1987, 2007. Also,
-let’s carry out pairwise comparisons to see if there differences between
-every pair of continents.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<p>Let’s carry out the analysis separately for each gender. Also, let’s
+carry out pairwise comparisons to see if there are differences between
+every pair of conditions.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/grouped_ggwithinstats.html">grouped_ggwithinstats</a></span><span class="op">(</span></span>
 <span>  <span class="co">## arguments relevant for ggwithinstats</span></span>
 <span>  data             <span class="op">=</span> <span class="va">bugs_long</span>,</span>
@@ -354,13 +416,12 @@ every pair of continents.</p>
 <span>  y                <span class="op">=</span> <span class="va">desire</span>,</span>
 <span>  subject.id       <span class="op">=</span> <span class="va">subject</span>,</span>
 <span>  grouping.var     <span class="op">=</span> <span class="va">gender</span>,</span>
-<span>  xlab             <span class="op">=</span> <span class="st">"Continent"</span>,</span>
+<span>  xlab             <span class="op">=</span> <span class="st">"Condition"</span>,</span>
 <span>  ylab             <span class="op">=</span> <span class="st">"Desire to kill bugs"</span>,</span>
 <span>  type             <span class="op">=</span> <span class="st">"nonparametric"</span>, <span class="co">## type of test</span></span>
 <span>  pairwise.display <span class="op">=</span> <span class="st">"significant"</span>, <span class="co">## display only significant pairwise comparisons</span></span>
 <span>  pairwise.alpha   <span class="op">=</span> <span class="fl">0.01</span>, <span class="co">## use a stricter alpha threshold to reduce clutter</span></span>
 <span>  p.adjust.method  <span class="op">=</span> <span class="st">"BH"</span>, <span class="co">## adjust p-values for multiple tests using this method</span></span>
-<span>  <span class="co"># ggtheme = ggthemes::theme_tufte(),</span></span>
 <span>  palette          <span class="op">=</span> <span class="st">"ggsci::default_jco"</span>,</span>
 <span>  digits           <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  <span class="co">## arguments relevant for combine_plots</span></span>
@@ -376,9 +437,9 @@ every pair of continents.</p>
 <p>Although this grouping function provides a quick way to explore the
 data, it leaves much to be desired. For example, the same type of test
 and theme is applied for all genders, but maybe we want to change this
-for different genders, or maybe we want to gave different effect sizes
-for different years. This type of customization for different levels of
-a grouping variable is not possible with
+for different genders, or maybe we want to have different types of tests
+for different genders. This type of customization for different levels
+of a grouping variable is not possible with
 <code>grouped_ggwithinstats</code>, but this can be easily achieved
 using the <a href="https://purrr.tidyverse.org/" class="external-link">purrr</a> package.</p>
 <p>See the associated vignette here: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
@@ -392,9 +453,101 @@ function can be used: <a href="https://www.indrapatil.com/ggstatsplot/articles/w
 <div class="section level2">
 <h2 id="summary-of-graphics-and-tests">Summary of graphics and tests<a class="anchor" aria-label="anchor" href="#summary-of-graphics-and-tests"></a>
 </h2>
-<p>Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.html</a></p>
+<table class="table">
+<colgroup>
+<col width="31%">
+<col width="31%">
+<col width="36%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">graphical element</th>
+<th align="left">
+<code>geom</code> used</th>
+<th align="left">argument for further modification</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">raw data</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code></td>
+<td align="left"><code>point.args</code></td>
+</tr>
+<tr class="even">
+<td align="left">point path</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">ggplot2::geom_path()</a></code></td>
+<td align="left"><code>point.path.args</code></td>
+</tr>
+<tr class="odd">
+<td align="left">box plot</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">ggplot2::geom_boxplot()</a></code></td>
+<td align="left"><code>boxplot.args</code></td>
+</tr>
+<tr class="even">
+<td align="left">density plot</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" class="external-link">ggplot2::geom_violin()</a></code></td>
+<td align="left"><code>violin.args</code></td>
+</tr>
+<tr class="odd">
+<td align="left">centrality measure point</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code></td>
+<td align="left"><code>centrality.point.args</code></td>
+</tr>
+<tr class="even">
+<td align="left">centrality measure point path</td>
+<td align="left"><code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">ggplot2::geom_path()</a></code></td>
+<td align="left"><code>centrality.path.args</code></td>
+</tr>
+<tr class="odd">
+<td align="left">centrality measure label</td>
+<td align="left"><code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code></td>
+<td align="left"><code>centrality.label.args</code></td>
+</tr>
+<tr class="even">
+<td align="left">pairwise comparisons</td>
+<td align="left"><code><a href="https://const-ae.github.io/ggsignif/reference/stat_signif.html" class="external-link">ggsignif::geom_signif()</a></code></td>
+<td align="left"><code>ggsignif.args</code></td>
+</tr>
+</tbody>
+</table>
+<p>The statistical tests and effect sizes carried out for each
+<code>type</code> are listed in the function documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.html</a></p>
+</div>
+<div class="section level2">
+<h2 id="extracting-statistical-details">Extracting statistical details<a class="anchor" aria-label="anchor" href="#extracting-statistical-details"></a>
+</h2>
+<p>All statistical details shown in the plot are also available as data
+frames, which can be extracted with <code><a href="../../reference/extract_stats.html">extract_stats()</a></code>. The
+returned list contains results from the test in the subtitle
+(<code>subtitle_data</code>), the Bayesian test in the caption
+(<code>caption_data</code>), and the pairwise comparisons
+(<code>pairwise_comparisons_data</code>).</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span><span class="va">bugs_long</span>, <span class="va">condition</span>, <span class="va">desire</span>, subject.id <span class="op">=</span> <span class="va">subject</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">subtitle_data</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 18</span></span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">term</span>      <span style="font-weight: bold;">sumsq</span> <span style="font-weight: bold;">sum.squares.error</span>    <span style="font-weight: bold;">df</span> <span style="font-weight: bold;">df.error</span> <span style="font-weight: bold;">meansq</span> <span style="font-weight: bold;">statistic</span>  <span style="font-weight: bold;">p.value</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> condition  233.              984.  2.63     229.   4.30      20.6 8.27<span style="color: #949494;">e</span><span style="color: #BB0000;">-11</span></span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">method</span>                                              <span style="font-weight: bold;">effectsize</span>       <span style="font-weight: bold;">estimate</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> ANOVA estimation for factorial designs using 'afex' Omega2 (partial)   <span style="color: #949494;">0.0</span>78<span style="text-decoration: underline;">3</span></span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span> <span style="font-weight: bold;">conf.high</span> <span style="font-weight: bold;">conf.method</span> <span style="font-weight: bold;">conf.distribution</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span></span></span>
+<span><span class="co">#&gt;        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>       <span style="color: #949494;">0.</span>95   <span style="color: #949494;">0.0</span>28<span style="text-decoration: underline;">0</span>         1 ncp         F                    88 <span style="color: #949494;">&lt;language&gt;</span></span></span>
+<span></span>
+<span><span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">pairwise_comparisons_data</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 6</span></span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">group1</span> <span style="font-weight: bold;">group2</span>  <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">p.adjust.method</span> <span style="font-weight: bold;">test</span>        <span style="font-weight: bold;">expression</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> HDHF   HDLF   2.12<span style="color: #949494;">e</span><span style="color: #BB0000;">- 3</span> Holm            Student's t <span style="color: #949494;">&lt;language&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> HDHF   LDHF   1.12<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span> Holm            Student's t <span style="color: #949494;">&lt;language&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> HDHF   LDLF   3.95<span style="color: #949494;">e</span><span style="color: #BB0000;">-12</span> Holm            Student's t <span style="color: #949494;">&lt;language&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> HDLF   LDHF   1.12<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span> Holm            Student's t <span style="color: #949494;">&lt;language&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> HDLF   LDLF   3.97<span style="color: #949494;">e</span><span style="color: #BB0000;">- 3</span> Holm            Student's t <span style="color: #949494;">&lt;language&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> LDHF   LDLF   1.11<span style="color: #949494;">e</span><span style="color: #BB0000;">- 8</span> Holm            Student's t <span style="color: #949494;">&lt;language&gt;</span></span></span></code></pre></div>
+<p>For <code><a href="../../reference/grouped_ggwithinstats.html">grouped_ggwithinstats()</a></code> plots,
+<code><a href="../../reference/extract_stats.html">extract_stats()</a></code> returns one such list for each level of the
+grouping variable.</p>
 </div>
 <div class="section level2">
 <h2 id="reporting">Reporting<a class="anchor" aria-label="anchor" href="#reporting"></a>
@@ -410,9 +563,8 @@ and</p></li>
 interpretive context for the reported statistics.</p></li>
 </ul>
 <p>For example, let’s see the following example:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/" class="external-link">WRS2</a></span><span class="op">)</span> <span class="co"># for data</span></span>
-<span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span><span class="va">WineTasting</span>, <span class="va">Wine</span>, <span class="va">Taste</span>, subject.id <span class="op">=</span> <span class="va">Taster</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span><span class="fu">WRS2</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/WRS2/man/WineTasting.html" class="external-link">WineTasting</a></span>, <span class="va">Wine</span>, <span class="va">Taste</span>, subject.id <span class="op">=</span> <span class="va">Taster</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggwithinstats_files/figure-html/reporting-1.png" class="r-plt" alt="" width="100%"></p>
 <p>The narrative context (assuming <code>type = "parametric"</code>) can
 complement this plot either as a figure caption or in the main text-</p>
@@ -421,12 +573,12 @@ complement this plot either as a figure caption or in the main text-</p>
 friends to taste each of the three wines, there was a statistically
 significant difference across persons preference for each wine. The
 effect size
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>ω</mi><mi>p</mi></msub><mo>=</mo><mn>0.02</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\omega_{p} = 0.02)</annotation></semantics></math>
-was medium, as per Field’s (2013) conventions. The Bayes Factor for the
-same analysis revealed that the data were 8.25 times more probable under
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><msubsup><mi>ω</mi><mi>p</mi><mn>2</mn></msubsup><mo>=</mo><mn>0.02</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(\omega_{p}^2 = 0.02)</annotation></semantics></math>
+was small, as per Field’s (2013) conventions. The Bayes Factor for the
+same analysis revealed that the data were 8.41 times more probable under
 the alternative hypothesis as compared to the null hypothesis. This can
 be considered moderate evidence (Jeffreys, 1961) in favor of the
-alternative hypothesis. This global effect was carried out by post hoc
+alternative hypothesis. This global effect was followed by post hoc
 pairwise <em>t</em>-tests, which revealed that Wine C was preferred
 across participants to be the least desirable compared to Wines A and
 B.</p>

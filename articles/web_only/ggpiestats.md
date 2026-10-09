@@ -28,7 +28,7 @@ You can cite this package/vignette as:
 ------------------------------------------------------------------------
 
 Lifecycle:
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 ## Introduction to `ggpiestats`
 
@@ -48,10 +48,6 @@ To begin with, here are some instances where you would want to use
 
 - to check if the proportion of observations at each level of a
   categorical variable is equal
-
-**Note:** The following demo uses the pipe operator (`|>`), if you are
-not familiar with this operator, here is a good explanation:
-[http://r4ds.had.co.nz/pipes.html](http://r4ds.had.co.nz/pipes.md).
 
 `ggpiestats` works **only** with data organized in data frames or
 tibbles. It will not work with other data structures like base-R tables
@@ -116,13 +112,14 @@ flipping a coin. People had a 50/50 chance of surviving.
 **Note:** equal proportions per category are the default, e.g. 50/50,
 but you can specify any hypothesized ratio you like with `ratio` so if
 our hypothesis was that 80% died and 20% survived we would add
-`ratio = c(.80,.20)` when we entered the code.
+`ratio = c(0.80, 0.20)` when we entered the code (the proportions follow
+the order of the levels of `x`).
 
 ## Independence (or association) with `ggpiestats`
 
-Let’s next investigate whether the passenger’s gender was independent
-of, or associated with, gender. The test is whether the proportion of
-people who survived was different between the sexes using `ggpiestats`.
+Let’s next investigate whether the passenger’s sex was independent of,
+or associated with, their survival status, i.e., we want to test whether
+the proportion of people who survived was different between the sexes.
 
 \
 [`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)`(`\
@@ -173,18 +170,18 @@ groups in a study sample, different studies, etc.
 `  ``` # arguments relevant for `combine_plots()` ``\
 `  annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `    title ``=`` ``"Passenger survival on the Titanic by gender and age"``,`\
-`    caption ``=`` ``"Asterisks denote results from proportion tests; \n***: p < 0.001, ns: non-significant"`\
+`    caption ``=`` ``"Source: Titanic survival dataset"`\
 `  ``)``,`\
 `  plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``2L``)`\
 `)`
 
 ![](ggpiestats_files/figure-html/ggpiestats4-1.png)
 
-The resulting pie charts and statistics make the story clear. For adults
-gender very much matters. Women survived at much higher rates than men.
-For children gender is not significantly associated with survival and
-both male and female children have a survival rate that is not
-significantly different from 50/50.
+The resulting pie charts and statistics make the story clear. For
+adults, gender very much matters. Women survived at much higher rates
+than men. For children, gender is not significantly associated with
+survival and both male and female children have a survival rate that is
+not significantly different from 50/50.
 
 ## Grouped analysis with `ggpiestats` + `{purrr}`
 
@@ -203,7 +200,7 @@ See the associated vignette here:
 data), i.e., when each row doesn’t correspond to a unique observation.
 For example, consider the following notional `fishing` data frame
 containing data from two boats (`A` and `B`) about the number of
-different types fish they caught in the months of `February` and
+different types of fish they caught in the months of `February` and
 `March`. In this data frame, each row corresponds to a unique
 combination of `Boat` and `Month`.
 
@@ -280,10 +277,10 @@ test of independence), our command would be:
 
 The results support our hypothesis that the type of fish caught is
 related to the month in which we’re fishing. The $`\chi^2`$ independence
-test results at the top of the plot. In February, we catch significantly
-more Cod than we would hypothesize for an equal distribution. Whereas,
-in March, our results indicate there’s no strong evidence that the
-distribution isn’t equal.
+test results are shown at the top of the plot. In February, we catch
+significantly more Cod than we would hypothesize for an equal
+distribution. Whereas, in March, our results indicate there’s no strong
+evidence that the distribution isn’t equal.
 
 ## Within-subjects designs
 
@@ -299,6 +296,10 @@ subtitle.
 
 (**Note:** If you forget to set `paired = TRUE`, the results will be
 inaccurate.)
+
+Note that, for McNemar’s test, `x` and `y` need to have the same levels,
+and each row should correspond to one subject (or, as here, to the count
+of subjects with a given combination of before/after responses).
 
 \
 `# create imaginary data`\
@@ -331,10 +332,74 @@ which is a marked improvement.
 
 ## Summary of graphics and tests
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
+| graphical element | `geom` used | argument for further modification |
+|:---|:---|:---|
+| pie slices | [`ggplot2::geom_col()`](https://ggplot2.tidyverse.org/reference/geom_bar.html) | `NA` |
+| labels | [`ggplot2::geom_label()`](https://ggplot2.tidyverse.org/reference/geom_text.html)/[`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html) | `label.args` |
+
+The statistical tests and effect sizes carried out for each `type` are
+listed in the function documentation:
 <https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.html>
+
+## Extracting statistical details
+
+All statistical details shown in the plot are also available as data
+frames, which can be extracted with
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md).
+The returned list contains results from the test in the subtitle
+(`subtitle_data`), the Bayesian test in the caption (`caption_data`),
+the one-sample proportion tests for each level of `y`
+(`one_sample_data`), the counts and percentages shown in the plot
+(`descriptive_data`), and pairwise comparisons (Fisher’s exact tests)
+between levels of `x`, which are not shown in the plot
+(`pairwise_comparisons_data`). Pairwise comparisons are computed only
+for unpaired designs in which both `x` and `y` are specified, `x` has
+more than two levels, and `y` has at least two; otherwise,
+`pairwise_comparisons_data` is `NULL`.
+
+\
+`p`` ``<-`` `[`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)`(``Titanic_full``, ``Survived``, ``Sex``)`\
+\
+[`extract_stats`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)`(``p``)``$``subtitle_data`\
+`#> ``# A tibble: 1 × 13`\
+`#>   ``statistic``    ``df``   ``p.value`` ``method``                     ``effectsize``       `\
+`#>       ``<dbl>`` ``<int>``     ``<dbl>`` ``<chr>``                      ``<chr>``            `\
+`#> ``1``      457.     1 2.30``e``-101`` Pearson's Chi-squared test Cramer's V (adj.)`\
+`#>   ``estimate`` ``conf.level`` ``conf.low`` ``conf.high`` ``conf.method`` ``conf.distribution`` ``n.obs`\
+`#>      ``<dbl>``      ``<dbl>``    ``<dbl>``     ``<dbl>`` ``<chr>``       ``<chr>``             ``<int>`\
+`#> ``1``    ``0.``455       ``0.``95    ``0.``413     ``0.``497 ncp         chisq              ``2``20``1`\
+`#>   ``expression`\
+`#>   ``<list>``    `\
+`#> ``1`` ``<language>`\
+\
+[`extract_stats`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)`(``p``)``$``one_sample_data`\
+`#> ``# A tibble: 2 × 19`\
+`#>   ``Sex``    ``counts``  ``perc`` ``N``           ``statistic``    ``df``   ``p.value`\
+`#>   ``<fct>``   ``<int>`` ``<dbl>`` ``<chr>``           ``<dbl>`` ``<dbl>``     ``<dbl>`\
+`#> ``1`` Male     ``1``73``1``  78.6 (n = 1,731)      574.     1 6.72``e``-127`\
+`#> ``2`` Female    470  21.4 (n = 470)        101.     1 8.68``e``- 24`\
+`#>   ``method``                                   ``effectsize``  ``estimate`` ``conf.level`\
+`#>   ``<chr>``                                    ``<chr>``          ``<dbl>``      ``<dbl>`\
+`#> ``1`` Chi-squared test for given probabilities Pearson's C    ``0.``499       ``0.``95`\
+`#> ``2`` Chi-squared test for given probabilities Pearson's C    ``0.``421       ``0.``95`\
+`#>   ``conf.low`` ``conf.high`` ``conf.method`` ``conf.distribution`` ``n.obs`` ``expression`\
+`#>      ``<dbl>``     ``<dbl>`` ``<chr>``       ``<chr>``             ``<int>`` ``<list>``    `\
+`#> ``1``    ``0.``468     ``0.``529 ncp         chisq              ``1``73``1`` ``<language>`\
+`#> ``2``    ``0.``350     ``0.``485 ncp         chisq               470 ``<language>`\
+`#>   ``.label``                                                                       `\
+`#>   ``<glue>``                                                                       `\
+`#> ``1`` list(~chi['gof']^2~(1)==574.24, ~italic(p)=='6.72e-127', ~italic(n)=='1,731')`\
+`#> ``2`` list(~chi['gof']^2~(1)==101.11, ~italic(p)=='8.68e-24', ~italic(n)=='470')   `\
+`#>   ``.p.label``                     `\
+`#>   ``<glue>``                       `\
+`#> ``1`` list(~italic(p)=='6.72e-127')`\
+`#> ``2`` list(~italic(p)=='8.68e-24')`
+
+For
+[`grouped_ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggpiestats.md)
+plots,
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+returns one such list for each level of the grouping variable.
 
 ## Reporting
 
@@ -360,12 +425,12 @@ The narrative context (assuming `type = "parametric"`) can complement
 this plot either as a figure caption or in the main text-
 
 > Pearson’s $`\chi^2`$-test of independence revealed that, across 32
-> automobiles, showed that there was a significant association between
-> transmission engine and number of cylinders. The Bayes Factor for the
-> same analysis revealed that the data were 16.78 times more probable
-> under the alternative hypothesis as compared to the null hypothesis.
-> This can be considered strong evidence (Jeffreys, 1961) in favor of
-> the alternative hypothesis.
+> automobiles, there was a significant association between transmission
+> type and number of cylinders. The Bayes Factor for the same analysis
+> revealed that the data were 16.78 times more probable under the
+> alternative hypothesis as compared to the null hypothesis. This can be
+> considered strong evidence (Jeffreys, 1961) in favor of the
+> alternative hypothesis.
 
 Similar reporting style can be followed when the function performs
 one-sample goodness-of-fit test instead of a $`\chi^2`$-test.

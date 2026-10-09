@@ -93,16 +93,21 @@ ggbetweenstats(
 
   - `"all"`
 
+  - `"none"`
+
   You can use this argument to make sure that your plot is not
   uber-cluttered when you have multiple groups being compared and scores
-  of pairwise comparisons being displayed. If set to `"none"`, no
-  pairwise comparisons will be displayed.
+  of pairwise comparisons being displayed. Pairwise comparisons are
+  carried out (and displayed) only when `x` has three or more levels.
+  For `type = "bayes"`, there are no *p*-values, so all comparisons are
+  displayed unless this is `"none"`.
 
 - pairwise.alpha:
 
   Numeric alpha threshold used to decide which pairwise comparisons are
   displayed when `pairwise.display = "significant"` or
-  `pairwise.display = "non-significant"` (Default: `0.05`).
+  `pairwise.display = "non-significant"` (Default: `0.05`). It is
+  compared against *p*-values adjusted using `p.adjust.method`.
 
 - p.adjust.method:
 
@@ -143,8 +148,8 @@ ggbetweenstats(
 
 - caption:
 
-  The text for the plot caption. This argument is relevant only if
-  `bf.message = FALSE`.
+  The text for the plot caption. It will be replaced by the Bayes Factor
+  caption whenever that is displayed (see `bf.message`).
 
 - title:
 
@@ -197,8 +202,8 @@ ggbetweenstats(
 
   - **MAP estimator** for Bayesian statistics
 
-  If you want default centrality parameter, you can specify this using
-  `centrality.type` argument.
+  If you want a different centrality parameter, you can specify this
+  using `centrality.type` argument.
 
 - centrality.type:
 
@@ -209,9 +214,9 @@ ggbetweenstats(
 
   - `"nonparametric"` (for **median**)
 
-  - `robust` (for **trimmed mean**)
+  - `"robust"` (for **trimmed mean**)
 
-  - `bayes` (for **MAP estimator**)
+  - `"bayes"` (for **MAP estimator**)
 
   Just as `type` argument, abbreviations are also accepted.
 
@@ -221,7 +226,7 @@ ggbetweenstats(
   [`ggplot2::geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html)
   and
   [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html)
-  geoms, which are involved in mean plotting.
+  geoms, which are involved in centrality plotting.
 
 - point.args:
 
@@ -265,10 +270,9 @@ ggbetweenstats(
 
 - palette:
 
-  Name of the palette in `"package::palette"` format to be used for
-  coloring. Passed to
-  [`paletteer::scale_color_paletteer_d()`](https://emilhvitfeldt.github.io/paletteer/reference/ggplot2-scales-discrete.html).
-  Run `View(paletteer::palettes_d_names)` to see all available options.
+  Name of the discrete palette in `"package::palette"` format to be used
+  for coloring (via `{paletteer}`). Run
+  `View(paletteer::palettes_d_names)` to see all available options.
 
 - ggplot.component:
 
@@ -282,7 +286,17 @@ ggbetweenstats(
 
   Currently ignored.
 
+## Value
+
+A `ggplot` object, which can be further modified with `{ggplot2}`
+functions. Use
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+to get the statistical details shown in the plot as data frames.
+
 ## Details
+
+Rows with a missing value in either `x` or `y` are removed before
+plotting and analysis, and unused levels of `x` are dropped.
 
 For details, see:
 <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html>

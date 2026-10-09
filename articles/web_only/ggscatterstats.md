@@ -1,7 +1,34 @@
 # ggscatterstats
 
+------------------------------------------------------------------------
+
+You can cite this package/vignette as:
+
+    To cite package 'ggstatsplot' in publications use:
+
+      Patil, I. (2021). Visualizations with statistical details: The
+      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+      doi:10.21105/joss.03167
+
+    A BibTeX entry for LaTeX users is
+
+      @Article{,
+        doi = {10.21105/joss.03167},
+        url = {https://doi.org/10.21105/joss.03167},
+        year = {2021},
+        publisher = {{The Open Journal}},
+        volume = {6},
+        number = {61},
+        pages = {3167},
+        author = {Indrajeet Patil},
+        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+        journal = {{Journal of Open Source Software}},
+      }
+
+------------------------------------------------------------------------
+
 Lifecycle:
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 The function `ggscatterstats` is meant to provide a **publication-ready
 scatterplot** with all statistical details included in the plot itself
@@ -16,11 +43,6 @@ To begin with, here are some instances where you would want to use
 - to check linear association between two continuous variables
 - to check distribution of two continuous variables
 
-**Note before**: The following demo uses the pipe operator (`|>`), so in
-case you are not familiar with this operator, here is a good
-explanation:
-[http://r4ds.had.co.nz/pipes.html](http://r4ds.had.co.nz/pipes.md)
-
 ## Correlation plot with `ggscatterstats`
 
 To illustrate how this function can be used, we will rely on the
@@ -30,7 +52,7 @@ using cleaned version of this dataset included in the
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package itself.
 
 \
-`## see the selected data (we have data from 1813 movies)`\
+`## see the selected data`\
 `dplyr``::`[`glimpse`](https://pillar.r-lib.org/reference/glimpse.html)`(``movies_long``)`\
 `#> Rows: 1,579`\
 `#> Columns: 8`\
@@ -49,7 +71,9 @@ has any relationship to its budget. Additionally, let’s also see which
 movies had a high budget but low IMDB rating by labeling those data
 points.
 
-To reduce the processing time, let’s only work with 30% of the dataset.
+Note that the marginal histograms are drawn with the
+[ggside](https://github.com/jtlandis/ggside) package; set
+`marginal = FALSE` to turn them off.
 
 \
 [`ggscatterstats`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)`(`\
@@ -70,23 +94,21 @@ To reduce the processing time, let’s only work with 30% of the dataset.
 ![](ggscatterstats_files/figure-html/ggscatterstats1-1.png)
 
 There is indeed a small, but significant, positive correlation between
-the amount of money studio invests in a movie and the ratings given by
+the amount of money a studio invests in a movie and the ratings given by
 the audiences.
 
 ## Grouped analysis with `grouped_ggscatterstats`
 
-What if we want to do the same analysis do the same analysis for movies
-with different MPAA (Motion Picture Association of America) film ratings
-(NC-17, PG, PG-13, R)?
+What if we want to do the same analysis for movies with different MPAA
+(Motion Picture Association of America) film ratings (PG, PG-13, R)?
 
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) provides a
-special helper function for such instances: `grouped_ggstatsplot`. This
-is merely a wrapper function around `combine_plots`. It applies
-[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) across all
-**levels** of a specified **grouping variable** and then combines list
-of individual plots into a single plot. Note that the grouping variable
-can be anything: conditions in a given study, groups in a study sample,
-different studies, etc.
+special helper function for such instances: `grouped_ggscatterstats`.
+This is merely a wrapper function around `combine_plots`. It applies
+`ggscatterstats` across all **levels** of a specified **grouping
+variable** and then combines list of individual plots into a single
+plot. Note that the grouping variable can be anything: conditions in a
+given study, groups in a study sample, different studies, etc.
 
 Let’s see how we can use this function to apply `ggscatterstats` for all
 MPAA ratings. Also, let’s run a robust test this time.
@@ -101,7 +123,6 @@ MPAA ratings. Also, let’s run a robust test this time.
 `  label.var ``=`` ``title``,`\
 `  label.expression ``=`` ``rating`` ``<`` ``5`` ``&`` ``budget`` ``>`` ``80``,`\
 `  type ``=`` ``"r"``,`\
-`  ``# ggtheme = ggthemes::theme_tufte(),`\
 `  ``## arguments relevant for combine_plots`\
 `  annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `    title ``=`` ``"Relationship between movie budget and IMDB rating"``,`\
@@ -123,8 +144,7 @@ with minimal effort, it does come with an important limitation: reduced
 flexibility. For example, if we wanted to add, let’s say, a separate
 type of marginal distribution plot for each MPAA rating or if we wanted
 to use different types of correlations across different levels of MPAA
-ratings (NC-17 has only 6 movies, so a robust correlation would be a
-good idea), this is not possible. But this can be easily done using
+ratings, this is not possible. But this can be easily done using
 [purrr](https://purrr.tidyverse.org/).
 
 See the associated vignette here:
@@ -132,10 +152,45 @@ See the associated vignette here:
 
 ## Summary of graphics and tests
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
+| graphical element | `geom` used | argument for further modification |
+|:---|:---|:---|
+| raw data | [`ggplot2::geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html) | `point.args` |
+| labels for raw data | [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html) | `point.label.args` |
+| smooth line | [`ggplot2::geom_smooth()`](https://ggplot2.tidyverse.org/reference/geom_smooth.html) | `smooth.line.args` |
+| marginal histograms | [`ggside::geom_xsidehistogram()`](https://rdrr.io/pkg/ggside/man/geom_xsidehistogram.html), [`ggside::geom_ysidehistogram()`](https://rdrr.io/pkg/ggside/man/geom_xsidehistogram.html) | `xsidehistogram.args`, `ysidehistogram.args` |
+
+The statistical tests and effect sizes carried out for each `type` are
+listed in the function documentation:
 <https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.html>
+
+## Extracting statistical details
+
+All statistical details shown in the plot are also available as data
+frames, which can be extracted with
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md).
+The returned list contains results from the test in the subtitle
+(`subtitle_data`) and the Bayesian test in the caption (`caption_data`).
+
+\
+`p`` ``<-`` `[`ggscatterstats`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)`(``mtcars``, ``qsec``, ``drat``)`\
+\
+[`extract_stats`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)`(``p``)``$``subtitle_data`\
+`#> ``# A tibble: 1 × 14`\
+`#>   ``parameter1`` ``parameter2`` ``effectsize``          ``estimate`` ``conf.level`` ``conf.low`\
+`#>   ``<chr>``      ``<chr>``      ``<chr>``                  ``<dbl>``      ``<dbl>``    ``<dbl>`\
+`#> ``1`` qsec       drat       Pearson correlation   ``0.0``91``2``       ``0.``95   -``0.``266`\
+`#>   ``conf.high`` ``statistic`` ``df.error`` ``p.value`` ``method``              ``n.obs`` ``conf.method`\
+`#>       ``<dbl>``     ``<dbl>``    ``<int>``   ``<dbl>`` ``<chr>``               ``<int>`` ``<chr>``      `\
+`#> ``1``     ``0.``426     ``0.``502       30   ``0.``620 Pearson correlation    32 normal     `\
+`#>   ``expression`\
+`#>   ``<list>``    `\
+`#> ``1`` ``<language>`
+
+For
+[`grouped_ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggscatterstats.md)
+plots,
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+returns one such list for each level of the grouping variable.
 
 ## Reporting
 

@@ -16,7 +16,7 @@ Details about primary functions and their `grouped_` variants
 
 ### Miscellaneous
 
-Salad of various things
+FAQ, pairwise comparisons, Bayes factors, design principles, and more
 
 - [Additional
   vignettes](https://www.indrapatil.com/ggstatsplot/articles/additional.md):

@@ -1,5 +1,16 @@
 # Changelog
 
+## ggstatsplot 1.1.1.9000
+
+### BUG FIXES
+
+- [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
+  and
+  [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
+  no longer discard a user-supplied `caption` when no Bayes Factor
+  caption is displayed (e.g., for non-parametric tests or with
+  `bf.message = FALSE`).
+
 ## ggstatsplot 1.1.1
 
 CRAN release: 2026-08-25

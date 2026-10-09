@@ -64,7 +64,6 @@ it can be further modified (e.g. change themes) with {ggplot2}.
     "name": "R"
   },
   "license": "https://opensource.org/licenses/MIT",
-  "version": "1.0.0",
   "author": {
     "@type": "Person",
     "name": "Indrajeet Patil",
@@ -73,7 +72,7 @@ it can be further modified (e.g. change themes) with {ggplot2}.
   },
   "keywords": ["R", "ggplot2", "statistics", "data visualization", "Bayesian", "frequentist", "nonparametric", "robust statistics", "ANOVA", "correlation"]
 }
-</script><meta name="citation_title" content="ggstatsplot: ggplot2 Based Plots with Statistical Details"><meta name="citation_author" content="Indrajeet Patil"><meta name="citation_year" content="2021"><meta name="citation_doi" content="10.21105/joss.03236"><meta name="citation_journal_title" content="Journal of Open Source Software"><link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary"></head><body>
+</script><meta name="citation_title" content="Visualizations with statistical details: The 'ggstatsplot' approach"><meta name="citation_author" content="Indrajeet Patil"><meta name="citation_publication_date" content="2021/05/25"><meta name="citation_doi" content="10.21105/joss.03167"><meta name="citation_journal_title" content="Journal of Open Source Software"><meta name="citation_volume" content="6"><meta name="citation_issue" content="61"><meta name="citation_firstpage" content="3167"><link rel="alternate" type="text/plain" href="/ggstatsplot/llms.txt" title="LLM-friendly documentation summary"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -81,7 +80,7 @@ it can be further modified (e.g. change themes) with {ggplot2}.
 
     <a class="navbar-brand me-2" href="../index.html">ggstatsplot</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -200,14 +199,18 @@ it can be further modified (e.g. change themes) with <code>{ggplot2}</code>.</p>
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>A model object to be tidied, or a tidy data frame from a regression
 model. Function internally uses <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code> to get a
-tidy data frame. If a data frame, it <em>must</em> contain at the minimum two
-columns named <code>term</code> (names of predictors) and <code>estimate</code> (corresponding
-estimates of coefficients or other quantities of interest).</p></dd>
+tidy data frame. If a data frame, it <em>must</em> contain a column named
+<code>estimate</code> (estimates of coefficients or other quantities of interest). A
+<code>term</code> column (names of predictors) is recommended; if absent, terms are
+named <code>term_1</code>, <code>term_2</code>, etc. Columns <code>conf.low</code> and <code>conf.high</code> are
+needed for error bars, <code>statistic</code> and <code>p.value</code> for labels, and
+<code>std.error</code> for meta-analysis.</p></dd>
 
 
 <dt id="arg-statistic">statistic<a class="anchor" aria-label="anchor" href="#arg-statistic"></a></dt>
 <dd><p>Relevant statistic for the model (<code>"t"</code>, <code>"f"</code>, <code>"z"</code>, or
-<code>"chi"</code>) in the label. Relevant only if <code>x</code> is a <em>data frame</em>.</p></dd>
+<code>"chi"</code>) in the label. Relevant only if <code>x</code> is a <em>data frame</em>; if it is
+<code>NULL</code> (default), no labels are shown for data frames.</p></dd>
 
 
 <dt id="arg-conf-int">conf.int<a class="anchor" aria-label="anchor" href="#arg-conf-int"></a></dt>
@@ -241,11 +244,11 @@ estimator), and relevant for ANOVA-like objects.</p></dd>
 
 
 <dt id="arg-meta-analytic-effect">meta.analytic.effect<a class="anchor" aria-label="anchor" href="#arg-meta-analytic-effect"></a></dt>
-<dd><p>Logical that decides whether subtitle for
-meta-analysis via linear (mixed-effects) models (default: <code>FALSE</code>). If
-<code>TRUE</code>, input to argument <code>subtitle</code> will be ignored. This will be mostly
-relevant if a data frame with estimates and their standard errors is
-entered.</p></dd>
+<dd><p>Logical that decides whether to display a
+subtitle with results from a meta-analysis via linear (mixed-effects)
+models (default: <code>FALSE</code>). If <code>TRUE</code>, input to argument <code>subtitle</code> will be
+ignored. This will be mostly relevant if a data frame with estimates and
+their standard errors is entered.</p></dd>
 
 
 <dt id="arg-meta-type">meta.type<a class="anchor" aria-label="anchor" href="#arg-meta-type"></a></dt>
@@ -259,7 +262,9 @@ used. If <code>"robust"</code>, <code><a href="https://rdrr.io/pkg/metaplus/man/
 <dd><p>Logical that decides whether results from running a
 Bayesian meta-analysis assuming that the effect size <em>d</em> varies across
 studies with standard deviation <em>t</em> (i.e., a random-effects analysis)
-should be displayed in caption. Defaults to <code>TRUE</code>.</p></dd>
+should be displayed in caption. Relevant only if
+<code>meta.analytic.effect = TRUE</code> and <code>meta.type = "parametric"</code>. Defaults to
+<code>TRUE</code>.</p></dd>
 
 
 <dt id="arg-sort">sort<a class="anchor" aria-label="anchor" href="#arg-sort"></a></dt>
@@ -269,13 +274,11 @@ coefficient value.</p></dd>
 
 
 <dt id="arg-xlab">xlab<a class="anchor" aria-label="anchor" href="#arg-xlab"></a></dt>
-<dd><p>Label for <code>x</code> axis variable. If <code>NULL</code> (default),
-variable name for <code>x</code> will be used.</p></dd>
+<dd><p>Label for <code>x</code> axis. If <code>NULL</code> (default), <code>"estimate"</code> is used.</p></dd>
 
 
 <dt id="arg-ylab">ylab<a class="anchor" aria-label="anchor" href="#arg-ylab"></a></dt>
-<dd><p>Labels for <code>y</code> axis variable. If <code>NULL</code> (default),
-variable name for <code>y</code> will be used.</p></dd>
+<dd><p>Label for <code>y</code> axis. If <code>NULL</code> (default), <code>"term"</code> is used.</p></dd>
 
 
 <dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
@@ -288,14 +291,16 @@ will be ignored if <code>meta.analytic.effect</code> is set to <code>TRUE</code>
 
 
 <dt id="arg-caption">caption<a class="anchor" aria-label="anchor" href="#arg-caption"></a></dt>
-<dd><p>The text for the plot caption. This argument is relevant only
-if <code>bf.message = FALSE</code>.</p></dd>
+<dd><p>The text for the plot caption. It will be replaced by model
+fit indices (AIC and BIC), if available, or by the Bayesian meta-analysis
+results (see <code>bf.message</code>).</p></dd>
 
 
 <dt id="arg-only-significant">only.significant<a class="anchor" aria-label="anchor" href="#arg-only-significant"></a></dt>
 <dd><p>If <code>TRUE</code>, only stats labels for significant effects
-is shown (Default: <code>FALSE</code>). This can be helpful when a large number of
-regression coefficients are to be displayed in a single plot.</p></dd>
+(<em>p</em> &lt; <code>0.05</code>) are shown (Default: <code>FALSE</code>). This can be helpful when a
+large number of regression coefficients are to be displayed in a single
+plot.</p></dd>
 
 
 <dt id="arg-point-args">point.args<a class="anchor" aria-label="anchor" href="#arg-point-args"></a></dt>
@@ -305,18 +310,19 @@ the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" clas
 
 <dt id="arg-errorbar-args">errorbar.args<a class="anchor" aria-label="anchor" href="#arg-errorbar-args"></a></dt>
 <dd><p>Additional arguments that will be passed to
-<code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_errorbar()</a></code> geom. Please see documentation for that function
-to know more about these arguments.</p></dd>
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">ggplot2::geom_errorbar()</a></code> geom. Please see documentation for that
+function to know more about these arguments.</p></dd>
 
 
 <dt id="arg-vline">vline<a class="anchor" aria-label="anchor" href="#arg-vline"></a></dt>
-<dd><p>Decides whether to display a vertical line (Default: <code>"TRUE"</code>).</p></dd>
+<dd><p>Decides whether to display a vertical line at <code>0</code> (Default:
+<code>TRUE</code>).</p></dd>
 
 
 <dt id="arg-vline-args">vline.args<a class="anchor" aria-label="anchor" href="#arg-vline-args"></a></dt>
 <dd><p>Additional arguments that will be passed to
-<code>geom_vline</code> geom. Please see documentation for that function to
-know more about these arguments.</p></dd>
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline()</a></code> geom. Please see documentation for that function
+to know more about these arguments.</p></dd>
 
 
 <dt id="arg-stats-labels">stats.labels<a class="anchor" aria-label="anchor" href="#arg-stats-labels"></a></dt>
@@ -326,9 +332,9 @@ each coefficient are to be attached to each dot as a text label using
 
 
 <dt id="arg-stats-label-color">stats.label.color<a class="anchor" aria-label="anchor" href="#arg-stats-label-color"></a></dt>
-<dd><p>Color for the labels. If set to <code>NULL</code>, colors will
-be chosen from the specified <code>package</code> (Default: <code>"RColorBrewer"</code>) and
-<code>palette</code> (Default: <code>"Dark2"</code>).</p></dd>
+<dd><p>Color for the labels: either a single color or a
+vector with one color per term. If set to <code>NULL</code> (default), colors will be
+chosen from the specified <code>palette</code>.</p></dd>
 
 
 <dt id="arg-stats-label-args">stats.label.args<a class="anchor" aria-label="anchor" href="#arg-stats-label-args"></a></dt>
@@ -337,8 +343,8 @@ be chosen from the specified <code>package</code> (Default: <code>"RColorBrewer"
 
 
 <dt id="arg-palette">palette<a class="anchor" aria-label="anchor" href="#arg-palette"></a></dt>
-<dd><p>Name of the palette in <code>"package::palette"</code> format to be used
-for coloring. Passed to <code><a href="https://emilhvitfeldt.github.io/paletteer/reference/ggplot2-scales-discrete.html" class="external-link">paletteer::scale_color_paletteer_d()</a></code>. Run
+<dd><p>Name of the discrete palette in <code>"package::palette"</code> format
+to be used for coloring (via <code>{paletteer}</code>). Run
 <code>View(paletteer::palettes_d_names)</code> to see all available options.</p></dd>
 
 
@@ -361,6 +367,12 @@ thus the details as well.</p></dd>
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    <p>A <code>ggplot</code> object, which can be further modified with <code>{ggplot2}</code>
+functions. Use <code><a href="extract_stats.html">extract_stats()</a></code> to get the statistical details shown in
+the plot as data frames.</p>
+    </div>
+    <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>For details, see:
 <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcoefstats.html">https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcoefstats.html</a></p>
@@ -371,9 +383,9 @@ thus the details as well.</p></dd>
 <ol><li><p>In case you want to carry out meta-analysis, you will be asked to install
 the needed packages (<code>{metafor}</code>, <code>{metaplus}</code>, or <code>{metaBMA}</code>) if they are
 unavailable.</p></li>
-<li><p>All rows of regression estimates where either of the following
-quantities is <code>NA</code> will be removed if labels are requested:
-<code>estimate</code>, <code>statistic</code>, <code>p.value</code>.</p></li>
+<li><p>Rows with a missing <code>estimate</code> are always removed. If labels are
+requested, rows where <code>statistic</code>, <code>std.error</code>, or <code>p.value</code> is missing
+are kept but get no label.</p></li>
 <li><p>Given the rapid pace at which new methods are added to these packages, it
 is recommended that you install development versions of <code>{easystats}</code>
 packages using the <code>install_latest()</code> function from <code>{easystats}</code>.</p></li>
@@ -381,7 +393,7 @@ packages using the <code>install_latest()</code> function from <code>{easystats}
     <div class="section level2">
     <h2 id="summary-of-graphics">Summary of graphics<a class="anchor" aria-label="anchor" href="#summary-of-graphics"></a></h2>
 
-<table class="table table"><tr><td>graphical element</td><td><code>geom</code> used</td><td>argument for further modification</td></tr><tr><td>regression estimate</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code></td><td><code>point.args</code></td></tr><tr><td>error bars</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">ggplot2::geom_errorbarh()</a></code></td><td><code>errorbar.args</code></td></tr><tr><td>vertical line</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline()</a></code></td><td><code>vline.args</code></td></tr><tr><td>label with statistical details</td><td><code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code></td><td><code>stats.label.args</code></td></tr></table></div>
+<table class="table table"><tr><td>graphical element</td><td><code>geom</code> used</td><td>argument for further modification</td></tr><tr><td>regression estimate</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code></td><td><code>point.args</code></td></tr><tr><td>error bars</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">ggplot2::geom_errorbar()</a></code></td><td><code>errorbar.args</code></td></tr><tr><td>vertical line</td><td><code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline()</a></code></td><td><code>vline.args</code></td></tr><tr><td>label with statistical details</td><td><code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code></td><td><code>stats.label.args</code></td></tr></table></div>
     <div class="section level2">
     <h2 id="random-effects-meta-analysis">Random-effects meta-analysis<a class="anchor" aria-label="anchor" href="#random-effects-meta-analysis"></a></h2>
 

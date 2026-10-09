@@ -9,7 +9,7 @@
 - [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)
   : Histogram for distribution of a numeric variable
 - [`ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md)
-  : Dot plot/chart for labeled numeric data.
+  : Dot plot/chart for labeled numeric data
 
 ## Hypothesis about correlation
 
@@ -38,12 +38,12 @@ Convenience functions to repeat analysis across a single grouping
   : Grouped bar charts with statistical tests
 - [`grouped_ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbetweenstats.md)
   : Violin plots for group or condition comparisons in between-subjects
-  designs repeated across all levels of a grouping variable.
+  designs repeated across all levels of a grouping variable
 - [`grouped_ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggcorrmat.md)
   : Visualization of a correlalogram (or correlation matrix) for all
   levels of a grouping variable
 - [`grouped_ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggdotplotstats.md)
-  : Grouped histograms for distribution of a labeled numeric variable
+  : Grouped dot plots/charts for labeled numeric data
 - [`grouped_gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_gghistostats.md)
   : Grouped histograms for distribution of a numeric variable
 - [`grouped_ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggpiestats.md)
@@ -53,7 +53,7 @@ Convenience functions to repeat analysis across a single grouping
   variable
 - [`grouped_ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggwithinstats.md)
   : Violin plots for group or condition comparisons in within-subjects
-  designs repeated across all levels of a grouping variable.
+  designs repeated across all levels of a grouping variable
 
 ## Helper functions
 
@@ -81,10 +81,10 @@ Statistics and graphics-related helpers
 Datasets included in the package.
 
 - [`movies_long`](https://www.indrapatil.com/ggstatsplot/reference/movies_long.md)
-  : Movie information and user ratings from IMDB.com (long format).
+  : Movie information and user ratings from IMDB.com (long format)
 - [`Titanic_full`](https://www.indrapatil.com/ggstatsplot/reference/Titanic_full.md)
-  : Titanic dataset.
+  : Titanic dataset
 - [`iris_long`](https://www.indrapatil.com/ggstatsplot/reference/iris_long.md)
-  : Edgar Anderson's Iris Data in long format.
+  : Edgar Anderson's Iris Data in long format
 - [`bugs_long`](https://www.indrapatil.com/ggstatsplot/reference/bugs_long.md)
-  : Tidy version of the "Bugs" dataset.
+  : Tidy version of the "Bugs" dataset

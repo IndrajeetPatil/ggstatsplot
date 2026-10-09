@@ -1,4 +1,4 @@
-# Grouped histograms for distribution of a labeled numeric variable
+# Grouped dot plots/charts for labeled numeric data
 
 Helper function for
 [`ggstatsplot::ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md)
@@ -34,12 +34,16 @@ grouped_ggdotplotstats(
 
   `y`
 
-  : Label or grouping variable.
+  : Label or grouping variable. Each level of `y` is shown as a single
+    dot: if a level has several rows, `x` is summarized using the
+    centrality measure for the chosen `type` (see above), and the
+    one-sample test is then carried out on these per-level summaries
+    (i.e., the sample size is the number of levels of `y`).
 
   `centrality.line.args`
 
   : A list of additional aesthetic arguments to be passed to the
-    [`ggplot2::geom_line()`](https://ggplot2.tidyverse.org/reference/geom_path.html)
+    [`ggplot2::geom_vline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html)
     used to display the lines corresponding to the centrality parameter.
 
   `x`
@@ -125,8 +129,8 @@ grouped_ggdotplotstats(
 
   `caption`
 
-  : The text for the plot caption. This argument is relevant only if
-    `bf.message = FALSE`.
+  : The text for the plot caption. It will be replaced by the Bayes
+    Factor caption whenever that is displayed (see `bf.message`).
 
   `centrality.plotting`
 
@@ -143,8 +147,8 @@ grouped_ggdotplotstats(
 
     - **MAP estimator** for Bayesian statistics
 
-    If you want default centrality parameter, you can specify this using
-    `centrality.type` argument.
+    If you want a different centrality parameter, you can specify this
+    using `centrality.type` argument.
 
   `centrality.type`
 
@@ -156,9 +160,9 @@ grouped_ggdotplotstats(
 
     - `"nonparametric"` (for **median**)
 
-    - `robust` (for **trimmed mean**)
+    - `"robust"` (for **trimmed mean**)
 
-    - `bayes` (for **MAP estimator**)
+    - `"bayes"` (for **MAP estimator**)
 
     Just as `type` argument, abbreviations are also accepted.
 
@@ -187,18 +191,6 @@ grouped_ggdotplotstats(
     `ggthemes::theme_fivethirtyeight()`) will remove the secondary
     Y-axis and thus the details as well.
 
-  `conf.int`
-
-  : Logical. Decides whether to display confidence intervals as error
-    bars (Default: `TRUE`).
-
-  `errorbar.args`
-
-  : Additional arguments that will be passed to
-    [`geom_errorbar()`](https://ggplot2.tidyverse.org/reference/geom_linerange.html)
-    geom. Please see documentation for that function to know more about
-    these arguments.
-
   `ylab`
 
   : Labels for `y` axis variable. If `NULL` (default), variable name for
@@ -209,9 +201,23 @@ grouped_ggdotplotstats(
   : A list of additional aesthetic arguments to be passed to the
     [`ggplot2::geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html).
 
+  `conf.int`
+
+  : Logical. Decides whether to display confidence intervals as error
+    bars (Default: `TRUE`).
+
+  `errorbar.args`
+
+  : Additional arguments that will be passed to
+    [`ggplot2::geom_errorbar()`](https://ggplot2.tidyverse.org/reference/geom_linerange.html)
+    geom. Please see documentation for that function to know more about
+    these arguments.
+
 - grouping.var:
 
-  A single grouping variable.
+  A single grouping variable. A separate plot is created for each of its
+  levels (in factor level order, or in order of appearance for character
+  variables). Rows with a missing value in this variable are removed.
 
 - plotgrid.args:
 
@@ -225,7 +231,19 @@ grouped_ggdotplotstats(
   A `list` of additional arguments passed to
   [`patchwork::plot_annotation()`](https://patchwork.data-imaginist.com/reference/plot_annotation.html).
 
+## Value
+
+A `patchwork` object combining one plot per level of `grouping.var` (see
+[`combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)).
+Applying
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+to it returns a list with the statistical details for each of these
+plots.
+
 ## Details
+
+Rows with a missing value in either `x` or `y` are removed before
+plotting and analysis.
 
 For details, see:
 <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html>

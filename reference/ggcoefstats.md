@@ -71,15 +71,18 @@ ggcoefstats(
   A model object to be tidied, or a tidy data frame from a regression
   model. Function internally uses
   [`parameters::model_parameters()`](https://easystats.github.io/parameters/reference/model_parameters.html)
-  to get a tidy data frame. If a data frame, it *must* contain at the
-  minimum two columns named `term` (names of predictors) and `estimate`
-  (corresponding estimates of coefficients or other quantities of
-  interest).
+  to get a tidy data frame. If a data frame, it *must* contain a column
+  named `estimate` (estimates of coefficients or other quantities of
+  interest). A `term` column (names of predictors) is recommended; if
+  absent, terms are named `term_1`, `term_2`, etc. Columns `conf.low`
+  and `conf.high` are needed for error bars, `statistic` and `p.value`
+  for labels, and `std.error` for meta-analysis.
 
 - statistic:
 
   Relevant statistic for the model (`"t"`, `"f"`, `"z"`, or `"chi"`) in
-  the label. Relevant only if `x` is a *data frame*.
+  the label. Relevant only if `x` is a *data frame*; if it is `NULL`
+  (default), no labels are shown for data frames.
 
 - conf.int:
 
@@ -114,10 +117,11 @@ ggcoefstats(
 
 - meta.analytic.effect:
 
-  Logical that decides whether subtitle for meta-analysis via linear
-  (mixed-effects) models (default: `FALSE`). If `TRUE`, input to
-  argument `subtitle` will be ignored. This will be mostly relevant if a
-  data frame with estimates and their standard errors is entered.
+  Logical that decides whether to display a subtitle with results from a
+  meta-analysis via linear (mixed-effects) models (default: `FALSE`). If
+  `TRUE`, input to argument `subtitle` will be ignored. This will be
+  mostly relevant if a data frame with estimates and their standard
+  errors is entered.
 
 - meta.type:
 
@@ -135,7 +139,9 @@ ggcoefstats(
   Logical that decides whether results from running a Bayesian
   meta-analysis assuming that the effect size *d* varies across studies
   with standard deviation *t* (i.e., a random-effects analysis) should
-  be displayed in caption. Defaults to `TRUE`.
+  be displayed in caption. Relevant only if
+  `meta.analytic.effect = TRUE` and `meta.type = "parametric"`. Defaults
+  to `TRUE`.
 
 - sort:
 
@@ -145,13 +151,11 @@ ggcoefstats(
 
 - xlab:
 
-  Label for `x` axis variable. If `NULL` (default), variable name for
-  `x` will be used.
+  Label for `x` axis. If `NULL` (default), `"estimate"` is used.
 
 - ylab:
 
-  Labels for `y` axis variable. If `NULL` (default), variable name for
-  `y` will be used.
+  Label for `y` axis. If `NULL` (default), `"term"` is used.
 
 - title:
 
@@ -164,14 +168,15 @@ ggcoefstats(
 
 - caption:
 
-  The text for the plot caption. This argument is relevant only if
-  `bf.message = FALSE`.
+  The text for the plot caption. It will be replaced by model fit
+  indices (AIC and BIC), if available, or by the Bayesian meta-analysis
+  results (see `bf.message`).
 
 - only.significant:
 
-  If `TRUE`, only stats labels for significant effects is shown
-  (Default: `FALSE`). This can be helpful when a large number of
-  regression coefficients are to be displayed in a single plot.
+  If `TRUE`, only stats labels for significant effects (*p* \< `0.05`)
+  are shown (Default: `FALSE`). This can be helpful when a large number
+  of regression coefficients are to be displayed in a single plot.
 
 - point.args:
 
@@ -181,19 +186,20 @@ ggcoefstats(
 - errorbar.args:
 
   Additional arguments that will be passed to
-  [`geom_errorbar()`](https://ggplot2.tidyverse.org/reference/geom_linerange.html)
+  [`ggplot2::geom_errorbar()`](https://ggplot2.tidyverse.org/reference/geom_linerange.html)
   geom. Please see documentation for that function to know more about
   these arguments.
 
 - vline:
 
-  Decides whether to display a vertical line (Default: `"TRUE"`).
+  Decides whether to display a vertical line at `0` (Default: `TRUE`).
 
 - vline.args:
 
-  Additional arguments that will be passed to `geom_vline` geom. Please
-  see documentation for that function to know more about these
-  arguments.
+  Additional arguments that will be passed to
+  [`ggplot2::geom_vline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html)
+  geom. Please see documentation for that function to know more about
+  these arguments.
 
 - stats.labels:
 
@@ -203,9 +209,9 @@ ggcoefstats(
 
 - stats.label.color:
 
-  Color for the labels. If set to `NULL`, colors will be chosen from the
-  specified `package` (Default: `"RColorBrewer"`) and `palette`
-  (Default: `"Dark2"`).
+  Color for the labels: either a single color or a vector with one color
+  per term. If set to `NULL` (default), colors will be chosen from the
+  specified `palette`.
 
 - stats.label.args:
 
@@ -214,10 +220,9 @@ ggcoefstats(
 
 - palette:
 
-  Name of the palette in `"package::palette"` format to be used for
-  coloring. Passed to
-  [`paletteer::scale_color_paletteer_d()`](https://emilhvitfeldt.github.io/paletteer/reference/ggplot2-scales-discrete.html).
-  Run `View(paletteer::palettes_d_names)` to see all available options.
+  Name of the discrete palette in `"package::palette"` format to be used
+  for coloring (via `{paletteer}`). Run
+  `View(paletteer::palettes_d_names)` to see all available options.
 
 - ggtheme:
 
@@ -241,6 +246,13 @@ ggcoefstats(
   Additional arguments to tidying method. For more, see
   [`parameters::model_parameters()`](https://easystats.github.io/parameters/reference/model_parameters.html).
 
+## Value
+
+A `ggplot` object, which can be further modified with `{ggplot2}`
+functions. Use
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+to get the statistical details shown in the plot as data frames.
+
 ## Details
 
 For details, see:
@@ -252,9 +264,9 @@ For details, see:
     install the needed packages (`{metafor}`, `{metaplus}`, or
     `{metaBMA}`) if they are unavailable.
 
-2.  All rows of regression estimates where either of the following
-    quantities is `NA` will be removed if labels are requested:
-    `estimate`, `statistic`, `p.value`.
+2.  Rows with a missing `estimate` are always removed. If labels are
+    requested, rows where `statistic`, `std.error`, or `p.value` is
+    missing are kept but get no label.
 
 3.  Given the rapid pace at which new methods are added to these
     packages, it is recommended that you install development versions of
@@ -267,7 +279,7 @@ For details, see:
 |----|----|----|
 | graphical element | `geom` used | argument for further modification |
 | regression estimate | [`ggplot2::geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html) | `point.args` |
-| error bars | [`ggplot2::geom_errorbarh()`](https://ggplot2.tidyverse.org/reference/geom_linerange.html) | `errorbar.args` |
+| error bars | [`ggplot2::geom_errorbar()`](https://ggplot2.tidyverse.org/reference/geom_linerange.html) | `errorbar.args` |
 | vertical line | [`ggplot2::geom_vline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html) | `vline.args` |
 | label with statistical details | [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html) | `stats.label.args` |
 

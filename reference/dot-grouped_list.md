@@ -20,7 +20,9 @@ list equal to the factor levels of the grouping variable.
 
 - grouping.var:
 
-  A single grouping variable.
+  A single grouping variable. A separate plot is created for each of its
+  levels (in factor level order, or in order of appearance for character
+  variables). Rows with a missing value in this variable are removed.
 
 ## Examples
 

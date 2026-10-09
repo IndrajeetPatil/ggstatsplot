@@ -28,15 +28,24 @@ You can cite this package/vignette as:
 ------------------------------------------------------------------------
 
 Lifecycle:
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 The function `ggcoefstats` generates **dot-and-whisker plots** for
-regression models saved in a tidy data frame. The tidy data frames are
-prepared using
-[`parameters::model_parameters`](https://easystats.github.io/parameters/reference/model_parameters.html).
+regression models (or for data frames containing estimates). For model
+objects, the tidy data frames are prepared using
+[`parameters::model_parameters()`](https://easystats.github.io/parameters/reference/model_parameters.html).
 Additionally, if available, the model summary indices are also extracted
 from
-[`performance::model_performance`](https://easystats.github.io/performance/reference/model_performance.html).
+[`performance::model_performance()`](https://easystats.github.io/performance/reference/model_performance.html).
+
+Unlike other [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)
+functions,
+[`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)
+does not have a `type` argument or a `grouped_` variant. Instead, it has
+model-specific controls such as `effectsize.type` (for ANOVA-type
+models), `meta.analytic.effect` and `meta.type` (for meta-analysis),
+`sort` (to order the terms by their estimates), and `only.significant`
+(to label only significant terms).
 
 In this vignette, we will see examples of how to use this function. We
 will try to cover as many classes of objects as possible. Unfortunately,
@@ -213,7 +222,7 @@ The following examples are organized by statistics type.
 There used to be a much longer vignette with examples of a wide
 collection of regression models, but for the sake of maintainability, I
 have removed it. The old version can be found
-[here](https://github.com/IndrajeetPatil/ggstatsplot/blob/master/old/effsize_interpretation.Rmd).
+[here](https://github.com/IndrajeetPatil/ggstatsplot/blob/423d06e9d71db8c7bdd2b7c008bcc68c6bc6adb5/old/ggcoefstats_old.Rmd).
 
 ### *t*-statistic
 
@@ -234,21 +243,22 @@ linear model (`lm`) and linear mixed-effects model (`lmer`/`lmerMod`)
 `    `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(``mod1``)`` ``+`\
 `      ``ggplot2``::`[`labs`](https://ggplot2.tidyverse.org/reference/labs.html)`(``x ``=`` `[`parse`](https://rdrr.io/r/base/parse.html)`(``text ``=`` ``"'regression coefficient' ~italic(beta)"``)``)``,`\
 `    `[`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(``mod2``)`` ``+`\
-`      ``ggplot2``::`[`labs`](https://ggplot2.tidyverse.org/reference/labs.html)`(`\
-`        x ``=`` `[`parse`](https://rdrr.io/r/base/parse.html)`(``text ``=`` ``"'regression coefficient' ~italic(beta)"``)``,`\
-`        y ``=`` ``"fixed effects"`\
-`      ``)`\
+`      ``ggplot2``::`[`labs`](https://ggplot2.tidyverse.org/reference/labs.html)`(``x ``=`` `[`parse`](https://rdrr.io/r/base/parse.html)`(``text ``=`` ``"'regression coefficient' ~italic(beta)"``)``)`\
 `  ``)``,`\
 `  plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``2L``)``,`\
-`  annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Relationship between movie budget and its IMDB rating"``)`\
+`  annotation.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Relationship between reaction time and sleep deprivation"``)`\
 `)`
 
 ![](ggcoefstats_files/figure-html/lmer1-1.png)
 
-Note that for mixed-effects models, only the *fixed* effects are shown
-because there are no confidence intervals for *random* effects terms. In
-case, you would like to see these terms, you can use
-[`parameters::model_parameters()`](https://easystats.github.io/parameters/reference/model_parameters.html).
+Note that, for mixed-effects models, the random effects variance
+components (e.g., `SD (Intercept)`) are also shown, but without
+statistical details or confidence intervals, because these are not
+computed by
+[`parameters::model_parameters()`](https://easystats.github.io/parameters/reference/model_parameters.html)
+by default. For more details about these terms, you can use
+[`parameters::model_parameters()`](https://easystats.github.io/parameters/reference/model_parameters.html)
+directly.
 
 ### *z*-statistic
 
@@ -334,16 +344,17 @@ omnibus ANOVA (`aov`)
 \
 [`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`\
 `  x ``=`` ``mod_aov``,`\
-`  effectsize.type ``=`` ``"omega"``, ``# changing the effect size estimate being displayed`\
+`  effectsize.type ``=`` ``"eta"``, ``# changing the effect size estimate being displayed`\
 `  point.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``color ``=`` ``"red"``, size ``=`` ``4``, shape ``=`` ``15``)``, ``# changing the point geom`\
 `  palette ``=`` ``"dutchmasters::milkmaid"``, ``# color palette for labels`\
 `  title ``=`` ``"omnibus ANOVA"``, ``# title for the plot`\
 `  exclude.intercept ``=`` ``TRUE`\
 `)`` ``+`\
 `  ``# further modification with the ggplot2 commands`\
-`  ``# note the order in which the labels are entered`\
-`  ``ggplot2``::`[`scale_y_discrete`](https://ggplot2.tidyverse.org/reference/scale_discrete.html)`(``labels ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"MPAA"``, ``"Genre"``, ``"Interaction term"``)``)`` ``+`\
-`  ``ggplot2``::`[`labs`](https://ggplot2.tidyverse.org/reference/labs.html)`(``x ``=`` ``"effect size estimate (eta-squared)"``, y ``=`` ``NULL``)`
+`  ``ggplot2``::`[`scale_y_discrete`](https://ggplot2.tidyverse.org/reference/scale_discrete.html)`(`\
+`    labels ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``mpaa ``=`` ``"MPAA"``, genre ``=`` ``"Genre"``` , `mpaa:genre`  ```=`` ``"Interaction term"``)`\
+`  ``)`` ``+`\
+`  ``ggplot2``::`[`labs`](https://ggplot2.tidyverse.org/reference/labs.html)`(``x ``=`` ``"effect size estimate (partial eta-squared)"``, y ``=`` ``NULL``)`
 
 ![](ggcoefstats_files/figure-html/aov1-1.png)
 
@@ -397,7 +408,7 @@ values change.
 `# correlation`\
 `mod4`` ``<-`` `[`correlationBF`](https://rdrr.io/pkg/BayesFactor/man/correlationBF.html)`(``y ``=`` ``iris``$``Sepal.Length``, x ``=`` ``iris``$``Sepal.Width``)`\
 \
-`# contingency tabs (not supported)`\
+`# contingency table (needs an effect size type to be specified)`\
 [`data`](https://rdrr.io/r/utils/data.html)`(``"raceDolls"``)`\
 `mod5`` ``<-`` `[`contingencyTableBF`](https://rdrr.io/pkg/BayesFactor/man/contingencyTableBF.html)`(`\
 `  ``raceDolls``,`\
@@ -492,13 +503,15 @@ coefficients.
 ## Meta-analysis
 
 In case the estimates you are displaying come from multiple studies, you
-can also use this function to carry out random-effects meta-analysis.
-The data frame you enter **must** contain at the minimum the following
-three columns-
+can also use this function to carry out random-effects meta-analysis by
+setting `meta.analytic.effect = TRUE`. The type of meta-analysis is
+chosen with `meta.type` (`"parametric"`, `"robust"`, or `"bayes"`). The
+data frame you enter **must** contain at the minimum the following three
+columns-
 
 - `term`: a column with names/identifiers to annotate each study/effect
 - `estimate`: a column with the observed effect sizes or outcomes
-- `std.error`: a column the corresponding standard errors
+- `std.error`: a column with the corresponding standard errors
 
 ### parametric
 
@@ -558,8 +571,8 @@ three columns-
 ## Data frames
 
 Sometimes you don’t have a model object but a custom data frame that you
-want display using this function. If a data frame is to be plotted, it
-**must** contain columns named `term` (names of predictors), and
+want to display using this function. If a data frame is to be plotted,
+it **must** contain columns named `term` (names of predictors), and
 `estimate` (corresponding estimates of coefficients or other quantities
 of interest). Other optional columns are `conf.low` and `conf.high` (for
 confidence intervals), and `p.value`. You will also have to specify the
@@ -593,10 +606,16 @@ information.
 
 ## Non-plot outputs
 
-This function can also be used to extract outputs other than a plot,
-although it is much more preferable to use the underlying functions
-instead
-([`parameters::model_parameters`](https://easystats.github.io/parameters/reference/model_parameters.html)).
+The data frames underlying the plot can be extracted with
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md):
+`tidy_data` contains the estimates and statistical details for each
+term, while `glance_data` contains the model performance indices (e.g.,
+AIC and BIC). That said, if you only need these data frames, it is
+preferable to use the underlying functions
+([`parameters::model_parameters()`](https://easystats.github.io/parameters/reference/model_parameters.html)
+and
+[`performance::model_performance()`](https://easystats.github.io/performance/reference/model_performance.html))
+directly.
 
 \
 `# data`\
@@ -643,20 +662,22 @@ instead
 
 ## Summary of graphics and tests
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
+| graphical element | `geom` used | argument for further modification |
+|:---|:---|:---|
+| regression estimate | [`ggplot2::geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html) | `point.args` |
+| error bars | [`ggplot2::geom_errorbar()`](https://ggplot2.tidyverse.org/reference/geom_linerange.html) | `errorbar.args` |
+| vertical line | [`ggplot2::geom_vline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html) | `vline.args` |
+| label with statistical details | [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html) | `stats.label.args` |
+
+More details about the statistical details displayed for different
+models can be found in the function documentation:
 <https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html>
 
 ## Not supported
 
-This vignette was supposed to give a comprehensive account of regression
-models supported by `ggcoefstats`. The list of supported models will
-keep expanding as additional tidiers are added to the `parameters` and
-`performance` packages.
-
-Note that not **all** models supported in these packages will be
-supported by
+The list of supported models will keep expanding as additional tidiers
+are added to the `parameters` and `performance` packages. Note that not
+**all** models supported in these packages will be supported by
 [`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md).
 In particular, classes of objects for which there is no column for
 `estimate` (e.g., `kmeans`, `optim`, `muhaz`, `survdiff`, `zoo`, etc.)

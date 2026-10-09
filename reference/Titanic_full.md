@@ -1,6 +1,6 @@
-# Titanic dataset.
+# Titanic dataset
 
-Titanic dataset.
+Titanic dataset
 
 ## Usage
 

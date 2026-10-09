@@ -35,15 +35,16 @@ grouped_gghistostats(
 
 - grouping.var:
 
-  A single grouping variable.
+  A single grouping variable. A separate plot is created for each of its
+  levels (in factor level order, or in order of appearance for character
+  variables). Rows with a missing value in this variable are removed.
 
 - binwidth:
 
-  The width of the histogram bins. Can be specified as a numeric value,
-  or a function that calculates width from `x`. The default is to use
-  the `max(x) - min(x) / sqrt(N)`. You should always check this value
-  and explore multiple widths to find the best to illustrate the stories
-  in your data.
+  The width of the histogram bins (see
+  [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)).
+  If `NULL` (default), it is computed once from the full data (not per
+  group), so that all plots share the same bin width.
 
 - plotgrid.args:
 
@@ -65,14 +66,15 @@ grouped_gghistostats(
   `bin.args`
 
   : A list of additional aesthetic arguments to be passed to the
-    `stat_bin` used to display the bins. Do not specify `binwidth`
-    argument in this list since it has already been specified using the
-    dedicated argument.
+    [`ggplot2::stat_bin()`](https://ggplot2.tidyverse.org/reference/geom_histogram.html)
+    used to display the bins. Do not specify `binwidth` argument in this
+    list since it has already been specified using the dedicated
+    argument.
 
   `centrality.line.args`
 
   : A list of additional aesthetic arguments to be passed to the
-    [`ggplot2::geom_line()`](https://ggplot2.tidyverse.org/reference/geom_path.html)
+    [`ggplot2::geom_vline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html)
     used to display the lines corresponding to the centrality parameter.
 
   `type`
@@ -154,8 +156,8 @@ grouped_gghistostats(
 
   `caption`
 
-  : The text for the plot caption. This argument is relevant only if
-    `bf.message = FALSE`.
+  : The text for the plot caption. It will be replaced by the Bayes
+    Factor caption whenever that is displayed (see `bf.message`).
 
   `centrality.plotting`
 
@@ -172,8 +174,8 @@ grouped_gghistostats(
 
     - **MAP estimator** for Bayesian statistics
 
-    If you want default centrality parameter, you can specify this using
-    `centrality.type` argument.
+    If you want a different centrality parameter, you can specify this
+    using `centrality.type` argument.
 
   `centrality.type`
 
@@ -185,9 +187,9 @@ grouped_gghistostats(
 
     - `"nonparametric"` (for **median**)
 
-    - `robust` (for **trimmed mean**)
+    - `"robust"` (for **trimmed mean**)
 
-    - `bayes` (for **MAP estimator**)
+    - `"bayes"` (for **MAP estimator**)
 
     Just as `type` argument, abbreviations are also accepted.
 
@@ -216,7 +218,18 @@ grouped_gghistostats(
     `ggthemes::theme_fivethirtyeight()`) will remove the secondary
     Y-axis and thus the details as well.
 
+## Value
+
+A `patchwork` object combining one plot per level of `grouping.var` (see
+[`combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)).
+Applying
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+to it returns a list with the statistical details for each of these
+plots.
+
 ## Details
+
+Missing values in `x` are removed before plotting and analysis.
 
 For details, see:
 <https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html>

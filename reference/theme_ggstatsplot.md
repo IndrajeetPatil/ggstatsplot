@@ -16,7 +16,7 @@ theme_ggstatsplot()
 
 ## Value
 
-A `ggplot` object.
+A `{ggplot2}` theme object.
 
 ## Examples
 

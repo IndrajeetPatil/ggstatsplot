@@ -1,6 +1,6 @@
-# Tidy version of the "Bugs" dataset.
+# Tidy version of the "Bugs" dataset
 
-Tidy version of the "Bugs" dataset.
+Tidy version of the "Bugs" dataset
 
 ## Usage
 
@@ -21,10 +21,10 @@ A data frame with 372 rows and 6 variables
 - education. Level of education.
 
 - condition. Condition of the experiment the participant gave rating for
-  (**LDLF**: low freighteningness and low disgustingness; **LFHD**: low
-  freighteningness and high disgustingness; **HFHD**: high
-  freighteningness and low disgustingness; **HFHD**: high
-  freighteningness and high disgustingness).
+  (**LDLF**: low disgustingness and low frighteningness; **HDLF**: high
+  disgustingness and low frighteningness; **LDHF**: low disgustingness
+  and high frighteningness; **HDHF**: high disgustingness and high
+  frighteningness).
 
 - desire. The desire to kill an arthropod was indicated on a scale from
   0 to 10.
@@ -32,9 +32,9 @@ A data frame with 372 rows and 6 variables
 ## Details
 
 This data set, "Bugs", provides the extent to which men and women want
-to kill arthropods that vary in freighteningness (low, high) and
+to kill arthropods that vary in frighteningness (low, high) and
 disgustingness (low, high). Each participant rates their attitudes
-towards all anthropods. Subset of the data reported by Ryan et al.
+towards all arthropods. Subset of the data reported by Ryan et al.
 (2013).
 
 ## References
