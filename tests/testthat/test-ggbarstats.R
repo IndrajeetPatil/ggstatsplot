@@ -223,6 +223,8 @@ test_that("pairwise comparisons data is returned for 3+ groups", {
   ))
 })
 
+# grouped_ggbarstats works as expected ---------------------
+
 test_that("grouped_ggbarstats produces error when grouping variable not provided", {
   expect_snapshot(grouped_ggbarstats(mtcars, x = cyl, y = am), error = TRUE)
 })
@@ -260,7 +262,7 @@ test_that("grouped_ggbarstats works", {
   )
 })
 
-# edge cases --------------------
+# grouped_ggbarstats edge cases --------------------
 
 test_that("edge case behavior", {
   df <- data.frame(
