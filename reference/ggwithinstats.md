@@ -561,7 +561,6 @@ p <- ggwithinstats(
   subject.id = subject
 )
 
-
 # looking at the plot
 p
 
