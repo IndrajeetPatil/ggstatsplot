@@ -1,4 +1,4 @@
-test_that("checking ggcorrmat with entier dataset", {
+test_that("checking ggcorrmat with entire dataset", {
   set.seed(123)
   expect_doppelganger(
     title = "parametric correlation - without NAs",

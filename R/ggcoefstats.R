@@ -261,7 +261,7 @@ ggcoefstats <- function(
   }
 
   if (exclude.intercept) {
-    tidy_df <- filter(tidy_df, !grepl("(Intercept)", term, TRUE))
+    tidy_df <- filter(tidy_df, !grepl("(Intercept)", term, ignore.case = TRUE))
   }
 
   # label -------------------------

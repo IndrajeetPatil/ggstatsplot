@@ -4,11 +4,8 @@ survey_data <- dplyr::tibble(
   Counts = c(794L, 150L, 86L, 570L)
 )
 
-survey_data_NA <- dplyr::tibble(
-  `1st survey` = c("Approve", "Approve", "Disapprove", "Disapprove"),
-  `2nd survey` = c("Approve", "Disapprove", "Approve", "Disapprove"),
-  Counts = c(794L, 150L, NA_integer_, 570L)
-)
+survey_data_NA <- survey_data
+survey_data_NA$Counts[3L] <- NA_integer_
 
 df_meta <- tibble::tibble(
   estimate = c(0.111, 0.245, 0.8, 1.1, 0.03),
@@ -27,9 +24,7 @@ morley_new <- dplyr::mutate(
 ) |>
   tibble::as_tibble()
 
-morley_new[3L, 3L] <- NA_integer_
-morley_new[23L, 3L] <- NA_integer_
-morley_new[87L, 3L] <- NA_integer_
+morley_new[c(3L, 23L, 87L), 3L] <- NA_integer_
 
 fixture_data <- new.env(parent = emptyenv())
 utils::data("bugs_long", package = "statsExpressions", envir = fixture_data)
