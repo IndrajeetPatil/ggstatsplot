@@ -90,13 +90,13 @@ significant figures (see also \code{\link[=signif]{signif()}}).}
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
 
-\item{label.var}{Variable to use for points labels entered as a symbol (e.g.
+\item{label.var}{Variable to use for point labels entered as a symbol (e.g.
 \code{var1}).}
 
 \item{label.expression}{An expression evaluating to a logical vector that
 determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).
 While using this argument with \code{\link[purrr:pmap]{purrr::pmap()}}, you will have to provide
-a quoted expression  (e.g. \code{quote(y < 4 & z < 20)}).}
+a quoted expression (e.g. \code{quote(y < 4 & z < 20)}).}
 
 \item{marginal}{Decides whether marginal distributions will be plotted on
 axes using \code{{ggside}} functions. The default is \code{TRUE}.}
@@ -120,7 +120,7 @@ confidence band uses \code{conf.level}.}
 
 \item{xsidehistogram.args, ysidehistogram.args}{A list of arguments passed to
 respective \code{geom_}s from the \code{{ggside}} package to change the marginal
-distribution histograms plots.}
+distribution histograms.}
 
 \item{xsidehistogram.scale, ysidehistogram.scale}{A list of arguments passed
 to \code{ggside::scale_xsidey_continuous()} and
@@ -166,7 +166,7 @@ functions. Use \code{\link[=extract_stats]{extract_stats()}} to get the statisti
 the plot as data frames.
 }
 \description{
-Scatterplots from \code{{ggplot2}} combined with marginal distributions plots
+Scatterplots from \code{{ggplot2}} combined with marginal distribution plots
 with statistical details.
 }
 \details{

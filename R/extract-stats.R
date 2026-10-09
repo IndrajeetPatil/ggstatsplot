@@ -76,7 +76,6 @@ extract_stats <- function(p) .map_plots(p, .extract_stats)
 .pluck_plot_env <- function(p, data) purrr::pluck(p, "plot_env", data)
 
 .extract_stats <- function(p) {
-  # styler: off
   structure(
     list(
       subtitle_data = .pluck_plot_env(p, "subtitle_df"),
@@ -89,7 +88,6 @@ extract_stats <- function(p) .map_plots(p, .extract_stats)
     ),
     class = c("ggstatsplot_stats", "list")
   )
-  # styler: on
 }
 
 
