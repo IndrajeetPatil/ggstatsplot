@@ -176,7 +176,7 @@ it returns a list with the statistical details for each of these plots.
 }
 \description{
 Helper function for \code{ggstatsplot::ggbetweenstats} to apply this function
-across multiple levels of a given factor and combining the resulting plots
+across multiple levels of a given factor and combine the resulting plots
 using \code{ggstatsplot::combine_plots}.
 }
 \examples{

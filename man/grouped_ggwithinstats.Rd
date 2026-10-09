@@ -194,7 +194,7 @@ A \code{patchwork} object combining one plot per level of
 it returns a list with the statistical details for each of these plots.
 }
 \description{
-A combined plot of comparison plot created for levels of a grouping variable.
+A combined plot of comparison plots created for levels of a grouping variable.
 }
 \examples{
 \dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("afex", quietly = TRUE)) withAutoprint(\{ # examplesIf}

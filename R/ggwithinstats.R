@@ -279,7 +279,7 @@ ggwithinstats <- function(
 #'
 #' @description
 #'
-#' A combined plot of comparison plot created for levels of a grouping variable.
+#' A combined plot of comparison plots created for levels of a grouping variable.
 #'
 #' @inheritParams ggwithinstats
 #' @inheritDotParams ggwithinstats -title
