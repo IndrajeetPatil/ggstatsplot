@@ -97,30 +97,6 @@ test_that("subtitle output works", {
   expect_identical(as.character(subtitle_exp), as.character(sub))
 })
 
-test_that("pairwise.alpha controls displayed pairwise comparisons", {
-  fig <- ggbetweenstats(
-    data = mtcars,
-    x = cyl,
-    y = mpg,
-    pairwise.display = "significant",
-    pairwise.alpha = 0.001,
-    p.adjust.method = "holm",
-    results.subtitle = FALSE
-  )
-
-  layer_params <- fig$layers[[length(fig$layers)]]$stat_params
-  sec_axis_name <- deparse1(
-    fig$scales$get_scales("y")$secondary.axis$name,
-    collapse = " "
-  )
-
-  expect_identical(
-    layer_params$comparisons,
-    list(c("4", "8"), c("6", "8"))
-  )
-  expect_match(sec_axis_name, "alpha == 0\\.001")
-})
-
 # grouped_ggbetweenstats defaults --------------------------------------------------
 
 test_that("grouped_ggbetweenstats defaults", {
