@@ -8,7 +8,6 @@ README.html
 ^CITATION\.cff$
 ^CODE_OF_CONDUCT\.md$
 ^CONDUCT\.md$
-^CRAN-RELEASE$
 ^CRAN-SUBMISSION$
 ^LICENSE\.md$
 ^Makefile$
@@ -24,7 +23,6 @@ README.html
 ^\.agents$
 ^\.circleci$
 ^\.coveralls\.yml$
-^\.covrignore$
 ^\.git$
 ^\.github$
 ^\.github/ISSUE_TEMPLATE$
