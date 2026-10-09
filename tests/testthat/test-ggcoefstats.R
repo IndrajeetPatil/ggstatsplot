@@ -68,7 +68,7 @@ test_that("meta-analysis works", {
   )
 
   # don't run graphical snapshot tests because values are slightly different
-  # locally on CI
+  # locally and on CI
   expect_s3_class(p_meta, "ggplot")
 
   set.seed(123)
