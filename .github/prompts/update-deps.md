@@ -12,11 +12,12 @@ make update_deps
 prek update
 ```
 
-`make update_deps` refreshes CRAN dependency constraints in `DESCRIPTION`,
-regenerates roxygen output, and rewrites `codemeta.json`. Inspect every generated
-change and keep only intentional updates. Treat `DESCRIPTION` as the source of
-truth for package dependencies; do not hand-edit generated `NAMESPACE` or
-`man/*.Rd` files.
+`make update_deps` tidies `DESCRIPTION`, raises CRAN dependency constraints to
+the latest published versions, regenerates roxygen output, and rewrites
+`codemeta.json`. `prek update` bumps the hook revisions in
+`.pre-commit-config.yaml`. Inspect every generated change and keep only
+intentional updates. Follow the `AGENTS.md` rules for `DESCRIPTION`,
+roxygen-generated files, version synchronization, and `NEWS.md`.
 
 Review the changelogs and current documentation for upgraded R packages. Apply
 small compatibility fixes or simplifications when a newer dependency API lets
@@ -25,40 +26,20 @@ behavior. Keep statistical computation in `statsExpressions` rather than
 duplicating it in this plotting frontend.
 
 If the minimum supported R version changes, update `DESCRIPTION` and any
-version-sensitive code or tests together. Keep README support wording
-independent of specific R release numbers because CI tracks R-devel, release,
-and oldrel through reusable workflows.
-
-If the package version changes, keep these declarations synchronized:
-
-- `DESCRIPTION`
-- `codemeta.json`
-- the first heading in `NEWS.md`
-
-Do not add a `NEWS.md` entry for routine dependency, formatting, lint, test, or
-CI maintenance. Add one only for a user-facing compatibility or behavior
-change.
+version-sensitive code or tests (including `tests/testthat.R` and snapshot
+variants) together. Keep README support wording independent of specific R
+release numbers.
 
 Inspect `.github/workflows/` for caller compatibility with the shared
-`IndrajeetPatil/workflows` interfaces. This repository intentionally delegates
-workflow implementation to that repository, so update callers when needed and
-do not copy shared actions or workflows locally.
+`IndrajeetPatil/workflows` interfaces; update callers when needed and do not
+copy shared workflows locally.
 
-Iterate until the relevant tests and all full local gates pass:
-
-```bash
-air format . --check
-make lint
-make hooks
-make check
-```
-
-If Air reports drift, run `air format .`, inspect the result, and rerun its
-check. Also run `make document` when README source or generated README content
-changes. Fix breaking API changes, R-devel incompatibilities, generated-file
+Iterate until the relevant tests and the full validation gate from `AGENTS.md`
+pass. Fix breaking API changes, R-devel incompatibilities, generated-file
 drift, snapshot regressions, coverage gaps, lint findings, and check failures
 introduced by the refresh; do not weaken checks or suppress legitimate
-failures.
+failures. Follow the `AGENTS.md` guidance on renderer-specific snapshot diffs
+before accepting new snapshots.
 
 Create a ready-for-review pull request, or update the current pull request when
 one already exists. Summarize dependency changes, compatibility fixes,
