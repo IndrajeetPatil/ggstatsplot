@@ -39,7 +39,7 @@ grouped_ggbetweenstats(
 
   `ylab`
 
-  : Labels for `y` axis variable. If `NULL` (default), variable name for
+  : Label for `y` axis variable. If `NULL` (default), variable name for
     `y` will be used.
 
   `p.adjust.method`
@@ -99,7 +99,7 @@ grouped_ggbetweenstats(
 
   `centrality.plotting`
 
-  : Logical that decides whether centrality tendency measure is to be
+  : Logical that decides whether central tendency measure is to be
     displayed as a point with a label (Default: `TRUE`). Function
     decides which central tendency measure to show depending on the
     `type` argument.
@@ -187,7 +187,7 @@ grouped_ggbetweenstats(
     or themes from extension packages are allowed (e.g.,
     `ggthemes::theme_fivethirtyeight()`, `hrbrthemes::theme_ipsum_ps()`,
     etc.). But note that sometimes these themes will remove some of the
-    details that `{ggstatsplot}` plots typically contains. For example,
+    details that `{ggstatsplot}` plots typically contain. For example,
     if relevant,
     [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
     shows details about multiple comparison test as a label on the
