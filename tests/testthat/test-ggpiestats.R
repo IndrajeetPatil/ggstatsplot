@@ -136,6 +136,16 @@ test_that("edge cases", {
     title = "prop test fails with dropped levels",
     fig = ggpiestats(mtcars_small, am, cyl)
   )
+
+  smokers <- tibble::tibble(
+    smoker = factor(c("no", "no", "no", "no", "no"), levels = c("yes", "no"))
+  )
+
+  set.seed(123)
+  expect_doppelganger(
+    title = "empty groups in factors not dropped",
+    fig = ggpiestats(smokers, smoker)
+  )
 })
 
 # expression output --------------------------------------------------
@@ -257,15 +267,5 @@ test_that("edge case behavior", {
       results.subtitle = FALSE,
       proportion.test = FALSE
     )
-  )
-
-  smokers <- tibble(
-    smoker = factor(c("no", "no", "no", "no", "no"), levels = c("yes", "no"))
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "empty groups in factors not dropped",
-    fig = ggpiestats(smokers, smoker)
   )
 })
