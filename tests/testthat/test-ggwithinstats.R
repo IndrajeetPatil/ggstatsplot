@@ -1,4 +1,4 @@
-# graphical pairwise comparisons are tested in `test-pairwise_ggsignif.R`
+# graphical pairwise comparisons are tested in `test-pairwise-ggsignif.R`
 
 skip_if_not_installed("afex")
 skip_if_not_installed("WRS2")

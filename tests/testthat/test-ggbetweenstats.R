@@ -1,4 +1,4 @@
-# pairwise comparisons testing is done `test-pairwise_ggsignif.R`
+# pairwise comparisons are tested in `test-pairwise-ggsignif.R`
 
 skip_if_not_installed("rstantools")
 
@@ -39,7 +39,7 @@ test_that("plotting features work as expected", {
   set.seed(123)
   expect_doppelganger(
     title = "specific geoms removed",
-    ggbetweenstats(
+    fig = ggbetweenstats(
       data = mtcars,
       x = am,
       y = wt,
