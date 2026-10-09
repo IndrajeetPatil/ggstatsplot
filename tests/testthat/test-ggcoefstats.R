@@ -78,8 +78,7 @@ test_that("meta-analysis works", {
     fig = ggcoefstats(
       df_meta,
       meta.analytic.effect = FALSE,
-      bf.message = FALSE,
-      results.subtitle = FALSE
+      bf.message = FALSE
     )
   )
 })
@@ -290,7 +289,7 @@ test_that("stats label helpers cover filtering and color branches", {
   )
 
   df_30_terms <- tibble::tibble(
-    term = letters[1:30],
+    term = c(letters, LETTERS[1:4]),
     expression = rep(list("alpha"), 30L)
   )
 
