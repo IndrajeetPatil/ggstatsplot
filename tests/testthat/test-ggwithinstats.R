@@ -5,12 +5,6 @@ skip_if_not_installed("WRS2")
 skip_if_not_installed("rstantools")
 
 test_that("defaults plots", {
-  expect_snapshot_error(grouped_ggbetweenstats(
-    bugs_long,
-    x = condition,
-    y = desire
-  ))
-
   set.seed(123)
   expect_doppelganger(
     title = "defaults plots - two groups",
@@ -94,7 +88,7 @@ test_that("aesthetic modifications work", {
 })
 
 test_that("grouped plots work", {
-  expect_snapshot_error(grouped_ggbetweenstats(
+  expect_snapshot_error(grouped_ggwithinstats(
     bugs_long,
     x = condition,
     y = desire
