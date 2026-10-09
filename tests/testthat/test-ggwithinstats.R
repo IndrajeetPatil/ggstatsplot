@@ -4,20 +4,6 @@ skip_if_not_installed("afex")
 skip_if_not_installed("WRS2")
 skip_if_not_installed("rstantools")
 
-# build a plot of `score` by `condition` without statistical annotations, for
-# checking which observations end up in the plotting data
-build_within_plot <- function(data, ...) {
-  ggplot2::ggplot_build(ggwithinstats(
-    data = data,
-    x = condition,
-    y = score,
-    type = "p",
-    pairwise.display = "none",
-    results.subtitle = FALSE,
-    ...
-  ))
-}
-
 test_that("defaults plots", {
   set.seed(123)
   expect_doppelganger(
