@@ -1,6 +1,6 @@
 # Changelog
 
-## ggstatsplot 1.1.1.9000
+## ggstatsplot 1.1.2
 
 ### BUG FIXES
 
