@@ -52,8 +52,7 @@ test_that("subtitle output", {
     extract_subtitle()
 
   set.seed(123)
-  p_sub_gghist <-
-    morley |>
+  p_sub_gghist <- morley |>
     dplyr::group_by(Expt) |>
     dplyr::summarise(mean = mean(Speed), .groups = "drop") |>
     gghistostats(
@@ -63,7 +62,6 @@ test_that("subtitle output", {
     ) |>
     extract_subtitle()
 
-  set.seed(123)
   expect_identical(p_sub_ggdot, p_sub_gghist)
 })
 

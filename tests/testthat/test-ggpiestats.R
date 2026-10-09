@@ -164,43 +164,32 @@ test_that("expression output", {
 # pairwise comparisons --------------------------------------------------
 
 test_that("pairwise comparisons data is returned for 3+ groups", {
-  set.seed(123)
-  stats_data <- extract_stats(ggpiestats(mtcars, cyl, am))
-  expect_s3_class(stats_data$pairwise_comparisons_data, "tbl_df")
-  expect_shape(stats_data$pairwise_comparisons_data, nrow = 3L)
-  expect_true(all(
-    c("group1", "group2", "p.value") %in%
-      names(stats_data$pairwise_comparisons_data)
-  ))
+  pairwise_data <- function(...) {
+    set.seed(123)
+    extract_stats(ggpiestats(...))$pairwise_comparisons_data
+  }
+
+  holm_df <- pairwise_data(mtcars, cyl, am)
+  expect_s3_class(holm_df, "tbl_df")
+  expect_shape(holm_df, nrow = 3L)
+  expect_contains(names(holm_df), c("group1", "group2", "p.value"))
 
   # different p.adjust.method produces different adjusted p-values
-  set.seed(123)
-  stats_bonf <- extract_stats(
-    ggpiestats(mtcars, cyl, am, p.adjust.method = "bonferroni")
-  )
-  expect_s3_class(stats_bonf$pairwise_comparisons_data, "tbl_df")
-  expect_shape(stats_bonf$pairwise_comparisons_data, nrow = 3L)
+  bonf_df <- pairwise_data(mtcars, cyl, am, p.adjust.method = "bonferroni")
+  expect_s3_class(bonf_df, "tbl_df")
+  expect_shape(bonf_df, nrow = 3L)
+  expect_false(identical(bonf_df$p.value.adj, holm_df$p.value.adj))
 
-  # 2 levels: no pairwise data
-  set.seed(123)
-  stats_data2 <- extract_stats(ggpiestats(mtcars, am, vs))
-  expect_null(stats_data2$pairwise_comparisons_data)
-
-  # one-way test: no pairwise data
-  set.seed(123)
-  stats_data3 <- extract_stats(ggpiestats(mtcars, cyl))
-  expect_null(stats_data3$pairwise_comparisons_data)
-
-  # paired test: no pairwise data
-  set.seed(123)
-  stats_paired <- extract_stats(ggpiestats(
+  # no pairwise data for 2 levels, one-way tests, or paired tests
+  expect_null(pairwise_data(mtcars, am, vs))
+  expect_null(pairwise_data(mtcars, cyl))
+  expect_null(pairwise_data(
     survey_data,
     `1st survey`,
     `2nd survey`,
     counts = Counts,
     paired = TRUE
   ))
-  expect_null(stats_paired$pairwise_comparisons_data)
 })
 
 # grouped_ggpiestats works as expected ---------------------

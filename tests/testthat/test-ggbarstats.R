@@ -109,25 +109,12 @@ test_that("changing labels and aesthetics", {
     )
   )
 
-  # data
-  df <- structure(
-    list(
-      epoch = structure(
-        c(1L, 2L, 1L, 2L, 1L, 2L, 1L, 2L),
-        levels = c("Before", "After"),
-        class = "factor"
-      ),
-      mode = structure(
-        c(1L, 1L, 2L, 2L, 3L, 3L, 4L, 4L),
-        levels = c("A", "P", "C", "T"),
-        class = "factor"
-      ),
-      counts = c(30916L, 21117L, 7676L, 1962L, 1663L, 462L, 7221L, 197L),
-      perc = c(65.119, 88.958, 16.168, 8.265, 3.502, 1.946, 15.209, 0.829),
-      label = c("65%", "89%", "16%", "8%", "4%", "2%", "15%", "1%")
-    ),
-    row.names = c(NA, -8L),
-    class = c("tbl_df", "tbl", "data.frame")
+  epoch_levels <- c("Before", "After")
+  mode_levels <- c("A", "P", "C", "T")
+  df <- tibble::tibble(
+    epoch = factor(rep(epoch_levels, times = 4L), levels = epoch_levels),
+    mode = factor(rep(mode_levels, each = 2L), levels = mode_levels),
+    counts = c(30916L, 21117L, 7676L, 1962L, 1663L, 462L, 7221L, 197L)
   )
 
   set.seed(123)
@@ -208,44 +195,35 @@ test_that("one-sample expression output", {
 # pairwise comparisons --------------------------------------------------
 
 test_that("pairwise comparisons data is returned for 3+ groups", {
-  set.seed(123)
-  stats_data <- extract_stats(ggbarstats(mtcars, cyl, am))
-  expect_s3_class(stats_data$pairwise_comparisons_data, "tbl_df")
-  expect_shape(stats_data$pairwise_comparisons_data, nrow = 3L)
-  expect_true(all(
-    c("group1", "group2", "p.value") %in%
-      names(stats_data$pairwise_comparisons_data)
-  ))
+  pairwise_data <- function(...) {
+    set.seed(123)
+    extract_stats(ggbarstats(...))$pairwise_comparisons_data
+  }
+
+  holm_df <- pairwise_data(mtcars, cyl, am)
+  expect_s3_class(holm_df, "tbl_df")
+  expect_shape(holm_df, nrow = 3L)
+  expect_contains(names(holm_df), c("group1", "group2", "p.value"))
 
   # different p.adjust.method produces different adjusted p-values
-  set.seed(123)
-  stats_bonf <- extract_stats(
-    ggbarstats(mtcars, cyl, am, p.adjust.method = "bonferroni")
-  )
-  expect_s3_class(stats_bonf$pairwise_comparisons_data, "tbl_df")
-  expect_shape(stats_bonf$pairwise_comparisons_data, nrow = 3L)
+  bonf_df <- pairwise_data(mtcars, cyl, am, p.adjust.method = "bonferroni")
+  expect_s3_class(bonf_df, "tbl_df")
+  expect_shape(bonf_df, nrow = 3L)
+  expect_false(identical(bonf_df$p.value.adj, holm_df$p.value.adj))
 
-  # 2 levels: no pairwise data
-  set.seed(123)
-  stats_data2 <- extract_stats(ggbarstats(mtcars, am, vs))
-  expect_null(stats_data2$pairwise_comparisons_data)
-
-  # paired test: no pairwise data
-  set.seed(123)
-  stats_paired <- extract_stats(ggbarstats(
+  # no pairwise data for 2 levels, one-way tests, or paired tests
+  expect_null(pairwise_data(mtcars, am, vs))
+  expect_null(pairwise_data(mtcars, cyl))
+  expect_null(pairwise_data(
     survey_data,
     `1st survey`,
     `2nd survey`,
     counts = Counts,
     paired = TRUE
   ))
-  expect_null(stats_paired$pairwise_comparisons_data)
-
-  # one-way test: no pairwise data
-  set.seed(123)
-  stats_data3 <- extract_stats(ggbarstats(mtcars, cyl))
-  expect_null(stats_data3$pairwise_comparisons_data)
 })
+
+# grouped_ggbarstats works as expected ---------------------
 
 test_that("grouped_ggbarstats produces error when grouping variable not provided", {
   expect_snapshot(grouped_ggbarstats(mtcars, x = cyl, y = am), error = TRUE)
@@ -284,7 +262,7 @@ test_that("grouped_ggbarstats works", {
   )
 })
 
-# edge cases --------------------
+# grouped_ggbarstats edge cases --------------------
 
 test_that("edge case behavior", {
   df <- data.frame(
