@@ -109,25 +109,12 @@ test_that("changing labels and aesthetics", {
     )
   )
 
-  # data
-  df <- structure(
-    list(
-      epoch = structure(
-        c(1L, 2L, 1L, 2L, 1L, 2L, 1L, 2L),
-        levels = c("Before", "After"),
-        class = "factor"
-      ),
-      mode = structure(
-        c(1L, 1L, 2L, 2L, 3L, 3L, 4L, 4L),
-        levels = c("A", "P", "C", "T"),
-        class = "factor"
-      ),
-      counts = c(30916L, 21117L, 7676L, 1962L, 1663L, 462L, 7221L, 197L),
-      perc = c(65.119, 88.958, 16.168, 8.265, 3.502, 1.946, 15.209, 0.829),
-      label = c("65%", "89%", "16%", "8%", "4%", "2%", "15%", "1%")
-    ),
-    row.names = c(NA, -8L),
-    class = c("tbl_df", "tbl", "data.frame")
+  epoch_levels <- c("Before", "After")
+  mode_levels <- c("A", "P", "C", "T")
+  df <- tibble::tibble(
+    epoch = factor(rep(epoch_levels, times = 4L), levels = epoch_levels),
+    mode = factor(rep(mode_levels, each = 2L), levels = mode_levels),
+    counts = c(30916L, 21117L, 7676L, 1962L, 1663L, 462L, 7221L, 197L)
   )
 
   set.seed(123)
