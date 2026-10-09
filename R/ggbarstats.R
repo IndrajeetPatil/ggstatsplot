@@ -137,9 +137,6 @@ ggbarstats <- function(
       conf.level = conf.level,
       digits = digits,
       ratio = ratio,
-      sampling.plan = "indepMulti",
-      fixed.margin = "rows",
-      prior.concentration = 1,
       x_levels = x_levels,
       y_levels = y_levels,
       p.adjust.method = p.adjust.method
@@ -162,7 +159,7 @@ ggbarstats <- function(
   }
 
   # Validate the requested number of discrete colors before plot rendering.
-  paletteer::paletteer_d(palette, nlevels(pull(data, {{ x }})))
+  paletteer::paletteer_d(palette, x_levels)
 
   plotBar <- ggplot(
     descriptive_df,

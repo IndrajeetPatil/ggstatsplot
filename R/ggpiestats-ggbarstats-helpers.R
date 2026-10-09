@@ -22,11 +22,11 @@
     data <- tidyr::uncount(data, weights = .counts)
   }
 
-  data <- mutate(data, across(.cols = everything(), .fns = ~ as.factor(.x)))
+  data <- mutate(data, across(everything(), as.factor))
 
-  test <- ifelse(quo_is_null(enquo(y)), "one.way", "two.way")
+  test <- if (quo_is_null(enquo(y))) "one.way" else "two.way"
   x_levels <- nlevels(pull(data, {{ x }}))
-  y_levels <- ifelse(test == "one.way", 0L, nlevels(pull(data, {{ y }})))
+  y_levels <- if (test == "one.way") 0L else nlevels(pull(data, {{ y }}))
 
   list(data = data, test = test, x_levels = x_levels, y_levels = y_levels)
 }
@@ -59,9 +59,6 @@
   conf.level,
   digits,
   ratio,
-  sampling.plan,
-  fixed.margin,
-  prior.concentration,
   x_levels,
   y_levels,
   p.adjust.method
@@ -75,9 +72,9 @@
     digits = digits,
     paired = paired,
     ratio = ratio,
-    sampling.plan = sampling.plan,
-    fixed.margin = fixed.margin,
-    prior.concentration = prior.concentration
+    sampling.plan = "indepMulti",
+    fixed.margin = "rows",
+    prior.concentration = 1
   )
 
   stats <- .subtitle_caption(
@@ -144,10 +141,6 @@ descriptive_data <- function(
         } else {
           paste0(.prettyNum(counts), "\n", "(", round(perc, digits.perc), "%)")
         }
-      ),
-      {{ x }} := factor(
-        {{ x }},
-        if (length(all_lvls)) all_lvls else unique({{ x }})
       )
     )
 }
