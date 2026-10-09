@@ -45,13 +45,16 @@ citation("ggstatsplot")
 
 ---
 
-Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
-The function `ggcorrmat()` provides a quick way to produce **publication-ready correlation matrix** (aka *correlalogram*) plot. The function can also be used
-for quick **data exploration**. In addition to the plot, it can also be used to
-get a correlation coefficient matrix or the associated *p*-value matrix.
-This function is a convenient wrapper around `ggcorrplot::ggcorrplot()`
-function with some additional functionality.
+The function `ggcorrmat()` provides a quick way to produce
+**publication-ready correlation matrix** (aka *correlogram*) plot. The function
+can also be used for quick **data exploration**. The correlations are computed
+with `correlation::correlation()` and the plot is produced with
+`ggcorrplot::ggcorrplot()`. The `type` argument decides which correlation
+coefficient is computed: Pearson's *r* (`"parametric"`), Spearman's $\rho$
+(`"nonparametric"`), Winsorized Pearson's *r* (`"robust"`), or Bayesian
+Pearson's *r* (`"bayes"`).
 
 We will see examples of how to use this function in this vignette with the
 `gapminder` and `diamonds` dataset.
@@ -74,7 +77,6 @@ and was collected by the Gapminder Foundation. Let's have a look at the data-
 ```{r}
 #| label = "gapminder"
 library(gapminder)
-library(dplyr)
 
 dplyr::glimpse(gapminder)
 ```
@@ -115,9 +117,7 @@ ggcorrmat(
     "GDP (per capita)"
   ),
   type = "np", ## which correlation coefficient is to be computed
-  lab.col = "red", ## label color
   ggtheme = ggplot2::theme_light(), ## selected ggplot2 theme
-  ## turn off default ggestatsplot theme overlay
   matrix.type = "lower", ## correlation matrix structure
   title = "Gapminder correlation matrix", ## custom title
   subtitle = "Source: Gapminder Foundation" ## custom subtitle
@@ -126,12 +126,12 @@ ggcorrmat(
 
 As seen from this correlation matrix, although there is no relationship between
 population and life expectancy worldwide, at least in 2007, there is a strong
-positive relationship between GDP, a well-established indicator of a country's
-economic performance.
+positive relationship between life expectancy and GDP per capita, a
+well-established indicator of a country's economic performance.
 
 Given that there were only three variables, this doesn't look that impressive.
 So let's work with another example from `{ggplot2}` package: the `diamonds`
-[dataset](http://ggplot2.tidyverse.org/reference/diamonds.html). This dataset
+[dataset](https://ggplot2.tidyverse.org/reference/diamonds.html). This dataset
 contains the prices and other attributes of almost 54,000 diamonds.
 
 Let's have a look at the data-
@@ -152,8 +152,10 @@ the price.
 #| fig.width = 7
 
 ## let's use just 5% of the data to speed it up
+diamonds_sample <- dplyr::slice_sample(ggplot2::diamonds, prop = 0.05)
+
 ggcorrmat(
-  data = dplyr::sample_frac(ggplot2::diamonds, size = 0.05),
+  data = diamonds_sample,
   cor.vars = c(carat, depth:z), ## note how the variables are getting selected
   cor.vars.names = c(
     "carat",
@@ -170,16 +172,18 @@ ggcorrmat(
 
 We can make a number of changes to this basic correlation matrix. For example,
 since we were interested in relationship between price and other attributes,
-let's make the `price` column to the the first column.
+let's make the `price` column the first column. Additional arguments for
+`ggcorrplot::ggcorrplot()` can be passed via `ggcorrplot.args`. Note that a
+list supplied to `ggcorrplot.args` replaces the default list (see
+`formals(ggcorrmat)$ggcorrplot.args`) instead of being merged with it.
 
 ```{r}
 #| label = "ggcorrmat4",
 #| fig.height = 7,
 #| fig.width = 7
 
-## let's use just 5% of the data to speed it up
 ggcorrmat(
-  data = dplyr::sample_frac(ggplot2::diamonds, size = 0.05),
+  data = diamonds_sample,
   cor.vars = c(price, carat, depth:table, x:z), ## note how the variables are getting selected
   cor.vars.names = c(
     "price",
@@ -194,7 +198,7 @@ ggcorrmat(
   title = "Relationship between diamond attributes and price",
   subtitle = "Dataset: Diamonds from ggplot2 package",
   pch = "square cross",
-  ## additional aesthetic arguments passed to `ggcorrmat()`
+  ## additional aesthetic arguments passed to `ggcorrplot::ggcorrplot()`
   ggcorrplot.args = list(
     lab_col = "yellow",
     lab_size = 6,
@@ -211,7 +215,7 @@ ggcorrmat(
 ```
 
 As seen here, and unsurprisingly, the strongest predictor of the diamond price
-is its carat value, which a unit of mass equal to 200 mg. In other words, the
+is its carat value, which is a unit of mass equal to 200 mg. In other words, the
 heavier the diamond, the more expensive it is going to be.
 
 ## Custom gradient colors
@@ -267,14 +271,21 @@ across different levels of a factor/grouping variable.
 
 ## Data frame
 
-If you want a data frame of (grouped) correlation matrix, use
-`correlation::correlation()` instead. It can also do grouped analysis when
+Unlike other `{ggstatsplot}` functions, `ggcorrmat()` does not store its
+statistical details for `extract_stats()`. If you want a data frame of
+(grouped) correlation matrix, use `correlation::correlation()` instead, which is
+also what `ggcorrmat()` uses internally. It can also do grouped analysis when
 used with output from `dplyr::group_by()`.
+
+```{r}
+#| label = "correlation_df"
+correlation::correlation(dplyr::select(gapminder_2007, lifeExp:gdpPercap))
+```
 
 ## Grouped analysis with `ggcorrmat()` + `{purrr}`
 
 Although `grouped_` function is good for quickly exploring the data, it reduces
-the flexibility with which this function can be used. This is the because the
+the flexibility with which this function can be used. This is because the
 common parameters used are applied to plots corresponding to all levels of the
 grouping variable and there is no way to customize the arguments for different
 levels of the grouping variable. We will see how this can be done using the
@@ -285,7 +296,11 @@ See the associated vignette here:
 
 ## Summary of graphics and tests
 
-Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
+```{r child="../../man/rmd-fragments/ggcorrmat_graphics.Rmd"}
+```
+
+More details about the correlation coefficients computed for each `type` can be
+found in the function documentation:
 <https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.html>
 
 ## Suggestions

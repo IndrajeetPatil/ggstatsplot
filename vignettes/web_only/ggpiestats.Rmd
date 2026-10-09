@@ -28,7 +28,7 @@ citation("ggstatsplot")
 
 ---
 
-Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 ## Introduction to `ggpiestats`
 
@@ -48,10 +48,6 @@ independent of each other using the contingency table analysis
 
  - to check if the proportion of observations at each level of a categorical
 variable is equal
-
-**Note:** The following demo uses the pipe operator (`|>`), if you are not
-familiar with this operator, here is a good explanation:
-<http://r4ds.had.co.nz/pipes.html>.
 
 `ggpiestats` works **only** with data organized in data frames or tibbles. It
 will not work with other data structures like base-R tables or matrices. It can
@@ -105,14 +101,14 @@ ggpiestats(
 
 **Note:** equal proportions per category are the default, e.g. 50/50, but you
 can specify any hypothesized ratio you like with `ratio` so if our hypothesis
-was that 80% died and 20% survived we would add `ratio = c(.80,.20)` when we
-entered the code.
+was that 80% died and 20% survived we would add `ratio = c(0.80, 0.20)` when we
+entered the code (the proportions follow the order of the levels of `x`).
 
 ## Independence (or association) with `ggpiestats`
 
-Let's next investigate whether the passenger's gender was independent of, or
-associated with, gender. The test is whether the proportion of people who
-survived was different between the sexes using `ggpiestats`.
+Let's next investigate whether the passenger's sex was independent of, or
+associated with, their survival status, i.e., we want to test whether the
+proportion of people who survived was different between the sexes.
 
 ```{r}
 #| label = "ggpiestats1",
@@ -168,14 +164,14 @@ grouped_ggpiestats(
   # arguments relevant for `combine_plots()`
   annotation.args = list(
     title = "Passenger survival on the Titanic by gender and age",
-    caption = "Asterisks denote results from proportion tests; \n***: p < 0.001, ns: non-significant"
+    caption = "Source: Titanic survival dataset"
   ),
   plotgrid.args = list(nrow = 2L)
 )
 ```
 
-The resulting pie charts and statistics make the story clear. For adults gender
-very much matters. Women survived at much higher rates than men. For children
+The resulting pie charts and statistics make the story clear. For adults, gender
+very much matters. Women survived at much higher rates than men. For children,
 gender is not significantly associated with survival and both male and female
 children have a survival rate that is not significantly different from 50/50.
 
@@ -194,7 +190,7 @@ See the associated vignette here:
 `ggpiestats` can also work with data frame containing counts (aka tabled data),
 i.e., when each row doesn't correspond to a unique observation. For example,
 consider the following notional `fishing` data frame containing data from two
-boats (`A` and `B`) about the number of different types fish they caught in the
+boats (`A` and `B`) about the number of different types of fish they caught in the
 months of `February` and `March`. In this data frame, each row corresponds to a
 unique combination of `Boat` and `Month`.
 
@@ -257,7 +253,7 @@ ggpiestats(
 ```
 
 The results support our hypothesis that the type of fish caught is related to
-the month in which we're fishing. The $\chi^2$ independence test results at
+the month in which we're fishing. The $\chi^2$ independence test results are shown at
 the top of the plot. In February, we catch significantly more Cod than we
 would hypothesize for an equal distribution. Whereas, in March, our results
 indicate there's no strong evidence that the distribution isn't equal.
@@ -275,6 +271,10 @@ from **McNemar test** in the subtitle.
 
 (**Note:** If you forget to set `paired = TRUE`, the results will be
 inaccurate.)
+
+Note that, for McNemar's test, `x` and `y` need to have the same levels, and
+each row should correspond to one subject (or, as here, to the count of
+subjects with a given combination of before/after responses).
 
 ```{r}
 #| label = "ggpiestats9",
@@ -309,8 +309,35 @@ sick that number has reduced to just 13 or 34% which is a marked improvement.
 
 ## Summary of graphics and tests
 
-Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
+```{r child="../../man/rmd-fragments/ggpiestats_graphics.Rmd"}
+```
+
+The statistical tests and effect sizes carried out for each `type` are listed
+in the function documentation:
 <https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.html>
+
+## Extracting statistical details
+
+All statistical details shown in the plot are also available as data frames,
+which can be extracted with `extract_stats()`. The returned list contains
+results from the test in the subtitle (`subtitle_data`), the Bayesian test in
+the caption (`caption_data`), the one-sample proportion tests for each level of
+`y` (`one_sample_data`), the counts and percentages shown in the plot
+(`descriptive_data`), and, if `x` has more than two levels, pairwise
+comparisons (Fisher's exact tests) between levels of `x`, which are not shown
+in the plot (`pairwise_comparisons_data`).
+
+```{r}
+#| label = "extract_stats"
+p <- ggpiestats(Titanic_full, Survived, Sex)
+
+extract_stats(p)$subtitle_data
+
+extract_stats(p)$one_sample_data
+```
+
+For `grouped_ggpiestats()` plots, `extract_stats()` returns one such list for each
+level of the grouping variable.
 
 ## Reporting
 
@@ -328,7 +355,7 @@ The narrative context (assuming `type = "parametric"`) can complement this plot
 either as a figure caption or in the main text-
 
 > Pearson's $\chi^2$-test of independence revealed that, across 32 automobiles,
-showed that there was a significant association between transmission engine and
+there was a significant association between transmission type and
 number of cylinders. The Bayes Factor for the same analysis revealed that the
 data were `r round(exp(2.82), 2)` times more probable under the alternative
 hypothesis as compared to the null hypothesis. This can be considered strong
