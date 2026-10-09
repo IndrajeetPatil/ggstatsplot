@@ -161,7 +161,7 @@
 
     seclabel <- .pairwise_seclabel(
       test.description = unique(mpc_df$test),
-      pairwise.display = ifelse(type == "bayes", "all", pairwise.display),
+      pairwise.display = if (type == "bayes") "all" else pairwise.display,
       pairwise.alpha = pairwise.alpha
     )
   }

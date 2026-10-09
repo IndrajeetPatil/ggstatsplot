@@ -191,7 +191,7 @@ ggwithinstats <- function(
 
   # statistical analysis ------------------------------------------
 
-  test <- ifelse(nlevels(pull(data, {{ x }})) < 3L, "t", "anova")
+  test <- if (nlevels(pull(data, {{ x }})) < 3L) "t" else "anova"
 
   if (results.subtitle) {
     stats_output <- .bw_subtitle_caption(
