@@ -12,9 +12,9 @@ make update_deps
 prek update
 ```
 
-`make update_deps` tidies `DESCRIPTION`, raises CRAN dependency constraints to
-the latest published versions, regenerates roxygen output, and rewrites
-`codemeta.json`. `prek update` bumps the hook revisions in
+`make update_deps` tidies `DESCRIPTION`, raises the minimum versions of all
+Imports and Suggests to the latest CRAN releases, regenerates roxygen output,
+and rewrites `codemeta.json`. `prek update` bumps the hook revisions in
 `.pre-commit-config.yaml`. Inspect every generated change and keep only
 intentional updates. Follow the `AGENTS.md` rules for `DESCRIPTION`,
 roxygen-generated files, version synchronization, and `NEWS.md`.

@@ -23,6 +23,13 @@ clean:
 update_deps:
 	Rscript -e 'options(repos = c(CRAN = "https://packagemanager.posit.co/cran/latest")); usethis::use_tidy_description()'
 	Rscript -e 'options(repos = c(CRAN = "https://packagemanager.posit.co/cran/latest")); usethis::use_latest_dependencies(source = "CRAN", overwrite = TRUE)'
+	# usethis only bumps Imports/Depends; raise Suggests floors too
+	Rscript \
+	-e 'ap <- available.packages(repos = "https://packagemanager.posit.co/cran/latest")' \
+	-e 'd <- desc::desc_get_deps()' \
+	-e 'i <- d$$type == "Suggests" & !d$$package %in% rownames(installed.packages(priority = "base"))' \
+	-e 'd$$version[i] <- paste(">=", ap[d$$package[i], "Version"])' \
+	-e 'desc::desc_set_deps(d)'
 	Rscript -e 'roxygen2::roxygenise()'
 	Rscript -e 'codemetar::write_codemeta()'
 
