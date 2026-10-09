@@ -315,9 +315,11 @@ which can be extracted with `extract_stats()`. The returned list contains
 results from the test in the subtitle (`subtitle_data`), the Bayesian test in
 the caption (`caption_data`), the one-sample proportion tests for each level of
 `y` (`one_sample_data`), the counts and percentages shown in the plot
-(`descriptive_data`), and, if `x` has more than two levels, pairwise
-comparisons (Fisher's exact tests) between levels of `x`, which are not shown
-in the plot (`pairwise_comparisons_data`).
+(`descriptive_data`), and pairwise comparisons (Fisher's exact tests) between
+levels of `x`, which are not shown in the plot (`pairwise_comparisons_data`).
+Pairwise comparisons are computed only for unpaired designs in which both `x`
+and `y` are specified, `x` has more than two levels, and `y` has at least two;
+otherwise, `pairwise_comparisons_data` is `NULL`.
 
 ```{r}
 #| label = "extract_stats"
