@@ -50,7 +50,8 @@
     alternative = if (test == "t") alternative
   ))
 
-  .subtitle_caption(.f_switch(test), .f.args, type, bf.message)
+  .f <- if (test == "t") two_sample_test else oneway_anova
+  .subtitle_caption(.f, .f.args, type, bf.message)
 }
 
 
@@ -160,7 +161,7 @@
 
     seclabel <- .pairwise_seclabel(
       test.description = unique(mpc_df$test),
-      pairwise.display = ifelse(type == "bayes", "all", pairwise.display),
+      pairwise.display = if (type == "bayes") "all" else pairwise.display,
       pairwise.alpha = pairwise.alpha
     )
   }
@@ -182,7 +183,7 @@
 }
 
 
-#' @title Adding labels for mean values.
+#' @title Adding labels for centrality values
 #' @name .centrality_ggrepel
 #'
 #' @param plot A `ggplot` object for which means are to be displayed.
@@ -302,14 +303,14 @@
 
   # for Bayes Factor, there will be no "p.value" column
   if ("p.value" %in% names(mpc_df)) {
-    if (startsWith(pairwise.display, "s")) {
-      mpc_df <- filter(mpc_df, p.value < pairwise.alpha)
-    } # sig
-    if (startsWith(pairwise.display, "n")) {
-      mpc_df <- filter(mpc_df, p.value >= pairwise.alpha)
-    } # non-sig
+    mpc_df <- switch(
+      .pairwise_display_level(pairwise.display),
+      significant = filter(mpc_df, p.value < pairwise.alpha),
+      `non-significant` = filter(mpc_df, p.value >= pairwise.alpha),
+      mpc_df
+    )
 
-    # proceed only if there are any significant comparisons to display
+    # proceed only if there are any comparisons left to display
     if (nrow(mpc_df) == 0L) {
       return(plot)
     } # nocov
@@ -362,8 +363,8 @@
 #' @description
 #'
 #' This returns an expression containing details about the pairwise comparison
-#' test and the *p*-value adjustment method. These details are typically
-#' included in the `{ggstatsplot}` package plots as a caption.
+#' test, which comparisons are shown, and the alpha threshold. These details
+#' are displayed as the secondary y-axis label in `{ggstatsplot}` plots.
 #'
 #' @param test.description Text describing the details of the test.
 #' @inheritParams ggbetweenstats
@@ -391,14 +392,7 @@
   test <- sub("'", "\\'", test.description, fixed = TRUE)
   alpha_label <- format(pairwise.alpha, scientific = FALSE, trim = TRUE)
 
-  # which comparisons were displayed?
-  display <- if (startsWith(pairwise.display, "s")) {
-    "significant"
-  } else if (startsWith(pairwise.display, "n")) {
-    "non-significant"
-  } else {
-    "all"
-  }
+  display <- .pairwise_display_level(pairwise.display)
 
   parse(
     text = glue(
@@ -407,12 +401,33 @@
   )
 }
 
+#' @title Resolve which pairwise comparisons are displayed
+#'
+#' @description
+#'
+#' Maps a (possibly abbreviated) `pairwise.display` value to one of
+#' `"significant"`, `"non-significant"`, or `"all"`.
+#'
+#' @inheritParams ggbetweenstats
+#'
+#' @noRd
+.pairwise_display_level <- function(pairwise.display) {
+  if (startsWith(pairwise.display, "s")) {
+    "significant"
+  } else if (startsWith(pairwise.display, "n")) {
+    "non-significant"
+  } else {
+    "all"
+  }
+}
+
 
 #' @title Making aesthetic modifications to the plot
 #' @name .aesthetic_addon
 #'
 #' @param plot Plot to be aesthetically modified.
-#' @param x A numeric vector for `x` axis.
+#' @param x A factor with the `x` axis values; its number of levels sets how
+#'   many palette colors are needed.
 #' @param seclabel A label for secondary axis.
 #' @inheritParams ggbetweenstats
 #' @param ... Additional arguments.
@@ -454,7 +469,3 @@
     # this is the hail mary way for users to override these defaults
     ggplot.component
 }
-
-#' @title Switch expression making function
-#' @noRd
-.f_switch <- function(test) ifelse(test == "t", two_sample_test, oneway_anova)
