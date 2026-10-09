@@ -313,7 +313,7 @@ For independent measures designs, `ggbetweenstats` function can be used:
 
 ## Summary of graphics and tests
 
-```{r child="../../man/rmd-fragments/ggwithinstats_graphics.Rmd"}
+```{asis, file="../../man/rmd-fragments/ggwithinstats_graphics.Rmd"}
 ```
 
 The statistical tests and effect sizes carried out for each `type` are listed

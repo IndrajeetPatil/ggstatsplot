@@ -545,7 +545,7 @@ ggcoefstats(nlmod) |> extract_stats()
 
 ## Summary of graphics and tests
 
-```{r child="../../man/rmd-fragments/ggcoefstats_graphics.Rmd"}
+```{asis, file="../../man/rmd-fragments/ggcoefstats_graphics.Rmd"}
 ```
 
 More details about the statistical details displayed for different models can

@@ -296,7 +296,7 @@ See the associated vignette here:
 
 ## Summary of graphics and tests
 
-```{r child="../../man/rmd-fragments/ggcorrmat_graphics.Rmd"}
+```{asis, file="../../man/rmd-fragments/ggcorrmat_graphics.Rmd"}
 ```
 
 More details about the correlation coefficients computed for each `type` can be

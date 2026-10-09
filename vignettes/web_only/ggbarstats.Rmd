@@ -301,7 +301,7 @@ sick that number has reduced to just 13 or 34% which is a marked improvement.
 
 ## Summary of graphics and tests
 
-```{r child="../../man/rmd-fragments/ggbarstats_graphics.Rmd"}
+```{asis, file="../../man/rmd-fragments/ggbarstats_graphics.Rmd"}
 ```
 
 The statistical tests and effect sizes carried out for each `type` are listed
