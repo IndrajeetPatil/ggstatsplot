@@ -4,7 +4,7 @@
 #'
 #' The internet movie database (IMDB) is a website devoted
 #' to collecting movie data supplied by studios and fans. It claims to be the
-#' biggest movie database on the web and is run by amazon.
+#' biggest movie database on the web and is run by Amazon.
 #'
 #' @format A data frame with 1,579 rows and 8 variables
 #'

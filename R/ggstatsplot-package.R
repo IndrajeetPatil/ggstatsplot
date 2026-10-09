@@ -1,5 +1,3 @@
-#' \code{ggstatsplot}
-#'
 #' @title ggstatsplot: 'ggplot2' Based Plots with Statistical Details
 #'
 #' @description
