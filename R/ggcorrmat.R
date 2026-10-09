@@ -132,35 +132,31 @@ ggcorrmat <- function(
   # type of correlation and if it is a partial correlation
   r.method.text <- gsub(" correlation", "", unique(mpc_df$Method), fixed = TRUE)
   r.type <- ifelse(partial, "correlation (partial):", "correlation:")
+  r.label <- bquote(atop(scriptstyle(bold(.(r.type))), .(r.method.text)))
 
   # plot ------------------------------------------
 
   # legend title with information about correlation type and sample size
   if (!anyNA(data) || partial) {
-    legend.title <- bquote(atop(
-      atop(
-        scriptstyle(bold("sample sizes:")),
-        italic(n) ~ "=" ~ .(.prettyNum(mpc_df$n_Obs[[1L]]))
-      ),
-      atop(scriptstyle(bold(.(r.type))), .(r.method.text))
+    n.label <- bquote(atop(
+      scriptstyle(bold("sample sizes:")),
+      italic(n) ~ "=" ~ .(.prettyNum(mpc_df$n_Obs[[1L]]))
     ))
   } else {
-    legend.title <- bquote(atop(
+    n.label <- bquote(atop(
       atop(
-        atop(
-          scriptstyle(bold("sample sizes:")),
-          italic(n)[min] ~ "=" ~ .(.prettyNum(min(mpc_df$n_Obs)))
-        ),
-        atop(
-          italic(n)[mode] ~ "=" ~ .(.prettyNum(datawizard::distribution_mode(
-            mpc_df$n_Obs
-          ))),
-          italic(n)[max] ~ "=" ~ .(.prettyNum(max(mpc_df$n_Obs)))
-        )
+        scriptstyle(bold("sample sizes:")),
+        italic(n)[min] ~ "=" ~ .(.prettyNum(min(mpc_df$n_Obs)))
       ),
-      atop(scriptstyle(bold(.(r.type))), .(r.method.text))
+      atop(
+        italic(n)[mode] ~ "=" ~ .(.prettyNum(datawizard::distribution_mode(
+          mpc_df$n_Obs
+        ))),
+        italic(n)[max] ~ "=" ~ .(.prettyNum(max(mpc_df$n_Obs)))
+      )
     ))
   }
+  legend.title <- bquote(atop(.(n.label), .(r.label)))
 
   plot_corr <- .eval_f(
     ggcorrplot::ggcorrplot,
