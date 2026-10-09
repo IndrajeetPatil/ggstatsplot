@@ -229,8 +229,6 @@ test_that("grouped_ggpiestats works", {
 
   # arm64 macOS and x86_64 Linux produce sub-pixel SVG coordinate differences
   # for this specific plot; use platform-specific snapshot variants.
-
-  # when arguments are entered as bare expressions
   set.seed(123)
   expect_doppelganger(
     title = "grouped_ggpiestats with two-way table",
