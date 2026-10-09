@@ -55,7 +55,6 @@
 #' For more documentation, see the dedicated
 #' \href{https://www.indrapatil.com/ggstatsplot/}{Website}.
 #'
-#' @docType package
 #' @keywords internal
 #' @aliases ggstatsplot ggstatsplot-package
 #' @name ggstatsplot-package
@@ -70,10 +69,6 @@
 #' @import insight
 #'
 #' @importFrom glue glue
-#' @importFrom paletteer scale_color_paletteer_d scale_fill_paletteer_d
-#' @importFrom purrr pmap map
-#' @importFrom correlation correlation
-#' @importFrom patchwork wrap_plots plot_annotation
 #'
 ## ggstatsplot namespace: end
 NULL
