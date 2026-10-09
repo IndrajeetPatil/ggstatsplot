@@ -3,7 +3,7 @@
 \docType{data}
 \name{movies_long}
 \alias{movies_long}
-\title{Movie information and user ratings from IMDB.com (long format).}
+\title{Movie information and user ratings from IMDB.com (long format)}
 \format{
 A data frame with 1,579 rows and 8 variables
 \itemize{
@@ -14,8 +14,8 @@ A data frame with 1,579 rows and 8 variables
 \item rating. Average IMDB user rating.
 \item votes. Number of IMDB users who rated this movie.
 \item mpaa. MPAA rating.
-\item genre. Different genres of movies (action, animation, comedy, drama,
-documentary, romance, short).
+\item genre. Different genres of movies (Action, Action Comedy, Action Drama,
+Animated, Comedy, Comedy Drama, Drama, RomCom, Romance Drama).
 }
 }
 \source{
@@ -25,7 +25,7 @@ documentary, romance, short).
 movies_long
 }
 \description{
-Movie information and user ratings from IMDB.com (long format).
+Movie information and user ratings from IMDB.com (long format)
 }
 \details{
 Modified dataset from \code{{ggplot2movies}} package.

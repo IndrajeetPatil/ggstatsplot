@@ -29,7 +29,7 @@ citation("ggstatsplot")
 
 ---
 
-Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 The function `ggdotplotstats` can be used for **data exploration** and to
 provide an easy way to make **publication-ready dot plots/charts** with
@@ -37,13 +37,18 @@ appropriate and selected statistical details embedded in the plot itself. In
 this vignette, we will explore several examples of how to use it.
 
 This function is a sister function of `gghistostats` with the difference being
-it expects a labeled numeric variable.
+it expects a labeled numeric variable: a numeric variable (`x`) along with a
+variable containing labels (`y`). If there are multiple observations per label,
+they are first summarized into a single centrality measure per label (mean,
+median, trimmed mean, or MAP estimate, depending on `type`), shown as a dot
+with its confidence interval. The one-sample test is then carried out on these
+per-label summaries, i.e., the sample size is the number of labels.
 
 ## Distribution of a sample with `ggdotplotstats`
 
 Let's begin with a very simple example from the `{ggplot2}` package
 (`ggplot2::mpg`), a subset of the fuel economy data that the EPA makes available
-on <http://fueleconomy.gov>.
+on <https://fueleconomy.gov>.
 
 ```{r}
 #| label = "mpg"
@@ -62,7 +67,7 @@ Let's say we want to visualize the distribution of mileage by car manufacturer.
 df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6"))
 
 ## creating a vector of colors using `paletteer` package
-paletter_vector <- paletteer::paletteer_d(
+palette_vector <- paletteer::paletteer_d(
   palette = "palettetown::venusaur",
   n = nlevels(as.factor(df$manufacturer)),
   type = "discrete"
@@ -77,7 +82,7 @@ ggdotplotstats(
   test.value = 15.5,
   point.args = list(
     shape = 16,
-    color = paletter_vector,
+    color = palette_vector,
     size = 5
   ),
   title = "Distribution of mileage of cars",
@@ -94,7 +99,8 @@ different numbers of cylinders?
 `grouped_ggdotplotstats`. This is merely a wrapper function around
 `combine_plots`. It applies `ggdotplotstats` across all **levels** of
 a specified **grouping variable** and then combines the individual plots into a
-single plot.
+single plot. Note that the grouping variable can be anything: conditions in a
+given study, groups in a study sample, different studies, etc.
 
 Let's see how we can use this function to apply `ggdotplotstats` to accomplish our
 task.
@@ -103,9 +109,6 @@ task.
 #| label = "grouped1",
 #| fig.height = 12,
 #| fig.width = 7
-
-## removing factor level with very few no. of observations
-df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6"))
 
 grouped_ggdotplotstats(
   ## arguments relevant for ggdotplotstats
@@ -128,8 +131,8 @@ grouped_ggdotplotstats(
 Although this is a quick and dirty way to explore a large amount of data with
 minimal effort, it does come with an important limitation: reduced flexibility.
 For example, if we wanted to add, let's say, a separate `test.value` argument
-for each gender, this is not possible with `grouped_ggdotplotstats`. For cases
-like these, or to run separate  kinds of tests (robust for some, parametric for
+for each number of cylinders, this is not possible with
+`grouped_ggdotplotstats`. For cases like these, or to run separate kinds of tests (robust for some, parametric for
 other, while Bayesian for some other levels of the group) it would be better to
 use `{purrr}`.
 
@@ -138,8 +141,29 @@ See the associated vignette here:
 
 ## Summary of graphics and tests
 
-Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
+```{asis, file="../../man/rmd-fragments/ggdotplotstats_graphics.Rmd"}
+```
+
+The statistical tests and effect sizes carried out for each `type` are listed
+in the function documentation:
 <https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.html>
+
+## Extracting statistical details
+
+All statistical details shown in the plot are also available as data frames,
+which can be extracted with `extract_stats()`. The returned list contains
+results from the test in the subtitle (`subtitle_data`) and the Bayesian test in
+the caption (`caption_data`).
+
+```{r}
+#| label = "extract_stats"
+p <- ggdotplotstats(morley, Speed, Expt, test.value = 800)
+
+extract_stats(p)$subtitle_data
+```
+
+For `grouped_ggdotplotstats()` plots, `extract_stats()` returns one such list
+for each level of the grouping variable.
 
 ## Reporting
 

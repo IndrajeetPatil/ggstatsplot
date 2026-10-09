@@ -14,22 +14,25 @@
 #'
 #' @param ... Currently ignored.
 #' @param data A data frame from which variables specified are to be taken.
-#' @param cor.vars List of variables for which the correlation matrix is to be
-#'   computed and visualized. If `NULL` (default), all numeric variables from
-#'   `data` will be used.
+#' @param cor.vars Variables for which the correlation matrix is to be computed
+#'   and visualized, specified using `{tidyselect}` syntax (e.g.,
+#'   `c(var1, var2)` or `starts_with("Sepal")`). If `NULL` (default), all
+#'   numeric variables from `data` will be used.
 #' @param cor.vars.names Optional list of names to be used for `cor.vars`. The
 #'   names should be entered in the same order.
 #' @param partial Can be `TRUE` for partial correlations. For Bayesian partial
 #'   correlations, "full" instead of pseudo-Bayesian partial correlations (i.e.,
 #'   Bayesian correlation based on frequentist partialization) are returned.
 #' @param matrix.type Character, `"upper"` (default), `"lower"`, or `"full"`,
-#'   display full matrix, lower triangular or upper triangular matrix.
-#' @param sig.level Significance level (Default: `0.05`). If the *p*-value in
-#'   *p*-value matrix is bigger than `sig.level`, then the corresponding
-#'   correlation coefficient is regarded as insignificant and flagged as such in
-#'   the plot.
+#'   to display the upper triangular, lower triangular, or full matrix,
+#'   respectively.
+#' @param sig.level Significance level (Default: `0.05`). If the (adjusted; see
+#'   `p.adjust.method`) *p*-value is bigger than `sig.level`, then the
+#'   corresponding correlation coefficient is regarded as insignificant and
+#'   flagged as such in the plot. Ignored for `type = "bayes"`.
 #' @param pch Decides the point shape to be used for insignificant correlation
-#'   coefficients (only valid when `insig = "pch"`). Default: `pch = "cross"`.
+#'   coefficients. Default: `pch = "cross"`. The caption explaining the
+#'   insignificance marker is added only for `pch = "cross"` (or `4`).
 #' @param colors A character vector of exactly three colors for the gradient:
 #'   low (negative correlations), mid (zero), and high (positive correlations).
 #'   Must be a **diverging** palette so that the sign of the correlation is
@@ -38,11 +41,13 @@
 #' @param ggcorrplot.args A list of additional (mostly aesthetic) arguments that
 #'   will be passed to [`ggcorrplot::ggcorrplot()`] function. The list should
 #'   avoid any of the following arguments since they are already internally
-#'   being used: `corr`, `method`, `p.mat`, `sig.level`, `ggtheme`, `colors`,
+#'   being used: `corr`, `p.mat`, `sig.level`, `ggtheme`, `colors`, `type`,
 #'   `lab`, `pch`, `legend.title`, `digits`.
+#' @param subtitle The text for the plot subtitle.
+#' @param caption The text for the plot caption. If the insignificance marker
+#'   caption is shown (see `pch`), this text is displayed above it.
 #' @inheritParams statsExpressions::corr_test
 #' @inheritParams ggbetweenstats
-#' @inheritParams theme_ggstatsplot
 #' @inheritParams ggcorrplot::ggcorrplot
 #' @inheritParams ggscatterstats
 #'
@@ -50,10 +55,19 @@
 #'
 #' @autoglobal
 #'
+#' @returns A `ggplot` object, which can be further modified with `{ggplot2}`
+#'   functions. Note that [`extract_stats()`] does not return statistical
+#'   details for this plot; use [`correlation::correlation()`] instead.
+#'
 #' @seealso \code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}
 #'   \code{\link{grouped_ggscatterstats}}
 #'
-#' @details For details, see:
+#' @details Missing values are handled using pairwise deletion (each
+#'   correlation uses all complete pairs of observations), in which case the
+#'   legend shows the minimum, mode, and maximum sample size across pairs.
+#'   Partial correlations use only complete cases.
+#'
+#' For details, see:
 #' <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html>
 #'
 #' @examples
@@ -227,8 +241,10 @@ ggcorrmat <- function(
 #' @seealso \code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},
 #'   \code{\link{grouped_ggscatterstats}}
 #'
-#' @inherit ggcorrmat return references
-#' @inherit ggcorrmat return details
+#' @inherit ggcorrmat references details
+#'
+#' @returns A `patchwork` object combining one plot per level of
+#'   `grouping.var` (see [`combine_plots()`]).
 #'
 #' @examples
 #' set.seed(123)

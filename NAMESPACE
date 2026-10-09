@@ -29,9 +29,15 @@ import(rlang)
 import(statsExpressions)
 importFrom(correlation,correlation)
 importFrom(glue,glue)
-importFrom(paletteer,scale_color_paletteer_d)
-importFrom(paletteer,scale_fill_paletteer_d)
-importFrom(patchwork,plot_annotation)
-importFrom(patchwork,wrap_plots)
-importFrom(purrr,map)
-importFrom(purrr,pmap)
+importFrom(paletteer,
+  scale_color_paletteer_d,
+  scale_fill_paletteer_d
+)
+importFrom(patchwork,
+  plot_annotation,
+  wrap_plots
+)
+importFrom(purrr,
+  map,
+  pmap
+)

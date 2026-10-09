@@ -99,8 +99,7 @@ While using this argument with \code{\link[purrr:pmap]{purrr::pmap()}}, you will
 a quoted expression  (e.g. \code{quote(y < 4 & z < 20)}).}
 
 \item{marginal}{Decides whether marginal distributions will be plotted on
-axes using \code{{ggside}} functions. The default is \code{TRUE}. The package
-\code{{ggside}} must already be installed by the user.}
+axes using \code{{ggside}} functions. The default is \code{TRUE}.}
 
 \item{point.args}{A list of additional aesthetic arguments to be passed to
 the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
@@ -109,14 +108,15 @@ the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
 direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
 data. Note that the jitter should not be specified in the \code{point.args}
 because this information will be passed to two different \code{geom}s: one
-displaying the \strong{points} and the other displaying the *\strong{labels} for
+displaying the \strong{points} and the other displaying the \strong{labels} for
 these points.}
 
 \item{point.label.args}{A list of additional aesthetic arguments to be passed
-to \code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}}geom used to display the labels.}
+to \code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}} geom used to display the labels.}
 
 \item{smooth.line.args}{A list of additional aesthetic arguments to be passed
-to \code{geom_smooth} geom used to display the regression line.}
+to \code{\link[ggplot2:geom_smooth]{ggplot2::geom_smooth()}} geom used to display the regression line. Its
+confidence band uses \code{conf.level}.}
 
 \item{xsidehistogram.args, ysidehistogram.args}{A list of arguments passed to
 respective \code{geom_}s from the \code{{ggside}} package to change the marginal
@@ -139,8 +139,8 @@ variable name for \code{y} will be used.}
 \item{subtitle}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
 
-\item{caption}{The text for the plot caption. This argument is relevant only
-if \code{bf.message = FALSE}.}
+\item{caption}{The text for the plot caption. It will be replaced by the
+Bayes Factor caption whenever that is displayed (see \code{bf.message}).}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
@@ -160,11 +160,19 @@ be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} function
 
 \item{...}{Currently ignored.}
 }
+\value{
+A \code{ggplot} object, which can be further modified with \code{{ggplot2}}
+functions. Use \code{\link[=extract_stats]{extract_stats()}} to get the statistical details shown in
+the plot as data frames.
+}
 \description{
 Scatterplots from \code{{ggplot2}} combined with marginal distributions plots
 with statistical details.
 }
 \details{
+Rows with a missing value in either \code{x} or \code{y} are removed before
+plotting and analysis.
+
 For details, see:
 \url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html}
 }

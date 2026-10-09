@@ -366,17 +366,7 @@
 #' included in the `{ggstatsplot}` package plots as a caption.
 #'
 #' @param test.description Text describing the details of the test.
-#' @param pairwise.display Decides *which* pairwise comparisons to display.
-#'   Available options are:
-#'   - `"significant"` (abbreviation accepted: `"s"`)
-#'   - `"non-significant"` (abbreviation accepted: `"ns"`)
-#'   - `"all"`
-#'
-#'   You can use this argument to make sure that your plot is not uber-cluttered
-#'   when you have multiple groups being compared and scores of pairwise
-#'   comparisons being displayed.
-#' @param pairwise.alpha Numeric alpha threshold used to decide which pairwise
-#'   comparisons are displayed.
+#' @inheritParams ggbetweenstats
 #'
 #' @examples
 #' .pairwise_seclabel("Student's t-test")

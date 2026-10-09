@@ -28,8 +28,6 @@ citation("ggstatsplot")
 
 ---
 
----
-
 This is an extremely time-consuming vignette, and so it is not evaluated here.
 You can still use the code as a reference for writing your own `{purrr}` code.
 
@@ -55,7 +53,9 @@ We will see how to overcome this limitation by combining `{ggstatsplot}` with th
 
 **Note:**
 
- * While using `purrr::pmap()`, we **must** input the arguments as strings.
+ * While using `purrr::pmap()`, the variable names (e.g., `x`, `y`) should be
+   entered as strings (or as symbols created with `alist()`; see the
+   `grouped_` example below).
 
  * You can use `{ggplot2}` themes from extension packages (e.g. `ggthemes`).
 
@@ -79,28 +79,25 @@ of even `ggtheme` themes.
 You can pass:
 
  * A single character string such as `xlab = "Continent"` or numeric such as
-   `nboot = 25` in which case it will be reused/recycled as many times as
-   needed.
+   `conf.level = 0.99` in which case it will be reused/recycled as many times
+   as needed.
 
- * A vector of values such as `nboot = c(50, 100, 200)` in which case it
-   will be coerced to a list and checked for the right class (in this case
-   integer) and the right quantity of entries in the vector i.e.,
-   `nboot = c(50, 100)` will fail if we're trying to make three plots.
+ * A vector of values such as `conf.level = c(0.90, 0.95, 0.99)` in which case
+   each plot gets the corresponding element. All inputs must have either length
+   1 or the same length as the number of plots, i.e., `conf.level = c(0.90,
+   0.95)` will fail if we're trying to make three plots.
 
  * A list; either named `data = year_list` or created as you go
-   `palette = list("Dark2", "Set1")`. Any list will
-   be checked for the right class (in this case character) and the right
-   quantity of entries in the list.
+   `palette = list("RColorBrewer::Dark2", "RColorBrewer::Set1")`. Use a list
+   when each element is itself a vector or a list (e.g., `cor.vars` or `*.args`
+   arguments).
 
 ## `ggbetweenstats`
 
-Let's start with `ggebtweenstats`. We'll use the `gapminder` dataset. We'll make
+Let's start with `ggbetweenstats`. We'll use the `gapminder` dataset. We'll make
 a 3 item `list` called `year_list` using `dplyr::filter` and `split`.
 
 ```r
-
-
-
 ## let's split the data frame and create a list by years of interest
 year_list <- gapminder::gapminder |>
   dplyr::filter(year %in% c(1967, 1987, 2007), continent != "Oceania") |>
@@ -141,13 +138,7 @@ plot_list <- purrr::pmap(
     p.adjust.method = list("hommel", "bonferroni", "BH"),
     conf.level = list(0.99, 0.95, 0.90),
     digits = list(1, 2, 3),
-    effsize.type = list(
-      NULL,
-      "partial_omega",
-      "partial_eta"
-    ),
-    package = list("nord", "ochRe", "awtools"),
-    palette = list("aurora", "parliament", "bpalette"),
+    palette = list("nord::aurora", "ochRe::parliament", "awtools::bpalette"),
     ggtheme = list(
       ggthemes::theme_stata(),
       ggplot2::theme_classic(),
@@ -174,16 +165,20 @@ combine_plots(
 
 ## `ggwithinstats`
 
-We will be using simulated data from then Attention Network Test provided in ANT
-dataset in `ez` package.
+We will be using simulated data from the Attention Network Test provided in ANT
+dataset in `ez` package. Since within-subjects tests require exactly one
+observation per subject per condition, we first average response times across
+trials.
 
 ```r
-
 library(ez)
 data("ANT") ## loading data from `ez` package
 
-## let's split the data frame and create a list by years of interest
-cue_list <- ANT |> (\(d) split(d, f = d$cue, drop = TRUE))()
+## average response times for each subject in each condition and
+## split the data frame by type of cue
+cue_list <- ANT |>
+  dplyr::summarise(rt = mean(rt, na.rm = TRUE), .by = c(subnum, cue, flank)) |>
+  (\(d) split(d, f = d$cue, drop = TRUE))()
 
 ## checking the length of the list and the names of each element
 length(cue_list)
@@ -194,6 +189,7 @@ plot_list <- purrr::pmap(
     data = cue_list,
     x = "flank",
     y = "rt",
+    subject.id = "subnum",
     xlab = "Flank",
     ylab = "Response time",
     title = list(
@@ -207,17 +203,15 @@ plot_list <- purrr::pmap(
     p.adjust.method = list("fdr", "hommel", "bonferroni", "BH"),
     conf.level = list(0.99, 0.99, 0.95, 0.90),
     digits = list(3, 2, 2, 3),
-    effsize.type = list(
-      "omega",
-      "eta",
-      "partial_omega",
-      "partial_eta"
+    palette = list(
+      "ggsci::lanonc_lancet",
+      "palettetown::venomoth",
+      "palettetown::blastoise",
+      "wesanderson::GrandBudapest1"
     ),
-    package = list("ggsci", "palettetown", "palettetown", "wesanderson"),
-    palette = list("lanonc_lancet", "venomoth", "blastoise", "GrandBudapest1"),
     ggtheme = list(
       ggplot2::theme_linedraw(),
-      hrbrthemes::theme_ft_rc(),
+      ggthemes::theme_few(),
       ggthemes::theme_solarized(),
       ggthemes::theme_gdocs()
     )
@@ -331,7 +325,6 @@ plot_list <- purrr::pmap(
     partial = list(TRUE, FALSE, TRUE, FALSE),
     title = list("Cut: Good", "Cut: Very Good", "Cut: Premium", "Cut: Ideal"),
     p.adjust.method = list("hommel", "fdr", "BY", "hochberg"),
-    lab.size = 3.5,
     colors = list(
       c("#56B4E9", "white", "#999999"),
       c("#CC79A7", "white", "#F0E442"),
@@ -393,12 +386,11 @@ plot_list <-
         "Continent: Asia",
         "Continent: Europe"
       ),
-      effsize.type = list("d", "d", "g", "g"),
       ggtheme = list(
         ggplot2::theme_classic(),
-        hrbrthemes::theme_ipsum_tw(),
+        ggplot2::theme_bw(),
         ggplot2::theme_minimal(),
-        hrbrthemes::theme_modern_rc()
+        ggthemes::theme_clean()
       )
     ),
     .f = gghistostats
@@ -408,8 +400,8 @@ plot_list <-
 combine_plots(
   plotlist = plot_list,
   annotation.args = list(
-    title = "Improvement in life expectancy worldwide since 1950",
-    caption = "Note: black line - 1950; blue line - 2007"
+    title = "Life expectancy in 2007 compared to 1952 continental averages",
+    caption = "Test values: average life expectancy in each continent in 1952"
   ),
   plotgrid.args = list(nrow = 4)
 )
@@ -418,9 +410,6 @@ combine_plots(
 ## `ggdotplotstats`
 
 ```r
-library(ggthemes)
-library(hrbrthemes)
-
 ## let's split the data frame and create a list by continent
 ## let's leave out Oceania because it has just two data points
 continent_list <-
@@ -450,7 +439,6 @@ plot_list <-
         "Continent: Asia",
         "Continent: Europe"
       ),
-      effsize.type = list("d", "d", "g", "g"),
       centrality.line.args = list(
         list(color = "red"),
         list(color = "#0072B2"),
@@ -460,8 +448,8 @@ plot_list <-
       ggtheme = list(
         ggplot2::theme_minimal(base_family = "serif"),
         ggthemes::theme_tufte(),
-        hrbrthemes::theme_ipsum_rc(axis_title_size = 10),
-        ggthemes::theme_hc(bgcolor = "darkunica")
+        ggthemes::theme_calc(),
+        ggthemes::theme_hc(style = "darkunica")
       )
     ),
     .f = ggdotplotstats
@@ -500,16 +488,20 @@ plot_list <-
         "Passenger class: 1st",
         "Passenger class: 2nd",
         "Passenger class: 3rd",
-        "Passenger class: Crew"
+        "Crew"
       ),
       caption = list(
-        "Total: 319, Died: 120, Survived: 199, % Survived: 62%",
-        "Total: 272, Died: 155, Survived: 117, % Survived: 43%",
-        "Total: 709, Died: 537, Survived: 172, % Survived: 25%",
-        "Data not available for crew passengers"
+        "Total: 325, Died: 122, Survived: 203, % Survived: 62%",
+        "Total: 285, Died: 167, Survived: 118, % Survived: 41%",
+        "Total: 706, Died: 528, Survived: 178, % Survived: 25%",
+        "Total: 885, Died: 673, Survived: 212, % Survived: 24%"
       ),
-      package = list("RColorBrewer", "ghibli", "palettetown", "yarrr"),
-      palette = list("Accent", "MarnieMedium1", "pikachu", "nemo"),
+      palette = list(
+        "RColorBrewer::Accent",
+        "ghibli::MarnieMedium1",
+        "palettetown::pikachu",
+        "yarrr::nemo"
+      ),
       ggtheme = list(
         ggplot2::theme_grey(),
         ggplot2::theme_bw(),
@@ -556,16 +548,20 @@ plot_list <-
         "Passenger class: 1st",
         "Passenger class: 2nd",
         "Passenger class: 3rd",
-        "Passenger class: Crew"
+        "Crew"
       ),
       caption = list(
-        "Total: 319, Died: 120, Survived: 199, % Survived: 62%",
-        "Total: 272, Died: 155, Survived: 117, % Survived: 43%",
-        "Total: 709, Died: 537, Survived: 172, % Survived: 25%",
-        "Data not available for crew passengers"
+        "Total: 325, Died: 122, Survived: 203, % Survived: 62%",
+        "Total: 285, Died: 167, Survived: 118, % Survived: 41%",
+        "Total: 706, Died: 528, Survived: 178, % Survived: 25%",
+        "Total: 885, Died: 673, Survived: 212, % Survived: 24%"
       ),
-      package = list("RColorBrewer", "ghibli", "palettetown", "yarrr"),
-      palette = list("Accent", "MarnieMedium1", "pikachu", "nemo"),
+      palette = list(
+        "RColorBrewer::Accent",
+        "ghibli::MarnieMedium1",
+        "palettetown::pikachu",
+        "yarrr::nemo"
+      ),
       ggtheme = list(
         ggplot2::theme_grey(),
         ggplot2::theme_bw(),
@@ -579,10 +575,7 @@ plot_list <-
 ## combining all individual plots from the list into a single plot using combine_plots function
 combine_plots(
   plotlist = plot_list,
-  annotation.args = list(
-    title = "Survival in Titanic disaster by gender for all passenger classes",
-    caption = "Asterisks denote results from proportion tests: \n***: p < 0.001, ns: non-significant"
-  ),
+  annotation.args = list(title = "Survival in Titanic disaster by gender for all passenger classes"),
   plotgrid.args = list(ncol = 1),
   guides = "keep"
 )
@@ -619,7 +612,6 @@ length(plotlist)
 ## Repeating function execution across multiple columns in a data frame
 
 ```r
-
 library(patchwork)
 
 ## running the same analysis on two different columns (creates a list of plots)

@@ -16,8 +16,25 @@ extract_caption(p)
 \item{p}{A plot from \code{{ggstatsplot}} package}
 }
 \value{
-A list of tibbles containing summaries of various statistical analyses.
-The exact details included will depend on the function.
+For \code{extract_stats()}, a list with the following elements, each either a
+data frame or \code{NULL} if not relevant for the given plot:
+\itemize{
+\item \code{subtitle_data}: results of the test displayed in the subtitle
+\item \code{caption_data}: results of the test displayed in the caption (typically,
+the Bayesian test)
+\item \code{pairwise_comparisons_data}: results of pairwise comparisons
+\item \code{descriptive_data}: counts and percentages (\code{ggpiestats()} and
+\code{ggbarstats()})
+\item \code{one_sample_data}: proportion tests for each level of \code{y}
+(\code{ggpiestats()} and \code{ggbarstats()})
+\item \code{tidy_data}: tidy model parameters (\code{ggcoefstats()})
+\item \code{glance_data}: model performance indices (\code{ggcoefstats()})
+}
+
+For \code{extract_subtitle()} and \code{extract_caption()}, the expression displayed
+in the subtitle or caption, respectively (or \code{NULL}).
+
+For plots from \verb{grouped_*} functions, a list with one such element per plot.
 }
 \description{
 Extracting data frames or expressions from \code{{ggstatsplot}} plots
@@ -31,10 +48,10 @@ analysis is carried out by the \code{{statsExpressions}}
 are using these functions only to extract data frames, you are better off
 using that package.
 
-The only exception is the \code{ggcorrmat()} function. But, if a data frame is
-what you want, you shouldn't be using \code{ggcorrmat()} anyway. You can use
-\code{\link[correlation:correlation]{correlation::correlation()}} function which provides tidy data frames by
-default.
+The only exception is the \code{ggcorrmat()} function, for which all elements
+are \code{NULL}. But, if a data frame is what you want, you shouldn't be using
+\code{ggcorrmat()} anyway. You can use \code{\link[correlation:correlation]{correlation::correlation()}} function
+which provides tidy data frames by default.
 }
 \examples{
 \dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}

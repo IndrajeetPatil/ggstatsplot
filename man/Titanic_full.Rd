@@ -3,7 +3,7 @@
 \docType{data}
 \name{Titanic_full}
 \alias{Titanic_full}
-\title{Titanic dataset.}
+\title{Titanic dataset}
 \format{
 A data frame with 2201 rows and 5 variables
 \itemize{
@@ -18,7 +18,7 @@ A data frame with 2201 rows and 5 variables
 Titanic_full
 }
 \description{
-Titanic dataset.
+Titanic dataset
 }
 \details{
 This data set provides information on the fate of passengers on the

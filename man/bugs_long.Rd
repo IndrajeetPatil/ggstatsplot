@@ -3,7 +3,7 @@
 \docType{data}
 \name{bugs_long}
 \alias{bugs_long}
-\title{Tidy version of the "Bugs" dataset.}
+\title{Tidy version of the "Bugs" dataset}
 \format{
 A data frame with 372 rows and 6 variables
 \itemize{
@@ -12,10 +12,10 @@ A data frame with 372 rows and 6 variables
 \item region. Region of the world the participant was from.
 \item education. Level of education.
 \item condition. Condition of the experiment the participant gave rating
-for (\strong{LDLF}: low freighteningness and low disgustingness; \strong{LFHD}: low
-freighteningness and high disgustingness; \strong{HFHD}: high freighteningness
-and low disgustingness; \strong{HFHD}: high freighteningness and high
-disgustingness).
+for (\strong{LDLF}: low disgustingness and low frighteningness; \strong{HDLF}: high
+disgustingness and low frighteningness; \strong{LDHF}: low disgustingness
+and high frighteningness; \strong{HDHF}: high disgustingness and high
+frighteningness).
 \item desire. The desire to kill an arthropod was indicated on a scale from 0 to 10.
 }
 }
@@ -23,13 +23,13 @@ disgustingness).
 bugs_long
 }
 \description{
-Tidy version of the "Bugs" dataset.
+Tidy version of the "Bugs" dataset
 }
 \details{
 This data set, "Bugs", provides the extent to which men and women
-want to kill arthropods that vary in freighteningness (low, high) and
+want to kill arthropods that vary in frighteningness (low, high) and
 disgustingness (low, high). Each participant rates their attitudes towards
-all anthropods. Subset of the data reported by Ryan et al. (2013).
+all arthropods. Subset of the data reported by Ryan et al. (2013).
 }
 \examples{
 dim(bugs_long)

@@ -1,3 +1,11 @@
+# ggstatsplot 1.1.1.9000
+
+## BUG FIXES
+
+- `ggbetweenstats()` and `ggwithinstats()` no longer discard a user-supplied
+  `caption` when no Bayes Factor caption is displayed (e.g., for
+  non-parametric tests or with `bf.message = FALSE`).
+
 # ggstatsplot 1.1.1
 
 ## MINOR CHANGES

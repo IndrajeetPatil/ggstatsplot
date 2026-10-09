@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggdotplotstats.R
 \name{ggdotplotstats}
 \alias{ggdotplotstats}
-\title{Dot plot/chart for labeled numeric data.}
+\title{Dot plot/chart for labeled numeric data}
 \usage{
 ggdotplotstats(
   data,
@@ -41,7 +41,11 @@ ungrouped before they are entered as \code{data}.}
 
 \item{x}{A numeric variable from the data frame \code{data}.}
 
-\item{y}{Label or grouping variable.}
+\item{y}{Label or grouping variable. Each level of \code{y} is shown as a single
+dot: if a level has several rows, \code{x} is summarized using the centrality
+measure for the chosen \code{type} (see above), and the one-sample test is then
+carried out on these per-level summaries (i.e., the sample size is the
+number of levels of \code{y}).}
 
 \item{xlab}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
@@ -54,8 +58,8 @@ variable name for \code{y} will be used.}
 \item{subtitle}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
 
-\item{caption}{The text for the plot caption. This argument is relevant only
-if \code{bf.message = FALSE}.}
+\item{caption}{The text for the plot caption. It will be replaced by the
+Bayes Factor caption whenever that is displayed (see \code{bf.message}).}
 
 \item{type}{A character specifying the type of statistical approach:
 \itemize{
@@ -112,8 +116,8 @@ the plot will be returned.}
 the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
 
 \item{errorbar.args}{Additional arguments that will be passed to
-\code{geom_errorbar()} geom. Please see documentation for that function
-to know more about these arguments.}
+\code{\link[ggplot2:geom_errorbar]{ggplot2::geom_errorbar()}} geom. Please see documentation for that
+function to know more about these arguments.}
 
 \item{centrality.plotting}{Logical that decides whether centrality tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
@@ -126,7 +130,7 @@ Function decides which central tendency measure to show depending on the
 \item \strong{MAP estimator} for Bayesian statistics
 }
 
-If you want default centrality parameter, you can specify this using
+If you want a different centrality parameter, you can specify this using
 \code{centrality.type} argument.}
 
 \item{centrality.type}{Decides which centrality parameter is to be displayed.
@@ -135,14 +139,14 @@ to be:
 \itemize{
 \item \code{"parametric"} (for \strong{mean})
 \item \code{"nonparametric"} (for \strong{median})
-\item \code{robust} (for \strong{trimmed mean})
-\item \code{bayes} (for \strong{MAP estimator})
+\item \code{"robust"} (for \strong{trimmed mean})
+\item \code{"bayes"} (for \strong{MAP estimator})
 }
 
 Just as \code{type} argument, abbreviations are also accepted.}
 
 \item{centrality.line.args}{A list of additional aesthetic arguments to be
-passed to the \code{\link[ggplot2:geom_line]{ggplot2::geom_line()}} used to display the lines
+passed to the \code{\link[ggplot2:geom_vline]{ggplot2::geom_vline()}} used to display the lines
 corresponding to the centrality parameter.}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
@@ -163,6 +167,11 @@ thus the details as well.}
 
 \item{...}{Currently ignored.}
 }
+\value{
+A \code{ggplot} object, which can be further modified with \code{{ggplot2}}
+functions. Use \code{\link[=extract_stats]{extract_stats()}} to get the statistical details shown in
+the plot as data frames.
+}
 \description{
 A dot chart (as described by William S. Cleveland) with statistical details
 from one-sample test.
@@ -177,14 +186,17 @@ the type of statistics selected:
 }
 }
 \details{
+Rows with a missing value in either \code{x} or \code{y} are removed before
+plotting and analysis.
+
 For details, see:
 \url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html}
 }
 \section{Summary of graphics}{
 \tabular{lll}{
    graphical element \tab \code{geom} used \tab argument for further modification \cr
-   raw data \tab \code{ggplot2::geom_point()} \tab \code{point.args} \cr
-   error bars \tab \code{ggplot2::geom_errorbarh()} \tab \code{errorbar.args} \cr
+   point estimates \tab \code{ggplot2::geom_point()} \tab \code{point.args} \cr
+   error bars \tab \code{ggplot2::geom_errorbar()} \tab \code{errorbar.args} \cr
    centrality measure line \tab \code{ggplot2::geom_vline()} \tab \code{centrality.line.args} \cr
 }
 }

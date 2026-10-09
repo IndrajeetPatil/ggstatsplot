@@ -85,14 +85,22 @@ hours working on this package rather than what I was paid to do. 😁
 
 ## Documentation and Examples
 
-To see the detailed documentation for each function in the stable
-**CRAN** version of the package, see:
+In addition to the examples below, see:
+
+- [Function
+  reference](https://www.indrapatil.com/ggstatsplot/reference/)
+
+- [Articles](https://www.indrapatil.com/ggstatsplot/articles/)
 
 - [Publication](https://joss.theoj.org/papers/10.21105/joss.03167)
 
-- [Presentation](https://www.indrapatil.com/intro-to-ggstatsplot/#/ggstatsplot-informative-statistical-visualizations)
+- [Presentation](https://www.indrapatil.com/intro-to-ggstatsplot/)
 
-- [Vignettes](https://www.indrapatil.com/ggstatsplot/articles/)
+## Getting help
+
+If you find a bug, have a question, or want to suggest a feature, please
+file an issue on GitHub:
+<https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 ## Summary of available plots
 
@@ -109,8 +117,9 @@ To see the detailed documentation for each function in the stable
 | `ggcoefstats()` | **dot-and-whisker plots** | for regression models and meta-analysis |
 
 In addition to these basic plots, `{ggstatsplot}` also provides
-**`grouped_`** versions (see below) that makes it easy to repeat the
-same analysis for any grouping variable.
+**`grouped_`** versions of all of these functions except `ggcoefstats()`
+(see below) that make it easy to repeat the same analysis for any
+grouping variable.
 
 ## Summary of types of statistical analyses
 
@@ -122,23 +131,12 @@ supported in this package-
 | `ggbetweenstats()` | Between group/condition comparisons | ✅ | ✅ | ✅ | ✅ |
 | `ggwithinstats()` | Within group/condition comparisons | ✅ | ✅ | ✅ | ✅ |
 | `gghistostats()`, `ggdotplotstats()` | Distribution of a numeric variable | ✅ | ✅ | ✅ | ✅ |
-| `ggcorrmat` | Correlation matrix | ✅ | ✅ | ✅ | ✅ |
+| `ggcorrmat()` | Correlation matrix | ✅ | ✅ | ✅ | ✅ |
 | `ggscatterstats()` | Correlation between two variables | ✅ | ✅ | ✅ | ✅ |
 | `ggpiestats()`, `ggbarstats()` | Association between categorical variables | ✅ | ✅ | ❌ | ✅ |
 | `ggpiestats()`, `ggbarstats()` | Equal proportions for categorical variable levels | ✅ | ✅ | ❌ | ✅ |
 | `ggcoefstats()` | Regression model coefficients | ✅ | ✅ | ✅ | ✅ |
 | `ggcoefstats()` | Random-effects meta-analysis | ✅ | ❌ | ✅ | ✅ |
-
-Summary of Bayesian analysis
-
-| Analysis                     | Hypothesis testing | Estimation |
-|:-----------------------------|:-------------------|:-----------|
-| (one/two-sample) *t*-test    | ✅                 | ✅         |
-| one-way ANOVA                | ✅                 | ✅         |
-| correlation                  | ✅                 | ✅         |
-| (unpaired) contingency table | ✅                 | ✅         |
-| (paired) contingency table   | ✅                 | ❌         |
-| random-effects meta-analysis | ✅                 | ✅         |
 
 ## Statistical reporting
 
@@ -152,8 +150,10 @@ example, here are results from Yuen’s test for trimmed means (robust
 ## Summary of statistical tests and effect sizes
 
 Statistical analysis is carried out by `{statsExpressions}` package, and
-thus a summary table of all the statistical tests currently supported
-across various functions can be found in article for that package:
+thus a summary table of all the statistical tests and effect sizes
+currently supported across various functions (including which Bayesian
+analyses support hypothesis testing and estimation) can be found in an
+article for that package:
 <https://www.indrapatil.com/statsExpressions/articles/stats_details.html>
 
 ## Primary functions
@@ -269,7 +269,7 @@ grouped_ggwithinstats(
   subject.id      = subject,
   type            = "np",
   xlab            = "Condition",
-  ylab            = "Desire to kill an artrhopod",
+  ylab            = "Desire to kill an arthropod",
   grouping.var    = region
 )
 ```
@@ -367,9 +367,9 @@ ggdotplotstats(
 inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian
 hypothesis-testing <br> ✅ Bayesian estimation <br>
 
-As with the rest of the functions in this package, there is also a
-`grouped_` variant of this function to facilitate looping the same
-operation for all levels of a single grouping variable.
+As with most other functions in this package, there is also a `grouped_`
+variant of this function to facilitate looping the same operation for
+all levels of a single grouping variable.
 
 ``` r
 set.seed(123)
@@ -453,9 +453,9 @@ documentation:
 For more, also read the following vignette:
 <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html>
 
-### `ggcorrmat`
+### `ggcorrmat()`
 
-`ggcorrmat` makes a correlalogram (a matrix of correlation coefficients)
+`ggcorrmat()` makes a correlogram (a matrix of correlation coefficients)
 with minimal amount of code. Just sticking to the defaults itself
 produces publication-ready correlation matrices. But, for the sake of
 exploring the available options, let’s change some of the defaults. For
@@ -469,7 +469,7 @@ set.seed(123)
 ggcorrmat(
   data     = ggplot2::msleep,
   colors   = c("#B2182B", "white", "#4D4D4D"),
-  title    = "Correlalogram for mammals sleep dataset",
+  title    = "Correlogram for mammals sleep dataset",
   subtitle = "sleep units: hours; weight units: kilograms"
 )
 ```
@@ -481,8 +481,8 @@ ggcorrmat(
 ✅ effect size + significance<br> ✅ careful handling of `NA`s
 
 If there are `NA`s present in the selected variables, the legend will
-display minimum, median, and maximum number of pairs used for
-correlation tests.
+display minimum, mode, and maximum number of pairs used for correlation
+tests.
 
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable:
@@ -782,8 +782,8 @@ ggplot(morley, aes(x = as.factor(Expt), y = Speed)) +
   labs(
     title = "Michelson-Morley experiments",
     subtitle = stats_results,
-    x = "Speed of light",
-    y = "Experiment number"
+    x = "Experiment number",
+    y = "Speed of light"
   )
 ```
 

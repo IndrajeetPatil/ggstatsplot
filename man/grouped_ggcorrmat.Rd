@@ -19,22 +19,25 @@ grouped_ggcorrmat(
 \item{...}{
   Arguments passed on to \code{\link{ggcorrmat}}
   \describe{
-    \item{\code{cor.vars}}{List of variables for which the correlation matrix is to be
-computed and visualized. If \code{NULL} (default), all numeric variables from
-\code{data} will be used.}
+    \item{\code{cor.vars}}{Variables for which the correlation matrix is to be computed
+and visualized, specified using \code{{tidyselect}} syntax (e.g.,
+\code{c(var1, var2)} or \code{starts_with("Sepal")}). If \code{NULL} (default), all
+numeric variables from \code{data} will be used.}
     \item{\code{cor.vars.names}}{Optional list of names to be used for \code{cor.vars}. The
 names should be entered in the same order.}
     \item{\code{partial}}{Can be \code{TRUE} for partial correlations. For Bayesian partial
 correlations, "full" instead of pseudo-Bayesian partial correlations (i.e.,
 Bayesian correlation based on frequentist partialization) are returned.}
     \item{\code{matrix.type}}{Character, \code{"upper"} (default), \code{"lower"}, or \code{"full"},
-display full matrix, lower triangular or upper triangular matrix.}
-    \item{\code{sig.level}}{Significance level (Default: \code{0.05}). If the \emph{p}-value in
-\emph{p}-value matrix is bigger than \code{sig.level}, then the corresponding
-correlation coefficient is regarded as insignificant and flagged as such in
-the plot.}
+to display the upper triangular, lower triangular, or full matrix,
+respectively.}
+    \item{\code{sig.level}}{Significance level (Default: \code{0.05}). If the (adjusted; see
+\code{p.adjust.method}) \emph{p}-value is bigger than \code{sig.level}, then the
+corresponding correlation coefficient is regarded as insignificant and
+flagged as such in the plot. Ignored for \code{type = "bayes"}.}
     \item{\code{pch}}{Decides the point shape to be used for insignificant correlation
-coefficients (only valid when \code{insig = "pch"}). Default: \code{pch = "cross"}.}
+coefficients. Default: \code{pch = "cross"}. The caption explaining the
+insignificance marker is added only for \code{pch = "cross"} (or \code{4}).}
     \item{\code{colors}}{A character vector of exactly three colors for the gradient:
 low (negative correlations), mid (zero), and high (positive correlations).
 Must be a \strong{diverging} palette so that the sign of the correlation is
@@ -43,8 +46,11 @@ Default: \code{c("#EA4335", "white", "#4285F4")} (red–white–blue).}
     \item{\code{ggcorrplot.args}}{A list of additional (mostly aesthetic) arguments that
 will be passed to \code{\link[ggcorrplot:ggcorrplot]{ggcorrplot::ggcorrplot()}} function. The list should
 avoid any of the following arguments since they are already internally
-being used: \code{corr}, \code{method}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors},
+being used: \code{corr}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors}, \code{type},
 \code{lab}, \code{pch}, \code{legend.title}, \code{digits}.}
+    \item{\code{subtitle}}{The text for the plot subtitle.}
+    \item{\code{caption}}{The text for the plot caption. If the insignificance marker
+caption is shown (see \code{pch}), this text is displayed above it.}
     \item{\code{type}}{A character specifying the type of statistical approach:
 \itemize{
 \item \code{"parametric"}
@@ -75,10 +81,6 @@ value corresponds to scale for fixed effects.}
     \item{\code{p.adjust.method}}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
-    \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
-\code{results.subtitle = FALSE}.}
-    \item{\code{caption}}{The text for the plot caption. This argument is relevant only
-if \code{bf.message = FALSE}.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
@@ -95,7 +97,10 @@ label on the secondary Y-axis. Some themes (e.g.
 thus the details as well.}
   }}
 
-\item{grouping.var}{A single grouping variable.}
+\item{grouping.var}{A single grouping variable. A separate plot is created
+for each of its levels (in factor level order, or in order of appearance
+for character variables). Rows with a missing value in this variable are
+removed.}
 
 \item{plotgrid.args}{A \code{list} of additional arguments passed to
 \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}, except for \code{guides} argument which is already
@@ -104,12 +109,21 @@ separately specified here.}
 \item{annotation.args}{A \code{list} of additional arguments passed to
 \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 }
+\value{
+A \code{patchwork} object combining one plot per level of
+\code{grouping.var} (see \code{\link[=combine_plots]{combine_plots()}}).
+}
 \description{
 Helper function for \code{ggstatsplot::ggcorrmat()} to apply this function across
 multiple levels of a given factor and combining the resulting plots using
 \code{ggstatsplot::combine_plots()}.
 }
 \details{
+Missing values are handled using pairwise deletion (each
+correlation uses all complete pairs of observations), in which case the
+legend shows the minimum, mode, and maximum sample size across pairs.
+Partial correlations use only complete cases.
+
 For details, see:
 \url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html}
 }

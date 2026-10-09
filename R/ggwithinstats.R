@@ -7,6 +7,9 @@
 #' for within-subjects designs with statistical details included in the plot as
 #' a subtitle.
 #'
+#' The data must be in *long* format: one row per subject per level of `x`
+#' (see [`bugs_long`] for an example).
+#'
 #' @section Summary of graphics:
 #'
 #' ```{r child="man/rmd-fragments/ggwithinstats_graphics.Rmd"}
@@ -43,6 +46,8 @@
 #'  \code{\link{grouped_ggwithinstats}}
 #'
 #' @autoglobal
+#'
+#' @inherit ggbetweenstats return
 #'
 #' @details For details, see:
 #' <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggwithinstats.html>
@@ -205,7 +210,7 @@ ggwithinstats <- function(
       subject.id = subject.id
     )
     subtitle <- stats_output$subtitle
-    caption <- stats_output$caption
+    caption <- stats_output$caption %||% caption
     subtitle_df <- stats_output$subtitle_df
     caption_df <- stats_output$caption_df
   }
@@ -272,7 +277,7 @@ ggwithinstats <- function(
 
 
 #' @title Violin plots for group or condition comparisons in within-subjects
-#'   designs repeated across all levels of a grouping variable.
+#'   designs repeated across all levels of a grouping variable
 #' @name grouped_ggwithinstats
 #'
 #' @description
@@ -288,7 +293,8 @@ ggwithinstats <- function(
 #'
 #' @autoglobal
 #'
-#' @inherit ggwithinstats return references
+#' @inherit ggwithinstats references
+#' @inherit grouped_ggbetweenstats return
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("afex", quietly = TRUE)
 #' # for reproducibility

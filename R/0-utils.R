@@ -61,7 +61,10 @@ utils::globalVariables(".pre")
 #' equal to the factor levels of the grouping variable.
 #'
 #' @inheritParams ggbetweenstats
-#' @param grouping.var A single grouping variable.
+#' @param grouping.var A single grouping variable. A separate plot is created
+#'   for each of its levels (in factor level order, or in order of appearance
+#'   for character variables). Rows with a missing value in this variable are
+#'   removed.
 #'
 #' @autoglobal
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")

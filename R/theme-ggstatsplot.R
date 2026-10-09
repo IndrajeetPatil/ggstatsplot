@@ -9,7 +9,7 @@
 #' All `{ggstatsplot}` functions have a `ggtheme` parameter that let you choose
 #' a different theme.
 #'
-#' @returns A `ggplot` object.
+#' @returns A `{ggplot2}` theme object.
 #'
 #' @examples
 #' library(ggplot2)

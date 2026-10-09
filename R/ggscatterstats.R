@@ -19,17 +19,17 @@
 #'   While using this argument with [`purrr::pmap()`], you will have to provide
 #'   a quoted expression  (e.g. `quote(y < 4 & z < 20)`).
 #' @param point.label.args A list of additional aesthetic arguments to be passed
-#'   to [`ggrepel::geom_label_repel()`]geom used to display the labels.
+#'   to [`ggrepel::geom_label_repel()`] geom used to display the labels.
 #' @param smooth.line.args A list of additional aesthetic arguments to be passed
-#'   to `geom_smooth` geom used to display the regression line.
+#'   to [`ggplot2::geom_smooth()`] geom used to display the regression line. Its
+#'   confidence band uses `conf.level`.
 #' @param marginal Decides whether marginal distributions will be plotted on
-#'   axes using `{ggside}` functions. The default is `TRUE`. The package
-#'   `{ggside}` must already be installed by the user.
+#'   axes using `{ggside}` functions. The default is `TRUE`.
 #' @param point.width.jitter,point.height.jitter Degree of jitter in `x` and `y`
 #'   direction, respectively. Defaults to `0` (0%) of the resolution of the
 #'   data. Note that the jitter should not be specified in the `point.args`
 #'   because this information will be passed to two different `geom`s: one
-#'   displaying the **points** and the other displaying the ***labels** for
+#'   displaying the **points** and the other displaying the **labels** for
 #'   these points.
 #' @param xsidehistogram.args,ysidehistogram.args A list of arguments passed to
 #'   respective `geom_`s from the `{ggside}` package to change the marginal
@@ -40,7 +40,6 @@
 #'   scale of marginal histograms (e.g., `breaks`, `limits`, `transform`).
 #'   Default is `list()` (no modifications).
 #' @inheritParams statsExpressions::corr_test
-#' @inheritParams theme_ggstatsplot
 #' @inheritParams ggbetweenstats
 #' @inheritParams gghistostats
 #'
@@ -51,7 +50,12 @@
 #'
 #' @autoglobal
 #'
-#' @details For details, see:
+#' @inherit ggbetweenstats return
+#'
+#' @details Rows with a missing value in either `x` or `y` are removed before
+#'   plotting and analysis.
+#'
+#' For details, see:
 #' <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html>
 #'
 #' @note
@@ -254,8 +258,8 @@ ggscatterstats <- function(
 #'
 #' @autoglobal
 #'
-#' @inherit ggscatterstats return references
-#' @inherit ggscatterstats return details
+#' @inherit ggscatterstats references details
+#' @inherit grouped_ggbetweenstats return
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # to ensure reproducibility

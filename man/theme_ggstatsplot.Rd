@@ -7,7 +7,7 @@
 theme_ggstatsplot()
 }
 \value{
-A \code{ggplot} object.
+A \code{{ggplot2}} theme object.
 }
 \description{
 Common theme used across all plots generated in \code{{ggstatsplot}} and \emph{assumed}

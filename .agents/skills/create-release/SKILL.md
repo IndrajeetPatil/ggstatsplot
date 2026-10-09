@@ -29,27 +29,23 @@ then publish the GitHub Release from `main` only after CRAN acceptance.
 1. Review commits and merged pull requests since the latest CRAN release and
    the existing development section in `NEWS.md`. Do not invent changes.
 2. Synchronize the target version in `DESCRIPTION`, the first `NEWS.md`
-   heading, and `codemeta.json`; remove any development `.9000` suffix.
-3. Keep NEWS concise and user-facing. Omit routine dependency, lint,
-   formatting, CI, and generated-file maintenance.
-4. Update `cran-comments.md` accurately. Mention a CRAN issue only when the
-   repository evidence supports it.
+   heading, and `codemeta.json`; remove any development `.9000` suffix. The
+   heading must be exactly `# ggstatsplot x.y.z`, because the release job
+   extracts the GitHub Release notes by matching that line.
+3. Keep NEWS concise and user-facing, following the `NEWS.md` policy in
+   `AGENTS.md`.
+4. Update `cran-comments.md` accurately, including the release type and
+   version. Mention a CRAN issue only when the repository evidence supports
+   it. Report reverse-dependency results only from an actual check against the
+   current CRAN reverse dependencies; otherwise drop that section.
 5. Do not refresh dependencies merely because this is a release.
-6. Run the complete release gate:
-
-   ```bash
-   air format . --check
-   make lint
-   make hooks
-   make check
-   git diff --check
-   ```
-
-7. Clean build artifacts, inspect the complete diff, commit the validated
-   release state, and push the release branch. Only then open or update a
-   ready-for-review pull request against `main`; its title must contain the
-   exact text `CRAN Release` and its body must describe the final net diff and
-   validation.
+6. Run the full validation gate from `AGENTS.md`.
+7. Clean build artifacts (`make clean`), inspect the complete diff, commit the
+   validated release state, and push the release branch. Only then open or
+   update a ready-for-review pull request against `main`; its title must
+   contain the exact text `CRAN Release x.y.z` (the `submit-cran` workflow
+   finds the merged pull request by that string) and its body must describe
+   the final net diff and validation.
 8. Wait for every required check to pass. Address, reply to, and resolve every
    actionable review thread. After each fix, rerun the affected validation,
    commit and push it, and re-fetch the live thread and check state.

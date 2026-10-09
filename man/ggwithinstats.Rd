@@ -87,16 +87,20 @@ Available options are:
 \item \code{"significant"} (abbreviation accepted: \code{"s"})
 \item \code{"non-significant"} (abbreviation accepted: \code{"ns"})
 \item \code{"all"}
+\item \code{"none"}
 }
 
 You can use this argument to make sure that your plot is not uber-cluttered
 when you have multiple groups being compared and scores of pairwise
-comparisons being displayed. If set to \code{"none"}, no pairwise comparisons
-will be displayed.}
+comparisons being displayed. Pairwise comparisons are carried out (and
+displayed) only when \code{x} has three or more levels. For \code{type = "bayes"},
+there are no \emph{p}-values, so all comparisons are displayed unless this is
+\code{"none"}.}
 
 \item{pairwise.alpha}{Numeric alpha threshold used to decide which pairwise
 comparisons are displayed when \code{pairwise.display = "significant"} or
-\code{pairwise.display = "non-significant"} (Default: \code{0.05}).}
+\code{pairwise.display = "non-significant"} (Default: \code{0.05}). It is compared
+against \emph{p}-values adjusted using \code{p.adjust.method}.}
 
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
@@ -123,8 +127,8 @@ variable name for \code{x} will be used.}
 \item{ylab}{Labels for \code{y} axis variable. If \code{NULL} (default),
 variable name for \code{y} will be used.}
 
-\item{caption}{The text for the plot caption. This argument is relevant only
-if \code{bf.message = FALSE}.}
+\item{caption}{The text for the plot caption. It will be replaced by the
+Bayes Factor caption whenever that is displayed (see \code{bf.message}).}
 
 \item{title}{The text for the plot title.}
 
@@ -162,7 +166,7 @@ Function decides which central tendency measure to show depending on the
 \item \strong{MAP estimator} for Bayesian statistics
 }
 
-If you want default centrality parameter, you can specify this using
+If you want a different centrality parameter, you can specify this using
 \code{centrality.type} argument.}
 
 \item{centrality.type}{Decides which centrality parameter is to be displayed.
@@ -171,15 +175,16 @@ to be:
 \itemize{
 \item \code{"parametric"} (for \strong{mean})
 \item \code{"nonparametric"} (for \strong{median})
-\item \code{robust} (for \strong{trimmed mean})
-\item \code{bayes} (for \strong{MAP estimator})
+\item \code{"robust"} (for \strong{trimmed mean})
+\item \code{"bayes"} (for \strong{MAP estimator})
 }
 
 Just as \code{type} argument, abbreviations are also accepted.}
 
 \item{centrality.point.args, centrality.label.args}{A list of additional aesthetic
 arguments to be passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} and
-\code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}} geoms, which are involved in mean plotting.}
+\code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}} geoms, which are involved in centrality
+plotting.}
 
 \item{centrality.path.args, point.path.args}{A list of additional aesthetic
 arguments passed on to \code{\link[ggplot2:geom_path]{ggplot2::geom_path()}} connecting raw data points
@@ -219,8 +224,8 @@ label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
 
-\item{palette}{Name of the palette in \code{"package::palette"} format to be used
-for coloring. Passed to \code{\link[paletteer:scale_color_paletteer_d]{paletteer::scale_color_paletteer_d()}}. Run
+\item{palette}{Name of the discrete palette in \code{"package::palette"} format
+to be used for coloring (via \code{{paletteer}}). Run
 \code{View(paletteer::palettes_d_names)} to see all available options.}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
@@ -230,10 +235,18 @@ be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} function
 
 \item{...}{Currently ignored.}
 }
+\value{
+A \code{ggplot} object, which can be further modified with \code{{ggplot2}}
+functions. Use \code{\link[=extract_stats]{extract_stats()}} to get the statistical details shown in
+the plot as data frames.
+}
 \description{
 A combination of box and violin plots along with raw (unjittered) data points
 for within-subjects designs with statistical details included in the plot as
 a subtitle.
+
+The data must be in \emph{long} format: one row per subject per level of \code{x}
+(see \code{\link{bugs_long}} for an example).
 }
 \details{
 For details, see:

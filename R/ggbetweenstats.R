@@ -24,14 +24,18 @@
 #'   - `"significant"` (abbreviation accepted: `"s"`)
 #'   - `"non-significant"` (abbreviation accepted: `"ns"`)
 #'   - `"all"`
+#'   - `"none"`
 #'
 #'   You can use this argument to make sure that your plot is not uber-cluttered
 #'   when you have multiple groups being compared and scores of pairwise
-#'   comparisons being displayed. If set to `"none"`, no pairwise comparisons
-#'   will be displayed.
+#'   comparisons being displayed. Pairwise comparisons are carried out (and
+#'   displayed) only when `x` has three or more levels. For `type = "bayes"`,
+#'   there are no *p*-values, so all comparisons are displayed unless this is
+#'   `"none"`.
 #' @param pairwise.alpha Numeric alpha threshold used to decide which pairwise
 #'   comparisons are displayed when `pairwise.display = "significant"` or
-#'   `pairwise.display = "non-significant"` (Default: `0.05`).
+#'   `pairwise.display = "non-significant"` (Default: `0.05`). It is compared
+#'   against *p*-values adjusted using `p.adjust.method`.
 #' @param bf.message Logical that decides whether to display Bayes Factor in
 #'   favor of the *null* hypothesis. This argument is relevant only **for
 #'   parametric test** (Default: `TRUE`).
@@ -41,8 +45,8 @@
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle. Will work only if
 #'   `results.subtitle = FALSE`.
-#' @param caption The text for the plot caption. This argument is relevant only
-#'   if `bf.message = FALSE`.
+#' @param caption The text for the plot caption. It will be replaced by the
+#'   Bayes Factor caption whenever that is displayed (see `bf.message`).
 #' @param centrality.plotting Logical that decides whether centrality tendency
 #'   measure is to be displayed as a point with a label (Default: `TRUE`).
 #'   Function decides which central tendency measure to show depending on the
@@ -52,15 +56,15 @@
 #'   - **trimmed mean** for robust statistics
 #'   - **MAP estimator** for Bayesian statistics
 #'
-#'   If you want default centrality parameter, you can specify this using
+#'   If you want a different centrality parameter, you can specify this using
 #'   `centrality.type` argument.
 #' @param centrality.type Decides which centrality parameter is to be displayed.
 #'   The default is to choose the same as `type` argument. You can specify this
 #'   to be:
 #'   - `"parametric"` (for **mean**)
 #'   - `"nonparametric"` (for **median**)
-#'   - `robust` (for **trimmed mean**)
-#'   - `bayes` (for **MAP estimator**)
+#'   - `"robust"` (for **trimmed mean**)
+#'   - `"bayes"` (for **MAP estimator**)
 #'
 #'   Just as `type` argument, abbreviations are also accepted.
 #' @param point.args A list of additional aesthetic arguments to be passed to
@@ -77,15 +81,15 @@
 #'   by `{ggstatsplot}`. This argument is primarily helpful for `grouped_`
 #'   variants of all primary functions. Default is `NULL`. The argument should
 #'   be entered as a `{ggplot2}` function or a list of `{ggplot2}` functions.
-#' @param palette Name of the palette in `"package::palette"` format to be used
-#'   for coloring. Passed to [paletteer::scale_color_paletteer_d()]. Run
+#' @param palette Name of the discrete palette in `"package::palette"` format
+#'   to be used for coloring (via `{paletteer}`). Run
 #'   `View(paletteer::palettes_d_names)` to see all available options.
 #' @param ... Currently ignored.
-#' @inheritParams theme_ggstatsplot
 #' @param centrality.point.args,centrality.label.args A list of additional aesthetic
 #'   arguments to be passed to [`ggplot2::geom_point()`] and
-#'   [`ggrepel::geom_label_repel()`] geoms, which are involved in mean plotting.
-#' @param  ggsignif.args A list of additional aesthetic
+#'   [`ggrepel::geom_label_repel()`] geoms, which are involved in centrality
+#'   plotting.
+#' @param ggsignif.args A list of additional aesthetic
 #'   arguments to be passed to [`ggsignif::geom_signif()`].
 #' @param ggtheme A `{ggplot2}` theme. Default value is
 #'   [`ggstatsplot::theme_ggstatsplot()`]. Any of the `{ggplot2}` themes (e.g.,
@@ -128,7 +132,14 @@
 #'
 #' @autoglobal
 #'
-#' @details For details, see:
+#' @returns A `ggplot` object, which can be further modified with `{ggplot2}`
+#'   functions. Use [`extract_stats()`] to get the statistical details shown in
+#'   the plot as data frames.
+#'
+#' @details Rows with a missing value in either `x` or `y` are removed before
+#'   plotting and analysis, and unused levels of `x` are dropped.
+#'
+#' For details, see:
 #' <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html>
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
@@ -248,7 +259,7 @@ ggbetweenstats <- function(
       paired = FALSE
     )
     subtitle <- stats_output$subtitle
-    caption <- stats_output$caption
+    caption <- stats_output$caption %||% caption
     subtitle_df <- stats_output$subtitle_df
     caption_df <- stats_output$caption_df
   }
@@ -296,7 +307,7 @@ ggbetweenstats <- function(
 
 
 #' @title Violin plots for group or condition comparisons in between-subjects
-#'   designs repeated across all levels of a grouping variable.
+#'   designs repeated across all levels of a grouping variable
 #' @name grouped_ggbetweenstats
 #'
 #' @description
@@ -315,7 +326,11 @@ ggbetweenstats <- function(
 #' @seealso \code{\link{ggbetweenstats}}, \code{\link{ggwithinstats}},
 #'  \code{\link{grouped_ggwithinstats}}
 #'
-#' @inherit ggbetweenstats return references
+#' @inherit ggbetweenstats references
+#'
+#' @returns A `patchwork` object combining one plot per level of
+#'   `grouping.var` (see [`combine_plots()`]). Applying [`extract_stats()`] to
+#'   it returns a list with the statistical details for each of these plots.
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility

@@ -29,17 +29,17 @@ determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).
 While using this argument with \code{\link[purrr:pmap]{purrr::pmap()}}, you will have to provide
 a quoted expression  (e.g. \code{quote(y < 4 & z < 20)}).}
     \item{\code{point.label.args}}{A list of additional aesthetic arguments to be passed
-to \code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}}geom used to display the labels.}
+to \code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}} geom used to display the labels.}
     \item{\code{smooth.line.args}}{A list of additional aesthetic arguments to be passed
-to \code{geom_smooth} geom used to display the regression line.}
+to \code{\link[ggplot2:geom_smooth]{ggplot2::geom_smooth()}} geom used to display the regression line. Its
+confidence band uses \code{conf.level}.}
     \item{\code{marginal}}{Decides whether marginal distributions will be plotted on
-axes using \code{{ggside}} functions. The default is \code{TRUE}. The package
-\code{{ggside}} must already be installed by the user.}
+axes using \code{{ggside}} functions. The default is \code{TRUE}.}
     \item{\code{point.width.jitter,point.height.jitter}}{Degree of jitter in \code{x} and \code{y}
 direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
 data. Note that the jitter should not be specified in the \code{point.args}
 because this information will be passed to two different \code{geom}s: one
-displaying the \strong{points} and the other displaying the *\strong{labels} for
+displaying the \strong{points} and the other displaying the \strong{labels} for
 these points.}
     \item{\code{xsidehistogram.args,ysidehistogram.args}}{A list of arguments passed to
 respective \code{geom_}s from the \code{{ggside}} package to change the marginal
@@ -92,8 +92,8 @@ to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, on
 the plot will be returned.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
-    \item{\code{caption}}{The text for the plot caption. This argument is relevant only
-if \code{bf.message = FALSE}.}
+    \item{\code{caption}}{The text for the plot caption. It will be replaced by the
+Bayes Factor caption whenever that is displayed (see \code{bf.message}).}
     \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to
 the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
@@ -112,7 +112,10 @@ label on the secondary Y-axis. Some themes (e.g.
 thus the details as well.}
   }}
 
-\item{grouping.var}{A single grouping variable.}
+\item{grouping.var}{A single grouping variable. A separate plot is created
+for each of its levels (in factor level order, or in order of appearance
+for character variables). Rows with a missing value in this variable are
+removed.}
 
 \item{plotgrid.args}{A \code{list} of additional arguments passed to
 \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}, except for \code{guides} argument which is already
@@ -121,11 +124,19 @@ separately specified here.}
 \item{annotation.args}{A \code{list} of additional arguments passed to
 \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 }
+\value{
+A \code{patchwork} object combining one plot per level of
+\code{grouping.var} (see \code{\link[=combine_plots]{combine_plots()}}). Applying \code{\link[=extract_stats]{extract_stats()}} to
+it returns a list with the statistical details for each of these plots.
+}
 \description{
 Grouped scatterplots from \code{{ggplot2}} combined with marginal distribution
 plots with statistical details added as a subtitle.
 }
 \details{
+Rows with a missing value in either \code{x} or \code{y} are removed before
+plotting and analysis.
+
 For details, see:
 \url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html}
 }
