@@ -50,7 +50,8 @@
     alternative = if (test == "t") alternative
   ))
 
-  .subtitle_caption(.f_switch(test), .f.args, type, bf.message)
+  .f <- if (test == "t") two_sample_test else oneway_anova
+  .subtitle_caption(.f, .f.args, type, bf.message)
 }
 
 
@@ -454,7 +455,3 @@
     # this is the hail mary way for users to override these defaults
     ggplot.component
 }
-
-#' @title Switch expression making function
-#' @noRd
-.f_switch <- function(test) ifelse(test == "t", two_sample_test, oneway_anova)
