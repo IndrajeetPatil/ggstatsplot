@@ -12,7 +12,10 @@ be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
 be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
 ungrouped before they are entered as \code{data}.}
 
-\item{grouping.var}{A single grouping variable.}
+\item{grouping.var}{A single grouping variable. A separate plot is created
+for each of its levels (in factor level order, or in order of appearance
+for character variables). Rows with a missing value in this variable are
+removed.}
 }
 \description{
 This function splits the data frame into a list, with the length of the list

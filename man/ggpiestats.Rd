@@ -39,15 +39,15 @@ be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
 be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
 ungrouped before they are entered as \code{data}.}
 
-\item{x}{The variable to use as the \strong{rows} in the contingency table. Please
-note that if there are empty factor levels in your variable, they will be
-dropped.}
+\item{x}{The variable to use as the \strong{rows} in the contingency table. Note
+that empty factor levels are \emph{not} dropped: they are shown in the legend
+and counted (with zero observations) in the statistical test. Use
+\code{\link[=droplevels]{droplevels()}} beforehand if this is not intended.}
 
 \item{y}{The variable to use as the \strong{columns} in the contingency table.
-Please note that if there are empty factor levels in your variable, they
-will be dropped. Default is \code{NULL}. If \code{NULL}, one-sample proportion test
-(a goodness of fit test) will be run for the \code{x} variable. Otherwise an
-appropriate association test will be run.}
+Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness of fit
+test) will be run for the \code{x} variable. Otherwise an appropriate
+association test will be run.}
 
 \item{counts}{The variable in data containing counts, or \code{NULL} if each row
 represents a single observation.}
@@ -74,10 +74,12 @@ on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
 
 \item{label.args}{Additional aesthetic arguments that will be passed to
-\code{\link[ggplot2:geom_label]{ggplot2::geom_label()}}.}
+\code{\link[ggplot2:geom_label]{ggplot2::geom_label()}} (or \code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}} if
+\code{label.repel = TRUE}).}
 
 \item{label.repel}{Whether labels should be repelled using \code{{ggrepel}}
-package. This can be helpful in case of overlapping labels.}
+package. This can be helpful in case of overlapping labels (Default:
+\code{FALSE}).}
 
 \item{digits}{Number of digits for rounding or significant figures. May also
 be \code{"signif"} to return significant figures or \code{"scientific"}
@@ -88,14 +90,16 @@ significant figures (see also \code{\link[=signif]{signif()}}).}
 
 \item{proportion.test}{Decides whether proportion test for \code{x} variable is to
 be carried out for each level of \code{y}. Defaults to \code{results.subtitle}. In
-\code{\link[=ggbarstats]{ggbarstats()}}, only \emph{p}-values from this test will be displayed.}
+\code{\link[=ggbarstats]{ggbarstats()}}, only \emph{p}-values from this test will be displayed. Always
+\code{FALSE} when \code{type = "bayes"} or when \code{y} is \code{NULL}.}
 
 \item{digits.perc}{Numeric that decides number of decimal places for
 percentage labels (Default: \code{0L}).}
 
 \item{bf.message}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
-parametric test} (Default: \code{TRUE}).}
+favor of the \emph{null} hypothesis as a caption. This argument is relevant
+only for non-Bayesian \code{type}s and unpaired designs (\code{paired = FALSE})
+(Default: \code{TRUE}).}
 
 \item{ratio}{A vector of proportions: the expected proportions for the
 proportion test (should sum to \code{1}). Default is \code{NULL}, which means the null
@@ -121,10 +125,11 @@ comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \item{subtitle}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
 
-\item{caption}{The text for the plot caption. This argument is relevant only
-if \code{bf.message = FALSE}.}
+\item{caption}{The text for the plot caption. It will be replaced by the
+Bayes Factor caption whenever that is displayed (see \code{bf.message}).}
 
-\item{legend.title}{Title text for the legend.}
+\item{legend.title}{Title text for the legend. If \code{NULL} (default), the name
+of the \code{x} variable is used.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
@@ -137,8 +142,8 @@ label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
 
-\item{palette}{Name of the palette in \code{"package::palette"} format to be used
-for coloring. Passed to \code{\link[paletteer:scale_color_paletteer_d]{paletteer::scale_color_paletteer_d()}}. Run
+\item{palette}{Name of the discrete palette in \code{"package::palette"} format
+to be used for coloring (via \code{{paletteer}}). Run
 \code{View(paletteer::palettes_d_names)} to see all available options.}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
@@ -148,11 +153,19 @@ be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} function
 
 \item{...}{Currently ignored.}
 }
+\value{
+A \code{ggplot} object, which can be further modified with \code{{ggplot2}}
+functions. Use \code{\link[=extract_stats]{extract_stats()}} to get the statistical details shown in
+the plot as data frames.
+}
 \description{
 Pie charts for categorical data with statistical details included in the plot
 as a subtitle.
 }
 \details{
+Rows with a missing value in \code{x}, \code{y}, or \code{counts} are removed
+before plotting and analysis.
+
 For details, see:
 \url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html}
 }
@@ -166,15 +179,15 @@ For details, see:
 
 \section{Pairwise comparisons}{
 
-When there is a two-way table and \code{x} has more than two levels, pairwise
-contingency table analyses (Fisher's exact tests) are computed using
-\code{\link[statsExpressions:pairwise_contingency_table]{statsExpressions::pairwise_contingency_table()}}. These pairwise results are \strong{not}
-displayed in the plot because bar and pie charts lack a natural visual
-representation for pairwise significance annotations (unlike box/violin
-plots, which use bracket annotations). Additionally, there is no
-established convention for overlaying pairwise comparisons on pie charts,
-and both \code{ggpiestats()} and \code{ggbarstats()} are designed to remain visually
-congruent. The pairwise results are available as a data frame via
+When there is a two-way table, \code{x} has more than two levels, and
+\code{paired = FALSE}, pairwise contingency table analyses (Fisher's exact tests)
+are computed using \code{\link[statsExpressions:pairwise_contingency_table]{statsExpressions::pairwise_contingency_table()}}. These
+pairwise results are \strong{not} displayed in the plot because bar and pie charts
+lack a natural visual representation for pairwise significance annotations
+(unlike box/violin plots, which use bracket annotations). Additionally, there
+is no established convention for overlaying pairwise comparisons on pie
+charts, and both \code{ggpiestats()} and \code{ggbarstats()} are designed to remain
+visually congruent. The pairwise results are available as a data frame via
 \code{extract_stats(plot)$pairwise_comparisons_data}.
 }
 

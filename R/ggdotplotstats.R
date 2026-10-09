@@ -1,4 +1,4 @@
-#' @title Dot plot/chart for labeled numeric data.
+#' @title Dot plot/chart for labeled numeric data
 #' @name ggdotplotstats
 #'
 #' @description
@@ -20,9 +20,12 @@
 #' ```
 #'
 #' @param ... Currently ignored.
-#' @param y Label or grouping variable.
+#' @param y Label or grouping variable. Each level of `y` is shown as a single
+#'   dot: if a level has several rows, `x` is summarized using the centrality
+#'   measure for the chosen `type` (see above), and the one-sample test is then
+#'   carried out on these per-level summaries (i.e., the sample size is the
+#'   number of levels of `y`).
 #' @inheritParams gghistostats
-#' @inheritParams ggcoefstats
 #' @inheritParams ggbetweenstats
 #' @inheritParams ggcoefstats
 #'
@@ -33,7 +36,12 @@
 #'
 #' @autoglobal
 #'
-#' @details For details, see:
+#' @inherit ggbetweenstats return
+#'
+#' @details Rows with a missing value in either `x` or `y` are removed before
+#'   plotting and analysis.
+#'
+#' For details, see:
 #' <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html>
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
@@ -194,7 +202,7 @@ ggdotplotstats <- function(
 }
 
 
-#' @title Grouped histograms for distribution of a labeled numeric variable
+#' @title Grouped dot plots/charts for labeled numeric data
 #' @name grouped_ggdotplotstats
 #'
 #' @description
@@ -212,8 +220,8 @@ ggdotplotstats <- function(
 #'
 #' @autoglobal
 #'
-#' @inherit ggdotplotstats return references
-#' @inherit ggdotplotstats return details
+#' @inherit ggdotplotstats references details
+#' @inherit grouped_ggbetweenstats return
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' # for reproducibility

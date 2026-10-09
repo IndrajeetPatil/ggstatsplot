@@ -21,46 +21,51 @@ ungrouped before they are entered as \code{data}.}
 \item{...}{
   Arguments passed on to \code{\link{ggpiestats}}
   \describe{
-    \item{\code{x}}{The variable to use as the \strong{rows} in the contingency table. Please
-note that if there are empty factor levels in your variable, they will be
-dropped.}
+    \item{\code{x}}{The variable to use as the \strong{rows} in the contingency table. Note
+that empty factor levels are \emph{not} dropped: they are shown in the legend
+and counted (with zero observations) in the statistical test. Use
+\code{\link[=droplevels]{droplevels()}} beforehand if this is not intended.}
     \item{\code{y}}{The variable to use as the \strong{columns} in the contingency table.
-Please note that if there are empty factor levels in your variable, they
-will be dropped. Default is \code{NULL}. If \code{NULL}, one-sample proportion test
-(a goodness of fit test) will be run for the \code{x} variable. Otherwise an
-appropriate association test will be run.}
+Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness of fit
+test) will be run for the \code{x} variable. Otherwise an appropriate
+association test will be run.}
     \item{\code{proportion.test}}{Decides whether proportion test for \code{x} variable is to
 be carried out for each level of \code{y}. Defaults to \code{results.subtitle}. In
-\code{\link[=ggbarstats]{ggbarstats()}}, only \emph{p}-values from this test will be displayed.}
+\code{\link[=ggbarstats]{ggbarstats()}}, only \emph{p}-values from this test will be displayed. Always
+\code{FALSE} when \code{type = "bayes"} or when \code{y} is \code{NULL}.}
+    \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
+favor of the \emph{null} hypothesis as a caption. This argument is relevant
+only for non-Bayesian \code{type}s and unpaired designs (\code{paired = FALSE})
+(Default: \code{TRUE}).}
     \item{\code{digits.perc}}{Numeric that decides number of decimal places for
 percentage labels (Default: \code{0L}).}
     \item{\code{label}}{Character decides what information needs to be displayed
 on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
     \item{\code{label.args}}{Additional aesthetic arguments that will be passed to
-\code{\link[ggplot2:geom_label]{ggplot2::geom_label()}}.}
+\code{\link[ggplot2:geom_label]{ggplot2::geom_label()}} (or \code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}} if
+\code{label.repel = TRUE}).}
     \item{\code{label.repel}}{Whether labels should be repelled using \code{{ggrepel}}
-package. This can be helpful in case of overlapping labels.}
-    \item{\code{legend.title}}{Title text for the legend.}
+package. This can be helpful in case of overlapping labels (Default:
+\code{FALSE}).}
+    \item{\code{legend.title}}{Title text for the legend. If \code{NULL} (default), the name
+of the \code{x} variable is used.}
     \item{\code{p.adjust.method}}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
-    \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
-parametric test} (Default: \code{TRUE}).}
     \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
 to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
 the plot will be returned.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
-    \item{\code{caption}}{The text for the plot caption. This argument is relevant only
-if \code{bf.message = FALSE}.}
+    \item{\code{caption}}{The text for the plot caption. It will be replaced by the
+Bayes Factor caption whenever that is displayed (see \code{bf.message}).}
     \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
 by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
 variants of all primary functions. Default is \code{NULL}. The argument should
 be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
-    \item{\code{palette}}{Name of the palette in \code{"package::palette"} format to be used
-for coloring. Passed to \code{\link[paletteer:scale_color_paletteer_d]{paletteer::scale_color_paletteer_d()}}. Run
+    \item{\code{palette}}{Name of the discrete palette in \code{"package::palette"} format
+to be used for coloring (via \code{{paletteer}}). Run
 \code{View(paletteer::palettes_d_names)} to see all available options.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
@@ -105,7 +110,10 @@ E.g., \code{ratio = c(0.5, 0.5)} for two levels,
 \code{ratio = c(0.25, 0.25, 0.25, 0.25)} for four levels, etc.}
   }}
 
-\item{grouping.var}{A single grouping variable.}
+\item{grouping.var}{A single grouping variable. A separate plot is created
+for each of its levels (in factor level order, or in order of appearance
+for character variables). Rows with a missing value in this variable are
+removed.}
 
 \item{plotgrid.args}{A \code{list} of additional arguments passed to
 \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}, except for \code{guides} argument which is already
@@ -114,12 +122,20 @@ separately specified here.}
 \item{annotation.args}{A \code{list} of additional arguments passed to
 \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 }
+\value{
+A \code{patchwork} object combining one plot per level of
+\code{grouping.var} (see \code{\link[=combine_plots]{combine_plots()}}). Applying \code{\link[=extract_stats]{extract_stats()}} to
+it returns a list with the statistical details for each of these plots.
+}
 \description{
 Helper function for \code{ggstatsplot::ggpiestats} to apply this
 function across multiple levels of a given factor and combining the
 resulting plots using \code{ggstatsplot::combine_plots}.
 }
 \details{
+Rows with a missing value in \code{x}, \code{y}, or \code{counts} are removed
+before plotting and analysis.
+
 For details, see:
 \url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html}
 }

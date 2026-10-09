@@ -40,7 +40,7 @@ ungrouped before they are entered as \code{data}.}
 
 \item{binwidth}{The width of the histogram bins. Can be specified as a
 numeric value, or a function that calculates width from \code{x}. The default is
-to use the \code{max(x) - min(x) / sqrt(N)}. You should always check this value
+to use \code{(max(x) - min(x)) / sqrt(N)}. You should always check this value
 and explore multiple widths to find the best to illustrate the stories in
 your data.}
 
@@ -52,8 +52,8 @@ variable name for \code{x} will be used.}
 \item{subtitle}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
 
-\item{caption}{The text for the plot caption. This argument is relevant only
-if \code{bf.message = FALSE}.}
+\item{caption}{The text for the plot caption. It will be replaced by the
+Bayes Factor caption whenever that is displayed (see \code{bf.message}).}
 
 \item{type}{A character specifying the type of statistical approach:
 \itemize{
@@ -115,8 +115,9 @@ to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, on
 the plot will be returned.}
 
 \item{bin.args}{A list of additional aesthetic arguments to be passed to the
-\code{stat_bin} used to display the bins. Do not specify \code{binwidth} argument in
-this list since it has already been specified using the dedicated argument.}
+\code{\link[ggplot2:stat_bin]{ggplot2::stat_bin()}} used to display the bins. Do not specify \code{binwidth}
+argument in this list since it has already been specified using the
+dedicated argument.}
 
 \item{centrality.plotting}{Logical that decides whether centrality tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
@@ -129,7 +130,7 @@ Function decides which central tendency measure to show depending on the
 \item \strong{MAP estimator} for Bayesian statistics
 }
 
-If you want default centrality parameter, you can specify this using
+If you want a different centrality parameter, you can specify this using
 \code{centrality.type} argument.}
 
 \item{centrality.type}{Decides which centrality parameter is to be displayed.
@@ -138,14 +139,14 @@ to be:
 \itemize{
 \item \code{"parametric"} (for \strong{mean})
 \item \code{"nonparametric"} (for \strong{median})
-\item \code{robust} (for \strong{trimmed mean})
-\item \code{bayes} (for \strong{MAP estimator})
+\item \code{"robust"} (for \strong{trimmed mean})
+\item \code{"bayes"} (for \strong{MAP estimator})
 }
 
 Just as \code{type} argument, abbreviations are also accepted.}
 
 \item{centrality.line.args}{A list of additional aesthetic arguments to be
-passed to the \code{\link[ggplot2:geom_line]{ggplot2::geom_line()}} used to display the lines
+passed to the \code{\link[ggplot2:geom_vline]{ggplot2::geom_vline()}} used to display the lines
 corresponding to the centrality parameter.}
 
 \item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
@@ -155,11 +156,18 @@ be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} function
 
 \item{...}{Currently ignored.}
 }
+\value{
+A \code{ggplot} object, which can be further modified with \code{{ggplot2}}
+functions. Use \code{\link[=extract_stats]{extract_stats()}} to get the statistical details shown in
+the plot as data frames.
+}
 \description{
 Histogram with statistical details from one-sample test included in the plot
 as a subtitle.
 }
 \details{
+Missing values in \code{x} are removed before plotting and analysis.
+
 For details, see:
 \url{https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html}
 }

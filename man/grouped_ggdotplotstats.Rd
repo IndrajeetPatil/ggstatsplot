@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggdotplotstats.R
 \name{grouped_ggdotplotstats}
 \alias{grouped_ggdotplotstats}
-\title{Grouped histograms for distribution of a labeled numeric variable}
+\title{Grouped dot plots/charts for labeled numeric data}
 \usage{
 grouped_ggdotplotstats(
   data,
@@ -21,9 +21,13 @@ ungrouped before they are entered as \code{data}.}
 \item{...}{
   Arguments passed on to \code{\link{ggdotplotstats}}
   \describe{
-    \item{\code{y}}{Label or grouping variable.}
+    \item{\code{y}}{Label or grouping variable. Each level of \code{y} is shown as a single
+dot: if a level has several rows, \code{x} is summarized using the centrality
+measure for the chosen \code{type} (see above), and the one-sample test is then
+carried out on these per-level summaries (i.e., the sample size is the
+number of levels of \code{y}).}
     \item{\code{centrality.line.args}}{A list of additional aesthetic arguments to be
-passed to the \code{\link[ggplot2:geom_line]{ggplot2::geom_line()}} used to display the lines
+passed to the \code{\link[ggplot2:geom_vline]{ggplot2::geom_vline()}} used to display the lines
 corresponding to the centrality parameter.}
     \item{\code{x}}{A numeric variable from the data frame \code{data}.}
     \item{\code{type}}{A character specifying the type of statistical approach:
@@ -69,8 +73,8 @@ to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, on
 the plot will be returned.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
-    \item{\code{caption}}{The text for the plot caption. This argument is relevant only
-if \code{bf.message = FALSE}.}
+    \item{\code{caption}}{The text for the plot caption. It will be replaced by the
+Bayes Factor caption whenever that is displayed (see \code{bf.message}).}
     \item{\code{centrality.plotting}}{Logical that decides whether centrality tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
 Function decides which central tendency measure to show depending on the
@@ -82,7 +86,7 @@ Function decides which central tendency measure to show depending on the
 \item \strong{MAP estimator} for Bayesian statistics
 }
 
-If you want default centrality parameter, you can specify this using
+If you want a different centrality parameter, you can specify this using
 \code{centrality.type} argument.}
     \item{\code{centrality.type}}{Decides which centrality parameter is to be displayed.
 The default is to choose the same as \code{type} argument. You can specify this
@@ -90,8 +94,8 @@ to be:
 \itemize{
 \item \code{"parametric"} (for \strong{mean})
 \item \code{"nonparametric"} (for \strong{median})
-\item \code{robust} (for \strong{trimmed mean})
-\item \code{bayes} (for \strong{MAP estimator})
+\item \code{"robust"} (for \strong{trimmed mean})
+\item \code{"bayes"} (for \strong{MAP estimator})
 }
 
 Just as \code{type} argument, abbreviations are also accepted.}
@@ -109,18 +113,21 @@ that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
 label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
-    \item{\code{conf.int}}{Logical. Decides whether to display confidence intervals as
-error bars (Default: \code{TRUE}).}
-    \item{\code{errorbar.args}}{Additional arguments that will be passed to
-\code{geom_errorbar()} geom. Please see documentation for that function
-to know more about these arguments.}
     \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
 variable name for \code{y} will be used.}
     \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to
 the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
+    \item{\code{conf.int}}{Logical. Decides whether to display confidence intervals as
+error bars (Default: \code{TRUE}).}
+    \item{\code{errorbar.args}}{Additional arguments that will be passed to
+\code{\link[ggplot2:geom_errorbar]{ggplot2::geom_errorbar()}} geom. Please see documentation for that
+function to know more about these arguments.}
   }}
 
-\item{grouping.var}{A single grouping variable.}
+\item{grouping.var}{A single grouping variable. A separate plot is created
+for each of its levels (in factor level order, or in order of appearance
+for character variables). Rows with a missing value in this variable are
+removed.}
 
 \item{plotgrid.args}{A \code{list} of additional arguments passed to
 \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}, except for \code{guides} argument which is already
@@ -129,12 +136,20 @@ separately specified here.}
 \item{annotation.args}{A \code{list} of additional arguments passed to
 \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 }
+\value{
+A \code{patchwork} object combining one plot per level of
+\code{grouping.var} (see \code{\link[=combine_plots]{combine_plots()}}). Applying \code{\link[=extract_stats]{extract_stats()}} to
+it returns a list with the statistical details for each of these plots.
+}
 \description{
 Helper function for \code{ggstatsplot::ggdotplotstats()} to apply this function
 across multiple levels of a given factor and combining the resulting plots
 using \code{ggstatsplot::combine_plots()}.
 }
 \details{
+Rows with a missing value in either \code{x} or \code{y} are removed before
+plotting and analysis.
+
 For details, see:
 \url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html}
 }

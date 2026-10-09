@@ -10,15 +10,31 @@
 #' are using these functions only to extract data frames, you are better off
 #' using that package.
 #'
-#' The only exception is the `ggcorrmat()` function. But, if a data frame is
-#' what you want, you shouldn't be using `ggcorrmat()` anyway. You can use
-#' [`correlation::correlation()`] function which provides tidy data frames by
-#' default.
+#' The only exception is the `ggcorrmat()` function, for which all elements
+#' are `NULL`. But, if a data frame is what you want, you shouldn't be using
+#' `ggcorrmat()` anyway. You can use [`correlation::correlation()`] function
+#' which provides tidy data frames by default.
 #'
 #' @returns
 #'
-#' A list of tibbles containing summaries of various statistical analyses.
-#' The exact details included will depend on the function.
+#' For `extract_stats()`, a list with the following elements, each either a
+#' data frame or `NULL` if not relevant for the given plot:
+#'
+#' - `subtitle_data`: results of the test displayed in the subtitle
+#' - `caption_data`: results of the test displayed in the caption (typically,
+#'   the Bayesian test)
+#' - `pairwise_comparisons_data`: results of pairwise comparisons
+#' - `descriptive_data`: counts and percentages (`ggpiestats()` and
+#'   `ggbarstats()`)
+#' - `one_sample_data`: proportion tests for each level of `y`
+#'   (`ggpiestats()` and `ggbarstats()`)
+#' - `tidy_data`: tidy model parameters (`ggcoefstats()`)
+#' - `glance_data`: model performance indices (`ggcoefstats()`)
+#'
+#' For `extract_subtitle()` and `extract_caption()`, the expression displayed
+#' in the subtitle or caption, respectively (or `NULL`).
+#'
+#' For plots from `grouped_*` functions, a list with one such element per plot.
 #'
 #' @param p A plot from `{ggstatsplot}` package
 #'

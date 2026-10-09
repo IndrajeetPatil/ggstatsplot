@@ -38,12 +38,16 @@ ggcoefstats(
 \arguments{
 \item{x}{A model object to be tidied, or a tidy data frame from a regression
 model. Function internally uses \code{\link[parameters:model_parameters]{parameters::model_parameters()}} to get a
-tidy data frame. If a data frame, it \emph{must} contain at the minimum two
-columns named \code{term} (names of predictors) and \code{estimate} (corresponding
-estimates of coefficients or other quantities of interest).}
+tidy data frame. If a data frame, it \emph{must} contain a column named
+\code{estimate} (estimates of coefficients or other quantities of interest). A
+\code{term} column (names of predictors) is recommended; if absent, terms are
+named \code{term_1}, \code{term_2}, etc. Columns \code{conf.low} and \code{conf.high} are
+needed for error bars, \code{statistic} and \code{p.value} for labels, and
+\code{std.error} for meta-analysis.}
 
 \item{statistic}{Relevant statistic for the model (\code{"t"}, \code{"f"}, \code{"z"}, or
-\code{"chi"}) in the label. Relevant only if \code{x} is a \emph{data frame}.}
+\code{"chi"}) in the label. Relevant only if \code{x} is a \emph{data frame}; if it is
+\code{NULL} (default), no labels are shown for data frames.}
 
 \item{conf.int}{Logical. Decides whether to display confidence intervals as
 error bars (Default: \code{TRUE}).}
@@ -65,11 +69,11 @@ excluded from the plot (Default: \code{FALSE}).}
 \code{\link[parameters:model_parameters]{parameters::model_parameters()}}. Defaults to \code{"omega"} (the unbiased
 estimator), and relevant for ANOVA-like objects.}
 
-\item{meta.analytic.effect}{Logical that decides whether subtitle for
-meta-analysis via linear (mixed-effects) models (default: \code{FALSE}). If
-\code{TRUE}, input to argument \code{subtitle} will be ignored. This will be mostly
-relevant if a data frame with estimates and their standard errors is
-entered.}
+\item{meta.analytic.effect}{Logical that decides whether to display a
+subtitle with results from a meta-analysis via linear (mixed-effects)
+models (default: \code{FALSE}). If \code{TRUE}, input to argument \code{subtitle} will be
+ignored. This will be mostly relevant if a data frame with estimates and
+their standard errors is entered.}
 
 \item{meta.type}{Type of statistics used to carry out random-effects
 meta-analysis. If \code{"parametric"} (default), \code{\link[metafor:rma]{metafor::rma()}} will be
@@ -79,56 +83,59 @@ used. If \code{"robust"}, \code{\link[metaplus:metaplus]{metaplus::metaplus()}} 
 \item{bf.message}{Logical that decides whether results from running a
 Bayesian meta-analysis assuming that the effect size \emph{d} varies across
 studies with standard deviation \emph{t} (i.e., a random-effects analysis)
-should be displayed in caption. Defaults to \code{TRUE}.}
+should be displayed in caption. Relevant only if
+\code{meta.analytic.effect = TRUE} and \code{meta.type = "parametric"}. Defaults to
+\code{TRUE}.}
 
 \item{sort}{If \code{"none"} (default) do not sort, \code{"ascending"} sort by
 increasing coefficient value, or \code{"descending"} sort by decreasing
 coefficient value.}
 
-\item{xlab}{Label for \code{x} axis variable. If \code{NULL} (default),
-variable name for \code{x} will be used.}
+\item{xlab}{Label for \code{x} axis. If \code{NULL} (default), \code{"estimate"} is used.}
 
-\item{ylab}{Labels for \code{y} axis variable. If \code{NULL} (default),
-variable name for \code{y} will be used.}
+\item{ylab}{Label for \code{y} axis. If \code{NULL} (default), \code{"term"} is used.}
 
 \item{title}{The text for the plot title.}
 
 \item{subtitle}{The text for the plot subtitle. The input to this argument
 will be ignored if \code{meta.analytic.effect} is set to \code{TRUE}.}
 
-\item{caption}{The text for the plot caption. This argument is relevant only
-if \code{bf.message = FALSE}.}
+\item{caption}{The text for the plot caption. It will be replaced by model
+fit indices (AIC and BIC), if available, or by the Bayesian meta-analysis
+results (see \code{bf.message}).}
 
 \item{only.significant}{If \code{TRUE}, only stats labels for significant effects
-is shown (Default: \code{FALSE}). This can be helpful when a large number of
-regression coefficients are to be displayed in a single plot.}
+(\emph{p} < \code{0.05}) are shown (Default: \code{FALSE}). This can be helpful when a
+large number of regression coefficients are to be displayed in a single
+plot.}
 
 \item{point.args}{A list of additional aesthetic arguments to be passed to
 the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
 
 \item{errorbar.args}{Additional arguments that will be passed to
-\code{geom_errorbar()} geom. Please see documentation for that function
-to know more about these arguments.}
+\code{\link[ggplot2:geom_errorbar]{ggplot2::geom_errorbar()}} geom. Please see documentation for that
+function to know more about these arguments.}
 
-\item{vline}{Decides whether to display a vertical line (Default: \code{"TRUE"}).}
+\item{vline}{Decides whether to display a vertical line at \code{0} (Default:
+\code{TRUE}).}
 
 \item{vline.args}{Additional arguments that will be passed to
-\code{geom_vline} geom. Please see documentation for that function to
-know more about these arguments.}
+\code{\link[ggplot2:geom_vline]{ggplot2::geom_vline()}} geom. Please see documentation for that function
+to know more about these arguments.}
 
 \item{stats.labels}{Logical. Decides whether the statistic and \emph{p}-values for
 each coefficient are to be attached to each dot as a text label using
 \code{{ggrepel}} (Default: \code{TRUE}).}
 
-\item{stats.label.color}{Color for the labels. If set to \code{NULL}, colors will
-be chosen from the specified \code{package} (Default: \code{"RColorBrewer"}) and
-\code{palette} (Default: \code{"Dark2"}).}
+\item{stats.label.color}{Color for the labels: either a single color or a
+vector with one color per term. If set to \code{NULL} (default), colors will be
+chosen from the specified \code{palette}.}
 
 \item{stats.label.args}{Additional arguments that will be passed to
 \code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}}.}
 
-\item{palette}{Name of the palette in \code{"package::palette"} format to be used
-for coloring. Passed to \code{\link[paletteer:scale_color_paletteer_d]{paletteer::scale_color_paletteer_d()}}. Run
+\item{palette}{Name of the discrete palette in \code{"package::palette"} format
+to be used for coloring (via \code{{paletteer}}). Run
 \code{View(paletteer::palettes_d_names)} to see all available options.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
@@ -144,6 +151,11 @@ thus the details as well.}
 
 \item{...}{Additional arguments to tidying method. For more, see
 \code{\link[parameters:model_parameters]{parameters::model_parameters()}}.}
+}
+\value{
+A \code{ggplot} object, which can be further modified with \code{{ggplot2}}
+functions. Use \code{\link[=extract_stats]{extract_stats()}} to get the statistical details shown in
+the plot as data frames.
 }
 \description{
 Plot with the regression coefficients' point estimates as dots with
@@ -181,9 +193,9 @@ For details, see:
 \item In case you want to carry out meta-analysis, you will be asked to install
 the needed packages (\code{{metafor}}, \code{{metaplus}}, or \code{{metaBMA}}) if they are
 unavailable.
-\item All rows of regression estimates where either of the following
-quantities is \code{NA} will be removed if labels are requested:
-\code{estimate}, \code{statistic}, \code{p.value}.
+\item Rows with a missing \code{estimate} are always removed. If labels are
+requested, rows where \code{statistic}, \code{std.error}, or \code{p.value} is missing
+are kept but get no label.
 \item Given the rapid pace at which new methods are added to these packages, it
 is recommended that you install development versions of \code{{easystats}}
 packages using the \code{install_latest()} function from \code{{easystats}}.
@@ -193,7 +205,7 @@ packages using the \code{install_latest()} function from \code{{easystats}}.
 \tabular{lll}{
    graphical element \tab \code{geom} used \tab argument for further modification \cr
    regression estimate \tab \code{ggplot2::geom_point()} \tab \code{point.args} \cr
-   error bars \tab \code{ggplot2::geom_errorbarh()} \tab \code{errorbar.args} \cr
+   error bars \tab \code{ggplot2::geom_errorbar()} \tab \code{errorbar.args} \cr
    vertical line \tab \code{ggplot2::geom_vline()} \tab \code{vline.args} \cr
    label with statistical details \tab \code{ggrepel::geom_label_repel()} \tab \code{stats.label.args} \cr
 }

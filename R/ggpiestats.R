@@ -10,43 +10,50 @@
 #' ```{r child="man/rmd-fragments/ggpiestats_graphics.Rmd"}
 #' ```
 #'
-#' @param x The variable to use as the **rows** in the contingency table. Please
-#'   note that if there are empty factor levels in your variable, they will be
-#'   dropped.
+#' @param x The variable to use as the **rows** in the contingency table. Note
+#'   that empty factor levels are *not* dropped: they are shown in the legend
+#'   and counted (with zero observations) in the statistical test. Use
+#'   [`droplevels()`] beforehand if this is not intended.
 #' @param y The variable to use as the **columns** in the contingency table.
-#'   Please note that if there are empty factor levels in your variable, they
-#'   will be dropped. Default is `NULL`. If `NULL`, one-sample proportion test
-#'   (a goodness of fit test) will be run for the `x` variable. Otherwise an
-#'   appropriate association test will be run.
+#'   Default is `NULL`. If `NULL`, one-sample proportion test (a goodness of fit
+#'   test) will be run for the `x` variable. Otherwise an appropriate
+#'   association test will be run.
 #' @param proportion.test Decides whether proportion test for `x` variable is to
 #'   be carried out for each level of `y`. Defaults to `results.subtitle`. In
-#'   [`ggbarstats()`], only *p*-values from this test will be displayed.
+#'   [`ggbarstats()`], only *p*-values from this test will be displayed. Always
+#'   `FALSE` when `type = "bayes"` or when `y` is `NULL`.
+#' @param bf.message Logical that decides whether to display Bayes Factor in
+#'   favor of the *null* hypothesis as a caption. This argument is relevant
+#'   only for non-Bayesian `type`s and unpaired designs (`paired = FALSE`)
+#'   (Default: `TRUE`).
 #' @param digits.perc Numeric that decides number of decimal places for
 #'   percentage labels (Default: `0L`).
 #' @param label Character decides what information needs to be displayed
 #'   on the label in each pie slice. Possible options are `"percentage"`
 #'   (default), `"counts"`, `"both"`.
 #' @param label.args Additional aesthetic arguments that will be passed to
-#'   [`ggplot2::geom_label()`].
+#'   [`ggplot2::geom_label()`] (or [`ggrepel::geom_label_repel()`] if
+#'   `label.repel = TRUE`).
 #' @param label.repel Whether labels should be repelled using `{ggrepel}`
-#'   package. This can be helpful in case of overlapping labels.
-#' @param legend.title Title text for the legend.
+#'   package. This can be helpful in case of overlapping labels (Default:
+#'   `FALSE`).
+#' @param legend.title Title text for the legend. If `NULL` (default), the name
+#'   of the `x` variable is used.
 #' @inheritParams ggbetweenstats
 #' @inheritParams statsExpressions::contingency_table
-#' @inheritParams theme_ggstatsplot
 #'
 #' @inheritSection statsExpressions::contingency_table Contingency table analyses
 #'
 #' @section Pairwise comparisons:
-#' When there is a two-way table and `x` has more than two levels, pairwise
-#' contingency table analyses (Fisher's exact tests) are computed using
-#' [statsExpressions::pairwise_contingency_table()]. These pairwise results are **not**
-#' displayed in the plot because bar and pie charts lack a natural visual
-#' representation for pairwise significance annotations (unlike box/violin
-#' plots, which use bracket annotations). Additionally, there is no
-#' established convention for overlaying pairwise comparisons on pie charts,
-#' and both `ggpiestats()` and `ggbarstats()` are designed to remain visually
-#' congruent. The pairwise results are available as a data frame via
+#' When there is a two-way table, `x` has more than two levels, and
+#' `paired = FALSE`, pairwise contingency table analyses (Fisher's exact tests)
+#' are computed using [statsExpressions::pairwise_contingency_table()]. These
+#' pairwise results are **not** displayed in the plot because bar and pie charts
+#' lack a natural visual representation for pairwise significance annotations
+#' (unlike box/violin plots, which use bracket annotations). Additionally, there
+#' is no established convention for overlaying pairwise comparisons on pie
+#' charts, and both `ggpiestats()` and `ggbarstats()` are designed to remain
+#' visually congruent. The pairwise results are available as a data frame via
 #' `extract_stats(plot)$pairwise_comparisons_data`.
 #'
 #' @seealso \code{\link{grouped_ggpiestats}}, \code{\link{ggbarstats}},
@@ -54,7 +61,12 @@
 #'
 #' @autoglobal
 #'
-#' @details For details, see:
+#' @inherit ggbetweenstats return
+#'
+#' @details Rows with a missing value in `x`, `y`, or `counts` are removed
+#'   before plotting and analysis.
+#'
+#' For details, see:
 #' <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html>
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
@@ -274,9 +286,8 @@ ggpiestats <- function(
 #'
 #' @autoglobal
 #'
-#' @inherit ggpiestats return references
-#' @inherit ggpiestats return details
-#' @inherit ggpiestats return return
+#' @inherit ggpiestats references details
+#' @inherit grouped_ggbetweenstats return
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
 #' set.seed(123)
