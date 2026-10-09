@@ -82,6 +82,7 @@ test_that("checking if extract_stats works", {
 
 
 test_that("checking if extract_stats works for grouped plots", {
+  set.seed(123)
   expect_snapshot({
     p8 <- grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
     extracted_data <- extract_stats(p8)
