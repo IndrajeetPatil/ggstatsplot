@@ -1,139 +1,59 @@
+# helpers -------------------------------------------------
+
+# snapshot one plot per `pairwise.display` value; `title` is the common prefix
+# of the snapshot titles and `...` is passed on to `plot_fn`
+expect_pairwise_displays <- function(title, plot_fn, ...) {
+  display_labels <- c(
+    ns = "only non-significant",
+    s = "only significant",
+    all = "all"
+  )
+
+  for (display in names(display_labels)) {
+    set.seed(123)
+    expect_doppelganger(
+      title = paste(title, display_labels[[display]], sep = " - "),
+      fig = plot_fn(
+        ...,
+        results.subtitle = FALSE,
+        pairwise.display = display,
+        digits = 3L
+      )
+    )
+  }
+}
+
 # between-subjects -------------------------------------------------
 
 test_that("check pairwise displays - between-subjects", {
-  set.seed(123)
-  expect_doppelganger(
-    title = "between - parametric - only non-significant",
-    fig = ggbetweenstats(
-      ggplot2::msleep,
-      vore,
-      brainwt,
-      type = "p",
-      results.subtitle = FALSE,
-      p.adjust.method = "fdr",
-      pairwise.display = "ns",
-      digits = 3L
-    )
+  expect_pairwise_displays(
+    "between - parametric",
+    ggbetweenstats,
+    ggplot2::msleep,
+    vore,
+    brainwt,
+    type = "p",
+    p.adjust.method = "fdr"
   )
 
-  set.seed(123)
-  expect_doppelganger(
-    title = "between - parametric - only significant",
-    fig = ggbetweenstats(
-      ggplot2::msleep,
-      vore,
-      brainwt,
-      type = "p",
-      results.subtitle = FALSE,
-      p.adjust.method = "fdr",
-      pairwise.display = "s",
-      digits = 3L
-    )
+  expect_pairwise_displays(
+    "between - non-parametric",
+    ggbetweenstats,
+    movies_long,
+    mpaa,
+    rating,
+    type = "np",
+    p.adjust.method = "bonferroni"
   )
 
-  set.seed(123)
-  expect_doppelganger(
-    title = "between - parametric - all",
-    fig = ggbetweenstats(
-      ggplot2::msleep,
-      vore,
-      brainwt,
-      type = "p",
-      results.subtitle = FALSE,
-      p.adjust.method = "fdr",
-      pairwise.display = "all",
-      digits = 3L
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "between - non-parametric - only non-significant",
-    fig = ggbetweenstats(
-      movies_long,
-      mpaa,
-      rating,
-      type = "np",
-      results.subtitle = FALSE,
-      p.adjust.method = "bonferroni",
-      pairwise.display = "ns",
-      digits = 3L
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "between - non-parametric - only significant",
-    fig = ggbetweenstats(
-      movies_long,
-      mpaa,
-      rating,
-      type = "np",
-      results.subtitle = FALSE,
-      p.adjust.method = "bonferroni",
-      pairwise.display = "s",
-      digits = 3L
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "between - non-parametric - all",
-    fig = ggbetweenstats(
-      movies_long,
-      mpaa,
-      rating,
-      type = "np",
-      results.subtitle = FALSE,
-      p.adjust.method = "bonferroni",
-      pairwise.display = "all",
-      digits = 3L
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "between - robust - only non-significant",
-    fig = ggbetweenstats(
-      ggplot2::msleep,
-      vore,
-      sleep_rem,
-      type = "r",
-      results.subtitle = FALSE,
-      p.adjust.method = "holm",
-      pairwise.display = "ns",
-      digits = 3L
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "between - robust - only significant",
-    fig = ggbetweenstats(
-      ggplot2::msleep,
-      vore,
-      sleep_rem,
-      type = "r",
-      results.subtitle = FALSE,
-      p.adjust.method = "holm",
-      pairwise.display = "s",
-      digits = 3L
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "between - robust - all",
-    fig = ggbetweenstats(
-      ggplot2::msleep,
-      vore,
-      sleep_rem,
-      type = "r",
-      results.subtitle = FALSE,
-      p.adjust.method = "holm",
-      pairwise.display = "all",
-      digits = 3L
-    )
+  expect_pairwise_displays(
+    "between - robust",
+    ggbetweenstats,
+    ggplot2::msleep,
+    vore,
+    sleep_rem,
+    type = "r",
+    p.adjust.method = "holm"
   )
 
   set.seed(123)
@@ -169,139 +89,34 @@ test_that("check pairwise displays - between-subjects", {
 # within-subjects -------------------------------------------------
 
 test_that("check pairwise displays - within-subjects", {
-  set.seed(123)
-  expect_doppelganger(
-    title = "within - parametric - only non-significant",
-    fig = ggwithinstats(
-      bugs_long,
-      condition,
-      desire,
-      type = "p",
-      results.subtitle = FALSE,
-      p.adjust.method = "fdr",
-      pairwise.display = "ns",
-      digits = 3L
-    )
+  expect_pairwise_displays(
+    "within - parametric",
+    ggwithinstats,
+    bugs_long,
+    condition,
+    desire,
+    type = "p",
+    p.adjust.method = "fdr"
   )
 
-  set.seed(123)
-  expect_doppelganger(
-    title = "within - parametric - only significant",
-    fig = ggwithinstats(
-      bugs_long,
-      condition,
-      desire,
-      type = "p",
-      results.subtitle = FALSE,
-      p.adjust.method = "fdr",
-      pairwise.display = "s",
-      digits = 3L
-    )
+  expect_pairwise_displays(
+    "within - non-parametric",
+    ggwithinstats,
+    bugs_long,
+    condition,
+    desire,
+    type = "np",
+    p.adjust.method = "bonferroni"
   )
 
-  set.seed(123)
-  expect_doppelganger(
-    title = "within - parametric - all",
-    fig = ggwithinstats(
-      bugs_long,
-      condition,
-      desire,
-      type = "p",
-      results.subtitle = FALSE,
-      p.adjust.method = "fdr",
-      pairwise.display = "all",
-      digits = 3L
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "within - non-parametric - only non-significant",
-    fig = ggwithinstats(
-      bugs_long,
-      condition,
-      desire,
-      type = "np",
-      results.subtitle = FALSE,
-      p.adjust.method = "bonferroni",
-      pairwise.display = "ns",
-      digits = 3L
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "within - non-parametric - only significant",
-    fig = ggwithinstats(
-      bugs_long,
-      condition,
-      desire,
-      type = "np",
-      results.subtitle = FALSE,
-      p.adjust.method = "bonferroni",
-      pairwise.display = "s",
-      digits = 3L
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "within - non-parametric - all",
-    fig = ggwithinstats(
-      bugs_long,
-      condition,
-      desire,
-      type = "np",
-      results.subtitle = FALSE,
-      p.adjust.method = "bonferroni",
-      pairwise.display = "all",
-      digits = 3L
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "within - robust - only non-significant",
-    fig = ggwithinstats(
-      bugs_long,
-      condition,
-      desire,
-      type = "r",
-      results.subtitle = FALSE,
-      p.adjust.method = "holm",
-      pairwise.display = "ns",
-      digits = 3L
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "within - robust - only significant",
-    fig = ggwithinstats(
-      bugs_long,
-      condition,
-      desire,
-      type = "r",
-      results.subtitle = FALSE,
-      p.adjust.method = "holm",
-      pairwise.display = "s",
-      digits = 3L
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "within - robust - all",
-    fig = ggwithinstats(
-      bugs_long,
-      condition,
-      desire,
-      type = "r",
-      results.subtitle = FALSE,
-      p.adjust.method = "holm",
-      pairwise.display = "all",
-      digits = 3L
-    )
+  expect_pairwise_displays(
+    "within - robust",
+    ggwithinstats,
+    bugs_long,
+    condition,
+    desire,
+    type = "r",
+    p.adjust.method = "holm"
   )
 
   set.seed(123)
