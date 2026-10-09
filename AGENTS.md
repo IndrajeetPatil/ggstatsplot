@@ -41,11 +41,7 @@ Core dependencies include `ggplot2`, `statsExpressions`, the tidyverse stack
 (`dplyr`, `purrr`, `tidyr`, and `rlang`), `patchwork`, `paletteer`, and the
 easystats ecosystem (`insight`, `parameters`, `performance`, `datawizard`, and
 `correlation`). Treat `DESCRIPTION` as the source of truth for dependency
-constraints.
-
-The minimum supported R version is 4.5. CI covers R-devel, the current R
-release, and the previous R release; keep README support wording independent of
-specific version numbers.
+constraints and the minimum supported R version.
 
 ## Developer workflow
 
@@ -62,12 +58,8 @@ make format        # Format R code with Air (air format .)
 make hooks         # Run all prek hooks on all files
 make hooks_install # Install the prek Git hooks
 make clean         # Remove package build and check artifacts
-make update_deps   # Refresh dependency constraints, docs, and codemeta
+make update_deps   # Refresh dependency constraints (maintenance only)
 ```
-
-`make update_deps` is a maintenance operation that can rewrite dependency
-constraints and generated metadata. Do not use it merely to install the current
-dependency set. To refresh the pinned prek hook revisions, run `prek update`.
 
 ### Validation gate
 
@@ -83,8 +75,7 @@ git diff --check
 ```
 
 If Air reports drift, run `make format` (or `air format .`), inspect the
-result, and rerun the check. CI pins the Air version in the shared
-`check-formatting` workflow, so an older local Air can disagree with CI. Run
+result, and rerun the check. Run
 `make document` when `README.Rmd` or generated README content changes. Run the
 narrowest relevant `testthat` file first, for example
 `Rscript -e 'testthat::test_local(filter = "ggbetweenstats")'`.
@@ -98,20 +89,11 @@ narrowest relevant `testthat` file first, for example
   routine dependency, formatting, lint, test, CI, and generated-file
   maintenance.
 
-### Repository skills and prompts
-
-- Use `.agents/skills/create-release/SKILL.md` only when asked to prepare,
-  submit, resume, or publish a CRAN release.
-- Reusable task prompts live in `.github/prompts/`: `update-deps.md`,
-  `address-review.md`, and `simplify-codebase.md`.
-
 ### pkgdown site
 
 The site configuration is `pkgdown/_pkgdown.yml`, and web-only articles live in
 `vignettes/web_only/`. Build it locally with
 `Rscript -e 'pkgdown::build_site()'`; the output in `docs/` is ignored by Git.
-The `pkgdown` workflow deploys the site to the `gh-pages` branch from `main`
-and on releases.
 
 ## Testing
 
@@ -131,8 +113,7 @@ and on releases.
   legitimate baseline updates with CI-native output across supported platforms.
 - The top-level test runner (`tests/testthat.R`) executes package tests only
   with R 4.5 or newer on Linux or macOS because graphics and text rendering
-  changed across R versions. The Windows CI job therefore runs `R CMD check`
-  without tests.
+  changed across R versions.
 - Snapshots live in `tests/testthat/_snaps/`. A few plots use `variant =` in
   `expect_doppelganger()` for platform (`darwin/`, `linux/`) or R-version
   (`r-4.7/`) differences; add a variant only when the difference is confirmed
@@ -244,27 +225,22 @@ When modifying a function, consider all relevant surfaces:
 4. `vignettes/web_only/<function>.Rmd` when that vignette exists.
 5. `NEWS.md` for user-facing changes.
 
-## CI/CD
+## Repository skills
 
-Workflows under `.github/workflows/` are thin callers of reusable workflows in
-`IndrajeetPatil/workflows`; update the callers rather than copying those
-workflows into this repository. They cover:
+Task-specific instructions live in `.agents/skills/`. Read a skill only when
+the task matches it:
 
-- `R-CMD-check`: Ubuntu R-devel, release, and oldrel-1, plus macOS and Windows
-  release. Do not reintroduce `oldrel-2` unless the package support policy
-  changes.
-- `R-CMD-check-hard`: pull requests only, with hard dependencies only.
-- `test-coverage`: Codecov upload (thresholds in `codecov.yaml`).
-- `check-extra`: examples, tests, and vignettes with warnings as errors, tests
-  in random order, and README rendering.
-- `check-docs`: link checking with lychee (`lychee.toml`) and spell checking
-  with typos (`_typos.toml`).
-- `check-formatting` (Air), `lint` (lintr), and `pre-commit` (prek hooks).
-- `pkgdown` builds the site and deploys it from `main` and releases;
-  `pkgdown-no-suggests` checks on pull requests that the site builds without
-  suggested packages; `seo-files` runs after a successful `pkgdown` run on
-  `main`.
-- `submit-cran`: manual release workflow; see the `create-release` skill.
+- `create-release`: prepare, submit, resume, or publish a CRAN release.
+- `update-dependencies`: update dependencies to their latest versions, change
+  the minimum R version, or add, remove, or move a dependency.
+- `maintain-ci`: change or debug workflows under `.github/workflows/`.
+
+User-invoked prompts for other tasks (`address-review.md` and
+`simplify-codebase.md`) live in `.github/prompts/`. Keep each topic in exactly
+one place: `AGENTS.md` for every-session rules, a skill or a prompt for
+task-specific procedures.
+
+## Pull requests
 
 Open pull requests as ready for review rather than as drafts. Unless explicitly
 requested, do not wait for CI/CD checks to finish after pushing; report that the

@@ -13,9 +13,12 @@ pull-request metadata and GraphQL when thread-level resolution state matters.
 
 When a comment identifies a repeated inconsistency, search the entire
 repository and fix every relevant occurrence rather than only the cited line.
-Follow the conventions in `AGENTS.md`, in particular its rules on dependency
-constraints, version synchronization, roxygen-generated files, delegating
-statistics to `statsExpressions`, reusable-workflow callers, and `NEWS.md`.
+Follow `AGENTS.md` for generated files, versioning, `NEWS.md`, snapshots,
+coverage, and delegating statistics to `statsExpressions`. When a comment
+concerns dependencies or the R version, follow the `update-dependencies` skill
+and search the entire repository for every declaration and generated surface
+that must stay aligned. When a comment concerns GitHub Actions, follow the
+`maintain-ci` skill.
 
 Choose the narrowest relevant test first, and run targeted `testthat` or
 `vdiffr` tests when a comment affects a specific plotting path. If

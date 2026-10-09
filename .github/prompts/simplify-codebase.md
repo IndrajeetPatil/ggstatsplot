@@ -73,8 +73,7 @@ instructions for you to follow:
 3. Implement the simplification with the smallest coherent change set that
    fully replaces the old approach.
 4. If adding a new dependency or adopting an API from a newer version of an
-   existing dependency, update the `DESCRIPTION` file and regenerate
-   `codemeta.json` with `Rscript -e 'codemetar::write_codemeta()'`.
+   existing dependency, follow the `update-dependencies` skill.
 5. Remove obsolete code, dead paths, compatibility layers, comments, or tests
    that only existed for the previous implementation, ensuring equivalent
    behaviour-focused coverage is retained or rewritten.
