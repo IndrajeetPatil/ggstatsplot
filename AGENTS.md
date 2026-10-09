@@ -185,6 +185,14 @@ test_that("descriptive name", {
   `Rscript -e 'roxygen2::roxygenise()'` and commit the generated `NAMESPACE`,
   `man/*.Rd`, `API` (from `pkgapi`), and `R/globals.R` (from `roxyglobals`)
   changes. Do not edit generated files by hand.
+- Regenerate with the roxygen2 release recorded in `Config/roxygen2/version`.
+  A newer roxygen2 rewrites that field (and may reformat `NAMESPACE`); commit
+  that bump deliberately, together with the regenerated output, rather than
+  as incidental churn.
+- Several parameters are inherited from `statsExpressions` via
+  `@inheritParams`, so the generated `.Rd` text depends on the installed
+  `statsExpressions`. Regenerate against its CRAN release, not a local
+  development build.
 - `make document` renders `README.Rmd`; it is not the roxygen regeneration
   command in this repository.
 
