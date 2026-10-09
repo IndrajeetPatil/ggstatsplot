@@ -28,7 +28,7 @@
 #'   (Default: `TRUE`).
 #' @param digits.perc Numeric that decides number of decimal places for
 #'   percentage labels (Default: `0L`).
-#' @param label Character decides what information needs to be displayed
+#' @param label Character that decides what information needs to be displayed
 #'   on the label in each pie slice. Possible options are `"percentage"`
 #'   (default), `"counts"`, `"both"`.
 #' @param label.args Additional aesthetic arguments that will be passed to
@@ -269,9 +269,9 @@ ggpiestats <- function(
 
 #' @title Grouped pie charts with statistical tests
 #' @name grouped_ggpiestats
-#' @description Helper function for `ggstatsplot::ggpiestats` to apply this
+#' @description Helper function for `ggstatsplot::ggpiestats()` to apply this
 #'   function across multiple levels of a given factor and combining the
-#'   resulting plots using `ggstatsplot::combine_plots`.
+#'   resulting plots using `ggstatsplot::combine_plots()`.
 #'
 #' @inheritParams ggpiestats
 #' @inheritParams grouped_ggbetweenstats

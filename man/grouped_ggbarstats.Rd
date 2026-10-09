@@ -47,7 +47,7 @@ only for non-Bayesian \code{type}s and unpaired designs (\code{paired = FALSE})
 (Default: \code{TRUE}).}
     \item{\code{digits.perc}}{Numeric that decides number of decimal places for
 percentage labels (Default: \code{0L}).}
-    \item{\code{label}}{Character decides what information needs to be displayed
+    \item{\code{label}}{Character that decides what information needs to be displayed
 on the label in each pie slice. Possible options are \code{"percentage"}
 (default), \code{"counts"}, \code{"both"}.}
     \item{\code{legend.title}}{Title text for the legend. If \code{NULL} (default), the name
