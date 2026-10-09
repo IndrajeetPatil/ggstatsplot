@@ -2,7 +2,7 @@
 
 iris_species_plot <- function(species) {
   ggplot2::ggplot(
-    data = subset(iris, iris$Species == species),
+    data = subset(datasets::iris, Species == species),
     aes(x = Sepal.Length, y = Sepal.Width)
   ) +
     geom_point() +
