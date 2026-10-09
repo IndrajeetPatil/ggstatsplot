@@ -183,7 +183,7 @@
 }
 
 
-#' @title Adding labels for mean values.
+#' @title Adding labels for centrality values
 #' @name .centrality_ggrepel
 #'
 #' @param plot A `ggplot` object for which means are to be displayed.
@@ -310,7 +310,7 @@
       mpc_df
     )
 
-    # proceed only if there are any significant comparisons to display
+    # proceed only if there are any comparisons left to display
     if (nrow(mpc_df) == 0L) {
       return(plot)
     } # nocov
@@ -363,8 +363,8 @@
 #' @description
 #'
 #' This returns an expression containing details about the pairwise comparison
-#' test and the *p*-value adjustment method. These details are typically
-#' included in the `{ggstatsplot}` package plots as a caption.
+#' test, which comparisons are shown, and the alpha threshold. These details
+#' are displayed as the secondary y-axis label in `{ggstatsplot}` plots.
 #'
 #' @param test.description Text describing the details of the test.
 #' @inheritParams ggbetweenstats
@@ -426,7 +426,8 @@
 #' @name .aesthetic_addon
 #'
 #' @param plot Plot to be aesthetically modified.
-#' @param x A numeric vector for `x` axis.
+#' @param x A factor with the `x` axis values; its number of levels sets how
+#'   many palette colors are needed.
 #' @param seclabel A label for secondary axis.
 #' @inheritParams ggbetweenstats
 #' @param ... Additional arguments.

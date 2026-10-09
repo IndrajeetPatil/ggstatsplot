@@ -66,7 +66,6 @@
 #'   subject.id = subject
 #' )
 #'
-#'
 #' # looking at the plot
 #' p
 #'
