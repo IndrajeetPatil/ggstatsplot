@@ -31,8 +31,9 @@ document: build
 	R CMD INSTALL -l .local-lib $(PKGNAME)_$(PKGVERS).tar.gz
 	Rscript -e '.libPaths(c(normalizePath(".local-lib"), .libPaths())); rmarkdown::render("README.Rmd")'
 
+# CI enforces Air formatting (see air.toml and the check-formatting workflow)
 format:
-	Rscript -e 'styler::style_pkg()'
+	air format .
 
 lint:
 	Rscript -e 'lintr::lint_package()'
