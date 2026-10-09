@@ -96,7 +96,7 @@
 #'   [`ggplot2::theme_bw()`]), or themes from extension packages are allowed
 #'   (e.g., `ggthemes::theme_fivethirtyeight()`, `hrbrthemes::theme_ipsum_ps()`,
 #'   etc.). But note that sometimes these themes will remove some of the details
-#'   that `{ggstatsplot}` plots typically contains. For example, if relevant,
+#'   that `{ggstatsplot}` plots typically contain. For example, if relevant,
 #'   [`ggbetweenstats()`] shows details about multiple comparison test as a
 #'   label on the secondary Y-axis. Some themes (e.g.
 #'   `ggthemes::theme_fivethirtyeight()`) will remove the secondary Y-axis and

@@ -147,7 +147,7 @@ Bayes Factor caption whenever that is displayed (see \code{bf.message}).}
 \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
 (e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
 etc.). But note that sometimes these themes will remove some of the details
-that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
+that \code{{ggstatsplot}} plots typically contain. For example, if relevant,
 \code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
 label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
