@@ -165,3 +165,18 @@ test_that("grouped_ggbetweenstats defaults", {
     )
   )
 })
+
+# user caption is kept when no Bayes Factor caption is shown ----------
+
+test_that("user caption is retained without a Bayes Factor caption", {
+  p <- ggbetweenstats(
+    data = mtcars,
+    x = am,
+    y = wt,
+    type = "np",
+    pairwise.display = "none",
+    caption = "my caption"
+  )
+
+  expect_identical(ggplot2::get_labs(p)$caption, "my caption")
+})

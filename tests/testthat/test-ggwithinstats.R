@@ -270,3 +270,19 @@ test_that("empty condition levels are dropped after filtering missing subject.id
     1L
   )
 })
+
+# user caption is kept when no Bayes Factor caption is shown ----------
+
+test_that("user caption is retained without a Bayes Factor caption", {
+  p <- ggwithinstats(
+    data = data_bugs_2,
+    x = condition,
+    y = desire,
+    subject.id = subject,
+    bf.message = FALSE,
+    pairwise.display = "none",
+    caption = "my caption"
+  )
+
+  expect_identical(ggplot2::get_labs(p)$caption, "my caption")
+})
