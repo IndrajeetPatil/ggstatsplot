@@ -47,36 +47,54 @@ citation("ggstatsplot")
 
 ## Introduction
 
-Pairwise comparisons with `{ggstatsplot}`.
+When the grouping variable `x` has more than two levels, `ggbetweenstats()` and
+`ggwithinstats()` follow up the omnibus test (ANOVA or its non-parametric,
+robust, or Bayesian counterpart) with pairwise comparisons between all pairs of
+groups and display them using `{ggsignif}` brackets. The comparisons themselves
+are carried out by `statsExpressions::pairwise_comparisons()`.
 
 ## Summary of types of statistical analyses
 
-Following table contains a brief summary of the currently supported pairwise
-comparison tests-
+The tests used for each `type` (and the functions used internally to compute
+them) are listed in the *Pairwise comparison tests* section of the
+documentation for
+[`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html)
+(between-subjects designs) and
+[`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.html)
+(within-subjects designs).
 
-### Between-subjects design
+A few points worth noting:
 
-Type | Equal variance? | Test | *p*-value adjustment? | Function used
------------ | --- | ------------------------- | --- | -----
-Parametric | No | Games-Howell test | ✅ | `PMCMRplus::gamesHowellTest`
-Parametric | Yes | Student's *t*-test | ✅ | `stats::pairwise.t.test`
-Non-parametric | No | Dunn test | ✅ | `PMCMRplus::kwAllPairsDunnTest`
-Robust | No | Yuen's trimmed means test | ✅ | `WRS2::lincon`
-Bayesian | `NA` | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
-
-### Within-subjects design
-
-Type | Test | *p*-value adjustment? | Function used
------------ | ---------------------------- | --- | -----
-Parametric | Student's *t*-test | ✅ | `stats::pairwise.t.test`
-Non-parametric | Durbin-Conover test | ✅ | `PMCMRplus::durbinAllPairsTest`
-Robust | Yuen's trimmed means test | ✅ | `WRS2::rmmcp`
-Bayesian | Student's *t*-test | `NA` | `BayesFactor::ttestBF`
-
+- For between-subjects designs, `ggbetweenstats()` always uses the Games-Howell
+  test for `type = "parametric"`, which doesn't assume equal variances. If you
+  want Student's *t*-test instead, call
+  `statsExpressions::pairwise_comparisons()` directly with `var.equal = TRUE`.
+- *p*-values are adjusted for multiple comparisons using the method specified
+  in `p.adjust.method` (default: `"holm"`); use `"none"` for no adjustment.
+- `pairwise.display` decides which comparisons are shown (`"significant"`,
+  `"non-significant"`, `"all"`, or `"none"`), and `pairwise.alpha` sets the
+  cutoff used for this decision.
+- For `type = "bayes"`, there is no *p*-value adjustment, and all comparisons
+  are always displayed with $\log_{e}(BF_{01})$ values.
+- For within-subjects designs, specify `subject.id` and make sure that there is
+  exactly one observation per subject per condition.
 
 ## Data frame outputs
 
-See data frame outputs [here](https://www.indrapatil.com/statsExpressions/articles/web_only/dataframe_outputs.html#pairwise-comparisons).
+The results of the pairwise comparisons shown in a plot can be extracted with
+`extract_stats()`:
+
+```{r}
+#| label = "extract_stats"
+
+p <- ggbetweenstats(mtcars, cyl, wt)
+
+extract_stats(p)$pairwise_comparisons_data
+```
+
+For more examples of data frame outputs from
+`statsExpressions::pairwise_comparisons()`, see
+[here](https://www.indrapatil.com/statsExpressions/articles/web_only/dataframe_outputs.html#pairwise-comparisons-for-one-way-design).
 
 ## Using `statsExpressions::pairwise_comparisons()` with `ggsignif`
 
@@ -96,7 +114,7 @@ mtcars$cyl <- as.factor(mtcars$cyl)
 p <- ggplot(mtcars, aes(cyl, wt)) +
   geom_boxplot()
 
-## using `statsExpressions::pairwise_comparisons()` package to create a data frame with results
+## using `statsExpressions::pairwise_comparisons()` function to create a data frame with results
 df <-
   statsExpressions::pairwise_comparisons(mtcars, cyl, wt) |>
   dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) |>
@@ -129,7 +147,7 @@ library(ggsignif)
 p <- ggplot(WRS2::WineTasting, aes(Wine, Taste)) +
   geom_boxplot()
 
-## using `statsExpressions::pairwise_comparisons()` package to create a data frame with results
+## using `statsExpressions::pairwise_comparisons()` function to create a data frame with results
 df <-
   statsExpressions::pairwise_comparisons(
     WRS2::WineTasting,
