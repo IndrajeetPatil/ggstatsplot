@@ -36,8 +36,8 @@ test_that("aesthetic modifications work", {
         na.rm = TRUE
       )
     ) +
-      scale_x_continuous(breaks = seq(1, 6, 1), limits = (c(1, 6))) +
-      scale_y_continuous(breaks = seq(10, 40, 10), limits = (c(10, 40)))
+      scale_x_continuous(breaks = seq(1, 6, 1), limits = c(1, 6)) +
+      scale_y_continuous(breaks = seq(10, 40, 10), limits = c(10, 40))
   )
 })
 
@@ -96,34 +96,6 @@ test_that("subtitle output - ggscatterstats", {
   expect_identical(p_sub, fun_sub)
 })
 
-test_that("grouped_ggscatterstats plotting works as expected", {
-  set.seed(123)
-  expect_doppelganger(
-    title = "defaults work as expected",
-    fig = grouped_ggscatterstats(
-      data = iris,
-      Sepal.Length,
-      Petal.Width,
-      grouping.var = Species
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "aesthetic modifications work",
-    fig = grouped_ggscatterstats(
-      data = ggplot2::msleep,
-      x = sleep_total,
-      y = bodywt,
-      results.subtitle = FALSE,
-      grouping.var = vore,
-      xlab = "total sleep",
-      ylab = "body weight",
-      ggplot.component = scale_y_continuous(breaks = seq(0, 6000, 1000))
-    )
-  )
-})
-
 # marginal histogram bins and scales ----------------------------------------
 
 test_that("custom marginal histogram bins and scales", {
@@ -154,6 +126,34 @@ test_that("custom marginal histogram bins and scales", {
 })
 
 # grouped_ggscatterstats -------------------------------------------------
+
+test_that("grouped_ggscatterstats plotting works as expected", {
+  set.seed(123)
+  expect_doppelganger(
+    title = "defaults work as expected",
+    fig = grouped_ggscatterstats(
+      data = iris,
+      Sepal.Length,
+      Petal.Width,
+      grouping.var = Species
+    )
+  )
+
+  set.seed(123)
+  expect_doppelganger(
+    title = "aesthetic modifications work",
+    fig = grouped_ggscatterstats(
+      data = ggplot2::msleep,
+      x = sleep_total,
+      y = bodywt,
+      results.subtitle = FALSE,
+      grouping.var = vore,
+      xlab = "total sleep",
+      ylab = "body weight",
+      ggplot.component = scale_y_continuous(breaks = seq(0, 6000, 1000))
+    )
+  )
+})
 
 test_that("grouped_ggscatterstats errors when no grouping is present", {
   expect_snapshot_error(
