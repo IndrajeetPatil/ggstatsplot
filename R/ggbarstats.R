@@ -113,13 +113,7 @@ ggbarstats <- function(
   x_levels <- prep$x_levels
   y_levels <- prep$y_levels
 
-  # nocov start
-  if (test == "two.way" && y_levels == 1L) {
-    bf.message <- FALSE
-    proportion.test <- FALSE
-  }
-  # nocov end
-  if (type == "bayes" || test == "one.way") {
+  if (type == "bayes" || y_levels < 2L) {
     proportion.test <- FALSE
   }
 
