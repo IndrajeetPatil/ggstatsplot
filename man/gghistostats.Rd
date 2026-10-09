@@ -119,7 +119,7 @@ the plot will be returned.}
 argument in this list since it has already been specified using the
 dedicated argument.}
 
-\item{centrality.plotting}{Logical that decides whether centrality tendency
+\item{centrality.plotting}{Logical that decides whether central tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
 Function decides which central tendency measure to show depending on the
 \code{type} argument.

@@ -43,7 +43,7 @@ observed subjects will still be shown in the plot, but inferential
 statistics will be computed using only complete repeated-measures pairs.}
     \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
-    \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
+    \item{\code{ylab}}{Label for \code{y} axis variable. If \code{NULL} (default),
 variable name for \code{y} will be used.}
     \item{\code{p.adjust.method}}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
@@ -77,7 +77,7 @@ the plot will be returned.}
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption. It will be replaced by the
 Bayes Factor caption whenever that is displayed (see \code{bf.message}).}
-    \item{\code{centrality.plotting}}{Logical that decides whether centrality tendency
+    \item{\code{centrality.plotting}}{Logical that decides whether central tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
 Function decides which central tendency measure to show depending on the
 \code{type} argument.

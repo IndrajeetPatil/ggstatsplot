@@ -50,7 +50,7 @@ number of levels of \code{y}).}
 \item{xlab}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
 
-\item{ylab}{Labels for \code{y} axis variable. If \code{NULL} (default),
+\item{ylab}{Label for \code{y} axis variable. If \code{NULL} (default),
 variable name for \code{y} will be used.}
 
 \item{title}{The text for the plot title.}
@@ -119,7 +119,7 @@ the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
 \code{\link[ggplot2:geom_errorbar]{ggplot2::geom_errorbar()}} geom. Please see documentation for that
 function to know more about these arguments.}
 
-\item{centrality.plotting}{Logical that decides whether centrality tendency
+\item{centrality.plotting}{Logical that decides whether central tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
 Function decides which central tendency measure to show depending on the
 \code{type} argument.

@@ -14,7 +14,7 @@
 #'
 #' @param xlab Label for `x` axis variable. If `NULL` (default),
 #'   variable name for `x` will be used.
-#' @param ylab Labels for `y` axis variable. If `NULL` (default),
+#' @param ylab Label for `y` axis variable. If `NULL` (default),
 #'   variable name for `y` will be used.
 #' @param p.adjust.method Adjustment method for *p*-values for multiple
 #'   comparisons. Possible methods are: `"holm"` (default), `"hochberg"`,
@@ -47,7 +47,7 @@
 #'   `results.subtitle = FALSE`.
 #' @param caption The text for the plot caption. It will be replaced by the
 #'   Bayes Factor caption whenever that is displayed (see `bf.message`).
-#' @param centrality.plotting Logical that decides whether centrality tendency
+#' @param centrality.plotting Logical that decides whether central tendency
 #'   measure is to be displayed as a point with a label (Default: `TRUE`).
 #'   Function decides which central tendency measure to show depending on the
 #'   `type` argument.

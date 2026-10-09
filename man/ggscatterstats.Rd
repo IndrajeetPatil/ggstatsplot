@@ -131,7 +131,7 @@ Default is \code{list()} (no modifications).}
 \item{xlab}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
 
-\item{ylab}{Labels for \code{y} axis variable. If \code{NULL} (default),
+\item{ylab}{Label for \code{y} axis variable. If \code{NULL} (default),
 variable name for \code{y} will be used.}
 
 \item{title}{The text for the plot title.}

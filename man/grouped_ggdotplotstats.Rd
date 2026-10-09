@@ -75,7 +75,7 @@ the plot will be returned.}
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption. It will be replaced by the
 Bayes Factor caption whenever that is displayed (see \code{bf.message}).}
-    \item{\code{centrality.plotting}}{Logical that decides whether centrality tendency
+    \item{\code{centrality.plotting}}{Logical that decides whether central tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
 Function decides which central tendency measure to show depending on the
 \code{type} argument.
@@ -113,7 +113,7 @@ that \code{{ggstatsplot}} plots typically contains. For example, if relevant,
 label on the secondary Y-axis. Some themes (e.g.
 \code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
 thus the details as well.}
-    \item{\code{ylab}}{Labels for \code{y} axis variable. If \code{NULL} (default),
+    \item{\code{ylab}}{Label for \code{y} axis variable. If \code{NULL} (default),
 variable name for \code{y} will be used.}
     \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to
 the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
