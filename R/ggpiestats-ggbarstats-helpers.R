@@ -110,8 +110,7 @@ descriptive_data <- function(
   x,
   y = NULL,
   label.content = "percentage",
-  digits.perc = 1L,
-  ...
+  digits.perc = 1L
 ) {
   all_lvls <- levels(pull(data, {{ x }}))
 
@@ -149,7 +148,7 @@ descriptive_data <- function(
 #' @title Counts and percentages across grouping variables
 #' @autoglobal
 #' @noRd
-.cat_counter <- function(data, x, y = NULL, ...) {
+.cat_counter <- function(data, x, y = NULL) {
   data |>
     ungroup() |>
     count({{ y }}, {{ x }}, .drop = TRUE, name = "counts") |>
@@ -160,7 +159,7 @@ descriptive_data <- function(
 #' @title A data frame with chi-squared test results
 #' @autoglobal
 #' @noRd
-onesample_data <- function(data, x, y, digits = 2L, ratio = NULL, ...) {
+onesample_data <- function(data, x, y, digits = 2L, ratio = NULL) {
   grouped_chi_squared_summary <- group_by(data, {{ y }}) |>
     group_modify(.f = ~ .chisq_test_safe(., {{ x }}, ratio)) |>
     ungroup()
