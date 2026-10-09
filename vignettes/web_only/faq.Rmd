@@ -609,7 +609,7 @@ what is displayed as significant:
 - `conf.level` (in all functions) sets the width of the confidence intervals.
 
 But there is no way to adjust alpha *across* the plots produced by `grouped_`
-functions (e.g., `grouped_ggwithinstats()`), since each group is analysed
+functions (e.g., `grouped_ggwithinstats()`), since each group is analyzed
 independently. You will have to just report in the paper/article/report what
 your adjusted alpha is.
 
@@ -908,8 +908,10 @@ the analysis, and the subtitle reports the sample size that was actually used.
 Other columns in the data are ignored.
 
 - In `ggwithinstats()`, specify `subject.id`: any subject with a missing value
-  in *any* condition is then dropped entirely, so that only complete pairs are
-  analysed (the subtitle reports *n*<sub>pairs</sub>).
+  in *any* condition is then excluded from the statistical analysis, so that
+  only complete pairs are analyzed (the subtitle reports
+  *n*<sub>pairs</sub>). The subject's non-missing observations are still
+  shown in the plot.
 - In `ggcorrmat()`, missing values are removed separately for each pair of
   variables, and the legend shows the minimum, mode, and maximum sample sizes
   across pairs.

@@ -75,7 +75,8 @@ A few points worth noting:
   `"non-significant"`, `"all"`, or `"none"`), and `pairwise.alpha` sets the
   cutoff used for this decision.
 - For `type = "bayes"`, there is no *p*-value adjustment, and all comparisons
-  are always displayed with $\log_{e}(BF_{01})$ values.
+  are displayed with $\log_{e}(BF_{01})$ values unless
+  `pairwise.display = "none"`.
 - For within-subjects designs, specify `subject.id` and make sure that there is
   exactly one observation per subject per condition.
 
