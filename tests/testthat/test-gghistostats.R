@@ -41,9 +41,9 @@ test_that("aesthetic modifications work", {
   )
 })
 
-# normal curve works -------------------------------------
+# custom binwidth works -------------------------------------
 
-test_that("checking if normal curve work", {
+test_that("custom binwidth works", {
   set.seed(123)
   expect_doppelganger(
     title = "plot normal curve",
