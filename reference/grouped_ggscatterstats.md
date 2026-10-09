@@ -31,7 +31,7 @@ grouped_ggscatterstats(
 
   `label.var`
 
-  : Variable to use for points labels entered as a symbol (e.g. `var1`).
+  : Variable to use for point labels entered as a symbol (e.g. `var1`).
 
   `label.expression`
 
@@ -71,8 +71,7 @@ grouped_ggscatterstats(
   `xsidehistogram.args,ysidehistogram.args`
 
   : A list of arguments passed to respective `geom_`s from the
-    `{ggside}` package to change the marginal distribution histograms
-    plots.
+    `{ggside}` package to change the marginal distribution histograms.
 
   `xsidehistogram.scale,ysidehistogram.scale`
 

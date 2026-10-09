@@ -1,6 +1,6 @@
 # Scatterplot with marginal distributions and statistical results
 
-Scatterplots from `{ggplot2}` combined with marginal distributions plots
+Scatterplots from `{ggplot2}` combined with marginal distribution plots
 with statistical details.
 
 ## Usage
@@ -118,7 +118,7 @@ ggscatterstats(
 
 - label.var:
 
-  Variable to use for points labels entered as a symbol (e.g. `var1`).
+  Variable to use for point labels entered as a symbol (e.g. `var1`).
 
 - label.expression:
 
@@ -163,7 +163,7 @@ ggscatterstats(
 - xsidehistogram.args, ysidehistogram.args:
 
   A list of arguments passed to respective `geom_`s from the `{ggside}`
-  package to change the marginal distribution histograms plots.
+  package to change the marginal distribution histograms.
 
 - xsidehistogram.scale, ysidehistogram.scale:
 

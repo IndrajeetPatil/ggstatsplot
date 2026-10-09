@@ -40,7 +40,7 @@ Convenience functions to repeat analysis across a single grouping
   : Violin plots for group or condition comparisons in between-subjects
   designs repeated across all levels of a grouping variable
 - [`grouped_ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggcorrmat.md)
-  : Visualization of a correlalogram (or correlation matrix) for all
+  : Visualization of a correlogram (or correlation matrix) for all
   levels of a grouping variable
 - [`grouped_ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggdotplotstats.md)
   : Grouped dot plots/charts for labeled numeric data

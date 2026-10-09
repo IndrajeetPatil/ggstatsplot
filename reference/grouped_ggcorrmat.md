@@ -1,4 +1,4 @@
-# Visualization of a correlalogram (or correlation matrix) for all levels of a grouping variable
+# Visualization of a correlogram (or correlation matrix) for all levels of a grouping variable
 
 Helper function for
 [`ggstatsplot::ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
