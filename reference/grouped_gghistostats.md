@@ -1,10 +1,10 @@
 # Grouped histograms for distribution of a numeric variable
 
 Helper function for
-[`ggstatsplot::gghistostats`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)
+[`ggstatsplot::gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)
 to apply this function across multiple levels of a given factor and
 combining the resulting plots using
-[`ggstatsplot::combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
+[`ggstatsplot::combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
 
 ## Usage
 

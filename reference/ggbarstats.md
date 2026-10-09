@@ -94,9 +94,9 @@ ggbarstats(
 
 - label:
 
-  Character decides what information needs to be displayed on the label
-  in each pie slice. Possible options are `"percentage"` (default),
-  `"counts"`, `"both"`.
+  Character that decides what information needs to be displayed on the
+  label in each pie slice. Possible options are `"percentage"`
+  (default), `"counts"`, `"both"`.
 
 - label.args:
 

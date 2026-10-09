@@ -1,10 +1,10 @@
 # Grouped pie charts with statistical tests
 
 Helper function for
-[`ggstatsplot::ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)
+[`ggstatsplot::ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)
 to apply this function across multiple levels of a given factor and
 combining the resulting plots using
-[`ggstatsplot::combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
+[`ggstatsplot::combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
 
 ## Usage
 
@@ -69,7 +69,7 @@ grouped_ggpiestats(
 
   `label`
 
-  : Character decides what information needs to be displayed on the
+  : Character that decides what information needs to be displayed on the
     label in each pie slice. Possible options are `"percentage"`
     (default), `"counts"`, `"both"`.
 
