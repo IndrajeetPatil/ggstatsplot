@@ -303,12 +303,12 @@
 
   # for Bayes Factor, there will be no "p.value" column
   if ("p.value" %in% names(mpc_df)) {
-    if (startsWith(pairwise.display, "s")) {
-      mpc_df <- filter(mpc_df, p.value < pairwise.alpha)
-    } # sig
-    if (startsWith(pairwise.display, "n")) {
-      mpc_df <- filter(mpc_df, p.value >= pairwise.alpha)
-    } # non-sig
+    mpc_df <- switch(
+      .pairwise_display_level(pairwise.display),
+      significant = filter(mpc_df, p.value < pairwise.alpha),
+      `non-significant` = filter(mpc_df, p.value >= pairwise.alpha),
+      mpc_df
+    )
 
     # proceed only if there are any significant comparisons to display
     if (nrow(mpc_df) == 0L) {
@@ -392,20 +392,33 @@
   test <- sub("'", "\\'", test.description, fixed = TRUE)
   alpha_label <- format(pairwise.alpha, scientific = FALSE, trim = TRUE)
 
-  # which comparisons were displayed?
-  display <- if (startsWith(pairwise.display, "s")) {
-    "significant"
-  } else if (startsWith(pairwise.display, "n")) {
-    "non-significant"
-  } else {
-    "all"
-  }
+  display <- .pairwise_display_level(pairwise.display)
 
   parse(
     text = glue(
       "list('Pairwise test:'~bold('{test}'), 'Bars shown:'~bold('{display}'), alpha == {alpha_label})"
     )
   )
+}
+
+#' @title Resolve which pairwise comparisons are displayed
+#'
+#' @description
+#'
+#' Maps a (possibly abbreviated) `pairwise.display` value to one of
+#' `"significant"`, `"non-significant"`, or `"all"`.
+#'
+#' @inheritParams ggbetweenstats
+#'
+#' @noRd
+.pairwise_display_level <- function(pairwise.display) {
+  if (startsWith(pairwise.display, "s")) {
+    "significant"
+  } else if (startsWith(pairwise.display, "n")) {
+    "non-significant"
+  } else {
+    "all"
+  }
 }
 
 
