@@ -179,8 +179,12 @@ test_that("descriptive name", {
   pulled into function docs by roxygen Markdown chunks such as
   ```` ```{r child="man/rmd-fragments/ggbetweenstats_graphics.Rmd"} ````.
   `man/md-fragments/*.md` are included by vignettes with
-  ```` ```{asis, file="../../man/md-fragments/reporting.md"} ````. Edit the
-  fragment, not the generated output.
+  ```` ```{asis, file="../../man/md-fragments/reporting.md"} ````. The
+  per-function articles in `vignettes/web_only/` include the graphics tables
+  from `man/rmd-fragments/` the same way. Use `asis` file chunks rather than
+  knitr `child=` in articles: pkgdown renders them from a temporary file, so
+  relative child paths do not resolve. Edit the fragment, not the generated
+  output.
 - After changing roxygen comments, run
   `Rscript -e 'roxygen2::roxygenise()'` and commit the generated `NAMESPACE`,
   `man/*.Rd`, `API` (from `pkgapi`), and `R/globals.R` (from `roxyglobals`)
