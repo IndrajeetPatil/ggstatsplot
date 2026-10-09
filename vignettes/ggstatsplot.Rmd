@@ -132,9 +132,19 @@ visualizations (box/violin plot, scatter plot, dot-and-whisker plot, pie chart,
 bar chart, etc.). It will continue expanding to support an increasing
 collection of statistical analyses and visualizations.
 
+# Learn More
+
+- Articles for each function, frequently asked questions, and other topics are
+  available on the package website:
+  <https://www.indrapatil.com/ggstatsplot/articles/>
+
+- The statistical details displayed in any plot can be retrieved as data frames
+  with `extract_stats()` (and the expressions with `extract_subtitle()` and
+  `extract_caption()`), e.g. `extract_stats(ggbetweenstats(iris, Species, Sepal.Length))`.
+
 # Licensing and Availability
 
-`{ggstatsplot}` is licensed under the GNU General Public License (v3.0), with all
+`{ggstatsplot}` is licensed under the MIT License, with all
 source code stored at [GitHub](https://github.com/IndrajeetPatil/ggstatsplot/).
 In the spirit of honest and open science, requests and suggestions for fixes,
 feature updates, as well as general questions and concerns are encouraged via

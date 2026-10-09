@@ -9,69 +9,33 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Due to size constraints, all available vignettes are only available on the
-website for this package: <br>
+Due to size constraints, most vignettes are only available on the website for
+this package. The articles index lists all of them, including articles for each
+primary function (and its `grouped_` variant), frequently asked questions,
+pairwise comparisons, interpretation of Bayes factors, and the design
+principles guiding the package:
+
 <https://www.indrapatil.com/ggstatsplot/articles/>
-
-### Vignettes for individual functions
-
-  - `ggbetweenstats`:
-    <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html>
-
-  - `ggwithinstats`:
-    <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggwithinstats.html>
-
-  - `ggcorrmat`:
-    <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html>
-
-  - `gghistostats`:
-    <https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html>
-
-  - `ggdotplotstats`:
-    <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html>
-
-  - `ggpiestats`:
-    <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html>
-
-  - `ggscatterstats`:
-    <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html>
-
-  - `ggcoefstats`:
-    <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcoefstats.html>
-
-### General vignettes
-
-  - Frequently Asked Questions (FAQ):
-  <https://www.indrapatil.com/ggstatsplot/articles/web_only/faq.html>
-
-  - Graphic design and statistical reporting principles guiding `{ggstatsplot}`
-    development:
-    <https://www.indrapatil.com/ggstatsplot/articles/web_only/principles.html>
-
-  - Examples illustrating how to use `{purrr}` to extend `{ggstatsplot}` functionality:
-    <https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
-
-- Pairwise comparisons with `{ggstatsplot}`:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/pairwise.html>
 
 ## Publication
 
-A journal articles describing philosophy and principles behind this package:
+A journal article describing the philosophy and principles behind this package:
 <https://joss.theoj.org/papers/10.21105/joss.03167>
 
 ## Presentation
 
-In addition to these vignettes, another quick way to get an overview of this
-package is to go through the following slides:
-<https://www.indrapatil.com/intro-to-ggstatsplot/#/ggstatsplot-informative-statistical-visualizations>
+Another quick way to get an overview of this package is to go through the
+following slides:
+<https://www.indrapatil.com/intro-to-ggstatsplot/>
 
 ## Statistical backend of `{ggstatsplot}`
 
-The `{statsExpressions}` package forms the statistical backend that processes data
-and creates data frames and expressions containing results from statistical
-tests.
+The `{statsExpressions}` package forms the statistical backend that processes
+data and creates data frames and expressions containing results from
+statistical tests.
 
-For more exhaustive documentation for this package, see:
+For more exhaustive documentation for this package, including a summary of all
+supported statistical tests and effect sizes, see:
 <https://www.indrapatil.com/statsExpressions/>
 
 ## Suggestions
