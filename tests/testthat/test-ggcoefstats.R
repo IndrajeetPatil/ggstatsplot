@@ -56,21 +56,6 @@ test_that("default plots are rendered correctly for each type of statistic", {
   )
 })
 
-test_that("meta-analysis works", {
-  skip_on_cran()
-  skip_if_not_installed("metafor")
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "meta-analysis works",
-    fig = ggcoefstats(
-      df_meta,
-      meta.analytic.effect = TRUE,
-      bf.message = FALSE
-    )
-  )
-})
-
 # plot modifications --------------------------------------------------
 
 test_that("plot modifications work as expected", {
@@ -294,7 +279,22 @@ test_that("stats label helpers cover filtering and color branches", {
   )
 })
 
-# meta subtitle and caption -------------------------------------
+# meta-analysis -------------------------------------
+
+test_that("meta-analysis works", {
+  skip_on_cran()
+  skip_if_not_installed("metafor")
+
+  set.seed(123)
+  expect_doppelganger(
+    title = "meta-analysis works",
+    fig = ggcoefstats(
+      df_meta,
+      meta.analytic.effect = TRUE,
+      bf.message = FALSE
+    )
+  )
+})
 
 test_that("meta analysis subtitle and caption", {
   skip_on_cran()
