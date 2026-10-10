@@ -316,12 +316,12 @@ test_that("meta analysis subtitle and caption", {
   ))
 
   set.seed(123)
-  ggcoef_caption <- extract_caption(suppressWarnings(ggcoefstats(
+  ggcoef_caption <- extract_caption(ggcoefstats(
     df_meta,
     meta.analytic.effect = TRUE,
     bf.message = TRUE,
     meta.type = "p"
-  )))
+  ))
 
   expect_identical(subtitle_expr$expression[[1L]], ggcoef_subtitle)
   expect_identical(caption_expr$expression[[1L]], ggcoef_caption)
