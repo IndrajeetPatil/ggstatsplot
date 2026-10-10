@@ -156,15 +156,18 @@ A BibTeX entry for LaTeX users is
     title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
     journal = {{Journal of Open Source Software}},
   }</code></pre>
-<!-- The sections are numbered manually because `pkgdown` doesn't render -->
-<!-- numbered sections for `rmarkdown::html_vignette` format -->
+<!-- Give every question an explicit, stable anchor ID so that links to it -->
+<!-- survive rewording, reordering, and adding or removing other questions. -->
 <hr>
 <p>Following are a few of the common questions asked in GitHub issues
 and on social media platforms.</p>
 <div class="section level2">
-<h2 id="i-just-want-the-plot-not-the-statistical-details--how-can-i-turn-them-off">1. I just want the plot, not the statistical details. How can I turn
-them off?<a class="anchor" aria-label="anchor" href="#i-just-want-the-plot-not-the-statistical-details--how-can-i-turn-them-off"></a>
+<h2 id="statistical-details">Statistical details<a class="anchor" aria-label="anchor" href="#statistical-details"></a>
 </h2>
+<div class="section level3">
+<h3 id="turn-off-details">I just want the plot, not the statistical details. How can I turn
+them off?<a class="anchor" aria-label="anchor" href="#turn-off-details"></a>
+</h3>
 <p>All functions in <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> that display results from
 statistical analysis in a subtitle have argument
 <code>results.subtitle</code>. Setting it to <code>FALSE</code> will
@@ -178,14 +181,196 @@ controlled separately by the <code>bf.message</code> argument. Set it to
 <p>Your own <code>subtitle</code> text is used only when
 <code>results.subtitle = FALSE</code>.</p>
 </div>
+<div class="section level3">
+<h3 id="missing-subtitle">Why do I get only the plot but not the subtitle/caption?<a class="anchor" aria-label="anchor" href="#missing-subtitle"></a>
+</h3>
+<p>In order to prevent the entire plotting function from failing when
+statistical analysis fails, functions in <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a>
+default to first attempting to run the analysis and if they fail, then
+return empty (<code>NULL</code>) subtitle/caption. In such cases, if you
+wish to diagnose why the analysis is failing, you will have to do so
+using the underlying function used to carry out statistical
+analysis.</p>
+<p>For example, the following returns only the plot but not the
+statistical details in a subtitle or caption, because the outcome is
+constant within each group.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"b"</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span></code></pre></div>
+<p><img src="faq_files/figure-html/null_subtitle-1.png" class="r-plt" alt="" width="100%"></p>
+<p>To see why the statistical analysis failed, you can look at the error
+from the underlying function:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://www.indrapatil.com/statsExpressions/reference/two_sample_test.html" class="external-link">two_sample_test</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `t.test.default()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> data are essentially constant</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="which-test">What statistical test was carried out?<a class="anchor" aria-label="anchor" href="#which-test"></a>
+</h3>
+<p>In case you are not sure what was the statistical test that produced
+the results shown in the subtitle of the plot, the best way to get that
+information is to either look at the documentation for the function used
+or check out the associated vignette.</p>
+<p>All statistical analyses are carried out by
+<a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a>, and a summary of every supported test
+and effect size is available in its <a href="https://www.indrapatil.com/statsExpressions/articles/stats_details.html" class="external-link">documentation</a>.</p>
+<p>You can also check the <code>method</code> column of the data frames
+returned by <code><a href="../../reference/extract_stats.html">extract_stats()</a></code> (see <a href="#extract-stats">below</a>).</p>
+</div>
+<div class="section level3">
+<h3 id="extract-stats">How can I access the data frames with the statistical results?<a class="anchor" aria-label="anchor" href="#extract-stats"></a>
+</h3>
+<p><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> displays expressions in the subtitle and
+caption, but you can get back the underlying data frames with the
+<code><a href="../../reference/extract_stats.html">extract_stats()</a></code> helper function. It returns a list with the
+following components (<code>NULL</code> when not relevant for a given
+plot): <code>subtitle_data</code>, <code>caption_data</code>,
+<code>pairwise_comparisons_data</code>, <code>descriptive_data</code>,
+<code>one_sample_data</code>, <code>tidy_data</code>, and
+<code>glance_data</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># data frame with results from pairwise comparisons</span></span>
+<span><span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">pairwise_comparisons_data</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 9</span></span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">group1</span> <span style="font-weight: bold;">group2</span> <span style="font-weight: bold;">statistic</span>   <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">alternative</span> <span style="font-weight: bold;">distribution</span> <span style="font-weight: bold;">p.adjust.method</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 4      6           5.39 <span style="color: #949494;">0.00</span>8<span style="text-decoration: underline;">31</span>   two.sided   q            Holm           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 4      8           9.11 <span style="color: #949494;">0.000</span><span style="color: #949494; text-decoration: underline;">0</span><span style="text-decoration: underline;">12</span>4 two.sided   q            Holm           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 6      8           5.12 <span style="color: #949494;">0.00</span>8<span style="text-decoration: underline;">31</span>   two.sided   q            Holm           </span></span>
+<span><span class="co">#&gt;   <span style="font-weight: bold;">test</span>         <span style="font-weight: bold;">expression</span></span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span></span></span></code></pre></div>
+<p>For <code>grouped_</code> plots, <code><a href="../../reference/extract_stats.html">extract_stats()</a></code> returns
+one such list per group. <code><a href="../../reference/extract_stats.html">extract_subtitle()</a></code> and
+<code><a href="../../reference/extract_stats.html">extract_caption()</a></code> return just the expressions.</p>
+<p>If you only need the results and not the plot, you can call the
+functions from the source package <a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a>
+directly (see <a href="https://www.indrapatil.com/statsExpressions/articles/web_only/dataframe_outputs.html" class="external-link">examples</a>).</p>
+</div>
+<div class="section level3">
+<h3 id="assumption-checks">Does <code>{ggstatsplot}</code> carry out assumption checks?<a class="anchor" aria-label="anchor" href="#assumption-checks"></a>
+</h3>
+<p>No, <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> does not carry out any analysis of
+whether assumptions are met or not. It will just carry out whatever test
+you ask it to carry out.</p>
+<p>To check these assumptions, you can use a different package called <a href="https://easystats.github.io/performance/reference/index.html#check-model-assumptions-or-data-properties" class="external-link"><code>{performance}</code></a>.</p>
+</div>
+<div class="section level3">
+<h3 id="missing-values">How are missing values handled?<a class="anchor" aria-label="anchor" href="#missing-values"></a>
+</h3>
+<p>Rows with missing values (<code>NA</code>) in the variables of
+interest are removed before the analysis, and the subtitle reports the
+sample size that was actually used. Other columns in the data are
+ignored.</p>
+<ul>
+<li>In <code><a href="../../reference/ggwithinstats.html">ggwithinstats()</a></code>, specify <code>subject.id</code>:
+any subject with a missing value in <em>any</em> condition is then
+excluded from the statistical analysis, so that only complete pairs are
+analyzed (the subtitle reports <em>n</em><sub>pairs</sub>). The
+subject’s non-missing observations are still shown in the plot.</li>
+<li>In <code><a href="../../reference/ggcorrmat.html">ggcorrmat()</a></code>, missing values are removed separately
+for each pair of variables, and the legend shows the minimum, mode, and
+maximum sample sizes across pairs.</li>
+<li>In <code>grouped_</code> functions, rows with missing values in
+<code>grouping.var</code> are dropped.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># 5 of the 93 subjects in `bugs_long` have a missing value, so n_pairs = 88</span></span>
+<span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span><span class="va">bugs_long</span>, <span class="va">condition</span>, <span class="va">desire</span>, subject.id <span class="op">=</span> <span class="va">subject</span><span class="op">)</span></span></code></pre></div>
+<p><img src="faq_files/figure-html/missing_values-1.png" class="r-plt" alt="" width="100%"></p>
+</div>
+<div class="section level3">
+<h3 id="alpha-level">Is there a way to adjust my alpha level?<a class="anchor" aria-label="anchor" href="#alpha-level"></a>
+</h3>
+<p>Within a single plot, some functions let you choose the cutoff used
+to decide what is displayed as significant:</p>
+<ul>
+<li>
+<code>pairwise.alpha</code> in <code><a href="../../reference/ggbetweenstats.html">ggbetweenstats()</a></code> and
+<code><a href="../../reference/ggwithinstats.html">ggwithinstats()</a></code> (together with <code>p.adjust.method</code>
+for multiple comparisons correction).</li>
+<li>
+<code>sig.level</code> in <code><a href="../../reference/ggcorrmat.html">ggcorrmat()</a></code>.</li>
+<li>
+<code>conf.level</code> (in all functions) sets the width of the
+confidence intervals.</li>
+</ul>
+<p>But there is no way to adjust alpha <em>across</em> the plots
+produced by <code>grouped_</code> functions, since each group is
+analyzed independently. You will have to report the adjusted alpha
+yourself (e.g., with 2 tests, only consider <code>p &lt; 0.025</code> as
+significant).</p>
+</div>
+<div class="section level3">
+<h3 id="custom-test">The statistical analysis I want to carry out is not available. What
+can I do?<a class="anchor" aria-label="anchor" href="#custom-test"></a>
+</h3>
+<p>Since <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> always allows just
+<strong>one</strong> type of test per statistical approach, sometimes
+your favorite test might not be available. For example,
+<a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> provides only Spearman’s
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>,
+but not Kendall’s
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>
+as a non-parametric correlation test.</p>
+<p>In such cases, you can override the defaults and use
+<a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a> to create custom expressions to display
+in the plot. But be forewarned that the expression building function in
+<a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a> is not stable yet.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/correlation/" class="external-link">correlation</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># data with two variables of interest</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">wt</span>, <span class="va">mpg</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># correlation results</span></span>
+<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation</a></span><span class="op">(</span><span class="va">df</span>, method <span class="op">=</span> <span class="st">"kendall"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/standardize_names.html" class="external-link">standardize_names</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"broom"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># creating expression out of these results</span></span>
+<span><span class="va">df_results</span> <span class="op">&lt;-</span> <span class="fu">statsExpressions</span><span class="fu">::</span><span class="fu"><a href="https://www.indrapatil.com/statsExpressions/reference/add_expression_col.html" class="external-link">add_expression_col</a></span><span class="op">(</span></span>
+<span>  data           <span class="op">=</span> <span class="va">results</span>,</span>
+<span>  no.parameters  <span class="op">=</span> <span class="fl">0L</span>,</span>
+<span>  statistic.text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="fu">italic</span><span class="op">(</span><span class="st">"T"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  effsize.text   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="fu">widehat</span><span class="op">(</span><span class="fu">italic</span><span class="op">(</span><span class="va">tau</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="st">"Kendall"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  n              <span class="op">=</span> <span class="va">results</span><span class="op">$</span><span class="va">n.obs</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># using custom expression in plot</span></span>
+<span><span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">wt</span>, <span class="va">mpg</span>, results.subtitle <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>subtitle <span class="op">=</span> <span class="va">df_results</span><span class="op">$</span><span class="va">expression</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<p><img src="faq_files/figure-html/custom_test-1.png" class="r-plt" alt="" width="100%"></p>
+</div>
+<div class="section level3">
+<h3 id="cite-report">How should I cite and report the results?<a class="anchor" aria-label="anchor" href="#cite-report"></a>
+</h3>
+<p>You can cite the package with <code>citation("ggstatsplot")</code>
+(see top of this article). For reporting, the expressions shown in the
+plots follow a standard template (see the <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/principles.html#statistical-reporting">principles
+article</a>), and all numbers can be retrieved as data frames with <a href="#extract-stats"><code>extract_stats()</code></a>. For interpreting
+logged Bayes Factors, see <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/interpretation.html">this
+article</a>.</p>
+</div>
+</div>
 <div class="section level2">
-<h2 id="how-can-i-customize-the-details-contained-in-the-subtitle">2. How can I customize the details contained in the subtitle?<a class="anchor" aria-label="anchor" href="#how-can-i-customize-the-details-contained-in-the-subtitle"></a>
+<h2 id="subtitle-caption">Subtitle and caption<a class="anchor" aria-label="anchor" href="#subtitle-caption"></a>
 </h2>
+<div class="section level3">
+<h3 id="custom-subtitle">How can I customize the details contained in the subtitle?<a class="anchor" aria-label="anchor" href="#custom-subtitle"></a>
+</h3>
 <p>Sometimes you may not wish to include so many details in the
 subtitle. In that case, you can extract the expression and copy-paste
 only the part you wish to include. For example, here only statistic and
 <em>p</em>-values are included:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a></span><span class="op">)</span></span>
 <span></span>
@@ -204,215 +389,55 @@ only the part you wish to include. For example, here only statistic and
 <span>    <span class="fu">italic</span><span class="op">(</span><span class="st">"p"</span><span class="op">)</span>, <span class="st">"&lt;"</span>, <span class="st">"0.001"</span></span>
 <span>  <span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="faq_files/figure-html/custom_expr-1.png" class="r-plt" alt="" width="100%"></p>
+<p>The extracted expression can also be put on any other plot with
+<code>labs(subtitle = extract_subtitle(p))</code>.</p>
 </div>
-<div class="section level2">
-<h2 id="i-am-getting-error-in-grid-call-error">3. I am getting <code>Error in grid.Call</code> error<a class="anchor" aria-label="anchor" href="#i-am-getting-error-in-grid-call-error"></a>
-</h2>
-<p>Sometimes, if you are working in <code>RStudio</code>, you might see
-the following error-</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">grid.Call</span>(C_textBounds, <span class="fu">as.graphicsAnnot</span>(x<span class="sc">$</span>label), x<span class="sc">$</span>x, x<span class="sc">$</span>y, <span class="sc">:</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>polygon edge not found</span></code></pre></div>
-<p>This can possibly be solved by increasing the size of RStudio viewer
-pane.</p>
-</div>
-<div class="section level2">
-<h2 id="why-do-i-get-only-plot-in-return-but-not-the-subtitlecaption">4. Why do I get only plot in return but not the
-subtitle/caption?<a class="anchor" aria-label="anchor" href="#why-do-i-get-only-plot-in-return-but-not-the-subtitlecaption"></a>
-</h2>
-<p>In order to prevent the entire plotting function from failing when
-statistical analysis fails, functions in <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a>
-default to first attempting to run the analysis and if they fail, then
-return empty (<code>NULL</code>) subtitle/caption. In such cases, if you
-wish to diagnose why the analysis is failing, you will have to do so
-using the underlying function used to carry out statistical
-analysis.</p>
-<p>For example, the following returns only the plot but not the
-statistical details in a subtitle or caption, because the outcome is
-constant within each group.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"b"</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/null_subtitle-1.png" class="r-plt" alt="" width="100%"></p>
-<p>To see why the statistical analysis failed, you can look at the error
-from the underlying function:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://www.indrapatil.com/statsExpressions/reference/two_sample_test.html" class="external-link">two_sample_test</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `t.test.default()`:</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> data are essentially constant</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="what-statistical-test-was-carried-out">5. What statistical test was carried out?<a class="anchor" aria-label="anchor" href="#what-statistical-test-was-carried-out"></a>
-</h2>
-<p>In case you are not sure what was the statistical test that produced
-the results shown in the subtitle of the plot, the best way to get that
-information is to either look at the documentation for the function used
-or check out the associated vignette.</p>
-<p>All statistical analyses are carried out by
-<a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a>, and a summary of every supported test
-and effect size is available in its <a href="https://www.indrapatil.com/statsExpressions/articles/stats_details.html" class="external-link">documentation</a>.</p>
-<p>You can also check the <code>method</code> column of the data frames
-returned by <code><a href="../../reference/extract_stats.html">extract_stats()</a></code> (see question 14).</p>
-</div>
-<div class="section level2">
-<h2 id="how-can-i-use-ggstatsplot-functions-in-a-for-loop">6. How can I use <code>{ggstatsplot}</code> functions in a
-<code>for</code> loop?<a class="anchor" aria-label="anchor" href="#how-can-i-use-ggstatsplot-functions-in-a-for-loop"></a>
-</h2>
-<p>Given that all functions in <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> use tidy
-evaluation, running these functions in a <code>for</code> loop requires
-minor adjustment to how inputs are entered:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">col.name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span>
-<span><span class="va">plot_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># executing the function in a `for` loop</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">3</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">col.name</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">plot_list</span><span class="op">[[</span><span class="va">col.name</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
-<span>    data <span class="op">=</span> <span class="va">mtcars</span>,</span>
-<span>    x <span class="op">=</span> <span class="va">cyl</span>,</span>
-<span>    y <span class="op">=</span> <span class="op">!</span><span class="op">!</span><span class="va">col.name</span><span class="op">[</span><span class="va">i</span><span class="op">]</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<p>Note that plots created inside a <code>for</code> loop are not
-printed automatically; either store them (as above) or wrap the call in
-<code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code>.</p>
-<p>That said, if repeating function execution across multiple columns in
-a data frame is what you want to do, I will recommend a
-<a href="https://purrr.tidyverse.org/" class="external-link">purrr</a>-based solution:</p>
-<p><a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data-frame" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data-frame</a></p>
-<p>This solution would work for <code>x</code> and <code>y</code>
-arguments, but not for the <code>grouping.var</code> argument, which
-first needs to be converted to a symbol:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">movies_long</span>, <span class="va">genre</span> <span class="op">==</span> <span class="st">"Comedy"</span> <span class="op">|</span> <span class="va">genre</span> <span class="op">==</span> <span class="st">"Drama"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="../../reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">df</span>,</span>
-<span>  x <span class="op">=</span> <span class="op">!</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>,</span>
-<span>  y <span class="op">=</span> <span class="op">!</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span>,</span>
-<span>  grouping.var <span class="op">=</span> <span class="op">!</span><span class="op">!</span><span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/sym.html" class="external-link">sym</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">8</span><span class="op">]</span><span class="op">)</span>,</span>
-<span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="how-can-i-have-uniform-y-axes-ranges-in-grouped_-functions">7. How can I have uniform Y-axes ranges in <code>grouped_</code>
-functions?<a class="anchor" aria-label="anchor" href="#how-can-i-have-uniform-y-axes-ranges-in-grouped_-functions"></a>
-</h2>
-<p>Across different facets of a <code>grouped_</code> plot, the axes
-ranges might sometimes differ. You can use the
-<code>ggplot.component</code> parameter (present in all functions except
-<code><a href="../../reference/ggcoefstats.html">ggcoefstats()</a></code>) to have the same scale across the individual
-plots:</p>
+<div class="section level3">
+<h3 id="subtitle-style">How can I change the size or position of the subtitle?<a class="anchor" aria-label="anchor" href="#subtitle-style"></a>
+</h3>
+<p>The statistical results appear as a standard <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>
+subtitle (and, when Bayes Factor is shown, as a caption). You can
+restyle and reposition them using <code><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme()</a></code> via the
+<code>ggplot.component</code> argument:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># provide a list of further `{ggplot2}` modifications using `ggplot.component`</span></span>
-<span><span class="fu"><a href="../../reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span><span class="op">(</span></span>
-<span>  <span class="va">mtcars</span>,</span>
-<span>  <span class="va">disp</span>,</span>
-<span>  <span class="va">hp</span>,</span>
-<span>  grouping.var <span class="op">=</span> <span class="va">am</span>,</span>
-<span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span></span>
-<span>    breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">350</span>, <span class="fl">50</span><span class="op">)</span>,</span>
-<span>    limits <span class="op">=</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">350</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/grouped_y_axes-1.png" class="r-plt" alt="" width="100%"></p>
-</div>
-<div class="section level2">
-<h2 id="does-ggstatsplot-work-with-plotly">8. Does <code>{ggstatsplot}</code> work with
-<code>plotly</code>?<a class="anchor" aria-label="anchor" href="#does-ggstatsplot-work-with-plotly"></a>
-</h2>
-<p>The <code>plotly</code> R graphing library makes it easy to produce
-interactive web graphics via <code>plotly.js</code>.</p>
-<p>The <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> functions are compatible with
-<code>plotly</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com" class="external-link">plotly</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># creating ggplot object with `{ggstatsplot}`</span></span>
-<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">mpg</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># converting to plotly object</span></span>
-<span><span class="fu">plotly</span><span class="fu">::</span><span class="fu">ggplotly</span><span class="op">(</span><span class="va">p</span>, width <span class="op">=</span> <span class="fl">480</span>, height <span class="op">=</span> <span class="fl">480</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="how-can-i-use-grouped_-functions-with-more-than-one-group">9. How can I use <code>grouped_</code> functions with more than one
-group?<a class="anchor" aria-label="anchor" href="#how-can-i-use-grouped_-functions-with-more-than-one-group"></a>
-</h2>
-<p>Currently, the <code>grouped_</code> variants of functions only
-support repeating the analysis across a <em>single</em> grouping
-variable. Often, you have to run the same analysis across a combination
-of two or more grouping variables. This can be easily achieved using
-<a href="https://purrr.tidyverse.org/" class="external-link">purrr</a> package (see also <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html">this
-article</a>).</p>
-<p>Here is an example-</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># creating a list by splitting data frame by combination of two different</span></span>
-<span><span class="co"># grouping variables</span></span>
-<span><span class="va">df_list</span> <span class="op">&lt;-</span> <span class="va">mpg</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">drv</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"f"</span><span class="op">)</span>, <span class="va">fl</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"p"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="op">(</span>\<span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span><span class="va">d</span>, f <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">drv</span>, <span class="va">d</span><span class="op">$</span><span class="va">fl</span><span class="op">)</span>, drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># checking if the length of the list is 4</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">df_list</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 4</span></span>
-<span></span>
-<span><span class="co"># running correlation analyses; this will return a *list* of plots</span></span>
-<span><span class="va">plot_list</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/pmap.html" class="external-link">pmap</a></span><span class="op">(</span></span>
-<span>  .l <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>    data <span class="op">=</span> <span class="va">df_list</span>,</span>
-<span>    x <span class="op">=</span> <span class="st">"displ"</span>,</span>
-<span>    y <span class="op">=</span> <span class="st">"hwy"</span>,</span>
-<span>    results.subtitle <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span>  <span class="op">)</span>,</span>
-<span>  .f <span class="op">=</span> <span class="va">ggscatterstats</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># arrange the list in a single plot grid</span></span>
-<span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span></span>
-<span>  plotlist <span class="op">=</span> <span class="va">plot_list</span>,</span>
-<span>  plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span>,</span>
-<span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>tag_levels <span class="op">=</span> <span class="st">"i"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/grouped_2-1.png" class="r-plt" alt="" width="100%"></p>
-</div>
-<div class="section level2">
-<h2 id="how-can-i-include-statistical-expressions-in-facet-labels">10. How can I include statistical expressions in facet labels?<a class="anchor" aria-label="anchor" href="#how-can-i-include-statistical-expressions-in-facet-labels"></a>
-</h2>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># data</span></span>
-<span><span class="va">mtcars1</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span>
+<span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
+<span>  <span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">mpg</span>,</span>
+<span>  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span>
+<span>      plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10</span>, face <span class="op">=</span> <span class="st">"bold"</span>, hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
+<span>      plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span>, hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><img src="faq_files/figure-html/subtitle_style-1.png" class="r-plt" alt="" width="100%"></p>
+</div>
+<div class="section level3">
+<h3 id="scientific-notation">How can I turn off scientific notation in expressions?<a class="anchor" aria-label="anchor" href="#scientific-notation"></a>
+</h3>
+<p>Increase the number of digits with the <code>digits</code> argument.
+Note that very small <em>p</em>-values can still be shown in scientific
+notation if they would otherwise be rounded to zero.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/" class="external-link">WRS2</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">mtcars1</span>,</span>
-<span>  x <span class="op">=</span> <span class="va">cyl</span>,</span>
-<span>  y <span class="op">=</span> <span class="va">mpg</span>,</span>
-<span>  grouping.var <span class="op">=</span> <span class="va">am</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">expr1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/extract_stats.html">extract_subtitle</a></span><span class="op">(</span><span class="va">p</span><span class="op">[[</span><span class="fl">1L</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="va">expr2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/extract_stats.html">extract_subtitle</a></span><span class="op">(</span><span class="va">p</span><span class="op">[[</span><span class="fl">2L</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">mtcars1</span><span class="op">$</span><span class="va">am</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">mtcars1</span><span class="op">$</span><span class="va">am</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">expr1</span>, <span class="va">expr2</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">mtcars1</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">cyl</span>, y <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">geom_jitter</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span>,</span>
-<span>    ncol <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>    strip.position <span class="op">=</span> <span class="st">"top"</span>,</span>
-<span>    labeller <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/labellers.html" class="external-link">label_parsed</a></span></span>
-<span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/facet_expr-1.png" class="r-plt" alt="" width="100%"></p>
+<span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
+<span>  <span class="va">WineTasting</span>,</span>
+<span>  <span class="va">Wine</span>,</span>
+<span>  <span class="va">Taste</span>,</span>
+<span>  subject.id <span class="op">=</span> <span class="va">Taster</span>,</span>
+<span>  digits <span class="op">=</span> <span class="fl">4L</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><img src="faq_files/figure-html/digits-1.png" class="r-plt" alt="" width="100%"></p>
+</div>
 </div>
 <div class="section level2">
-<h2 id="how-to-customize-which-pairs-are-shown-in-pairwise-comparisons">11. How to customize which pairs are shown in pairwise
-comparisons?<a class="anchor" aria-label="anchor" href="#how-to-customize-which-pairs-are-shown-in-pairwise-comparisons"></a>
+<h2 id="pairwise-comparisons">Pairwise comparisons<a class="anchor" aria-label="anchor" href="#pairwise-comparisons"></a>
 </h2>
+<div class="section level3">
+<h3 id="custom-pairwise">How can I show only some of the pairwise comparisons?<a class="anchor" aria-label="anchor" href="#custom-pairwise"></a>
+</h3>
 <p>Currently, for <code>ggbetweenstats</code> and
 <code>ggwithinstats</code>, you can either display all
 <strong>significant</strong> comparisons, all
@@ -420,49 +445,21 @@ comparisons?<a class="anchor" aria-label="anchor" href="#how-to-customize-which-
 comparisons. But what if I am only interested in just one particular
 comparison?</p>
 <p>Here is a workaround using <a href="https://const-ae.github.io/ggsignif/" class="external-link">ggsignif</a>:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://const-ae.github.io/ggsignif/" class="external-link">ggsignif</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span>, pairwise.display <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://const-ae.github.io/ggsignif/reference/stat_signif.html" class="external-link">geom_signif</a></span><span class="op">(</span>comparisons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"6"</span><span class="op">)</span><span class="op">)</span>, test.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>exact <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="faq_files/figure-html/custom_pairwise-1.png" class="r-plt" alt="" width="100%"></p>
 </div>
-<div class="section level2">
-<h2 id="how-to-access-data-frame-with-results-from-pairwise-comparisons">12. How to access data frame with results from pairwise
-comparisons?<a class="anchor" aria-label="anchor" href="#how-to-access-data-frame-with-results-from-pairwise-comparisons"></a>
-</h2>
-<p>The pairwise comparisons displayed in a <code><a href="../../reference/ggbetweenstats.html">ggbetweenstats()</a></code>
-or <code><a href="../../reference/ggwithinstats.html">ggwithinstats()</a></code> plot are stored in the plot and can be
-retrieved with <code><a href="../../reference/extract_stats.html">extract_stats()</a></code>:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">pairwise_comparisons_data</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 9</span></span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">group1</span> <span style="font-weight: bold;">group2</span> <span style="font-weight: bold;">statistic</span>   <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">alternative</span> <span style="font-weight: bold;">distribution</span> <span style="font-weight: bold;">p.adjust.method</span></span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 4      6           5.39 <span style="color: #949494;">0.00</span>8<span style="text-decoration: underline;">31</span>   two.sided   q            Holm           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 4      8           9.11 <span style="color: #949494;">0.000</span><span style="color: #949494; text-decoration: underline;">0</span><span style="text-decoration: underline;">12</span>4 two.sided   q            Holm           </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 6      8           5.12 <span style="color: #949494;">0.00</span>8<span style="text-decoration: underline;">31</span>   two.sided   q            Holm           </span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">test</span>         <span style="font-weight: bold;">expression</span></span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span></span></span></code></pre></div>
-<p>Behind the scenes, <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> uses the
-<code><a href="https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html" class="external-link">statsExpressions::pairwise_comparisons()</a></code> function, which
-you can also call directly without creating a plot (see the <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/pairwise.html">pairwise
-comparisons article</a>).</p>
-</div>
-<div class="section level2">
-<h2 id="how-can-i-change-annotation-in-pairwise-comparisons">13. How can I change annotation in pairwise comparisons?<a class="anchor" aria-label="anchor" href="#how-can-i-change-annotation-in-pairwise-comparisons"></a>
-</h2>
+<div class="section level3">
+<h3 id="pairwise-annotation">How can I change the annotation in pairwise comparisons?<a class="anchor" aria-label="anchor" href="#pairwise-annotation"></a>
+</h3>
 <p><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> defaults to displaying exact
 <em>p</em>-values or logged Bayes Factor values for pairwise
-comparisons. But what if you wish to adopt different annotation
-labels?</p>
-<p>You will have to customize them yourself:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+comparisons. But what if you wish to adopt different annotation labels,
+such as asterisks? You will have to customize them yourself:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://const-ae.github.io/ggsignif/" class="external-link">ggsignif</a></span><span class="op">)</span></span>
 <span></span>
@@ -508,483 +505,10 @@ labels?</p>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="faq_files/figure-html/comp_asterisks-1.png" class="r-plt" alt="" width="100%"></p>
 </div>
-<div class="section level2">
-<h2 id="how-to-access-data-frame-containing-statistical-analyses">14. How to access data frame containing statistical analyses?<a class="anchor" aria-label="anchor" href="#how-to-access-data-frame-containing-statistical-analyses"></a>
-</h2>
-<p><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> displays expressions in the subtitle and
-caption, but you can get back the underlying data frames with the
-<code><a href="../../reference/extract_stats.html">extract_stats()</a></code> helper function. It returns a list with the
-following components (<code>NULL</code> when not relevant for a given
-plot): <code>subtitle_data</code>, <code>caption_data</code>,
-<code>pairwise_comparisons_data</code>, <code>descriptive_data</code>,
-<code>one_sample_data</code>, <code>tidy_data</code>, and
-<code>glance_data</code>.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">cyl</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># data frame with results</span></span>
-<span><span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
-<span><span class="co">#&gt; $subtitle_data</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 13</span></span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">statistic</span>    <span style="font-weight: bold;">df</span> <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">method</span>                     <span style="font-weight: bold;">effectsize</span>        <span style="font-weight: bold;">estimate</span></span></span>
-<span><span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>      8.74     2  <span style="color: #949494;">0.0</span>12<span style="text-decoration: underline;">6</span> Pearson's Chi-squared test Cramer's V (adj.)    <span style="color: #949494;">0.</span>464</span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span> <span style="font-weight: bold;">conf.high</span> <span style="font-weight: bold;">conf.method</span> <span style="font-weight: bold;">conf.distribution</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span></span></span>
-<span><span class="co">#&gt;        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>       <span style="color: #949494;">0.</span>95        <span style="color: #949494;">0</span>     <span style="color: #949494;">0.</span>820 ncp         chisq                32 <span style="color: #949494;">&lt;language&gt;</span></span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $caption_data</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 15</span></span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">term</span>  <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">effectsize</span> <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.low</span> <span style="font-weight: bold;">conf.high</span></span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Ratio       <span style="color: #949494;">0.</span>95 Cramers_v     <span style="color: #949494;">0.</span>414        <span style="color: #949494;">0</span>     <span style="color: #949494;">0.</span>666</span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">prior.distribution</span>      <span style="font-weight: bold;">prior.location</span> <span style="font-weight: bold;">prior.scale</span>  <span style="font-weight: bold;">bf10</span></span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> independent multinomial              <span style="color: #949494;">0</span>           1  16.8</span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">method</span>                              <span style="font-weight: bold;">conf.method</span> <span style="font-weight: bold;">log_e_bf10</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span></span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Bayesian contingency table analysis ETI               2.82    32 <span style="color: #949494;">&lt;language&gt;</span></span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $pairwise_comparisons_data</span></span>
-<span><span class="co">#&gt; NULL</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $descriptive_data</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 5</span></span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">cyl</span>   <span style="font-weight: bold;">am</span>    <span style="font-weight: bold;">counts</span>  <span style="font-weight: bold;">perc</span> <span style="font-weight: bold;">.label</span></span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 4     0          3  27.3 27%   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 4     1          8  72.7 73%   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 6     0          4  57.1 57%   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 6     1          3  42.9 43%   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 8     0         12  85.7 86%   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 8     1          2  14.3 14%   </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $one_sample_data</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 19</span></span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">cyl</span>   <span style="font-weight: bold;">counts</span>  <span style="font-weight: bold;">perc</span> <span style="font-weight: bold;">N</span>        <span style="font-weight: bold;">statistic</span>    <span style="font-weight: bold;">df</span> <span style="font-weight: bold;">p.value</span></span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 8         14  43.8 (n = 14)     7.14      1 <span style="color: #949494;">0.00</span>7<span style="text-decoration: underline;">53</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 6          7  21.9 (n = 7)      <span style="color: #949494;">0.</span>143     1 <span style="color: #949494;">0.</span>705  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 4         11  34.4 (n = 11)     2.27      1 <span style="color: #949494;">0.</span>132  </span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">method</span>                                   <span style="font-weight: bold;">effectsize</span>  <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.level</span></span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Chi-squared test for given probabilities Pearson's C    <span style="color: #949494;">0.</span>581       <span style="color: #949494;">0.</span>95</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Chi-squared test for given probabilities Pearson's C    <span style="color: #949494;">0.</span>141       <span style="color: #949494;">0.</span>95</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Chi-squared test for given probabilities Pearson's C    <span style="color: #949494;">0.</span>414       <span style="color: #949494;">0.</span>95</span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">conf.low</span> <span style="font-weight: bold;">conf.high</span> <span style="font-weight: bold;">conf.method</span> <span style="font-weight: bold;">conf.distribution</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span></span></span>
-<span><span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    <span style="color: #949494;">0.</span>186     <span style="color: #949494;">0.</span>778 ncp         chisq                14 <span style="color: #949494;">&lt;language&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>    <span style="color: #949494;">0</span>         <span style="color: #949494;">0.</span>652 ncp         chisq                 7 <span style="color: #949494;">&lt;language&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>    <span style="color: #949494;">0</span>         <span style="color: #949494;">0.</span>723 ncp         chisq                11 <span style="color: #949494;">&lt;language&gt;</span></span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">.label</span>                                                                 </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;glue&gt;</span>                                                                 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~chi['gof']^2~(1)==7.14, ~italic(p)=='7.53e-03', ~italic(n)=='14')</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~chi['gof']^2~(1)==0.14, ~italic(p)=='0.71', ~italic(n)=='7')     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~chi['gof']^2~(1)==2.27, ~italic(p)=='0.13', ~italic(n)=='11')    </span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">.p.label</span>                    </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;glue&gt;</span>                      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~italic(p)=='7.53e-03')</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~italic(p)=='0.71')    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> list(~italic(p)=='0.13')    </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $tidy_data</span></span>
-<span><span class="co">#&gt; NULL</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $glance_data</span></span>
-<span><span class="co">#&gt; NULL</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; attr(,"class")</span></span>
-<span><span class="co">#&gt; [1] "ggstatsplot_stats" "list"</span></span></code></pre></div>
-<p>For <code>grouped_</code> plots, <code><a href="../../reference/extract_stats.html">extract_stats()</a></code> returns
-one such list per group. <code><a href="../../reference/extract_stats.html">extract_subtitle()</a></code> and
-<code><a href="../../reference/extract_stats.html">extract_caption()</a></code> return just the expressions.</p>
-<p>If you only need the results and not the plot, you can call the
-functions from the source package <a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a>
-directly (see <a href="https://www.indrapatil.com/statsExpressions/articles/web_only/dataframe_outputs.html" class="external-link">examples</a>).</p>
-</div>
-<div class="section level2">
-<h2 id="how-can-i-remove-a-particular-geom-layer-from-the-plot">15. How can I remove a particular <code>geom</code> layer from the
-plot?<a class="anchor" aria-label="anchor" href="#how-can-i-remove-a-particular-geom-layer-from-the-plot"></a>
-</h2>
-<p>Sometimes you may not want a particular <code>geom</code> layer to be
-displayed. You can remove them by setting transparency
-(<code>alpha</code>) for that layer to 0.</p>
-<p>For example, let’s say I want to remove the points from
-<code><a href="../../reference/ggwithinstats.html">ggwithinstats()</a></code> plot:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># before</span></span>
-<span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">bugs_long</span>,</span>
-<span>  x <span class="op">=</span> <span class="va">condition</span>,</span>
-<span>  y <span class="op">=</span> <span class="va">desire</span>,</span>
-<span>  subject.id <span class="op">=</span> <span class="va">subject</span>,</span>
-<span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  pairwise.display <span class="op">=</span> <span class="st">"none"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/geom_removal-1.png" class="r-plt" alt="" width="100%"></p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># after</span></span>
-<span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">bugs_long</span>,</span>
-<span>  x <span class="op">=</span> <span class="va">condition</span>,</span>
-<span>  y <span class="op">=</span> <span class="va">desire</span>,</span>
-<span>  subject.id <span class="op">=</span> <span class="va">subject</span>,</span>
-<span>  point.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
-<span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  pairwise.display <span class="op">=</span> <span class="st">"none"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/geom_removal-2.png" class="r-plt" alt="" width="100%"></p>
-</div>
-<div class="section level2">
-<h2 id="how-can-i-modify-the-fill-colors-with-custom-values">16. How can I modify the fill colors with custom values?<a class="anchor" aria-label="anchor" href="#how-can-i-modify-the-fill-colors-with-custom-values"></a>
-</h2>
-<p>Functions with a <code>palette</code> argument accept any discrete
-<a href="https://emilhvitfeldt.github.io/paletteer/" class="external-link">paletteer</a> palette in the <code>"package::palette"</code>
-format (see question 18). But if you are not satisfied with the
-available palettes, you can also change the colors by manually
-specifying these values.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">cyl</span>, results.subtitle <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#E7298A"</span>, <span class="st">"#66A61E"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/ggbar_colors-1.png" class="r-plt" alt="" width="100%"></p>
-<p>The same can also be done for <code>grouped_</code> functions:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">mtcars</span>,</span>
-<span>  grouping.var <span class="op">=</span> <span class="va">am</span>,</span>
-<span>  x <span class="op">=</span> <span class="va">cyl</span>,</span>
-<span>  ggplot.component <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_grey.html" class="external-link">scale_fill_grey</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/ggpie_colors-1.png" class="r-plt" alt="" width="100%"></p>
-</div>
-<div class="section level2">
-<h2 id="how-can-i-modify-grouped_-outputs-using-ggplot2-functions">17. How can I modify <code>grouped_</code> outputs using
-<code>{ggplot2}</code> functions?<a class="anchor" aria-label="anchor" href="#how-can-i-modify-grouped_-outputs-using-ggplot2-functions"></a>
-</h2>
-<p>All <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> plots are <code>ggplot</code> objects,
-which can be further modified, just like any other <code>ggplot</code>
-object. The exception is plots returned by <code>grouped_</code>
-functions, which are <a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a> objects combining several
-plots. To modify each of the individual plots, use the
-<code>ggplot.component</code> argument:</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://emilhvitfeldt.github.io/paletteer/" class="external-link">paletteer</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="../../reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span><span class="op">(</span></span>
-<span>  <span class="va">mtcars</span>,</span>
-<span>  <span class="va">cyl</span>,</span>
-<span>  <span class="va">wt</span>,</span>
-<span>  grouping.var <span class="op">=</span> <span class="va">am</span>,</span>
-<span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  pairwise.display <span class="op">=</span> <span class="st">"none"</span>,</span>
-<span>  <span class="co"># modify further with `{ggplot2}` functions</span></span>
-<span>  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu">paletteer</span><span class="fu">::</span><span class="fu"><a href="https://emilhvitfeldt.github.io/paletteer/reference/paletteer_c.html" class="external-link">paletteer_c</a></span><span class="op">(</span><span class="st">"viridis::viridis"</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/grouped_modify-1.png" class="r-plt" alt="" width="100%"></p>
-<p>Alternatively, <a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a>’s <code>&amp;</code> operator
-applies a <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> component to all plots in a
-<code>grouped_</code> output:</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span>, grouping.var <span class="op">=</span> <span class="va">am</span><span class="op">)</span> <span class="op">&amp;</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="how-can-i-change-the-theme-or-color-palette">18. How can I change the theme or color palette?<a class="anchor" aria-label="anchor" href="#how-can-i-change-the-theme-or-color-palette"></a>
-</h2>
-<p>Use the <code>ggtheme</code> argument to supply any
-<a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> theme (the default is
-<code><a href="../../reference/theme_ggstatsplot.html">theme_ggstatsplot()</a></code>), and the <code>palette</code> argument
-to choose any discrete palette from <a href="https://emilhvitfeldt.github.io/paletteer/" class="external-link">paletteer</a> in the
-<code>"package::palette"</code> format. Run
-<code>View(paletteer::palettes_d_names)</code> to see all available
-palettes.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
-<span>  <span class="va">mtcars</span>,</span>
-<span>  <span class="va">cyl</span>,</span>
-<span>  <span class="va">wt</span>,</span>
-<span>  ggtheme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_classic</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  palette <span class="op">=</span> <span class="st">"ggsci::nrc_npg"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/theme_palette-1.png" class="r-plt" alt="" width="100%"></p>
-<p>The palette must have at least as many colors as there are levels in
-the grouping variable; otherwise an error is thrown.
-<code><a href="../../reference/ggscatterstats.html">ggscatterstats()</a></code>, <code><a href="../../reference/gghistostats.html">gghistostats()</a></code>,
-<code><a href="../../reference/ggdotplotstats.html">ggdotplotstats()</a></code>, and <code><a href="../../reference/ggcorrmat.html">ggcorrmat()</a></code> don’t have a
-<code>palette</code> argument; use the relevant <code>*.args</code>
-arguments (or <code>colors</code> in <code><a href="../../reference/ggcorrmat.html">ggcorrmat()</a></code>)
-instead.</p>
-</div>
-<div class="section level2">
-<h2 id="how-can-i-remove-sample-size-labels-for-ggbarstats">19. How can I remove sample size labels for
-<code>ggbarstats</code>?<a class="anchor" aria-label="anchor" href="#how-can-i-remove-sample-size-labels-for-ggbarstats"></a>
-</h2>
-<p>Set the transparency of the sample size labels to 0 using the
-<code>sample.size.label.args</code> argument:</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">cyl</span>, sample.size.label.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/ggbar_no_n-1.png" class="r-plt" alt="" width="100%"></p>
-</div>
-<div class="section level2">
-<h2 id="statistical-analysis-i-want-to-carry-out-is-not-available--what-can-i-do">20. Statistical analysis I want to carry out is not available. What
-can I do?<a class="anchor" aria-label="anchor" href="#statistical-analysis-i-want-to-carry-out-is-not-available--what-can-i-do"></a>
-</h2>
-<p>Since <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> always allows just
-<strong>one</strong> type of test per statistical approach, sometimes
-your favorite test might not be available. For example,
-<a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> provides only Spearman’s
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>,
-but not Kendall’s
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math>
-as a non-parametric correlation test.</p>
-<p>In such cases, you can override the defaults and use
-<a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a> to create custom expressions to display
-in the plot. But be forewarned that the expression building function in
-<a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a> is not stable yet.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/correlation/" class="external-link">correlation</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># data with two variables of interest</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">wt</span>, <span class="va">mpg</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># correlation results</span></span>
-<span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation</a></span><span class="op">(</span><span class="va">df</span>, method <span class="op">=</span> <span class="st">"kendall"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/standardize_names.html" class="external-link">standardize_names</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"broom"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># creating expression out of these results</span></span>
-<span><span class="va">df_results</span> <span class="op">&lt;-</span> <span class="fu">statsExpressions</span><span class="fu">::</span><span class="fu"><a href="https://www.indrapatil.com/statsExpressions/reference/add_expression_col.html" class="external-link">add_expression_col</a></span><span class="op">(</span></span>
-<span>  data           <span class="op">=</span> <span class="va">results</span>,</span>
-<span>  no.parameters  <span class="op">=</span> <span class="fl">0L</span>,</span>
-<span>  statistic.text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="fu">italic</span><span class="op">(</span><span class="st">"T"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  effsize.text   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">quote</a></span><span class="op">(</span><span class="fu">widehat</span><span class="op">(</span><span class="fu">italic</span><span class="op">(</span><span class="va">tau</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="st">"Kendall"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  n              <span class="op">=</span> <span class="va">results</span><span class="op">$</span><span class="va">n.obs</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># using custom expression in plot</span></span>
-<span><span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">wt</span>, <span class="va">mpg</span>, results.subtitle <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>subtitle <span class="op">=</span> <span class="va">df_results</span><span class="op">$</span><span class="va">expression</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/custom_test-1.png" class="r-plt" alt="" width="100%"></p>
-</div>
-<div class="section level2">
-<h2 id="is-there-a-way-to-adjust-my-alpha-level">21. Is there a way to adjust my alpha level?<a class="anchor" aria-label="anchor" href="#is-there-a-way-to-adjust-my-alpha-level"></a>
-</h2>
-<p>Within a single plot, some functions let you choose the cutoff used
-to decide what is displayed as significant:</p>
-<ul>
-<li>
-<code>pairwise.alpha</code> in <code><a href="../../reference/ggbetweenstats.html">ggbetweenstats()</a></code> and
-<code><a href="../../reference/ggwithinstats.html">ggwithinstats()</a></code> (together with <code>p.adjust.method</code>
-for multiple comparisons correction).</li>
-<li>
-<code>sig.level</code> in <code><a href="../../reference/ggcorrmat.html">ggcorrmat()</a></code>.</li>
-<li>
-<code>conf.level</code> (in all functions) sets the width of the
-confidence intervals.</li>
-</ul>
-<p>But there is no way to adjust alpha <em>across</em> the plots
-produced by <code>grouped_</code> functions (e.g.,
-<code><a href="../../reference/grouped_ggwithinstats.html">grouped_ggwithinstats()</a></code>), since each group is analyzed
-independently. You will have to just report in the paper/article/report
-what your adjusted alpha is.</p>
-<p>So, for example, if 2 tests are being carried out, the alpha is going
-to be <code>0.05/2 = 0.025</code>. So, when you describe the
-<em>Methods</em> section, you can mention that only those tests should
-be considered significant where <code>p &lt; 0.025</code>. Or you can
-even mention this in the caption.</p>
-</div>
-<div class="section level2">
-<h2 id="how-can-i-build-a-shiny-app-using-ggstatsplot-functions">22. How can I build a <code>Shiny</code> app using
-<code>{ggstatsplot}</code> functions?<a class="anchor" aria-label="anchor" href="#how-can-i-build-a-shiny-app-using-ggstatsplot-functions"></a>
-</h2>
-<p>Below is an example using <code>ggbetweenstats</code> function.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/headerPanel.html" class="external-link">headerPanel</a></span><span class="op">(</span><span class="st">"Example - ggbetweenstats"</span><span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html" class="external-link">sidebarPanel</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/selectInput.html" class="external-link">selectInput</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"X Variable"</span>, choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>,</span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/selectInput.html" class="external-link">selectInput</a></span><span class="op">(</span><span class="st">"y"</span>, <span class="st">"Y Variable"</span>, choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span>
-<span>  <span class="op">)</span>,</span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html" class="external-link">mainPanel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
-<span>    <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">iris</span>, <span class="op">!</span><span class="op">!</span><span class="va">input</span><span class="op">$</span><span class="va">x</span>, <span class="op">!</span><span class="op">!</span><span class="va">input</span><span class="op">$</span><span class="va">y</span><span class="op">)</span></span>
-<span>  <span class="op">}</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="how-to-change-size-of-annotations-for-combined-plot-in-grouped_-functions">23. How to change size of annotations for combined plot in
-<code>grouped_*</code> functions?<a class="anchor" aria-label="anchor" href="#how-to-change-size-of-annotations-for-combined-plot-in-grouped_-functions"></a>
-</h2>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="../../reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">drv</span> <span class="op">!=</span> <span class="st">"4"</span><span class="op">)</span>,</span>
-<span>  x <span class="op">=</span> <span class="va">year</span>,</span>
-<span>  y <span class="op">=</span> <span class="va">hwy</span>,</span>
-<span>  grouping.var <span class="op">=</span> <span class="va">drv</span>,</span>
-<span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  <span class="co">## arguments given to `{patchwork}` for combining plots</span></span>
-<span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>    title <span class="op">=</span> <span class="st">"this is my title"</span>,</span>
-<span>    subtitle <span class="op">=</span> <span class="st">"this is my subtitle"</span>,</span>
-<span>    theme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span>
-<span>      plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>,</span>
-<span>      plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/faq3-1.png" class="r-plt" alt="" width="100%"></p>
-</div>
-<div class="section level2">
-<h2 id="how-to-change-size-of-text-in-the-subtitle">24. How to change size of text in the subtitle?<a class="anchor" aria-label="anchor" href="#how-to-change-size-of-text-in-the-subtitle"></a>
-</h2>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">iris</span>,</span>
-<span>  x <span class="op">=</span> <span class="va">Species</span>,</span>
-<span>  y <span class="op">=</span> <span class="va">Sepal.Length</span>,</span>
-<span>  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">20</span>, face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/faq4-1.png" class="r-plt" alt="" width="100%"></p>
-</div>
-<div class="section level2">
-<h2 id="how-to-display-pairwise-comparison-letter-in-a-plot">25. How to display pairwise comparison letter in a plot?<a class="anchor" aria-label="anchor" href="#how-to-display-pairwise-comparison-letter-in-a-plot"></a>
-</h2>
-<p>This is not possible out of the box, but see <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues/654#issuecomment-948862514" class="external-link">this</a>
-comment.</p>
-</div>
-<div class="section level2">
-<h2 id="does-ggstatsplot-carry-out-assumption-checks">26. Does <code>{ggstatsplot}</code> carry out assumption
-checks?<a class="anchor" aria-label="anchor" href="#does-ggstatsplot-carry-out-assumption-checks"></a>
-</h2>
-<p>No, <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> does not carry out any analysis of
-whether assumptions are met or not. It will just carry out whatever test
-you ask it to carry out.</p>
-<p>To check these assumptions, you can use a different package called
-<a href="https://easystats.github.io/performance/" class="external-link">performance</a>:</p>
-<p><a href="https://easystats.github.io/performance/reference/index.html#check-model-assumptions-or-data-properties" class="external-link uri">https://easystats.github.io/performance/reference/index.html#check-model-assumptions-or-data-properties</a></p>
-</div>
-<div class="section level2">
-<h2 id="i-am-on-ubuntu-and-have-trouble-installing-pmcmrplus">27. I am on Ubuntu and have trouble installing
-<code>{PMCMRplus}</code>?<a class="anchor" aria-label="anchor" href="#i-am-on-ubuntu-and-have-trouble-installing-pmcmrplus"></a>
-</h2>
-<p>Linux users may encounter some installation problems. In particular,
-<a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> depends (via <a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a>)
-on the <code>{PMCMRplus}</code> package.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>ERROR<span class="sc">:</span> dependencies ‘gmp’, ‘Rmpfr’ are not available <span class="cf">for</span> package ‘PMCMRplus’</span></code></pre></div>
-<p>This means that your operating system lacks <code>gmp</code> and
-<code>Rmpfr</code> libraries.</p>
-<p>If you use <code>Ubuntu</code>, you can install these
-dependencies:</p>
-<pre><code>sudo apt-get install libgmp3-dev
-sudo apt-get install libmpfr-dev</code></pre>
-<p>The following <code>README</code> file briefly describes the
-installation procedure: <a href="https://CRAN.R-project.org/package=PMCMRplus/readme/README.html" class="external-link uri">https://CRAN.R-project.org/package=PMCMRplus/readme/README.html</a></p>
-<p>For MacOS, have a look at this <a href="https://stackoverflow.com/questions/35360885/installing-finding-gmp-under-osx" class="external-link">post</a>.</p>
-</div>
-<div class="section level2">
-<h2 id="how-to-modify-the-secondary-y-axis-title">28. How to modify the secondary Y-axis title?<a class="anchor" aria-label="anchor" href="#how-to-modify-the-secondary-y-axis-title"></a>
-</h2>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
-<span>  <span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span>,</span>
-<span>  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>sec.axis <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/sec_axis.html" class="external-link">dup_axis</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"My custom test"</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/faq5-1.png" class="r-plt" alt="" width="100%"></p>
-</div>
-<div class="section level2">
-<h2 id="how-to-turn-off-scientific-notation-in-expressions">29. How to turn off scientific notation in expressions?<a class="anchor" aria-label="anchor" href="#how-to-turn-off-scientific-notation-in-expressions"></a>
-</h2>
-<p>Increase the number of digits with the <code>digits</code> argument.
-Note that very small <em>p</em>-values can still be shown in scientific
-notation if they would otherwise be rounded to zero.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/" class="external-link">WRS2</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
-<span>  <span class="va">WineTasting</span>,</span>
-<span>  <span class="va">Wine</span>,</span>
-<span>  <span class="va">Taste</span>,</span>
-<span>  subject.id <span class="op">=</span> <span class="va">Taster</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/faq6-1.png" class="r-plt" alt="" width="100%"></p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
-<span>  <span class="va">WineTasting</span>,</span>
-<span>  <span class="va">Wine</span>,</span>
-<span>  <span class="va">Taste</span>,</span>
-<span>  subject.id <span class="op">=</span> <span class="va">Taster</span>,</span>
-<span>  digits <span class="op">=</span> <span class="fl">4L</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/faq6-2.png" class="r-plt" alt="" width="100%"></p>
-</div>
-<div class="section level2">
-<h2 id="how-to-modify-the-whiskers-in-box-plots-from-ggbetweenstats">30. How to modify the whiskers in box plots from
-ggbetweenstats?<a class="anchor" aria-label="anchor" href="#how-to-modify-the-whiskers-in-box-plots-from-ggbetweenstats"></a>
-</h2>
-<p>By default, the whiskers in <code><a href="../../reference/ggbetweenstats.html">ggbetweenstats()</a></code> box plots
-extend to 1.5 times the interquartile range (IQR) from the box,
-following the Tukey method. You can customize this using the
-<code>coef</code> parameter in <code>boxplot.args</code>:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Default whiskers (1.5 * IQR)</span></span>
-<span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">mtcars</span>,</span>
-<span>  x <span class="op">=</span> <span class="va">am</span>,</span>
-<span>  y <span class="op">=</span> <span class="va">wt</span>,</span>
-<span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/faq7-1.png" class="r-plt" alt="" width="100%"></p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># Longer whiskers (3 * IQR)</span></span>
-<span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">mtcars</span>,</span>
-<span>  x <span class="op">=</span> <span class="va">am</span>,</span>
-<span>  y <span class="op">=</span> <span class="va">wt</span>,</span>
-<span>  boxplot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>coef <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
-<span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/faq7-2.png" class="r-plt" alt="" width="100%"></p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># Whiskers only to data range (no multiplier)</span></span>
-<span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">mtcars</span>,</span>
-<span>  x <span class="op">=</span> <span class="va">am</span>,</span>
-<span>  y <span class="op">=</span> <span class="va">wt</span>,</span>
-<span>  boxplot.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>coef <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
-<span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/faq7-3.png" class="r-plt" alt="" width="100%"></p>
-</div>
-<div class="section level2">
-<h2 id="why-do-pairwise-comparison-brackets-disappear-when-i-restrict-the-y-axis">31. Why do pairwise comparison brackets disappear when I restrict
-the Y-axis?<a class="anchor" aria-label="anchor" href="#why-do-pairwise-comparison-brackets-disappear-when-i-restrict-the-y-axis"></a>
-</h2>
+<div class="section level3">
+<h3 id="brackets-disappear">Why do pairwise comparison brackets disappear when I restrict the
+Y-axis?<a class="anchor" aria-label="anchor" href="#brackets-disappear"></a>
+</h3>
 <p>This is a common <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> footgun. There are two ways
 to restrict the visible y-range, and they behave very differently:</p>
 <ul>
@@ -1002,128 +526,187 @@ still computed from the full data range and remain fully intact.</li>
 </ul>
 <p>The fix is to replace <code>scale_y_continuous(limits = ...)</code>
 with <code>coord_cartesian(ylim = ...)</code>:</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># BAD: pairwise brackets disappear because values above 4 are set to NA</span></span>
-<span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/coord_cartesian_pairwise-1.png" class="r-plt" alt="" width="100%"></p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># GOOD: brackets survive because coord_cartesian only zooms the viewport</span></span>
 <span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/coord_cartesian_pairwise-2.png" class="r-plt" alt="" width="100%"></p>
+<p><img src="faq_files/figure-html/coord_cartesian_pairwise-1.png" class="r-plt" alt="" width="100%"></p>
+</div>
 </div>
 <div class="section level2">
-<h2 id="how-can-i-create-group-specific-titles-or-subtitles-in-grouped-plots">32. How can I create group-specific titles or subtitles in grouped
-plots?<a class="anchor" aria-label="anchor" href="#how-can-i-create-group-specific-titles-or-subtitles-in-grouped-plots"></a>
+<h2 id="plot-appearance">Plot appearance<a class="anchor" aria-label="anchor" href="#plot-appearance"></a>
 </h2>
-<p>Not directly with the current grouped helper APIs.</p>
-<p>Functions like <code><a href="../../reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats()</a></code> internally split
-the data by the grouping variable and use those split names while
-constructing the individual plots. This means the grouping labels are
-not exposed as a placeholder you can interpolate inside
-<code>title = ...</code>, <code>subtitle = ...</code>, or
-<code>ggplot.component = ...</code>.</p>
-<p>So if you need panel-specific text such as custom titles, subtitles,
-or captions derived from the grouping level, the current workaround is
-to split the data yourself, map over the groups, build the annotation
-from the group name, and then combine the plots:</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/" class="external-link">purrr</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span>, <span class="va">drv</span> <span class="op">!=</span> <span class="st">"4"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="op">(</span>\<span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span><span class="va">d</span>, <span class="va">d</span><span class="op">$</span><span class="va">drv</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/imap.html" class="external-link">imap</a></span><span class="op">(</span><span class="op">~</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
-<span>    data <span class="op">=</span> <span class="va">.x</span>,</span>
-<span>    x <span class="op">=</span> <span class="va">year</span>,</span>
-<span>    y <span class="op">=</span> <span class="va">hwy</span>,</span>
-<span>    title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Drive type: "</span>, <span class="va">.y</span><span class="op">)</span>,</span>
-<span>    subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Subset size: n = "</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/grouped_dynamic_titles-1.png" class="r-plt" alt="" width="100%"></p>
-<p>If this ever needs to be supported directly in grouped helpers, that
-would require a dedicated feature addition rather than a small bug
-fix.</p>
-</div>
-<div class="section level2">
-<h2 id="how-can-i-adjust-the-position-of-the-statistical-annotation-to-prevent-overlap">33. How can I adjust the position of the statistical annotation to
-prevent overlap?<a class="anchor" aria-label="anchor" href="#how-can-i-adjust-the-position-of-the-statistical-annotation-to-prevent-overlap"></a>
-</h2>
-<p>The statistical results appear as a standard <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>
-subtitle (and, when Bayes Factor is shown, as a caption). You can
-reposition them using <code><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme()</a></code> via the
-<code>ggplot.component</code> argument:</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="section level3">
+<h3 id="theme-palette">How can I change the theme, color palette, or colors?<a class="anchor" aria-label="anchor" href="#theme-palette"></a>
+</h3>
+<p>Use the <code>ggtheme</code> argument to supply any
+<a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> theme (the default is
+<code><a href="../../reference/theme_ggstatsplot.html">theme_ggstatsplot()</a></code>), and the <code>palette</code> argument
+to choose any discrete palette from <a href="https://emilhvitfeldt.github.io/paletteer/" class="external-link">paletteer</a> in the
+<code>"package::palette"</code> format. Run
+<code>View(paletteer::palettes_d_names)</code> to see all available
+palettes.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
+<span>  <span class="va">mtcars</span>,</span>
+<span>  <span class="va">cyl</span>,</span>
+<span>  <span class="va">wt</span>,</span>
+<span>  ggtheme <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_classic</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  palette <span class="op">=</span> <span class="st">"ggsci::nrc_npg"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><img src="faq_files/figure-html/theme_palette-1.png" class="r-plt" alt="" width="100%"></p>
+<p>The palette must have at least as many colors as there are levels in
+the grouping variable; otherwise an error is thrown.
+<code><a href="../../reference/ggscatterstats.html">ggscatterstats()</a></code>, <code><a href="../../reference/gghistostats.html">gghistostats()</a></code>,
+<code><a href="../../reference/ggdotplotstats.html">ggdotplotstats()</a></code>, and <code><a href="../../reference/ggcorrmat.html">ggcorrmat()</a></code> don’t have a
+<code>palette</code> argument; use the relevant <code>*.args</code>
+arguments (or <code>colors</code> in <code><a href="../../reference/ggcorrmat.html">ggcorrmat()</a></code>)
+instead.</p>
+<p>If none of the palettes suit you, specify the colors manually with
+the usual <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> scales:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># default position</span></span>
-<span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">mpg</span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/annotation_position-1.png" class="r-plt" alt="" width="100%"></p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># move the subtitle to avoid overlapping with data points</span></span>
-<span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
-<span>  <span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">mpg</span>,</span>
+<span><span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">cyl</span>, results.subtitle <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#E7298A"</span>, <span class="st">"#66A61E"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="faq_files/figure-html/manual_colors-1.png" class="r-plt" alt="" width="100%"></p>
+</div>
+<div class="section level3">
+<h3 id="remove-layer">How can I remove a particular <code>geom</code> layer from the
+plot?<a class="anchor" aria-label="anchor" href="#remove-layer"></a>
+</h3>
+<p>Sometimes you may not want a particular <code>geom</code> layer to be
+displayed. You can remove it by setting transparency
+(<code>alpha</code>) for that layer to 0 via the corresponding
+<code>*.args</code> argument. For example, to remove the points from a
+<code><a href="../../reference/ggwithinstats.html">ggwithinstats()</a></code> plot:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">bugs_long</span>,</span>
+<span>  x <span class="op">=</span> <span class="va">condition</span>,</span>
+<span>  y <span class="op">=</span> <span class="va">desire</span>,</span>
+<span>  subject.id <span class="op">=</span> <span class="va">subject</span>,</span>
+<span>  point.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
+<span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  pairwise.display <span class="op">=</span> <span class="st">"none"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><img src="faq_files/figure-html/geom_removal-1.png" class="r-plt" alt="" width="100%"></p>
+<p>The same works for other layers,
+e.g. <code>sample.size.label.args = list(alpha = 0)</code> removes the
+sample size labels in <code><a href="../../reference/ggbarstats.html">ggbarstats()</a></code>.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="grouped-functions">
+<code>grouped_</code> functions and programmatic use<a class="anchor" aria-label="anchor" href="#grouped-functions"></a>
+</h2>
+<div class="section level3">
+<h3 id="grouped-modify">How can I modify <code>grouped_</code> outputs using
+<code>{ggplot2}</code> functions?<a class="anchor" aria-label="anchor" href="#grouped-modify"></a>
+</h3>
+<p>All <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> plots are <code>ggplot</code> objects,
+which can be further modified, just like any other <code>ggplot</code>
+object. The exception is plots returned by <code>grouped_</code>
+functions, which are <a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a> objects combining several
+plots. To modify each of the individual plots, use the
+<code>ggplot.component</code> argument (present in all functions except
+<code><a href="../../reference/ggcoefstats.html">ggcoefstats()</a></code>). For example, this gives all plots the same
+color scale and Y-axis range:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../../reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span><span class="op">(</span></span>
+<span>  <span class="va">mtcars</span>,</span>
+<span>  <span class="va">cyl</span>,</span>
+<span>  <span class="va">wt</span>,</span>
+<span>  grouping.var <span class="op">=</span> <span class="va">am</span>,</span>
+<span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  pairwise.display <span class="op">=</span> <span class="st">"none"</span>,</span>
 <span>  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span>
-<span>      plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10</span>, hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
-<span>      plot.caption <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span>, hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu">paletteer</span><span class="fu">::</span><span class="fu"><a href="https://emilhvitfeldt.github.io/paletteer/reference/paletteer_c.html" class="external-link">paletteer_c</a></span><span class="op">(</span><span class="st">"viridis::viridis"</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="co"># arguments given to `{patchwork}` for annotating the combined plot</span></span>
+<span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Weight by number of cylinders"</span>,</span>
+<span>    theme <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/annotation_position-2.png" class="r-plt" alt="" width="100%"></p>
-<p>If you need the statistical expression on a <em>different</em> plot
-entirely, extract it with <code><a href="../../reference/extract_stats.html">extract_subtitle()</a></code> and pass it to
-<code><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs()</a></code>:</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># extract subtitle expression</span></span>
-<span><span class="va">expr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/extract_stats.html">extract_subtitle</a></span><span class="op">(</span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">mpg</span><span class="op">)</span><span class="op">)</span></span>
+<p><img src="faq_files/figure-html/grouped_modify-1.png" class="r-plt" alt="" width="100%"></p>
+<p>Alternatively, <a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a>’s <code>&amp;</code> operator
+applies a <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> component to all plots in a
+<code>grouped_</code> output:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">wt</span>, grouping.var <span class="op">=</span> <span class="va">am</span><span class="op">)</span> <span class="op">&amp;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="beyond-grouped">How can I go beyond what <code>grouped_</code> functions
+support?<a class="anchor" aria-label="anchor" href="#beyond-grouped"></a>
+</h3>
+<p>The <code>grouped_</code> functions only repeat the analysis across a
+<em>single</em> grouping variable, and they don’t let you create
+group-specific titles or subtitles. For anything else, split the data
+yourself, create one plot per group with <a href="https://purrr.tidyverse.org/" class="external-link">purrr</a>, and
+combine them with <code><a href="../../reference/combine_plots.html">combine_plots()</a></code> (see also <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html">this
+article</a>). For example, to repeat the analysis across two grouping
+variables with a title for each group:</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/mpg.html" class="external-link">mpg</a></span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">drv</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"4"</span>, <span class="st">"f"</span><span class="op">)</span>, <span class="va">fl</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"p"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="op">(</span>\<span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span><span class="va">d</span>, f <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">drv</span>, <span class="va">d</span><span class="op">$</span><span class="va">fl</span><span class="op">)</span>, drop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/imap.html" class="external-link">imap</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">data</span>, <span class="va">group</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span></span>
+<span>      data <span class="op">=</span> <span class="va">data</span>,</span>
+<span>      x <span class="op">=</span> <span class="va">displ</span>,</span>
+<span>      y <span class="op">=</span> <span class="va">hwy</span>,</span>
+<span>      title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Drive and fuel type: "</span>, <span class="va">group</span><span class="op">)</span>,</span>
+<span>      results.subtitle <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span>plotgrid.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="faq_files/figure-html/beyond_grouped-1.png" class="r-plt" alt="" width="100%"></p>
+</div>
+<div class="section level3">
+<h3 id="for-loop">How can I use <code>{ggstatsplot}</code> functions in a
+<code>for</code> loop?<a class="anchor" aria-label="anchor" href="#for-loop"></a>
+</h3>
+<p>Given that all functions in <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> use tidy
+evaluation, running these functions in a <code>for</code> loop requires
+minor adjustment to how inputs are entered:</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">col.name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span>
+<span><span class="va">plot_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># use it on a completely custom plot</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span>, <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>subtitle <span class="op">=</span> <span class="va">expr</span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/annotation_manual-1.png" class="r-plt" alt="" width="100%"></p>
+<span><span class="co"># executing the function in a `for` loop</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">3</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">col.name</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">plot_list</span><span class="op">[[</span><span class="va">col.name</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
+<span>    data <span class="op">=</span> <span class="va">mtcars</span>,</span>
+<span>    x <span class="op">=</span> <span class="va">cyl</span>,</span>
+<span>    y <span class="op">=</span> <span class="op">!</span><span class="op">!</span><span class="va">col.name</span><span class="op">[</span><span class="va">i</span><span class="op">]</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>Note that plots created inside a <code>for</code> loop are not
+printed automatically; either store them (as above) or wrap the call in
+<code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code>.</p>
+<p>That said, if repeating function execution across multiple columns in
+a data frame is what you want to do, I will recommend a <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data-frame"><code>{purrr}</code>-based
+solution</a>.</p>
+<p>This solution would work for <code>x</code> and <code>y</code>
+arguments, but not for the <code>grouping.var</code> argument, which
+first needs to be converted to a symbol:</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">movies_long</span>, <span class="va">genre</span> <span class="op">==</span> <span class="st">"Comedy"</span> <span class="op">|</span> <span class="va">genre</span> <span class="op">==</span> <span class="st">"Drama"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../../reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">df</span>,</span>
+<span>  x <span class="op">=</span> <span class="op">!</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>,</span>
+<span>  y <span class="op">=</span> <span class="op">!</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">5</span><span class="op">]</span>,</span>
+<span>  grouping.var <span class="op">=</span> <span class="op">!</span><span class="op">!</span><span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/sym.html" class="external-link">sym</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">8</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="how-are-missing-values-handled">34. How are missing values handled?<a class="anchor" aria-label="anchor" href="#how-are-missing-values-handled"></a>
-</h2>
-<p>Rows with missing values (<code>NA</code>) in the variables of
-interest are removed before the analysis, and the subtitle reports the
-sample size that was actually used. Other columns in the data are
-ignored.</p>
-<ul>
-<li>In <code><a href="../../reference/ggwithinstats.html">ggwithinstats()</a></code>, specify <code>subject.id</code>:
-any subject with a missing value in <em>any</em> condition is then
-excluded from the statistical analysis, so that only complete pairs are
-analyzed (the subtitle reports <em>n</em><sub>pairs</sub>). The
-subject’s non-missing observations are still shown in the plot.</li>
-<li>In <code><a href="../../reference/ggcorrmat.html">ggcorrmat()</a></code>, missing values are removed separately
-for each pair of variables, and the legend shows the minimum, mode, and
-maximum sample sizes across pairs.</li>
-<li>In <code>grouped_</code> functions, rows with missing values in
-<code>grouping.var</code> are dropped.</li>
-</ul>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># 5 of the 93 subjects in `bugs_long` have a missing value, so n_pairs = 88</span></span>
-<span><span class="fu"><a href="../../reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span><span class="va">bugs_long</span>, <span class="va">condition</span>, <span class="va">desire</span>, subject.id <span class="op">=</span> <span class="va">subject</span><span class="op">)</span></span></code></pre></div>
-<p><img src="faq_files/figure-html/missing_values-1.png" class="r-plt" alt="" width="100%"></p>
-</div>
-<div class="section level2">
-<h2 id="how-should-i-cite-and-report-the-results">35. How should I cite and report the results?<a class="anchor" aria-label="anchor" href="#how-should-i-cite-and-report-the-results"></a>
-</h2>
-<p>You can cite the package with <code>citation("ggstatsplot")</code>
-(see top of this article). For reporting, the expressions shown in the
-plots follow a standard template (see the <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/principles.html#statistical-reporting">principles
-article</a>), and all numbers can be retrieved as data frames with
-<code><a href="../../reference/extract_stats.html">extract_stats()</a></code> (see question 14). For interpreting logged
-Bayes Factors, see <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/interpretation.html">this
-article</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="suggestions">Suggestions<a class="anchor" aria-label="anchor" href="#suggestions"></a>
