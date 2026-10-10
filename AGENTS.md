@@ -133,8 +133,7 @@ by Git.
   Confirm legitimate baseline updates with CI-native output across
   supported platforms.
 - The top-level test runner (`tests/testthat.R`) executes package tests
-  only with R 4.5 or newer on Linux or macOS because graphics and text
-  rendering changed across R versions.
+  only on Linux or macOS to avoid maintaining Windows snapshot variants.
 - Snapshots live in `tests/testthat/_snaps/`. A few plots use
   `variant =` in `expect_doppelganger()` for platform (`darwin/`,
   `linux/`) or R-version (`r-4.7/`) differences; add a variant only when
