@@ -9,33 +9,22 @@
 #'   parameter (e.g., mean or median) value needs to be added.
 #' @param centrality.line.args A list of additional aesthetic arguments to be
 #'   passed to [`ggplot2::geom_vline()`].
-#' @param ... Additional arguments (e.g., `type`, `tr`, `digits`) passed to
+#' @param type Type of centrality measure, passed through
+#'   [`extract_stats_type()`].
+#' @param ... Additional arguments (e.g., `tr`, `digits`) passed to
 #'   [`statsExpressions::centrality_description()`].
 #' @inheritParams statsExpressions::one_sample_test
-#'
-#' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
-#' library(ggplot2)
-#'
-#' # creating a plot; lines and labels will be superposed on this plot
-#' p <- ggplot(mtcars, aes(wt, mpg)) +
-#'   geom_point()
-#'
-#' # adding labels
-#' ggstatsplot:::.histo_labeller(
-#'   plot = p,
-#'   x = mtcars$wt,
-#'   centrality.line.args = list(color = "blue", linewidth = 1, linetype = "dashed")
-#' )
 #'
 #' @keywords internal
 #' @autoglobal
 #' @noRd
-.histo_labeller <- function(plot, x, centrality.line.args, ...) {
+.histo_labeller <- function(plot, x, type, centrality.line.args, ...) {
   # compute centrality measure (with a temporary data frame)
   df_central <- suppressWarnings(centrality_description(
     tibble(.x = ".x", var = x),
     .x,
     var,
+    type = extract_stats_type(type),
     ...
   ))
 

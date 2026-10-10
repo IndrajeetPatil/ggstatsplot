@@ -176,7 +176,7 @@ ggdotplotstats <- function(
     plot_dot <- .histo_labeller(
       plot_dot,
       x = pull(data, {{ x }}),
-      type = extract_stats_type(centrality.type),
+      type = centrality.type,
       tr = tr,
       digits = digits,
       centrality.line.args = centrality.line.args
