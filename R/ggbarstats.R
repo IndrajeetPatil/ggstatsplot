@@ -163,7 +163,7 @@ ggbarstats <- function(
       aes({{ y }}, perc, fill = {{ x }})
     }
   ) +
-    geom_bar(stat = "identity", position = "fill", color = "black") +
+    geom_col(position = "fill", color = "black") +
     scale_y_continuous(
       labels = ~ insight::format_percent(., digits = 0L),
       breaks = seq(from = 0.0, to = 1.0, by = 0.10),
