@@ -248,7 +248,6 @@ test_that("grouped_ggbarstats works", {
       trans %in% c("auto(l4)", "auto(l5)")
     )
 
-  # when arguments are entered as bare expressions
   set.seed(123)
   expect_doppelganger(
     title = "grouped_ggbarstats with two-way table",

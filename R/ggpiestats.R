@@ -148,12 +148,6 @@ ggpiestats <- function(
   x_levels <- prep$x_levels
   y_levels <- prep$y_levels
 
-  # nocov start
-  if (test == "two.way" && y_levels == 1L) {
-    bf.message <- FALSE
-  }
-  # nocov end
-
   facet <- y_levels > 1L
   if ((x_levels == 1L && facet) || type == "bayes") {
     proportion.test <- FALSE

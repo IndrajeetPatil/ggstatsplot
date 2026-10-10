@@ -82,21 +82,25 @@
     .f.args,
     type,
     bf.message,
-    bf.condition = type != "bayes" && isFALSE(paired)
+    bf.condition = type != "bayes" && isFALSE(paired) && y_levels != 1L
   )
 
-  mpc_df <- .pairwise_contingency(
-    data,
-    {{ x }},
-    {{ y }},
-    x_levels,
-    y_levels,
-    paired,
-    digits,
-    conf.level,
-    alternative,
-    p.adjust.method
-  )
+  # pairwise tests only for unpaired two-way tables with 3+ `x` levels
+  mpc_df <- NULL
+  if (x_levels > 2L && y_levels > 1L && !isTRUE(paired)) {
+    mpc_df <- purrr::possibly(
+      function(...) suppressWarnings(pairwise_contingency_table(...)),
+      otherwise = NULL
+    )(
+      data = data,
+      x = {{ x }},
+      y = {{ y }},
+      digits = digits,
+      conf.level = conf.level,
+      alternative = alternative,
+      p.adjust.method = p.adjust.method
+    )
+  }
 
   c(stats, list(mpc_df = mpc_df))
 }
@@ -203,36 +207,3 @@ onesample_data <- function(data, x, y, digits = 2L, ratio = NULL) {
 
 #' @noRd
 .prettyNum <- function(x) prettyNum(x, big.mark = ",", scientific = FALSE)
-
-
-#' @autoglobal
-#' @noRd
-.pairwise_contingency <- function(
-  data,
-  x,
-  y,
-  x_levels,
-  y_levels,
-  paired,
-  digits,
-  conf.level,
-  alternative,
-  p.adjust.method
-) {
-  if (x_levels < 3L || y_levels < 2L || isTRUE(paired)) {
-    return(NULL)
-  }
-
-  purrr::possibly(
-    function(...) suppressWarnings(pairwise_contingency_table(...)),
-    otherwise = NULL
-  )(
-    data = data,
-    x = {{ x }},
-    y = {{ y }},
-    digits = digits,
-    conf.level = conf.level,
-    alternative = alternative,
-    p.adjust.method = p.adjust.method
-  )
-}
