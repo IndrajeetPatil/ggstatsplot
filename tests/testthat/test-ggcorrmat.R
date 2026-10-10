@@ -49,16 +49,18 @@ test_that("ggcorrmat works as expected with changed defaults", {
     ) +
       labs(caption = NULL)
   )
+
+  set.seed(123)
+  expect_doppelganger(
+    title = "unadjusted p-values label",
+    fig = ggcorrmat(
+      data = dplyr::select(iris, dplyr::contains("Sepal")),
+      p.adjust.method = "none"
+    )
+  )
 })
 
-
-test_that("ggcorrmat with p.adjust.method = 'none' shows unadjusted label", {
-  p <- ggcorrmat(iris, p.adjust.method = "none")
-  caption_expr <- deparse(p$labels$caption)
-  expect_true(any(grepl("unadj", caption_expr, fixed = TRUE)))
-})
-
-# grouped_ggcorrmat output: plot ---------------------------------------------------------------
+# grouped_ggcorrmat output: plot -------------------------------------
 
 test_that("grouped_ggcorrmat plots are as expected", {
   set.seed(123)
@@ -82,7 +84,7 @@ test_that("grouped_ggcorrmat plots are as expected", {
   )
 })
 
-# expected warnings -------------------------------------------
+# expected errors -------------------------------------------
 
 test_that("grouped_ggcorrmat produces error when grouping isn't specified", {
   expect_snapshot(grouped_ggcorrmat(iris), error = TRUE)

@@ -1,10 +1,6 @@
-# graphics engine changed in R 4.4, and text rendering changed again in R 4.5,
-# so snapshots generated on previous R versions won't work.
 # Tests run only on Linux and macOS to avoid maintaining Windows snapshot
 # variants.
-if (
-  getRversion() >= "4.5.0" && Sys.info()[["sysname"]] %in% c("Linux", "Darwin")
-) {
+if (Sys.info()[["sysname"]] %in% c("Linux", "Darwin")) {
   library(testthat)
   suppressPackageStartupMessages(library(ggstatsplot))
   test_check("ggstatsplot")

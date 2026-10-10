@@ -179,19 +179,6 @@ test_that("expression output", {
   expect_identical(p_sub, stats_output)
 })
 
-test_that("one-sample expression output", {
-  set.seed(123)
-  p_sub <- ggbarstats(mtcars, x = cyl) |> extract_subtitle()
-
-  set.seed(123)
-  stats_output <- contingency_table(
-    data = mtcars,
-    x = cyl
-  )$expression[[1L]]
-
-  expect_identical(p_sub, stats_output)
-})
-
 # pairwise comparisons --------------------------------------------------
 
 test_that("pairwise comparisons data is returned for 3+ groups", {

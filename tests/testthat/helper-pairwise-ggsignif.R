@@ -28,13 +28,3 @@ signif_layer_data <- function(plot) {
   layer_data <- ggplot2::ggplot_build(plot)$data
   layer_data[[length(layer_data)]]
 }
-
-# comparisons drawn by the ggsignif layer
-signif_comparisons <- function(plot) {
-  plot$layers[[length(plot$layers)]]$stat_params$comparisons
-}
-
-# deparsed secondary y-axis label describing the pairwise comparisons
-pairwise_seclabel_text <- function(plot) {
-  deparse1(plot$scales$get_scales("y")$secondary.axis$name, collapse = " ")
-}

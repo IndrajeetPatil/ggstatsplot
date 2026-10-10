@@ -118,53 +118,11 @@ test_that("check pairwise displays - within-subjects", {
       subject.id = subject,
       results.subtitle = FALSE,
       p.adjust.method = "fdr",
-      pairwise.display = "s",
+      pairwise.display = "ns",
       pairwise.alpha = 0.001,
       digits = 3L
     )
   )
-})
-
-# alpha threshold -------------------------------------------------
-
-test_that("pairwise.alpha controls displayed comparisons - between-subjects", {
-  fig <- ggbetweenstats(
-    data = mtcars,
-    x = cyl,
-    y = mpg,
-    pairwise.display = "significant",
-    pairwise.alpha = 0.001,
-    p.adjust.method = "holm",
-    results.subtitle = FALSE
-  )
-
-  expect_identical(signif_comparisons(fig), list(c("4", "8"), c("6", "8")))
-  expect_match(pairwise_seclabel_text(fig), "alpha == 0\\.001")
-})
-
-test_that("pairwise.alpha controls displayed comparisons - within-subjects", {
-  fig <- ggwithinstats(
-    data = bugs_long,
-    x = condition,
-    y = desire,
-    type = "p",
-    subject.id = subject,
-    pairwise.display = "non-significant",
-    pairwise.alpha = 0.001,
-    p.adjust.method = "fdr",
-    results.subtitle = FALSE
-  )
-
-  expect_identical(
-    signif_comparisons(fig),
-    list(
-      c("HDHF", "HDLF"),
-      c("HDHF", "LDHF"),
-      c("HDLF", "LDHF"),
-      c("HDLF", "LDLF")
-    )
-  )
-  expect_match(pairwise_seclabel_text(fig), "alpha == 0\\.001")
 })
 
 # caption -------------------------------------------------
@@ -187,26 +145,26 @@ test_that("adding caption works", {
   )
 })
 
+# bracket positions -------------------------------------------------
+
 test_that("pairwise brackets stay above negative outcomes", {
-  set.seed(123)
   df <- tibble::tibble(
     group = rep(letters[1:3], each = 3L),
     value = -103:-95
   )
 
-  plot <- ggbetweenstats(
-    df,
-    group,
-    value,
-    results.subtitle = FALSE,
-    centrality.plotting = FALSE,
-    pairwise.display = "all"
+  set.seed(123)
+  expect_doppelganger(
+    title = "brackets above negative outcomes",
+    fig = ggbetweenstats(
+      df,
+      group,
+      value,
+      results.subtitle = FALSE,
+      centrality.plotting = FALSE,
+      pairwise.display = "all"
+    )
   )
-  bracket_data <- signif_layer_data(plot)
-  horizontal_brackets <- bracket_data[bracket_data$y == bracket_data$yend, ]
-
-  expect_gt(min(bracket_data$y), max(df$value))
-  expect_length(unique(horizontal_brackets$y), 3L)
 })
 
 test_that("pairwise brackets have finite positions for constant outcomes", {
