@@ -14,7 +14,7 @@ test_that(".grouped_list drops NA rows in grouping variable", {
   df <- tibble::tibble(grp = c("a", NA, "b", "a"), val = 1:4)
   result <- .grouped_list(df, grouping.var = grp)
   expect_identical(result$title, c("a", "b"))
-  expect_identical(nrow(result$data[[1L]]) + nrow(result$data[[2L]]), 3L)
+  expect_identical(purrr::map_int(result$data, nrow), c(2L, 1L))
 })
 
 # group ordering depends on column type (issue #792)
@@ -78,9 +78,10 @@ test_that(".cat_counter preserves factor order and returns no empty groups", {
 # .validate_palette ------------------------------------
 
 test_that(".validate_palette warns and returns default for old-style palette", {
-  result <- suppressWarnings(.validate_palette("Dark2"))
-  expect_warning(.validate_palette("Dark2"), regexp = "not in the required")
-  expect_identical(result, "ggthemes::gdoc")
+  expect_warning(
+    expect_identical(.validate_palette("Dark2"), "ggthemes::gdoc"),
+    regexp = "not in the required"
+  )
   expect_identical(.validate_palette("ggthemes::gdoc"), "ggthemes::gdoc")
 })
 

@@ -124,27 +124,25 @@ ggdotplotstats <- function(
   # statistical analysis ------------------------------------------
 
   if (results.subtitle) {
-    .f.args <- list(
-      data = data,
-      x = {{ x }},
-      test.value = test.value,
-      alternative = alternative,
-      conf.level = conf.level,
-      digits = digits,
-      tr = tr,
-      bf.prior = bf.prior
+    stats_output <- .subtitle_caption(
+      one_sample_test,
+      list(
+        data = data,
+        x = {{ x }},
+        test.value = test.value,
+        alternative = alternative,
+        conf.level = conf.level,
+        digits = digits,
+        tr = tr,
+        bf.prior = bf.prior
+      ),
+      type,
+      bf.message
     )
-
-    stats <- .subtitle_caption(
-      .f = one_sample_test,
-      type = type,
-      bf.message = bf.message,
-      .f.args = .f.args
-    )
-    subtitle <- stats$subtitle
-    caption <- stats$caption %||% caption
-    subtitle_df <- stats$subtitle_df
-    caption_df <- stats$caption_df
+    subtitle <- stats_output$subtitle
+    caption <- stats_output$caption %||% caption
+    subtitle_df <- stats_output$subtitle_df
+    caption_df <- stats_output$caption_df
   }
 
   # plot -----------------------------------
