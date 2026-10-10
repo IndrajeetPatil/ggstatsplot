@@ -1,5 +1,13 @@
 # Changelog
 
+## ggstatsplot 1.1.2.9000
+
+### BUG FIXES
+
+- [`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)
+  no longer errors with `only.significant = TRUE` when no term is
+  significant; the plot is drawn without stats labels instead.
+
 ## ggstatsplot 1.1.2
 
 CRAN release: 2026-10-09
