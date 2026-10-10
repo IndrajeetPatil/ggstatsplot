@@ -297,7 +297,6 @@ test_that("meta analysis subtitle and caption", {
   skip_on_cran()
   skip_if_not_installed("metafor")
   skip_if_not_installed("metaBMA")
-  skip_if_not_installed("metaplus")
 
   set.seed(123)
   subtitle_expr <- suppressWarnings(meta_analysis(df_meta, type = "p"))
