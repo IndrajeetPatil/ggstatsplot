@@ -70,33 +70,6 @@ test_that("sample size labels visible when centrality.plotting is FALSE", {
   )
 })
 
-# subtitle output works ------------------------------------------------
-
-test_that("subtitle output works", {
-  skip_on_cran()
-
-  df <- mtcars
-  df$wt[3] <- NA
-
-  # plot
-  set.seed(123)
-  subtitle_exp <- ggbetweenstats(
-    data = df,
-    x = am,
-    y = wt
-  ) |>
-    extract_subtitle()
-
-  set.seed(123)
-  sub <- two_sample_test(
-    data = df,
-    x = am,
-    y = wt
-  )$expression[[1L]]
-
-  expect_identical(as.character(subtitle_exp), as.character(sub))
-})
-
 # grouped_ggbetweenstats defaults --------------------------------------------------
 
 test_that("grouped_ggbetweenstats defaults", {

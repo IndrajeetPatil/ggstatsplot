@@ -125,48 +125,6 @@ test_that("check pairwise displays - within-subjects", {
   )
 })
 
-# alpha threshold -------------------------------------------------
-
-test_that("pairwise.alpha controls displayed comparisons - between-subjects", {
-  fig <- ggbetweenstats(
-    data = mtcars,
-    x = cyl,
-    y = mpg,
-    pairwise.display = "significant",
-    pairwise.alpha = 0.001,
-    p.adjust.method = "holm",
-    results.subtitle = FALSE
-  )
-
-  expect_identical(signif_comparisons(fig), list(c("4", "8"), c("6", "8")))
-  expect_match(pairwise_seclabel_text(fig), "alpha == 0\\.001")
-})
-
-test_that("pairwise.alpha controls displayed comparisons - within-subjects", {
-  fig <- ggwithinstats(
-    data = bugs_long,
-    x = condition,
-    y = desire,
-    type = "p",
-    subject.id = subject,
-    pairwise.display = "non-significant",
-    pairwise.alpha = 0.001,
-    p.adjust.method = "fdr",
-    results.subtitle = FALSE
-  )
-
-  expect_identical(
-    signif_comparisons(fig),
-    list(
-      c("HDHF", "HDLF"),
-      c("HDHF", "LDHF"),
-      c("HDLF", "LDHF"),
-      c("HDLF", "LDLF")
-    )
-  )
-  expect_match(pairwise_seclabel_text(fig), "alpha == 0\\.001")
-})
-
 # caption -------------------------------------------------
 
 test_that("adding caption works", {

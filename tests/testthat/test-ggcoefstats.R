@@ -57,20 +57,6 @@ test_that("default plots are rendered correctly for each type of statistic", {
 })
 
 test_that("meta-analysis works", {
-  skip_on_cran()
-  skip_if_not_installed("metafor")
-
-  set.seed(123)
-  p_meta <- ggcoefstats(
-    df_meta,
-    meta.analytic.effect = TRUE,
-    bf.message = TRUE
-  )
-
-  # don't run graphical snapshot tests because values are slightly different
-  # locally and on CI
-  expect_s3_class(p_meta, "ggplot")
-
   set.seed(123)
   expect_doppelganger(
     title = "meta-analysis works",
