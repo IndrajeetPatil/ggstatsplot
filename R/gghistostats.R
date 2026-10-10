@@ -143,7 +143,7 @@ gghistostats <- function(
     plot_hist <- .histo_labeller(
       plot_hist,
       x = x_vec,
-      type = extract_stats_type(centrality.type),
+      type = centrality.type,
       tr = tr,
       digits = digits,
       centrality.line.args = centrality.line.args
