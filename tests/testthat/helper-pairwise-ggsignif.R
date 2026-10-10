@@ -22,9 +22,3 @@ expect_pairwise_displays <- function(title, plot_fn, ...) {
     )
   }
 }
-
-# built data of the last layer, which holds the ggsignif brackets
-signif_layer_data <- function(plot) {
-  layer_data <- ggplot2::ggplot_build(plot)$data
-  layer_data[[length(layer_data)]]
-}

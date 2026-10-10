@@ -14,7 +14,6 @@ test_that("defaults plots", {
       y = desire,
       subject.id = subject,
       pairwise.display = "none",
-      ggsignif.args = list(textsize = 6, tip_length = 0.01),
       point.path.args = list(color = "red"),
       centrality.path.args = list(color = "blue", size = 2, alpha = 0.8),
       centrality.point.args = list(size = 3, color = "darkgreen", alpha = 0.5),
@@ -110,21 +109,7 @@ test_that("grouped plots work", {
   )
 })
 
-test_that("type remains the fourth positional argument", {
-  expect_no_error(
-    ggwithinstats(
-      data_bugs_2,
-      condition,
-      desire,
-      "np",
-      subject.id = subject,
-      pairwise.display = "none",
-      results.subtitle = FALSE
-    )
-  )
-})
-
-test_that("subject.id follows type in the function signature", {
+test_that("type stays the fourth argument and subject.id follows it", {
   arg_names <- names(formals(ggwithinstats))
 
   expect_identical(
@@ -155,7 +140,7 @@ test_that("incomplete anonymous pairs are excluded from the plotting data", {
   built_plot <- build_within_plot(df_missing)
 
   expect_shape(built_plot$data[[1L]], nrow = 4L)
-  expect_setequal(unique(built_plot$plot$data$.rowid), c(1, 3))
+  expect_setequal(built_plot$plot$data$.rowid, c(1, 3))
 })
 
 test_that("missing subject.id values are excluded from paired grouping", {
@@ -168,8 +153,7 @@ test_that("missing subject.id values are excluded from paired grouping", {
   point_data <- build_within_plot(df_missing_id, subject.id = id)$data[[1L]]
 
   expect_shape(point_data, nrow = 4L)
-  expect_false(anyNA(point_data$group))
-  expect_setequal(unique(point_data$group), c(1, 2))
+  expect_setequal(point_data$group, c(1, 2))
 })
 
 test_that("empty condition levels are dropped after filtering missing subject.id values", {

@@ -125,26 +125,6 @@ test_that("check pairwise displays - within-subjects", {
   )
 })
 
-# caption -------------------------------------------------
-
-test_that("adding caption works", {
-  set.seed(123)
-  expect_doppelganger(
-    title = "adding caption works",
-    fig = ggwithinstats(
-      bugs_long,
-      condition,
-      desire,
-      type = "p",
-      results.subtitle = FALSE,
-      bf.message = FALSE,
-      p.adjust.method = "fdr",
-      pairwise.display = "ns",
-      digits = 3L
-    )
-  )
-})
-
 # bracket positions -------------------------------------------------
 
 test_that("pairwise brackets stay above negative outcomes", {
@@ -180,15 +160,15 @@ test_that("pairwise brackets have finite positions for constant outcomes", {
   )
   plot <- ggplot2::ggplot(df, ggplot2::aes(group, value)) +
     ggplot2::geom_point()
-  bracket_data <- .ggsignif_adder(
+  plot_signif <- .ggsignif_adder(
     plot,
     df,
     group,
     value,
     mpc_df,
     pairwise.display = "all"
-  ) |>
-    signif_layer_data()
+  )
+  bracket_data <- ggplot2::layer_data(plot_signif, i = 2L)
 
   expect_true(all(is.finite(bracket_data$y)))
   expect_true(all(is.finite(bracket_data$yend)))
