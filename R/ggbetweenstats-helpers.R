@@ -369,7 +369,6 @@
 #'
 #' # custom alpha threshold
 #' .pairwise_seclabel("Student's t-test", pairwise.alpha = 0.01)
-#' @keywords internal
 #' @autoglobal
 #' @noRd
 .pairwise_seclabel <- function(
