@@ -57,12 +57,15 @@ test_that("default plots are rendered correctly for each type of statistic", {
 })
 
 test_that("meta-analysis works", {
+  skip_on_cran()
+  skip_if_not_installed("metafor")
+
   set.seed(123)
   expect_doppelganger(
     title = "meta-analysis works",
     fig = ggcoefstats(
       df_meta,
-      meta.analytic.effect = FALSE,
+      meta.analytic.effect = TRUE,
       bf.message = FALSE
     )
   )
@@ -299,18 +302,18 @@ test_that("meta analysis subtitle and caption", {
   skip_if_not_installed("metaBMA")
 
   set.seed(123)
-  subtitle_expr <- suppressWarnings(meta_analysis(df_meta, type = "p"))
+  subtitle_expr <- meta_analysis(df_meta, type = "p")
 
   set.seed(123)
   caption_expr <- suppressWarnings(meta_analysis(df_meta, type = "bayes"))
 
   set.seed(123)
-  ggcoef_subtitle <- extract_subtitle(suppressWarnings(ggcoefstats(
+  ggcoef_subtitle <- extract_subtitle(ggcoefstats(
     df_meta,
     meta.analytic.effect = TRUE,
     bf.message = FALSE,
     meta.type = "p"
-  )))
+  ))
 
   set.seed(123)
   ggcoef_caption <- extract_caption(suppressWarnings(ggcoefstats(
