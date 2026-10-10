@@ -43,15 +43,17 @@ You can cite this package/vignette as:
 citation("ggstatsplot")
 ```
 
-<!-- The sections are numbered manually because `pkgdown` doesn't render -->
-<!-- numbered sections for `rmarkdown::html_vignette` format -->
+<!-- Give every question an explicit, stable anchor ID so that links to it -->
+<!-- survive rewording, reordering, and adding or removing other questions. -->
 
 ---
 
 Following are a few of the common questions asked in GitHub issues and on social
 media platforms.
 
-## 1. I just want the plot, not the statistical details. How can I turn them off?
+## Statistical details {#statistical-details}
+
+### I just want the plot, not the statistical details. How can I turn them off? {#turn-off-details}
 
 All functions in `{ggstatsplot}` that display results from statistical analysis in
 a subtitle have argument `results.subtitle`. Setting it to `FALSE` will return
@@ -68,43 +70,7 @@ ggbetweenstats(mtcars, am, mpg, bf.message = FALSE)
 
 Your own `subtitle` text is used only when `results.subtitle = FALSE`.
 
-## 2. How can I customize the details contained in the subtitle?
-
-Sometimes you may not wish to include so many details in the subtitle. In that
-case, you can extract the expression and copy-paste only the part you wish to
-include. For example, here only statistic and *p*-values are included:
-
-```{r}
-#| label = "custom_expr"
-
-library(ggplot2)
-library(statsExpressions)
-
-# extracting detailed expression
-data_results <- oneway_anova(iris, Species, Sepal.Length)
-data_results$expression[[1]]
-
-# adapting the details to your liking
-ggplot(iris, aes(x = Species, y = Sepal.Length)) +
-  geom_boxplot() +
-  labs(subtitle = ggplot2::expr(paste(
-    italic("F"), "(", "2", ",", "147", ")=", "119.26", ", ",
-    italic("p"), "<", "0.001"
-  )))
-```
-
-## 3. I am getting `Error in grid.Call` error
-
-Sometimes, if you are working in `RStudio`, you might see the following error-
-
-```r
-Error in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-polygon edge not found
-```
-
-This can possibly be solved by increasing the size of RStudio viewer pane.
-
-## 4. Why do I get only plot in return but not the subtitle/caption?
+### Why do I get only the plot but not the subtitle/caption? {#missing-subtitle}
 
 In order to prevent the entire plotting function from failing when statistical
 analysis fails, functions in `{ggstatsplot}` default to first attempting to run
@@ -125,13 +91,15 @@ ggbetweenstats(df, x, y)
 To see why the statistical analysis failed, you can look at the error from the
 underlying function:
 
-```{r faq1}
+```{r}
+#| label = "null_subtitle_error",
 #| error = TRUE
+
 library(statsExpressions)
 two_sample_test(df, x, y)
 ```
 
-## 5. What statistical test was carried out?
+### What statistical test was carried out? {#which-test}
 
 In case you are not sure what was the statistical test that produced the results
 shown in the subtitle of the plot, the best way to get that information is to
@@ -143,257 +111,9 @@ of every supported test and effect size is available in its
 [documentation](https://www.indrapatil.com/statsExpressions/articles/stats_details.html).
 
 You can also check the `method` column of the data frames returned by
-`extract_stats()` (see question 14).
+`extract_stats()` (see [below](#extract-stats)).
 
-## 6. How can I use `{ggstatsplot}` functions in a `for` loop?
-
-Given that all functions in `{ggstatsplot}` use tidy evaluation, running these
-functions in a `for` loop requires minor adjustment to how inputs are entered:
-
-```{r}
-#| label = "loop",
-#| eval = FALSE
-col.name <- colnames(mtcars)
-plot_list <- list()
-
-# executing the function in a `for` loop
-for (i in 3:length(col.name)) {
-  plot_list[[col.name[i]]] <- ggbetweenstats(
-    data = mtcars,
-    x = cyl,
-    y = !!col.name[i]
-  )
-}
-```
-
-Note that plots created inside a `for` loop are not printed automatically;
-either store them (as above) or wrap the call in `print()`.
-
-That said, if repeating function execution across multiple columns in a
-data frame is what you want to do, I will recommend a `{purrr}`-based solution:
-
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data-frame>
-
-This solution would work for `x` and `y` arguments, but not for the
-`grouping.var` argument, which first needs to be converted to a symbol:
-
-```{r}
-#| label = "tidyeval-grouping-var",
-#| eval = FALSE
-
-df <- dplyr::filter(movies_long, genre == "Comedy" | genre == "Drama")
-
-grouped_ggscatterstats(
-  data = df,
-  x = !!colnames(df)[3],
-  y = !!colnames(df)[5],
-  grouping.var = !!rlang::sym(colnames(df)[8]),
-  results.subtitle = FALSE
-)
-```
-
-## 7. How can I have uniform Y-axes ranges in `grouped_` functions?
-
-Across different facets of a `grouped_` plot, the axes ranges might sometimes
-differ. You can use the `ggplot.component` parameter (present in all functions
-except `ggcoefstats()`) to have the same scale across the individual plots:
-
-```{r}
-#| label = "grouped_y_axes",
-#| fig.height = 6,
-#| fig.width = 8
-
-# provide a list of further `{ggplot2}` modifications using `ggplot.component`
-grouped_ggscatterstats(
-  mtcars,
-  disp,
-  hp,
-  grouping.var = am,
-  results.subtitle = FALSE,
-  ggplot.component = list(ggplot2::scale_y_continuous(
-    breaks = seq(50, 350, 50),
-    limits = (c(50, 350))
-  ))
-)
-```
-
-## 8. Does `{ggstatsplot}` work with `plotly`?
-
-The `plotly` R graphing library makes it easy to produce interactive web
-graphics via `plotly.js`.
-
-The `{ggstatsplot}` functions are compatible with `plotly`.
-
-```r
-library(plotly)
-
-# creating ggplot object with `{ggstatsplot}`
-p <- ggbetweenstats(mtcars, cyl, mpg)
-
-# converting to plotly object
-plotly::ggplotly(p, width = 480, height = 480)
-```
-
-## 9. How can I use `grouped_` functions with more than one group?
-
-Currently, the `grouped_` variants of functions only support repeating the
-analysis across a _single_ grouping variable. Often, you have to run the same
-analysis across a combination of two or more grouping variables. This can be
-easily achieved using `{purrr}` package (see also
-[this article](https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html)).
-
-Here is an example-
-
-```{r}
-#| label = "grouped_2",
-#| fig.width = 6,
-#| fig.height = 6
-
-
-# creating a list by splitting data frame by combination of two different
-# grouping variables
-df_list <- mpg |>
-  dplyr::filter(drv %in% c("4", "f"), fl %in% c("p", "r")) |>
-  (\(d) split(d, f = list(d$drv, d$fl), drop = TRUE))()
-
-# checking if the length of the list is 4
-length(df_list)
-
-# running correlation analyses; this will return a *list* of plots
-plot_list <- purrr::pmap(
-  .l = list(
-    data = df_list,
-    x = "displ",
-    y = "hwy",
-    results.subtitle = FALSE
-  ),
-  .f = ggscatterstats
-)
-
-# arrange the list in a single plot grid
-combine_plots(
-  plotlist = plot_list,
-  plotgrid.args = list(nrow = 2L),
-  annotation.args = list(tag_levels = "i")
-)
-```
-
-## 10. How can I include statistical expressions in facet labels?
-
-```{r}
-#| label = "facet_expr",
-#| fig.width = 6,
-#| fig.height = 8
-
-library(ggplot2)
-
-# data
-mtcars1 <- mtcars
-
-p <- grouped_ggbetweenstats(
-  data = mtcars1,
-  x = cyl,
-  y = mpg,
-  grouping.var = am
-)
-
-expr1 <- extract_subtitle(p[[1L]])
-expr2 <- extract_subtitle(p[[2L]])
-
-mtcars1$am <- factor(mtcars1$am, levels = c(0, 1), labels = c(expr1, expr2))
-
-mtcars1 |>
-  ggplot(aes(x = cyl, y = mpg)) +
-  geom_jitter() +
-  facet_wrap(
-    vars(am),
-    ncol = 1,
-    strip.position = "top",
-    labeller = ggplot2::label_parsed
-  )
-```
-
-## 11. How to customize which pairs are shown in pairwise comparisons?
-
-Currently, for `ggbetweenstats` and `ggwithinstats`, you can either display all
-**significant** comparisons, all **non-significant** comparisons, or **all**
-comparisons. But what if I am only interested in just one particular comparison?
-
-Here is a workaround using `{ggsignif}`:
-
-```{r}
-#| label = "custom_pairwise",
-#| fig.width = 7,
-#| fig.height = 6
-
-library(ggsignif)
-
-ggbetweenstats(mtcars, cyl, wt, pairwise.display = "none") +
-  geom_signif(comparisons = list(c("4", "6")), test.args = list(exact = FALSE))
-```
-
-## 12. How to access data frame with results from pairwise comparisons?
-
-The pairwise comparisons displayed in a `ggbetweenstats()` or `ggwithinstats()`
-plot are stored in the plot and can be retrieved with `extract_stats()`:
-
-```{r faq2}
-p <- ggbetweenstats(mtcars, cyl, wt)
-
-extract_stats(p)$pairwise_comparisons_data
-```
-
-Behind the scenes, `{ggstatsplot}` uses the
-`statsExpressions::pairwise_comparisons()` function, which you can also call
-directly without creating a plot (see the
-[pairwise comparisons article](https://www.indrapatil.com/ggstatsplot/articles/web_only/pairwise.html)).
-
-## 13. How can I change annotation in pairwise comparisons?
-
-`{ggstatsplot}` defaults to displaying exact *p*-values or logged Bayes Factor
-values for pairwise comparisons. But what if you wish to adopt different
-annotation labels?
-
-You will have to customize them yourself:
-
-```{r}
-#| label = "comp_asterisks"
-
-library(ggplot2)
-library(ggsignif)
-
-# converting to factor
-mtcars$cyl <- as.factor(mtcars$cyl)
-
-# creating the base plot
-p <- ggbetweenstats(mtcars, cyl, wt, pairwise.display = "none")
-
-# using `statsExpressions::pairwise_comparisons()` function to create a data frame with results
-df <- statsExpressions::pairwise_comparisons(mtcars, cyl, wt) |>
-  dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) |>
-  dplyr::arrange(group1) |>
-  dplyr::mutate(asterisk_label = dplyr::case_when(
-    p.value < 0.001 ~ "***",
-    p.value < 0.01 ~ "**",
-    p.value < 0.05 ~ "*",
-    .default = "ns"
-  ))
-
-df
-
-# adding pairwise comparisons using `{ggsignif}` package
-p +
-  ggsignif::geom_signif(
-    comparisons = df$groups,
-    map_signif_level = TRUE,
-    annotations = df$asterisk_label,
-    y_position = c(5.5, 5.75, 6.0),
-    test = NULL,
-    na.rm = TRUE
-  )
-```
-
-## 14. How to access data frame containing statistical analyses?
+### How can I access the data frames with the statistical results? {#extract-stats}
 
 `{ggstatsplot}` displays expressions in the subtitle and caption, but you can
 get back the underlying data frames with the `extract_stats()` helper function.
@@ -402,12 +122,12 @@ given plot): `subtitle_data`, `caption_data`, `pairwise_comparisons_data`,
 `descriptive_data`, `one_sample_data`, `tidy_data`, and `glance_data`.
 
 ```{r}
-#| label = "onesample_df"
+#| label = "extract_stats"
 
-p <- ggpiestats(mtcars, am, cyl)
+p <- ggbetweenstats(mtcars, cyl, wt)
 
-# data frame with results
-extract_stats(p)
+# data frame with results from pairwise comparisons
+extract_stats(p)$pairwise_comparisons_data
 ```
 
 For `grouped_` plots, `extract_stats()` returns one such list per group.
@@ -417,147 +137,54 @@ If you only need the results and not the plot, you can call the functions from
 the source package `{statsExpressions}` directly (see
 [examples](https://www.indrapatil.com/statsExpressions/articles/web_only/dataframe_outputs.html)).
 
-## 15. How can I remove a particular `geom` layer from the plot?
+### Does `{ggstatsplot}` carry out assumption checks? {#assumption-checks}
 
-Sometimes you may not want a particular `geom` layer to be displayed. You can
-remove them by setting transparency (`alpha`) for that layer to 0.
+No, `{ggstatsplot}` does not carry out any analysis of whether assumptions are
+met or not. It will just carry out whatever test you ask it to carry out.
 
-For example, let's say I want to remove the points from `ggwithinstats()` plot:
+To check these assumptions, you can use a different package called
+[`{performance}`](https://easystats.github.io/performance/reference/index.html#check-model-assumptions-or-data-properties).
 
-```{r}
-#| label = "geom_removal",
-#| fig.width = 7,
-#| fig.height = 5
+### How are missing values handled? {#missing-values}
 
+Rows with missing values (`NA`) in the variables of interest are removed before
+the analysis, and the subtitle reports the sample size that was actually used.
+Other columns in the data are ignored.
 
-# before
-ggwithinstats(
-  data = bugs_long,
-  x = condition,
-  y = desire,
-  subject.id = subject,
-  results.subtitle = FALSE,
-  pairwise.display = "none"
-)
-
-# after
-ggwithinstats(
-  data = bugs_long,
-  x = condition,
-  y = desire,
-  subject.id = subject,
-  point.args = list(alpha = 0),
-  results.subtitle = FALSE,
-  pairwise.display = "none"
-)
-```
-
-## 16. How can I modify the fill colors with custom values?
-
-Functions with a `palette` argument accept any discrete `{paletteer}` palette in
-the `"package::palette"` format (see question 18). But if you are not satisfied
-with the available palettes, you can also change the colors by manually
-specifying these values.
+- In `ggwithinstats()`, specify `subject.id`: any subject with a missing value
+  in *any* condition is then excluded from the statistical analysis, so that
+  only complete pairs are analyzed (the subtitle reports
+  *n*<sub>pairs</sub>). The subject's non-missing observations are still
+  shown in the plot.
+- In `ggcorrmat()`, missing values are removed separately for each pair of
+  variables, and the legend shows the minimum, mode, and maximum sample sizes
+  across pairs.
+- In `grouped_` functions, rows with missing values in `grouping.var` are
+  dropped.
 
 ```{r}
-#| label = "ggbar_colors"
+#| label = "missing_values"
 
-library(ggplot2)
-
-ggbarstats(mtcars, am, cyl, results.subtitle = FALSE) +
-  scale_fill_manual(values = c("#E7298A", "#66A61E"))
+# 5 of the 93 subjects in `bugs_long` have a missing value, so n_pairs = 88
+ggwithinstats(bugs_long, condition, desire, subject.id = subject)
 ```
 
-The same can also be done for `grouped_` functions:
+### Is there a way to adjust my alpha level? {#alpha-level}
 
-```{r}
-#| label = "ggpie_colors",
-#| fig.width = 12,
-#| fig.height = 6
-grouped_ggpiestats(
-  data = mtcars,
-  grouping.var = am,
-  x = cyl,
-  ggplot.component = ggplot2::scale_fill_grey()
-)
-```
+Within a single plot, some functions let you choose the cutoff used to decide
+what is displayed as significant:
 
-## 17. How can I modify `grouped_` outputs using `{ggplot2}` functions?
+- `pairwise.alpha` in `ggbetweenstats()` and `ggwithinstats()` (together with
+  `p.adjust.method` for multiple comparisons correction).
+- `sig.level` in `ggcorrmat()`.
+- `conf.level` (in all functions) sets the width of the confidence intervals.
 
-All `{ggstatsplot}` plots are `ggplot` objects, which can be further modified,
-just like any other `ggplot` object. The exception is plots returned by
-`grouped_` functions, which are `{patchwork}` objects combining several plots.
-To modify each of the individual plots, use the `ggplot.component` argument:
+But there is no way to adjust alpha *across* the plots produced by `grouped_`
+functions, since each group is analyzed independently. You will have to report
+the adjusted alpha yourself (e.g., with 2 tests, only consider `p < 0.025` as
+significant).
 
-```{r}
-#| label = "grouped_modify"
-
-library(paletteer)
-library(ggplot2)
-
-grouped_ggbetweenstats(
-  mtcars,
-  cyl,
-  wt,
-  grouping.var = am,
-  results.subtitle = FALSE,
-  pairwise.display = "none",
-  # modify further with `{ggplot2}` functions
-  ggplot.component = list(
-    scale_color_manual(values = paletteer::paletteer_c("viridis::viridis", 3)),
-    theme(axis.text.x = element_text(angle = 90))
-  )
-)
-```
-
-Alternatively, `{patchwork}`'s `&` operator applies a `{ggplot2}` component to
-all plots in a `grouped_` output:
-
-```{r}
-#| label = "grouped_modify_patchwork",
-#| eval = FALSE
-
-grouped_ggbetweenstats(mtcars, cyl, wt, grouping.var = am) &
-  theme(axis.text.x = element_text(angle = 90))
-```
-
-## 18. How can I change the theme or color palette?
-
-Use the `ggtheme` argument to supply any `{ggplot2}` theme (the default is
-`theme_ggstatsplot()`), and the `palette` argument to choose any discrete
-palette from `{paletteer}` in the `"package::palette"` format. Run
-`View(paletteer::palettes_d_names)` to see all available palettes.
-
-```{r}
-#| label = "theme_palette"
-
-ggbetweenstats(
-  mtcars,
-  cyl,
-  wt,
-  ggtheme = ggplot2::theme_classic(),
-  palette = "ggsci::nrc_npg"
-)
-```
-
-The palette must have at least as many colors as there are levels in the
-grouping variable; otherwise an error is thrown. `ggscatterstats()`,
-`gghistostats()`, `ggdotplotstats()`, and `ggcorrmat()` don't have a `palette`
-argument; use the relevant `*.args` arguments (or `colors` in `ggcorrmat()`)
-instead.
-
-## 19. How can I remove sample size labels for `ggbarstats`?
-
-Set the transparency of the sample size labels to 0 using the
-`sample.size.label.args` argument:
-
-```{r}
-#| label = "ggbar_no_n"
-
-ggbarstats(mtcars, am, cyl, sample.size.label.args = list(alpha = 0))
-```
-
-## 20. Statistical analysis I want to carry out is not available. What can I do?
+### The statistical analysis I want to carry out is not available. What can I do? {#custom-test}
 
 Since `{ggstatsplot}` always allows just **one** type of test per statistical
 approach, sometimes your favorite test might not be available. For
@@ -598,150 +225,80 @@ ggscatterstats(df, wt, mpg, results.subtitle = FALSE) +
   labs(subtitle = df_results$expression[[1]])
 ```
 
-## 21. Is there a way to adjust my alpha level?
+### How should I cite and report the results? {#cite-report}
 
-Within a single plot, some functions let you choose the cutoff used to decide
-what is displayed as significant:
+You can cite the package with `citation("ggstatsplot")` (see top of this
+article). For reporting, the expressions shown in the plots follow a standard
+template (see the
+[principles article](https://www.indrapatil.com/ggstatsplot/articles/web_only/principles.html#statistical-reporting)),
+and all numbers can be retrieved as data frames with
+[`extract_stats()`](#extract-stats). For interpreting logged Bayes Factors, see
+[this article](https://www.indrapatil.com/ggstatsplot/articles/web_only/interpretation.html).
 
-- `pairwise.alpha` in `ggbetweenstats()` and `ggwithinstats()` (together with
-  `p.adjust.method` for multiple comparisons correction).
-- `sig.level` in `ggcorrmat()`.
-- `conf.level` (in all functions) sets the width of the confidence intervals.
+## Subtitle and caption {#subtitle-caption}
 
-But there is no way to adjust alpha *across* the plots produced by `grouped_`
-functions (e.g., `grouped_ggwithinstats()`), since each group is analyzed
-independently. You will have to just report in the paper/article/report what
-your adjusted alpha is.
+### How can I customize the details contained in the subtitle? {#custom-subtitle}
 
-So, for example, if 2 tests are being carried out, the alpha is going to be
-`0.05/2 = 0.025`. So, when you describe the _Methods_ section, you can mention
-that only those tests should be considered significant where `p < 0.025`. Or you
-can even mention this in the caption.
+Sometimes you may not wish to include so many details in the subtitle. In that
+case, you can extract the expression and copy-paste only the part you wish to
+include. For example, here only statistic and *p*-values are included:
 
-## 22. How can I build a `Shiny` app using `{ggstatsplot}` functions?
+```{r}
+#| label = "custom_expr"
 
-Below is an example using `ggbetweenstats` function.
+library(ggplot2)
+library(statsExpressions)
 
-```r
-library(shiny)
-library(ggstatsplot)
+# extracting detailed expression
+data_results <- oneway_anova(iris, Species, Sepal.Length)
+data_results$expression[[1]]
 
-ui <- fluidPage(
-  headerPanel("Example - ggbetweenstats"),
-  sidebarPanel(
-    selectInput("x", "X Variable", choices = names(iris)[5]),
-    selectInput("y", "Y Variable", choices = names(iris)[1:4])
-  ),
-  mainPanel(plotOutput("plot"))
-)
-
-server <- function(input, output) {
-  output$plot <- renderPlot({
-    ggbetweenstats(iris, !!input$x, !!input$y)
-  })
-}
-
-shinyApp(ui, server)
+# adapting the details to your liking
+ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_boxplot() +
+  labs(subtitle = ggplot2::expr(paste(
+    italic("F"), "(", "2", ",", "147", ")=", "119.26", ", ",
+    italic("p"), "<", "0.001"
+  )))
 ```
 
-## 23. How to change size of annotations for combined plot in `grouped_*` functions?
+The extracted expression can also be put on any other plot with
+`labs(subtitle = extract_subtitle(p))`.
 
-```{r faq3}
+### How can I change the size or position of the subtitle? {#subtitle-style}
+
+The statistical results appear as a standard `{ggplot2}` subtitle (and,
+when Bayes Factor is shown, as a caption). You can restyle and reposition them
+using `theme()` via the `ggplot.component` argument:
+
+```{r}
+#| label = "subtitle_style",
+#| fig.width = 7,
+#| fig.height = 5
+
 library(ggplot2)
 
-grouped_ggbetweenstats(
-  data = dplyr::filter(ggplot2::mpg, drv != "4"),
-  x = year,
-  y = hwy,
-  grouping.var = drv,
-  results.subtitle = FALSE,
-  ## arguments given to `{patchwork}` for combining plots
-  annotation.args = list(
-    title = "this is my title",
-    subtitle = "this is my subtitle",
-    theme = ggplot2::theme(
-      plot.subtitle = element_text(size = 20),
-      plot.title = element_text(size = 30)
+ggbetweenstats(
+  mtcars, am, mpg,
+  ggplot.component = list(
+    theme(
+      plot.subtitle = element_text(size = 10, face = "bold", hjust = 0),
+      plot.caption = element_text(size = 8, hjust = 0)
     )
   )
 )
 ```
 
-## 24. How to change size of text in the subtitle?
-
-```{r faq4}
-ggbetweenstats(
-  data = iris,
-  x = Species,
-  y = Sepal.Length,
-  ggplot.component = list(theme(plot.subtitle = element_text(size = 20, face = "bold")))
-)
-```
-
-## 25. How to display pairwise comparison letter in a plot?
-
-This is not possible out of the box, but see [this](https://github.com/IndrajeetPatil/ggstatsplot/issues/654#issuecomment-948862514) comment.
-
-## 26. Does `{ggstatsplot}` carry out assumption checks?
-
-No, `{ggstatsplot}` does not carry out any analysis of whether assumptions are
-met or not. It will just carry out whatever test you ask it to carry out.
-
-To check these assumptions, you can use a different package called `{performance}`:
-
-<https://easystats.github.io/performance/reference/index.html#check-model-assumptions-or-data-properties>
-
-## 27. I am on Ubuntu and have trouble installing `{PMCMRplus}`?
-
-Linux users may encounter some installation problems. In particular,
-`{ggstatsplot}` depends (via `{statsExpressions}`) on the `{PMCMRplus}` package.
-
-```r
-ERROR: dependencies ‘gmp’, ‘Rmpfr’ are not available for package ‘PMCMRplus’
-```
-
-This means that your operating system lacks `gmp` and `Rmpfr` libraries.
-
-If you use `Ubuntu`, you can install these dependencies:
-
-```
-sudo apt-get install libgmp3-dev
-sudo apt-get install libmpfr-dev
-```
-
-The following `README` file briefly describes the installation procedure:
-<https://CRAN.R-project.org/package=PMCMRplus/readme/README.html>
-
-For MacOS, have a look at this [post](https://stackoverflow.com/questions/35360885/installing-finding-gmp-under-osx).
-
-## 28. How to modify the secondary Y-axis title?
-
-```{r faq5}
-ggbetweenstats(
-  mtcars, cyl, wt,
-  ggplot.component = list(
-    ggplot2::scale_y_continuous(sec.axis = ggplot2::dup_axis(name = "My custom test"))
-  )
-)
-```
-
-## 29. How to turn off scientific notation in expressions?
+### How can I turn off scientific notation in expressions? {#scientific-notation}
 
 Increase the number of digits with the `digits` argument. Note that very small
 *p*-values can still be shown in scientific notation if they would otherwise be
 rounded to zero.
 
-```{r faq6}
-set.seed(123)
-library(ggstatsplot)
-library(WRS2)
+```{r}
+#| label = "digits"
 
-ggwithinstats(
-  WineTasting,
-  Wine,
-  Taste,
-  subject.id = Taster
-)
+library(WRS2)
 
 ggwithinstats(
   WineTasting,
@@ -752,41 +309,71 @@ ggwithinstats(
 )
 ```
 
-## 30. How to modify the whiskers in box plots from ggbetweenstats?
+## Pairwise comparisons {#pairwise-comparisons}
 
-By default, the whiskers in `ggbetweenstats()` box plots extend to 1.5 times the
-interquartile range (IQR) from the box, following the Tukey method. You can
-customize this using the `coef` parameter in `boxplot.args`:
+### How can I show only some of the pairwise comparisons? {#custom-pairwise}
 
-```{r faq7}
-# Default whiskers (1.5 * IQR)
-ggbetweenstats(
-  data = mtcars,
-  x = am,
-  y = wt,
-  results.subtitle = FALSE
-)
+Currently, for `ggbetweenstats` and `ggwithinstats`, you can either display all
+**significant** comparisons, all **non-significant** comparisons, or **all**
+comparisons. But what if I am only interested in just one particular comparison?
 
-# Longer whiskers (3 * IQR)
-ggbetweenstats(
-  data = mtcars,
-  x = am,
-  y = wt,
-  boxplot.args = list(coef = 3),
-  results.subtitle = FALSE
-)
+Here is a workaround using `{ggsignif}`:
 
-# Whiskers only to data range (no multiplier)
-ggbetweenstats(
-  data = mtcars,
-  x = am,
-  y = wt,
-  boxplot.args = list(coef = 0),
-  results.subtitle = FALSE
-)
+```{r}
+#| label = "custom_pairwise",
+#| fig.width = 7,
+#| fig.height = 6
+
+library(ggsignif)
+
+ggbetweenstats(mtcars, cyl, wt, pairwise.display = "none") +
+  geom_signif(comparisons = list(c("4", "6")), test.args = list(exact = FALSE))
 ```
 
-## 31. Why do pairwise comparison brackets disappear when I restrict the Y-axis?
+### How can I change the annotation in pairwise comparisons? {#pairwise-annotation}
+
+`{ggstatsplot}` defaults to displaying exact *p*-values or logged Bayes Factor
+values for pairwise comparisons. But what if you wish to adopt different
+annotation labels, such as asterisks? You will have to customize them yourself:
+
+```{r}
+#| label = "comp_asterisks"
+
+library(ggplot2)
+library(ggsignif)
+
+# converting to factor
+mtcars$cyl <- as.factor(mtcars$cyl)
+
+# creating the base plot
+p <- ggbetweenstats(mtcars, cyl, wt, pairwise.display = "none")
+
+# using `statsExpressions::pairwise_comparisons()` function to create a data frame with results
+df <- statsExpressions::pairwise_comparisons(mtcars, cyl, wt) |>
+  dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) |>
+  dplyr::arrange(group1) |>
+  dplyr::mutate(asterisk_label = dplyr::case_when(
+    p.value < 0.001 ~ "***",
+    p.value < 0.01 ~ "**",
+    p.value < 0.05 ~ "*",
+    .default = "ns"
+  ))
+
+df
+
+# adding pairwise comparisons using `{ggsignif}` package
+p +
+  ggsignif::geom_signif(
+    comparisons = df$groups,
+    map_signif_level = TRUE,
+    annotations = df$asterisk_label,
+    y_position = c(5.5, 5.75, 6.0),
+    test = NULL,
+    na.rm = TRUE
+  )
+```
+
+### Why do pairwise comparison brackets disappear when I restrict the Y-axis? {#brackets-disappear}
 
 This is a common `{ggplot2}` footgun. There are two ways to restrict the visible
 y-range, and they behave very differently:
@@ -809,133 +396,199 @@ The fix is to replace `scale_y_continuous(limits = ...)` with
 
 library(ggplot2)
 
-# BAD: pairwise brackets disappear because values above 4 are set to NA
-ggbetweenstats(mtcars, cyl, wt) +
-  scale_y_continuous(limits = c(1, 4))
-
-# GOOD: brackets survive because coord_cartesian only zooms the viewport
 ggbetweenstats(mtcars, cyl, wt) +
   coord_cartesian(ylim = c(1, 4))
 ```
 
-## 32. How can I create group-specific titles or subtitles in grouped plots?
+## Plot appearance {#plot-appearance}
 
-Not directly with the current grouped helper APIs.
+### How can I change the theme, color palette, or colors? {#theme-palette}
 
-Functions like `grouped_ggbetweenstats()` internally split the data by the
-grouping variable and use those split names while constructing the individual
-plots. This means the grouping labels are not exposed as a placeholder you can
-interpolate inside `title = ...`, `subtitle = ...`, or
-`ggplot.component = ...`.
-
-So if you need panel-specific text such as custom titles, subtitles, or
-captions derived from the grouping level, the current workaround is to split
-the data yourself, map over the groups, build the annotation from the group
-name, and then combine the plots:
+Use the `ggtheme` argument to supply any `{ggplot2}` theme (the default is
+`theme_ggstatsplot()`), and the `palette` argument to choose any discrete
+palette from `{paletteer}` in the `"package::palette"` format. Run
+`View(paletteer::palettes_d_names)` to see all available palettes.
 
 ```{r}
-#| label = "grouped_dynamic_titles",
-#| fig.width = 7,
-#| fig.height = 6
+#| label = "theme_palette"
 
-library(dplyr)
-library(purrr)
-
-filter(ggplot2::mpg, drv != "4") |>
-  (\(d) split(d, d$drv))() |>
-  imap(~ ggbetweenstats(
-    data = .x,
-    x = year,
-    y = hwy,
-    title = paste0("Drive type: ", .y),
-    subtitle = paste0("Subset size: n = ", nrow(.x))
-  )) |>
-  combine_plots()
+ggbetweenstats(
+  mtcars,
+  cyl,
+  wt,
+  ggtheme = ggplot2::theme_classic(),
+  palette = "ggsci::nrc_npg"
+)
 ```
 
-If this ever needs to be supported directly in grouped helpers, that would
-require a dedicated feature addition rather than a small bug fix.
+The palette must have at least as many colors as there are levels in the
+grouping variable; otherwise an error is thrown. `ggscatterstats()`,
+`gghistostats()`, `ggdotplotstats()`, and `ggcorrmat()` don't have a `palette`
+argument; use the relevant `*.args` arguments (or `colors` in `ggcorrmat()`)
+instead.
 
-## 33. How can I adjust the position of the statistical annotation to prevent overlap?
-
-The statistical results appear as a standard `{ggplot2}` subtitle (and,
-when Bayes Factor is shown, as a caption). You can reposition them using
-`theme()` via the `ggplot.component` argument:
+If none of the palettes suit you, specify the colors manually with the usual
+`{ggplot2}` scales:
 
 ```{r}
-#| label = "annotation_position",
-#| fig.width = 7,
-#| fig.height = 5
+#| label = "manual_colors"
 
 library(ggplot2)
 
-# default position
-ggbetweenstats(mtcars, am, mpg)
+ggbarstats(mtcars, am, cyl, results.subtitle = FALSE) +
+  scale_fill_manual(values = c("#E7298A", "#66A61E"))
+```
 
-# move the subtitle to avoid overlapping with data points
-ggbetweenstats(
-  mtcars, am, mpg,
+### How can I remove a particular `geom` layer from the plot? {#remove-layer}
+
+Sometimes you may not want a particular `geom` layer to be displayed. You can
+remove it by setting transparency (`alpha`) for that layer to 0 via the
+corresponding `*.args` argument. For example, to remove the points from a
+`ggwithinstats()` plot:
+
+```{r}
+#| label = "geom_removal",
+#| fig.width = 7,
+#| fig.height = 5
+
+ggwithinstats(
+  data = bugs_long,
+  x = condition,
+  y = desire,
+  subject.id = subject,
+  point.args = list(alpha = 0),
+  results.subtitle = FALSE,
+  pairwise.display = "none"
+)
+```
+
+The same works for other layers, e.g. `sample.size.label.args = list(alpha = 0)`
+removes the sample size labels in `ggbarstats()`.
+
+## `grouped_` functions and programmatic use {#grouped-functions}
+
+### How can I modify `grouped_` outputs using `{ggplot2}` functions? {#grouped-modify}
+
+All `{ggstatsplot}` plots are `ggplot` objects, which can be further modified,
+just like any other `ggplot` object. The exception is plots returned by
+`grouped_` functions, which are `{patchwork}` objects combining several plots.
+To modify each of the individual plots, use the `ggplot.component` argument
+(present in all functions except `ggcoefstats()`). For example, this gives all
+plots the same color scale and Y-axis range:
+
+```{r}
+#| label = "grouped_modify"
+
+library(ggplot2)
+
+grouped_ggbetweenstats(
+  mtcars,
+  cyl,
+  wt,
+  grouping.var = am,
+  results.subtitle = FALSE,
+  pairwise.display = "none",
   ggplot.component = list(
-    theme(
-      plot.subtitle = element_text(size = 10, hjust = 0),
-      plot.caption = element_text(size = 8, hjust = 0)
-    )
+    scale_color_manual(values = paletteer::paletteer_c("viridis::viridis", 3)),
+    scale_y_continuous(limits = c(1, 6))
+  ),
+  # arguments given to `{patchwork}` for annotating the combined plot
+  annotation.args = list(
+    title = "Weight by number of cylinders",
+    theme = theme(plot.title = element_text(size = 20))
   )
 )
 ```
 
-If you need the statistical expression on a *different* plot entirely,
-extract it with `extract_subtitle()` and pass it to `labs()`:
+Alternatively, `{patchwork}`'s `&` operator applies a `{ggplot2}` component to
+all plots in a `grouped_` output:
 
 ```{r}
-#| label = "annotation_manual",
-#| fig.width = 7,
-#| fig.height = 5
+#| label = "grouped_modify_patchwork",
+#| eval = FALSE
 
-# extract subtitle expression
-expr <- extract_subtitle(ggbetweenstats(mtcars, am, mpg))
-
-# use it on a completely custom plot
-ggplot(mtcars, aes(factor(am), mpg)) +
-  geom_boxplot() +
-  labs(subtitle = expr)
+grouped_ggbetweenstats(mtcars, cyl, wt, grouping.var = am) &
+  theme(axis.text.x = element_text(angle = 90))
 ```
 
-## 34. How are missing values handled?
+### How can I go beyond what `grouped_` functions support? {#beyond-grouped}
 
-Rows with missing values (`NA`) in the variables of interest are removed before
-the analysis, and the subtitle reports the sample size that was actually used.
-Other columns in the data are ignored.
-
-- In `ggwithinstats()`, specify `subject.id`: any subject with a missing value
-  in *any* condition is then excluded from the statistical analysis, so that
-  only complete pairs are analyzed (the subtitle reports
-  *n*<sub>pairs</sub>). The subject's non-missing observations are still
-  shown in the plot.
-- In `ggcorrmat()`, missing values are removed separately for each pair of
-  variables, and the legend shows the minimum, mode, and maximum sample sizes
-  across pairs.
-- In `grouped_` functions, rows with missing values in `grouping.var` are
-  dropped.
+The `grouped_` functions only repeat the analysis across a _single_ grouping
+variable, and they don't let you create group-specific titles or subtitles.
+For anything else, split the data yourself, create one plot per group with
+`{purrr}`, and combine them with `combine_plots()` (see also
+[this article](https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html)).
+For example, to repeat the analysis across two grouping variables with a
+title for each group:
 
 ```{r}
-#| label = "missing_values"
+#| label = "beyond_grouped",
+#| fig.width = 8,
+#| fig.height = 8
 
-# 5 of the 93 subjects in `bugs_long` have a missing value, so n_pairs = 88
-ggwithinstats(bugs_long, condition, desire, subject.id = subject)
+ggplot2::mpg |>
+  dplyr::filter(drv %in% c("4", "f"), fl %in% c("p", "r")) |>
+  (\(d) split(d, f = list(d$drv, d$fl), drop = TRUE))() |>
+  purrr::imap(\(data, group) {
+    ggscatterstats(
+      data = data,
+      x = displ,
+      y = hwy,
+      title = paste0("Drive and fuel type: ", group),
+      results.subtitle = FALSE
+    )
+  }) |>
+  combine_plots(plotgrid.args = list(nrow = 2L))
 ```
 
-## 35. How should I cite and report the results?
+### How can I use `{ggstatsplot}` functions in a `for` loop? {#for-loop}
 
-You can cite the package with `citation("ggstatsplot")` (see top of this
-article). For reporting, the expressions shown in the plots follow a standard
-template (see the
-[principles article](https://www.indrapatil.com/ggstatsplot/articles/web_only/principles.html#statistical-reporting)),
-and all numbers can be retrieved as data frames with `extract_stats()` (see
-question 14). For interpreting logged Bayes Factors, see
-[this article](https://www.indrapatil.com/ggstatsplot/articles/web_only/interpretation.html).
+Given that all functions in `{ggstatsplot}` use tidy evaluation, running these
+functions in a `for` loop requires minor adjustment to how inputs are entered:
 
-## Suggestions
+```{r}
+#| label = "loop",
+#| eval = FALSE
+
+col.name <- colnames(mtcars)
+plot_list <- list()
+
+# executing the function in a `for` loop
+for (i in 3:length(col.name)) {
+  plot_list[[col.name[i]]] <- ggbetweenstats(
+    data = mtcars,
+    x = cyl,
+    y = !!col.name[i]
+  )
+}
+```
+
+Note that plots created inside a `for` loop are not printed automatically;
+either store them (as above) or wrap the call in `print()`.
+
+That said, if repeating function execution across multiple columns in a
+data frame is what you want to do, I will recommend a
+[`{purrr}`-based solution](https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data-frame).
+
+This solution would work for `x` and `y` arguments, but not for the
+`grouping.var` argument, which first needs to be converted to a symbol:
+
+```{r}
+#| label = "tidyeval-grouping-var",
+#| eval = FALSE
+
+df <- dplyr::filter(movies_long, genre == "Comedy" | genre == "Drama")
+
+grouped_ggscatterstats(
+  data = df,
+  x = !!colnames(df)[3],
+  y = !!colnames(df)[5],
+  grouping.var = !!rlang::sym(colnames(df)[8]),
+  results.subtitle = FALSE
+)
+```
+
+## Suggestions {#suggestions}
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 `GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
