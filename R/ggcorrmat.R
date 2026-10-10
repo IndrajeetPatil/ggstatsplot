@@ -118,7 +118,7 @@ ggcorrmat <- function(
   mpc_df <- correlation::correlation(
     data = data,
     rename = cor.vars.names,
-    method = ifelse(type == "nonparametric", "spearman", "pearson"),
+    method = if (type == "nonparametric") "spearman" else "pearson",
     p_adjust = p.adjust.method,
     ci = conf.level,
     bayesian = type == "bayes",
@@ -126,12 +126,12 @@ ggcorrmat <- function(
     tr = tr,
     partial = partial,
     partial_bayesian = type == "bayes" && partial,
-    winsorize = ifelse(type == "robust", tr, FALSE)
+    winsorize = if (type == "robust") tr else FALSE
   )
 
   # type of correlation and if it is a partial correlation
   r.method.text <- gsub(" correlation", "", unique(mpc_df$Method), fixed = TRUE)
-  r.type <- ifelse(partial, "correlation (partial):", "correlation:")
+  r.type <- if (partial) "correlation (partial):" else "correlation:"
   r.label <- bquote(atop(scriptstyle(bold(.(r.type))), .(r.method.text)))
 
   # plot ------------------------------------------
@@ -162,7 +162,7 @@ ggcorrmat <- function(
     ggcorrplot::ggcorrplot,
     corr = as.matrix(select(mpc_df, matches("^parameter|^r"))),
     p.mat = as.matrix(select(mpc_df, matches("^parameter|^p"))),
-    sig.level = ifelse(type == "bayes", Inf, sig.level),
+    sig.level = if (type == "bayes") Inf else sig.level,
     ggtheme = ggtheme,
     colors = colors,
     type = matrix.type,
