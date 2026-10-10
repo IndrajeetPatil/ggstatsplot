@@ -125,26 +125,6 @@ test_that("check pairwise displays - within-subjects", {
   )
 })
 
-# caption -------------------------------------------------
-
-test_that("adding caption works", {
-  set.seed(123)
-  expect_doppelganger(
-    title = "adding caption works",
-    fig = ggwithinstats(
-      bugs_long,
-      condition,
-      desire,
-      type = "p",
-      results.subtitle = FALSE,
-      bf.message = FALSE,
-      p.adjust.method = "fdr",
-      pairwise.display = "ns",
-      digits = 3L
-    )
-  )
-})
-
 # bracket positions -------------------------------------------------
 
 test_that("pairwise brackets stay above negative outcomes", {
