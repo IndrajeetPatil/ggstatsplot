@@ -181,6 +181,19 @@ test_that("stats label colors stay aligned after filtering labels", {
   )
 })
 
+test_that("no stats labels are drawn when no term is significant", {
+  mod <- lm(scale(qsec) ~ scale(drat), data = mtcars)
+
+  for (color in list(NULL, c("firebrick", "navy"))) {
+    p <- ggcoefstats(mod, only.significant = TRUE, stats.label.color = color)
+    expect_false(any(vapply(
+      p$layers,
+      \(l) inherits(l$geom, "GeomLabelRepel"),
+      logical(1L)
+    )))
+  }
+})
+
 test_that("tidy data without statistic inputs disables stats labels", {
   set.seed(123)
   expect_doppelganger(
