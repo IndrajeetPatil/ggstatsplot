@@ -1,6 +1,6 @@
 # Violin plots for group or condition comparisons in within-subjects designs repeated across all levels of a grouping variable
 
-A combined plot of comparison plot created for levels of a grouping
+A combined plot of comparison plots created for levels of a grouping
 variable.
 
 ## Usage
