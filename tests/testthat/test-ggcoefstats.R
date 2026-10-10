@@ -206,13 +206,13 @@ test_that("tidy data without statistic inputs disables stats labels", {
 test_that("stats label helpers cover filtering and color branches", {
   df_labels <- tibble::tibble(
     term = c("a", "b", "c"),
-    p.value = c(0.01, 0.03, 0.02),
+    p.value = c(0.01, 0.03, 0.20),
     expression = list("alpha", character(0), "gamma")
   )
 
   expect_identical(
     .prepare_stats_label_data(df_labels, only.significant = TRUE)$term,
-    c("a", "c")
+    "a"
   )
 
   expect_identical(
