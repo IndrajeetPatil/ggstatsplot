@@ -7,9 +7,11 @@ survey_data <- dplyr::tibble(
 survey_data_NA <- survey_data
 survey_data_NA$Counts[3L] <- NA_integer_
 
+# Keep standard errors away from zero: near-zero values make the Stan sampler
+# behind `metaBMA::meta_random()` (Bayesian meta-analysis) extremely slow.
 df_meta <- tibble::tibble(
   estimate = c(0.111, 0.245, 0.8, 1.1, 0.03),
-  std.error = c(0.05, 0.111, 0.001, 0.2, 0.01)
+  std.error = c(0.05, 0.111, 0.1, 0.2, 0.01)
 )
 
 morley_new <- dplyr::mutate(

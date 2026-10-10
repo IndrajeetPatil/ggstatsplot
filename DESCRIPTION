@@ -72,6 +72,7 @@ Config/roxygen2/version: 8.1.1
 Config/roxyglobals/unique: TRUE
 Config/testthat/edition: 3
 Config/testthat/parallel: true
+Config/testthat/start-first: ggbarstats, ggpiestats, pairwise-ggsignif
 Encoding: UTF-8
 Language: en-US
 LazyData: true
