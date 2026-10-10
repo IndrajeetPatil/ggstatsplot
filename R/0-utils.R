@@ -1,3 +1,5 @@
+# grouped functions built without a `.pre` hook capture `.pre = NULL`, so
+# codetools reports `.pre(...)` as a call to an undefined global function
 utils::globalVariables(".pre")
 
 # nocov start
