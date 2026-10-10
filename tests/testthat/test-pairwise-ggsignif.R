@@ -145,6 +145,8 @@ test_that("adding caption works", {
   )
 })
 
+# bracket positions -------------------------------------------------
+
 test_that("pairwise brackets stay above negative outcomes", {
   df <- tibble::tibble(
     group = rep(letters[1:3], each = 3L),

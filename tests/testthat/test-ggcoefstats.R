@@ -68,7 +68,7 @@ test_that("meta-analysis works", {
   )
 })
 
-# plot modifications--------------------------------------------------
+# plot modifications --------------------------------------------------
 
 test_that("plot modifications work as expected", {
   mod1 <- stats::lm(data = mtcars, formula = wt ~ mpg * am)

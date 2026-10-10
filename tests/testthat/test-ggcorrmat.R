@@ -60,7 +60,7 @@ test_that("ggcorrmat works as expected with changed defaults", {
   )
 })
 
-# grouped_ggcorrmat output: plot ---------------------------------------------------------------
+# grouped_ggcorrmat output: plot -------------------------------------
 
 test_that("grouped_ggcorrmat plots are as expected", {
   set.seed(123)
@@ -84,7 +84,7 @@ test_that("grouped_ggcorrmat plots are as expected", {
   )
 })
 
-# expected warnings -------------------------------------------
+# expected errors -------------------------------------------
 
 test_that("grouped_ggcorrmat produces error when grouping isn't specified", {
   expect_snapshot(grouped_ggcorrmat(iris), error = TRUE)

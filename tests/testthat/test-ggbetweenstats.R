@@ -2,7 +2,7 @@
 
 skip_if_not_installed("rstantools")
 
-# checking labels and data from plot -------------------------------------
+# plotting features -------------------------------------
 
 test_that("plotting features work as expected", {
   set.seed(123)
