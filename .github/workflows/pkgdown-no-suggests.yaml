@@ -8,6 +8,6 @@ name: pkgdown-no-suggests
 
 jobs:
   pkgdown-no-suggests:
-    uses: IndrajeetPatil/workflows/.github/workflows/pkgdown.yaml@main
+    uses: IndrajeetPatil/workflows/.github/workflows/pkgdown.yaml@ci/pkgdown-parallel-prebuild
     with:
       no-suggests: true
