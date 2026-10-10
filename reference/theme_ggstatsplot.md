@@ -5,7 +5,7 @@ Common theme used across all plots generated in `{ggstatsplot}` and
 theme is a wrapper around
 [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html).
 
-All `{ggstatsplot}` functions have a `ggtheme` parameter that let you
+All `{ggstatsplot}` functions have a `ggtheme` parameter that lets you
 choose a different theme.
 
 ## Usage

@@ -12,8 +12,6 @@ contingency table analysis, meta-analysis, and regression analyses.
 
 ## Details
 
-`ggstatsplot`
-
 The main functions are:
 
 - [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)

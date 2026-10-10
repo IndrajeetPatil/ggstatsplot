@@ -247,7 +247,7 @@ For details, see:
 
 The plot uses
 [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html)
-to attempt to keep labels from over-lapping to the largest degree
+to attempt to keep labels from overlapping to the largest degree
 possible. As a consequence plot times will slow down massively (and the
 plot file will grow in size) if you have a lot of labels that overlap.
 

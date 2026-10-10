@@ -2,6 +2,8 @@
 
 ## ggstatsplot 1.1.2
 
+CRAN release: 2026-10-09
+
 ### BUG FIXES
 
 - [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)

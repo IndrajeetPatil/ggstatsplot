@@ -39,7 +39,7 @@ Modified dataset from `{ggplot2movies}` package.
 
 The internet movie database (IMDB) is a website devoted to collecting
 movie data supplied by studios and fans. It claims to be the biggest
-movie database on the web and is run by amazon.
+movie database on the web and is run by Amazon.
 
 ## Examples
 
