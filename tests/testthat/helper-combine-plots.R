@@ -1,7 +1,7 @@
 # shared fixtures for test-combine-plots.R
 
 iris_species_plot <- function(species) {
-  ggplot2::ggplot(
+  ggplot(
     data = subset(datasets::iris, Species == species),
     aes(x = Sepal.Length, y = Sepal.Width)
   ) +
