@@ -16,6 +16,59 @@ dropped_levels_counts <- data.frame(
   count = c(6, 8, 8, 62, 6, 33)
 )
 
+# default plots for one-way, unpaired two-way, and paired two-way tables, with
+# and without `NA`s
+expect_default_contingency_plots <- function(plot_fn) {
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "checking one-way table - without NA",
+    fig = plot_fn(mtcars, cyl, ratio = c(0.2, 0.2, 0.6))
+  )
+
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "checking one-way table - with NA",
+    fig = plot_fn(ggplot2::msleep, vore)
+  )
+
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "checking unpaired two-way table - without NA",
+    fig = plot_fn(mtcars, am, vs, ratio = c(0.4, 0.6))
+  )
+
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "checking unpaired two-way table - with NA",
+    fig = plot_fn(ggplot2::msleep, conservation, vore)
+  )
+
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "checking paired two-way table - without NA",
+    fig = plot_fn(
+      survey_data,
+      `1st survey`,
+      `2nd survey`,
+      counts = Counts,
+      paired = TRUE,
+      ratio = c(0.4, 0.6)
+    )
+  )
+
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "checking paired two-way table - with NA",
+    fig = plot_fn(
+      survey_data_NA,
+      `1st survey`,
+      `2nd survey`,
+      counts = Counts,
+      paired = TRUE
+    )
+  )
+}
+
 # the subtitle matches the `statsExpressions::contingency_table()` expression
 expect_contingency_subtitle <- function(plot_fn) {
   set.seed(123)

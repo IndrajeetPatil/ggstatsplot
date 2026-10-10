@@ -1,54 +1,7 @@
 # checking default outputs -----------------------------------------
 
 test_that("checking default outputs", {
-  set.seed(123)
-  expect_doppelganger(
-    title = "checking one-way table - without NA",
-    fig = ggbarstats(mtcars, cyl, ratio = c(0.2, 0.2, 0.6))
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "checking one-way table - with NA",
-    fig = ggbarstats(ggplot2::msleep, vore)
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "checking unpaired two-way table - without NA",
-    fig = ggbarstats(mtcars, am, vs, ratio = c(0.4, 0.6))
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "checking unpaired two-way table - with NA",
-    fig = ggbarstats(ggplot2::msleep, conservation, vore)
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "checking paired two-way table - without NA",
-    fig = ggbarstats(
-      survey_data,
-      `1st survey`,
-      `2nd survey`,
-      counts = Counts,
-      paired = TRUE,
-      ratio = c(0.4, 0.6)
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "checking paired two-way table - with NA",
-    fig = ggbarstats(
-      data = survey_data_NA,
-      x = `1st survey`,
-      y = `2nd survey`,
-      counts = Counts,
-      paired = TRUE
-    )
-  )
+  expect_default_contingency_plots(ggbarstats)
 })
 
 # changing labels and aesthetics -------------------------------------------
