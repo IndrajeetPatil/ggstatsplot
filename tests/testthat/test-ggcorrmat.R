@@ -49,13 +49,15 @@ test_that("ggcorrmat works as expected with changed defaults", {
     ) +
       labs(caption = NULL)
   )
-})
 
-
-test_that("ggcorrmat with p.adjust.method = 'none' shows unadjusted label", {
-  p <- ggcorrmat(iris, p.adjust.method = "none")
-  caption_expr <- deparse(p$labels$caption)
-  expect_true(any(grepl("unadj", caption_expr, fixed = TRUE)))
+  set.seed(123)
+  expect_doppelganger(
+    title = "unadjusted p-values label",
+    fig = ggcorrmat(
+      data = dplyr::select(iris, dplyr::contains("Sepal")),
+      p.adjust.method = "none"
+    )
+  )
 })
 
 # grouped_ggcorrmat output: plot ---------------------------------------------------------------

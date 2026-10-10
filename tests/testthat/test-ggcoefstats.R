@@ -181,35 +181,27 @@ test_that("stats label colors stay aligned after filtering labels", {
   df_tidy <- tidy_model_parameters(stats::lm(wt ~ am * cyl, mtcars))
   df_tidy$p.value[2L] <- 0.42
 
-  plot <- ggcoefstats(
-    df_tidy,
-    statistic = "t",
-    only.significant = TRUE,
-    stats.label.color = c("firebrick", "grey50", "forestgreen", "navy")
-  )
-
-  expect_identical(
-    as.character(plot$layers[[4L]]$data$term),
-    c("(Intercept)", "cyl")
-  )
-  expect_identical(
-    plot$layers[[4L]]$aes_params$colour,
-    c("firebrick", "forestgreen")
+  set.seed(123)
+  expect_doppelganger(
+    title = "stats label colors after filtering",
+    fig = ggcoefstats(
+      df_tidy,
+      statistic = "t",
+      only.significant = TRUE,
+      stats.label.color = c("firebrick", "grey50", "forestgreen", "navy")
+    )
   )
 })
 
 test_that("tidy data without statistic inputs disables stats labels", {
-  plot <- ggcoefstats(
-    tibble::tibble(term = c("a", "b"), estimate = c(0.5, -0.2)),
-    stats.labels = TRUE
+  set.seed(123)
+  expect_doppelganger(
+    title = "no stats labels without statistic",
+    fig = ggcoefstats(
+      tibble::tibble(term = c("a", "b"), estimate = c(0.5, -0.2)),
+      stats.labels = TRUE
+    )
   )
-
-  expect_length(plot$layers, 2L)
-  expect_false(any(vapply(
-    plot$layers,
-    function(x) inherits(x$geom, "GeomLabelRepel"),
-    logical(1L)
-  )))
 })
 
 test_that("stats label helpers cover filtering and color branches", {
