@@ -118,7 +118,7 @@ test_that("check pairwise displays - within-subjects", {
       subject.id = subject,
       results.subtitle = FALSE,
       p.adjust.method = "fdr",
-      pairwise.display = "s",
+      pairwise.display = "ns",
       pairwise.alpha = 0.001,
       digits = 3L
     )
