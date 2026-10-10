@@ -151,55 +151,13 @@ test_that("edge cases", {
 # expression output --------------------------------------------------
 
 test_that("expression output", {
-  set.seed(123)
-  p_sub <- ggpiestats(
-    ggplot2::msleep,
-    x = conservation,
-    y = vore,
-    digits = 4L
-  ) |>
-    extract_subtitle()
-
-  set.seed(123)
-  stats_output <- suppressWarnings(contingency_table(
-    ggplot2::msleep,
-    x = conservation,
-    y = vore,
-    digits = 4L
-  ))$expression[[1L]]
-
-  expect_identical(p_sub, stats_output)
+  expect_contingency_subtitle(ggpiestats)
 })
 
 # pairwise comparisons --------------------------------------------------
 
 test_that("pairwise comparisons data is returned for 3+ groups", {
-  pairwise_data <- function(...) {
-    set.seed(123)
-    extract_stats(ggpiestats(...))$pairwise_comparisons_data
-  }
-
-  holm_df <- pairwise_data(mtcars, cyl, am)
-  expect_s3_class(holm_df, "tbl_df")
-  expect_shape(holm_df, nrow = 3L)
-  expect_contains(names(holm_df), c("group1", "group2", "p.value"))
-
-  # different p.adjust.method produces different adjusted p-values
-  bonf_df <- pairwise_data(mtcars, cyl, am, p.adjust.method = "bonferroni")
-  expect_s3_class(bonf_df, "tbl_df")
-  expect_shape(bonf_df, nrow = 3L)
-  expect_false(identical(bonf_df$p.value.adj, holm_df$p.value.adj))
-
-  # no pairwise data for 2 levels, one-way tests, or paired tests
-  expect_null(pairwise_data(mtcars, am, vs))
-  expect_null(pairwise_data(mtcars, cyl))
-  expect_null(pairwise_data(
-    survey_data,
-    `1st survey`,
-    `2nd survey`,
-    counts = Counts,
-    paired = TRUE
-  ))
+  expect_pairwise_comparisons_data(ggpiestats)
 })
 
 # grouped_ggpiestats works as expected ---------------------
@@ -218,14 +176,6 @@ test_that("grouped_ggpiestats works", {
       x = cyl
     )
   )
-
-  # creating a smaller data frame
-  mpg_short <- ggplot2::mpg |>
-    dplyr::filter(
-      drv %in% c("4", "f"),
-      class %in% c("suv", "midsize"),
-      trans %in% c("auto(l4)", "auto(l5)")
-    )
 
   # arm64 macOS and x86_64 Linux produce sub-pixel SVG coordinate differences
   # for this specific plot; use platform-specific snapshot variants.
@@ -246,18 +196,11 @@ test_that("grouped_ggpiestats works", {
 # grouped_ggpiestats edge cases --------------------
 
 test_that("edge case behavior", {
-  df <- data.frame(
-    dataset = c("a", "b", "c", "c", "c", "c"),
-    measurement = c("old", "old", "old", "old", "new", "new"),
-    flag = c("no", "no", "yes", "no", "yes", "no"),
-    count = c(6, 8, 8, 62, 6, 33)
-  )
-
   set.seed(123)
   expect_doppelganger(
     title = "common legend when levels are dropped",
     fig = grouped_ggpiestats(
-      df,
+      dropped_levels_counts,
       x = measurement,
       y = flag,
       grouping.var = dataset,
