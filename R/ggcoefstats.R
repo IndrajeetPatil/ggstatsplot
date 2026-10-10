@@ -322,7 +322,6 @@ ggcoefstats <- function(
     plot_coef <- plot_coef +
       exec(
         geom_errorbar,
-        data = tidy_df,
         mapping = aes(xmin = conf.low, xmax = conf.high),
         orientation = "y",
         !!!errorbar.args
@@ -350,7 +349,7 @@ ggcoefstats <- function(
         data = tidy_df_labels,
         mapping = aes(x = estimate, y = term, label = expression),
         parse = TRUE,
-        color = stats.label.color %||% "black",
+        color = stats.label.color,
         !!!stats.label.args
       )
   }
