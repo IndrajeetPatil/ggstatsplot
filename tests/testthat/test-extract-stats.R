@@ -103,6 +103,6 @@ test_that("checking if extract_stats works for grouped plots", {
   expect_length(caption_result, 3L)
 })
 
-test_that("checking if extract_stats produces NULL on supported objects", {
+test_that("checking if extract_stats produces NULL on unsupported objects", {
   expect_length(purrr::compact(extract_stats(iris)), 0L)
 })

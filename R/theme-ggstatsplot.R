@@ -6,7 +6,7 @@
 #' by the author to be aesthetically pleasing to the user. The theme is a
 #' wrapper around [`ggplot2::theme_bw()`].
 #'
-#' All `{ggstatsplot}` functions have a `ggtheme` parameter that let you choose
+#' All `{ggstatsplot}` functions have a `ggtheme` parameter that lets you choose
 #' a different theme.
 #'
 #' @returns A `{ggplot2}` theme object.

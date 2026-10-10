@@ -17,8 +17,6 @@ tests: parametric, nonparametric, robust, and Bayesian versions of
 meta-analysis, and regression analyses.
 }
 \details{
-\code{ggstatsplot}
-
 The main functions are:
 \itemize{
 \item \code{ggbetweenstats()} function to produce information-rich comparison plot

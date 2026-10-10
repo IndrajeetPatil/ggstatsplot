@@ -7,9 +7,9 @@
 #' confidence interval whiskers and other statistical details included as
 #' labels.
 #'
-#'  Although the statistical models displayed in the plot may differ based on the
-#'  class of models being investigated, there are few aspects of the plot that will
-#'  be invariant across models:
+#' Although the statistical models displayed in the plot may differ based on the
+#' class of models being investigated, there are a few aspects of the plot that
+#' will be invariant across models:
 #'
 #'   - The dot-whisker plot contains a dot representing the **estimate** and their
 #'     **confidence intervals** (`95%` is the default). The estimate can either be
@@ -19,7 +19,7 @@
 #'     clear up what estimates are being displayed. The confidence intervals can
 #'     sometimes be asymmetric if bootstrapping was used.
 #'
-#'   - The label attached to dot will provide more details from the statistical
+#'   - The label attached to each dot will provide more details from the statistical
 #'     test carried out and it will typically contain estimate, statistic, and
 #'     *p*-value.
 #'

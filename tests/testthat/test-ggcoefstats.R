@@ -7,8 +7,6 @@ test_that("ggcoefstats doesn't work if no estimate column found", {
 # default plots for each statistic ------------------------------------------
 
 test_that("default plots are rendered correctly for each type of statistic", {
-  skip_if_not_installed("withr")
-
   set.seed(123)
   expect_doppelganger(
     title = "t-statistic",
@@ -46,6 +44,7 @@ test_that("default plots are rendered correctly for each type of statistic", {
   )
 
   skip_if_not_installed("survival")
+  skip_if_not_installed("withr")
   withr::local_package("survival")
 
   set.seed(123)
@@ -69,7 +68,7 @@ test_that("meta-analysis works", {
   )
 
   # don't run graphical snapshot tests because values are slightly different
-  # locally on CI
+  # locally and on CI
   expect_s3_class(p_meta, "ggplot")
 
   set.seed(123)
