@@ -181,6 +181,17 @@ test_that("stats label colors stay aligned after filtering labels", {
   )
 })
 
+test_that("no stats labels are drawn when no term is significant", {
+  set.seed(123)
+  expect_doppelganger(
+    title = "no stats labels without significant terms",
+    fig = ggcoefstats(
+      lm(scale(qsec) ~ scale(drat), data = mtcars),
+      only.significant = TRUE
+    )
+  )
+})
+
 test_that("tidy data without statistic inputs disables stats labels", {
   set.seed(123)
   expect_doppelganger(

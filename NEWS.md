@@ -1,3 +1,10 @@
+# ggstatsplot 1.1.2.9000
+
+## BUG FIXES
+
+- `ggcoefstats()` no longer errors with `only.significant = TRUE` when no
+  term is significant; the plot is drawn without stats labels instead.
+
 # ggstatsplot 1.1.2
 
 ## BUG FIXES

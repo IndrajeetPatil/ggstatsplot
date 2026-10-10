@@ -336,6 +336,11 @@ ggcoefstats <- function(
 
   if (stats.labels) {
     tidy_df_labels <- .prepare_stats_label_data(tidy_df, only.significant)
+    # no label layer if no term is left to label (e.g. no significant effects)
+    stats.labels <- nrow(tidy_df_labels) > 0L
+  }
+
+  if (stats.labels) {
     stats.label.color <- .prepare_stats_label_colors(
       tidy_df,
       tidy_df_labels,
