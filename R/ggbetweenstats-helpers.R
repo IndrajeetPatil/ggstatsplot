@@ -112,7 +112,7 @@
       data,
       !!x,
       !!y,
-      type = extract_stats_type(centrality.type),
+      type = centrality.type,
       digits = digits,
       tr = tr
     ))
@@ -278,12 +278,6 @@
   pairwise.alpha = 0.05,
   ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE)
 ) {
-  # creating a column for group combinations
-  mpc_df <- mutate(
-    mpc_df,
-    groups = purrr::map2(group1, group2, c)
-  )
-
   # total number of group-pair comparisons, before any significance filtering;
   # the legacy helper spaced brackets over this count regardless of how many
   # were ultimately displayed, so bracket spacing stays stable across
@@ -337,7 +331,7 @@
   plot +
     exec(
       ggsignif::geom_signif,
-      comparisons = mpc_df$groups,
+      comparisons = purrr::map2(mpc_df$group1, mpc_df$group2, c),
       map_signif_level = TRUE,
       annotations = as.character(mpc_df$expression),
       test = NULL,

@@ -165,7 +165,7 @@ ggwithinstats <- function(
   sid_str <- if (!is.null(subject.id)) as_string(subject.id)
 
   data <- data |>
-    select({{ x }}, {{ y }}, any_of(sid_str %||% character(0))) |>
+    select({{ x }}, {{ y }}, any_of(sid_str)) |>
     mutate({{ x }} := droplevels(as.factor({{ x }})))
 
   if (is.null(sid_str)) {
