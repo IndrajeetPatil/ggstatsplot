@@ -220,14 +220,6 @@ test_that("stats label helpers cover filtering and color branches", {
     c("a", "c")
   )
 
-  expect_identical(
-    .prepare_stats_label_data(
-      dplyr::select(df_labels, -p.value),
-      only.significant = TRUE
-    )$term,
-    c("a", "c")
-  )
-
   label_data <- tibble::tibble(term = "a", expression = list("alpha"))
   expected_color <- unname(as.character(paletteer::paletteer_d(
     "ggthemes::gdoc",

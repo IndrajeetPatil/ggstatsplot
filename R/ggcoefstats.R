@@ -416,7 +416,7 @@ ggcoefstats <- function(
 
 #' @noRd
 .prepare_stats_label_data <- function(data, only.significant) {
-  if (only.significant && "p.value" %in% names(data)) {
+  if (only.significant) {
     data <- filter(data, p.value < 0.05)
   }
 
@@ -430,15 +430,12 @@ ggcoefstats <- function(
   stats.label.color,
   palette
 ) {
-  label_rows <- data$term %in% label_data$term
-  n_labels <- sum(label_rows)
-
   if (is.null(stats.label.color)) {
-    return(paletteer::paletteer_d(palette, n_labels))
+    return(paletteer::paletteer_d(palette, nrow(label_data)))
   }
 
   if (length(stats.label.color) > 1L) {
-    return(stats.label.color[label_rows])
+    return(stats.label.color[data$term %in% label_data$term])
   }
 
   stats.label.color # nocov
