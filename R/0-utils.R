@@ -133,7 +133,7 @@ utils::globalVariables(".pre")
 
 #' @noRd
 .extract_expression <- function(data) {
-  purrr::pluck(data, "expression", 1L, .default = NULL)
+  purrr::pluck(data, "expression", 1L)
 }
 
 
