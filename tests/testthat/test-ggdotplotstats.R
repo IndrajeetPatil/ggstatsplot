@@ -91,7 +91,7 @@ test_that("grouped_ggdotplotstats works", {
   set.seed(123)
   expect_doppelganger(
     title = "further modification with ggplot works",
-    fig = grouped_ggdotplotstats(
+    fig = suppressMessages(grouped_ggdotplotstats(
       data = df,
       x = cty,
       y = manufacturer,
@@ -102,6 +102,6 @@ test_that("grouped_ggdotplotstats works", {
         sec.axis = ggplot2::dup_axis(name = "percentile score"),
         breaks = seq(0, 12, 2)
       )
-    )
+    ))
   )
 })
