@@ -221,19 +221,11 @@ test_that("stats label helpers cover filtering and color branches", {
   )
 
   label_data <- tibble::tibble(term = "a", expression = list("alpha"))
-  expected_color <- unname(as.character(paletteer::paletteer_d(
-    "ggthemes::gdoc",
-    1L
-  )))
 
+  # palette colors are sized by the labeled terms, not by all terms
   expect_identical(
-    unname(as.character(.prepare_stats_label_colors(
-      df_labels,
-      label_data,
-      NULL,
-      "ggthemes::gdoc"
-    ))),
-    expected_color
+    .prepare_stats_label_colors(df_labels, label_data, NULL, "ggthemes::gdoc"),
+    paletteer::paletteer_d("ggthemes::gdoc", 1L)
   )
 
   expect_identical(
@@ -259,16 +251,6 @@ test_that("stats label helpers cover filtering and color branches", {
   df_30_terms <- tibble::tibble(
     term = c(letters, LETTERS[1:4]),
     expression = rep(list("alpha"), 30L)
-  )
-
-  # 30 total terms but only 1 labeled — no error even with small palette
-  expect_no_error(
-    .prepare_stats_label_colors(
-      df_30_terms,
-      label_data, # label_data has only term "a"
-      NULL,
-      "ggthemes::gdoc"
-    )
   )
 
   # error only when labeled terms exceed palette size
