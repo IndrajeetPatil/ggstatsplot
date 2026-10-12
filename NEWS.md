@@ -11,6 +11,12 @@
   appears more than once within a level of `x`, instead of silently dropping
   the subtitle or failing deep inside the statistical tests.
 
+- `ggwithinstats()` with `type = "robust"` now reports the correct
+  Algina-Keselman-Penfield effect size and confidence interval in the
+  subtitle (e.g., 0.32 instead of 0.66 for `bugs_long`). This fix comes from
+  `{statsExpressions}`, which previously treated its internal row identifier
+  as an extra condition.
+
 - `ggcoefstats()` no longer errors with `only.significant = TRUE` when no
   term is significant; the plot is drawn without stats labels instead.
 
