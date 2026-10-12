@@ -33,7 +33,8 @@
 #'   this argument.** Each subject must appear at most once per level of `x`.
 #'   Rows with a missing `x` or `subject.id` are ignored, and subjects with a
 #'   missing value (i.e., `NA`) of the dependent variable in any condition are
-#'   dropped using a list-wise approach, so the plot, its labels, and the
+#'   dropped using a list-wise approach (see
+#'   [statsExpressions::complete_subjects()]), so the plot, its labels, and the
 #'   statistical results are all based on the same complete subjects.
 #' @inheritParams statsExpressions::oneway_anova
 #'
@@ -161,40 +162,9 @@ ggwithinstats <- function(
   y <- ensym(y)
   type <- extract_stats_type(type)
 
-  subject.id <- if (!quo_is_null(enquo(subject.id))) ensym(subject.id)
-
-  data <- data |>
-    select({{ x }}, {{ y }}, .rowid = !!subject.id) |>
-    filter(!is.na({{ x }})) |>
-    mutate({{ x }} := droplevels(as.factor({{ x }})))
-
-  if (is.null(subject.id)) {
-    data <- mutate(data, .rowid = row_number(), .by = {{ x }})
-  } else {
-    data <- data |>
-      filter(!is.na(.rowid)) |>
-      mutate({{ x }} := droplevels({{ x }}))
-
-    if (anyDuplicated(select(data, {{ x }}, .rowid)) > 0L) {
-      rlang::abort(c(
-        paste0(
-          "Each `",
-          as_string(subject.id),
-          "` value must appear at most once per level of `",
-          as_string(x),
-          "`."
-        ),
-        i = "Aggregate repeated observations within each condition first."
-      ))
-    }
-  }
-
   # keep only subjects observed in every condition, so that the plot, its
   # labels, and the statistical tests are all based on the same observations
-  data <- data |>
-    filter(!is.na({{ y }})) |>
-    filter(n() == nlevels({{ x }}), .by = .rowid) |>
-    mutate({{ x }} := droplevels({{ x }}))
+  data <- complete_subjects(data, {{ x }}, {{ y }}, {{ subject.id }})
 
   # statistical analysis ------------------------------------------
 

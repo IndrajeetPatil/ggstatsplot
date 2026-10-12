@@ -78,7 +78,8 @@ observations). \strong{But if you are not sure, it is always better to specify
 this argument.} Each subject must appear at most once per level of \code{x}.
 Rows with a missing \code{x} or \code{subject.id} are ignored, and subjects with a
 missing value (i.e., \code{NA}) of the dependent variable in any condition are
-dropped using a list-wise approach, so the plot, its labels, and the
+dropped using a list-wise approach (see
+\code{\link[statsExpressions:complete_subjects]{statsExpressions::complete_subjects()}}), so the plot, its labels, and the
 statistical results are all based on the same complete subjects.}
 
 \item{pairwise.display}{Decides \emph{which} pairwise comparisons to display.
