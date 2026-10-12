@@ -109,6 +109,76 @@ test_that("grouped plots work", {
   )
 })
 
+# subject.id pairing ------------------------------------------
+
+test_that("subject.id pairs unsorted rows and drops incomplete subjects", {
+  # subject 10 has a missing `HDHF` rating
+  set.seed(123)
+  df_shuffled <- data_bugs_2[sample(nrow(data_bugs_2)), ]
+
+  expect_identical(
+    extract_stats(ggwithinstats(
+      df_shuffled,
+      condition,
+      desire,
+      subject.id = subject
+    ))$subtitle_data$statistic,
+    extract_stats(ggwithinstats(
+      data_bugs_2,
+      condition,
+      desire,
+      subject.id = subject
+    ))$subtitle_data$statistic
+  )
+
+  set.seed(123)
+  expect_doppelganger(
+    title = "subject.id with unsorted rows - two groups",
+    fig = ggwithinstats(
+      data = df_shuffled,
+      x = condition,
+      y = desire,
+      subject.id = subject
+    )
+  )
+
+  # subjects 2 and 10 have missing ratings
+  set.seed(123)
+  df_three <- dplyr::filter(
+    bugs_long,
+    subject <= 20L,
+    condition %in% c("HDHF", "HDLF", "LDHF")
+  )
+  df_three <- df_three[sample(nrow(df_three)), ]
+
+  set.seed(123)
+  expect_doppelganger(
+    title = "subject.id with unsorted rows - more than two groups",
+    fig = ggwithinstats(
+      data = df_three,
+      x = condition,
+      y = desire,
+      subject.id = subject,
+      pairwise.display = "all"
+    )
+  )
+})
+
+test_that("subject.id must be unique within each condition", {
+  df_duplicated <- data.frame(
+    condition = c("A", "A", "B", "A", "B"),
+    score = c(1, 2, 3, 4, 5),
+    id = c(1, 1, 1, 2, 2)
+  )
+
+  expect_snapshot_error(ggwithinstats(
+    df_duplicated,
+    condition,
+    score,
+    subject.id = id
+  ))
+})
+
 test_that("type stays the fourth argument and subject.id follows it", {
   arg_names <- names(formals(ggwithinstats))
 
@@ -118,7 +188,7 @@ test_that("type stays the fourth argument and subject.id follows it", {
   )
 })
 
-test_that("subject.id keeps partially observed subjects in the plotting data", {
+test_that("subject.id drops partially observed subjects from the plotting data", {
   df_missing <- data.frame(
     condition = c("A", "B", "A", "B", "A", "B"),
     score = c(1, 2, 3, NA, 4, 5),
@@ -127,8 +197,8 @@ test_that("subject.id keeps partially observed subjects in the plotting data", {
 
   point_data <- build_within_plot(df_missing, subject.id = id)$data[[1L]]
 
-  expect_shape(point_data, nrow = 5L)
-  expect_length(unique(point_data$group), 3L)
+  expect_shape(point_data, nrow = 4L)
+  expect_setequal(point_data$group, c(1, 2))
 })
 
 test_that("incomplete anonymous pairs are excluded from the plotting data", {
@@ -141,6 +211,16 @@ test_that("incomplete anonymous pairs are excluded from the plotting data", {
 
   expect_shape(built_plot$data[[1L]], nrow = 4L)
   expect_setequal(built_plot$plot$data$.rowid, c(1, 3))
+
+  # unequal number of rows across conditions
+  df_unbalanced <- data.frame(
+    condition = c("A", "A", "A", "B", "B"),
+    score = c(1, 3, 4, 2, 5)
+  )
+
+  built_plot <- build_within_plot(df_unbalanced)
+
+  expect_setequal(built_plot$plot$data$.rowid, c(1, 2))
 })
 
 test_that("missing subject.id values are excluded from paired grouping", {

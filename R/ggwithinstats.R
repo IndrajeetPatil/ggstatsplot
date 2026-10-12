@@ -30,11 +30,11 @@
 #'   If your data frame is already in such a format, you can ignore the
 #'   `subject.id` argument (the function will use row number to pair
 #'   observations). **But if you are not sure, it is always better to specify
-#'   this argument.** Note that if there are any missing values (i.e., `NA`) in
-#'   the dependent variable and the `subject.id` is not specified, they will be
-#'   dropped using a list-wise approach. If you specify `subject.id`, partially
-#'   observed subjects will still be shown in the plot, but inferential
-#'   statistics will be computed using only complete repeated-measures pairs.
+#'   this argument.** Each subject must appear at most once per level of `x`.
+#'   Rows with a missing `subject.id` are ignored, and subjects with a missing
+#'   value (i.e., `NA`) of the dependent variable in any condition are dropped
+#'   using a list-wise approach, so the plot, its labels, and the statistical
+#'   results are all based on the same complete subjects.
 #' @inheritParams statsExpressions::oneway_anova
 #'
 #' @inheritSection statsExpressions::centrality_description Centrality measures
@@ -162,29 +162,38 @@ ggwithinstats <- function(
   type <- extract_stats_type(type)
 
   subject.id <- if (!quo_is_null(enquo(subject.id))) ensym(subject.id)
-  sid_str <- if (!is.null(subject.id)) as_string(subject.id)
 
   data <- data |>
-    select({{ x }}, {{ y }}, any_of(sid_str)) |>
+    select({{ x }}, {{ y }}, .rowid = !!subject.id) |>
     mutate({{ x }} := droplevels(as.factor({{ x }})))
 
-  if (is.null(sid_str)) {
-    stats_data <- data
-
-    data <- data |>
-      mutate(.rowid = row_number(), .by = {{ x }}) |>
-      filter_out(anyNA({{ y }}), .by = .rowid)
+  if (is.null(subject.id)) {
+    data <- mutate(data, .rowid = row_number(), .by = {{ x }})
   } else {
-    stats_data <- data |>
-      filter(!is.na(.data[[sid_str]])) |>
+    data <- data |>
+      filter(!is.na(.rowid)) |>
       mutate({{ x }} := droplevels({{ x }}))
 
-    data <- stats_data |>
-      mutate(.rowid = .data[[sid_str]]) |>
-      filter(!is.na({{ y }}))
+    if (anyDuplicated(select(data, {{ x }}, .rowid)) > 0L) {
+      rlang::abort(c(
+        paste0(
+          "Each `",
+          as_string(subject.id),
+          "` value must appear at most once per level of `",
+          as_string(x),
+          "`."
+        ),
+        i = "Aggregate repeated observations within each condition first."
+      ))
+    }
   }
 
-  data <- mutate(data, {{ x }} := droplevels({{ x }}))
+  # keep only subjects observed in every condition, so that the plot, its
+  # labels, and the statistical tests are all based on the same observations
+  data <- data |>
+    filter(!is.na({{ y }})) |>
+    filter(n() == nlevels({{ x }}), .by = .rowid) |>
+    mutate({{ x }} := droplevels({{ x }}))
 
   # statistical analysis ------------------------------------------
 
@@ -192,7 +201,7 @@ ggwithinstats <- function(
 
   if (results.subtitle) {
     stats_output <- .bw_subtitle_caption(
-      data = stats_data,
+      data = data,
       x = x,
       y = y,
       test = test,
@@ -204,7 +213,7 @@ ggwithinstats <- function(
       tr = tr,
       alternative = alternative,
       paired = TRUE,
-      subject.id = subject.id
+      subject.id = quote(.rowid)
     )
     subtitle <- stats_output$subtitle
     caption <- stats_output$caption %||% caption
@@ -255,9 +264,9 @@ ggwithinstats <- function(
     pairwise.display = pairwise.display,
     pairwise.alpha = pairwise.alpha,
     pairwise_args = list(
-      data = stats_data,
+      data = data,
       paired = TRUE,
-      subject.id = subject.id,
+      subject.id = quote(.rowid),
       p.adjust.method = p.adjust.method
     ),
     ggsignif.args = ggsignif.args,
