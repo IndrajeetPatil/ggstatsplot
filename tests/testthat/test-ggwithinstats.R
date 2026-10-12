@@ -276,6 +276,22 @@ test_that("empty condition levels are dropped after filtering missing subject.id
   )
 })
 
+test_that("subject.id column stays available to user-supplied layers", {
+  for (subject_id in list(quote(subject), "subject")) {
+    p <- ggwithinstats(
+      data = data_bugs_2,
+      x = condition,
+      y = desire,
+      subject.id = !!subject_id,
+      results.subtitle = FALSE,
+      ggplot.component = ggplot2::geom_text(ggplot2::aes(label = subject))
+    )
+
+    expect_identical(p$data$subject, p$data$.rowid)
+    expect_no_error(ggplot2::ggplot_build(p))
+  }
+})
+
 # user caption is kept when no Bayes Factor caption is shown ----------
 
 test_that("user caption is retained without a Bayes Factor caption", {

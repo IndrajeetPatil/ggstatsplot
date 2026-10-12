@@ -166,6 +166,11 @@ ggwithinstats <- function(
   # labels, and the statistical tests are all based on the same observations
   data <- complete_subjects(data, {{ x }}, {{ y }}, {{ subject.id }})
 
+  # keep the subject identifier available to user-supplied layers
+  if (!quo_is_null(enquo(subject.id))) {
+    data[[as_name(enquo(subject.id))]] <- data$.rowid
+  }
+
   # statistical analysis ------------------------------------------
 
   test <- if (nlevels(pull(data, {{ x }})) < 3L) "t" else "anova"
