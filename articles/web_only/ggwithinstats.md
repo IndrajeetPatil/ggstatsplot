@@ -115,7 +115,8 @@ Supplying `subject.id` is strongly recommended: it is used to pair
 observations of the same subject across conditions. If it is omitted,
 the function assumes that the rows are already sorted in the same
 subject order within every condition. Subjects with missing values in
-any condition are excluded from the statistical analysis.
+any condition are excluded from both the plot and the statistical
+analysis.
 
 ## Comparisons between conditions with `ggwithinstats`
 

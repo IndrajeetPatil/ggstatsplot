@@ -155,9 +155,9 @@ actually used. Other columns in the data are ignored.
 - In
   [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md),
   specify `subject.id`: any subject with a missing value in *any*
-  condition is then excluded from the statistical analysis, so that only
-  complete pairs are analyzed (the subtitle reports *n*_(pairs)). The
-  subject’s non-missing observations are still shown in the plot.
+  condition is then excluded from both the plot and the statistical
+  analysis, so that only complete pairs are analyzed (the subtitle
+  reports *n*_(pairs)).
 - In
   [`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md),
   missing values are removed separately for each pair of variables, and

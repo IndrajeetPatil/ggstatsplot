@@ -186,11 +186,12 @@ dataset must correspond to a unique unit (e.g., subject or participant).
 If your data frame is already in such a format, you can ignore the
 <code>subject.id</code> argument (the function will use row number to pair
 observations). <strong>But if you are not sure, it is always better to specify
-this argument.</strong> Note that if there are any missing values (i.e., <code>NA</code>) in
-the dependent variable and the <code>subject.id</code> is not specified, they will be
-dropped using a list-wise approach. If you specify <code>subject.id</code>, partially
-observed subjects will still be shown in the plot, but inferential
-statistics will be computed using only complete repeated-measures pairs.</p></dd>
+this argument.</strong> Each subject must appear at most once per level of <code>x</code>.
+Rows with a missing <code>x</code> or <code>subject.id</code> are ignored, and subjects with a
+missing value (i.e., <code>NA</code>) of the dependent variable in any condition are
+dropped using a list-wise approach (see
+<code><a href="https://www.indrapatil.com/statsExpressions/reference/complete_subjects.html" class="external-link">statsExpressions::complete_subjects()</a></code>), so the plot, its labels, and the
+statistical results are all based on the same complete subjects.</p></dd>
 
 
 <dt id="arg-pairwise-display">pairwise.display<a class="anchor" aria-label="anchor" href="#arg-pairwise-display"></a></dt>

@@ -5,6 +5,17 @@
 ### BUG FIXES
 
 - [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
+  now drops subjects with missing values in any condition from the plot
+  as well when `subject.id` is supplied, so the plotted data, centrality
+  labels, and sample size labels match the statistical results
+  (previously, partially observed subjects were still plotted).
+
+- [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
+  now gives an informative error when a `subject.id` value appears more
+  than once within a level of `x`, instead of silently dropping the
+  subtitle or failing deep inside the statistical tests.
+
+- [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
   with `type = "robust"` now reports the correct
   Algina-Keselman-Penfield effect size and confidence interval in the
   subtitle (e.g., 0.32 instead of 0.66 for `bugs_long`). This fix comes

@@ -52,12 +52,14 @@ grouped_ggwithinstats(
     data frame is already in such a format, you can ignore the
     `subject.id` argument (the function will use row number to pair
     observations). **But if you are not sure, it is always better to
-    specify this argument.** Note that if there are any missing values
-    (i.e., `NA`) in the dependent variable and the `subject.id` is not
-    specified, they will be dropped using a list-wise approach. If you
-    specify `subject.id`, partially observed subjects will still be
-    shown in the plot, but inferential statistics will be computed using
-    only complete repeated-measures pairs.
+    specify this argument.** Each subject must appear at most once per
+    level of `x`. Rows with a missing `x` or `subject.id` are ignored,
+    and subjects with a missing value (i.e., `NA`) of the dependent
+    variable in any condition are dropped using a list-wise approach
+    (see
+    [`statsExpressions::complete_subjects()`](https://www.indrapatil.com/statsExpressions/reference/complete_subjects.html)),
+    so the plot, its labels, and the statistical results are all based
+    on the same complete subjects.
 
   `xlab`
 
