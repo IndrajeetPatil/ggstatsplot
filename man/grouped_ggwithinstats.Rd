@@ -36,11 +36,12 @@ dataset must correspond to a unique unit (e.g., subject or participant).
 If your data frame is already in such a format, you can ignore the
 \code{subject.id} argument (the function will use row number to pair
 observations). \strong{But if you are not sure, it is always better to specify
-this argument.} Note that if there are any missing values (i.e., \code{NA}) in
-the dependent variable and the \code{subject.id} is not specified, they will be
-dropped using a list-wise approach. If you specify \code{subject.id}, partially
-observed subjects will still be shown in the plot, but inferential
-statistics will be computed using only complete repeated-measures pairs.}
+this argument.} Each subject must appear at most once per level of \code{x}.
+Rows with a missing \code{x} or \code{subject.id} are ignored, and subjects with a
+missing value (i.e., \code{NA}) of the dependent variable in any condition are
+dropped using a list-wise approach (see
+\code{\link[statsExpressions:complete_subjects]{statsExpressions::complete_subjects()}}), so the plot, its labels, and the
+statistical results are all based on the same complete subjects.}
     \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
     \item{\code{ylab}}{Label for \code{y} axis variable. If \code{NULL} (default),
