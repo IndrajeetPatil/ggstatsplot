@@ -31,10 +31,10 @@
 #'   `subject.id` argument (the function will use row number to pair
 #'   observations). **But if you are not sure, it is always better to specify
 #'   this argument.** Each subject must appear at most once per level of `x`.
-#'   Rows with a missing `subject.id` are ignored, and subjects with a missing
-#'   value (i.e., `NA`) of the dependent variable in any condition are dropped
-#'   using a list-wise approach, so the plot, its labels, and the statistical
-#'   results are all based on the same complete subjects.
+#'   Rows with a missing `x` or `subject.id` are ignored, and subjects with a
+#'   missing value (i.e., `NA`) of the dependent variable in any condition are
+#'   dropped using a list-wise approach, so the plot, its labels, and the
+#'   statistical results are all based on the same complete subjects.
 #' @inheritParams statsExpressions::oneway_anova
 #'
 #' @inheritSection statsExpressions::centrality_description Centrality measures
@@ -165,6 +165,7 @@ ggwithinstats <- function(
 
   data <- data |>
     select({{ x }}, {{ y }}, .rowid = !!subject.id) |>
+    filter(!is.na({{ x }})) |>
     mutate({{ x }} := droplevels(as.factor({{ x }})))
 
   if (is.null(subject.id)) {

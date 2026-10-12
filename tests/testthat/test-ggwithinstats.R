@@ -223,6 +223,20 @@ test_that("incomplete anonymous pairs are excluded from the plotting data", {
   expect_setequal(built_plot$plot$data$.rowid, c(1, 2))
 })
 
+test_that("rows with a missing condition do not drop complete subjects", {
+  df_missing_x <- data.frame(
+    condition = c("A", "B", NA, "A", "B"),
+    score = c(1, 2, 9, 3, 4),
+    id = c(1, 1, 1, 2, 2)
+  )
+
+  point_data <- build_within_plot(df_missing_x, subject.id = id)$data[[1L]]
+  expect_setequal(point_data$group, c(1, 2))
+
+  point_data <- build_within_plot(df_missing_x)$data[[1L]]
+  expect_shape(point_data, nrow = 4L)
+})
+
 test_that("missing subject.id values are excluded from paired grouping", {
   df_missing_id <- data.frame(
     condition = c("A", "B", "A", "B", "A", "B"),
