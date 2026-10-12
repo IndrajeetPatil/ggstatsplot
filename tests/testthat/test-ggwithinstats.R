@@ -133,7 +133,7 @@ test_that("subject.id pairs unsorted rows and drops incomplete subjects", {
 
   set.seed(123)
   expect_doppelganger(
-    title = "subject.id with unsorted rows - two groups",
+    title = "subject.id unsorted - two groups",
     fig = ggwithinstats(
       data = df_shuffled,
       x = condition,
@@ -153,7 +153,7 @@ test_that("subject.id pairs unsorted rows and drops incomplete subjects", {
 
   set.seed(123)
   expect_doppelganger(
-    title = "subject.id with unsorted rows - more than two groups",
+    title = "subject.id unsorted - three groups",
     fig = ggwithinstats(
       data = df_three,
       x = condition,
