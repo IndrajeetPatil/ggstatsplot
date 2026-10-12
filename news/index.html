@@ -91,8 +91,8 @@
 <h2 class="pkg-version" data-toc-text="1.1.2.9000" id="ggstatsplot-1129000">ggstatsplot 1.1.2.9000<a class="anchor" aria-label="anchor" href="#ggstatsplot-1129000"></a></h2>
 <div class="section level3">
 <h3 id="bug-fixes-1-1-2-9000">BUG FIXES<a class="anchor" aria-label="anchor" href="#bug-fixes-1-1-2-9000"></a></h3>
-<ul><li>
-<code><a href="../reference/ggcoefstats.html">ggcoefstats()</a></code> no longer errors with <code>only.significant = TRUE</code> when no term is significant; the plot is drawn without stats labels instead.</li>
+<ul><li><p><code><a href="../reference/ggwithinstats.html">ggwithinstats()</a></code> with <code>type = "robust"</code> now reports the correct Algina-Keselman-Penfield effect size and confidence interval in the subtitle (e.g., 0.32 instead of 0.66 for <code>bugs_long</code>). This fix comes from <a href="https://www.indrapatil.com/statsExpressions/" class="external-link">statsExpressions</a>, which previously treated its internal row identifier as an extra condition.</p></li>
+<li><p><code><a href="../reference/ggcoefstats.html">ggcoefstats()</a></code> no longer errors with <code>only.significant = TRUE</code> when no term is significant; the plot is drawn without stats labels instead.</p></li>
 </ul></div>
 </div>
     <div class="section level2">

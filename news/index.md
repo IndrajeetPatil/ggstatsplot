@@ -4,6 +4,14 @@
 
 ### BUG FIXES
 
+- [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)
+  with `type = "robust"` now reports the correct
+  Algina-Keselman-Penfield effect size and confidence interval in the
+  subtitle (e.g., 0.32 instead of 0.66 for `bugs_long`). This fix comes
+  from [statsExpressions](https://www.indrapatil.com/statsExpressions/),
+  which previously treated its internal row identifier as an extra
+  condition.
+
 - [`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)
   no longer errors with `only.significant = TRUE` when no term is
   significant; the plot is drawn without stats labels instead.
