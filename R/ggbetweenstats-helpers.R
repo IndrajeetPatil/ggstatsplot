@@ -237,7 +237,7 @@
 #' @title Adding `geom_signif` to `ggplot`
 #' @name .ggsignif_adder
 #'
-#' @param plot A `ggplot` object on which `geom_signif` needed to be added.
+#' @param plot A `ggplot` object to which `geom_signif` is to be added.
 #' @param mpc_df A data frame containing results from pairwise comparisons
 #'   (produced by [`pairwise_comparisons()`] function).
 #' @inheritParams ggbetweenstats
@@ -278,10 +278,8 @@
   pairwise.alpha = 0.05,
   ggsignif.args = list(textsize = 3, tip_length = 0.01, na.rm = TRUE)
 ) {
-  # total number of group-pair comparisons, before any significance filtering;
-  # the legacy helper spaced brackets over this count regardless of how many
-  # were ultimately displayed, so bracket spacing stays stable across
-  # `pairwise.display` values
+  # count all comparisons before filtering, so that bracket spacing stays the
+  # same across `pairwise.display` values
   n_comps <- nrow(mpc_df)
 
   # for Bayes Factor, there will be no "p.value" column
@@ -310,8 +308,7 @@
   # all-negative outcomes.
   # The legacy helper spread all group-pair brackets over n_comps / 20 of the
   # outcome range, so dividing that span among n_comps - 1 gaps gives the
-  # equivalent step increase; using the total comparison count keeps spacing
-  # consistent regardless of how many brackets `pairwise.display` retains.
+  # equivalent step increase.
   # For a zero range, retain ggsignif's finite default instead of dividing by
   # zero; no range-based offset can separate identical outcomes.
   # User-supplied arguments override these compatibility defaults.
