@@ -11,13 +11,12 @@
 #' class of models being investigated, there are a few aspects of the plot that
 #' will be invariant across models:
 #'
-#'   - The dot-whisker plot contains a dot representing the **estimate** and their
-#'     **confidence intervals** (`95%` is the default). The estimate can either be
-#'     effect sizes (for tests that depend on the `F`-statistic) or regression
-#'     coefficients (for tests with `t`-, `chi^2`-, and `z`-statistic), etc. The
-#'     function will, by default, display a helpful `x`-axis label that should
-#'     clear up what estimates are being displayed. The confidence intervals can
-#'     sometimes be asymmetric if bootstrapping was used.
+#'   - The dot-whisker plot contains a dot representing each **estimate** and
+#'     whiskers for its **confidence interval** (`95%` is the default). The
+#'     estimate can either be effect sizes (for tests that depend on the
+#'     `F`-statistic) or regression coefficients (for tests with `t`-, `chi^2`-,
+#'     and `z`-statistic), etc. The confidence intervals can sometimes be
+#'     asymmetric if bootstrapping was used.
 #'
 #'   - The label attached to each dot will provide more details from the statistical
 #'     test carried out and it will typically contain estimate, statistic, and
@@ -37,7 +36,7 @@
 #' ```
 #'
 #' @param x A model object to be tidied, or a tidy data frame from a regression
-#'   model. Function internally uses [`parameters::model_parameters()`] to get a
+#'   model. The function internally uses [`parameters::model_parameters()`] to get a
 #'   tidy data frame. If a data frame, it *must* contain a column named
 #'   `estimate` (estimates of coefficients or other quantities of interest). A
 #'   `term` column (names of predictors) is recommended; if absent, terms are
@@ -79,13 +78,11 @@
 #' @param exclude.intercept Logical that decides whether the intercept should be
 #'   excluded from the plot (Default: `FALSE`).
 #' @param errorbar.args Additional arguments that will be passed to
-#'   [`ggplot2::geom_errorbar()`] geom. Please see documentation for that
-#'   function to know more about these arguments.
+#'   [`ggplot2::geom_errorbar()`].
 #' @param vline Decides whether to display a vertical line at `0` (Default:
 #'   `TRUE`).
 #' @param vline.args Additional arguments that will be passed to
-#'   [`ggplot2::geom_vline()`] geom. Please see documentation for that function
-#'   to know more about these arguments.
+#'   [`ggplot2::geom_vline()`].
 #' @param sort If `"none"` (default) do not sort, `"ascending"` sort by
 #'   increasing coefficient value, or `"descending"` sort by decreasing
 #'   coefficient value.

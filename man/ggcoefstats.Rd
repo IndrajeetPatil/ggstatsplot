@@ -37,7 +37,7 @@ ggcoefstats(
 }
 \arguments{
 \item{x}{A model object to be tidied, or a tidy data frame from a regression
-model. Function internally uses \code{\link[parameters:model_parameters]{parameters::model_parameters()}} to get a
+model. The function internally uses \code{\link[parameters:model_parameters]{parameters::model_parameters()}} to get a
 tidy data frame. If a data frame, it \emph{must} contain a column named
 \code{estimate} (estimates of coefficients or other quantities of interest). A
 \code{term} column (names of predictors) is recommended; if absent, terms are
@@ -113,15 +113,13 @@ plot.}
 the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
 
 \item{errorbar.args}{Additional arguments that will be passed to
-\code{\link[ggplot2:geom_errorbar]{ggplot2::geom_errorbar()}} geom. Please see documentation for that
-function to know more about these arguments.}
+\code{\link[ggplot2:geom_errorbar]{ggplot2::geom_errorbar()}}.}
 
 \item{vline}{Decides whether to display a vertical line at \code{0} (Default:
 \code{TRUE}).}
 
 \item{vline.args}{Additional arguments that will be passed to
-\code{\link[ggplot2:geom_vline]{ggplot2::geom_vline()}} geom. Please see documentation for that function
-to know more about these arguments.}
+\code{\link[ggplot2:geom_vline]{ggplot2::geom_vline()}}.}
 
 \item{stats.labels}{Logical. Decides whether the statistic and \emph{p}-values for
 each coefficient are to be attached to each dot as a text label using
@@ -166,13 +164,12 @@ Although the statistical models displayed in the plot may differ based on the
 class of models being investigated, there are a few aspects of the plot that
 will be invariant across models:
 \itemize{
-\item The dot-whisker plot contains a dot representing the \strong{estimate} and their
-\strong{confidence intervals} (\verb{95\%} is the default). The estimate can either be
-effect sizes (for tests that depend on the \code{F}-statistic) or regression
-coefficients (for tests with \code{t}-, \code{chi^2}-, and \code{z}-statistic), etc. The
-function will, by default, display a helpful \code{x}-axis label that should
-clear up what estimates are being displayed. The confidence intervals can
-sometimes be asymmetric if bootstrapping was used.
+\item The dot-whisker plot contains a dot representing each \strong{estimate} and
+whiskers for its \strong{confidence interval} (\verb{95\%} is the default). The
+estimate can either be effect sizes (for tests that depend on the
+\code{F}-statistic) or regression coefficients (for tests with \code{t}-, \code{chi^2}-,
+and \code{z}-statistic), etc. The confidence intervals can sometimes be
+asymmetric if bootstrapping was used.
 \item The label attached to each dot will provide more details from the statistical
 test carried out and it will typically contain estimate, statistic, and
 \emph{p}-value.
