@@ -25,7 +25,7 @@ The main functions are:
   statistical tests in the subtitle.
 
 - [`ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)
-  function to produce `{ggplot2}` scatterplots along with a marginal
+  function to produce `{ggplot2}` scatterplots along with marginal
   distribution plots from `{ggside}` package and details from the
   statistical tests in the subtitle.
 

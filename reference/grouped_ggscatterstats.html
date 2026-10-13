@@ -142,9 +142,10 @@ confidence band uses <code>conf.level</code>.</p></dd>
 axes using <code>{ggside}</code> functions. The default is <code>TRUE</code>.</p></dd>
 
     <dt><code>point.width.jitter,point.height.jitter</code></dt>
-<dd><p>Degree of jitter in <code>x</code> and <code>y</code>
-direction, respectively. Defaults to <code>0</code> (0%) of the resolution of the
-data. Note that the jitter should not be specified in the <code>point.args</code>
+<dd><p>Amount of jitter (in data
+units) in <code>x</code> and <code>y</code> direction, respectively, passed to
+<code><a href="https://ggplot2.tidyverse.org/reference/position_jitter.html" class="external-link">ggplot2::position_jitter()</a></code>. Defaults to <code>0</code> (no jitter). Note that the
+jitter should not be specified in the <code>point.args</code>
 because this information will be passed to two different <code>geom</code>s: one
 displaying the <strong>points</strong> and the other displaying the <strong>labels</strong> for
 these points.</p></dd>

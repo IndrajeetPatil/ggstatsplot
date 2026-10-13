@@ -89,7 +89,7 @@ national population mean of 20 using a parametric one sample *t*-test
 
 ![](gghistostats_files/figure-html/psychact3-1.png)
 
-`gghistostats` also computed Bayes Factors to quantify the likelihood of
+`gghistostats` also computes Bayes Factors to quantify the likelihood of
 the **research** (BF10) and the **null** hypothesis (BF01). In our
 current example, the Bayes Factor value provides **very strong
 evidence** [(Kass and Raftery,
@@ -132,9 +132,9 @@ accomplish our task.
 
 ![](gghistostats_files/figure-html/grouped1-1.png)
 
-As can be seen from these plots, the mean value is much higher than the
-national norm. Additionally, we see the benefits of plotting this data
-separately for each gender. We can *see* the differences in
+As can be seen from these plots, the trimmed mean is much higher than
+the national norm. Additionally, we see the benefits of plotting this
+data separately for each gender. We can *see* the differences in
 distributions.
 
 ## Grouped analysis with `{purrr}`

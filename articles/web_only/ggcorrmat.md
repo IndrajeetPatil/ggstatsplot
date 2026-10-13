@@ -44,7 +44,7 @@ Winsorized Pearson’s *r* (`"robust"`), or Bayesian Pearson’s *r*
 (`"bayes"`).
 
 We will see examples of how to use this function in this vignette with
-the `gapminder` and `diamonds` dataset.
+the `gapminder` and `diamonds` datasets.
 
 To begin with, here are some instances where you would want to use
 `ggcorrmat`-
@@ -58,9 +58,9 @@ To begin with, here are some instances where you would want to use
 
 For the first example, we will use the `gapminder` dataset (available in
 eponymous [package](https://CRAN.R-project.org/package=gapminder) on
-CRAN) provides values for life expectancy, Gross Domestic Product (GDP)
-per capita, and population, every five years, from 1952 to 2007, for
-each of 142 countries and was collected by the Gapminder Foundation.
+CRAN), which provides values for life expectancy, Gross Domestic Product
+(GDP) per capita, and population, every five years, from 1952 to 2007,
+for each of 142 countries and was collected by the Gapminder Foundation.
 Let’s have a look at the data-
 
 \

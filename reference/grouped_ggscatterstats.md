@@ -62,11 +62,13 @@ grouped_ggscatterstats(
 
   `point.width.jitter,point.height.jitter`
 
-  : Degree of jitter in `x` and `y` direction, respectively. Defaults to
-    `0` (0%) of the resolution of the data. Note that the jitter should
-    not be specified in the `point.args` because this information will
-    be passed to two different `geom`s: one displaying the **points**
-    and the other displaying the **labels** for these points.
+  : Amount of jitter (in data units) in `x` and `y` direction,
+    respectively, passed to
+    [`ggplot2::position_jitter()`](https://ggplot2.tidyverse.org/reference/position_jitter.html).
+    Defaults to `0` (no jitter). Note that the jitter should not be
+    specified in the `point.args` because this information will be
+    passed to two different `geom`s: one displaying the **points** and
+    the other displaying the **labels** for these points.
 
   `xsidehistogram.args,ysidehistogram.args`
 

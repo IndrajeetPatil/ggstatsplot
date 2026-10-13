@@ -243,7 +243,6 @@ The table below provides summary about:
 
 ``` r
 set.seed(123)
-library(ggcorrplot)
 ggcorrmat(iris)
 
 
