@@ -35,9 +35,10 @@ to \code{\link[ggplot2:geom_smooth]{ggplot2::geom_smooth()}} geom used to displa
 confidence band uses \code{conf.level}.}
     \item{\code{marginal}}{Decides whether marginal distributions will be plotted on
 axes using \code{{ggside}} functions. The default is \code{TRUE}.}
-    \item{\code{point.width.jitter,point.height.jitter}}{Degree of jitter in \code{x} and \code{y}
-direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
-data. Note that the jitter should not be specified in the \code{point.args}
+    \item{\code{point.width.jitter,point.height.jitter}}{Amount of jitter (in data
+units) in \code{x} and \code{y} direction, respectively, passed to
+\code{\link[ggplot2:position_jitter]{ggplot2::position_jitter()}}. Defaults to \code{0} (no jitter). Note that the
+jitter should not be specified in the \code{point.args}
 because this information will be passed to two different \code{geom}s: one
 displaying the \strong{points} and the other displaying the \strong{labels} for
 these points.}

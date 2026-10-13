@@ -25,7 +25,7 @@
 #'   the statistical tests in the subtitle.
 #'
 #'   - `ggscatterstats()` function to produce `{ggplot2}` scatterplots along
-#'   with a marginal distribution plots from `{ggside}` package and details from
+#'   with marginal distribution plots from `{ggside}` package and details from
 #'   the statistical tests in the subtitle.
 #'
 #'   - `ggpiestats()` function to produce pie chart with details from the

@@ -57,7 +57,7 @@ coefficient is computed: Pearson's *r* (`"parametric"`), Spearman's $\rho$
 Pearson's *r* (`"bayes"`).
 
 We will see examples of how to use this function in this vignette with the
-`gapminder` and `diamonds` dataset.
+`gapminder` and `diamonds` datasets.
 
 To begin with, here are some instances where you would want to use
 `ggcorrmat`-
@@ -69,7 +69,7 @@ To begin with, here are some instances where you would want to use
 ## Correlation matrix plot with `ggcorrmat()`
 
 For the first example, we will use the `gapminder` dataset (available in
-eponymous [package](https://CRAN.R-project.org/package=gapminder) on CRAN)
+eponymous [package](https://CRAN.R-project.org/package=gapminder) on CRAN), which
 provides values for life expectancy, Gross Domestic Product (GDP) per capita,
 and population, every five years, from 1952 to 2007, for each of 142 countries
 and was collected by the Gapminder Foundation. Let's have a look at the data-

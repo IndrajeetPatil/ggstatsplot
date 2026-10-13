@@ -51,12 +51,13 @@ test_that("subtitle output", {
   ) |>
     extract_subtitle()
 
+  # nonparametric dot plots summarize each level of `y` by its median
   set.seed(123)
   p_sub_gghist <- morley |>
     dplyr::group_by(Expt) |>
-    dplyr::summarise(mean = mean(Speed), .groups = "drop") |>
+    dplyr::summarise(median = median(Speed), .groups = "drop") |>
     gghistostats(
-      x = mean,
+      x = median,
       test.value = 800,
       type = "np"
     ) |>
