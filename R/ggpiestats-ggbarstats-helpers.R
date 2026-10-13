@@ -109,13 +109,7 @@
 #' @title A data frame with descriptive labels
 #' @autoglobal
 #' @noRd
-descriptive_data <- function(
-  data,
-  x,
-  y = NULL,
-  label.content = "percentage",
-  digits.perc = 1L
-) {
+.descriptive_data <- function(data, x, y, label.content, digits.perc) {
   all_lvls <- levels(pull(data, {{ x }}))
 
   .cat_counter(data, {{ x }}, {{ y }}) |>
@@ -163,7 +157,7 @@ descriptive_data <- function(
 #' @title A data frame with chi-squared test results
 #' @autoglobal
 #' @noRd
-onesample_data <- function(data, x, y, digits = 2L, ratio = NULL) {
+.onesample_data <- function(data, x, y, digits, ratio) {
   grouped_chi_squared_summary <- group_by(data, {{ y }}) |>
     group_modify(.f = ~ .chisq_test_safe(., {{ x }}, ratio)) |>
     ungroup()

@@ -145,11 +145,17 @@ ggbarstats <- function(
   # plot ------------------------------------------
 
   # data frame with summary labels
-  descriptive_df <- descriptive_data(data, {{ x }}, {{ y }}, label, digits.perc)
+  descriptive_df <- .descriptive_data(
+    data,
+    {{ x }},
+    {{ y }},
+    label,
+    digits.perc
+  )
 
   # data frame containing all details needed for proportion test
   if (test == "two.way") {
-    onesample_df <- onesample_data(data, {{ x }}, {{ y }}, digits, ratio)
+    onesample_df <- .onesample_data(data, {{ x }}, {{ y }}, digits, ratio)
   }
 
   # Validate the requested number of discrete colors before plot rendering.

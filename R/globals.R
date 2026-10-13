@@ -18,9 +18,9 @@ utils::globalVariables(c(
   # <ggcoefstats>
   # <ggdotplotstats>
   "conf.low",
-  # <descriptive_data>
+  # <.descriptive_data>
   # <.cat_counter>
-  # <onesample_data>
+  # <.onesample_data>
   "counts",
   # <ggcoefstats>
   "estimate",
@@ -33,7 +33,7 @@ utils::globalVariables(c(
   # <.ggsignif_adder>
   "p.value",
   # <ggbarstats>
-  # <descriptive_data>
+  # <.descriptive_data>
   # <ggpiestats>
   "perc",
   # <ggcoefstats>
