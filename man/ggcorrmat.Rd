@@ -179,7 +179,6 @@ The table below provides summary about:
 
 \examples{
 set.seed(123)
-library(ggcorrplot)
 ggcorrmat(iris)
 
 # with data containing NAs (uses pairwise complete observations)

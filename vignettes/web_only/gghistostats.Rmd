@@ -100,7 +100,7 @@ gghistostats(
 )
 ```
 
-`gghistostats` also computed Bayes Factors to quantify the likelihood of the
+`gghistostats` also computes Bayes Factors to quantify the likelihood of the
 **research** (BF10) and the **null** hypothesis (BF01). In our current example,
 the Bayes Factor value provides **very strong evidence**
 [(Kass and Raftery, 1995)](https://sites.stat.washington.edu/raftery/Research/PDF/kass1995.pdf)
@@ -144,7 +144,7 @@ grouped_gghistostats(
 )
 ```
 
-As can be seen from these plots, the mean value is much higher than the national
+As can be seen from these plots, the trimmed mean is much higher than the national
 norm. Additionally, we see the benefits of plotting this data separately for
 each gender. We can *see* the differences in distributions.
 
