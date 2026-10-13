@@ -188,8 +188,8 @@ arguments to be passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}
 plotting.}
 
 \item{centrality.path.args, point.path.args}{A list of additional aesthetic
-arguments passed on to \code{\link[ggplot2:geom_path]{ggplot2::geom_path()}} connecting raw data points
-and mean points.}
+arguments passed on to \code{\link[ggplot2:geom_path]{ggplot2::geom_path()}} connecting mean points and
+raw data points, respectively.}
 
 \item{point.args}{A list of additional aesthetic arguments to be passed to
 the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}

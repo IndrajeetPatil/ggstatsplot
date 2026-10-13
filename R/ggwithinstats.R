@@ -23,8 +23,8 @@
 #'   *t*-test). In case of large number of data points, it is advisable to set
 #'   `point.path = FALSE` as these lines can overwhelm the plot.
 #' @param centrality.path.args,point.path.args A list of additional aesthetic
-#'   arguments passed on to [`ggplot2::geom_path()`] connecting raw data points
-#'   and mean points.
+#'   arguments passed on to [`ggplot2::geom_path()`] connecting mean points and
+#'   raw data points, respectively.
 #' @param subject.id Across repeated measures conditions, each row in the
 #'   dataset must correspond to a unique unit (e.g., subject or participant).
 #'   If your data frame is already in such a format, you can ignore the
