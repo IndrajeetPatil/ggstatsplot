@@ -270,7 +270,7 @@ ggpiestats <- function(
 #' @title Grouped pie charts with statistical tests
 #' @name grouped_ggpiestats
 #' @description Helper function for `ggstatsplot::ggpiestats()` to apply this
-#'   function across multiple levels of a given factor and combining the
+#'   function across multiple levels of a given factor and combine the
 #'   resulting plots using `ggstatsplot::combine_plots()`.
 #'
 #' @inheritParams ggpiestats

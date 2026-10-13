@@ -182,8 +182,9 @@
 }
 
 
-#' Safer version of chi-squared test that returns `NA`s
-#' Needed to work with `dplyr::group_modify()` since it will not work when `NULL` is returned.
+#' @title Chi-squared test that returns `NA`s instead of failing
+#' @description Needed for `dplyr::group_modify()`, which fails when `NULL` is
+#'   returned.
 #' @autoglobal
 #' @noRd
 .chisq_test_safe <- function(data, x, ratio) {
