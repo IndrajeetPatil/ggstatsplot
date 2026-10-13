@@ -29,8 +29,8 @@ argument is relevant only when there are two groups (i.e., in case of a
 \emph{t}-test). In case of large number of data points, it is advisable to set
 \code{point.path = FALSE} as these lines can overwhelm the plot.}
     \item{\code{centrality.path.args,point.path.args}}{A list of additional aesthetic
-arguments passed on to \code{\link[ggplot2:geom_path]{ggplot2::geom_path()}} connecting raw data points
-and mean points.}
+arguments passed on to \code{\link[ggplot2:geom_path]{ggplot2::geom_path()}} connecting mean points and
+raw data points, respectively.}
     \item{\code{subject.id}}{Across repeated measures conditions, each row in the
 dataset must correspond to a unique unit (e.g., subject or participant).
 If your data frame is already in such a format, you can ignore the

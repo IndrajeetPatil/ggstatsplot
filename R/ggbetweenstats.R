@@ -289,7 +289,6 @@ ggbetweenstats <- function(
     pairwise.display = pairwise.display,
     pairwise.alpha = pairwise.alpha,
     pairwise_args = list(
-      data = data,
       paired = FALSE,
       p.adjust.method = p.adjust.method
     ),
