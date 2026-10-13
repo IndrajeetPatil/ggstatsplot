@@ -43,7 +43,7 @@ grouped_ggwithinstats(
 
   : A list of additional aesthetic arguments passed on to
     [`ggplot2::geom_path()`](https://ggplot2.tidyverse.org/reference/geom_path.html)
-    connecting raw data points and mean points.
+    connecting mean points and raw data points, respectively.
 
   `subject.id`
 
