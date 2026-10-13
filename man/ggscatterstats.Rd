@@ -104,9 +104,10 @@ axes using \code{{ggside}} functions. The default is \code{TRUE}.}
 \item{point.args}{A list of additional aesthetic arguments to be passed to
 the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
 
-\item{point.width.jitter, point.height.jitter}{Degree of jitter in \code{x} and \code{y}
-direction, respectively. Defaults to \code{0} (0\%) of the resolution of the
-data. Note that the jitter should not be specified in the \code{point.args}
+\item{point.width.jitter, point.height.jitter}{Amount of jitter (in data
+units) in \code{x} and \code{y} direction, respectively, passed to
+\code{\link[ggplot2:position_jitter]{ggplot2::position_jitter()}}. Defaults to \code{0} (no jitter). Note that the
+jitter should not be specified in the \code{point.args}
 because this information will be passed to two different \code{geom}s: one
 displaying the \strong{points} and the other displaying the \strong{labels} for
 these points.}
