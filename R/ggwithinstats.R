@@ -240,7 +240,6 @@ ggwithinstats <- function(
     pairwise.display = pairwise.display,
     pairwise.alpha = pairwise.alpha,
     pairwise_args = list(
-      data = data,
       paired = TRUE,
       subject.id = quote(.rowid),
       p.adjust.method = p.adjust.method

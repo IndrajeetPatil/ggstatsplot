@@ -69,8 +69,8 @@
 #' @param x,y Column name symbols for the grouping and response variables.
 #' @param xlab,ylab Axis labels; `NULL` falls back to the names of `x` and `y`.
 #' @param pairwise_args A named list of extra arguments forwarded to
-#'   [statsExpressions::pairwise_comparisons()], typically containing `data`, `paired`,
-#'   `p.adjust.method`, and optionally `subject.id`.
+#'   [statsExpressions::pairwise_comparisons()]: `paired`, `p.adjust.method`,
+#'   and optionally `subject.id`.
 #' @inheritParams ggbetweenstats
 #' @inheritParams ggwithinstats
 #'
@@ -140,7 +140,7 @@
 
   if (pairwise.display != "none" && test == "anova") {
     pw_args <- c(
-      list(x = x, y = y, type = type, tr = tr, digits = digits),
+      list(data = data, x = x, y = y, type = type, tr = tr, digits = digits),
       pairwise_args
     )
     mpc_df <- suppressWarnings(inject(pairwise_comparisons(!!!pw_args)))
