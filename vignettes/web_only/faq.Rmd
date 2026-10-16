@@ -16,22 +16,6 @@ vignette: >
 source("../setup.R")
 ```
 
-```{r}
-#| label = "suggested_pkgs",
-#| include = FALSE
-
-pkgs <- "PMCMRplus"
-
-successfully_loaded <- purrr::map_lgl(pkgs, requireNamespace, quietly = TRUE)
-can_evaluate <- all(successfully_loaded)
-
-if (can_evaluate) {
-  purrr::walk(pkgs, library, character.only = TRUE)
-} else {
-  knitr::opts_chunk$set(eval = FALSE)
-}
-```
-
 ---
 
 You can cite this package/vignette as:
@@ -55,9 +39,10 @@ media platforms.
 
 ### I just want the plot, not the statistical details. How can I turn them off? {#turn-off-details}
 
-All functions in `{ggstatsplot}` that display results from statistical analysis in
-a subtitle have argument `results.subtitle`. Setting it to `FALSE` will return
-only the plot.
+Set `results.subtitle = FALSE` to suppress the statistical subtitle and the
+automatic Bayes Factor caption in functions that provide this argument.
+Pairwise brackets and centrality annotations have separate controls: use
+`pairwise.display = "none"` and `centrality.plotting = FALSE` where supported.
 
 For parametric tests, the Bayes Factor shown in the caption is controlled
 separately by the `bf.message` argument. Set it to `FALSE` to drop the caption:
@@ -117,9 +102,9 @@ You can also check the `method` column of the data frames returned by
 
 `{ggstatsplot}` displays expressions in the subtitle and caption, but you can
 get back the underlying data frames with the `extract_stats()` helper function.
-It returns a list with the following components (`NULL` when not relevant for a
-given plot): `subtitle_data`, `caption_data`, `pairwise_comparisons_data`,
-`descriptive_data`, `one_sample_data`, `tidy_data`, and `glance_data`.
+See the [`extract_stats()` reference](../../reference/extract_stats.html) for
+the returned components and grouped outputs. `ggcorrmat()` does not retain
+these data frames; use `correlation::correlation()` for its statistical results.
 
 ```{r}
 #| label = "extract_stats"
@@ -130,7 +115,6 @@ p <- ggbetweenstats(mtcars, cyl, wt)
 extract_stats(p)$pairwise_comparisons_data
 ```
 
-For `grouped_` plots, `extract_stats()` returns one such list per group.
 `extract_subtitle()` and `extract_caption()` return just the expressions.
 
 If you only need the results and not the plot, you can call the functions from
@@ -157,7 +141,7 @@ Other columns in the data are ignored.
   *n*<sub>pairs</sub>).
 - In `ggcorrmat()`, missing values are removed separately for each pair of
   variables, and the legend shows the minimum, mode, and maximum sample sizes
-  across pairs.
+  across pairs. Partial correlations instead use complete cases.
 - In `grouped_` functions, rows with missing values in `grouping.var` are
   dropped.
 
@@ -176,7 +160,9 @@ what is displayed as significant:
 - `pairwise.alpha` in `ggbetweenstats()` and `ggwithinstats()` (together with
   `p.adjust.method` for multiple comparisons correction).
 - `sig.level` in `ggcorrmat()`.
-- `conf.level` (in all functions) sets the width of the confidence intervals.
+
+`conf.level` controls confidence or credible intervals in functions that expose
+it; it does not change which pairwise brackets are displayed.
 
 But there is no way to adjust alpha *across* the plots produced by `grouped_`
 functions, since each group is analyzed independently. You will have to report
@@ -240,7 +226,8 @@ and all numbers can be retrieved as data frames with
 
 Sometimes you may not wish to include so many details in the subtitle. In that
 case, you can extract the expression and copy-paste only the part you wish to
-include. For example, here only statistic and *p*-values are included:
+include. For example, here only the statistic and *p*-value are included. This
+example explicitly requests the equal-variance ANOVA used in the custom label:
 
 ```{r}
 #| label = "custom_expr"
@@ -249,7 +236,7 @@ library(ggplot2)
 library(statsExpressions)
 
 # extracting detailed expression
-data_results <- oneway_anova(iris, Species, Sepal.Length)
+data_results <- oneway_anova(iris, Species, Sepal.Length, var.equal = TRUE)
 data_results$expression[[1]]
 
 # adapting the details to your liking
@@ -382,8 +369,8 @@ y-range, and they behave very differently:
   brackets from `{ggsignif}` are positioned *above* the maximum observed value,
   they often fall outside a tight limit and are silently dropped.
 - `coord_cartesian(ylim = c(a, b))` — **zooms the viewport** without touching
-  the underlying data. The brackets are still computed from the full data range
-  and remain fully intact.
+  the underlying data. Brackets are still computed, but are clipped if they
+  lie outside the visible range. Leave enough room above the data to show them.
 
 The fix is to replace `scale_y_continuous(limits = ...)` with
 `coord_cartesian(ylim = ...)`:
@@ -396,7 +383,7 @@ The fix is to replace `scale_y_continuous(limits = ...)` with
 library(ggplot2)
 
 ggbetweenstats(mtcars, cyl, wt) +
-  coord_cartesian(ylim = c(1, 4))
+  coord_cartesian(ylim = c(1, 7))
 ```
 
 ## Plot appearance {#plot-appearance}
@@ -515,30 +502,8 @@ grouped_ggbetweenstats(mtcars, cyl, wt, grouping.var = am) &
 The `grouped_` functions only repeat the analysis across a _single_ grouping
 variable, and they don't let you create group-specific titles or subtitles.
 For anything else, split the data yourself, create one plot per group with
-`{purrr}`, and combine them with `combine_plots()` (see also
-[this article](https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html)).
-For example, to repeat the analysis across two grouping variables with a
-title for each group:
-
-```{r}
-#| label = "beyond_grouped",
-#| fig.width = 8,
-#| fig.height = 8
-
-ggplot2::mpg |>
-  dplyr::filter(drv %in% c("4", "f"), fl %in% c("p", "r")) |>
-  (\(d) split(d, f = list(d$drv, d$fl), drop = TRUE))() |>
-  purrr::imap(\(data, group) {
-    ggscatterstats(
-      data = data,
-      x = displ,
-      y = hwy,
-      title = paste0("Drive and fuel type: ", group),
-      results.subtitle = FALSE
-    )
-  }) |>
-  combine_plots(plotgrid.args = list(nrow = 2L))
-```
+`{purrr}`, and combine them with `combine_plots()` (see the
+[multiple-grouping recipe](purrr_examples.html#multiple-grouping-variables)).
 
 ### How can I use `{ggstatsplot}` functions in a `for` loop? {#for-loop}
 

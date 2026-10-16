@@ -105,15 +105,10 @@ ggbetweenstats(
   - The output of the function is a `ggplot` object which means that it can be
     further modified with `{ggplot2}` functions.
 
-As can be seen from the plot, the function by default also returns Bayes Factor
-for the test in the caption. If the null hypothesis can't be rejected with the null hypothesis
-significance testing (NHST) approach, the Bayesian approach can help index
-evidence in favor of the null hypothesis (i.e., $BF_{01}$).
-
-By default, natural logarithms are shown because Bayes Factor values can
-sometimes be pretty large. Having values on logarithmic scale also makes it easy
-to compare evidence in favor of alternative ($BF_{10}$) versus null ($BF_{01}$)
-hypotheses (since $log_{e}(BF_{01}) = - log_{e}(BF_{10})$).
+For the default parametric analysis, the caption shows $\log_{e}(BF_{01})$;
+set `bf.message = FALSE` to hide it. See
+[Interpretation of Bayes Factors](interpretation.html) for the sign convention
+and evidence scale.
 
 We can make the output much more aesthetically pleasing as well as informative
 by making use of the many optional parameters in `ggbetweenstats`. We'll add a
@@ -300,16 +295,9 @@ across continents which have been surprisingly consistent across four decades
 
 ## Grouped analysis with `ggbetweenstats` + `{purrr}`
 
-Although this grouping function provides a quick way to explore the data, it
-leaves much to be desired. For example, the same type of plot and test is
-applied for all years, but maybe we want to change this for different years, or
-maybe we want to have different effect sizes for different years. This type of
-customization for different levels of a grouping variable is not possible with
-`grouped_ggbetweenstats`, but this can be easily achieved using the `{purrr}`
-package.
-
-See the associated vignette here:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
+For group-specific arguments or multiple grouping variables, see the
+[programmatic plotting article](purrr_examples.html#why-purrr). It explains
+how to split the data, customize each call, and combine the resulting plots.
 
 ## Within-subjects designs
 
@@ -327,11 +315,9 @@ in the function documentation:
 
 ## Extracting statistical details
 
-All statistical details shown in the plot are also available as data frames,
-which can be extracted with `extract_stats()`. The returned list contains
-results from the test in the subtitle (`subtitle_data`), the Bayesian test in
-the caption (`caption_data`), and the pairwise comparisons
-(`pairwise_comparisons_data`).
+Use [`extract_stats()`](../../reference/extract_stats.html) to retrieve the
+results as data frames; its reference page describes all returned components,
+including the lists returned for `grouped_` plots.
 
 ```{r}
 #| label = "extract_stats"
@@ -341,9 +327,6 @@ extract_stats(p)$subtitle_data
 
 extract_stats(p)$pairwise_comparisons_data
 ```
-
-For `grouped_ggbetweenstats()` plots, `extract_stats()` returns one such list
-for each level of the grouping variable.
 
 ## Reporting
 

@@ -48,31 +48,7 @@ Using the natural log also gives a **symmetric scale** centered around 0:
 
 So, a log BF₀₁ of +2 means data support H₀ about as strongly as –2 would support H₁. This makes interpretation intuitive: zero means balanced evidence, and distance from zero indicates strength regardless of direction.
 
-### **Numerical Stability**
-
-When computing Bayes Factors from likelihoods or marginal probabilities, the raw numbers can be extremely large or small, which can lead to numerical issues. Taking logs avoids underflow or overflow, since products of small probabilities become sums of manageable log-probabilities (e.g., **log(ab) = log(a) + log(b)**). This makes Bayesian computation more robust in practice.
-
-### **Additivity of Evidence**
-
-When combining evidence from multiple sources or experiments, **log Bayes Factors add**:
-
-- ln(BF₀₁ from study 1) + ln(BF₀₁ from study 2) = ln(total BF₀₁)
-
-This makes it easy to combine studies without recalculating everything in raw terms. Note that this holds only when the Bayes Factor for the second study is computed *conditional* on the first one (i.e., using the posterior from study 1 as the prior for study 2); multiplying Bayes Factors that were each computed from the same default prior does not, in general, give the Bayes Factor for the combined data. For example:
-
-- Study 1: BF₀₁ = 3 → ln(BF₀₁) ≈ 1.1
-- Study 2: BF₀₁ = 5 → ln(BF₀₁) ≈ 1.6
-- Combined: ln(BF₀₁ total) ≈ 2.7 → BF₀₁ ≈ 15
-
-This is equivalent to the data being 15 times more likely under H₀ across both studies.
-
 ## Interpreting Negative Log Bayes Factors
-
-If you always report **log BF₀₁**, then:
-
-- **Positive ln(BF₀₁)** → Evidence in favor of the null hypothesis
-- **Negative ln(BF₀₁)** → Evidence in favor of the alternative hypothesis
-- **Zero ln(BF₀₁)** → No evidence either way (BF₀₁ = 1)
 
 A commonly used classification scheme (Lee & Wagenmakers, 2014, adapted from Jeffreys, 1961) labels the strength of evidence as follows:
 
@@ -83,19 +59,9 @@ A commonly used classification scheme (Lee & Wagenmakers, 2014, adapted from Jef
 | 10 – 30     | 2.30 – 3.40    | Strong              |
 | 3 – 10      | 1.10 – 2.30    | Moderate            |
 | 1 – 3       | 0 – 1.10       | Anecdotal           |
-| 1           | 0              | No evidence         |
+| 1           | 0              | Balanced evidence   |
 
 The same labels apply to evidence **for H₁** when ln(BF₀₁) is negative (e.g., ln(BF₀₁) between –3.40 and –2.30 is strong evidence for H₁). These labels are only rough guides; the further the value is from 0, the stronger the evidence—positive values favor the **null**, negative values favor the **alternative**.
-
-## Summary
-
-Using the **natural log of Bayes Factors (ln BF₀₁)** makes Bayesian inference easier to interpret, communicate, and compute:
-
-- **Compresses wide numeric range**
-- **Symmetric scale centered at 0**
-- **Numerically stable for computation**
-- **Additive across studies**
-- **Sign tells you which hypothesis is favored**; **magnitude tells you how strongly**
 
 ## References
 

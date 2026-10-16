@@ -486,15 +486,12 @@ suppressWarnings(
 
 Sometimes you don't have a model object but a custom data frame that you want to
 display using this function. If a data frame is to be plotted, it **must**
-contain columns named `term` (names of predictors), and `estimate`
-(corresponding estimates of coefficients or other quantities of interest). Other
-optional columns are `conf.low` and `conf.high` (for confidence intervals), and
-`p.value`. You will also have to specify the type of statistic relevant for
-regression models (`"t"`, `"z"`, `"f"`, `"chi"`) in case you want to display
-statistical labels.
-
-You can also provide a data frame containing all the other relevant information
-for additionally displaying labels with statistical information.
+contain an `estimate` column. The optional `term` column names the predictors;
+otherwise, names such as `term_1` are generated. See the
+[`x` argument in the function reference](../../reference/ggcoefstats.html#arguments)
+for the columns needed for confidence intervals, labels, and meta-analysis.
+Specify `statistic` (`"t"`, `"z"`, `"f"`, or `"chi"`) to display statistical
+labels for a data frame.
 
 ```{r}
 #| label = "dataframe",

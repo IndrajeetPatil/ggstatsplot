@@ -31,8 +31,9 @@ the Bayesian test)
 \item \code{glance_data}: model performance indices (\code{ggcoefstats()})
 }
 
-For \code{extract_subtitle()} and \code{extract_caption()}, the expression displayed
-in the subtitle or caption, respectively (or \code{NULL}).
+For \code{extract_subtitle()} and \code{extract_caption()}, the statistical expression
+used in the subtitle or caption, respectively (or \code{NULL} if unavailable).
+User-supplied subtitle and caption text is not returned.
 
 For plots from \verb{grouped_*} functions, a list with one such element per plot.
 }
@@ -40,18 +41,15 @@ For plots from \verb{grouped_*} functions, a list with one such element per plot
 Extracting data frames or expressions from \code{{ggstatsplot}} plots
 }
 \details{
-These are convenience functions to extract data frames or expressions with
-statistical details that are used to create expressions displayed in
-\code{{ggstatsplot}} plots as subtitle, caption, etc. Note that all of this
-analysis is carried out by the \code{{statsExpressions}}
-\href{https://www.indrapatil.com/statsExpressions/}{package}. And so if you
-are using these functions only to extract data frames, you are better off
-using that package.
+These helpers retrieve the statistical data frames and expressions retained
+by \code{{ggstatsplot}} plots. If you only need tabular results, call the
+underlying analysis functions directly: \code{{statsExpressions}} for statistical
+tests, \code{\link[parameters:model_parameters]{parameters::model_parameters()}} for model coefficients, and
+\code{\link[performance:model_performance]{performance::model_performance()}} for model fit indices.
 
-The only exception is the \code{ggcorrmat()} function, for which all elements
-are \code{NULL}. But, if a data frame is what you want, you shouldn't be using
-\code{ggcorrmat()} anyway. You can use \code{\link[correlation:correlation]{correlation::correlation()}} function
-which provides tidy data frames by default.
+\code{ggcorrmat()} does not retain statistical data frames, so all elements
+returned by \code{extract_stats()} are \code{NULL}. Use
+\code{\link[correlation:correlation]{correlation::correlation()}} to obtain its statistical results as data.
 }
 \examples{
 \dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}

@@ -100,13 +100,11 @@ gghistostats(
 )
 ```
 
-`gghistostats` also computes Bayes Factors to quantify the likelihood of the
-**research** (BF10) and the **null** hypothesis (BF01). In our current example,
-the Bayes Factor value provides **very strong evidence**
-[(Kass and Raftery, 1995)](https://sites.stat.washington.edu/raftery/Research/PDF/kass1995.pdf)
-in favor of the research hypothesis: these ACT scores are much higher than the
-national average. The natural log of the Bayes factor of 492.5 means the odds
-are 7.54e+213:1 that this sample is different.
+The caption reports $\log_{e}(BF_{01})$. A negative value favors the
+alternative model; a positive value favors the null model. This compares how
+well the models predict the data, rather than giving the probability that a
+hypothesis is true. See [Interpretation of Bayes Factors](interpretation.html)
+for details.
 
 ## Grouped analysis with `grouped_gghistostats`
 
@@ -150,17 +148,9 @@ each gender. We can *see* the differences in distributions.
 
 ## Grouped analysis with `{purrr}`
 
-Although this is a quick and dirty way to explore a large amount of data with
-minimal effort, it does come with an important limitation: reduced flexibility.
-For example, if we wanted to add, let's say, a separate `test.value` argument
-for each gender, this is not possible with `grouped_gghistostats`.
-
-For cases like these, or to run separate kinds of tests (robust for some,
-parametric for other, while Bayesian for some other levels of the group) it
-would be better to use `{purrr}`.
-
-See the associated vignette here:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
+For group-specific arguments or multiple grouping variables, see the
+[programmatic plotting article](purrr_examples.html#why-purrr). It explains
+how to split the data, customize each call, and combine the resulting plots.
 
 ## Summary of graphics and tests
 
@@ -173,10 +163,9 @@ in the function documentation:
 
 ## Extracting statistical details
 
-All statistical details shown in the plot are also available as data frames,
-which can be extracted with `extract_stats()`. The returned list contains
-results from the test in the subtitle (`subtitle_data`) and the Bayesian test in
-the caption (`caption_data`).
+Use [`extract_stats()`](../../reference/extract_stats.html) to retrieve the
+results as data frames; its reference page describes all returned components,
+including the lists returned for `grouped_` plots.
 
 ```{r}
 #| label = "extract_stats"
@@ -184,9 +173,6 @@ p <- gghistostats(psych::sat.act, ACT, test.value = 20)
 
 extract_stats(p)$subtitle_data
 ```
-
-For `grouped_gghistostats()` plots, `extract_stats()` returns one such list
-for each level of the grouping variable.
 
 ## Reporting
 

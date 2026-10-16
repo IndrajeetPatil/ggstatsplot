@@ -33,7 +33,7 @@ Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgre
 ## Introduction to `ggbarstats`
 
 The function `ggbarstats` can be used for quick **data
-exploration** and/or to prepare **publication-ready pie charts** to summarize
+exploration** and/or to prepare **publication-ready bar charts** to summarize
 the statistical relationship(s) among one or more categorical variables. We will
 see examples of how to use this function in this vignette.
 
@@ -169,13 +169,9 @@ children have a survival rate that is not significantly different from 50/50.
 
 ## Grouped analysis with `ggbarstats` + `{purrr}`
 
-Although `grouped_ggbarstats` provides a quick way to explore the data, it
-leaves much to be desired. For example, we may want to add different captions,
-titles, themes, or palettes for each level of the grouping variable, etc. For
-cases like these, it would be better to use `{purrr}` package.
-
-See the associated vignette here:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
+For group-specific arguments or multiple grouping variables, see the
+[programmatic plotting article](purrr_examples.html#why-purrr). It explains
+how to split the data, customize each call, and combine the resulting plots.
 
 ## Working with data organized by `counts`
 
@@ -184,7 +180,7 @@ i.e., when each row doesn't correspond to a unique observation. For example,
 consider the following notional `fishing` data frame containing data from two
 boats (`A` and `B`) about the number of different types of fish they caught in the
 months of `February` and `March`. In this data frame, each row corresponds to a
-unique combination of `Boat` and `Month`.
+unique combination of `Boat`, `Month`, and `Fish`.
 
 ```{r}
 #| label = "ggbarstats7",
@@ -294,10 +290,10 @@ ggbarstats(
 )
 ```
 
-The results bode well for our experimental wonder drug. Of the 96 who started
-out healthy only 4% were sick after a month. Ideally, we would have hoped for
-zero but reality is seldom perfect. On the other side of the 38 who started out
-sick that number has reduced to just 13 or 34% which is a marked improvement.
+Of the 96 participants who started out healthy, 4 were sick after a month.
+Of the 38 who started out sick, 13 remained sick. McNemar's test compares the
+discordant responses (4 became sick and 25 recovered). This before/after
+comparison alone does not establish that the treatment caused the change.
 
 ## Summary of graphics and tests
 
