@@ -151,7 +151,6 @@
       plot = plot,
       mpc_df = mpc_df,
       data = data,
-      x = !!x,
       y = !!y,
       pairwise.display = pairwise.display,
       pairwise.alpha = pairwise.alpha,
@@ -263,7 +262,6 @@
 #' ggstatsplot:::.ggsignif_adder(
 #'   plot = p,
 #'   data = iris,
-#'   x = Species,
 #'   y = Sepal.Length,
 #'   mpc_df = df_pair
 #' )
@@ -271,7 +269,6 @@
 .ggsignif_adder <- function(
   plot,
   data,
-  x,
   y,
   mpc_df,
   pairwise.display = "significant",
