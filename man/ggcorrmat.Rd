@@ -169,7 +169,7 @@ The table below provides summary about:
 \item functions used internally to compute these details
 }
 
-\strong{Hypothesis testing} and \strong{Effect size estimation}\tabular{llll}{
+\strong{Hypothesis testing and effect size estimation}\tabular{llll}{
    Type \tab Test \tab CI available? \tab Function used \cr
    Parametric \tab Pearson's correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
    Non-parametric \tab Spearman's rank correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr

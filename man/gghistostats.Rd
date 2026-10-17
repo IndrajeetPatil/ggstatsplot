@@ -204,7 +204,7 @@ The table below provides summary about:
 
 \strong{Effect size estimation}\tabular{llll}{
    Type \tab Effect size \tab CI available? \tab Function used \cr
-   Parametric \tab Cohen's \emph{d}, Hedge's \emph{g} \tab Yes \tab \code{effectsize::cohens_d()}, \code{effectsize::hedges_g()} \cr
+   Parametric \tab Cohen's \emph{d}, Hedges' \emph{g} \tab Yes \tab \code{effectsize::cohens_d()}, \code{effectsize::hedges_g()} \cr
    Non-parametric \tab \emph{r} (rank-biserial correlation) \tab Yes \tab \code{effectsize::rank_biserial()} \cr
    Robust \tab trimmed mean \tab Yes \tab \code{WRS2::trimcibt()} \cr
    Bayesian \tab difference \tab Yes \tab \code{bayestestR::describe_posterior()} \cr

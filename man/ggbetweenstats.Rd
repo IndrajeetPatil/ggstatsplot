@@ -281,7 +281,7 @@ The table below provides summary about:
 \item type of effect size estimate and a measure of uncertainty for this estimate
 \item functions used internally to compute these details
 }
-\subsection{between-subjects}{
+\subsection{Between-subjects}{
 
 \strong{Hypothesis testing}\tabular{llll}{
    Type \tab No. of groups \tab Test \tab Function used \cr
@@ -294,7 +294,7 @@ The table below provides summary about:
 
 \strong{Effect size estimation}\tabular{lllll}{
    Type \tab No. of groups \tab Effect size \tab CI available? \tab Function used \cr
-   Parametric \tab 2 \tab Cohen's \emph{d}, Hedge's \emph{g} \tab Yes \tab \code{effectsize::cohens_d()}, \code{effectsize::hedges_g()} \cr
+   Parametric \tab 2 \tab Cohen's \emph{d}, Hedges' \emph{g} \tab Yes \tab \code{effectsize::cohens_d()}, \code{effectsize::hedges_g()} \cr
    Non-parametric \tab 2 \tab \emph{r} (rank-biserial correlation) \tab Yes \tab \code{effectsize::rank_biserial()} \cr
    Robust \tab 2 \tab Algina-Keselman-Penfield robust standardized difference \tab Yes \tab \code{WRS2::akp.effect()} \cr
    Bayesian \tab 2 \tab difference \tab Yes \tab \code{bayestestR::describe_posterior()} \cr
@@ -302,11 +302,10 @@ The table below provides summary about:
 
 }
 
-\subsection{within-subjects}{
+\subsection{Within-subjects}{
 
-\strong{Data requirement}: Paired tests assume exactly \strong{one observation per subject
-per condition}. If your data has multiple trials per cell, aggregate first
-(e.g., take the mean).
+\strong{Paired data}: See \code{complete_subjects()} for subject matching, duplicate
+observations, and removal of incomplete subjects.
 
 \strong{Hypothesis testing}\tabular{llll}{
    Type \tab No. of groups \tab Test \tab Function used \cr
@@ -319,7 +318,7 @@ per condition}. If your data has multiple trials per cell, aggregate first
 
 \strong{Effect size estimation}\tabular{lllll}{
    Type \tab No. of groups \tab Effect size \tab CI available? \tab Function used \cr
-   Parametric \tab 2 \tab Cohen's \emph{d}, Hedge's \emph{g} \tab Yes \tab \code{effectsize::cohens_d()}, \code{effectsize::hedges_g()} \cr
+   Parametric \tab 2 \tab Cohen's \emph{d}, Hedges' \emph{g} \tab Yes \tab \code{effectsize::cohens_d()}, \code{effectsize::hedges_g()} \cr
    Non-parametric \tab 2 \tab \emph{r} (rank-biserial correlation) \tab Yes \tab \code{effectsize::rank_biserial()} \cr
    Robust \tab 2 \tab Algina-Keselman-Penfield robust standardized difference \tab Yes \tab \code{WRS2::wmcpAKP()} \cr
    Bayesian \tab 2 \tab difference \tab Yes \tab \code{bayestestR::describe_posterior()} \cr
@@ -339,7 +338,7 @@ The table below provides summary about:
 \item type of effect size estimate and a measure of uncertainty for this estimate
 \item functions used internally to compute these details
 }
-\subsection{between-subjects}{
+\subsection{Between-subjects}{
 
 \strong{Hypothesis testing}\tabular{llll}{
    Type \tab No. of groups \tab Test \tab Function used \cr
@@ -360,12 +359,10 @@ The table below provides summary about:
 
 }
 
-\subsection{within-subjects}{
+\subsection{Within-subjects}{
 
-\strong{Data requirement}: Repeated measures tests assume a \emph{complete} design with
-exactly \strong{one observation per subject per condition}. If your data has multiple
-trials per cell, aggregate first (e.g., take the mean). Verify with
-\code{table(data$subject, data$condition)} — every cell should equal \code{1}.
+\strong{Paired data}: See \code{complete_subjects()} for subject matching, duplicate
+observations, and removal of incomplete subjects.
 
 \strong{Hypothesis testing}\tabular{llll}{
    Type \tab No. of groups \tab Test \tab Function used \cr
@@ -398,7 +395,7 @@ The table below provides summary about:
 \item type of effect size estimate and a measure of uncertainty for this estimate
 \item functions used internally to compute these details
 }
-\subsection{between-subjects}{
+\subsection{Between-subjects}{
 
 \strong{Hypothesis testing}\tabular{lllll}{
    Type \tab Equal variance? \tab Test \tab \emph{p}-value adjustment? \tab Function used \cr
@@ -415,11 +412,10 @@ The table below provides summary about:
 Not supported.
 }
 
-\subsection{within-subjects}{
+\subsection{Within-subjects}{
 
-\strong{Data requirement}: Paired pairwise tests assume exactly \strong{one observation per
-subject per condition}. If your data has multiple trials per cell, aggregate
-first (e.g., take the mean).
+\strong{Paired data}: See \code{complete_subjects()} for subject matching, duplicate
+observations, and removal of incomplete subjects.
 
 \strong{Hypothesis testing}\tabular{llll}{
    Type \tab Test \tab \emph{p}-value adjustment? \tab Function used \cr
