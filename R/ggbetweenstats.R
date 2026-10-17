@@ -40,8 +40,9 @@
 #'   favor of the *null* hypothesis. This argument is relevant only **for
 #'   parametric test** (Default: `TRUE`).
 #' @param results.subtitle Decides whether the results of statistical tests are
-#'   to be displayed as a subtitle (Default: `TRUE`). If set to `FALSE`, only
-#'   the plot will be returned.
+#'   to be displayed as a subtitle (Default: `TRUE`). Setting this to `FALSE`
+#'   also skips the automatic Bayes Factor caption. See the individual
+#'   annotation arguments to control other plot details.
 #' @param title The text for the plot title.
 #' @param subtitle The text for the plot subtitle. Will work only if
 #'   `results.subtitle = FALSE`.
@@ -73,8 +74,8 @@
 #'   [`ggplot2::geom_boxplot()`]. By default, the whiskers extend to 1.5 times
 #'   the interquartile range (IQR) from the box (Tukey-style). To customize
 #'   whisker length, you can use the `coef` parameter, e.g.,
-#'   `boxplot.args = list(coef = 3)` for whiskers extending to 3 * IQR, or
-#'   `boxplot.args = list(coef = 0)` to show only the range of the data.
+#'   `boxplot.args = list(coef = 3)` for whiskers extending to the most extreme
+#'   observations within 3 * IQR of the hinges.
 #' @param violin.args A list of additional aesthetic arguments to be passed to
 #'   the [`ggplot2::geom_violin()`].
 #' @param ggplot.component A `ggplot` component to be added to the plot prepared
@@ -101,6 +102,7 @@
 #'   label on the secondary Y-axis. Some themes (e.g.
 #'   `ggthemes::theme_fivethirtyeight()`) will remove the secondary Y-axis and
 #'   thus the details as well.
+#' @param x The grouping (or independent) variable from `data`.
 #' @inheritParams statsExpressions::oneway_anova
 #' @inheritParams statsExpressions::two_sample_test
 #'
@@ -109,15 +111,12 @@
 #' This function uses statistically justified defaults that are not
 #' user-configurable:
 #'
-#' - **Effect sizes** are always *unbiased* (Hedges' *g* instead of Cohen's
-#'   *d*, omega-squared instead of eta-squared). Unbiased estimators correct
-#'   for the positive bias present in their biased counterparts, especially in
-#'   small samples, and are recommended for meta-analytic work.
+#' - For **parametric tests**, effect sizes use Hedges' *g* for two groups
+#'   and omega-squared for three or more groups. These estimators correct for
+#'   positive bias, which can be especially relevant in small samples.
 #'
 #' - **Welch's *t*-test and one-way test** are used instead of Student's
-#'   versions (i.e., equal variances are not assumed). Welch's test performs as
-#'   well as Student's when variances *are* equal and is substantially more
-#'   accurate when they are not, making it the unconditionally better default.
+#'   versions, so equal variances are not assumed.
 #'
 #' Users who need non-default values for these settings can call
 #' \code{{statsExpressions}} directly.

@@ -3,7 +3,8 @@
 
 ## `{ggstatsplot}`: `{ggplot2}` Based Plots with Statistical Details
 
-[![Total downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
+[![Total
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggstatsplot?color=blue)](https://CRAN.R-project.org/package=ggstatsplot)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.03167/status.svg)](https://doi.org/10.21105/joss.03167)
 
@@ -26,7 +27,8 @@ makes data exploration simpler and faster.
 
 ## Installation
 
-Note: This package supports R-devel, the current R release, and the previous R release.
+Note: This package supports R-devel, the current R release, and the
+previous R release.
 
 | Type        | Command                                  |
 |:------------|:-----------------------------------------|
@@ -158,6 +160,10 @@ article for that package:
 
 ## Primary functions
 
+The examples below show the main plot types and selected customizations.
+See each function reference for its arguments, defaults, and supported
+tests.
+
 ### `ggbetweenstats()`
 
 This function creates either a violin plot, a box plot, or a mix of two
@@ -177,13 +183,6 @@ ggbetweenstats(
 ```
 
 <img src="man/figures/README-ggbetweenstats1-1.png" alt="Violin plot with boxplot overlay showing distribution of sepal length across three Iris species with statistical test results" width="100%" />
-
-**Defaults** return<br>
-
-✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅
-inferential statistics <br> ✅ effect size + CIs <br> ✅ pairwise
-comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian
-estimation <br>
 
 A number of other arguments can be specified to make this plot even more
 informative or change some of the default options. Additionally, there
@@ -227,9 +226,9 @@ connected by paths to highlight the fact that these data are paired with
 each other.
 
 If your repeated-measures data include an explicit subject identifier,
-it is recommended that you pass it via `subject.id`; rows with missing
-identifiers are ignored for paired grouping and repeated-measures
-statistics.
+it is recommended that you pass it via `subject.id`. Only subjects
+observed in every condition are included in the plot and statistical
+analysis.
 
 ``` r
 set.seed(123)
@@ -246,13 +245,6 @@ ggwithinstats(
 ```
 
 <img src="man/figures/README-ggwithinstats1-1.png" alt="Within-subjects violin plot showing wine taste ratings by wine type with paired data paths and statistical results" width="100%" />
-
-**Defaults** return<br>
-
-✅ raw data + distributions <br> ✅ descriptive statistics <br> ✅
-inferential statistics <br> ✅ effect size + CIs <br> ✅ pairwise
-comparisons <br> ✅ Bayesian hypothesis-testing <br> ✅ Bayesian
-estimation <br>
 
 As with the `ggbetweenstats()`, this function also has a `grouped_`
 variant that makes repeating the same analysis across a single grouping
@@ -303,12 +295,6 @@ gghistostats(
 ```
 
 <img src="man/figures/README-gghistostats1-1.png" alt="Histogram showing distribution of time spent awake in mammals with one-sample test results" width="100%" />
-
-**Defaults** return<br>
-
-✅ counts + proportion for bins<br> ✅ descriptive statistics <br> ✅
-inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian
-hypothesis-testing <br> ✅ Bayesian estimation <br>
 
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable:
@@ -361,12 +347,6 @@ ggdotplotstats(
 
 <img src="man/figures/README-ggdotplotstats1-1.png" alt="Dot plot showing life expectancy distribution across Asian countries with robust one-sample test results" width="100%" />
 
-**Defaults** return<br>
-
-✅descriptives (centrality measure + uncertainty + sample size)<br> ✅
-inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian
-hypothesis-testing <br> ✅ Bayesian estimation <br>
-
 As with most other functions in this package, there is also a `grouped_`
 variant of this function to facilitate looping the same operation for
 all levels of a single grouping variable.
@@ -415,12 +395,6 @@ ggscatterstats(
 ```
 
 <img src="man/figures/README-ggscatterstats1-1.png" alt="Scatterplot with marginal distributions showing relationship between REM sleep and time awake in mammals with correlation results" width="100%" />
-
-**Defaults** return<br>
-
-✅ raw data + distributions <br> ✅ marginal distributions <br> ✅
-inferential statistics <br> ✅ effect size + CIs <br> ✅ Bayesian
-hypothesis-testing <br> ✅ Bayesian estimation <br>
 
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable.
@@ -476,10 +450,6 @@ ggcorrmat(
 
 <img src="man/figures/README-ggcorrmat1-1.png" alt="Correlation matrix heatmap for mammals sleep dataset showing pairwise correlations with significance indicators" width="100%" />
 
-**Defaults** return<br>
-
-✅ effect size + significance<br> ✅ careful handling of `NA`s
-
 If there are `NA`s present in the selected variables, the legend will
 display minimum, mode, and maximum number of pairs used for correlation
 tests.
@@ -520,7 +490,7 @@ one categorical variable is entered, results from one-sample proportion
 test (i.e., a chi-squared goodness of fit test) will be displayed as a
 subtitle.
 
-To study an interaction between two categorical variables:
+To study the association between two categorical variables:
 
 ``` r
 set.seed(123)
@@ -536,12 +506,6 @@ ggpiestats(
 ```
 
 <img src="man/figures/README-ggpiestats1-1.png" alt="Pie charts showing transmission type distribution across cylinder groups in mtcars data with contingency table analysis" width="100%" />
-
-**Defaults** return<br>
-
-✅ descriptives (frequency + %s) <br> ✅ inferential statistics <br> ✅
-effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian
-hypothesis-testing <br> ✅ Bayesian estimation <br>
 
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable.
@@ -576,7 +540,7 @@ In case you are not a fan of pie charts (for very good reasons), you can
 alternatively use `ggbarstats()` function which has a similar
 syntax—including support for one-sample goodness-of-fit tests.
 
-To study an interaction between two categorical variables:
+To study the association between two categorical variables:
 
 ``` r
 set.seed(123)
@@ -595,12 +559,6 @@ ggbarstats(
 ```
 
 <img src="man/figures/README-ggbarstats1-1.png" alt="Stacked bar chart showing MPAA ratings distribution by movie genre with chi-squared test results" width="100%" />
-
-**Defaults** return<br>
-
-✅ descriptives (frequency + %s) <br> ✅ inferential statistics <br> ✅
-effect size + CIs <br> ✅ Goodness-of-fit tests <br> ✅ Bayesian
-hypothesis-testing <br> ✅ Bayesian estimation <br>
 
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable.
@@ -647,11 +605,6 @@ ggcoefstats(mod)
 ```
 
 <img src="man/figures/README-ggcoefstats1-1.png" alt="Dot-and-whisker plot showing regression coefficients for mpg model with confidence intervals" width="100%" />
-
-**Defaults** return<br>
-
-✅ inferential statistics <br> ✅ estimate + CIs <br> ✅ model summary
-(AIC and BIC) <br>
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function

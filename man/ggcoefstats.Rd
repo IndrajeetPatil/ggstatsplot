@@ -222,12 +222,11 @@ The table below provides summary about:
 \item functions used internally to compute these details
 }
 
-\strong{Hypothesis testing} and \strong{Effect size estimation}\tabular{llll}{
-   Type \tab Test \tab CI available? \tab Function used \cr
-   Parametric \tab Pearson's correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
-   Non-parametric \tab Spearman's rank correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
-   Robust \tab Winsorized Pearson's correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
-   Bayesian \tab Bayesian Pearson's correlation coefficient \tab Yes \tab \code{correlation::correlation()} \cr
+\strong{Hypothesis testing} and \strong{Effect size estimation}\tabular{lllll}{
+   Type \tab Test \tab Effect size \tab CI available? \tab Function used \cr
+   Parametric \tab Meta-analysis via random-effects models \tab \emph{beta} \tab Yes \tab \code{metafor::rma()} \cr
+   Robust \tab Meta-analysis via robust random-effects models \tab \emph{beta} \tab Yes \tab \code{metaplus::metaplus()} \cr
+   Bayesian \tab Meta-analysis via Bayesian random-effects models \tab \emph{beta} \tab Yes \tab \code{metaBMA::meta_random()} \cr
 }
 
 }

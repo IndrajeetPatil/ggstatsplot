@@ -163,6 +163,9 @@ hypothesis testing and estimation) can be found in an article for that package:
 
 ## Primary functions
 
+The examples below show the main plot types and selected customizations. See
+each function reference for its arguments, defaults, and supported tests.
+
 ### `ggbetweenstats()`
 
 This function creates either a violin plot, a box plot, or a mix of two for
@@ -181,16 +184,6 @@ ggbetweenstats(
   title = "Distribution of sepal length across Iris species"
 )
 ```
-
-**Defaults** return<br>
-
-✅ raw data + distributions <br>
-✅ descriptive statistics <br>
-✅ inferential statistics <br>
-✅ effect size + CIs <br>
-✅ pairwise comparisons <br>
-✅ Bayesian hypothesis-testing <br>
-✅ Bayesian estimation <br>
 
 A number of other arguments can be specified to make this plot even more
 informative or change some of the default options. Additionally, there is also a
@@ -233,8 +226,8 @@ that now the group means are connected by paths to highlight the fact that these
 data are paired with each other.
 
 If your repeated-measures data include an explicit subject identifier, it is
-recommended that you pass it via `subject.id`; rows with missing identifiers
-are ignored for paired grouping and repeated-measures statistics.
+recommended that you pass it via `subject.id`. Only subjects observed in every
+condition are included in the plot and statistical analysis.
 
 ```{r}
 #| label = "ggwithinstats1",
@@ -253,16 +246,6 @@ ggwithinstats(
   title      = "Wine tasting"
 )
 ```
-
-**Defaults** return<br>
-
-✅ raw data + distributions <br>
-✅ descriptive statistics <br>
-✅ inferential statistics <br>
-✅ effect size + CIs <br>
-✅ pairwise comparisons <br>
-✅ Bayesian hypothesis-testing <br>
-✅ Bayesian estimation <br>
 
 As with the `ggbetweenstats()`, this function also has a `grouped_` variant that
 makes repeating the same analysis across a single grouping variable quicker. We
@@ -313,15 +296,6 @@ gghistostats(
   binwidth   = 1
 )
 ```
-
-**Defaults** return<br>
-
-✅ counts + proportion for bins<br>
-✅ descriptive statistics <br>
-✅ inferential statistics <br>
-✅ effect size + CIs <br>
-✅ Bayesian hypothesis-testing <br>
-✅ Bayesian estimation <br>
 
 There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable:
@@ -376,14 +350,6 @@ ggdotplotstats(
 )
 ```
 
-**Defaults** return<br>
-
-✅descriptives (centrality measure + uncertainty + sample size)<br>
-✅ inferential statistics <br>
-✅ effect size + CIs <br>
-✅ Bayesian hypothesis-testing <br>
-✅ Bayesian estimation <br>
-
 As with most other functions in this package, there is also a `grouped_`
 variant of this function to facilitate looping the same operation for all levels
 of a single grouping variable.
@@ -434,15 +400,6 @@ ggscatterstats(
   title = "Understanding mammalian sleep"
 )
 ```
-
-**Defaults** return<br>
-
-✅ raw data + distributions <br>
-✅ marginal distributions <br>
-✅ inferential statistics <br>
-✅ effect size + CIs <br>
-✅ Bayesian hypothesis-testing <br>
-✅ Bayesian estimation <br>
 
 There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable.
@@ -500,11 +457,6 @@ ggcorrmat(
 )
 ```
 
-**Defaults** return<br>
-
-✅ effect size + significance<br>
-✅ careful handling of `NA`s
-
 If there are `NA`s present in the selected variables, the legend will display
 minimum, mode, and maximum number of pairs used for correlation tests.
 
@@ -544,7 +496,7 @@ design) included in the subtitle of the plot. If only one categorical variable
 is entered, results from one-sample proportion test (i.e., a chi-squared
 goodness of fit test) will be displayed as a subtitle.
 
-To study an interaction between two categorical variables:
+To study the association between two categorical variables:
 
 ```{r}
 #| label = "ggpiestats1",
@@ -562,15 +514,6 @@ ggpiestats(
   legend.title = "Transmission"
 )
 ```
-
-**Defaults** return<br>
-
-✅ descriptives (frequency + %s) <br>
-✅ inferential statistics <br>
-✅ effect size + CIs <br>
-✅ Goodness-of-fit tests <br>
-✅ Bayesian hypothesis-testing <br>
-✅ Bayesian estimation <br>
 
 There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable.
@@ -605,7 +548,7 @@ In case you are not a fan of pie charts (for very good reasons), you can
 alternatively use `ggbarstats()` function which has a similar syntax—including
 support for one-sample goodness-of-fit tests.
 
-To study an interaction between two categorical variables:
+To study the association between two categorical variables:
 
 ```{r}
 #| label = "ggbarstats1",
@@ -626,15 +569,6 @@ ggbarstats(
   palette          = "RColorBrewer::Set2"
 )
 ```
-
-**Defaults** return<br>
-
-✅ descriptives (frequency + %s) <br>
-✅ inferential statistics <br>
-✅ effect size + CIs <br>
-✅ Goodness-of-fit tests <br>
-✅ Bayesian hypothesis-testing <br>
-✅ Bayesian estimation <br>
 
 There is also a `grouped_` variant of this function that makes it
 easy to repeat the same operation across a **single** grouping variable.
@@ -682,12 +616,6 @@ mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
 
 ggcoefstats(mod)
 ```
-
-**Defaults** return<br>
-
-✅ inferential statistics <br>
-✅ estimate + CIs <br>
-✅ model summary (AIC and BIC) <br>
 
 Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation:
 <https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html>

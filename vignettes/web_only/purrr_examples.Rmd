@@ -17,23 +17,12 @@ source("../setup.R")
 
 ---
 
-You can cite this package/vignette as:
-
-```{r}
-#| label = "citation",
-#| echo = FALSE,
-#| comment = ""
-citation("ggstatsplot")
-```
-
----
-
 This is an extremely time-consuming vignette, and so it is not evaluated here.
 You can still use the code as a reference for writing your own `{purrr}` code.
 
 ---
 
-## Why use `{purrr}`?
+## Why use `{purrr}`? {#why-purrr}
 
 Most of the `{ggstatsplot}` functions have `grouped_` variants, which are designed
 to quickly run the same `{ggstatsplot}` function across multiple levels of a
@@ -91,6 +80,27 @@ You can pass:
    `palette = list("RColorBrewer::Dark2", "RColorBrewer::Set1")`. Use a list
    when each element is itself a vector or a list (e.g., `cor.vars` or `*.args`
    arguments).
+
+## Multiple grouping variables {#multiple-grouping-variables}
+
+For example, to repeat the analysis across two grouping variables with a
+title for each group:
+
+```r
+ggplot2::mpg |>
+  dplyr::filter(drv %in% c("4", "f"), fl %in% c("p", "r")) |>
+  (\(d) split(d, f = list(d$drv, d$fl), drop = TRUE))() |>
+  purrr::imap(\(data, group) {
+    ggscatterstats(
+      data = data,
+      x = displ,
+      y = hwy,
+      title = paste0("Drive and fuel type: ", group),
+      results.subtitle = FALSE
+    )
+  }) |>
+  combine_plots(plotgrid.args = list(nrow = 2L))
+```
 
 ## `ggbetweenstats`
 
@@ -633,3 +643,14 @@ plotlist[[1]] + plotlist[[2]]
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 `GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+## Citation {#citation}
+
+You can cite this package/vignette as:
+
+```{r}
+#| label = "citation",
+#| echo = FALSE,
+#| comment = ""
+citation("ggstatsplot")
+```

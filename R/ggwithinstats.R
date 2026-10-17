@@ -15,6 +15,7 @@
 #' ```{r child="man/rmd-fragments/ggwithinstats_graphics.Rmd"}
 #' ```
 #'
+#' @param x The condition (or repeated-measures) variable from `data`.
 #' @inheritParams ggbetweenstats
 #' @param point.path,centrality.path Logical that decides whether individual
 #'   data points and means, respectively, should be connected using

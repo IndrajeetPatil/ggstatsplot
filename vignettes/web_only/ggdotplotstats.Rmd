@@ -18,17 +18,6 @@ source("../setup.R")
 
 ---
 
-You can cite this package/vignette as:
-
-```{r}
-#| label = "citation",
-#| echo = FALSE,
-#| comment = ""
-citation("ggstatsplot")
-```
-
----
-
 Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 The function `ggdotplotstats` can be used for **data exploration** and to
@@ -128,16 +117,9 @@ grouped_ggdotplotstats(
 
 ## Grouped analysis with `{purrr}`
 
-Although this is a quick and dirty way to explore a large amount of data with
-minimal effort, it does come with an important limitation: reduced flexibility.
-For example, if we wanted to add, let's say, a separate `test.value` argument
-for each number of cylinders, this is not possible with
-`grouped_ggdotplotstats`. For cases like these, or to run separate kinds of
-tests (robust for some, parametric for other, while Bayesian for some other
-levels of the group) it would be better to use `{purrr}`.
-
-See the associated vignette here:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
+For group-specific arguments or multiple grouping variables, see the
+[programmatic plotting article](purrr_examples.html#why-purrr). It explains
+how to split the data, customize each call, and combine the resulting plots.
 
 ## Summary of graphics and tests
 
@@ -150,35 +132,24 @@ in the function documentation:
 
 ## Extracting statistical details
 
-All statistical details shown in the plot are also available as data frames,
-which can be extracted with `extract_stats()`. The returned list contains
-results from the test in the subtitle (`subtitle_data`) and the Bayesian test in
-the caption (`caption_data`).
+Use [`extract_stats()`](../../reference/extract_stats.html) to retrieve the
+results as data frames; its reference page describes all returned components,
+including the lists returned for `grouped_` plots.
 
 ```{r}
 #| label = "extract_stats"
 p <- ggdotplotstats(morley, Speed, Expt, test.value = 800)
+p
 
 extract_stats(p)$subtitle_data
 ```
-
-For `grouped_ggdotplotstats()` plots, `extract_stats()` returns one such list
-for each level of the grouping variable.
 
 ## Reporting
 
 ```{asis, file="../../man/md-fragments/reporting.md"}
 ```
 
-For example, let's see the following example:
-
-```{r}
-#| label = "reporting"
-ggdotplotstats(morley, Speed, Expt, test.value = 800)
-```
-
-The narrative context (assuming `type = "parametric"`) can complement this plot
-either as a figure caption or in the main text-
+For the example above, the narrative context could read:
 
 > Student's *t*-test revealed that, across 5 experiments, the speed of light was
 significantly different than posited speed. The effect size $(g = 1.22)$ was
@@ -192,3 +163,14 @@ hypothesis.
 
 If you find any bugs or have any suggestions/remarks, please file an issue on GitHub:
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+## Citation {#citation}
+
+You can cite this package/vignette as:
+
+```{r}
+#| label = "citation",
+#| echo = FALSE,
+#| comment = ""
+citation("ggstatsplot")
+```

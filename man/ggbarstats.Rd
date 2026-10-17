@@ -37,7 +37,7 @@ ggbarstats(
 }
 \arguments{
 \item{data}{A data frame (or a tibble) from which variables specified are to
-be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
+be taken. Other data types (e.g., matrix, table, array, etc.) will \strong{not}
 be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
 ungrouped before they are entered as \code{data}.}
 
@@ -62,14 +62,23 @@ represents a single observation.}
 \item \code{"bayes"}
 }
 
-You can specify just the initial letter.}
+You can specify just the initial letter (e.g. \code{"np"} or \code{"bf"}). Matching is
+on the initial lowercase letter only, so any other value (including
+capitalized values such as \code{"Bayes"}) falls back to \code{"parametric"} without a
+warning.}
 
 \item{paired}{Logical indicating whether data came from a within-subjects or
-repeated measures design study (Default: \code{FALSE}).}
+repeated measures design study (Default: \code{FALSE}). Only relevant for
+two-way tables (i.e., when \code{y} is supplied), and paired designs are only
+supported for frequentist tests (McNemar's test). For a two-way table with
+\code{type = "bayes"}, \code{paired} is ignored and the Bayesian test of
+independence for unpaired data is run instead. For one-way tables
+(\code{y = NULL}), \code{paired} has no effect.}
 
 \item{results.subtitle}{Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
-the plot will be returned.}
+to be displayed as a subtitle (Default: \code{TRUE}). Setting this to \code{FALSE}
+also skips the automatic Bayes Factor caption. See the individual
+annotation arguments to control other plot details.}
 
 \item{label}{Character that decides what information needs to be displayed
 on the label in each pie slice. Possible options are \code{"percentage"}
@@ -113,8 +122,7 @@ E.g., \code{ratio = c(0.5, 0.5)} for two levels,
     letter.}
 
 \item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
-confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
-will be computed.}
+confidence/credible intervals, \code{0.95}).}
 
 \item{p.adjust.method}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
@@ -194,6 +202,11 @@ The table below provides summary about:
 \item type of effect size estimate and a measure of uncertainty for this estimate
 \item functions used internally to compute these details
 }
+
+There are no dedicated non-parametric or robust contingency table analyses.
+\code{type = "nonparametric"} and \code{type = "robust"} are accepted, but run the same
+frequentist tests as \code{type = "parametric"} (the "Parametric/Non-parametric" rows
+below).
 \subsection{two-way table}{
 
 \strong{Hypothesis testing}\tabular{llll}{
@@ -213,6 +226,10 @@ The table below provides summary about:
    Bayesian \tab Paired \tab No \tab No \tab No \cr
 }
 
+
+Paired Bayesian analysis is not supported: for a two-way table with
+\code{type = "bayes"}, the \code{paired} argument is ignored and the unpaired Bayesian
+test is run instead.
 }
 
 \subsection{one-way table}{

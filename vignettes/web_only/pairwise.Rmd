@@ -16,33 +16,6 @@ vignette: >
 source("../setup.R")
 ```
 
-```{r}
-#| label = "suggested_pkgs",
-#| include = FALSE
-
-pkgs <- "PMCMRplus"
-
-successfully_loaded <- purrr::map_lgl(pkgs, requireNamespace, quietly = TRUE)
-can_evaluate <- all(successfully_loaded)
-
-if (can_evaluate) {
-  purrr::walk(pkgs, library, character.only = TRUE)
-} else {
-  knitr::opts_chunk$set(eval = FALSE)
-}
-```
-
----
-
-You can cite this package/vignette as:
-
-```{r}
-#| label = "citation",
-#| echo = FALSE,
-#| comment = ""
-citation("ggstatsplot")
-```
-
 ---
 
 ## Introduction
@@ -175,4 +148,15 @@ p +
     na.rm            = TRUE,
     parse            = TRUE
   )
+```
+
+## Citation {#citation}
+
+You can cite this package/vignette as:
+
+```{r}
+#| label = "citation",
+#| echo = FALSE,
+#| comment = ""
+citation("ggstatsplot")
 ```

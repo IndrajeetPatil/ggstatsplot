@@ -14,7 +14,7 @@ grouped_ggbarstats(
 }
 \arguments{
 \item{data}{A data frame (or a tibble) from which variables specified are to
-be taken. Other data types (e.g., matrix,table, array, etc.) will \strong{not}
+be taken. Other data types (e.g., matrix, table, array, etc.) will \strong{not}
 be accepted. Additionally, grouped data frames from \code{{dplyr}} should be
 ungrouped before they are entered as \code{data}.}
 
@@ -56,8 +56,9 @@ of the \code{x} variable is used.}
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
     \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: \code{TRUE}). If set to \code{FALSE}, only
-the plot will be returned.}
+to be displayed as a subtitle (Default: \code{TRUE}). Setting this to \code{FALSE}
+also skips the automatic Bayes Factor caption. See the individual
+annotation arguments to control other plot details.}
     \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption. It will be replaced by the
@@ -87,7 +88,10 @@ thus the details as well.}
 \item \code{"bayes"}
 }
 
-You can specify just the initial letter.}
+You can specify just the initial letter (e.g. \code{"np"} or \code{"bf"}). Matching is
+on the initial lowercase letter only, so any other value (including
+capitalized values such as \code{"Bayes"}) falls back to \code{"parametric"} without a
+warning.}
     \item{\code{digits}}{Number of digits for rounding or significant figures. May also
 be \code{"signif"} to return significant figures or \code{"scientific"}
 to return scientific notation. Control the number of digits by adding the
@@ -95,14 +99,18 @@ value as suffix, e.g. \code{digits = "scientific4"} to have scientific
 notation with 4 decimal places, or \code{digits = "signif5"} for 5
 significant figures (see also \code{\link[=signif]{signif()}}).}
     \item{\code{conf.level}}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
-confidence/credible intervals, \code{0.95}). If \code{NULL}, no confidence intervals
-will be computed.}
+confidence/credible intervals, \code{0.95}).}
     \item{\code{alternative}}{a character string specifying the alternative
     hypothesis, must be one of \code{"two.sided"} (default),
     \code{"greater"} or \code{"less"}.  You can specify just the initial
     letter.}
     \item{\code{paired}}{Logical indicating whether data came from a within-subjects or
-repeated measures design study (Default: \code{FALSE}).}
+repeated measures design study (Default: \code{FALSE}). Only relevant for
+two-way tables (i.e., when \code{y} is supplied), and paired designs are only
+supported for frequentist tests (McNemar's test). For a two-way table with
+\code{type = "bayes"}, \code{paired} is ignored and the Bayesian test of
+independence for unpaired data is run instead. For one-way tables
+(\code{y = NULL}), \code{paired} has no effect.}
     \item{\code{counts}}{The variable in data containing counts, or \code{NULL} if each row
 represents a single observation.}
     \item{\code{ratio}}{A vector of proportions: the expected proportions for the
