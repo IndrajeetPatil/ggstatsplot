@@ -174,8 +174,6 @@ Cox proportional hazards regression model (`coxph`)
 #| fig.height = 4,
 #| fig.width = 4
 
-library(survival)
-
 # create the simplest-test data set
 test1 <- list(
   time = c(4, 3, 1, 1, 2, 2, 3),
@@ -191,7 +189,6 @@ mod_coxph <-
     data = test1
   )
 
-
 ggcoefstats(
   x = mod_coxph,
   title = "Cox proportional hazards regression model"
@@ -205,14 +202,11 @@ Another example with `frailty` term.
 #| fig.height = 4,
 #| fig.width = 4
 
-library(survival)
-
 # model
 mod_coxph <- survival::coxph(
   formula = Surv(time, status) ~ age + sex + frailty(inst),
   data = lung
 )
-
 
 ggcoefstats(
   x = mod_coxph,
@@ -435,11 +429,6 @@ ggcoefstats(
 #| fig.height = 7,
 #| fig.width = 8
 
-library(metaplus)
-
-# renaming to what the function expects
-df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
-
 ggcoefstats(
   x = df,
   meta.analytic.effect = TRUE,
@@ -454,11 +443,6 @@ ggcoefstats(
 #| label = "meta3",
 #| fig.height = 7,
 #| fig.width = 8
-
-library(metaplus)
-
-# renaming to what the function expects
-df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
 
 # suppress Stan's divergent transitions warning (not under our control)
 suppressWarnings(
