@@ -48,8 +48,6 @@
 #'   caption is shown (see `pch`), this text is displayed above it.
 #' @inheritParams statsExpressions::corr_test
 #' @inheritParams ggbetweenstats
-#' @inheritParams ggcorrplot::ggcorrplot
-#' @inheritParams ggscatterstats
 #'
 #' @inheritSection statsExpressions::corr_test Correlation analyses
 #'
