@@ -395,11 +395,12 @@ In case the estimates you are displaying come from multiple studies, you can
 also use this function to carry out random-effects meta-analysis by setting
 `meta.analytic.effect = TRUE`. The type of meta-analysis is chosen with
 `meta.type` (`"parametric"`, `"robust"`, or `"bayes"`). The data frame you enter
-**must** contain at the minimum the following three columns-
+**must** contain the following two columns-
 
-  - `term`: a column with names/identifiers to annotate each study/effect
   - `estimate`: a column with the observed effect sizes or outcomes
   - `std.error`: a column with the corresponding standard errors
+
+An optional `term` column with names/identifiers annotates each study/effect.
 
 ### parametric
 
@@ -526,8 +527,8 @@ be found in the function documentation:
 
 The list of supported models will keep expanding as additional tidiers are
 added to the `parameters` and `performance` packages. Note that not **all**
-models supported in these packages will be supported by `ggcoefstats()`. In particular, classes of objects for which there is no column
-for `estimate` (e.g., `kmeans`, `optim`, `muhaz`, `survdiff`, `zoo`, etc.) are
+models supported in these packages will be supported by `ggcoefstats()`. In
+particular, classes of objects for which there is no column for `estimate` (e.g., `kmeans`, `optim`, `muhaz`, `survdiff`, `zoo`, etc.) are
 not supported.
 
 ## Suggestions
