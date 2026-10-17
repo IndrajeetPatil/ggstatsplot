@@ -1,3 +1,11 @@
+# ggstatsplot 1.1.3.9000
+
+## BUG FIXES
+
+- `ggdotplotstats()` now labels the `y` axis with the name of the `y`
+  variable when `ylab = NULL` (default), as documented. Previously, no `y`
+  axis title was shown unless `ylab` was supplied.
+
 # ggstatsplot 1.1.3
 
 ## BUG FIXES
