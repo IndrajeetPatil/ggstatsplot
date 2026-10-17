@@ -37,7 +37,6 @@
 #'   dropped using a list-wise approach (see
 #'   [statsExpressions::complete_subjects()]), so the plot, its labels, and the
 #'   statistical results are all based on the same complete subjects.
-#' @inheritParams statsExpressions::oneway_anova
 #'
 #' @inheritSection statsExpressions::centrality_description Centrality measures
 #' @inheritSection statsExpressions::two_sample_test Two-sample tests

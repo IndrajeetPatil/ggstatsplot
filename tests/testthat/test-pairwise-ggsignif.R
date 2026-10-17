@@ -161,11 +161,10 @@ test_that("pairwise brackets have finite positions for constant outcomes", {
   plot <- ggplot2::ggplot(df, ggplot2::aes(group, value)) +
     ggplot2::geom_point()
   plot_signif <- .ggsignif_adder(
-    plot,
-    df,
-    group,
-    value,
-    mpc_df,
+    plot = plot,
+    data = df,
+    y = value,
+    mpc_df = mpc_df,
     pairwise.display = "all"
   )
   bracket_data <- ggplot2::layer_data(plot_signif, i = 2L)

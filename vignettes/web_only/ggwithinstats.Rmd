@@ -148,12 +148,12 @@ small differences in the desire to kill across conditions.
 Importantly, this plot also helps us appreciate the distributions within any
 given condition.
 
-We can also use other available options: The `type` (of test) argument also accepts the following
-abbreviations: `"p"` (for *parametric*), `"np"` (for *nonparametric*), `"r"`
-(for *robust*), `"bf"` (for *Bayes Factor*).
+The `type` (of test) argument also accepts the following abbreviations: `"p"`
+(for *parametric*), `"np"` (for *nonparametric*), `"r"` (for *robust*), `"bf"`
+(for *Bayes Factor*).
 
 Let's use the `combine_plots` function to make one plot from four separate plots
-that demonstrates all of these options. Let's compare desire to kill bugs only
+that demonstrate all of these options. Let's compare desire to kill bugs only
 for low versus high disgust conditions to see how much of a difference whether a
 bug is disgusting-looking or not makes to the desire to kill that bug. We will
 generate the plots one by one and then use `combine_plots` to merge them into
