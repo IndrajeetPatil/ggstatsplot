@@ -240,9 +240,6 @@ combines list of individual plots into a single plot.
 
 ![](ggcorrmat_files/figure-html/ggcorrmat7-1.png)
 
-Note that this function also makes it easy to run the same correlation
-matrix across different levels of a factor/grouping variable.
-
 ## Data frame
 
 Unlike other [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)

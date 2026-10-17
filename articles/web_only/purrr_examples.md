@@ -237,10 +237,10 @@ response times across trials.
 
 For the next example lets use the same methodology on different data and
 using `ggscatterstats` to produce scatterplots combined with marginal
-histograms/boxplots/density plots with statistical details added as a
-subtitle. For data we’ll use `movies_long` which is from IMDB and part
-of the [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package.
-Since it’s a large dataset with some relatively small categories like
+histograms with statistical details added as a subtitle. For data we’ll
+use `movies_long` which is from IMDB and part of the
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package. Since
+it’s a large dataset with some relatively small categories like
 **NC-17** we’ll sample only one quarter of the data and completely drop
 NC-17 using `dplyr`.
 

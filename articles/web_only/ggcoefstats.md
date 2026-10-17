@@ -263,8 +263,6 @@ Aalen’s additive regression model for censored data (`aareg`)
 Cox proportional hazards regression model (`coxph`)
 
 \
-[`library`](https://rdrr.io/r/base/library.html)`(`[`survival`](https://github.com/therneau/survival)`)`\
-\
 `# create the simplest-test data set`\
 `test1`` ``<-`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `  time ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``4``, ``3``, ``1``, ``1``, ``2``, ``2``, ``3``)``,`\
@@ -280,7 +278,6 @@ Cox proportional hazards regression model (`coxph`)
 `    data ``=`` ``test1`\
 `  ``)`\
 \
-\
 [`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`\
 `  x ``=`` ``mod_coxph``,`\
 `  title ``=`` ``"Cox proportional hazards regression model"`\
@@ -291,14 +288,11 @@ Cox proportional hazards regression model (`coxph`)
 Another example with `frailty` term.
 
 \
-[`library`](https://rdrr.io/r/base/library.html)`(`[`survival`](https://github.com/therneau/survival)`)`\
-\
 `# model`\
 `mod_coxph`` ``<-`` ``survival``::`[`coxph`](https://rdrr.io/pkg/survival/man/coxph.html)`(`\
 `  formula ``=`` `[`Surv`](https://rdrr.io/pkg/survival/man/Surv.html)`(``time``, ``status``)`` ``~`` ``age`` ``+`` ``sex`` ``+`` `[`frailty`](https://rdrr.io/pkg/survival/man/frailty.html)`(``inst``)``,`\
 `  data ``=`` ``lung`\
 `)`\
-\
 \
 [`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`\
 `  x ``=`` ``mod_coxph``,`\
@@ -481,12 +475,13 @@ In case the estimates you are displaying come from multiple studies, you
 can also use this function to carry out random-effects meta-analysis by
 setting `meta.analytic.effect = TRUE`. The type of meta-analysis is
 chosen with `meta.type` (`"parametric"`, `"robust"`, or `"bayes"`). The
-data frame you enter **must** contain at the minimum the following three
-columns-
+data frame you enter **must** contain the following two columns-
 
-- `term`: a column with names/identifiers to annotate each study/effect
 - `estimate`: a column with the observed effect sizes or outcomes
 - `std.error`: a column with the corresponding standard errors
+
+An optional `term` column with names/identifiers annotates each
+study/effect.
 
 ### parametric
 
@@ -509,11 +504,6 @@ columns-
 ### robust
 
 \
-[`library`](https://rdrr.io/r/base/library.html)`(``metaplus``)`\
-\
-`# renaming to what the function expects`\
-`df`` ``<-`` ``dplyr``::`[`rename`](https://dplyr.tidyverse.org/reference/rename.html)`(``mag``, estimate ``=`` ``yi``, std.error ``=`` ``sei``, term ``=`` ``study``)`\
-\
 [`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`\
 `  x ``=`` ``df``,`\
 `  meta.analytic.effect ``=`` ``TRUE``,`\
@@ -525,11 +515,6 @@ columns-
 
 ### Bayesian
 
-\
-[`library`](https://rdrr.io/r/base/library.html)`(``metaplus``)`\
-\
-`# renaming to what the function expects`\
-`df`` ``<-`` ``dplyr``::`[`rename`](https://dplyr.tidyverse.org/reference/rename.html)`(``mag``, estimate ``=`` ``yi``, std.error ``=`` ``sei``, term ``=`` ``study``)`\
 \
 `# suppress Stan's divergent transitions warning (not under our control)`\
 [`suppressWarnings`](https://rdrr.io/r/base/warning.html)`(`\

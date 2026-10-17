@@ -365,12 +365,12 @@ condition, we first average response times across trials.</p>
 </h2>
 <p>For the next example lets use the same methodology on different data
 and using <code>ggscatterstats</code> to produce scatterplots combined
-with marginal histograms/boxplots/density plots with statistical details
-added as a subtitle. For data we’ll use <code>movies_long</code> which
-is from IMDB and part of the <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> package. Since
-it’s a large dataset with some relatively small categories like
-<strong>NC-17</strong> we’ll sample only one quarter of the data and
-completely drop NC-17 using <code>dplyr</code>.</p>
+with marginal histograms with statistical details added as a subtitle.
+For data we’ll use <code>movies_long</code> which is from IMDB and part
+of the <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> package. Since it’s a large dataset
+with some relatively small categories like <strong>NC-17</strong> we’ll
+sample only one quarter of the data and completely drop NC-17 using
+<code>dplyr</code>.</p>
 <p>This time we’ll put all the code in one block-</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mpaa_list</span> <span class="op">&lt;-</span> <span class="va">movies_long</span> <span class="op">|&gt;</span></span>
