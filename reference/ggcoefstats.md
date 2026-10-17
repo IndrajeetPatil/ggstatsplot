@@ -296,13 +296,12 @@ The table below provides summary about:
 
 **Hypothesis testing** and **Effect size estimation**
 
-|  |  |  |  |
-|----|----|----|----|
-| Type | Test | CI available? | Function used |
-| Parametric | Pearson's correlation coefficient | Yes | [`correlation::correlation()`](https://easystats.github.io/correlation/reference/correlation.html) |
-| Non-parametric | Spearman's rank correlation coefficient | Yes | [`correlation::correlation()`](https://easystats.github.io/correlation/reference/correlation.html) |
-| Robust | Winsorized Pearson's correlation coefficient | Yes | [`correlation::correlation()`](https://easystats.github.io/correlation/reference/correlation.html) |
-| Bayesian | Bayesian Pearson's correlation coefficient | Yes | [`correlation::correlation()`](https://easystats.github.io/correlation/reference/correlation.html) |
+|  |  |  |  |  |
+|----|----|----|----|----|
+| Type | Test | Effect size | CI available? | Function used |
+| Parametric | Meta-analysis via random-effects models | *beta* | Yes | [`metafor::rma()`](https://wviechtb.github.io/metafor/reference/rma.uni.html) |
+| Robust | Meta-analysis via robust random-effects models | *beta* | Yes | [`metaplus::metaplus()`](https://rdrr.io/pkg/metaplus/man/metaplus.html) |
+| Bayesian | Meta-analysis via Bayesian random-effects models | *beta* | Yes | [`metaBMA::meta_random()`](https://danheck.github.io/metaBMA/reference/meta_random.html) |
 
 ## Examples
 

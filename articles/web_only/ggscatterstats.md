@@ -2,31 +2,6 @@
 
 ------------------------------------------------------------------------
 
-You can cite this package/vignette as:
-
-    To cite package 'ggstatsplot' in publications use:
-
-      Patil, I. (2021). Visualizations with statistical details: The
-      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
-      doi:10.21105/joss.03167
-
-    A BibTeX entry for LaTeX users is
-
-      @Article{,
-        doi = {10.21105/joss.03167},
-        url = {https://doi.org/10.21105/joss.03167},
-        year = {2021},
-        publisher = {{The Open Journal}},
-        volume = {6},
-        number = {61},
-        pages = {3167},
-        author = {Indrajeet Patil},
-        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
-        journal = {{Journal of Open Source Software}},
-      }
-
-------------------------------------------------------------------------
-
 Lifecycle:
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
@@ -139,16 +114,11 @@ PG-13 and R-rated movies.
 
 ## Grouped analysis with `ggscatterstats` + `{purrr}`
 
-Although this is a quick and dirty way to explore large amount of data
-with minimal effort, it does come with an important limitation: reduced
-flexibility. For example, if we wanted to add, let’s say, a separate
-type of marginal distribution plot for each MPAA rating or if we wanted
-to use different types of correlations across different levels of MPAA
-ratings, this is not possible. But this can be easily done using
-[purrr](https://purrr.tidyverse.org/).
-
-See the associated vignette here:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
+For group-specific arguments or multiple grouping variables, see the
+[programmatic plotting
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#why-purrr).
+It explains how to split the data, customize each call, and combine the
+resulting plots.
 
 ## Summary of graphics and tests
 
@@ -165,14 +135,18 @@ listed in the function documentation:
 
 ## Extracting statistical details
 
-All statistical details shown in the plot are also available as data
-frames, which can be extracted with
-[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md).
-The returned list contains results from the test in the subtitle
-(`subtitle_data`) and the Bayesian test in the caption (`caption_data`).
+Use
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+to retrieve the results as data frames; its reference page describes all
+returned components, including the lists returned for `grouped_` plots.
 
 \
 `p`` ``<-`` `[`ggscatterstats`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)`(``mtcars``, ``qsec``, ``drat``)`\
+`p`
+
+![](ggscatterstats_files/figure-html/extract_stats-1.png)
+
+\
 \
 [`extract_stats`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)`(``p``)``$``subtitle_data`\
 `#> ``# A tibble: 1 × 14`\
@@ -185,12 +159,6 @@ The returned list contains results from the test in the subtitle
 `#>   ``expression`\
 `#>   ``<list>``    `\
 `#> ``1`` ``<language>`
-
-For
-[`grouped_ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggscatterstats.md)
-plots,
-[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
-returns one such list for each level of the grouping variable.
 
 ## Reporting
 
@@ -205,15 +173,7 @@ approaches:
 - the *standard* narrative approach, which provides interpretive context
   for the reported statistics.
 
-For example, let’s see the following example:
-
-\
-[`ggscatterstats`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)`(``mtcars``, ``qsec``, ``drat``)`
-
-![](ggscatterstats_files/figure-html/reporting-1.png)
-
-The narrative context (assuming `type = "parametric"`) can complement
-this plot either as a figure caption or in the main text-
+For the example above, the narrative context could read:
 
 > Pearson’s correlation test revealed that, across 32 cars, a measure of
 > acceleration (1/4 mile time; `qsec`) was positively correlated with
@@ -229,3 +189,28 @@ this plot either as a figure caption or in the main text-
 
 If you find any bugs or have any suggestions/remarks, please file an
 issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+## Citation
+
+You can cite this package/vignette as:
+
+    To cite package 'ggstatsplot' in publications use:
+
+      Patil, I. (2021). Visualizations with statistical details: The
+      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+      doi:10.21105/joss.03167
+
+    A BibTeX entry for LaTeX users is
+
+      @Article{,
+        doi = {10.21105/joss.03167},
+        url = {https://doi.org/10.21105/joss.03167},
+        year = {2021},
+        publisher = {{The Open Journal}},
+        volume = {6},
+        number = {61},
+        pages = {3167},
+        author = {Indrajeet Patil},
+        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+        journal = {{Journal of Open Source Software}},
+      }

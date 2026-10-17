@@ -115,7 +115,7 @@ resulting plots using <code><a href="combine_plots.html">ggstatsplot::combine_pl
 
 <dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
 <dd><p>A data frame (or a tibble) from which variables specified are to
-be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
+be taken. Other data types (e.g., matrix, table, array, etc.) will <strong>not</strong>
 be accepted. Additionally, grouped data frames from <code>{dplyr}</code> should be
 ungrouped before they are entered as <code>data</code>.</p></dd>
 
@@ -175,8 +175,9 @@ comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochber
 
     <dt><code>results.subtitle</code></dt>
 <dd><p>Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
-the plot will be returned.</p></dd>
+to be displayed as a subtitle (Default: <code>TRUE</code>). Setting this to <code>FALSE</code>
+also skips the automatic Bayes Factor caption. See the individual
+annotation arguments to control other plot details.</p></dd>
 
     <dt><code>subtitle</code></dt>
 <dd><p>The text for the plot subtitle. Will work only if
@@ -214,7 +215,10 @@ thus the details as well.</p></dd>
 <li><p><code>"nonparametric"</code></p></li>
 <li><p><code>"robust"</code></p></li>
 <li><p><code>"bayes"</code></p></li>
-</ul><p>You can specify just the initial letter.</p></dd>
+</ul><p>You can specify just the initial letter (e.g. <code>"np"</code> or <code>"bf"</code>). Matching is
+on the initial lowercase letter only, so any other value (including
+capitalized values such as <code>"Bayes"</code>) falls back to <code>"parametric"</code> without a
+warning.</p></dd>
 
     <dt><code>digits</code></dt>
 <dd><p>Number of digits for rounding or significant figures. May also
@@ -226,8 +230,7 @@ significant figures (see also <code><a href="https://rdrr.io/r/base/Round.html" 
 
     <dt><code>conf.level</code></dt>
 <dd><p>Scalar between <code>0</code> and <code>1</code> (default: <code>95%</code>
-confidence/credible intervals, <code>0.95</code>). If <code>NULL</code>, no confidence intervals
-will be computed.</p></dd>
+confidence/credible intervals, <code>0.95</code>).</p></dd>
 
     <dt><code>alternative</code></dt>
 <dd><p>a character string specifying the alternative
@@ -237,7 +240,12 @@ will be computed.</p></dd>
 
     <dt><code>paired</code></dt>
 <dd><p>Logical indicating whether data came from a within-subjects or
-repeated measures design study (Default: <code>FALSE</code>).</p></dd>
+repeated measures design study (Default: <code>FALSE</code>). Only relevant for
+two-way tables (i.e., when <code>y</code> is supplied), and paired designs are only
+supported for frequentist tests (McNemar's test). For a two-way table with
+<code>type = "bayes"</code>, <code>paired</code> is ignored and the Bayesian test of
+independence for unpaired data is run instead. For one-way tables
+(<code>y = NULL</code>), <code>paired</code> has no effect.</p></dd>
 
     <dt><code>counts</code></dt>
 <dd><p>The variable in data containing counts, or <code>NULL</code> if each row

@@ -135,28 +135,6 @@
     
     
 <hr>
-<p>You can cite this package/vignette as:</p>
-<pre><code>To cite package 'ggstatsplot' in publications use:
-
-  Patil, I. (2021). Visualizations with statistical details: The
-  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
-  doi:10.21105/joss.03167
-
-A BibTeX entry for LaTeX users is
-
-  @Article{,
-    doi = {10.21105/joss.03167},
-    url = {https://doi.org/10.21105/joss.03167},
-    year = {2021},
-    publisher = {{The Open Journal}},
-    volume = {6},
-    number = {61},
-    pages = {3167},
-    author = {Indrajeet Patil},
-    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
-    journal = {{Journal of Open Source Software}},
-  }</code></pre>
-<hr>
 <p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></p>
 <p>The function <code>ggcoefstats</code> generates
 <strong>dot-and-whisker plots</strong> for regression models (or for
@@ -212,7 +190,7 @@ with <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> f
 </h2>
 <p>Most of the regression models that are supported in the underlying
 packages are also supported by <code><a href="../../reference/ggcoefstats.html">ggcoefstats()</a></code>.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">insight</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/insight/reference/is_model_supported.html" class="external-link">supported_models</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   [1] "aareg"                   "afex_aov"               </span></span>
 <span><span class="co">#&gt;   [3] "AKP"                     "Anova.mlm"              </span></span>
@@ -354,7 +332,7 @@ have removed it. The old version can be found <a href="https://github.com/Indraj
 </h3>
 <p>linear model (<code>lm</code>) and linear mixed-effects model
 (<code>lmer</code>/<code>lmerMod</code>)</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lme4/lme4/" class="external-link">lme4</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># lm model</span></span>
@@ -388,7 +366,7 @@ For more details about these terms, you can use
 </h3>
 <p>Aalen’s additive regression model for censored data
 (<code>aareg</code>)</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival" class="external-link">survival</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># model</span></span>
@@ -411,7 +389,7 @@ For more details about these terms, you can use
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>χ</mi><mn>2</mn></msup><annotation encoding="application/x-tex">\chi^2</annotation></semantics></math>-statistic<a class="anchor" aria-label="anchor" href="#chi2-statistic"></a>
 </h3>
 <p>Cox proportional hazards regression model (<code>coxph</code>)</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival" class="external-link">survival</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># create the simplest-test data set</span></span>
@@ -436,7 +414,7 @@ For more details about these terms, you can use
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggcoefstats_files/figure-html/coxph-1.png" class="r-plt" alt="" width="100%"></p>
 <p>Another example with <code>frailty</code> term.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival" class="external-link">survival</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># model</span></span>
@@ -457,7 +435,7 @@ For more details about these terms, you can use
 <em>F</em>-statistic<a class="anchor" aria-label="anchor" href="#f-statistic"></a>
 </h3>
 <p>omnibus ANOVA (<code>aov</code>)</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># model</span></span>
@@ -480,7 +458,7 @@ For more details about these terms, you can use
 <p>Note that we can also use this function for model selection. You can
 try out different models with the code below and see how the AIC and BIC
 values change.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/combine_plots.html">combine_plots</a></span><span class="op">(</span></span>
 <span>  plotlist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>    <span class="co"># model 1</span></span>
@@ -511,7 +489,7 @@ values change.</p>
 <div class="section level3">
 <h3 id="bayesian-models---no-statistic">Bayesian models - no statistic<a class="anchor" aria-label="anchor" href="#bayesian-models---no-statistic"></a>
 </h3>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://richarddmorey.github.io/BayesFactor/" class="external-link">BayesFactor</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># one sample t-test</span></span>
@@ -579,7 +557,7 @@ values change.</p>
 class <code>list</code>, in which case this function will fail. But
 often you can extract the object of interest from this list and use it
 to plot the regression coefficients.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">gamm4</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># data</span></span>
@@ -642,7 +620,7 @@ errors</li>
 <div class="section level3">
 <h3 id="parametric">parametric<a class="anchor" aria-label="anchor" href="#parametric"></a>
 </h3>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">metaplus</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># renaming to what the function expects</span></span>
@@ -660,7 +638,7 @@ errors</li>
 <div class="section level3">
 <h3 id="robust">robust<a class="anchor" aria-label="anchor" href="#robust"></a>
 </h3>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">metaplus</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># renaming to what the function expects</span></span>
@@ -677,7 +655,7 @@ errors</li>
 <div class="section level3">
 <h3 id="bayesian">Bayesian<a class="anchor" aria-label="anchor" href="#bayesian"></a>
 </h3>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">metaplus</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># renaming to what the function expects</span></span>
@@ -700,19 +678,15 @@ errors</li>
 </h2>
 <p>Sometimes you don’t have a model object but a custom data frame that
 you want to display using this function. If a data frame is to be
-plotted, it <strong>must</strong> contain columns named
-<code>term</code> (names of predictors), and <code>estimate</code>
-(corresponding estimates of coefficients or other quantities of
-interest). Other optional columns are <code>conf.low</code> and
-<code>conf.high</code> (for confidence intervals), and
-<code>p.value</code>. You will also have to specify the type of
-statistic relevant for regression models (<code>"t"</code>,
-<code>"z"</code>, <code>"f"</code>, <code>"chi"</code>) in case you want
-to display statistical labels.</p>
-<p>You can also provide a data frame containing all the other relevant
-information for additionally displaying labels with statistical
-information.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+plotted, it <strong>must</strong> contain an <code>estimate</code>
+column. The optional <code>term</code> column names the predictors;
+otherwise, names such as <code>term_1</code> are generated. See the <a href="../../reference/ggcoefstats.html#arguments"><code>x</code>
+argument in the function reference</a> for the columns needed for
+confidence intervals, labels, and meta-analysis. Specify
+<code>statistic</code> (<code>"t"</code>, <code>"z"</code>,
+<code>"f"</code>, or <code>"chi"</code>) to display statistical labels
+for a data frame.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># let's create a data frame</span></span>
 <span><span class="va">df_full</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">term</span>, <span class="op">~</span><span class="va">statistic</span>, <span class="op">~</span><span class="va">estimate</span>, <span class="op">~</span><span class="va">std.error</span>, <span class="op">~</span><span class="va">p.value</span>, <span class="op">~</span><span class="va">df.error</span>,</span>
@@ -743,7 +717,7 @@ AIC and BIC). That said, if you only need these data frames, it is
 preferable to use the underlying functions
 (<code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code> and
 <code><a href="https://easystats.github.io/performance/reference/model_performance.html" class="external-link">performance::model_performance()</a></code>) directly.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># data</span></span>
 <span><span class="va">DNase1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">DNase</span>, <span class="va">Run</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
@@ -844,6 +818,31 @@ there is no column for <code>estimate</code> (e.g., <code>kmeans</code>,
 </h2>
 <p>If you find any bugs or have any suggestions/remarks, please file an
 issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>You can cite this package/vignette as:</p>
+<pre><code>To cite package 'ggstatsplot' in publications use:
+
+  Patil, I. (2021). Visualizations with statistical details: The
+  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+  doi:10.21105/joss.03167
+
+A BibTeX entry for LaTeX users is
+
+  @Article{,
+    doi = {10.21105/joss.03167},
+    url = {https://doi.org/10.21105/joss.03167},
+    year = {2021},
+    publisher = {{The Open Journal}},
+    volume = {6},
+    number = {61},
+    pages = {3167},
+    author = {Indrajeet Patil},
+    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+    journal = {{Journal of Open Source Software}},
+  }</code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

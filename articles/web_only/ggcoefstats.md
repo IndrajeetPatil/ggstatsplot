@@ -2,31 +2,6 @@
 
 ------------------------------------------------------------------------
 
-You can cite this package/vignette as:
-
-    To cite package 'ggstatsplot' in publications use:
-
-      Patil, I. (2021). Visualizations with statistical details: The
-      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
-      doi:10.21105/joss.03167
-
-    A BibTeX entry for LaTeX users is
-
-      @Article{,
-        doi = {10.21105/joss.03167},
-        url = {https://doi.org/10.21105/joss.03167},
-        year = {2021},
-        publisher = {{The Open Journal}},
-        volume = {6},
-        number = {61},
-        pages = {3167},
-        author = {Indrajeet Patil},
-        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
-        journal = {{Journal of Open Source Software}},
-      }
-
-------------------------------------------------------------------------
-
 Lifecycle:
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
@@ -572,16 +547,13 @@ columns-
 
 Sometimes you don’t have a model object but a custom data frame that you
 want to display using this function. If a data frame is to be plotted,
-it **must** contain columns named `term` (names of predictors), and
-`estimate` (corresponding estimates of coefficients or other quantities
-of interest). Other optional columns are `conf.low` and `conf.high` (for
-confidence intervals), and `p.value`. You will also have to specify the
-type of statistic relevant for regression models (`"t"`, `"z"`, `"f"`,
-`"chi"`) in case you want to display statistical labels.
-
-You can also provide a data frame containing all the other relevant
-information for additionally displaying labels with statistical
-information.
+it **must** contain an `estimate` column. The optional `term` column
+names the predictors; otherwise, names such as `term_1` are generated.
+See the [`x` argument in the function
+reference](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html#arguments)
+for the columns needed for confidence intervals, labels, and
+meta-analysis. Specify `statistic` (`"t"`, `"z"`, `"f"`, or `"chi"`) to
+display statistical labels for a data frame.
 
 \
 `# let's create a data frame`\
@@ -688,3 +660,28 @@ are not supported.
 If you find any bugs or have any suggestions/remarks, please file an
 issue on `GitHub`:
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+## Citation
+
+You can cite this package/vignette as:
+
+    To cite package 'ggstatsplot' in publications use:
+
+      Patil, I. (2021). Visualizations with statistical details: The
+      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+      doi:10.21105/joss.03167
+
+    A BibTeX entry for LaTeX users is
+
+      @Article{,
+        doi = {10.21105/joss.03167},
+        url = {https://doi.org/10.21105/joss.03167},
+        year = {2021},
+        publisher = {{The Open Journal}},
+        volume = {6},
+        number = {61},
+        pages = {3167},
+        author = {Indrajeet Patil},
+        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+        journal = {{Journal of Open Source Software}},
+      }

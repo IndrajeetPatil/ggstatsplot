@@ -2,31 +2,6 @@
 
 ------------------------------------------------------------------------
 
-You can cite this package/vignette as:
-
-    To cite package 'ggstatsplot' in publications use:
-
-      Patil, I. (2021). Visualizations with statistical details: The
-      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
-      doi:10.21105/joss.03167
-
-    A BibTeX entry for LaTeX users is
-
-      @Article{,
-        doi = {10.21105/joss.03167},
-        url = {https://doi.org/10.21105/joss.03167},
-        year = {2021},
-        publisher = {{The Open Journal}},
-        volume = {6},
-        number = {61},
-        pages = {3167},
-        author = {Indrajeet Patil},
-        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
-        journal = {{Journal of Open Source Software}},
-      }
-
-------------------------------------------------------------------------
-
 Following are a few of the common questions asked in GitHub issues and
 on social media platforms.
 
@@ -34,10 +9,11 @@ on social media platforms.
 
 ### I just want the plot, not the statistical details. How can I turn them off?
 
-All functions in [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)
-that display results from statistical analysis in a subtitle have
-argument `results.subtitle`. Setting it to `FALSE` will return only the
-plot.
+Set `results.subtitle = FALSE` to suppress the statistical subtitle and
+the automatic Bayes Factor caption in functions that provide this
+argument. Pairwise brackets and centrality annotations have separate
+controls: use `pairwise.display = "none"` and
+`centrality.plotting = FALSE` where supported.
 
 For parametric tests, the Bayes Factor shown in the caption is
 controlled separately by the `bf.message` argument. Set it to `FALSE` to
@@ -101,10 +77,13 @@ You can also check the `method` column of the data frames returned by
 expressions in the subtitle and caption, but you can get back the
 underlying data frames with the
 [`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
-helper function. It returns a list with the following components (`NULL`
-when not relevant for a given plot): `subtitle_data`, `caption_data`,
-`pairwise_comparisons_data`, `descriptive_data`, `one_sample_data`,
-`tidy_data`, and `glance_data`.
+helper function. See the [`extract_stats()`
+reference](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+for the returned components and grouped outputs.
+[`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
+does not retain these data frames; use
+[`correlation::correlation()`](https://easystats.github.io/correlation/reference/correlation.html)
+for its statistical results.
 
 \
 `p`` ``<-`` `[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(``mtcars``, ``cyl``, ``wt``)`\
@@ -123,9 +102,6 @@ when not relevant for a given plot): `subtitle_data`, `caption_data`,
 `#> ``2`` Games-Howell ``<language>`\
 `#> ``3`` Games-Howell ``<language>`
 
-For `grouped_` plots,
-[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
-returns one such list per group.
 [`extract_subtitle()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
 and
 [`extract_caption()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
@@ -162,7 +138,7 @@ actually used. Other columns in the data are ignored.
   [`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md),
   missing values are removed separately for each pair of variables, and
   the legend shows the minimum, mode, and maximum sample sizes across
-  pairs.
+  pairs. Partial correlations instead use complete cases.
 - In `grouped_` functions, rows with missing values in `grouping.var`
   are dropped.
 
@@ -184,8 +160,9 @@ decide what is displayed as significant:
   (together with `p.adjust.method` for multiple comparisons correction).
 - `sig.level` in
   [`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md).
-- `conf.level` (in all functions) sets the width of the confidence
-  intervals.
+
+`conf.level` controls confidence or credible intervals in functions that
+expose it; it does not change which pairwise brackets are displayed.
 
 But there is no way to adjust alpha *across* the plots produced by
 `grouped_` functions, since each group is analyzed independently. You
@@ -237,9 +214,9 @@ stable yet.
 
 ### How should I cite and report the results?
 
-You can cite the package with `citation("ggstatsplot")` (see top of this
-article). For reporting, the expressions shown in the plots follow a
-standard template (see the [principles
+See the [citation section](#citation) for the package reference. For
+reporting, the expressions shown in the plots follow a standard template
+(see the [principles
 article](https://www.indrapatil.com/ggstatsplot/articles/web_only/principles.html#statistical-reporting)),
 and all numbers can be retrieved as data frames with
 [`extract_stats()`](#extract-stats). For interpreting logged Bayes
@@ -252,19 +229,20 @@ article](https://www.indrapatil.com/ggstatsplot/articles/web_only/interpretation
 
 Sometimes you may not wish to include so many details in the subtitle.
 In that case, you can extract the expression and copy-paste only the
-part you wish to include. For example, here only statistic and
-*p*-values are included:
+part you wish to include. For example, here only the statistic and
+*p*-value are included. This example explicitly requests the
+equal-variance ANOVA used in the custom label:
 
 \
 [`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`\
 [`library`](https://rdrr.io/r/base/library.html)`(`[`statsExpressions`](https://www.indrapatil.com/statsExpressions/)`)`\
 \
 `# extracting detailed expression`\
-`data_results`` ``<-`` `[`oneway_anova`](https://www.indrapatil.com/statsExpressions/reference/oneway_anova.html)`(``iris``, ``Species``, ``Sepal.Length``)`\
+`data_results`` ``<-`` `[`oneway_anova`](https://www.indrapatil.com/statsExpressions/reference/oneway_anova.html)`(``iris``, ``Species``, ``Sepal.Length``, var.equal ``=`` ``TRUE``)`\
 `data_results``$``expression``[[``1``]``]`\
-`#> list(italic("F")["Welch"](2, 92.21) == "138.91", italic(p) == `\
-`#>     "1.51e-28", widehat(omega["p"]^2) == "0.74", CI["95%"] ~ `\
-`#>     "[" * "0.67", "1.00" * "]", italic("n")["obs"] == "150")`\
+`#> list(italic("F")["Fisher"](2, 147) == "119.26", italic(p) == `\
+`#>     "1.67e-31", widehat(omega["p"]^2) == "0.61", CI["95%"] ~ `\
+`#>     "[" * "0.53", "1.00" * "]", italic("n")["obs"] == "150")`\
 \
 `# adapting the details to your liking`\
 [`ggplot`](https://ggplot2.tidyverse.org/reference/ggplot.html)`(``iris``, `[`aes`](https://ggplot2.tidyverse.org/reference/aes.html)`(``x ``=`` ``Species``, y ``=`` ``Sepal.Length``)``)`` ``+`\
@@ -408,8 +386,9 @@ differently:
   *above* the maximum observed value, they often fall outside a tight
   limit and are silently dropped.
 - `coord_cartesian(ylim = c(a, b))` — **zooms the viewport** without
-  touching the underlying data. The brackets are still computed from the
-  full data range and remain fully intact.
+  touching the underlying data. Brackets are still computed, but are
+  clipped if they lie outside the visible range. Leave enough room above
+  the data to show them.
 
 The fix is to replace `scale_y_continuous(limits = ...)` with
 `coord_cartesian(ylim = ...)`:
@@ -418,7 +397,7 @@ The fix is to replace `scale_y_continuous(limits = ...)` with
 [`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`\
 \
 [`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(``mtcars``, ``cyl``, ``wt``)`` ``+`\
-`  `[`coord_cartesian`](https://ggplot2.tidyverse.org/reference/coord_cartesian.html)`(``ylim ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``1``, ``4``)``)`
+`  `[`coord_cartesian`](https://ggplot2.tidyverse.org/reference/coord_cartesian.html)`(``ylim ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``1``, ``7``)``)`
 
 ![](faq_files/figure-html/coord_cartesian_pairwise-1.png)
 
@@ -547,27 +526,8 @@ or subtitles. For anything else, split the data yourself, create one
 plot per group with [purrr](https://purrr.tidyverse.org/), and combine
 them with
 [`combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)
-(see also [this
-article](https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html)).
-For example, to repeat the analysis across two grouping variables with a
-title for each group:
-
-\
-`ggplot2``::`[`mpg`](https://ggplot2.tidyverse.org/reference/mpg.html)` ``|>`\
-`  ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``drv`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"4"``, ``"f"``)``, ``fl`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"p"``, ``"r"``)``)`` ``|>`\
-`  ``(``\``(``d``)`` `[`split`](https://rdrr.io/r/base/split.html)`(``d``, f ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``d``$``drv``, ``d``$``fl``)``, drop ``=`` ``TRUE``)``)``(``)`` ``|>`\
-`  ``purrr``::`[`imap`](https://purrr.tidyverse.org/reference/imap.html)`(``\``(``data``, ``group``)`` ``{`\
-`    `[`ggscatterstats`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)`(`\
-`      data ``=`` ``data``,`\
-`      x ``=`` ``displ``,`\
-`      y ``=`` ``hwy``,`\
-`      title ``=`` `[`paste0`](https://rdrr.io/r/base/paste.html)`(``"Drive and fuel type: "``, ``group``)``,`\
-`      results.subtitle ``=`` ``FALSE`\
-`    ``)`\
-`  ``}``)`` ``|>`\
-`  `[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(``plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``2L``)``)`
-
-![](faq_files/figure-html/beyond_grouped-1.png)
+(see the [multiple-grouping
+recipe](https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#multiple-grouping-variables)).
 
 ### How can I use `{ggstatsplot}` functions in a `for` loop?
 
@@ -616,3 +576,28 @@ This solution would work for `x` and `y` arguments, but not for the
 If you find any bugs or have any suggestions/remarks, please file an
 issue on `GitHub`:
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+## Citation
+
+You can cite this package/vignette as:
+
+    To cite package 'ggstatsplot' in publications use:
+
+      Patil, I. (2021). Visualizations with statistical details: The
+      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+      doi:10.21105/joss.03167
+
+    A BibTeX entry for LaTeX users is
+
+      @Article{,
+        doi = {10.21105/joss.03167},
+        url = {https://doi.org/10.21105/joss.03167},
+        year = {2021},
+        publisher = {{The Open Journal}},
+        volume = {6},
+        number = {61},
+        pages = {3167},
+        author = {Indrajeet Patil},
+        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+        journal = {{Journal of Open Source Software}},
+      }

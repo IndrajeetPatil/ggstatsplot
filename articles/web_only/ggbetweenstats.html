@@ -135,28 +135,6 @@
     
     
 <hr>
-<p>You can cite this package/vignette as:</p>
-<pre><code>To cite package 'ggstatsplot' in publications use:
-
-  Patil, I. (2021). Visualizations with statistical details: The
-  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
-  doi:10.21105/joss.03167
-
-A BibTeX entry for LaTeX users is
-
-  @Article{,
-    doi = {10.21105/joss.03167},
-    url = {https://doi.org/10.21105/joss.03167},
-    year = {2021},
-    publisher = {{The Open Journal}},
-    volume = {6},
-    number = {61},
-    pages = {3167},
-    author = {Indrajeet Patil},
-    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
-    journal = {{Journal of Open Source Software}},
-  }</code></pre>
-<hr>
 <p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></p>
 <p>The function <code>ggbetweenstats</code> is designed to facilitate
 <strong>data exploration</strong>, and for making highly customizable
@@ -179,7 +157,7 @@ provides values for life expectancy, GDP per capita, and population, at
 5 year intervals, from 1952 to 2007, for each of 142 countries (courtesy
 <a href="https://www.gapminder.org/" class="external-link">Gapminder Foundation</a>). Let’s
 have a look at the data-</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder" class="external-link">gapminder</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://jennybc.github.io/gapminder/reference/gapminder.html" class="external-link">gapminder</a></span><span class="op">)</span></span>
@@ -199,7 +177,7 @@ life expectancy for the countries of a continent in 2007. We also want
 to know if the mean differences in life expectancy between the
 continents is statistically significant.</p>
 <p>The simplest form of the function call is-</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://jennybc.github.io/gapminder/reference/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">continent</span>,</span>
@@ -217,27 +195,17 @@ are not assumed.</p></li>
 means that it can be further modified with <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>
 functions.</p></li>
 </ul>
-<p>As can be seen from the plot, the function by default also returns
-Bayes Factor for the test in the caption. If the null hypothesis can’t
-be rejected with the null hypothesis significance testing (NHST)
-approach, the Bayesian approach can help index evidence in favor of the
-null hypothesis (i.e.,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub></mrow><annotation encoding="application/x-tex">BF_{01}</annotation></semantics></math>).</p>
-<p>By default, natural logarithms are shown because Bayes Factor values
-can sometimes be pretty large. Having values on logarithmic scale also
-makes it easy to compare evidence in favor of alternative
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><msub><mi>F</mi><mn>10</mn></msub></mrow><annotation encoding="application/x-tex">BF_{10}</annotation></semantics></math>)
-versus null
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub></mrow><annotation encoding="application/x-tex">BF_{01}</annotation></semantics></math>)
-hypotheses (since
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>o</mi><msub><mi>g</mi><mi>e</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mi>l</mi><mi>o</mi><msub><mi>g</mi><mi>e</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>B</mi><msub><mi>F</mi><mn>10</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">log_{e}(BF_{01}) = - log_{e}(BF_{10})</annotation></semantics></math>).</p>
+<p>For the default parametric analysis, the caption shows
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">log</mi><mo>⁡</mo></mrow><mi>e</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>B</mi><msub><mi>F</mi><mn>01</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\log_{e}(BF_{01})</annotation></semantics></math>;
+set <code>bf.message = FALSE</code> to hide it. See <a href="interpretation.html">Interpretation of Bayes Factors</a> for the
+sign convention and evidence scale.</p>
 <p>We can make the output much more aesthetically pleasing as well as
 informative by making use of the many optional parameters in
 <code>ggbetweenstats</code>. We’ll add a title and caption, better
 <code>x</code> and <code>y</code> axis labels. We can and will change
 the overall theme as well as the color palette in use. This time, let’s
 also use a robust test.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">continent</span>, <span class="co">## grouping/independent variable</span></span>
@@ -290,7 +258,7 @@ merge them into one plot with some common labeling. It is possible, but
 not necessarily recommended, to make each plot have different colors or
 themes.</p>
 <p>For example,</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## selecting subset of the data</span></span>
 <span><span class="va">df_year</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://jennybc.github.io/gapminder/reference/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span> <span class="op">|</span> <span class="va">year</span> <span class="op">==</span> <span class="fl">1957</span><span class="op">)</span></span>
 <span></span>
@@ -378,7 +346,7 @@ different studies, etc.</p>
 <p>Let’s focus on the same 4 continents for the following years: 1967,
 1987, 2007. Also, let’s carry out pairwise comparisons to see if there
 are differences between every pair of continents.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## select part of the dataset and use it for plotting</span></span>
 <span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://jennybc.github.io/gapminder/reference/gapminder.html" class="external-link">gapminder</a></span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1967</span>, <span class="fl">1987</span>, <span class="fl">2007</span><span class="op">)</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -410,15 +378,10 @@ the observed effect sizes).</p>
 <h2 id="grouped-analysis-with-ggbetweenstats-purrr">Grouped analysis with <code>ggbetweenstats</code> +
 <code>{purrr}</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-ggbetweenstats-purrr"></a>
 </h2>
-<p>Although this grouping function provides a quick way to explore the
-data, it leaves much to be desired. For example, the same type of plot
-and test is applied for all years, but maybe we want to change this for
-different years, or maybe we want to have different effect sizes for
-different years. This type of customization for different levels of a
-grouping variable is not possible with
-<code>grouped_ggbetweenstats</code>, but this can be easily achieved
-using the <a href="https://purrr.tidyverse.org/" class="external-link">purrr</a> package.</p>
-<p>See the associated vignette here: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
+<p>For group-specific arguments or multiple grouping variables, see the
+<a href="purrr_examples.html#why-purrr">programmatic plotting
+article</a>. It explains how to split the data, customize each call, and
+combine the resulting plots.</p>
 </div>
 <div class="section level2">
 <h2 id="within-subjects-designs">Within-subjects designs<a class="anchor" aria-label="anchor" href="#within-subjects-designs"></a>
@@ -480,13 +443,11 @@ can be used: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/g
 <div class="section level2">
 <h2 id="extracting-statistical-details">Extracting statistical details<a class="anchor" aria-label="anchor" href="#extracting-statistical-details"></a>
 </h2>
-<p>All statistical details shown in the plot are also available as data
-frames, which can be extracted with <code><a href="../../reference/extract_stats.html">extract_stats()</a></code>. The
-returned list contains results from the test in the subtitle
-(<code>subtitle_data</code>), the Bayesian test in the caption
-(<code>caption_data</code>), and the pairwise comparisons
-(<code>pairwise_comparisons_data</code>).</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p>Use <a href="../../reference/extract_stats.html"><code>extract_stats()</code></a>
+to retrieve the results as data frames; its reference page describes all
+returned components, including the lists returned for
+<code>grouped_</code> plots.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">cyl</span>, <span class="va">mpg</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">subtitle_data</span></span>
@@ -513,9 +474,6 @@ returned list contains results from the test in the subtitle
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Games-Howell <span style="color: #949494;">&lt;language&gt;</span></span></span></code></pre></div>
-<p>For <code><a href="../../reference/grouped_ggbetweenstats.html">grouped_ggbetweenstats()</a></code> plots,
-<code><a href="../../reference/extract_stats.html">extract_stats()</a></code> returns one such list for each level of the
-grouping variable.</p>
 </div>
 <div class="section level2">
 <h2 id="reporting">Reporting<a class="anchor" aria-label="anchor" href="#reporting"></a>
@@ -531,7 +489,7 @@ and</p></li>
 interpretive context for the reported statistics.</p></li>
 </ul>
 <p>For example, let’s see the following example:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">ToothGrowth</span>, <span class="va">supp</span>, <span class="va">len</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/reporting-1.png" class="r-plt" alt="" width="100%"></p>
 <p>The narrative context (assuming <code>type = "parametric"</code>) can
@@ -556,6 +514,31 @@ one-way ANOVA instead of a <em>t</em>-test.</p>
 </h2>
 <p>If you find any bugs or have any suggestions/remarks, please file an
 issue on <code>GitHub</code>: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>You can cite this package/vignette as:</p>
+<pre><code>To cite package 'ggstatsplot' in publications use:
+
+  Patil, I. (2021). Visualizations with statistical details: The
+  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+  doi:10.21105/joss.03167
+
+A BibTeX entry for LaTeX users is
+
+  @Article{,
+    doi = {10.21105/joss.03167},
+    url = {https://doi.org/10.21105/joss.03167},
+    year = {2021},
+    publisher = {{The Open Journal}},
+    volume = {6},
+    number = {61},
+    pages = {3167},
+    author = {Indrajeet Patil},
+    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+    journal = {{Journal of Open Source Software}},
+  }</code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

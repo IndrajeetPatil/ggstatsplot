@@ -135,28 +135,6 @@
     
     
 <hr>
-<p>You can cite this package/vignette as:</p>
-<pre><code>To cite package 'ggstatsplot' in publications use:
-
-  Patil, I. (2021). Visualizations with statistical details: The
-  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
-  doi:10.21105/joss.03167
-
-A BibTeX entry for LaTeX users is
-
-  @Article{,
-    doi = {10.21105/joss.03167},
-    url = {https://doi.org/10.21105/joss.03167},
-    year = {2021},
-    publisher = {{The Open Journal}},
-    volume = {6},
-    number = {61},
-    pages = {3167},
-    author = {Indrajeet Patil},
-    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
-    journal = {{Journal of Open Source Software}},
-  }</code></pre>
-<hr>
 <p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></p>
 <p>The function <code>ggscatterstats</code> is meant to provide a
 <strong>publication-ready scatterplot</strong> with all statistical
@@ -179,7 +157,7 @@ dataset.</p>
 about movies scraped from <a href="https://www.imdb.com/" class="external-link">IMDB</a>.
 Specifically, we will be using cleaned version of this dataset included
 in the <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> package itself.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## see the selected data</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">movies_long</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 1,579</span></span>
@@ -200,7 +178,7 @@ data points.</p>
 <p>Note that the marginal histograms are drawn with the
 <a href="https://github.com/jtlandis/ggside" class="external-link">ggside</a> package; set <code>marginal = FALSE</code> to turn
 them off.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">movies_long</span>, <span class="co">## data frame from which variables are taken</span></span>
 <span>  x <span class="op">=</span> <span class="va">budget</span>, <span class="co">## predictor/independent variable</span></span>
@@ -237,7 +215,7 @@ different studies, etc.</p>
 <p>Let’s see how we can use this function to apply
 <code>ggscatterstats</code> for all MPAA ratings. Also, let’s run a
 robust test this time.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/grouped_ggscatterstats.html">grouped_ggscatterstats</a></span><span class="op">(</span></span>
 <span>  <span class="co">## arguments relevant for ggscatterstats</span></span>
 <span>  data <span class="op">=</span> <span class="va">movies_long</span>,</span>
@@ -263,14 +241,10 @@ holds only for PG-13 and R-rated movies.</p>
 <h2 id="grouped-analysis-with-ggscatterstats-purrr">Grouped analysis with <code>ggscatterstats</code> +
 <code>{purrr}</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-ggscatterstats-purrr"></a>
 </h2>
-<p>Although this is a quick and dirty way to explore large amount of
-data with minimal effort, it does come with an important limitation:
-reduced flexibility. For example, if we wanted to add, let’s say, a
-separate type of marginal distribution plot for each MPAA rating or if
-we wanted to use different types of correlations across different levels
-of MPAA ratings, this is not possible. But this can be easily done using
-<a href="https://purrr.tidyverse.org/" class="external-link">purrr</a>.</p>
-<p>See the associated vignette here: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
+<p>For group-specific arguments or multiple grouping variables, see the
+<a href="purrr_examples.html#why-purrr">programmatic plotting
+article</a>. It explains how to split the data, customize each call, and
+combine the resulting plots.</p>
 </div>
 <div class="section level2">
 <h2 id="summary-of-graphics-and-tests">Summary of graphics and tests<a class="anchor" aria-label="anchor" href="#summary-of-graphics-and-tests"></a>
@@ -322,14 +296,16 @@ of MPAA ratings, this is not possible. But this can be easily done using
 <div class="section level2">
 <h2 id="extracting-statistical-details">Extracting statistical details<a class="anchor" aria-label="anchor" href="#extracting-statistical-details"></a>
 </h2>
-<p>All statistical details shown in the plot are also available as data
-frames, which can be extracted with <code><a href="../../reference/extract_stats.html">extract_stats()</a></code>. The
-returned list contains results from the test in the subtitle
-(<code>subtitle_data</code>) and the Bayesian test in the caption
-(<code>caption_data</code>).</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<p>Use <a href="../../reference/extract_stats.html"><code>extract_stats()</code></a>
+to retrieve the results as data frames; its reference page describes all
+returned components, including the lists returned for
+<code>grouped_</code> plots.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">qsec</span>, <span class="va">drat</span><span class="op">)</span></span>
-<span></span>
+<span><span class="va">p</span></span></code></pre></div>
+<p><img src="ggscatterstats_files/figure-html/extract_stats-1.png" class="r-plt" alt="" width="100%"></p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">subtitle_data</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 14</span></span></span>
 <span><span class="co">#&gt;   <span style="font-weight: bold;">parameter1</span> <span style="font-weight: bold;">parameter2</span> <span style="font-weight: bold;">effectsize</span>          <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span></span></span>
@@ -341,9 +317,6 @@ returned list contains results from the test in the subtitle
 <span><span class="co">#&gt;   <span style="font-weight: bold;">expression</span></span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;language&gt;</span></span></span></code></pre></div>
-<p>For <code><a href="../../reference/grouped_ggscatterstats.html">grouped_ggscatterstats()</a></code> plots,
-<code><a href="../../reference/extract_stats.html">extract_stats()</a></code> returns one such list for each level of the
-grouping variable.</p>
 </div>
 <div class="section level2">
 <h2 id="reporting">Reporting<a class="anchor" aria-label="anchor" href="#reporting"></a>
@@ -358,12 +331,7 @@ and</p></li>
 <li><p>the <em>standard</em> narrative approach, which provides
 interpretive context for the reported statistics.</p></li>
 </ul>
-<p>For example, let’s see the following example:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggscatterstats.html">ggscatterstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">qsec</span>, <span class="va">drat</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggscatterstats_files/figure-html/reporting-1.png" class="r-plt" alt="" width="100%"></p>
-<p>The narrative context (assuming <code>type = "parametric"</code>) can
-complement this plot either as a figure caption or in the main text-</p>
+<p>For the example above, the narrative context could read:</p>
 <blockquote>
 <p>Pearson’s correlation test revealed that, across 32 cars, a measure
 of acceleration (1/4 mile time; <code>qsec</code>) was positively
@@ -383,6 +351,31 @@ variables).</p>
 </h2>
 <p>If you find any bugs or have any suggestions/remarks, please file an
 issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>You can cite this package/vignette as:</p>
+<pre><code>To cite package 'ggstatsplot' in publications use:
+
+  Patil, I. (2021). Visualizations with statistical details: The
+  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+  doi:10.21105/joss.03167
+
+A BibTeX entry for LaTeX users is
+
+  @Article{,
+    doi = {10.21105/joss.03167},
+    url = {https://doi.org/10.21105/joss.03167},
+    year = {2021},
+    publisher = {{The Open Journal}},
+    volume = {6},
+    number = {61},
+    pages = {3167},
+    author = {Indrajeet Patil},
+    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+    journal = {{Journal of Open Source Software}},
+  }</code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

@@ -135,28 +135,6 @@
     
     
 <hr>
-<p>You can cite this package/vignette as:</p>
-<pre><code>To cite package 'ggstatsplot' in publications use:
-
-  Patil, I. (2021). Visualizations with statistical details: The
-  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
-  doi:10.21105/joss.03167
-
-A BibTeX entry for LaTeX users is
-
-  @Article{,
-    doi = {10.21105/joss.03167},
-    url = {https://doi.org/10.21105/joss.03167},
-    year = {2021},
-    publisher = {{The Open Journal}},
-    volume = {6},
-    number = {61},
-    pages = {3167},
-    author = {Indrajeet Patil},
-    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
-    journal = {{Journal of Open Source Software}},
-  }</code></pre>
-<hr>
 <p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></p>
 <div class="section level2">
 <h2 id="introduction-to-ggpiestats">Introduction to <code>ggpiestats</code><a class="anchor" aria-label="anchor" href="#introduction-to-ggpiestats"></a>
@@ -193,7 +171,7 @@ Dataset provides information “on the fate of passengers on the fatal
 maiden voyage of the ocean liner <em>Titanic</em>, including economic
 status (class), sex, age, and survival.”</p>
 <p>Let’s have a look at the structure of both.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># looking at the original data in tabular format</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">Titanic</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  'table' num [1:4, 1:2, 1:2, 1:2] 0 0 35 0 0 0 17 0 118 154 ...</span></span>
@@ -226,7 +204,7 @@ we’d like to display a piechart with the percentages of passengers who
 did or did not survive. Our initial hypothesis is that it was no
 different than flipping a coin. People had a 50/50 chance of
 surviving.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">Titanic_full</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">Survived</span>,</span>
@@ -249,7 +227,7 @@ the code (the proportions follow the order of the levels of
 of, or associated with, their survival status, i.e., we want to test
 whether the proportion of people who survived was different between the
 sexes.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">Titanic_full</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">Survived</span>,</span>
@@ -286,7 +264,7 @@ specified <strong>grouping variable</strong> and then combines the list
 of individual plots into a single plot. Note that the grouping variable
 can be anything: conditions in a given study, groups in a study sample,
 different studies, etc.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/grouped_ggpiestats.html">grouped_ggpiestats</a></span><span class="op">(</span></span>
 <span>  <span class="co"># arguments relevant for `ggpiestats()`</span></span>
 <span>  data <span class="op">=</span> <span class="va">Titanic_full</span>,</span>
@@ -313,141 +291,31 @@ not significantly different from 50/50.</p>
 <h2 id="grouped-analysis-with-ggpiestats-purrr">Grouped analysis with <code>ggpiestats</code> +
 <code>{purrr}</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-ggpiestats-purrr"></a>
 </h2>
-<p>Although <code>grouped_ggpiestats</code> provides a quick way to
-explore the data, it leaves much to be desired. For example, we may want
-to add different captions, titles, themes, or palettes for each level of
-the grouping variable, etc. For cases like these, it would be better to
-use <a href="https://purrr.tidyverse.org/" class="external-link">purrr</a> package.</p>
-<p>See the associated vignette here: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
+<p>For group-specific arguments or multiple grouping variables, see the
+<a href="purrr_examples.html#why-purrr">programmatic plotting
+article</a>. It explains how to split the data, customize each call, and
+combine the resulting plots.</p>
 </div>
 <div class="section level2">
 <h2 id="working-with-data-organized-by-counts">Working with data organized by <code>counts</code><a class="anchor" aria-label="anchor" href="#working-with-data-organized-by-counts"></a>
 </h2>
-<p><code>ggpiestats</code> can also work with data frame containing
-counts (aka tabled data), i.e., when each row doesn’t correspond to a
-unique observation. For example, consider the following notional
-<code>fishing</code> data frame containing data from two boats
-(<code>A</code> and <code>B</code>) about the number of different types
-of fish they caught in the months of <code>February</code> and
-<code>March</code>. In this data frame, each row corresponds to a unique
-combination of <code>Boat</code> and <code>Month</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># (this is completely fictional; I don't know first thing about fishing!)</span></span>
-<span></span>
-<span><span class="va">fishing</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span>  Boat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"B"</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  Month <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"February"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"March"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"February"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"March"</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>  Fish <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>    <span class="st">"Bass"</span>,</span>
-<span>    <span class="st">"Catfish"</span>,</span>
-<span>    <span class="st">"Cod"</span>,</span>
-<span>    <span class="st">"Haddock"</span>,</span>
-<span>    <span class="st">"Cod"</span>,</span>
-<span>    <span class="st">"Haddock"</span>,</span>
-<span>    <span class="st">"Bass"</span>,</span>
-<span>    <span class="st">"Catfish"</span>,</span>
-<span>    <span class="st">"Bass"</span>,</span>
-<span>    <span class="st">"Catfish"</span>,</span>
-<span>    <span class="st">"Cod"</span>,</span>
-<span>    <span class="st">"Haddock"</span>,</span>
-<span>    <span class="st">"Cod"</span>,</span>
-<span>    <span class="st">"Haddock"</span>,</span>
-<span>    <span class="st">"Bass"</span>,</span>
-<span>    <span class="st">"Catfish"</span></span>
-<span>  <span class="op">)</span>,</span>
-<span>  SumOfCaught <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">20</span>, <span class="fl">35</span>, <span class="fl">40</span>, <span class="fl">40</span>, <span class="fl">25</span>, <span class="fl">30</span>, <span class="fl">42</span>, <span class="fl">40</span>, <span class="fl">30</span>, <span class="fl">33</span>, <span class="fl">26</span>, <span class="fl">100</span>, <span class="fl">30</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span></span>
-<span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">fishing</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 16 × 4</span></span></span>
-<span><span class="co">#&gt;    <span style="font-weight: bold;">Boat</span>  <span style="font-weight: bold;">Month</span>    <span style="font-weight: bold;">Fish</span>    <span style="font-weight: bold;">SumOfCaught</span></span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> B     February Bass             25</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> B     February Catfish          20</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> B     March    Cod              35</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> B     March    Haddock          40</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> A     February Cod              40</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> A     February Haddock          25</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> A     March    Bass             30</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> A     March    Catfish          42</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> A     February Bass             40</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> A     February Catfish          30</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> A     March    Cod              33</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> A     March    Haddock          26</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> B     February Cod             100</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> B     February Haddock          30</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> B     March    Bass             20</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> B     March    Catfish          20</span></span></code></pre></div>
-<p>When the data is organized this way, we make a slightly different
-call to the <code><a href="../../reference/ggpiestats.html">ggpiestats()</a></code> function: we use the
-<code>counts</code> argument.</p>
-<p>If we want to investigate the relationship of type of fish by month
-(a test of independence), our command would be:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">fishing</span>,</span>
-<span>  x <span class="op">=</span> <span class="va">Fish</span>,</span>
-<span>  y <span class="op">=</span> <span class="va">Month</span>,</span>
-<span>  counts <span class="op">=</span> <span class="va">SumOfCaught</span>,</span>
-<span>  label <span class="op">=</span> <span class="st">"both"</span>,</span>
-<span>  palette <span class="op">=</span> <span class="st">"ggsci::default_jama"</span>,</span>
-<span>  title <span class="op">=</span> <span class="st">"Type fish caught by month"</span>,</span>
-<span>  caption <span class="op">=</span> <span class="st">"Source: completely made up"</span>,</span>
-<span>  legend.title <span class="op">=</span> <span class="st">"Type fish caught: "</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpiestats_files/figure-html/ggpiestats8-1.png" class="r-plt" alt="" width="100%"></p>
-<p>The results support our hypothesis that the type of fish caught is
-related to the month in which we’re fishing. The
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>χ</mi><mn>2</mn></msup><annotation encoding="application/x-tex">\chi^2</annotation></semantics></math>
-independence test results are shown at the top of the plot. In February,
-we catch significantly more Cod than we would hypothesize for an equal
-distribution. Whereas, in March, our results indicate there’s no strong
-evidence that the distribution isn’t equal.</p>
+<p>Use <code>counts</code> when each row contains the frequency of a
+combination of categories rather than one observation. See the <a href="ggbarstats.html#working-with-data-organized-by-counts">worked
+example with aggregated counts</a> in the bar-chart article; replace
+<code><a href="../../reference/ggbarstats.html">ggbarstats()</a></code> with <code><a href="../../reference/ggpiestats.html">ggpiestats()</a></code> to display the
+same analysis as pie charts. Use <code>label = "both"</code> to show
+counts and percentages on each slice.</p>
 </div>
 <div class="section level2">
 <h2 id="within-subjects-designs">Within-subjects designs<a class="anchor" aria-label="anchor" href="#within-subjects-designs"></a>
 </h2>
-<p>Let’s imagine we’re conducting clinical trials for some new imaginary
-wonder drug. We have 134 subjects entering the trial. Some of them enter
-healthy (<em>n</em> = 96), some of them enter the trial already being
-sick (<em>n</em> = 38). All of them receive our treatment or
-intervention. Then we check back in a month to see if they are healthy
-or sick. A classic pre/post experimental design. We’re interested in
-seeing the change in both groupings. In the case of within-subjects
-designs, you can set <code>paired = TRUE</code>, which will display
-results from <strong>McNemar test</strong> in the subtitle.</p>
-<p>(<strong>Note:</strong> If you forget to set
-<code>paired = TRUE</code>, the results will be inaccurate.)</p>
-<p>Note that, for McNemar’s test, <code>x</code> and <code>y</code> need
-to have the same levels, and each row should correspond to one subject
-(or, as here, to the count of subjects with a given combination of
-before/after responses).</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># create imaginary data</span></span>
-<span><span class="va">clinical_trial</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
-<span>  <span class="op">~</span><span class="va">SickBefore</span>, <span class="op">~</span><span class="va">SickAfter</span>, <span class="op">~</span><span class="va">Counts</span>,</span>
-<span>  <span class="st">"No"</span>, <span class="st">"Yes"</span>, <span class="fl">4</span>,</span>
-<span>  <span class="st">"Yes"</span>, <span class="st">"No"</span>, <span class="fl">25</span>,</span>
-<span>  <span class="st">"Yes"</span>, <span class="st">"Yes"</span>, <span class="fl">13</span>,</span>
-<span>  <span class="st">"No"</span>, <span class="st">"No"</span>, <span class="fl">92</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">clinical_trial</span>,</span>
-<span>  x <span class="op">=</span> <span class="va">SickAfter</span>,</span>
-<span>  y <span class="op">=</span> <span class="va">SickBefore</span>,</span>
-<span>  counts <span class="op">=</span> <span class="va">Counts</span>,</span>
-<span>  paired <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  label <span class="op">=</span> <span class="st">"both"</span>,</span>
-<span>  title <span class="op">=</span> <span class="st">"Results from imaginary clinical trial"</span>,</span>
-<span>  palette <span class="op">=</span> <span class="st">"ggsci::default_ucscgb"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpiestats_files/figure-html/ggpiestats9-1.png" class="r-plt" alt="" width="100%"></p>
-<p>The results bode well for our experimental wonder drug. Of the 96 who
-started out healthy only 4% were sick after a month. Ideally, we would
-have hoped for zero but reality is seldom perfect. On the other side of
-the 38 who started out sick that number has reduced to just 13 or 34%
-which is a marked improvement.</p>
+<p>For paired categorical responses, set <code>paired = TRUE</code> to
+request McNemar’s test. The variables <code>x</code> and <code>y</code>
+must have the same levels. Each row represents one subject or a count of
+subjects with a given before/after response.</p>
+<p>See the <a href="ggbarstats.html#within-subjects-designs">paired-response
+example</a> in the bar-chart article. The same call works with
+<code><a href="../../reference/ggpiestats.html">ggpiestats()</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="summary-of-graphics-and-tests">Summary of graphics and tests<a class="anchor" aria-label="anchor" href="#summary-of-graphics-and-tests"></a>
@@ -485,100 +353,49 @@ which is a marked improvement.</p>
 <div class="section level2">
 <h2 id="extracting-statistical-details">Extracting statistical details<a class="anchor" aria-label="anchor" href="#extracting-statistical-details"></a>
 </h2>
-<p>All statistical details shown in the plot are also available as data
-frames, which can be extracted with <code><a href="../../reference/extract_stats.html">extract_stats()</a></code>. The
-returned list contains results from the test in the subtitle
-(<code>subtitle_data</code>), the Bayesian test in the caption
-(<code>caption_data</code>), the one-sample proportion tests for each
-level of <code>y</code> (<code>one_sample_data</code>), the counts and
-percentages shown in the plot (<code>descriptive_data</code>), and
-pairwise comparisons (Fisher’s exact tests) between levels of
-<code>x</code>, which are not shown in the plot
-(<code>pairwise_comparisons_data</code>). Pairwise comparisons are
-computed only for unpaired designs in which both <code>x</code> and
-<code>y</code> are specified, <code>x</code> has more than two levels,
-and <code>y</code> has at least two; otherwise,
-<code>pairwise_comparisons_data</code> is <code>NULL</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span><span class="va">Titanic_full</span>, <span class="va">Survived</span>, <span class="va">Sex</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">subtitle_data</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 13</span></span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">statistic</span>    <span style="font-weight: bold;">df</span>   <span style="font-weight: bold;">p.value</span> <span style="font-weight: bold;">method</span>                     <span style="font-weight: bold;">effectsize</span>       </span></span>
-<span><span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>      457.     1 2.30<span style="color: #949494;">e</span><span style="color: #BB0000;">-101</span> Pearson's Chi-squared test Cramer's V (adj.)</span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.level</span> <span style="font-weight: bold;">conf.low</span> <span style="font-weight: bold;">conf.high</span> <span style="font-weight: bold;">conf.method</span> <span style="font-weight: bold;">conf.distribution</span> <span style="font-weight: bold;">n.obs</span></span></span>
-<span><span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    <span style="color: #949494;">0.</span>455       <span style="color: #949494;">0.</span>95    <span style="color: #949494;">0.</span>413     <span style="color: #949494;">0.</span>497 ncp         chisq              <span style="text-decoration: underline;">2</span>20<span style="color: #949494;">1</span></span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">expression</span></span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">&lt;language&gt;</span></span></span>
-<span></span>
-<span><span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">one_sample_data</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 19</span></span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">Sex</span>    <span style="font-weight: bold;">counts</span>  <span style="font-weight: bold;">perc</span> <span style="font-weight: bold;">N</span>           <span style="font-weight: bold;">statistic</span>    <span style="font-weight: bold;">df</span>   <span style="font-weight: bold;">p.value</span></span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Male     <span style="text-decoration: underline;">1</span>73<span style="color: #949494;">1</span>  78.6 (n = 1,731)      574.     1 6.72<span style="color: #949494;">e</span><span style="color: #BB0000;">-127</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Female    470  21.4 (n = 470)        101.     1 8.68<span style="color: #949494;">e</span><span style="color: #BB0000;">- 24</span></span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">method</span>                                   <span style="font-weight: bold;">effectsize</span>  <span style="font-weight: bold;">estimate</span> <span style="font-weight: bold;">conf.level</span></span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Chi-squared test for given probabilities Pearson's C    <span style="color: #949494;">0.</span>499       <span style="color: #949494;">0.</span>95</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Chi-squared test for given probabilities Pearson's C    <span style="color: #949494;">0.</span>421       <span style="color: #949494;">0.</span>95</span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">conf.low</span> <span style="font-weight: bold;">conf.high</span> <span style="font-weight: bold;">conf.method</span> <span style="font-weight: bold;">conf.distribution</span> <span style="font-weight: bold;">n.obs</span> <span style="font-weight: bold;">expression</span></span></span>
-<span><span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>    <span style="color: #949494;">0.</span>468     <span style="color: #949494;">0.</span>529 ncp         chisq              <span style="text-decoration: underline;">1</span>73<span style="color: #949494;">1</span> <span style="color: #949494;">&lt;language&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>    <span style="color: #949494;">0.</span>350     <span style="color: #949494;">0.</span>485 ncp         chisq               470 <span style="color: #949494;">&lt;language&gt;</span></span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">.label</span>                                                                       </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;glue&gt;</span>                                                                       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~chi['gof']^2~(1)==574.24, ~italic(p)=='6.72e-127', ~italic(n)=='1,731')</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~chi['gof']^2~(1)==101.11, ~italic(p)=='8.68e-24', ~italic(n)=='470')   </span></span>
-<span><span class="co">#&gt;   <span style="font-weight: bold;">.p.label</span>                     </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;glue&gt;</span>                       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> list(~italic(p)=='6.72e-127')</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> list(~italic(p)=='8.68e-24')</span></span></code></pre></div>
-<p>For <code><a href="../../reference/grouped_ggpiestats.html">grouped_ggpiestats()</a></code> plots,
-<code><a href="../../reference/extract_stats.html">extract_stats()</a></code> returns one such list for each level of the
-grouping variable.</p>
+<p>Use <a href="../../reference/extract_stats.html"><code>extract_stats()</code></a>
+to retrieve the statistical results. Both categorical plotting functions
+return the same components; see the <a href="ggbarstats.html#extracting-statistical-details">bar-chart
+extraction example</a> for proportion tests and pairwise
+comparisons.</p>
 </div>
 <div class="section level2">
 <h2 id="reporting">Reporting<a class="anchor" aria-label="anchor" href="#reporting"></a>
 </h2>
-<p>If you wish to include statistical analysis results in a
-publication/report, the ideal reporting practice will be a hybrid of two
-approaches:</p>
-<ul>
-<li><p>the <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> approach, where the plot contains
-both the visual and numerical summaries about a statistical model,
-and</p></li>
-<li><p>the <em>standard</em> narrative approach, which provides
-interpretive context for the reported statistics.</p></li>
-</ul>
-<p>For example, let’s see the following example:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpiestats.html">ggpiestats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpiestats_files/figure-html/reporting-1.png" class="r-plt" alt="" width="100%"></p>
-<p>The narrative context (assuming <code>type = "parametric"</code>) can
-complement this plot either as a figure caption or in the main text-</p>
-<blockquote>
-<p>Pearson’s
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>χ</mi><mn>2</mn></msup><annotation encoding="application/x-tex">\chi^2</annotation></semantics></math>-test
-of independence revealed that, across 32 automobiles, there was a
-significant association between transmission type and number of
-cylinders. The Bayes Factor for the same analysis revealed that the data
-were 16.78 times more probable under the alternative hypothesis as
-compared to the null hypothesis. This can be considered strong evidence
-(Jeffreys, 1961) in favor of the alternative hypothesis.</p>
-</blockquote>
-<p>Similar reporting style can be followed when the function performs
-one-sample goodness-of-fit test instead of a
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>χ</mi><mn>2</mn></msup><annotation encoding="application/x-tex">\chi^2</annotation></semantics></math>-test.</p>
-<p>Same holds true for <code>ggbarstats</code>.</p>
+<p>The <a href="ggbarstats.html#reporting">bar-chart reporting
+example</a> also applies to <code><a href="../../reference/ggpiestats.html">ggpiestats()</a></code>: the statistical
+analysis is the same, while the graphical representation differs.</p>
 </div>
 <div class="section level2">
 <h2 id="suggestions">Suggestions<a class="anchor" aria-label="anchor" href="#suggestions"></a>
 </h2>
 <p>If you find any bugs or have any suggestions/remarks, please file an
 issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>You can cite this package/vignette as:</p>
+<pre><code>To cite package 'ggstatsplot' in publications use:
+
+  Patil, I. (2021). Visualizations with statistical details: The
+  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+  doi:10.21105/joss.03167
+
+A BibTeX entry for LaTeX users is
+
+  @Article{,
+    doi = {10.21105/joss.03167},
+    url = {https://doi.org/10.21105/joss.03167},
+    year = {2021},
+    publisher = {{The Open Journal}},
+    volume = {6},
+    number = {61},
+    pages = {3167},
+    author = {Indrajeet Patil},
+    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+    journal = {{Journal of Open Source Software}},
+  }</code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

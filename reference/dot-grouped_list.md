@@ -14,9 +14,9 @@ list equal to the factor levels of the grouping variable.
 - data:
 
   A data frame (or a tibble) from which variables specified are to be
-  taken. Other data types (e.g., matrix,table, array, etc.) will **not**
-  be accepted. Additionally, grouped data frames from `{dplyr}` should
-  be ungrouped before they are entered as `data`.
+  taken. Other data types (e.g., matrix, table, array, etc.) will
+  **not** be accepted. Additionally, grouped data frames from `{dplyr}`
+  should be ungrouped before they are entered as `data`.
 
 - grouping.var:
 

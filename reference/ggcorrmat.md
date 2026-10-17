@@ -69,7 +69,10 @@ ggcorrmat(
 
   - `"bayes"`
 
-  You can specify just the initial letter.
+  You can specify just the initial letter (e.g. `"np"` or `"bf"`).
+  Matching is on the initial lowercase letter only, so any other value
+  (including capitalized values such as `"Bayes"`) falls back to
+  `"parametric"` without a warning.
 
 - tr:
 
@@ -103,8 +106,7 @@ ggcorrmat(
 - conf.level:
 
   Scalar between `0` and `1` (default: `95%` confidence/credible
-  intervals, `0.95`). If `NULL`, no confidence intervals will be
-  computed.
+  intervals, `0.95`).
 
 - bf.prior:
 

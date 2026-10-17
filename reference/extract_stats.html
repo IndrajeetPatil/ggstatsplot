@@ -122,23 +122,21 @@ the Bayesian test)</p></li>
 (<code><a href="ggpiestats.html">ggpiestats()</a></code> and <code><a href="ggbarstats.html">ggbarstats()</a></code>)</p></li>
 <li><p><code>tidy_data</code>: tidy model parameters (<code><a href="ggcoefstats.html">ggcoefstats()</a></code>)</p></li>
 <li><p><code>glance_data</code>: model performance indices (<code><a href="ggcoefstats.html">ggcoefstats()</a></code>)</p></li>
-</ul><p>For <code>extract_subtitle()</code> and <code>extract_caption()</code>, the expression displayed
-in the subtitle or caption, respectively (or <code>NULL</code>).</p>
+</ul><p>For <code>extract_subtitle()</code> and <code>extract_caption()</code>, the statistical expression
+used in the subtitle or caption, respectively (or <code>NULL</code> if unavailable).
+User-supplied subtitle and caption text is not returned.</p>
 <p>For plots from <code>grouped_*</code> functions, a list with one such element per plot.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>These are convenience functions to extract data frames or expressions with
-statistical details that are used to create expressions displayed in
-<code>{ggstatsplot}</code> plots as subtitle, caption, etc. Note that all of this
-analysis is carried out by the <code>{statsExpressions}</code>
-<a href="https://www.indrapatil.com/statsExpressions/" class="external-link">package</a>. And so if you
-are using these functions only to extract data frames, you are better off
-using that package.</p>
-<p>The only exception is the <code><a href="ggcorrmat.html">ggcorrmat()</a></code> function, for which all elements
-are <code>NULL</code>. But, if a data frame is what you want, you shouldn't be using
-<code><a href="ggcorrmat.html">ggcorrmat()</a></code> anyway. You can use <code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code> function
-which provides tidy data frames by default.</p>
+    <p>These helpers retrieve the statistical data frames and expressions retained
+by <code>{ggstatsplot}</code> plots. If you only need tabular results, call the
+underlying analysis functions directly: <code>{statsExpressions}</code> for statistical
+tests, <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code> for model coefficients, and
+<code><a href="https://easystats.github.io/performance/reference/model_performance.html" class="external-link">performance::model_performance()</a></code> for model fit indices.</p>
+<p><code><a href="ggcorrmat.html">ggcorrmat()</a></code> does not retain statistical data frames, so all elements
+returned by <code>extract_stats()</code> are <code>NULL</code>. Use
+<code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code> to obtain its statistical results as data.</p>
     </div>
 
     <div class="section level2">

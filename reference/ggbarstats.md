@@ -43,9 +43,9 @@ ggbarstats(
 - data:
 
   A data frame (or a tibble) from which variables specified are to be
-  taken. Other data types (e.g., matrix,table, array, etc.) will **not**
-  be accepted. Additionally, grouped data frames from `{dplyr}` should
-  be ungrouped before they are entered as `data`.
+  taken. Other data types (e.g., matrix, table, array, etc.) will
+  **not** be accepted. Additionally, grouped data frames from `{dplyr}`
+  should be ungrouped before they are entered as `data`.
 
 - x:
 
@@ -79,18 +79,27 @@ ggbarstats(
 
   - `"bayes"`
 
-  You can specify just the initial letter.
+  You can specify just the initial letter (e.g. `"np"` or `"bf"`).
+  Matching is on the initial lowercase letter only, so any other value
+  (including capitalized values such as `"Bayes"`) falls back to
+  `"parametric"` without a warning.
 
 - paired:
 
   Logical indicating whether data came from a within-subjects or
-  repeated measures design study (Default: `FALSE`).
+  repeated measures design study (Default: `FALSE`). Only relevant for
+  two-way tables (i.e., when `y` is supplied), and paired designs are
+  only supported for frequentist tests (McNemar's test). For a two-way
+  table with `type = "bayes"`, `paired` is ignored and the Bayesian test
+  of independence for unpaired data is run instead. For one-way tables
+  (`y = NULL`), `paired` has no effect.
 
 - results.subtitle:
 
   Decides whether the results of statistical tests are to be displayed
-  as a subtitle (Default: `TRUE`). If set to `FALSE`, only the plot will
-  be returned.
+  as a subtitle (Default: `TRUE`). Setting this to `FALSE` also skips
+  the automatic Bayes Factor caption. See the individual annotation
+  arguments to control other plot details.
 
 - label:
 
@@ -153,8 +162,7 @@ ggbarstats(
 - conf.level:
 
   Scalar between `0` and `1` (default: `95%` confidence/credible
-  intervals, `0.95`). If `NULL`, no confidence intervals will be
-  computed.
+  intervals, `0.95`).
 
 - p.adjust.method:
 
@@ -261,6 +269,11 @@ The table below provides summary about:
 
 - functions used internally to compute these details
 
+There are no dedicated non-parametric or robust contingency table
+analyses. `type = "nonparametric"` and `type = "robust"` are accepted,
+but run the same frequentist tests as `type = "parametric"` (the
+"Parametric/Non-parametric" rows below).
+
 ### two-way table
 
 **Hypothesis testing**
@@ -282,6 +295,10 @@ The table below provides summary about:
 | Bayesian | Unpaired | Cramer's *V* | Yes | [`effectsize::cramers_v()`](https://easystats.github.io/effectsize/reference/phi.html) |
 | Parametric/Non-parametric | Paired | Cohen's *g* | Yes | [`effectsize::cohens_g()`](https://easystats.github.io/effectsize/reference/cohens_g.html) |
 | Bayesian | Paired | No | No | No |
+
+Paired Bayesian analysis is not supported: for a two-way table with
+`type = "bayes"`, the `paired` argument is ignored and the unpaired
+Bayesian test is run instead.
 
 ### one-way table
 

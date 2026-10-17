@@ -2,31 +2,6 @@
 
 ------------------------------------------------------------------------
 
-You can cite this package/vignette as:
-
-    To cite package 'ggstatsplot' in publications use:
-
-      Patil, I. (2021). Visualizations with statistical details: The
-      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
-      doi:10.21105/joss.03167
-
-    A BibTeX entry for LaTeX users is
-
-      @Article{,
-        doi = {10.21105/joss.03167},
-        url = {https://doi.org/10.21105/joss.03167},
-        year = {2021},
-        publisher = {{The Open Journal}},
-        volume = {6},
-        number = {61},
-        pages = {3167},
-        author = {Indrajeet Patil},
-        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
-        journal = {{Journal of Open Source Software}},
-      }
-
-------------------------------------------------------------------------
-
 Lifecycle:
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
@@ -298,16 +273,11 @@ from
 
 ## Grouped analysis with `ggcorrmat()` + `{purrr}`
 
-Although `grouped_` function is good for quickly exploring the data, it
-reduces the flexibility with which this function can be used. This is
-because the common parameters used are applied to plots corresponding to
-all levels of the grouping variable and there is no way to customize the
-arguments for different levels of the grouping variable. We will see how
-this can be done using the [purrr](https://purrr.tidyverse.org/)
-package.
-
-See the associated vignette here:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
+For group-specific arguments or multiple grouping variables, see the
+[programmatic plotting
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#why-purrr).
+It explains how to split the data, customize each call, and combine the
+resulting plots.
 
 ## Summary of graphics and tests
 
@@ -324,3 +294,28 @@ can be found in the function documentation:
 If you find any bugs or have any suggestions/remarks, please file an
 issue on `GitHub`:
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+## Citation
+
+You can cite this package/vignette as:
+
+    To cite package 'ggstatsplot' in publications use:
+
+      Patil, I. (2021). Visualizations with statistical details: The
+      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+      doi:10.21105/joss.03167
+
+    A BibTeX entry for LaTeX users is
+
+      @Article{,
+        doi = {10.21105/joss.03167},
+        url = {https://doi.org/10.21105/joss.03167},
+        year = {2021},
+        publisher = {{The Open Journal}},
+        volume = {6},
+        number = {61},
+        pages = {3167},
+        author = {Indrajeet Patil},
+        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+        journal = {{Journal of Open Source Software}},
+      }

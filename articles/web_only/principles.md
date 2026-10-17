@@ -2,31 +2,6 @@
 
 ------------------------------------------------------------------------
 
-You can cite this package/vignette as:
-
-    To cite package 'ggstatsplot' in publications use:
-
-      Patil, I. (2021). Visualizations with statistical details: The
-      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
-      doi:10.21105/joss.03167
-
-    A BibTeX entry for LaTeX users is
-
-      @Article{,
-        doi = {10.21105/joss.03167},
-        url = {https://doi.org/10.21105/joss.03167},
-        year = {2021},
-        publisher = {{The Open Journal}},
-        volume = {6},
-        number = {61},
-        pages = {3167},
-        author = {Indrajeet Patil},
-        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
-        journal = {{Journal of Open Source Software}},
-      }
-
-------------------------------------------------------------------------
-
 > **This vignette is still work in progress.**
 
 ## Graphic design principles
@@ -325,18 +300,12 @@ expectations about the structure of the data. More specifically,
   columns and each row corresponds to a unique observation ((Wickham,
   2014)).
 
-- All [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) functions
-  remove `NA`s from variables of interest (similar to
-  [ggplot2](https://ggplot2.tidyverse.org); (Wickham, 2016), p.207) in
-  the data and display total sample size (*n*, either observations for
-  between-subjects or pairs for within-subjects designs) in the subtitle
-  to inform the user/reader about the number of observations included
-  for both the statistical analysis and the visualization. But, when
-  sample sizes differ *across* tests in the same function,
-  [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) makes an effort
-  to inform the user of this aspect. For example, `ggcorrmat` features
-  several correlation test pairs and, depending on variables in a given
-  pair, the sample sizes may vary.
+- Missing-data handling depends on the analysis. See the [missing-values
+  FAQ](https://www.indrapatil.com/ggstatsplot/articles/web_only/faq.html#missing-values)
+  for complete-subject handling in repeated measures and pairwise
+  deletion in correlation matrices. The following example shows how
+  [`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
+  reports varying sample sizes.
 
 \
 `## creating a new dataset without any NAs in variables of interest`\
@@ -428,24 +397,43 @@ reporting statistical details:
 
 ### Dealing with null results
 
-For parametric tests (the default `type`), functions also display, by
-default, the Bayes Factor in favor of the null hypothesis ($`BF_{01}`$)
-in the caption (this can be turned off with `bf.message = FALSE`). If
-the null hypothesis can’t be rejected with the null hypothesis
-significance testing (NHST) approach, the Bayesian approach can help
-index evidence in favor of the null hypothesis. By default, natural
-logarithms are shown because Bayes Factor values can sometimes be pretty
-large. Having values on logarithmic scale also makes it easy to compare
-evidence in favor of alternative ($`BF_{10}`$) versus null ($`BF_{01}`$)
-hypotheses (since $`log_{e}(BF_{01}) = - log_{e}(BF_{10})`$). See [this
-article](https://www.indrapatil.com/ggstatsplot/articles/web_only/interpretation.html)
-for more on interpreting these values.
+A non-significant *p*-value alone does not quantify evidence for the
+null hypothesis. Where supported, the Bayes Factor caption provides a
+complementary comparison of the null and alternative models. See
+[Interpretation of Bayes
+Factors](https://www.indrapatil.com/ggstatsplot/articles/web_only/interpretation.md)
+for the reported scale and its interpretation.
 
 ## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an
 issue on `GitHub`:
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+## Citation
+
+You can cite this package/vignette as:
+
+    To cite package 'ggstatsplot' in publications use:
+
+      Patil, I. (2021). Visualizations with statistical details: The
+      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+      doi:10.21105/joss.03167
+
+    A BibTeX entry for LaTeX users is
+
+      @Article{,
+        doi = {10.21105/joss.03167},
+        url = {https://doi.org/10.21105/joss.03167},
+        year = {2021},
+        publisher = {{The Open Journal}},
+        volume = {6},
+        number = {61},
+        pages = {3167},
+        author = {Indrajeet Patil},
+        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+        journal = {{Journal of Open Source Software}},
+      }
 
 Association, A. P. (2009). *Publication Manual of the American
 Psychological Association, 6th Edition*. Washington, DC: American
@@ -466,6 +454,3 @@ Tufte, E. R. (2001). *The Visual Display of Quantitative Information*
 Wickham, H. (2014). Tidy Data. *Journal of Statistical Software*,
 *59*(1), 1–23.
 doi:[10.18637/jss.v059.i10](https://doi.org/10.18637/jss.v059.i10)
-
-Wickham, H. (2016). *Ggplot2: Elegant Graphics for Data Analysis* (2nd
-ed.). New York, NY: Springer.

@@ -46,30 +46,29 @@ data frame or `NULL` if not relevant for the given plot:
 - `glance_data`: model performance indices
   ([`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md))
 
-For `extract_subtitle()` and `extract_caption()`, the expression
-displayed in the subtitle or caption, respectively (or `NULL`).
+For `extract_subtitle()` and `extract_caption()`, the statistical
+expression used in the subtitle or caption, respectively (or `NULL` if
+unavailable). User-supplied subtitle and caption text is not returned.
 
 For plots from `grouped_*` functions, a list with one such element per
 plot.
 
 ## Details
 
-These are convenience functions to extract data frames or expressions
-with statistical details that are used to create expressions displayed
-in `{ggstatsplot}` plots as subtitle, caption, etc. Note that all of
-this analysis is carried out by the `{statsExpressions}`
-[package](https://www.indrapatil.com/statsExpressions/). And so if you
-are using these functions only to extract data frames, you are better
-off using that package.
+These helpers retrieve the statistical data frames and expressions
+retained by `{ggstatsplot}` plots. If you only need tabular results,
+call the underlying analysis functions directly: `{statsExpressions}`
+for statistical tests,
+[`parameters::model_parameters()`](https://easystats.github.io/parameters/reference/model_parameters.html)
+for model coefficients, and
+[`performance::model_performance()`](https://easystats.github.io/performance/reference/model_performance.html)
+for model fit indices.
 
-The only exception is the
 [`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
-function, for which all elements are `NULL`. But, if a data frame is
-what you want, you shouldn't be using
-[`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
-anyway. You can use
+does not retain statistical data frames, so all elements returned by
+`extract_stats()` are `NULL`. Use
 [`correlation::correlation()`](https://easystats.github.io/correlation/reference/correlation.html)
-function which provides tidy data frames by default.
+to obtain its statistical results as data.
 
 ## Examples
 

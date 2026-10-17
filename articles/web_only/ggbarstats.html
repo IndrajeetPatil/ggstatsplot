@@ -135,35 +135,13 @@
     
     
 <hr>
-<p>You can cite this package/vignette as:</p>
-<pre><code>To cite package 'ggstatsplot' in publications use:
-
-  Patil, I. (2021). Visualizations with statistical details: The
-  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
-  doi:10.21105/joss.03167
-
-A BibTeX entry for LaTeX users is
-
-  @Article{,
-    doi = {10.21105/joss.03167},
-    url = {https://doi.org/10.21105/joss.03167},
-    year = {2021},
-    publisher = {{The Open Journal}},
-    volume = {6},
-    number = {61},
-    pages = {3167},
-    author = {Indrajeet Patil},
-    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
-    journal = {{Journal of Open Source Software}},
-  }</code></pre>
-<hr>
 <p>Lifecycle: <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></p>
 <div class="section level2">
 <h2 id="introduction-to-ggbarstats">Introduction to <code>ggbarstats</code><a class="anchor" aria-label="anchor" href="#introduction-to-ggbarstats"></a>
 </h2>
 <p>The function <code>ggbarstats</code> can be used for quick
 <strong>data exploration</strong> and/or to prepare
-<strong>publication-ready pie charts</strong> to summarize the
+<strong>publication-ready bar charts</strong> to summarize the
 statistical relationship(s) among one or more categorical variables. We
 will see examples of how to use this function in this vignette.</p>
 <p>To begin with, here are some instances where you would want to use
@@ -193,7 +171,7 @@ Dataset provides information “on the fate of passengers on the fatal
 maiden voyage of the ocean liner <em>Titanic</em>, including economic
 status (class), sex, age, and survival.”</p>
 <p>Let’s have a look at the structure of both.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># looking at the original data in tabular format</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">Titanic</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  'table' num [1:4, 1:2, 1:2, 1:2] 0 0 35 0 0 0 17 0 118 154 ...</span></span>
@@ -226,7 +204,7 @@ we’d like to display a bar chart with the percentages of passengers who
 did or did not survive. Our initial hypothesis is that it was no
 different than flipping a coin. People had a 50/50 chance of
 surviving.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">Titanic_full</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">Survived</span>,</span>
@@ -249,7 +227,7 @@ the code (the proportions follow the order of the levels of
 of, or associated with, their survival status, i.e., we want to test
 whether the proportion of people who survived was different between the
 sexes.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">Titanic_full</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">Survived</span>,</span>
@@ -279,7 +257,7 @@ specified <strong>grouping variable</strong> and then combines the list
 of individual plots into a single plot. Note that the grouping variable
 can be anything: conditions in a given study, groups in a study sample,
 different studies, etc.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/grouped_ggbarstats.html">grouped_ggbarstats</a></span><span class="op">(</span></span>
 <span>  <span class="co"># arguments relevant for `ggbarstats()`</span></span>
 <span>  data <span class="op">=</span> <span class="va">Titanic_full</span>,</span>
@@ -306,12 +284,10 @@ not significantly different from 50/50.</p>
 <h2 id="grouped-analysis-with-ggbarstats-purrr">Grouped analysis with <code>ggbarstats</code> +
 <code>{purrr}</code><a class="anchor" aria-label="anchor" href="#grouped-analysis-with-ggbarstats-purrr"></a>
 </h2>
-<p>Although <code>grouped_ggbarstats</code> provides a quick way to
-explore the data, it leaves much to be desired. For example, we may want
-to add different captions, titles, themes, or palettes for each level of
-the grouping variable, etc. For cases like these, it would be better to
-use <a href="https://purrr.tidyverse.org/" class="external-link">purrr</a> package.</p>
-<p>See the associated vignette here: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html</a></p>
+<p>For group-specific arguments or multiple grouping variables, see the
+<a href="purrr_examples.html#why-purrr">programmatic plotting
+article</a>. It explains how to split the data, customize each call, and
+combine the resulting plots.</p>
 </div>
 <div class="section level2">
 <h2 id="working-with-data-organized-by-counts">Working with data organized by <code>counts</code><a class="anchor" aria-label="anchor" href="#working-with-data-organized-by-counts"></a>
@@ -323,8 +299,9 @@ unique observation. For example, consider the following notional
 (<code>A</code> and <code>B</code>) about the number of different types
 of fish they caught in the months of <code>February</code> and
 <code>March</code>. In this data frame, each row corresponds to a unique
-combination of <code>Boat</code> and <code>Month</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+combination of <code>Boat</code>, <code>Month</code>, and
+<code>Fish</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># (this is completely fictional; I don't know first thing about fishing!)</span></span>
 <span></span>
@@ -377,7 +354,7 @@ call to the <code><a href="../../reference/ggbarstats.html">ggbarstats()</a></co
 <code>counts</code> argument.</p>
 <p>If we want to investigate the relationship of type of fish by month
 (a test of independence), our command would be:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">fishing</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">Fish</span>,</span>
@@ -416,7 +393,7 @@ results from <strong>McNemar test</strong> in the subtitle.</p>
 to have the same levels, and each row should correspond to one subject
 (or, as here, to the count of subjects with a given combination of
 before/after responses).</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create imaginary data</span></span>
 <span><span class="va">clinical_trial</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">SickBefore</span>, <span class="op">~</span><span class="va">SickAfter</span>, <span class="op">~</span><span class="va">Counts</span>,</span>
@@ -437,11 +414,11 @@ before/after responses).</p>
 <span>  palette <span class="op">=</span> <span class="st">"ggsci::default_ucscgb"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggbarstats_files/figure-html/ggbarstats9-1.png" class="r-plt" alt="" width="100%"></p>
-<p>The results bode well for our experimental wonder drug. Of the 96 who
-started out healthy only 4% were sick after a month. Ideally, we would
-have hoped for zero but reality is seldom perfect. On the other side of
-the 38 who started out sick that number has reduced to just 13 or 34%
-which is a marked improvement.</p>
+<p>Of the 96 participants who started out healthy, 4 were sick after a
+month. Of the 38 who started out sick, 13 remained sick. McNemar’s test
+compares the discordant responses (4 became sick and 25 recovered). This
+before/after comparison alone does not establish that the treatment
+caused the change.</p>
 </div>
 <div class="section level2">
 <h2 id="summary-of-graphics-and-tests">Summary of graphics and tests<a class="anchor" aria-label="anchor" href="#summary-of-graphics-and-tests"></a>
@@ -496,7 +473,7 @@ computed only for unpaired designs in which both <code>x</code> and
 <code>y</code> are specified, <code>x</code> has more than two levels,
 and <code>y</code> has at least two; otherwise,
 <code>pairwise_comparisons_data</code> is <code>NULL</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span><span class="va">Titanic_full</span>, <span class="va">Survived</span>, <span class="va">Sex</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../../reference/extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">subtitle_data</span></span>
@@ -551,7 +528,7 @@ and</p></li>
 interpretive context for the reported statistics.</p></li>
 </ul>
 <p>For example, let’s see the following example:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">am</span>, <span class="va">cyl</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggbarstats_files/figure-html/reporting-1.png" class="r-plt" alt="" width="100%"></p>
 <p>The narrative context (assuming <code>type = "parametric"</code>) can
@@ -575,6 +552,31 @@ one-sample goodness-of-fit test instead of a
 </h2>
 <p>If you find any bugs or have any suggestions/remarks, please file an
 issue on GitHub: <a href="https://github.com/IndrajeetPatil/ggstatsplot/issues" class="external-link uri">https://github.com/IndrajeetPatil/ggstatsplot/issues</a></p>
+</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>You can cite this package/vignette as:</p>
+<pre><code>To cite package 'ggstatsplot' in publications use:
+
+  Patil, I. (2021). Visualizations with statistical details: The
+  'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+  doi:10.21105/joss.03167
+
+A BibTeX entry for LaTeX users is
+
+  @Article{,
+    doi = {10.21105/joss.03167},
+    url = {https://doi.org/10.21105/joss.03167},
+    year = {2021},
+    publisher = {{The Open Journal}},
+    volume = {6},
+    number = {61},
+    pages = {3167},
+    author = {Indrajeet Patil},
+    title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+    journal = {{Journal of Open Source Software}},
+  }</code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

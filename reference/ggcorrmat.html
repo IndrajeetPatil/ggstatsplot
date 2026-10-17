@@ -159,7 +159,10 @@ respectively.</p></dd>
 <li><p><code>"nonparametric"</code></p></li>
 <li><p><code>"robust"</code></p></li>
 <li><p><code>"bayes"</code></p></li>
-</ul><p>You can specify just the initial letter.</p></dd>
+</ul><p>You can specify just the initial letter (e.g. <code>"np"</code> or <code>"bf"</code>). Matching is
+on the initial lowercase letter only, so any other value (including
+capitalized values such as <code>"Bayes"</code>) falls back to <code>"parametric"</code> without a
+warning.</p></dd>
 
 
 <dt id="arg-tr">tr<a class="anchor" aria-label="anchor" href="#arg-tr"></a></dt>
@@ -192,8 +195,7 @@ flagged as such in the plot. Ignored for <code>type = "bayes"</code>.</p></dd>
 
 <dt id="arg-conf-level">conf.level<a class="anchor" aria-label="anchor" href="#arg-conf-level"></a></dt>
 <dd><p>Scalar between <code>0</code> and <code>1</code> (default: <code>95%</code>
-confidence/credible intervals, <code>0.95</code>). If <code>NULL</code>, no confidence intervals
-will be computed.</p></dd>
+confidence/credible intervals, <code>0.95</code>).</p></dd>
 
 
 <dt id="arg-bf-prior">bf.prior<a class="anchor" aria-label="anchor" href="#arg-bf-prior"></a></dt>

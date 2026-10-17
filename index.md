@@ -164,6 +164,10 @@ be found in an article for that package:
 
 ## Primary functions
 
+The examples below show the main plot types and selected customizations.
+See each function reference for its arguments, defaults, and supported
+tests.
+
 ### `ggbetweenstats()`
 
 This function creates either a violin plot, a box plot, or a mix of two
@@ -184,16 +188,6 @@ like this-
 ![Violin plot with boxplot overlay showing distribution of sepal length
 across three Iris species with statistical test
 results](reference/figures/README-ggbetweenstats1-1.png)
-
-**Defaults** return\
-
-✅ raw data + distributions\
-✅ descriptive statistics\
-✅ inferential statistics\
-✅ effect size + CIs\
-✅ pairwise comparisons\
-✅ Bayesian hypothesis-testing\
-✅ Bayesian estimation\
 
 A number of other arguments can be specified to make this plot even more
 informative or change some of the default options. Additionally, there
@@ -239,9 +233,9 @@ between the plot structure is that now the group means are connected by
 paths to highlight the fact that these data are paired with each other.
 
 If your repeated-measures data include an explicit subject identifier,
-it is recommended that you pass it via `subject.id`; rows with missing
-identifiers are ignored for paired grouping and repeated-measures
-statistics.
+it is recommended that you pass it via `subject.id`. Only subjects
+observed in every condition are included in the plot and statistical
+analysis.
 
 \
 [`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`\
@@ -259,16 +253,6 @@ statistics.
 ![Within-subjects violin plot showing wine taste ratings by wine type
 with paired data paths and statistical
 results](reference/figures/README-ggwithinstats1-1.png)
-
-**Defaults** return\
-
-✅ raw data + distributions\
-✅ descriptive statistics\
-✅ inferential statistics\
-✅ effect size + CIs\
-✅ pairwise comparisons\
-✅ Bayesian hypothesis-testing\
-✅ Bayesian estimation\
 
 As with the
 [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md),
@@ -324,15 +308,6 @@ can be used.
 ![Histogram showing distribution of time spent awake in mammals with
 one-sample test results](reference/figures/README-gghistostats1-1.png)
 
-**Defaults** return\
-
-✅ counts + proportion for bins\
-✅ descriptive statistics\
-✅ inferential statistics\
-✅ effect size + CIs\
-✅ Bayesian hypothesis-testing\
-✅ Bayesian estimation\
-
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable:
 
@@ -387,14 +362,6 @@ but is intended to be used when the numeric variable also has a label.
 with robust one-sample test
 results](reference/figures/README-ggdotplotstats1-1.png)
 
-**Defaults** return\
-
-✅descriptives (centrality measure + uncertainty + sample size)\
-✅ inferential statistics\
-✅ effect size + CIs\
-✅ Bayesian hypothesis-testing\
-✅ Bayesian estimation\
-
 As with most other functions in this package, there is also a `grouped_`
 variant of this function to facilitate looping the same operation for
 all levels of a single grouping variable.
@@ -445,15 +412,6 @@ on the axes and results from statistical tests in the subtitle:
 ![Scatterplot with marginal distributions showing relationship between
 REM sleep and time awake in mammals with correlation
 results](reference/figures/README-ggscatterstats1-1.png)
-
-**Defaults** return\
-
-✅ raw data + distributions\
-✅ marginal distributions\
-✅ inferential statistics\
-✅ effect size + CIs\
-✅ Bayesian hypothesis-testing\
-✅ Bayesian estimation\
 
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable.
@@ -512,11 +470,6 @@ appearance of the correlation matrix.
 correlations with significance
 indicators](reference/figures/README-ggcorrmat1-1.png)
 
-**Defaults** return\
-
-✅ effect size + significance\
-✅ careful handling of `NA`s
-
 If there are `NA`s present in the selected variables, the legend will
 display minimum, mode, and maximum number of pairs used for correlation
 tests.
@@ -557,7 +510,7 @@ one categorical variable is entered, results from one-sample proportion
 test (i.e., a chi-squared goodness of fit test) will be displayed as a
 subtitle.
 
-To study an interaction between two categorical variables:
+To study the association between two categorical variables:
 
 \
 [`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`\
@@ -574,15 +527,6 @@ To study an interaction between two categorical variables:
 ![Pie charts showing transmission type distribution across cylinder
 groups in mtcars data with contingency table
 analysis](reference/figures/README-ggpiestats1-1.png)
-
-**Defaults** return\
-
-✅ descriptives (frequency + %s)\
-✅ inferential statistics\
-✅ effect size + CIs\
-✅ Goodness-of-fit tests\
-✅ Bayesian hypothesis-testing\
-✅ Bayesian estimation\
 
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable.
@@ -620,7 +564,7 @@ alternatively use
 function which has a similar syntax—including support for one-sample
 goodness-of-fit tests.
 
-To study an interaction between two categorical variables:
+To study the association between two categorical variables:
 
 \
 [`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`\
@@ -640,15 +584,6 @@ To study an interaction between two categorical variables:
 ![Stacked bar chart showing MPAA ratings distribution by movie genre
 with chi-squared test
 results](reference/figures/README-ggbarstats1-1.png)
-
-**Defaults** return\
-
-✅ descriptives (frequency + %s)\
-✅ inferential statistics\
-✅ effect size + CIs\
-✅ Goodness-of-fit tests\
-✅ Bayesian hypothesis-testing\
-✅ Bayesian estimation\
 
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable.
@@ -699,12 +634,6 @@ from
 
 ![Dot-and-whisker plot showing regression coefficients for mpg model
 with confidence intervals](reference/figures/README-ggcoefstats1-1.png)
-
-**Defaults** return\
-
-✅ inferential statistics\
-✅ estimate + CIs\
-✅ model summary (AIC and BIC)\
 
 Details about underlying functions used to create graphics and
 statistical tests carried out can be found in the function

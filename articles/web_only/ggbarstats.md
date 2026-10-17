@@ -2,38 +2,13 @@
 
 ------------------------------------------------------------------------
 
-You can cite this package/vignette as:
-
-    To cite package 'ggstatsplot' in publications use:
-
-      Patil, I. (2021). Visualizations with statistical details: The
-      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
-      doi:10.21105/joss.03167
-
-    A BibTeX entry for LaTeX users is
-
-      @Article{,
-        doi = {10.21105/joss.03167},
-        url = {https://doi.org/10.21105/joss.03167},
-        year = {2021},
-        publisher = {{The Open Journal}},
-        volume = {6},
-        number = {61},
-        pages = {3167},
-        author = {Indrajeet Patil},
-        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
-        journal = {{Journal of Open Source Software}},
-      }
-
-------------------------------------------------------------------------
-
 Lifecycle:
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 ## Introduction to `ggbarstats`
 
 The function `ggbarstats` can be used for quick **data exploration**
-and/or to prepare **publication-ready pie charts** to summarize the
+and/or to prepare **publication-ready bar charts** to summarize the
 statistical relationship(s) among one or more categorical variables. We
 will see examples of how to use this function in this vignette.
 
@@ -178,14 +153,11 @@ not significantly different from 50/50.
 
 ## Grouped analysis with `ggbarstats` + `{purrr}`
 
-Although `grouped_ggbarstats` provides a quick way to explore the data,
-it leaves much to be desired. For example, we may want to add different
-captions, titles, themes, or palettes for each level of the grouping
-variable, etc. For cases like these, it would be better to use
-[purrr](https://purrr.tidyverse.org/) package.
-
-See the associated vignette here:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
+For group-specific arguments or multiple grouping variables, see the
+[programmatic plotting
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#why-purrr).
+It explains how to split the data, customize each call, and combine the
+resulting plots.
 
 ## Working with data organized by `counts`
 
@@ -195,7 +167,7 @@ For example, consider the following notional `fishing` data frame
 containing data from two boats (`A` and `B`) about the number of
 different types of fish they caught in the months of `February` and
 `March`. In this data frame, each row corresponds to a unique
-combination of `Boat` and `Month`.
+combination of `Boat`, `Month`, and `Fish`.
 
 \
 \
@@ -318,11 +290,11 @@ of subjects with a given combination of before/after responses).
 
 ![](ggbarstats_files/figure-html/ggbarstats9-1.png)
 
-The results bode well for our experimental wonder drug. Of the 96 who
-started out healthy only 4% were sick after a month. Ideally, we would
-have hoped for zero but reality is seldom perfect. On the other side of
-the 38 who started out sick that number has reduced to just 13 or 34%
-which is a marked improvement.
+Of the 96 participants who started out healthy, 4 were sick after a
+month. Of the 38 who started out sick, 13 remained sick. McNemar’s test
+compares the discordant responses (4 became sick and 25 recovered). This
+before/after comparison alone does not establish that the treatment
+caused the change.
 
 ## Summary of graphics and tests
 
@@ -434,3 +406,28 @@ one-sample goodness-of-fit test instead of a $`\chi^2`$-test.
 
 If you find any bugs or have any suggestions/remarks, please file an
 issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+## Citation
+
+You can cite this package/vignette as:
+
+    To cite package 'ggstatsplot' in publications use:
+
+      Patil, I. (2021). Visualizations with statistical details: The
+      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+      doi:10.21105/joss.03167
+
+    A BibTeX entry for LaTeX users is
+
+      @Article{,
+        doi = {10.21105/joss.03167},
+        url = {https://doi.org/10.21105/joss.03167},
+        year = {2021},
+        publisher = {{The Open Journal}},
+        volume = {6},
+        number = {61},
+        pages = {3167},
+        author = {Indrajeet Patil},
+        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+        journal = {{Journal of Open Source Software}},
+      }

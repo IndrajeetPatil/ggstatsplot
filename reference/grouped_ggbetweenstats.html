@@ -115,7 +115,7 @@ using <code><a href="combine_plots.html">ggstatsplot::combine_plots</a></code>.<
 
 <dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
 <dd><p>A data frame (or a tibble) from which variables specified are to
-be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
+be taken. Other data types (e.g., matrix, table, array, etc.) will <strong>not</strong>
 be accepted. Additionally, grouped data frames from <code>{dplyr}</code> should be
 ungrouped before they are entered as <code>data</code>.</p></dd>
 
@@ -160,8 +160,9 @@ parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
 
     <dt><code>results.subtitle</code></dt>
 <dd><p>Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
-the plot will be returned.</p></dd>
+to be displayed as a subtitle (Default: <code>TRUE</code>). Setting this to <code>FALSE</code>
+also skips the automatic Bayes Factor caption. See the individual
+annotation arguments to control other plot details.</p></dd>
 
     <dt><code>subtitle</code></dt>
 <dd><p>The text for the plot subtitle. Will work only if
@@ -200,8 +201,8 @@ the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" clas
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">ggplot2::geom_boxplot()</a></code>. By default, the whiskers extend to 1.5 times
 the interquartile range (IQR) from the box (Tukey-style). To customize
 whisker length, you can use the <code>coef</code> parameter, e.g.,
-<code>boxplot.args = list(coef = 3)</code> for whiskers extending to 3 * IQR, or
-<code>boxplot.args = list(coef = 0)</code> to show only the range of the data.</p></dd>
+<code>boxplot.args = list(coef = 3)</code> for whiskers extending to the most extreme
+observations within 3 * IQR of the hinges.</p></dd>
 
     <dt><code>violin.args</code></dt>
 <dd><p>A list of additional aesthetic arguments to be passed to
@@ -241,14 +242,7 @@ label on the secondary Y-axis. Some themes (e.g.
 thus the details as well.</p></dd>
 
     <dt><code>x</code></dt>
-<dd><p>The grouping (or independent) variable from <code>data</code>. In case of a
-repeated measures or within-subjects design, if <code>subject.id</code> argument is
-not available or not explicitly specified, the function assumes that the
-data has already been sorted by such an id by the user and creates an
-internal identifier. So if your data is <strong>not</strong> sorted, the results <em>can</em>
-be inaccurate when there are more than two levels in <code>x</code> and there are
-<code>NA</code>s present. The data is expected to be sorted by user in
-subject-1, subject-2, ..., pattern.</p></dd>
+<dd><p>The grouping (or independent) variable from <code>data</code>.</p></dd>
 
     <dt><code>y</code></dt>
 <dd><p>The response (or outcome or dependent) variable from <code>data</code>.</p></dd>
@@ -258,7 +252,10 @@ subject-1, subject-2, ..., pattern.</p></dd>
 <li><p><code>"nonparametric"</code></p></li>
 <li><p><code>"robust"</code></p></li>
 <li><p><code>"bayes"</code></p></li>
-</ul><p>You can specify just the initial letter.</p></dd>
+</ul><p>You can specify just the initial letter (e.g. <code>"np"</code> or <code>"bf"</code>). Matching is
+on the initial lowercase letter only, so any other value (including
+capitalized values such as <code>"Bayes"</code>) falls back to <code>"parametric"</code> without a
+warning.</p></dd>
 
     <dt><code>digits</code></dt>
 <dd><p>Number of digits for rounding or significant figures. May also
@@ -270,8 +267,7 @@ significant figures (see also <code><a href="https://rdrr.io/r/base/Round.html" 
 
     <dt><code>conf.level</code></dt>
 <dd><p>Scalar between <code>0</code> and <code>1</code> (default: <code>95%</code>
-confidence/credible intervals, <code>0.95</code>). If <code>NULL</code>, no confidence intervals
-will be computed.</p></dd>
+confidence/credible intervals, <code>0.95</code>).</p></dd>
 
     <dt><code>bf.prior</code></dt>
 <dd><p>A number between <code>0.5</code> and <code>2</code> (default <code>0.707</code>), the prior

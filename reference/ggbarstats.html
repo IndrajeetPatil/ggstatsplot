@@ -135,7 +135,7 @@ as a subtitle.</p>
 
 <dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
 <dd><p>A data frame (or a tibble) from which variables specified are to
-be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
+be taken. Other data types (e.g., matrix, table, array, etc.) will <strong>not</strong>
 be accepted. Additionally, grouped data frames from <code>{dplyr}</code> should be
 ungrouped before they are entered as <code>data</code>.</p></dd>
 
@@ -164,18 +164,27 @@ represents a single observation.</p></dd>
 <li><p><code>"nonparametric"</code></p></li>
 <li><p><code>"robust"</code></p></li>
 <li><p><code>"bayes"</code></p></li>
-</ul><p>You can specify just the initial letter.</p></dd>
+</ul><p>You can specify just the initial letter (e.g. <code>"np"</code> or <code>"bf"</code>). Matching is
+on the initial lowercase letter only, so any other value (including
+capitalized values such as <code>"Bayes"</code>) falls back to <code>"parametric"</code> without a
+warning.</p></dd>
 
 
 <dt id="arg-paired">paired<a class="anchor" aria-label="anchor" href="#arg-paired"></a></dt>
 <dd><p>Logical indicating whether data came from a within-subjects or
-repeated measures design study (Default: <code>FALSE</code>).</p></dd>
+repeated measures design study (Default: <code>FALSE</code>). Only relevant for
+two-way tables (i.e., when <code>y</code> is supplied), and paired designs are only
+supported for frequentist tests (McNemar's test). For a two-way table with
+<code>type = "bayes"</code>, <code>paired</code> is ignored and the Bayesian test of
+independence for unpaired data is run instead. For one-way tables
+(<code>y = NULL</code>), <code>paired</code> has no effect.</p></dd>
 
 
 <dt id="arg-results-subtitle">results.subtitle<a class="anchor" aria-label="anchor" href="#arg-results-subtitle"></a></dt>
 <dd><p>Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
-the plot will be returned.</p></dd>
+to be displayed as a subtitle (Default: <code>TRUE</code>). Setting this to <code>FALSE</code>
+also skips the automatic Bayes Factor caption. See the individual
+annotation arguments to control other plot details.</p></dd>
 
 
 <dt id="arg-label">label<a class="anchor" aria-label="anchor" href="#arg-label"></a></dt>
@@ -239,8 +248,7 @@ E.g., <code>ratio = c(0.5, 0.5)</code> for two levels,
 
 <dt id="arg-conf-level">conf.level<a class="anchor" aria-label="anchor" href="#arg-conf-level"></a></dt>
 <dd><p>Scalar between <code>0</code> and <code>1</code> (default: <code>95%</code>
-confidence/credible intervals, <code>0.95</code>). If <code>NULL</code>, no confidence intervals
-will be computed.</p></dd>
+confidence/credible intervals, <code>0.95</code>).</p></dd>
 
 
 <dt id="arg-p-adjust-method">p.adjust.method<a class="anchor" aria-label="anchor" href="#arg-p-adjust-method"></a></dt>
@@ -334,11 +342,17 @@ before plotting and analysis.</p>
 <p>The table below provides summary about:</p><ul><li><p>statistical test carried out for inferential statistics</p></li>
 <li><p>type of effect size estimate and a measure of uncertainty for this estimate</p></li>
 <li><p>functions used internally to compute these details</p></li>
-</ul><div class="section">
+</ul><p>There are no dedicated non-parametric or robust contingency table analyses.
+<code>type = "nonparametric"</code> and <code>type = "robust"</code> are accepted, but run the same
+frequentist tests as <code>type = "parametric"</code> (the "Parametric/Non-parametric" rows
+below).</p><div class="section">
 <h3 id="two-way-table">two-way table<a class="anchor" aria-label="anchor" href="#two-way-table"></a></h3>
 
 
-<p><strong>Hypothesis testing</strong></p><table class="table table"><tr><td>Type</td><td>Design</td><td>Test</td><td>Function used</td></tr><tr><td>Parametric/Non-parametric</td><td>Unpaired</td><td>Pearson's chi-squared test</td><td><code><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">stats::chisq.test()</a></code></td></tr><tr><td>Bayesian</td><td>Unpaired</td><td>Bayesian Pearson's chi-squared test</td><td><code><a href="https://rdrr.io/pkg/BayesFactor/man/contingencyTableBF.html" class="external-link">BayesFactor::contingencyTableBF()</a></code></td></tr><tr><td>Parametric/Non-parametric</td><td>Paired</td><td>McNemar's chi-squared test</td><td><code><a href="https://rdrr.io/r/stats/mcnemar.test.html" class="external-link">stats::mcnemar.test()</a></code></td></tr><tr><td>Bayesian</td><td>Paired</td><td>No</td><td>No</td></tr></table><p><strong>Effect size estimation</strong></p><table class="table table"><tr><td>Type</td><td>Design</td><td>Effect size</td><td>CI available?</td><td>Function used</td></tr><tr><td>Parametric/Non-parametric</td><td>Unpaired</td><td>Cramer's <em>V</em></td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v()</a></code></td></tr><tr><td>Bayesian</td><td>Unpaired</td><td>Cramer's <em>V</em></td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v()</a></code></td></tr><tr><td>Parametric/Non-parametric</td><td>Paired</td><td>Cohen's <em>g</em></td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/cohens_g.html" class="external-link">effectsize::cohens_g()</a></code></td></tr><tr><td>Bayesian</td><td>Paired</td><td>No</td><td>No</td><td>No</td></tr></table></div>
+<p><strong>Hypothesis testing</strong></p><table class="table table"><tr><td>Type</td><td>Design</td><td>Test</td><td>Function used</td></tr><tr><td>Parametric/Non-parametric</td><td>Unpaired</td><td>Pearson's chi-squared test</td><td><code><a href="https://rdrr.io/r/stats/chisq.test.html" class="external-link">stats::chisq.test()</a></code></td></tr><tr><td>Bayesian</td><td>Unpaired</td><td>Bayesian Pearson's chi-squared test</td><td><code><a href="https://rdrr.io/pkg/BayesFactor/man/contingencyTableBF.html" class="external-link">BayesFactor::contingencyTableBF()</a></code></td></tr><tr><td>Parametric/Non-parametric</td><td>Paired</td><td>McNemar's chi-squared test</td><td><code><a href="https://rdrr.io/r/stats/mcnemar.test.html" class="external-link">stats::mcnemar.test()</a></code></td></tr><tr><td>Bayesian</td><td>Paired</td><td>No</td><td>No</td></tr></table><p><strong>Effect size estimation</strong></p><table class="table table"><tr><td>Type</td><td>Design</td><td>Effect size</td><td>CI available?</td><td>Function used</td></tr><tr><td>Parametric/Non-parametric</td><td>Unpaired</td><td>Cramer's <em>V</em></td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v()</a></code></td></tr><tr><td>Bayesian</td><td>Unpaired</td><td>Cramer's <em>V</em></td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/phi.html" class="external-link">effectsize::cramers_v()</a></code></td></tr><tr><td>Parametric/Non-parametric</td><td>Paired</td><td>Cohen's <em>g</em></td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/cohens_g.html" class="external-link">effectsize::cohens_g()</a></code></td></tr><tr><td>Bayesian</td><td>Paired</td><td>No</td><td>No</td><td>No</td></tr></table><p>Paired Bayesian analysis is not supported: for a two-way table with
+<code>type = "bayes"</code>, the <code>paired</code> argument is ignored and the unpaired Bayesian
+test is run instead.</p>
+</div>
 
 <div class="section">
 <h3 id="one-way-table">one-way table<a class="anchor" aria-label="anchor" href="#one-way-table"></a></h3>

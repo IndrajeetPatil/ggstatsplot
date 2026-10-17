@@ -2,31 +2,6 @@
 
 ------------------------------------------------------------------------
 
-You can cite this package/vignette as:
-
-    To cite package 'ggstatsplot' in publications use:
-
-      Patil, I. (2021). Visualizations with statistical details: The
-      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
-      doi:10.21105/joss.03167
-
-    A BibTeX entry for LaTeX users is
-
-      @Article{,
-        doi = {10.21105/joss.03167},
-        url = {https://doi.org/10.21105/joss.03167},
-        year = {2021},
-        publisher = {{The Open Journal}},
-        volume = {6},
-        number = {61},
-        pages = {3167},
-        author = {Indrajeet Patil},
-        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
-        journal = {{Journal of Open Source Software}},
-      }
-
-------------------------------------------------------------------------
-
 Lifecycle:
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
@@ -185,150 +160,36 @@ not significantly different from 50/50.
 
 ## Grouped analysis with `ggpiestats` + `{purrr}`
 
-Although `grouped_ggpiestats` provides a quick way to explore the data,
-it leaves much to be desired. For example, we may want to add different
-captions, titles, themes, or palettes for each level of the grouping
-variable, etc. For cases like these, it would be better to use
-[purrr](https://purrr.tidyverse.org/) package.
-
-See the associated vignette here:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
+For group-specific arguments or multiple grouping variables, see the
+[programmatic plotting
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#why-purrr).
+It explains how to split the data, customize each call, and combine the
+resulting plots.
 
 ## Working with data organized by `counts`
 
-`ggpiestats` can also work with data frame containing counts (aka tabled
-data), i.e., when each row doesn’t correspond to a unique observation.
-For example, consider the following notional `fishing` data frame
-containing data from two boats (`A` and `B`) about the number of
-different types of fish they caught in the months of `February` and
-`March`. In this data frame, each row corresponds to a unique
-combination of `Boat` and `Month`.
-
-\
-`# (this is completely fictional; I don't know first thing about fishing!)`\
-\
-`fishing`` ``<-`` ``tibble``::`[`as_tibble`](https://tibble.tidyverse.org/reference/as_tibble.html)`(`[`data.frame`](https://rdrr.io/r/base/data.frame.html)`(`\
-`  Boat ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`[`rep`](https://rdrr.io/r/base/rep.html)`(``"B"``, ``4``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"A"``, ``4``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"A"``, ``4``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"B"``, ``4``)``)``,`\
-`  Month ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`[`rep`](https://rdrr.io/r/base/rep.html)`(``"February"``, ``2``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"March"``, ``2``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"February"``, ``2``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"March"``, ``2``)``)``,`\
-`  Fish ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`\
-`    ``"Bass"``,`\
-`    ``"Catfish"``,`\
-`    ``"Cod"``,`\
-`    ``"Haddock"``,`\
-`    ``"Cod"``,`\
-`    ``"Haddock"``,`\
-`    ``"Bass"``,`\
-`    ``"Catfish"``,`\
-`    ``"Bass"``,`\
-`    ``"Catfish"``,`\
-`    ``"Cod"``,`\
-`    ``"Haddock"``,`\
-`    ``"Cod"``,`\
-`    ``"Haddock"``,`\
-`    ``"Bass"``,`\
-`    ``"Catfish"`\
-`  ``)``,`\
-`  SumOfCaught ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``25``, ``20``, ``35``, ``40``, ``40``, ``25``, ``30``, ``42``, ``40``, ``30``, ``33``, ``26``, ``100``, ``30``, ``20``, ``20``)`\
-`)``)`\
-\
-`fishing`\
-`#> ``# A tibble: 16 × 4`\
-`#>    ``Boat``  ``Month``    ``Fish``    ``SumOfCaught`\
-`#>    ``<chr>`` ``<chr>``    ``<chr>``         ``<dbl>`\
-`#> `` 1`` B     February Bass             25`\
-`#> `` 2`` B     February Catfish          20`\
-`#> `` 3`` B     March    Cod              35`\
-`#> `` 4`` B     March    Haddock          40`\
-`#> `` 5`` A     February Cod              40`\
-`#> `` 6`` A     February Haddock          25`\
-`#> `` 7`` A     March    Bass             30`\
-`#> `` 8`` A     March    Catfish          42`\
-`#> `` 9`` A     February Bass             40`\
-`#> ``10`` A     February Catfish          30`\
-`#> ``11`` A     March    Cod              33`\
-`#> ``12`` A     March    Haddock          26`\
-`#> ``13`` B     February Cod             100`\
-`#> ``14`` B     February Haddock          30`\
-`#> ``15`` B     March    Bass             20`\
-`#> ``16`` B     March    Catfish          20`
-
-When the data is organized this way, we make a slightly different call
-to the
+Use `counts` when each row contains the frequency of a combination of
+categories rather than one observation. See the [worked example with
+aggregated
+counts](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html#working-with-data-organized-by-counts)
+in the bar-chart article; replace
+[`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
+with
 [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)
-function: we use the `counts` argument.
-
-If we want to investigate the relationship of type of fish by month (a
-test of independence), our command would be:
-
-\
-[`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)`(`\
-`  data ``=`` ``fishing``,`\
-`  x ``=`` ``Fish``,`\
-`  y ``=`` ``Month``,`\
-`  counts ``=`` ``SumOfCaught``,`\
-`  label ``=`` ``"both"``,`\
-`  palette ``=`` ``"ggsci::default_jama"``,`\
-`  title ``=`` ``"Type fish caught by month"``,`\
-`  caption ``=`` ``"Source: completely made up"``,`\
-`  legend.title ``=`` ``"Type fish caught: "`\
-`)`
-
-![](ggpiestats_files/figure-html/ggpiestats8-1.png)
-
-The results support our hypothesis that the type of fish caught is
-related to the month in which we’re fishing. The $`\chi^2`$ independence
-test results are shown at the top of the plot. In February, we catch
-significantly more Cod than we would hypothesize for an equal
-distribution. Whereas, in March, our results indicate there’s no strong
-evidence that the distribution isn’t equal.
+to display the same analysis as pie charts. Use `label = "both"` to show
+counts and percentages on each slice.
 
 ## Within-subjects designs
 
-Let’s imagine we’re conducting clinical trials for some new imaginary
-wonder drug. We have 134 subjects entering the trial. Some of them enter
-healthy (*n* = 96), some of them enter the trial already being sick (*n*
-= 38). All of them receive our treatment or intervention. Then we check
-back in a month to see if they are healthy or sick. A classic pre/post
-experimental design. We’re interested in seeing the change in both
-groupings. In the case of within-subjects designs, you can set
-`paired = TRUE`, which will display results from **McNemar test** in the
-subtitle.
+For paired categorical responses, set `paired = TRUE` to request
+McNemar’s test. The variables `x` and `y` must have the same levels.
+Each row represents one subject or a count of subjects with a given
+before/after response.
 
-(**Note:** If you forget to set `paired = TRUE`, the results will be
-inaccurate.)
-
-Note that, for McNemar’s test, `x` and `y` need to have the same levels,
-and each row should correspond to one subject (or, as here, to the count
-of subjects with a given combination of before/after responses).
-
-\
-`# create imaginary data`\
-`clinical_trial`` ``<-`` ``tibble``::`[`tribble`](https://tibble.tidyverse.org/reference/tribble.html)`(`\
-`  ``~``SickBefore``, ``~``SickAfter``, ``~``Counts``,`\
-`  ``"No"``, ``"Yes"``, ``4``,`\
-`  ``"Yes"``, ``"No"``, ``25``,`\
-`  ``"Yes"``, ``"Yes"``, ``13``,`\
-`  ``"No"``, ``"No"``, ``92`\
-`)`\
-\
-[`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)`(`\
-`  data ``=`` ``clinical_trial``,`\
-`  x ``=`` ``SickAfter``,`\
-`  y ``=`` ``SickBefore``,`\
-`  counts ``=`` ``Counts``,`\
-`  paired ``=`` ``TRUE``,`\
-`  label ``=`` ``"both"``,`\
-`  title ``=`` ``"Results from imaginary clinical trial"``,`\
-`  palette ``=`` ``"ggsci::default_ucscgb"`\
-`)`
-
-![](ggpiestats_files/figure-html/ggpiestats9-1.png)
-
-The results bode well for our experimental wonder drug. Of the 96 who
-started out healthy only 4% were sick after a month. Ideally, we would
-have hoped for zero but reality is seldom perfect. On the other side of
-the 38 who started out sick that number has reduced to just 13 or 34%
-which is a marked improvement.
+See the [paired-response
+example](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html#within-subjects-designs)
+in the bar-chart article. The same call works with
+[`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md).
 
 ## Summary of graphics and tests
 
@@ -343,101 +204,48 @@ listed in the function documentation:
 
 ## Extracting statistical details
 
-All statistical details shown in the plot are also available as data
-frames, which can be extracted with
-[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md).
-The returned list contains results from the test in the subtitle
-(`subtitle_data`), the Bayesian test in the caption (`caption_data`),
-the one-sample proportion tests for each level of `y`
-(`one_sample_data`), the counts and percentages shown in the plot
-(`descriptive_data`), and pairwise comparisons (Fisher’s exact tests)
-between levels of `x`, which are not shown in the plot
-(`pairwise_comparisons_data`). Pairwise comparisons are computed only
-for unpaired designs in which both `x` and `y` are specified, `x` has
-more than two levels, and `y` has at least two; otherwise,
-`pairwise_comparisons_data` is `NULL`.
-
-\
-`p`` ``<-`` `[`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)`(``Titanic_full``, ``Survived``, ``Sex``)`\
-\
-[`extract_stats`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)`(``p``)``$``subtitle_data`\
-`#> ``# A tibble: 1 × 13`\
-`#>   ``statistic``    ``df``   ``p.value`` ``method``                     ``effectsize``       `\
-`#>       ``<dbl>`` ``<int>``     ``<dbl>`` ``<chr>``                      ``<chr>``            `\
-`#> ``1``      457.     1 2.30``e``-101`` Pearson's Chi-squared test Cramer's V (adj.)`\
-`#>   ``estimate`` ``conf.level`` ``conf.low`` ``conf.high`` ``conf.method`` ``conf.distribution`` ``n.obs`\
-`#>      ``<dbl>``      ``<dbl>``    ``<dbl>``     ``<dbl>`` ``<chr>``       ``<chr>``             ``<int>`\
-`#> ``1``    ``0.``455       ``0.``95    ``0.``413     ``0.``497 ncp         chisq              ``2``20``1`\
-`#>   ``expression`\
-`#>   ``<list>``    `\
-`#> ``1`` ``<language>`\
-\
-[`extract_stats`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)`(``p``)``$``one_sample_data`\
-`#> ``# A tibble: 2 × 19`\
-`#>   ``Sex``    ``counts``  ``perc`` ``N``           ``statistic``    ``df``   ``p.value`\
-`#>   ``<fct>``   ``<int>`` ``<dbl>`` ``<chr>``           ``<dbl>`` ``<dbl>``     ``<dbl>`\
-`#> ``1`` Male     ``1``73``1``  78.6 (n = 1,731)      574.     1 6.72``e``-127`\
-`#> ``2`` Female    470  21.4 (n = 470)        101.     1 8.68``e``- 24`\
-`#>   ``method``                                   ``effectsize``  ``estimate`` ``conf.level`\
-`#>   ``<chr>``                                    ``<chr>``          ``<dbl>``      ``<dbl>`\
-`#> ``1`` Chi-squared test for given probabilities Pearson's C    ``0.``499       ``0.``95`\
-`#> ``2`` Chi-squared test for given probabilities Pearson's C    ``0.``421       ``0.``95`\
-`#>   ``conf.low`` ``conf.high`` ``conf.method`` ``conf.distribution`` ``n.obs`` ``expression`\
-`#>      ``<dbl>``     ``<dbl>`` ``<chr>``       ``<chr>``             ``<int>`` ``<list>``    `\
-`#> ``1``    ``0.``468     ``0.``529 ncp         chisq              ``1``73``1`` ``<language>`\
-`#> ``2``    ``0.``350     ``0.``485 ncp         chisq               470 ``<language>`\
-`#>   ``.label``                                                                       `\
-`#>   ``<glue>``                                                                       `\
-`#> ``1`` list(~chi['gof']^2~(1)==574.24, ~italic(p)=='6.72e-127', ~italic(n)=='1,731')`\
-`#> ``2`` list(~chi['gof']^2~(1)==101.11, ~italic(p)=='8.68e-24', ~italic(n)=='470')   `\
-`#>   ``.p.label``                     `\
-`#>   ``<glue>``                       `\
-`#> ``1`` list(~italic(p)=='6.72e-127')`\
-`#> ``2`` list(~italic(p)=='8.68e-24')`
-
-For
-[`grouped_ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggpiestats.md)
-plots,
+Use
 [`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
-returns one such list for each level of the grouping variable.
+to retrieve the statistical results. Both categorical plotting functions
+return the same components; see the [bar-chart extraction
+example](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html#extracting-statistical-details)
+for proportion tests and pairwise comparisons.
 
 ## Reporting
 
-If you wish to include statistical analysis results in a
-publication/report, the ideal reporting practice will be a hybrid of two
-approaches:
-
-- the [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) approach,
-  where the plot contains both the visual and numerical summaries about
-  a statistical model, and
-
-- the *standard* narrative approach, which provides interpretive context
-  for the reported statistics.
-
-For example, let’s see the following example:
-
-\
-[`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)`(``mtcars``, ``am``, ``cyl``)`
-
-![](ggpiestats_files/figure-html/reporting-1.png)
-
-The narrative context (assuming `type = "parametric"`) can complement
-this plot either as a figure caption or in the main text-
-
-> Pearson’s $`\chi^2`$-test of independence revealed that, across 32
-> automobiles, there was a significant association between transmission
-> type and number of cylinders. The Bayes Factor for the same analysis
-> revealed that the data were 16.78 times more probable under the
-> alternative hypothesis as compared to the null hypothesis. This can be
-> considered strong evidence (Jeffreys, 1961) in favor of the
-> alternative hypothesis.
-
-Similar reporting style can be followed when the function performs
-one-sample goodness-of-fit test instead of a $`\chi^2`$-test.
-
-Same holds true for `ggbarstats`.
+The [bar-chart reporting
+example](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html#reporting)
+also applies to
+[`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md):
+the statistical analysis is the same, while the graphical representation
+differs.
 
 ## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an
 issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+## Citation
+
+You can cite this package/vignette as:
+
+    To cite package 'ggstatsplot' in publications use:
+
+      Patil, I. (2021). Visualizations with statistical details: The
+      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+      doi:10.21105/joss.03167
+
+    A BibTeX entry for LaTeX users is
+
+      @Article{,
+        doi = {10.21105/joss.03167},
+        url = {https://doi.org/10.21105/joss.03167},
+        year = {2021},
+        publisher = {{The Open Journal}},
+        volume = {6},
+        number = {61},
+        pages = {3167},
+        author = {Indrajeet Patil},
+        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+        journal = {{Journal of Open Source Software}},
+      }

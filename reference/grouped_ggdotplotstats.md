@@ -23,9 +23,9 @@ grouped_ggdotplotstats(
 - data:
 
   A data frame (or a tibble) from which variables specified are to be
-  taken. Other data types (e.g., matrix,table, array, etc.) will **not**
-  be accepted. Additionally, grouped data frames from `{dplyr}` should
-  be ungrouped before they are entered as `data`.
+  taken. Other data types (e.g., matrix, table, array, etc.) will
+  **not** be accepted. Additionally, grouped data frames from `{dplyr}`
+  should be ungrouped before they are entered as `data`.
 
 - ...:
 
@@ -62,7 +62,10 @@ grouped_ggdotplotstats(
 
     - `"bayes"`
 
-    You can specify just the initial letter.
+    You can specify just the initial letter (e.g. `"np"` or `"bf"`).
+    Matching is on the initial lowercase letter only, so any other value
+    (including capitalized values such as `"Bayes"`) falls back to
+    `"parametric"` without a warning.
 
   `test.value`
 
@@ -87,8 +90,7 @@ grouped_ggdotplotstats(
   `conf.level`
 
   : Scalar between `0` and `1` (default: `95%` confidence/credible
-    intervals, `0.95`). If `NULL`, no confidence intervals will be
-    computed.
+    intervals, `0.95`).
 
   `tr`
 
@@ -119,8 +121,9 @@ grouped_ggdotplotstats(
   `results.subtitle`
 
   : Decides whether the results of statistical tests are to be displayed
-    as a subtitle (Default: `TRUE`). If set to `FALSE`, only the plot
-    will be returned.
+    as a subtitle (Default: `TRUE`). Setting this to `FALSE` also skips
+    the automatic Bayes Factor caption. See the individual annotation
+    arguments to control other plot details.
 
   `subtitle`
 

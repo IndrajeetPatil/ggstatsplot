@@ -2,31 +2,6 @@
 
 ------------------------------------------------------------------------
 
-You can cite this package/vignette as:
-
-    To cite package 'ggstatsplot' in publications use:
-
-      Patil, I. (2021). Visualizations with statistical details: The
-      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
-      doi:10.21105/joss.03167
-
-    A BibTeX entry for LaTeX users is
-
-      @Article{,
-        doi = {10.21105/joss.03167},
-        url = {https://doi.org/10.21105/joss.03167},
-        year = {2021},
-        publisher = {{The Open Journal}},
-        volume = {6},
-        number = {61},
-        pages = {3167},
-        author = {Indrajeet Patil},
-        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
-        journal = {{Journal of Open Source Software}},
-      }
-
-------------------------------------------------------------------------
-
 Lifecycle:
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
@@ -147,17 +122,11 @@ The simplest form of the function call is-
   can be further modified with [ggplot2](https://ggplot2.tidyverse.org)
   functions.
 
-As can be seen from the plot, the function by default also returns Bayes
-Factor for the test in the caption. If the null hypothesis can’t be
-rejected with the null hypothesis significance testing (NHST) approach,
-the Bayesian approach can help index evidence in favor of the null
-hypothesis (i.e., $`BF_{01}`$).
-
-By default, natural logarithms are shown because Bayes Factor values can
-sometimes be pretty large. Having values on logarithmic scale also makes
-it easy to compare evidence in favor of alternative ($`BF_{10}`$) versus
-null ($`BF_{01}`$) hypotheses (since
-$`log_{e}(BF_{01}) = - log_{e}(BF_{10})`$).
+For the default parametric analysis, the caption shows
+$`\log_{e}(BF_{01})`$; set `bf.message = FALSE` to hide it. See
+[Interpretation of Bayes
+Factors](https://www.indrapatil.com/ggstatsplot/articles/web_only/interpretation.md)
+for the sign convention and evidence scale.
 
 We can make the output much more aesthetically pleasing as well as
 informative by making use of the many optional parameters in
@@ -319,17 +288,11 @@ every pair of conditions.
 
 ## Grouped analysis with `ggwithinstats` + `{purrr}`
 
-Although this grouping function provides a quick way to explore the
-data, it leaves much to be desired. For example, the same type of test
-and theme is applied for all genders, but maybe we want to change this
-for different genders, or maybe we want to have different types of tests
-for different genders. This type of customization for different levels
-of a grouping variable is not possible with `grouped_ggwithinstats`, but
-this can be easily achieved using the
-[purrr](https://purrr.tidyverse.org/) package.
-
-See the associated vignette here:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
+For group-specific arguments or multiple grouping variables, see the
+[programmatic plotting
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#why-purrr).
+It explains how to split the data, customize each call, and combine the
+resulting plots.
 
 ## Between-subjects designs
 
@@ -355,12 +318,10 @@ listed in the function documentation:
 
 ## Extracting statistical details
 
-All statistical details shown in the plot are also available as data
-frames, which can be extracted with
-[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md).
-The returned list contains results from the test in the subtitle
-(`subtitle_data`), the Bayesian test in the caption (`caption_data`),
-and the pairwise comparisons (`pairwise_comparisons_data`).
+Use
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+to retrieve the results as data frames; its reference page describes all
+returned components, including the lists returned for `grouped_` plots.
 
 \
 `p`` ``<-`` `[`ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)`(``bugs_long``, ``condition``, ``desire``, subject.id ``=`` ``subject``)`\
@@ -387,12 +348,6 @@ and the pairwise comparisons (`pairwise_comparisons_data`).
 `#> ``4`` HDLF   LDHF   1.12``e``- 1`` Holm            Student's t ``<language>`\
 `#> ``5`` HDLF   LDLF   3.97``e``- 3`` Holm            Student's t ``<language>`\
 `#> ``6`` LDHF   LDLF   1.11``e``- 8`` Holm            Student's t ``<language>`
-
-For
-[`grouped_ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggwithinstats.md)
-plots,
-[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
-returns one such list for each level of the grouping variable.
 
 ## Reporting
 
@@ -437,3 +392,28 @@ Similar reporting style can be followed when the function performs
 If you find any bugs or have any suggestions/remarks, please file an
 issue on `GitHub`:
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+## Citation
+
+You can cite this package/vignette as:
+
+    To cite package 'ggstatsplot' in publications use:
+
+      Patil, I. (2021). Visualizations with statistical details: The
+      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+      doi:10.21105/joss.03167
+
+    A BibTeX entry for LaTeX users is
+
+      @Article{,
+        doi = {10.21105/joss.03167},
+        url = {https://doi.org/10.21105/joss.03167},
+        year = {2021},
+        publisher = {{The Open Journal}},
+        volume = {6},
+        number = {61},
+        pages = {3167},
+        author = {Indrajeet Patil},
+        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+        journal = {{Journal of Open Source Software}},
+      }

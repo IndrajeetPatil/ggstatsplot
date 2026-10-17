@@ -130,7 +130,7 @@ as a subtitle.</p>
 
 <dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
 <dd><p>A data frame (or a tibble) from which variables specified are to
-be taken. Other data types (e.g., matrix,table, array, etc.) will <strong>not</strong>
+be taken. Other data types (e.g., matrix, table, array, etc.) will <strong>not</strong>
 be accepted. Additionally, grouped data frames from <code>{dplyr}</code> should be
 ungrouped before they are entered as <code>data</code>.</p></dd>
 
@@ -171,7 +171,10 @@ Bayes Factor caption whenever that is displayed (see <code>bf.message</code>).</
 <li><p><code>"nonparametric"</code></p></li>
 <li><p><code>"robust"</code></p></li>
 <li><p><code>"bayes"</code></p></li>
-</ul><p>You can specify just the initial letter.</p></dd>
+</ul><p>You can specify just the initial letter (e.g. <code>"np"</code> or <code>"bf"</code>). Matching is
+on the initial lowercase letter only, so any other value (including
+capitalized values such as <code>"Bayes"</code>) falls back to <code>"parametric"</code> without a
+warning.</p></dd>
 
 
 <dt id="arg-test-value">test.value<a class="anchor" aria-label="anchor" href="#arg-test-value"></a></dt>
@@ -203,8 +206,7 @@ parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
 
 <dt id="arg-conf-level">conf.level<a class="anchor" aria-label="anchor" href="#arg-conf-level"></a></dt>
 <dd><p>Scalar between <code>0</code> and <code>1</code> (default: <code>95%</code>
-confidence/credible intervals, <code>0.95</code>). If <code>NULL</code>, no confidence intervals
-will be computed.</p></dd>
+confidence/credible intervals, <code>0.95</code>).</p></dd>
 
 
 <dt id="arg-tr">tr<a class="anchor" aria-label="anchor" href="#arg-tr"></a></dt>
@@ -237,8 +239,9 @@ thus the details as well.</p></dd>
 
 <dt id="arg-results-subtitle">results.subtitle<a class="anchor" aria-label="anchor" href="#arg-results-subtitle"></a></dt>
 <dd><p>Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: <code>TRUE</code>). If set to <code>FALSE</code>, only
-the plot will be returned.</p></dd>
+to be displayed as a subtitle (Default: <code>TRUE</code>). Setting this to <code>FALSE</code>
+also skips the automatic Bayes Factor caption. See the individual
+annotation arguments to control other plot details.</p></dd>
 
 
 <dt id="arg-bin-args">bin.args<a class="anchor" aria-label="anchor" href="#arg-bin-args"></a></dt>

@@ -2,31 +2,6 @@
 
 ------------------------------------------------------------------------
 
-You can cite this package/vignette as:
-
-    To cite package 'ggstatsplot' in publications use:
-
-      Patil, I. (2021). Visualizations with statistical details: The
-      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
-      doi:10.21105/joss.03167
-
-    A BibTeX entry for LaTeX users is
-
-      @Article{,
-        doi = {10.21105/joss.03167},
-        url = {https://doi.org/10.21105/joss.03167},
-        year = {2021},
-        publisher = {{The Open Journal}},
-        volume = {6},
-        number = {61},
-        pages = {3167},
-        author = {Indrajeet Patil},
-        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
-        journal = {{Journal of Open Source Software}},
-      }
-
-------------------------------------------------------------------------
-
 This is an extremely time-consuming vignette, and so it is not evaluated
 here. You can still use the code as a reference for writing your own
 [purrr](https://purrr.tidyverse.org/) code.
@@ -101,6 +76,26 @@ You can pass:
   `palette = list("RColorBrewer::Dark2", "RColorBrewer::Set1")`. Use a
   list when each element is itself a vector or a list (e.g., `cor.vars`
   or `*.args` arguments).
+
+## Multiple grouping variables
+
+For example, to repeat the analysis across two grouping variables with a
+title for each group:
+
+\
+`ggplot2``::`[`mpg`](https://ggplot2.tidyverse.org/reference/mpg.html)` ``|>`\
+`  ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``drv`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"4"``, ``"f"``)``, ``fl`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"p"``, ``"r"``)``)`` ``|>`\
+`  ``(``\``(``d``)`` `[`split`](https://rdrr.io/r/base/split.html)`(``d``, f ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``d``$``drv``, ``d``$``fl``)``, drop ``=`` ``TRUE``)``)``(``)`` ``|>`\
+`  ``purrr``::`[`imap`](https://purrr.tidyverse.org/reference/imap.html)`(``\``(``data``, ``group``)`` ``{`\
+`    `[`ggscatterstats`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)`(`\
+`      data ``=`` ``data``,`\
+`      x ``=`` ``displ``,`\
+`      y ``=`` ``hwy``,`\
+`      title ``=`` `[`paste0`](https://rdrr.io/r/base/paste.html)`(``"Drive and fuel type: "``, ``group``)``,`\
+`      results.subtitle ``=`` ``FALSE`\
+`    ``)`\
+`  ``}``)`` ``|>`\
+`  `[`combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md)`(``plotgrid.args ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``2L``)``)`
 
 ## `ggbetweenstats`
 
@@ -640,3 +635,28 @@ you can run the following code and check the individual `grouped_` plots
 If you find any bugs or have any suggestions/remarks, please file an
 issue on `GitHub`:
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+## Citation
+
+You can cite this package/vignette as:
+
+    To cite package 'ggstatsplot' in publications use:
+
+      Patil, I. (2021). Visualizations with statistical details: The
+      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+      doi:10.21105/joss.03167
+
+    A BibTeX entry for LaTeX users is
+
+      @Article{,
+        doi = {10.21105/joss.03167},
+        url = {https://doi.org/10.21105/joss.03167},
+        year = {2021},
+        publisher = {{The Open Journal}},
+        volume = {6},
+        number = {61},
+        pages = {3167},
+        author = {Indrajeet Patil},
+        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+        journal = {{Journal of Open Source Software}},
+      }

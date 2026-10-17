@@ -211,57 +211,10 @@ would support H₁. This makes interpretation intuitive: zero means
 balanced evidence, and distance from zero indicates strength regardless
 of direction.</p>
 </div>
-<div class="section level3">
-<h3 id="numerical-stability">
-<strong>Numerical Stability</strong><a class="anchor" aria-label="anchor" href="#numerical-stability"></a>
-</h3>
-<p>When computing Bayes Factors from likelihoods or marginal
-probabilities, the raw numbers can be extremely large or small, which
-can lead to numerical issues. Taking logs avoids underflow or overflow,
-since products of small probabilities become sums of manageable
-log-probabilities (e.g., <strong>log(ab) = log(a) + log(b)</strong>).
-This makes Bayesian computation more robust in practice.</p>
-</div>
-<div class="section level3">
-<h3 id="additivity-of-evidence">
-<strong>Additivity of Evidence</strong><a class="anchor" aria-label="anchor" href="#additivity-of-evidence"></a>
-</h3>
-<p>When combining evidence from multiple sources or experiments,
-<strong>log Bayes Factors add</strong>:</p>
-<ul>
-<li>ln(BF₀₁ from study 1) + ln(BF₀₁ from study 2) = ln(total BF₀₁)</li>
-</ul>
-<p>This makes it easy to combine studies without recalculating
-everything in raw terms. Note that this holds only when the Bayes Factor
-for the second study is computed <em>conditional</em> on the first one
-(i.e., using the posterior from study 1 as the prior for study 2);
-multiplying Bayes Factors that were each computed from the same default
-prior does not, in general, give the Bayes Factor for the combined data.
-For example:</p>
-<ul>
-<li>Study 1: BF₀₁ = 3 → ln(BF₀₁) ≈ 1.1</li>
-<li>Study 2: BF₀₁ = 5 → ln(BF₀₁) ≈ 1.6</li>
-<li>Combined: ln(BF₀₁ total) ≈ 2.7 → BF₀₁ ≈ 15</li>
-</ul>
-<p>This is equivalent to the data being 15 times more likely under H₀
-across both studies.</p>
-</div>
 </div>
 <div class="section level2">
 <h2 id="interpreting-negative-log-bayes-factors">Interpreting Negative Log Bayes Factors<a class="anchor" aria-label="anchor" href="#interpreting-negative-log-bayes-factors"></a>
 </h2>
-<p>If you always report <strong>log BF₀₁</strong>, then:</p>
-<ul>
-<li>
-<strong>Positive ln(BF₀₁)</strong> → Evidence in favor of the null
-hypothesis</li>
-<li>
-<strong>Negative ln(BF₀₁)</strong> → Evidence in favor of the
-alternative hypothesis</li>
-<li>
-<strong>Zero ln(BF₀₁)</strong> → No evidence either way (BF₀₁ =
-1)</li>
-</ul>
 <p>A commonly used classification scheme (Lee &amp; Wagenmakers, 2014,
 adapted from Jeffreys, 1961) labels the strength of evidence as
 follows:</p>
@@ -301,7 +254,7 @@ follows:</p>
 <tr class="even">
 <td>1</td>
 <td>0</td>
-<td>No evidence</td>
+<td>Balanced evidence</td>
 </tr>
 </tbody>
 </table>
@@ -311,23 +264,6 @@ evidence for H₁). These labels are only rough guides; the further the
 value is from 0, the stronger the evidence—positive values favor the
 <strong>null</strong>, negative values favor the
 <strong>alternative</strong>.</p>
-</div>
-<div class="section level2">
-<h2 id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
-</h2>
-<p>Using the <strong>natural log of Bayes Factors (ln BF₀₁)</strong>
-makes Bayesian inference easier to interpret, communicate, and
-compute:</p>
-<ul>
-<li><strong>Compresses wide numeric range</strong></li>
-<li><strong>Symmetric scale centered at 0</strong></li>
-<li><strong>Numerically stable for computation</strong></li>
-<li><strong>Additive across studies</strong></li>
-<li>
-<strong>Sign tells you which hypothesis is favored</strong>;
-<strong>magnitude tells you how strongly</strong>
-</li>
-</ul>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>

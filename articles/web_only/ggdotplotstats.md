@@ -2,31 +2,6 @@
 
 ------------------------------------------------------------------------
 
-You can cite this package/vignette as:
-
-    To cite package 'ggstatsplot' in publications use:
-
-      Patil, I. (2021). Visualizations with statistical details: The
-      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
-      doi:10.21105/joss.03167
-
-    A BibTeX entry for LaTeX users is
-
-      @Article{,
-        doi = {10.21105/joss.03167},
-        url = {https://doi.org/10.21105/joss.03167},
-        year = {2021},
-        publisher = {{The Open Journal}},
-        volume = {6},
-        number = {61},
-        pages = {3167},
-        author = {Indrajeet Patil},
-        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
-        journal = {{Journal of Open Source Software}},
-      }
-
-------------------------------------------------------------------------
-
 Lifecycle:
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
@@ -138,17 +113,11 @@ accomplish our task.
 
 ## Grouped analysis with `{purrr}`
 
-Although this is a quick and dirty way to explore a large amount of data
-with minimal effort, it does come with an important limitation: reduced
-flexibility. For example, if we wanted to add, let’s say, a separate
-`test.value` argument for each number of cylinders, this is not possible
-with `grouped_ggdotplotstats`. For cases like these, or to run separate
-kinds of tests (robust for some, parametric for other, while Bayesian
-for some other levels of the group) it would be better to use
-[purrr](https://purrr.tidyverse.org/).
-
-See the associated vignette here:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html>
+For group-specific arguments or multiple grouping variables, see the
+[programmatic plotting
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#why-purrr).
+It explains how to split the data, customize each call, and combine the
+resulting plots.
 
 ## Summary of graphics and tests
 
@@ -164,14 +133,18 @@ listed in the function documentation:
 
 ## Extracting statistical details
 
-All statistical details shown in the plot are also available as data
-frames, which can be extracted with
-[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md).
-The returned list contains results from the test in the subtitle
-(`subtitle_data`) and the Bayesian test in the caption (`caption_data`).
+Use
+[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+to retrieve the results as data frames; its reference page describes all
+returned components, including the lists returned for `grouped_` plots.
 
 \
 `p`` ``<-`` `[`ggdotplotstats`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md)`(``morley``, ``Speed``, ``Expt``, test.value ``=`` ``800``)`\
+`p`
+
+![](ggdotplotstats_files/figure-html/extract_stats-1.png)
+
+\
 \
 [`extract_stats`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)`(``p``)``$``subtitle_data`\
 `#> ``# A tibble: 1 × 15`\
@@ -184,12 +157,6 @@ The returned list contains results from the test in the subtitle
 `#>   ``expression`\
 `#>   ``<list>``    `\
 `#> ``1`` ``<language>`
-
-For
-[`grouped_ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggdotplotstats.md)
-plots,
-[`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
-returns one such list for each level of the grouping variable.
 
 ## Reporting
 
@@ -204,15 +171,7 @@ approaches:
 - the *standard* narrative approach, which provides interpretive context
   for the reported statistics.
 
-For example, let’s see the following example:
-
-\
-[`ggdotplotstats`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md)`(``morley``, ``Speed``, ``Expt``, test.value ``=`` ``800``)`
-
-![](ggdotplotstats_files/figure-html/reporting-1.png)
-
-The narrative context (assuming `type = "parametric"`) can complement
-this plot either as a figure caption or in the main text-
+For the example above, the narrative context could read:
 
 > Student’s *t*-test revealed that, across 5 experiments, the speed of
 > light was significantly different than posited speed. The effect size
@@ -226,3 +185,28 @@ this plot either as a figure caption or in the main text-
 
 If you find any bugs or have any suggestions/remarks, please file an
 issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+## Citation
+
+You can cite this package/vignette as:
+
+    To cite package 'ggstatsplot' in publications use:
+
+      Patil, I. (2021). Visualizations with statistical details: The
+      'ggstatsplot' approach. Journal of Open Source Software, 6(61), 3167,
+      doi:10.21105/joss.03167
+
+    A BibTeX entry for LaTeX users is
+
+      @Article{,
+        doi = {10.21105/joss.03167},
+        url = {https://doi.org/10.21105/joss.03167},
+        year = {2021},
+        publisher = {{The Open Journal}},
+        volume = {6},
+        number = {61},
+        pages = {3167},
+        author = {Indrajeet Patil},
+        title = {{Visualizations with statistical details: The {'ggstatsplot'} approach}},
+        journal = {{Journal of Open Source Software}},
+      }
