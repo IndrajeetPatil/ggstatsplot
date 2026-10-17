@@ -116,10 +116,7 @@ ggdotplotstats <- function(
     bf.prior = bf.prior
   )) |>
     arrange({{ x }}) |>
-    mutate(
-      percent_rank = percent_rank({{ x }}),
-      rank = row_number()
-    )
+    mutate(rank = row_number())
 
   # statistical analysis ------------------------------------------
 
