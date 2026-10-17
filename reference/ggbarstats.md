@@ -274,7 +274,7 @@ analyses. `type = "nonparametric"` and `type = "robust"` are accepted,
 but run the same frequentist tests as `type = "parametric"` (the
 "Parametric/Non-parametric" rows below).
 
-### two-way table
+### Two-way table
 
 **Hypothesis testing**
 
@@ -300,7 +300,7 @@ Paired Bayesian analysis is not supported: for a two-way table with
 `type = "bayes"`, the `paired` argument is ignored and the unpaired
 Bayesian test is run instead.
 
-### one-way table
+### One-way table
 
 **Hypothesis testing**
 

@@ -379,7 +379,7 @@ The table below provides summary about:
 
 - functions used internally to compute these details
 
-### between-subjects
+### Between-subjects
 
 **Hypothesis testing**
 
@@ -396,16 +396,15 @@ The table below provides summary about:
 |  |  |  |  |  |
 |----|----|----|----|----|
 | Type | No. of groups | Effect size | CI available? | Function used |
-| Parametric | 2 | Cohen's *d*, Hedge's *g* | Yes | [`effectsize::cohens_d()`](https://easystats.github.io/effectsize/reference/cohens_d.html), [`effectsize::hedges_g()`](https://easystats.github.io/effectsize/reference/cohens_d.html) |
+| Parametric | 2 | Cohen's *d*, Hedges' *g* | Yes | [`effectsize::cohens_d()`](https://easystats.github.io/effectsize/reference/cohens_d.html), [`effectsize::hedges_g()`](https://easystats.github.io/effectsize/reference/cohens_d.html) |
 | Non-parametric | 2 | *r* (rank-biserial correlation) | Yes | [`effectsize::rank_biserial()`](https://easystats.github.io/effectsize/reference/rank_biserial.html) |
 | Robust | 2 | Algina-Keselman-Penfield robust standardized difference | Yes | [`WRS2::akp.effect()`](https://rdrr.io/pkg/WRS2/man/yuen.html) |
 | Bayesian | 2 | difference | Yes | [`bayestestR::describe_posterior()`](https://easystats.github.io/bayestestR/reference/describe_posterior.html) |
 
-### within-subjects
+### Within-subjects
 
-**Data requirement**: Paired tests assume exactly **one observation per
-subject per condition**. If your data has multiple trials per cell,
-aggregate first (e.g., take the mean).
+**Paired data**: See `complete_subjects()` for subject matching,
+duplicate observations, and removal of incomplete subjects.
 
 **Hypothesis testing**
 
@@ -422,7 +421,7 @@ aggregate first (e.g., take the mean).
 |  |  |  |  |  |
 |----|----|----|----|----|
 | Type | No. of groups | Effect size | CI available? | Function used |
-| Parametric | 2 | Cohen's *d*, Hedge's *g* | Yes | [`effectsize::cohens_d()`](https://easystats.github.io/effectsize/reference/cohens_d.html), [`effectsize::hedges_g()`](https://easystats.github.io/effectsize/reference/cohens_d.html) |
+| Parametric | 2 | Cohen's *d*, Hedges' *g* | Yes | [`effectsize::cohens_d()`](https://easystats.github.io/effectsize/reference/cohens_d.html), [`effectsize::hedges_g()`](https://easystats.github.io/effectsize/reference/cohens_d.html) |
 | Non-parametric | 2 | *r* (rank-biserial correlation) | Yes | [`effectsize::rank_biserial()`](https://easystats.github.io/effectsize/reference/rank_biserial.html) |
 | Robust | 2 | Algina-Keselman-Penfield robust standardized difference | Yes | [`WRS2::wmcpAKP()`](https://rdrr.io/pkg/WRS2/man/wmcpAKP.html) |
 | Bayesian | 2 | difference | Yes | [`bayestestR::describe_posterior()`](https://easystats.github.io/bayestestR/reference/describe_posterior.html) |
@@ -438,7 +437,7 @@ The table below provides summary about:
 
 - functions used internally to compute these details
 
-### between-subjects
+### Between-subjects
 
 **Hypothesis testing**
 
@@ -460,13 +459,10 @@ The table below provides summary about:
 | Robust | \> 2 | Explanatory measure of effect size | Yes | [`WRS2::t1way()`](https://rdrr.io/pkg/WRS2/man/t1way.html) |
 | Bayesian | \> 2 | Bayesian R-squared | Yes | [`performance::r2_bayes()`](https://easystats.github.io/performance/reference/r2_bayes.html) |
 
-### within-subjects
+### Within-subjects
 
-**Data requirement**: Repeated measures tests assume a *complete* design
-with exactly **one observation per subject per condition**. If your data
-has multiple trials per cell, aggregate first (e.g., take the mean).
-Verify with `table(data$subject, data$condition)` — every cell should
-equal `1`.
+**Paired data**: See `complete_subjects()` for subject matching,
+duplicate observations, and removal of incomplete subjects.
 
 **Hypothesis testing**
 
@@ -499,7 +495,7 @@ The table below provides summary about:
 
 - functions used internally to compute these details
 
-### between-subjects
+### Between-subjects
 
 **Hypothesis testing**
 
@@ -516,11 +512,10 @@ The table below provides summary about:
 
 Not supported.
 
-### within-subjects
+### Within-subjects
 
-**Data requirement**: Paired pairwise tests assume exactly **one
-observation per subject per condition**. If your data has multiple
-trials per cell, aggregate first (e.g., take the mean).
+**Paired data**: See `complete_subjects()` for subject matching,
+duplicate observations, and removal of incomplete subjects.
 
 **Hypothesis testing**
 

@@ -294,7 +294,7 @@ The table below provides summary about:
 
 - functions used internally to compute these details
 
-**Hypothesis testing** and **Effect size estimation**
+**Hypothesis testing and effect size estimation**
 
 |  |  |  |  |  |
 |----|----|----|----|----|

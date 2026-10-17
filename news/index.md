@@ -1,6 +1,8 @@
 # Changelog
 
-## ggstatsplot 1.1.2.9000
+## ggstatsplot 1.1.3
+
+CRAN release: 2026-10-17
 
 ### BUG FIXES
 
