@@ -88,7 +88,7 @@ palette in use. This time, let’s also use a robust test.
 [`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(`\
 `  data ``=`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``gapminder``, ``year`` ``==`` ``2007``, ``continent`` ``!=`` ``"Oceania"``)``,`\
 `  x ``=`` ``continent``, ``## grouping/independent variable`\
-`  y ``=`` ``lifeExp``, ``## dependent variables`\
+`  y ``=`` ``lifeExp``, ``## dependent variable`\
 `  type ``=`` ``"robust"``, ``## type of statistics`\
 `  xlab ``=`` ``"Continent"``, ``## label for the x-axis`\
 `  ylab ``=`` ``"Life expectancy"``, ``## label for the y-axis`\
@@ -130,12 +130,11 @@ available options:
   [paletteer](https://emilhvitfeldt.github.io/paletteer/)).
 
 Let’s use the `combine_plots` function to make one plot from four
-separate plots that demonstrates all of these options. Let’s compare
-life expectancy for all countries between 1957 and 2007. We will
-generate the plots one by one and then use `combine_plots` to merge them
-into one plot with some common labeling. It is possible, but not
-necessarily recommended, to make each plot have different colors or
-themes.
+separate plots that demonstrate all of these options. Let’s compare life
+expectancy for all countries between 1957 and 2007. We will generate the
+plots one by one and then use `combine_plots` to merge them into one
+plot with some common labeling. It is possible, but not necessarily
+recommended, to make each plot have different colors or themes.
 
 For example,
 

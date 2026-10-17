@@ -209,7 +209,7 @@ also use a robust test.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">gapminder</span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span>, <span class="va">continent</span> <span class="op">!=</span> <span class="st">"Oceania"</span><span class="op">)</span>,</span>
 <span>  x <span class="op">=</span> <span class="va">continent</span>, <span class="co">## grouping/independent variable</span></span>
-<span>  y <span class="op">=</span> <span class="va">lifeExp</span>, <span class="co">## dependent variables</span></span>
+<span>  y <span class="op">=</span> <span class="va">lifeExp</span>, <span class="co">## dependent variable</span></span>
 <span>  type <span class="op">=</span> <span class="st">"robust"</span>, <span class="co">## type of statistics</span></span>
 <span>  xlab <span class="op">=</span> <span class="st">"Continent"</span>, <span class="co">## label for the x-axis</span></span>
 <span>  ylab <span class="op">=</span> <span class="st">"Life expectancy"</span>, <span class="co">## label for the y-axis</span></span>
@@ -251,7 +251,7 @@ points.</p></li>
 <a href="https://emilhvitfeldt.github.io/paletteer/" class="external-link">paletteer</a>).</p></li>
 </ul>
 <p>Let’s use the <code>combine_plots</code> function to make one plot
-from four separate plots that demonstrates all of these options. Let’s
+from four separate plots that demonstrate all of these options. Let’s
 compare life expectancy for all countries between 1957 and 2007. We will
 generate the plots one by one and then use <code>combine_plots</code> to
 merge them into one plot with some common labeling. It is possible, but

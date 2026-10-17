@@ -91,7 +91,7 @@ see
 `` ## using `statsExpressions::pairwise_comparisons()` function to create a data frame with results ``\
 `df`` ``<-`\
 `  ``statsExpressions``::`[`pairwise_comparisons`](https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html)`(``mtcars``, ``cyl``, ``wt``)`` ``|>`\
-`  ``dplyr``::`[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``groups ``=`` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(``.l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``group1``, ``group2``)``, .f ``=`` ``c``)``)`` ``|>`\
+`  ``dplyr``::`[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``groups ``=`` ``purrr``::`[`map2`](https://purrr.tidyverse.org/reference/map2.html)`(``group1``, ``group2``, ``c``)``)`` ``|>`\
 `  ``dplyr``::`[`arrange`](https://dplyr.tidyverse.org/reference/arrange.html)`(``group1``)`\
 \
 `df`\
@@ -140,7 +140,7 @@ see
 `    type ``=`` ``"bayes"``,`\
 `    paired ``=`` ``TRUE`\
 `  ``)`` ``|>`\
-`  ``dplyr``::`[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``groups ``=`` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(``.l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``group1``, ``group2``)``, .f ``=`` ``c``)``)`` ``|>`\
+`  ``dplyr``::`[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``groups ``=`` ``purrr``::`[`map2`](https://purrr.tidyverse.org/reference/map2.html)`(``group1``, ``group2``, ``c``)``)`` ``|>`\
 `  ``dplyr``::`[`arrange`](https://dplyr.tidyverse.org/reference/arrange.html)`(``group1``)`\
 \
 `df`\
