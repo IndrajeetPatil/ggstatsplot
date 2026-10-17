@@ -19,15 +19,6 @@ vignette: >
 source("setup.R")
 ```
 
-This vignette can be cited as:
-
-```{r}
-#| label = "citation",
-#| echo = FALSE,
-#| comment = ""
-citation("ggstatsplot")
-```
-
 # Summary
 
 Graphical displays can reveal problems in a statistical model that might not be
@@ -161,5 +152,16 @@ analyses. Thus, I would like to thank the
 [members](https://github.com/orgs/easystats/people) of `easystats` as well as
 the users. I would additionally like to thank the contributors to `{ggstatsplot}`
 for reporting bugs, providing helpful feedback, or helping with enhancements.
+
+# Citation {#citation}
+
+This vignette can be cited as:
+
+```{r}
+#| label = "citation",
+#| echo = FALSE,
+#| comment = ""
+citation("ggstatsplot")
+```
 
 # References

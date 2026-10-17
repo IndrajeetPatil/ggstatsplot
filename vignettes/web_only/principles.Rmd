@@ -20,17 +20,6 @@ source("../setup.R")
 
 ---
 
-You can cite this package/vignette as:
-
-```{r}
-#| label = "citation",
-#| echo = FALSE,
-#| comment = ""
-citation("ggstatsplot")
-```
-
----
-
 > **This vignette is still work in progress.**
 
 ## Graphic design principles
@@ -389,3 +378,14 @@ and its interpretation.
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 `GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+## Citation {#citation}
+
+You can cite this package/vignette as:
+
+```{r}
+#| label = "citation",
+#| echo = FALSE,
+#| comment = ""
+citation("ggstatsplot")
+```

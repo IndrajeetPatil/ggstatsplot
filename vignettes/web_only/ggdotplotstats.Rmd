@@ -18,17 +18,6 @@ source("../setup.R")
 
 ---
 
-You can cite this package/vignette as:
-
-```{r}
-#| label = "citation",
-#| echo = FALSE,
-#| comment = ""
-citation("ggstatsplot")
-```
-
----
-
 Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 The function `ggdotplotstats` can be used for **data exploration** and to
@@ -174,3 +163,14 @@ hypothesis.
 
 If you find any bugs or have any suggestions/remarks, please file an issue on GitHub:
 <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+## Citation {#citation}
+
+You can cite this package/vignette as:
+
+```{r}
+#| label = "citation",
+#| echo = FALSE,
+#| comment = ""
+citation("ggstatsplot")
+```

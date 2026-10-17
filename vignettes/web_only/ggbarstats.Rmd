@@ -17,17 +17,6 @@ source("../setup.R")
 
 ---
 
-You can cite this package/vignette as:
-
-```{r}
-#| label = "citation",
-#| echo = FALSE,
-#| comment = ""
-citation("ggstatsplot")
-```
-
----
-
 Lifecycle: [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 ## Introduction to `ggbarstats`
@@ -360,3 +349,14 @@ goodness-of-fit test instead of a $\chi^2$-test.
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+## Citation {#citation}
+
+You can cite this package/vignette as:
+
+```{r}
+#| label = "citation",
+#| echo = FALSE,
+#| comment = ""
+citation("ggstatsplot")
+```

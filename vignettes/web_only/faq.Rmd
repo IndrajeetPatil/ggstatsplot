@@ -16,17 +16,6 @@ vignette: >
 source("../setup.R")
 ```
 
----
-
-You can cite this package/vignette as:
-
-```{r}
-#| label = "citation",
-#| echo = FALSE,
-#| comment = ""
-citation("ggstatsplot")
-```
-
 <!-- Give every question an explicit, stable anchor ID so that links to it -->
 <!-- survive rewording, reordering, and adding or removing other questions. -->
 
@@ -212,9 +201,8 @@ ggscatterstats(df, wt, mpg, results.subtitle = FALSE) +
 
 ### How should I cite and report the results? {#cite-report}
 
-You can cite the package with `citation("ggstatsplot")` (see top of this
-article). For reporting, the expressions shown in the plots follow a standard
-template (see the
+See the [citation section](#citation) for the package reference. For reporting,
+the expressions shown in the plots follow a standard template (see the
 [principles article](https://www.indrapatil.com/ggstatsplot/articles/web_only/principles.html#statistical-reporting)),
 and all numbers can be retrieved as data frames with
 [`extract_stats()`](#extract-stats). For interpreting logged Bayes Factors, see
@@ -556,3 +544,14 @@ grouped_ggscatterstats(
 
 If you find any bugs or have any suggestions/remarks, please file an issue on
 `GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
+## Citation {#citation}
+
+You can cite this package/vignette as:
+
+```{r}
+#| label = "citation",
+#| echo = FALSE,
+#| comment = ""
+citation("ggstatsplot")
+```
