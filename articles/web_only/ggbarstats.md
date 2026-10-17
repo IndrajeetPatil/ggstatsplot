@@ -300,7 +300,7 @@ caused the change.
 
 | graphical element | `geom` used | argument for further modification |
 |:---|:---|:---|
-| bars | [`ggplot2::geom_bar()`](https://ggplot2.tidyverse.org/reference/geom_bar.html) | `NA` |
+| bars | [`ggplot2::geom_col()`](https://ggplot2.tidyverse.org/reference/geom_bar.html) | `NA` |
 | descriptive labels | [`ggplot2::geom_label()`](https://ggplot2.tidyverse.org/reference/geom_text.html) | `label.args` |
 | sample size labels | [`ggplot2::geom_text()`](https://ggplot2.tidyverse.org/reference/geom_text.html) | `sample.size.label.args` |
 
