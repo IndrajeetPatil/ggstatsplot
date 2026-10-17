@@ -1,3 +1,10 @@
+# ggstatsplot 1.1.3.9000
+
+## BUG FIXES
+
+- `ggcorrmat()` now uses all numeric variables when `cor.vars = NULL` is
+  passed explicitly, as documented, instead of failing with an error.
+
 # ggstatsplot 1.1.3
 
 ## BUG FIXES

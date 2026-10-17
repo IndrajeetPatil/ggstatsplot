@@ -106,7 +106,7 @@ ggcorrmat <- function(
   ...
 ) {
   type <- extract_stats_type(type)
-  if (!missing(cor.vars)) {
+  if (!quo_is_null(enquo(cor.vars))) {
     data <- select(data, {{ cor.vars }})
   }
 

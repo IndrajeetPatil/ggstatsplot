@@ -12,6 +12,13 @@ test_that("checking ggcorrmat with entire dataset", {
   )
 })
 
+test_that("explicit `cor.vars = NULL` uses all numeric variables", {
+  expect_identical(
+    extract_stats(ggcorrmat(anscombe, cor.vars = NULL)),
+    extract_stats(ggcorrmat(anscombe))
+  )
+})
+
 # changing defaults -------------------------------------------
 
 test_that("ggcorrmat works as expected with changed defaults", {
