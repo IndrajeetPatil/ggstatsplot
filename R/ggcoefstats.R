@@ -103,8 +103,6 @@
 #'   plot.
 #' @param ... Additional arguments to tidying method. For more, see
 #'   [`parameters::model_parameters()`].
-#' @inheritParams parameters::model_parameters
-#' @inheritParams statsExpressions::meta_analysis
 #' @inheritParams ggbetweenstats
 #'
 #' @inheritSection statsExpressions::meta_analysis Random-effects meta-analysis
