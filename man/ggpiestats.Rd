@@ -214,7 +214,7 @@ There are no dedicated non-parametric or robust contingency table analyses.
 \code{type = "nonparametric"} and \code{type = "robust"} are accepted, but run the same
 frequentist tests as \code{type = "parametric"} (the "Parametric/Non-parametric" rows
 below).
-\subsection{two-way table}{
+\subsection{Two-way table}{
 
 \strong{Hypothesis testing}\tabular{llll}{
    Type \tab Design \tab Test \tab Function used \cr
@@ -239,7 +239,7 @@ Paired Bayesian analysis is not supported: for a two-way table with
 test is run instead.
 }
 
-\subsection{one-way table}{
+\subsection{One-way table}{
 
 \strong{Hypothesis testing}\tabular{lll}{
    Type \tab Test \tab Function used \cr

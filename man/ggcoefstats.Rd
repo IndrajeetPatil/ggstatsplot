@@ -222,7 +222,7 @@ The table below provides summary about:
 \item functions used internally to compute these details
 }
 
-\strong{Hypothesis testing} and \strong{Effect size estimation}\tabular{lllll}{
+\strong{Hypothesis testing and effect size estimation}\tabular{lllll}{
    Type \tab Test \tab Effect size \tab CI available? \tab Function used \cr
    Parametric \tab Meta-analysis via random-effects models \tab \emph{beta} \tab Yes \tab \code{metafor::rma()} \cr
    Robust \tab Meta-analysis via robust random-effects models \tab \emph{beta} \tab Yes \tab \code{metaplus::metaplus()} \cr
