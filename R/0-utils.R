@@ -146,10 +146,8 @@ utils::globalVariables(".pre")
   bf.condition = type == "parametric"
 ) {
   subtitle_df <- .eval_f(.f, !!!.f.args, type = type)
-  caption_df <- NULL
-
-  if (bf.condition && bf.message) {
-    caption_df <- .eval_f(.f, !!!.f.args, type = "bayes")
+  caption_df <- if (bf.condition && bf.message) {
+    .eval_f(.f, !!!.f.args, type = "bayes")
   }
 
   list(

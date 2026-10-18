@@ -91,15 +91,12 @@ extract_stats <- function(p) .map_plots(p, .extract_stats)
 
 #' @rdname extract_stats
 #' @export
-extract_subtitle <- function(p) .extract_plot_expression(p, "subtitle_data")
+extract_subtitle <- function(p) .extract_plot_expression(p, "subtitle_df")
 
 #' @rdname extract_stats
 #' @export
-extract_caption <- function(p) .extract_plot_expression(p, "caption_data")
+extract_caption <- function(p) .extract_plot_expression(p, "caption_df")
 
 .extract_plot_expression <- function(p, data) {
-  .map_plots(
-    p,
-    \(x) purrr::pluck(.extract_stats(x), data, "expression", 1L)
-  )
+  .map_plots(p, \(x) .extract_expression(.pluck_plot_env(x, data)))
 }
