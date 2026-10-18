@@ -220,7 +220,7 @@ ggbarstats <- function(
 
   plotBar +
     labs(
-      x = if (test == "two.way") (xlab %||% as_name(y)) else xlab,
+      x = if (test == "two.way") xlab %||% as_name(y) else xlab,
       y = ylab,
       subtitle = subtitle,
       title = title,
