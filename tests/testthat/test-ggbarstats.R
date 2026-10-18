@@ -97,6 +97,17 @@ test_that("edge cases", {
     fig = ggbarstats(mtcars_small, am, cyl)
   )
 
+  # no proportion test labels when `x` has a single level
+  p_label_layers <- function(p) {
+    layer_labels <- purrr::map_chr(
+      p$layers,
+      \(l) rlang::as_label(l$mapping$label)
+    )
+    sum(layer_labels == ".p.label")
+  }
+  expect_identical(p_label_layers(ggbarstats(mtcars_small, am, cyl)), 0L)
+  expect_identical(p_label_layers(ggbarstats(mtcars, am, cyl)), 1L)
+
   too_many_levels <- tibble::tibble(x = factor(seq_len(25L)))
   expect_error(
     ggbarstats(too_many_levels, x, results.subtitle = FALSE),

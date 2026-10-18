@@ -19,6 +19,24 @@ test_that("explicit `cor.vars = NULL` uses all numeric variables", {
   )
 })
 
+test_that("single sample size is shown when all pairs share the same `n`", {
+  legend_title <- function(data) {
+    ggcorrmat(data)$scales$get_scales("fill")$name
+  }
+  expected <- legend_title(anscombe[-1L, ])
+
+  # missing values in a non-numeric column are not used in any correlation
+  expect_identical(
+    legend_title(dplyr::mutate(anscombe[-1L, ], group = c(NA, letters[1:9]))),
+    expected
+  )
+
+  # missing values in the same row of every numeric column
+  anscombe_na <- anscombe
+  anscombe_na[1L, ] <- NA
+  expect_identical(legend_title(anscombe_na), expected)
+})
+
 # changing defaults -------------------------------------------
 
 test_that("ggcorrmat works as expected with changed defaults", {

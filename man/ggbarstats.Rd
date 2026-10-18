@@ -100,7 +100,8 @@ significant figures (see also \code{\link[=signif]{signif()}}).}
 \item{proportion.test}{Decides whether proportion test for \code{x} variable is to
 be carried out for each level of \code{y}. Defaults to \code{results.subtitle}. In
 \code{\link[=ggbarstats]{ggbarstats()}}, only \emph{p}-values from this test will be displayed. Always
-\code{FALSE} when \code{type = "bayes"} or when \code{y} is \code{NULL}.}
+\code{FALSE} when \code{type = "bayes"}, when \code{y} is \code{NULL}, or when \code{x} has only one
+level.}
 
 \item{digits.perc}{Numeric that decides number of decimal places for
 percentage labels (Default: \code{0L}).}

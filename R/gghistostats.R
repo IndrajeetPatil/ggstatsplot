@@ -167,7 +167,8 @@ gghistostats <- function(
 
 #' @noRd
 .binwidth <- function(x) {
-  (max(x, na.rm = TRUE) - min(x, na.rm = TRUE)) / sqrt(length(x))
+  x <- x[!is.na(x)]
+  diff(range(x)) / sqrt(length(x))
 }
 
 
@@ -177,14 +178,14 @@ gghistostats <- function(
 #' @description
 #'
 #' Helper function for `ggstatsplot::gghistostats()` to apply this function
-#' across multiple levels of a given factor and combining the resulting plots
+#' across multiple levels of a given factor and combine the resulting plots
 #' using `ggstatsplot::combine_plots()`.
 #'
 #' @inheritParams gghistostats
 #' @inheritParams grouped_ggbetweenstats
 #' @param binwidth The width of the histogram bins (see [`gghistostats()`]). If
-#'   `NULL` (default), it is computed once from the full data (not per group),
-#'   so that all plots share the same bin width.
+#'   `NULL` (default), it is computed once from the non-missing values of `x` in
+#'   the full data (not per group), so that all plots share the same bin width.
 #' @inheritDotParams gghistostats -title
 #'
 #' @seealso \code{\link{gghistostats}}, \code{\link{ggdotplotstats}},
