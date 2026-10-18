@@ -29,7 +29,7 @@ test_that("aesthetic modifications work", {
       data = mtcars,
       x = wt,
       xlab = "weight",
-      title = "mtcars: car wights",
+      title = "mtcars: car weights",
       binwidth = 5,
       bin.args = list(
         col = "black",
