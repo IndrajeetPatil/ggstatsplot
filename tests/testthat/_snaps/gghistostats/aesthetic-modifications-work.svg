@@ -94,6 +94,6 @@
 <text x='357.34' y='568.94' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='28.91px' lengthAdjust='spacingAndGlyphs'>weight</text>
 <text transform='translate(11.86,291.38) rotate(-90)' text-anchor='middle' style='font-size: 10.00px; font-weight: bold; font-family: sans;' textLength='24.47px' lengthAdjust='spacingAndGlyphs'>count</text>
 <text transform='translate(709.51,291.38) rotate(90)' text-anchor='middle' style='font-size: 8.00px; font-weight: bold; font-family: sans;' textLength='36.02px' lengthAdjust='spacingAndGlyphs'>proportion</text>
-<text x='29.81' y='13.24' style='font-size: 12.00px; font-weight: bold; font-family: sans;' textLength='96.71px' lengthAdjust='spacingAndGlyphs'>mtcars: car wights</text>
+<text x='29.81' y='13.24' style='font-size: 12.00px; font-weight: bold; font-family: sans;' textLength='103.38px' lengthAdjust='spacingAndGlyphs'>mtcars: car weights</text>
 </g>
 </svg>
