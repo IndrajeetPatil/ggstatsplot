@@ -63,24 +63,24 @@ template:
       card: summary_large_image
 
 reference:
-  - title: Hypothesis about group differences
+  - title: Hypotheses about group differences
     contents:
       - ggbetweenstats
       - ggwithinstats
       - gghistostats
       - ggdotplotstats
 
-  - title: Hypothesis about correlation
+  - title: Hypotheses about correlation
     contents:
       - ggscatterstats
       - ggcorrmat
 
-  - title: Hypothesis about composition of categorical variables
+  - title: Hypotheses about composition of categorical variables
     contents:
       - ggpiestats
       - ggbarstats
 
-  - title: Hypothesis about regression coefficients
+  - title: Hypotheses about regression coefficients
     contents:
       - ggcoefstats
 
