@@ -138,6 +138,8 @@ utils::globalVariables(".pre")
 }
 
 
+# Callers store the result as `stats_output`, where `extract_stats()` looks up
+# `subtitle_df` and `caption_df`.
 #' @noRd
 .subtitle_caption <- function(
   .f,

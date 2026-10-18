@@ -137,9 +137,6 @@ ggbarstats <- function(
     )
     subtitle <- stats_output$subtitle
     caption <- stats_output$caption %||% caption
-    subtitle_df <- stats_output$subtitle_df
-    caption_df <- stats_output$caption_df
-    mpc_df <- stats_output$mpc_df
   }
 
   # plot ------------------------------------------

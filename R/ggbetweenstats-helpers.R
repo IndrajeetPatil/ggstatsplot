@@ -18,7 +18,8 @@
 #' @inheritParams ggbetweenstats
 #'
 #' @return A list with elements `subtitle`, `caption`, `subtitle_df`, and
-#'   `caption_df`.
+#'   `caption_df`. Callers store it as `stats_output`, where `extract_stats()`
+#'   looks up the data frames.
 #'
 #' @autoglobal
 #' @noRd
