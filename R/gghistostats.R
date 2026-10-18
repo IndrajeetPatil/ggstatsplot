@@ -103,7 +103,7 @@ gghistostats <- function(
       one_sample_test,
       list(
         data = data,
-        x = {{ x }},
+        x = x,
         test.value = test.value,
         alternative = alternative,
         conf.level = conf.level,
@@ -203,7 +203,7 @@ gghistostats <- function(
 #'
 #' @autoglobal
 #'
-#' @inherit gghistostats references details
+#' @inherit gghistostats details
 #' @inherit grouped_ggbetweenstats return
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")

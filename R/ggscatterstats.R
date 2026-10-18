@@ -149,8 +149,8 @@ ggscatterstats <- function(
       corr_test,
       list(
         data = data,
-        x = {{ x }},
-        y = {{ y }},
+        x = x,
+        y = y,
         conf.level = conf.level,
         digits = digits,
         tr = tr,
@@ -259,7 +259,7 @@ ggscatterstats <- function(
 #'
 #' @autoglobal
 #'
-#' @inherit ggscatterstats references details
+#' @inherit ggscatterstats details
 #' @inherit grouped_ggbetweenstats return
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")

@@ -274,7 +274,6 @@ ggwithinstats <- function(
 #'
 #' @autoglobal
 #'
-#' @inherit ggwithinstats references
 #' @inherit grouped_ggbetweenstats return
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true") && requireNamespace("afex", quietly = TRUE)

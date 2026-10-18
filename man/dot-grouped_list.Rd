@@ -18,8 +18,9 @@ for character variables). Rows with a missing value in this variable are
 removed.}
 }
 \description{
-This function splits the data frame into a list, with the length of the list
-equal to the factor levels of the grouping variable.
+This function splits the data frame by the levels of the grouping variable.
+It returns a list with two elements: \code{data}, a list with one data frame per
+level, and \code{title}, a character vector with the corresponding level names.
 }
 \examples{
 \dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}

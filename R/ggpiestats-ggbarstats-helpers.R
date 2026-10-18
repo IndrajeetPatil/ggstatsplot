@@ -65,8 +65,8 @@
 ) {
   .f.args <- list(
     data = data,
-    x = {{ x }},
-    y = {{ y }},
+    x = x,
+    y = y,
     alternative = alternative,
     conf.level = conf.level,
     digits = digits,

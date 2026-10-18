@@ -220,7 +220,7 @@ ggbarstats <- function(
 
   plotBar +
     labs(
-      x = if (test == "two.way") (xlab %||% as_name(y)) else xlab,
+      x = if (test == "two.way") xlab %||% as_name(y) else xlab,
       y = ylab,
       subtitle = subtitle,
       title = title,
@@ -245,7 +245,7 @@ ggbarstats <- function(
 #' @seealso \code{\link{ggbarstats}}, \code{\link{ggpiestats}},
 #'  \code{\link{grouped_ggpiestats}}
 #'
-#' @inherit ggbarstats references details
+#' @inherit ggbarstats details
 #' @inherit grouped_ggbetweenstats return
 #'
 #' @autoglobal

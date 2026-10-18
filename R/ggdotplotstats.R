@@ -125,7 +125,7 @@ ggdotplotstats <- function(
       one_sample_test,
       list(
         data = data,
-        x = {{ x }},
+        x = x,
         test.value = test.value,
         alternative = alternative,
         conf.level = conf.level,
@@ -212,7 +212,7 @@ ggdotplotstats <- function(
 #'
 #' @autoglobal
 #'
-#' @inherit ggdotplotstats references details
+#' @inherit ggdotplotstats details
 #' @inherit grouped_ggbetweenstats return
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
