@@ -66,7 +66,7 @@ follow best practices in both data visualization [@cleveland1985;
 @grant2018data; @healy2018data; @tufte2001; @wilke2019fundamentals] and
 (frequentist/Bayesian) statistical reporting [@apa2019; @van2020jasp]. Without
 `{ggstatsplot}`, getting these statistical details and customizing a plot would
-require significant amount of time and effort. In other words, this package
+require a significant amount of time and effort. In other words, this package
 removes the trade-off often faced by researchers between ease and thoroughness
 of data exploration and further cements good data exploration habits.
 

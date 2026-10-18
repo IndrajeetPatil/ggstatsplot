@@ -108,7 +108,7 @@ ggpiestats(
     than *juxtaposition* ([@cleveland1985], p.201) because this allows for a
     more incisive comparison of the values from different parts of the dataset.
     This recommendation is violated in all `grouped_` variants of the function.
-    Note that the range for Y-axes are no longer the same across juxtaposed
+    Note that the range for Y-axes is no longer the same across juxtaposed
     subplots and so visually comparing the data becomes difficult. On the other
     hand, in the superposed plot, all data have the same range and coloring
     different parts makes the visual discrimination of different components of
@@ -331,7 +331,7 @@ combine_plots(
 ### Statistical reporting
 
 But why would combining statistical analysis with data visualization be helpful?
-We list few reasons below-
+We list a few reasons below-
 
   - A recent survey [@nuijten2016] revealed that one in eight papers in major
     psychology journals contained a grossly inconsistent *p*-value that may have

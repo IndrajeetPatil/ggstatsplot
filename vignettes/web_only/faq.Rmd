@@ -519,7 +519,7 @@ Note that plots created inside a `for` loop are not printed automatically;
 either store them (as above) or wrap the call in `print()`.
 
 That said, if repeating function execution across multiple columns in a
-data frame is what you want to do, I will recommend a
+data frame is what you want to do, I recommend a
 [`{purrr}`-based solution](https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data-frame).
 
 This solution would work for `x` and `y` arguments, but not for the

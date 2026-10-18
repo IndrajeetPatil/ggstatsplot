@@ -26,8 +26,8 @@ You can still use the code as a reference for writing your own `{purrr}` code.
 
 Most of the `{ggstatsplot}` functions have `grouped_` variants, which are designed
 to quickly run the same `{ggstatsplot}` function across multiple levels of a
-**single** grouping variable. Although this function is useful for data
-exploration, it has two strong weaknesses-
+**single** grouping variable. Although these functions are useful for data
+exploration, they have two strong weaknesses-
 
  * The arguments applied to `grouped_` function call are applied uniformly to
    all levels of the grouping variable when we might want to customize them for
@@ -37,7 +37,7 @@ exploration, it has two strong weaknesses-
    there can be a combination of grouping variables and the operation needs to
    be repeated for all resulting combinations.
 
-We will see how to overcome this limitation by combining `{ggstatsplot}` with the
+We will see how to overcome these limitations by combining `{ggstatsplot}` with the
 `{purrr}` package.
 
 **Note:**
@@ -62,8 +62,8 @@ aesthetics.
 What are these `lists` that we are building? The lists correspond to the
 parameters in our `{ggstatsplot}` function like `ggbetweenstats`. If you look at
 the help file for `?ggbetweenstats` for example the very first parameter it
-wants is the `data` file we'll be using. We can also pass it different `titles`
-of even `ggtheme` themes.
+wants is the `data` frame we'll be using. We can also pass it different `titles`
+or even `ggtheme` themes.
 
 You can pass:
 
@@ -239,7 +239,7 @@ combine_plots(
 
 ## `ggscatterstats`
 
-For the next example lets use the same methodology on different data and using
+For the next example let's use the same methodology on different data and using
 `ggscatterstats` to produce scatterplots combined with marginal histograms
 with statistical details added as a subtitle.
 For data we'll use `movies_long` which is from IMDB and part of the

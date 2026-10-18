@@ -37,7 +37,7 @@ To illustrate how this function can be used, we will use the `bugs_long` dataset
 throughout this vignette. This data set, "Bugs", provides the extent to which
 men and women want to kill arthropods that vary in frighteningness (low, high)
 and disgustingness (low, high). Each participant rates their attitudes towards
-all arthropods. Subset of the data reported by [Ryan et al. (2013)](https://www.sciencedirect.com/science/article/pii/S0747563213000277).
+all arthropods. It is a subset of the data reported by [Ryan et al. (2013)](https://www.sciencedirect.com/science/article/pii/S0747563213000277).
 Note that this is a repeated measures design because the same participant gave
 four different ratings across four different conditions (LDLF, LDHF, HDLF,
 HDHF).

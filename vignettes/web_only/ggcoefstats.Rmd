@@ -64,7 +64,7 @@ hypotheses using regression models.
 ## General structure of the plots
 
 Although the statistical models displayed in the plot may differ based on the
-class of models being investigated, there are few aspects of the plot that will
+class of models being investigated, there are a few aspects of the plot that will
 be invariant across models:
 
   - The dot-whisker plot contains a dot representing the **estimate** and their
@@ -73,7 +73,7 @@ be invariant across models:
     coefficients (for tests with `t`-, $\chi^{2}$-, and `z`-statistic), etc. The
     confidence intervals can sometimes be asymmetric if bootstrapping was used.
 
-  - The label attached to dot will provide more details from the statistical
+  - The label attached to each dot will provide more details from the statistical
     test carried out and it will typically contain estimate, statistic, and
     *p*-value.
 

@@ -46,7 +46,7 @@ examples of both (see examples below).
 
 To help demonstrate how `ggbarstats` can be used with categorical (also known as
 nominal) data, a modified version of the original `Titanic` dataset (from the
-`datasets` library) has been provided in the `{ggstatsplot}` package with the name
+`datasets` package) has been provided in the `{ggstatsplot}` package with the name
 `Titanic_full`. The Titanic Passenger Survival Dataset provides information "on
 the fate of passengers on the fatal maiden voyage of the ocean liner *Titanic*,
 including economic status (class), sex, age, and survival."
@@ -177,7 +177,7 @@ unique combination of `Boat`, `Month`, and `Fish`.
 #| fig.width = 9
 
 
-# (this is completely fictional; I don't know first thing about fishing!)
+# (this is completely fictional; I don't know the first thing about fishing!)
 
 fishing <- tibble::as_tibble(data.frame(
   Boat = c(rep("B", 4), rep("A", 4), rep("A", 4), rep("B", 4)),
@@ -223,9 +223,9 @@ ggbarstats(
   counts = SumOfCaught,
   label = "both",
   palette = "ggsci::default_jama",
-  title = "Type fish caught by month",
+  title = "Type of fish caught by month",
   caption = "Source: completely made up",
-  legend.title = "Type fish caught: "
+  legend.title = "Type of fish caught: "
 )
 ```
 
