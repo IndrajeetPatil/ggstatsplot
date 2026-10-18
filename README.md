@@ -546,7 +546,6 @@ grouped_ggbarstats(
   data         = mtcars,
   x            = cyl,
   grouping.var = am,
-  label.repel  = TRUE,
   palette      = "ggsci::default_ucscgb"
 )
 ```
