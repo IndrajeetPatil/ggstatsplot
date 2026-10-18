@@ -175,8 +175,9 @@ test_that("descriptive name", {
   as incidental churn.
 - Several parameters are inherited from `statsExpressions` via
   `@inheritParams`, so the generated `.Rd` text depends on the installed
-  `statsExpressions`. Regenerate against its CRAN release, not a local
-  development build.
+  `statsExpressions`. Regenerate against the `statsExpressions` version that
+  `DESCRIPTION` requires (its GitHub development version while it is listed
+  under `Remotes`, otherwise its CRAN release), not an arbitrary local build.
 - `make document` renders `README.Rmd`; it is not the roxygen regeneration
   command in this repository.
 
