@@ -116,19 +116,13 @@ test_that("subject.id pairs unsorted rows and drops incomplete subjects", {
   set.seed(123)
   df_shuffled <- data_bugs_2[sample(nrow(data_bugs_2)), ]
 
+  subtitle_statistic <- function(data) {
+    p <- ggwithinstats(data, condition, desire, subject.id = subject)
+    extract_stats(p)$subtitle_data$statistic
+  }
   expect_identical(
-    extract_stats(ggwithinstats(
-      df_shuffled,
-      condition,
-      desire,
-      subject.id = subject
-    ))$subtitle_data$statistic,
-    extract_stats(ggwithinstats(
-      data_bugs_2,
-      condition,
-      desire,
-      subject.id = subject
-    ))$subtitle_data$statistic
+    subtitle_statistic(df_shuffled),
+    subtitle_statistic(data_bugs_2)
   )
 
   set.seed(123)
