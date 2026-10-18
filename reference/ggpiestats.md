@@ -133,7 +133,7 @@ ggpiestats(
   for each level of `y`. Defaults to `results.subtitle`. In
   [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md),
   only *p*-values from this test will be displayed. Always `FALSE` when
-  `type = "bayes"` or when `y` is `NULL`.
+  `type = "bayes"`, when `y` is `NULL`, or when `x` has only one level.
 
 - digits.perc:
 

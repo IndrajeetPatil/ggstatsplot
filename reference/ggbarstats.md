@@ -131,7 +131,8 @@ ggbarstats(
   Decides whether proportion test for `x` variable is to be carried out
   for each level of `y`. Defaults to `results.subtitle`. In
   `ggbarstats()`, only *p*-values from this test will be displayed.
-  Always `FALSE` when `type = "bayes"` or when `y` is `NULL`.
+  Always `FALSE` when `type = "bayes"`, when `y` is `NULL`, or when `x`
+  has only one level.
 
 - digits.perc:
 

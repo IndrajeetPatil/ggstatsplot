@@ -3,7 +3,7 @@
 Helper function for
 [`ggstatsplot::ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md)
 to apply this function across multiple levels of a given factor and
-combining the resulting plots using
+combine the resulting plots using
 [`ggstatsplot::combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
 
 ## Usage

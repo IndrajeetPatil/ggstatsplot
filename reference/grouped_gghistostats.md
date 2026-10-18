@@ -3,7 +3,7 @@
 Helper function for
 [`ggstatsplot::gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)
 to apply this function across multiple levels of a given factor and
-combining the resulting plots using
+combine the resulting plots using
 [`ggstatsplot::combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
 
 ## Usage
@@ -43,8 +43,9 @@ grouped_gghistostats(
 
   The width of the histogram bins (see
   [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)).
-  If `NULL` (default), it is computed once from the full data (not per
-  group), so that all plots share the same bin width.
+  If `NULL` (default), it is computed once from the non-missing values
+  of `x` in the full data (not per group), so that all plots share the
+  same bin width.
 
 - plotgrid.args:
 
