@@ -20,6 +20,8 @@ License: MIT + file LICENSE
 URL: https://www.indrapatil.com/ggstatsplot/,
     https://github.com/IndrajeetPatil/ggstatsplot
 BugReports: https://github.com/IndrajeetPatil/ggstatsplot/issues
+Remotes:
+    IndrajeetPatil/statsExpressions
 Depends:
     R (>= 4.5.0)
 Imports:
@@ -40,7 +42,7 @@ Imports:
     performance (>= 0.18.2),
     purrr (>= 1.2.2),
     rlang (>= 1.3.0),
-    statsExpressions (>= 2.2.0),
+    statsExpressions (>= 2.2.0.9000),
     tidyr (>= 1.3.2),
     utils
 Suggests:
