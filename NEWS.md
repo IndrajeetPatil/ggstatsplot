@@ -5,6 +5,11 @@
 - `ggcorrmat()` now uses all numeric variables when `cor.vars = NULL` is
   passed explicitly, as documented, instead of failing with an error.
 
+- `ggcorrmat()` now shows a single sample size in the legend whenever all
+  correlation pairs share the same sample size. Previously, missing values in
+  any column, including non-numeric columns not used in the correlations,
+  switched the legend to minimum, mode, and maximum sample sizes.
+
 # ggstatsplot 1.1.3
 
 ## BUG FIXES

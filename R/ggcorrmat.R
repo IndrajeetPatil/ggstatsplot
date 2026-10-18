@@ -61,8 +61,8 @@
 #'   \code{\link{grouped_ggscatterstats}}
 #'
 #' @details Missing values are handled using pairwise deletion (each
-#'   correlation uses all complete pairs of observations), in which case the
-#'   legend shows the minimum, mode, and maximum sample size across pairs.
+#'   correlation uses all complete pairs of observations). If sample sizes then
+#'   differ across pairs, the legend shows their minimum, mode, and maximum.
 #'   Partial correlations use only complete cases.
 #'
 #' For details, see:
@@ -133,8 +133,9 @@ ggcorrmat <- function(
 
   # plot ------------------------------------------
 
-  # legend title with information about correlation type and sample size
-  if (!anyNA(data) || partial) {
+  # legend title with information about correlation type and sample size;
+  # a single `n` is shown only when all pairs are based on the same sample size
+  if (length(unique(mpc_df$n_Obs)) == 1L) {
     n.label <- bquote(atop(
       scriptstyle(bold("sample sizes:")),
       italic(n) ~ "=" ~ .(.prettyNum(mpc_df$n_Obs[[1L]]))

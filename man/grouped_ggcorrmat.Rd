@@ -122,8 +122,8 @@ multiple levels of a given factor and combining the resulting plots using
 }
 \details{
 Missing values are handled using pairwise deletion (each
-correlation uses all complete pairs of observations), in which case the
-legend shows the minimum, mode, and maximum sample size across pairs.
+correlation uses all complete pairs of observations). If sample sizes then
+differ across pairs, the legend shows their minimum, mode, and maximum.
 Partial correlations use only complete cases.
 
 For details, see:
