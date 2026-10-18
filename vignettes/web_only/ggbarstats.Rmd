@@ -178,30 +178,12 @@ unique combination of `Boat`, `Month`, and `Fish`.
 
 
 # (this is completely fictional; I don't know the first thing about fishing!)
-
-fishing <- tibble::as_tibble(data.frame(
-  Boat = c(rep("B", 4), rep("A", 4), rep("A", 4), rep("B", 4)),
-  Month = c(rep("February", 2), rep("March", 2), rep("February", 2), rep("March", 2)),
-  Fish = c(
-    "Bass",
-    "Catfish",
-    "Cod",
-    "Haddock",
-    "Cod",
-    "Haddock",
-    "Bass",
-    "Catfish",
-    "Bass",
-    "Catfish",
-    "Cod",
-    "Haddock",
-    "Cod",
-    "Haddock",
-    "Bass",
-    "Catfish"
-  ),
+fishing <- tibble::tibble(
+  Boat = rep(c("B", "A", "B"), times = c(4, 8, 4)),
+  Month = rep(c("February", "March"), each = 2, times = 4),
+  Fish = rep(c("Bass", "Catfish", "Cod", "Haddock", "Cod", "Haddock", "Bass", "Catfish"), times = 2),
   SumOfCaught = c(25, 20, 35, 40, 40, 25, 30, 42, 40, 30, 33, 26, 100, 30, 20, 20)
-))
+)
 
 fishing
 ```
@@ -323,7 +305,7 @@ level of the grouping variable.
 ```{asis, file="../../man/md-fragments/reporting.md"}
 ```
 
-For example, let's see the following example:
+For example:
 
 ```{r}
 #| label = "reporting",

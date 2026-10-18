@@ -41,7 +41,6 @@ on <https://fueleconomy.gov>.
 
 ```{r}
 #| label = "mpg"
-## looking at the structure of the data using glimpse
 dplyr::glimpse(ggplot2::mpg)
 ```
 
@@ -52,14 +51,13 @@ Let's say we want to visualize the distribution of mileage by car manufacturer.
 #| fig.height = 7,
 #| fig.width = 9
 
-## removing factor level with very few no. of observations
+## keeping only the two most common cylinder types
 df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6"))
 
-## creating a vector of colors using `paletteer` package
+## one color per manufacturer from a `{paletteer}` palette
 palette_vector <- paletteer::paletteer_d(
   palette = "palettetown::venusaur",
-  n = nlevels(as.factor(df$manufacturer)),
-  type = "discrete"
+  n = dplyr::n_distinct(df$manufacturer)
 )
 
 ggdotplotstats(

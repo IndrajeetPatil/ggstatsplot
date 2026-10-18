@@ -114,7 +114,7 @@ ggpiestats(
     different parts makes the visual discrimination of different components of
     the data, and their comparison, easier. But the goal of `grouped_` variants
     of functions is to not only show different aspects of the data but also to
-    run statistical tests and showing detailed results for all aspects of the
+    run statistical tests, and showing detailed results for all aspects of the
     data in a superposed plot is difficult. Therefore, this is a compromise
     `{ggstatsplot}` is comfortable with, at least to produce plots for quick
     exploration of different aspects of the data.
@@ -129,7 +129,6 @@ ggpiestats(
 #| because displaying detailed results from statistical tests would be difficult in a superposed
 #| plot."
 library(ggplot2)
-
 
 ## creating a smaller data frame
 df <- dplyr::filter(movies_long, genre %in% c("Comedy", "Drama"))
@@ -212,8 +211,8 @@ In particular, default plots in `{ggstatsplot}` can sometimes violate one of the
 principles from 2-4. According to these principles, every bit of ink should have
 reason for its inclusion in the graphic and should convey some new information
 to the viewer. If not, such ink should be removed. One instance of this is
-bilateral symmetry of data measures. For example, in the figure below, we can
-see that both the box and violin plots are mirrored, which consumes twice the
+bilateral symmetry of data measures. For example, in the `ggbetweenstats()`
+figure above, we can see that both the box and violin plots are mirrored, which consumes twice the
 space in the graphic without adding any new information. But this redundancy is
 tolerated for the sake of beauty that such symmetrical shapes can bring to the
 graphic. Even Tufte admits that efficiency is but one consideration in the
@@ -255,7 +254,7 @@ gghistostats(
   - **Sample-to-sample statistic variation**: Although, traditionally, this
     variation has been shown using the standard error of the mean (SEM) of the
     statistic, `{ggstatsplot}` plots instead use 95% confidence intervals. This is
-    because the interval formed by error bars correspond to a 68% confidence
+    because the interval formed by SEM error bars corresponds to a 68% confidence
     interval, which is not a particularly interesting interval
     ([@cleveland1985], p.222-225).
 

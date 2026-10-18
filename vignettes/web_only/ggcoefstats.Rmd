@@ -222,9 +222,7 @@ omnibus ANOVA (`aov`)
 #| label = "aov1",
 #| fig.height = 6,
 #| fig.width = 8
-library(ggplot2)
 
-# model
 mod_aov <- stats::aov(formula = rating ~ mpaa * genre, data = movies_long)
 
 ggcoefstats(
@@ -362,10 +360,10 @@ dat$y <- dat$y + model.matrix(~ fac - 1) %*% rnorm(20) * .5
 
 # model object
 br <- gamm4::gamm4(
-    formula = y ~ s(x0) + x1 + s(x2),
-    data = dat,
-    random = ~ (1 | fac)
-  )
+  formula = y ~ s(x0) + x1 + s(x2),
+  data = dat,
+  random = ~ (1 | fac)
+)
 
 # looking at the classes of the objects contained in the list
 purrr::map(br, class)
@@ -417,7 +415,6 @@ df <- dplyr::rename(mag, estimate = yi, std.error = sei, term = study)
 ggcoefstats(
   x = df,
   meta.analytic.effect = TRUE,
-  bf.message = TRUE,
   meta.type = "parametric",
   title = "parametric random-effects meta-analysis"
 )
@@ -528,8 +525,8 @@ be found in the function documentation:
 The list of supported models will keep expanding as additional tidiers are
 added to the `parameters` and `performance` packages. Note that not **all**
 models supported in these packages will be supported by `ggcoefstats()`. In
-particular, classes of objects for which there is no column for `estimate` (e.g., `kmeans`, `optim`, `muhaz`, `survdiff`, `zoo`, etc.) are
-not supported.
+particular, classes of objects for which there is no column for `estimate`
+(e.g., `kmeans`, `optim`, `muhaz`, `survdiff`, `zoo`, etc.) are not supported.
 
 ## Suggestions
 

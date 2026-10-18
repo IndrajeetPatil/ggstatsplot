@@ -53,7 +53,6 @@ Before discussing benefits of this approach, we will show an example (Figure
 #| supported plots and statistical analyses, see the package website:
 #| \\url{https://www.indrapatil.com/ggstatsplot/}"
 
-
 ggbetweenstats(iris, Species, Sepal.Length)
 ```
 
@@ -73,8 +72,7 @@ of data exploration and further cements good data exploration habits.
 Internally, data cleaning is carried out using the `tidyverse` [@Wickham2019],
 while statistical analysis is carried out via the `{statsExpressions}`
 [@Patil2021] and `easystats` [@Ben-Shachar2020; @Lüdecke2020parameters;
-@Lüdecke2020performance;
-@Lüdecke2019; @Makowski2019; @Makowski2020] packages. All visualizations are
+@Lüdecke2020performance; @Lüdecke2019; @Makowski2019; @Makowski2020] packages. All visualizations are
 constructed using the grammar of graphics framework [@Wilkinson2012], as
 implemented in the `{ggplot2}` package [@Wickham2016].
 
@@ -93,7 +91,7 @@ c. highlights the importance of the effect by providing effect size measures by
 d. provides an easy way to evaluate *absence* of an effect using Bayes factors,
 
 e. encourages researchers and readers to evaluate statistical assumptions of a
-model in the context of the underlying data (Figure 2),
+   model in the context of the underlying data (Figure 2),
 
 f. is easy and simple enough that someone with little to no coding experience
    can use it without making an error and may even encourage beginners to

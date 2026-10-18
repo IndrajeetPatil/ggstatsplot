@@ -322,7 +322,7 @@ p <- ggbetweenstats(mtcars, cyl, wt, pairwise.display = "none")
 
 # using `statsExpressions::pairwise_comparisons()` function to create a data frame with results
 df <- statsExpressions::pairwise_comparisons(mtcars, cyl, wt) |>
-  dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) |>
+  dplyr::mutate(groups = purrr::map2(group1, group2, c)) |>
   dplyr::arrange(group1) |>
   dplyr::mutate(asterisk_label = dplyr::case_when(
     p.value < 0.001 ~ "***",
@@ -337,7 +337,6 @@ df
 p +
   ggsignif::geom_signif(
     comparisons = df$groups,
-    map_signif_level = TRUE,
     annotations = df$asterisk_label,
     y_position = c(5.5, 5.75, 6.0),
     test = NULL,
