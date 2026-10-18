@@ -142,9 +142,10 @@ ungrouped before they are entered as <code>data</code>.</p></dd>
 <dt id="arg-binwidth">binwidth<a class="anchor" aria-label="anchor" href="#arg-binwidth"></a></dt>
 <dd><p>The width of the histogram bins. Can be specified as a
 numeric value, or a function that calculates width from <code>x</code>. The default is
-to use <code>(max(x) - min(x)) / sqrt(N)</code>. You should always check this value
-and explore multiple widths to find the best to illustrate the stories in
-your data.</p></dd>
+to use <code>(max(x) - min(x)) / sqrt(N)</code>. If all values of <code>x</code> are identical,
+<code>0.1</code> (or <code>abs(x) / 1000</code>, if larger) is used instead. You should always
+check this value and explore multiple widths to find the one that best
+illustrates the stories in your data.</p></dd>
 
 
 <dt id="arg-xlab">xlab<a class="anchor" aria-label="anchor" href="#arg-xlab"></a></dt>
@@ -312,9 +313,9 @@ the plot as data frames.</p>
 
 
 
-<p>The table below provides summary about:</p><ul><li><p>statistical test carried out for inferential statistics</p></li>
-<li><p>type of effect size estimate and a measure of uncertainty for this estimate</p></li>
-<li><p>functions used internally to compute these details</p></li>
+<p>Below is a summary of:</p><ul><li><p>the statistical test carried out for inferential statistics</p></li>
+<li><p>the type of effect size estimate and a measure of uncertainty for this estimate</p></li>
+<li><p>the functions used internally to compute these details</p></li>
 </ul><p><strong>Hypothesis testing</strong></p><table class="table table"><tr><td>Type</td><td>Test</td><td>Function used</td></tr><tr><td>Parametric</td><td>One-sample Student's <em>t</em>-test</td><td><code><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">stats::t.test()</a></code></td></tr><tr><td>Non-parametric</td><td>One-sample Wilcoxon test</td><td><code><a href="https://rdrr.io/r/stats/wilcox.test.html" class="external-link">stats::wilcox.test()</a></code></td></tr><tr><td>Robust</td><td>Bootstrap-<em>t</em> method for one-sample test</td><td><code><a href="https://rdrr.io/pkg/WRS2/man/trimcibt.html" class="external-link">WRS2::trimcibt()</a></code></td></tr><tr><td>Bayesian</td><td>One-sample Student's <em>t</em>-test</td><td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html" class="external-link">BayesFactor::ttestBF()</a></code></td></tr></table><p><strong>Effect size estimation</strong></p><table class="table table"><tr><td>Type</td><td>Effect size</td><td>CI available?</td><td>Function used</td></tr><tr><td>Parametric</td><td>Cohen's <em>d</em>, Hedges' <em>g</em></td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::cohens_d()</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::hedges_g()</a></code></td></tr><tr><td>Non-parametric</td><td><em>r</em> (rank-biserial correlation)</td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::rank_biserial()</a></code></td></tr><tr><td>Robust</td><td>trimmed mean</td><td>Yes</td><td><code><a href="https://rdrr.io/pkg/WRS2/man/trimcibt.html" class="external-link">WRS2::trimcibt()</a></code></td></tr><tr><td>Bayesian</td><td>difference</td><td>Yes</td><td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior()</a></code></td></tr></table></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

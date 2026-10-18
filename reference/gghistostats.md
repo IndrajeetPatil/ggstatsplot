@@ -50,9 +50,10 @@ gghistostats(
 
   The width of the histogram bins. Can be specified as a numeric value,
   or a function that calculates width from `x`. The default is to use
-  `(max(x) - min(x)) / sqrt(N)`. You should always check this value and
-  explore multiple widths to find the best to illustrate the stories in
-  your data.
+  `(max(x) - min(x)) / sqrt(N)`. If all values of `x` are identical,
+  `0.1` (or `abs(x) / 1000`, if larger) is used instead. You should
+  always check this value and explore multiple widths to find the one
+  that best illustrates the stories in your data.
 
 - xlab:
 
@@ -241,14 +242,14 @@ For details, see:
 
 ## One-sample tests
 
-The table below provides summary about:
+Below is a summary of:
 
-- statistical test carried out for inferential statistics
+- the statistical test carried out for inferential statistics
 
-- type of effect size estimate and a measure of uncertainty for this
+- the type of effect size estimate and a measure of uncertainty for this
   estimate
 
-- functions used internally to compute these details
+- the functions used internally to compute these details
 
 **Hypothesis testing**
 

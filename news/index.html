@@ -96,6 +96,7 @@
 <li><p><code><a href="../reference/ggcorrmat.html">ggcorrmat()</a></code> now shows a single sample size in the legend whenever all correlation pairs share the same sample size. Previously, missing values in any column, including non-numeric columns not used in the correlations, switched the legend to minimum, mode, and maximum sample sizes.</p></li>
 <li><p><code><a href="../reference/grouped_gghistostats.html">grouped_gghistostats()</a></code> now computes its default common bin width from the non-missing values of <code>x</code>, as <code><a href="../reference/gghistostats.html">gghistostats()</a></code> does. Previously, missing values were counted in the sample size, making the bins too narrow.</p></li>
 <li><p><code><a href="../reference/ggbarstats.html">ggbarstats()</a></code> no longer displays empty proportion test labels above the bars when <code>x</code> has only one level, matching <code><a href="../reference/ggpiestats.html">ggpiestats()</a></code>.</p></li>
+<li><p><code><a href="../reference/gghistostats.html">gghistostats()</a></code> and <code><a href="../reference/grouped_gghistostats.html">grouped_gghistostats()</a></code> now draw the histogram when all values of <code>x</code> are identical (including a single observation). Previously, the default bin width was zero, so no bins were drawn.</p></li>
 </ul></div>
 </div>
     <div class="section level2">

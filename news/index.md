@@ -31,6 +31,13 @@
   `x` has only one level, matching
   [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md).
 
+- [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)
+  and
+  [`grouped_gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_gghistostats.md)
+  now draw the histogram when all values of `x` are identical (including
+  a single observation). Previously, the default bin width was zero, so
+  no bins were drawn.
+
 ## ggstatsplot 1.1.3
 
 CRAN release: 2026-10-17
