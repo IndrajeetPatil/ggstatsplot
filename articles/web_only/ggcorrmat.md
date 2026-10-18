@@ -106,8 +106,6 @@ diamonds.
 Let’s have a look at the data-
 
 \
-[`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`\
-\
 `dplyr``::`[`glimpse`](https://pillar.r-lib.org/reference/glimpse.html)`(``ggplot2``::`[`diamonds`](https://ggplot2.tidyverse.org/reference/diamonds.html)`)`\
 `#> Rows: 53,940`\
 `#> Columns: 10`\

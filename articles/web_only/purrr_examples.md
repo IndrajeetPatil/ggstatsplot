@@ -13,8 +13,9 @@ here. You can still use the code as a reference for writing your own
 Most of the [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)
 functions have `grouped_` variants, which are designed to quickly run
 the same [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) function
-across multiple levels of a **single** grouping variable. Although this
-function is useful for data exploration, it has two strong weaknesses-
+across multiple levels of a **single** grouping variable. Although these
+functions are useful for data exploration, they have two strong
+weaknesses-
 
 - The arguments applied to `grouped_` function call are applied
   uniformly to all levels of the grouping variable when we might want to
@@ -24,7 +25,7 @@ function is useful for data exploration, it has two strong weaknesses-
   reality there can be a combination of grouping variables and the
   operation needs to be repeated for all resulting combinations.
 
-We will see how to overcome this limitation by combining
+We will see how to overcome these limitations by combining
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) with the
 [purrr](https://purrr.tidyverse.org/) package.
 
@@ -56,8 +57,8 @@ What are these `lists` that we are building? The lists correspond to the
 parameters in our [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)
 function like `ggbetweenstats`. If you look at the help file for
 [`?ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
-for example the very first parameter it wants is the `data` file we’ll
-be using. We can also pass it different `titles` of even `ggtheme`
+for example the very first parameter it wants is the `data` frame we’ll
+be using. We can also pass it different `titles` or even `ggtheme`
 themes.
 
 You can pass:
@@ -235,10 +236,10 @@ response times across trials.
 
 ## `ggscatterstats`
 
-For the next example lets use the same methodology on different data and
-using `ggscatterstats` to produce scatterplots combined with marginal
-histograms with statistical details added as a subtitle. For data we’ll
-use `movies_long` which is from IMDB and part of the
+For the next example let’s use the same methodology on different data
+and using `ggscatterstats` to produce scatterplots combined with
+marginal histograms with statistical details added as a subtitle. For
+data we’ll use `movies_long` which is from IMDB and part of the
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package. Since
 it’s a large dataset with some relatively small categories like
 **NC-17** we’ll sample only one quarter of the data and completely drop
@@ -249,7 +250,7 @@ This time we’ll put all the code in one block-
 \
 `mpaa_list`` ``<-`` ``movies_long`` ``|>`\
 `  ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``mpaa`` ``!=`` ``"NC-17"``)`` ``|>`\
-`  ``dplyr``::`[`sample_frac`](https://dplyr.tidyverse.org/reference/sample_n.html)`(``size ``=`` ``0.25``)`` ``|>`\
+`  ``dplyr``::`[`slice_sample`](https://dplyr.tidyverse.org/reference/slice.html)`(``prop ``=`` ``0.25``)`` ``|>`\
 `  ``(``\``(``d``)`` `[`split`](https://rdrr.io/r/base/split.html)`(``d``, f ``=`` ``d``$``mpaa``, drop ``=`` ``TRUE``)``)``(``)`\
 \
 `## creating a list of plots`\
@@ -312,7 +313,7 @@ methodology as the earlier examples.
 `## let's leave out "fair" cut`\
 `## also, to make this fast, let's only use 5% of the sample`\
 `cut_list`` ``<-`` ``ggplot2``::`[`diamonds`](https://ggplot2.tidyverse.org/reference/diamonds.html)` ``|>`\
-`  ``dplyr``::`[`sample_frac`](https://dplyr.tidyverse.org/reference/sample_n.html)`(``size ``=`` ``0.05``)`` ``|>`\
+`  ``dplyr``::`[`slice_sample`](https://dplyr.tidyverse.org/reference/slice.html)`(``prop ``=`` ``0.05``)`` ``|>`\
 `  ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``cut`` ``!=`` ``"Fair"``)`` ``|>`\
 `  ``(``\``(``d``)`` `[`split`](https://rdrr.io/r/base/split.html)`(``d``, f ``=`` ``d``$``cut``, drop ``=`` ``TRUE``)``)``(``)`\
 \
@@ -327,7 +328,7 @@ methodology as the earlier examples.
 `  .l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `    data ``=`` ``cut_list``,`\
 `    cor.vars ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`[`c`](https://rdrr.io/r/base/c.html)`(``"carat"``, ``"depth"``, ``"table"``, ``"price"``)``)``,`\
-`    type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"pearson"``, ``"np"``, ``"robust"``, ``"bf"``)``,`\
+`    type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"p"``, ``"np"``, ``"r"``, ``"bf"``)``,`\
 `    partial ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``TRUE``, ``FALSE``, ``TRUE``, ``FALSE``)``,`\
 `    title ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"Cut: Good"``, ``"Cut: Very Good"``, ``"Cut: Premium"``, ``"Cut: Ideal"``)``,`\
 `    p.adjust.method ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"hommel"``, ``"fdr"``, ``"BY"``, ``"hochberg"``)``,`\
@@ -598,14 +599,14 @@ you can run the following code and check the individual `grouped_` plots
 \
 `## create a list of plots`\
 `plotlist`` ``<-`` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(`\
-`    .l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
-`      data ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``mtcars``, ``iris``, ``ToothGrowth``)``,`\
-`      x ``=`` `[`alist`](https://rdrr.io/r/base/list.html)`(``wt``, ``Sepal.Length``, ``len``)``,`\
-`      results.subtitle ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``FALSE``)``,`\
-`      grouping.var ``=`` `[`alist`](https://rdrr.io/r/base/list.html)`(``am``, ``Species``, ``supp``)`\
-`    ``)``,`\
-`    .f ``=`` ``grouped_gghistostats`\
-`  ``)`\
+`  .l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
+`    data ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``mtcars``, ``iris``, ``ToothGrowth``)``,`\
+`    x ``=`` `[`alist`](https://rdrr.io/r/base/list.html)`(``wt``, ``Sepal.Length``, ``len``)``,`\
+`    results.subtitle ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``FALSE``)``,`\
+`    grouping.var ``=`` `[`alist`](https://rdrr.io/r/base/list.html)`(``am``, ``Species``, ``supp``)`\
+`  ``)``,`\
+`  .f ``=`` ``grouped_gghistostats`\
+`)`\
 \
 `## given that we had three different datasets, we expect a list of length 3`\
 `` ## (each of which contains a `grouped_` plot) ``\
@@ -618,14 +619,14 @@ you can run the following code and check the individual `grouped_` plots
 \
 `## running the same analysis on two different columns (creates a list of plots)`\
 `plotlist`` ``<-`` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(`\
-`    .l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
-`      data ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``movies_long``)``,`\
-`      x ``=`` ``"mpaa"``,`\
-`      y ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"rating"``, ``"length"``)``,`\
-`      title ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"IMDB score by MPAA rating"``, ``"Movie length by MPAA rating"``)`\
-`    ``)``,`\
-`    .f ``=`` ``ggbetweenstats`\
-`  ``)`\
+`  .l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
+`    data ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``movies_long``)``,`\
+`    x ``=`` ``"mpaa"``,`\
+`    y ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"rating"``, ``"length"``)``,`\
+`    title ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"IMDB score by MPAA rating"``, ``"Movie length by MPAA rating"``)`\
+`  ``)``,`\
+`  .f ``=`` ``ggbetweenstats`\
+`)`\
 \
 `` ## combine plots using `patchwork` ``\
 `plotlist``[[``1``]``]`` ``+`` ``plotlist``[[``2``]``]`

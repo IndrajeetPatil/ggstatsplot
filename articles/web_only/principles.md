@@ -97,14 +97,14 @@ judgments unnecessary.
   better than *juxtaposition* ((Cleveland, 1985), p.201) because this
   allows for a more incisive comparison of the values from different
   parts of the dataset. This recommendation is violated in all
-  `grouped_` variants of the function. Note that the range for Y-axes
-  are no longer the same across juxtaposed subplots and so visually
+  `grouped_` variants of the function. Note that the range for Y-axes is
+  no longer the same across juxtaposed subplots and so visually
   comparing the data becomes difficult. On the other hand, in the
   superposed plot, all data have the same range and coloring different
   parts makes the visual discrimination of different components of the
   data, and their comparison, easier. But the goal of `grouped_`
   variants of functions is to not only show different aspects of the
-  data but also to run statistical tests and showing detailed results
+  data but also to run statistical tests, and showing detailed results
   for all aspects of the data in a superposed plot is difficult.
   Therefore, this is a compromise
   [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) is comfortable
@@ -113,7 +113,6 @@ judgments unnecessary.
 
 \
 [`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`\
-\
 \
 `## creating a smaller data frame`\
 `df`` ``<-`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``movies_long``, ``genre`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"Comedy"``, ``"Drama"``)``)`\
@@ -218,17 +217,18 @@ violate one of the principles from 2-4. According to these principles,
 every bit of ink should have reason for its inclusion in the graphic and
 should convey some new information to the viewer. If not, such ink
 should be removed. One instance of this is bilateral symmetry of data
-measures. For example, in the figure below, we can see that both the box
-and violin plots are mirrored, which consumes twice the space in the
-graphic without adding any new information. But this redundancy is
-tolerated for the sake of beauty that such symmetrical shapes can bring
-to the graphic. Even Tufte admits that efficiency is but one
-consideration in the design of statistical graphics ((Tufte, 2001),
-p. 137). Additionally, these principles were formulated in an era in
-which computer graphics had yet to revolutionize the ease with which
-graphics could be produced and thus some of the concerns about
-minimizing data-ink for easier production of graphics are not as
-relevant as they were.
+measures. For example, in the
+[`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
+figure above, we can see that both the box and violin plots are
+mirrored, which consumes twice the space in the graphic without adding
+any new information. But this redundancy is tolerated for the sake of
+beauty that such symmetrical shapes can bring to the graphic. Even Tufte
+admits that efficiency is but one consideration in the design of
+statistical graphics ((Tufte, 2001), p. 137). Additionally, these
+principles were formulated in an era in which computer graphics had yet
+to revolutionize the ease with which graphics could be produced and thus
+some of the concerns about minimizing data-ink for easier production of
+graphics are not as relevant as they were.
 
 ### Statistical variation
 
@@ -265,8 +265,8 @@ Distribution of a variable shown using `gghistostats`.
   (SEM) of the statistic,
   [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) plots instead
   use 95% confidence intervals. This is because the interval formed by
-  error bars correspond to a 68% confidence interval, which is not a
-  particularly interesting interval ((Cleveland, 1985), p.222-225).
+  SEM error bars corresponds to a 68% confidence interval, which is not
+  a particularly interesting interval ((Cleveland, 1985), p.222-225).
 
 \
 `model`` ``<-`` ``lme4``::`[`lmer`](https://rdrr.io/pkg/lme4/man/lmer.html)`(`\
@@ -352,7 +352,7 @@ when `NA`s are present across correlation variables.
 ### Statistical reporting
 
 But why would combining statistical analysis with data visualization be
-helpful? We list few reasons below-
+helpful? We list a few reasons below-
 
 - A recent survey (Nuijten, Hartgerink, van Assen, Epskamp, &
   Wicherts, 2016) revealed that one in eight papers in major psychology

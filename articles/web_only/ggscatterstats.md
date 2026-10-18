@@ -23,7 +23,7 @@ To begin with, here are some instances where you would want to use
 To illustrate how this function can be used, we will rely on the
 `ggplot2movies` dataset. This dataset provides information about movies
 scraped from [IMDB](https://www.imdb.com/). Specifically, we will be
-using cleaned version of this dataset included in the
+using a cleaned version of this dataset included in the
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package itself.
 
 \

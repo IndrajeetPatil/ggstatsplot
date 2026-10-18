@@ -33,6 +33,7 @@
 ## Grouped variants of primary functions
 
 Convenience functions to repeat analysis across a single grouping
+variable
 
 - [`grouped_ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbarstats.md)
   : Grouped bar charts with statistical tests

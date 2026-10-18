@@ -238,12 +238,12 @@
 <tr>
 <td align="left"><code><a href="reference/gghistostats.html">gghistostats()</a></code></td>
 <td align="left"><strong>histograms</strong></td>
-<td align="left">for distribution about numeric variable</td>
+<td align="left">for distribution of a numeric variable</td>
 </tr>
 <tr>
 <td align="left"><code><a href="reference/ggdotplotstats.html">ggdotplotstats()</a></code></td>
 <td align="left"><strong>dot plots/charts</strong></td>
-<td align="left">for distribution about labeled numeric variable</td>
+<td align="left">for distribution of a labeled numeric variable</td>
 </tr>
 <tr>
 <td align="left"><code><a href="reference/ggscatterstats.html">ggscatterstats()</a></code></td>
@@ -423,8 +423,7 @@
 <span>  annotation.args  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Differences in movie length by mpaa ratings for different genres"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggbetweenstats2-1.png" alt="Grouped violin plots comparing movie length by MPAA rating for Action and Comedy genres with statistical annotations" width="100%"></p>
-<p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html</a></p>
-<p>For more, also read the following vignette: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html</a></p>
+<p>For details, see the <a href="https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html">function reference</a> and the <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html"><code>ggbetweenstats()</code> article</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="ggwithinstats">
@@ -434,18 +433,16 @@
 <p>If your repeated-measures data include an explicit subject identifier, it is recommended that you pass it via <code>subject.id</code>. Only subjects observed in every condition are included in the plot and statistical analysis.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/psychor/" class="external-link">WRS2</a></span><span class="op">)</span> <span class="co">## for data</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://afex.singmann.science/" class="external-link">afex</a></span><span class="op">)</span> <span class="co">## to run ANOVA</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/ggwithinstats.html">ggwithinstats</a></span><span class="op">(</span></span>
-<span>  data       <span class="op">=</span> <span class="va">WineTasting</span>,</span>
+<span>  data       <span class="op">=</span> <span class="fu">WRS2</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/WRS2/man/WineTasting.html" class="external-link">WineTasting</a></span>,</span>
 <span>  x          <span class="op">=</span> <span class="va">Wine</span>,</span>
 <span>  y          <span class="op">=</span> <span class="va">Taste</span>,</span>
 <span>  subject.id <span class="op">=</span> <span class="va">Taster</span>,</span>
 <span>  title      <span class="op">=</span> <span class="st">"Wine tasting"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggwithinstats1-1.png" alt="Within-subjects violin plot showing wine taste ratings by wine type with paired data paths and statistical results" width="100%"></p>
-<p>As with the <code><a href="reference/ggbetweenstats.html">ggbetweenstats()</a></code>, this function also has a <code>grouped_</code> variant that makes repeating the same analysis across a single grouping variable quicker. We will see an example with only repeated measurements-</p>
+<p>As with <code><a href="reference/ggbetweenstats.html">ggbetweenstats()</a></code>, this function also has a <code>grouped_</code> variant that makes repeating the same analysis across a single grouping variable quicker:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
@@ -460,8 +457,7 @@
 <span>  grouping.var    <span class="op">=</span> <span class="va">region</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggwithinstats2-1.png" alt="Grouped within-subjects violin plots showing desire to kill arthropods by condition for Europe and North America" width="100%"></p>
-<p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.html</a></p>
-<p>For more, also read the following vignette: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggwithinstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/ggwithinstats.html</a></p>
+<p>For details, see the <a href="https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.html">function reference</a> and the <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggwithinstats.html"><code>ggwithinstats()</code> article</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="gghistostats">
@@ -496,8 +492,7 @@
 <span>  annotation.args   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Movies budgets for different genres"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-gghistostats2-1.png" alt="Grouped histograms showing movie budget distributions for Action and Comedy genres with statistical tests" width="100%"></p>
-<p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/gghistostats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/gghistostats.html</a></p>
-<p>For more, also read the following vignette: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html</a></p>
+<p>For details, see the <a href="https://www.indrapatil.com/ggstatsplot/reference/gghistostats.html">function reference</a> and the <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html"><code>gghistostats()</code> article</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="ggdotplotstats">
@@ -534,8 +529,7 @@
 <span>  annotation.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Fuel economy data"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggdotplotstats2-1.png" alt="Grouped dot plots showing city miles per gallon by car manufacturer for 4 and 6 cylinder vehicles" width="100%"></p>
-<p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.html</a></p>
-<p>For more, also read the following vignette: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html</a></p>
+<p>For details, see the <a href="https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.html">function reference</a> and the <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html"><code>ggdotplotstats()</code> article</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="ggscatterstats">
@@ -565,13 +559,12 @@
 <span>  label.expression <span class="op">=</span> <span class="va">length</span> <span class="op">&gt;</span> <span class="fl">200</span>,</span>
 <span>  xlab             <span class="op">=</span> <span class="st">"IMDB rating"</span>,</span>
 <span>  ggtheme          <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_grey</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">9</span>, <span class="fl">1</span><span class="op">)</span>, limits <span class="op">=</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">9</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  ggplot.component <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">9</span>, <span class="fl">1</span><span class="op">)</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">9</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  plotgrid.args    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
 <span>  annotation.args  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Relationship between movie length and IMDB ratings"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggscatterstats2-1.png" alt="Grouped scatterplots showing IMDB rating vs movie length for Action and Comedy genres with correlation annotations" width="100%"></p>
-<p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.html</a></p>
-<p>For more, also read the following vignette: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html</a></p>
+<p>For details, see the <a href="https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.html">function reference</a> and the <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html"><code>ggscatterstats()</code> article</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="ggcorrmat">
@@ -581,7 +574,6 @@
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## as a default this function outputs a correlation matrix plot</span></span>
 <span><span class="fu"><a href="reference/ggcorrmat.html">ggcorrmat</a></span><span class="op">(</span></span>
 <span>  data     <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="va"><a href="https://ggplot2.tidyverse.org/reference/msleep.html" class="external-link">msleep</a></span>,</span>
 <span>  colors   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#B2182B"</span>, <span class="st">"white"</span>, <span class="st">"#4D4D4D"</span><span class="op">)</span>,</span>
@@ -589,7 +581,7 @@
 <span>  subtitle <span class="op">=</span> <span class="st">"sleep units: hours; weight units: kilograms"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggcorrmat1-1.png" alt="Correlation matrix heatmap for mammals sleep dataset showing pairwise correlations with significance indicators" width="100%"></p>
-<p>If there are <code>NA</code>s present in the selected variables, the legend will display minimum, mode, and maximum number of pairs used for correlation tests.</p>
+<p>If the number of complete observations differs across pairs of variables (e.g., due to <code>NA</code>s), the legend displays the minimum, mode, and maximum sample sizes used for the correlation tests.</p>
 <p>There is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
@@ -603,8 +595,7 @@
 <span>  matrix.type     <span class="op">=</span> <span class="st">"lower"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggcorrmat2-1.png" alt="Grouped correlation matrices for Action and Comedy movie genres showing robust correlations" width="100%"></p>
-<p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.html</a></p>
-<p>For more, also read the following vignette: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html</a></p>
+<p>For details, see the <a href="https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.html">function reference</a> and the <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html"><code>ggcorrmat()</code> article</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="ggpiestats">
@@ -624,7 +615,7 @@
 <span>  legend.title <span class="op">=</span> <span class="st">"Transmission"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats1-1.png" alt="Pie charts showing transmission type distribution across cylinder groups in mtcars data with contingency table analysis" width="100%"></p>
-<p>There is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable. Following example is a case where the theoretical question is about proportions for different levels of a single nominal variable:</p>
+<p>There is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable. The following example is a case where the theoretical question is about proportions for different levels of a single nominal variable:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
@@ -636,8 +627,7 @@
 <span>  palette      <span class="op">=</span> <span class="st">"ggsci::default_ucscgb"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggpiestats2-1.png" alt="Grouped pie charts showing cylinder distribution for automatic and manual transmission vehicles" width="100%"></p>
-<p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.html</a></p>
-<p>For more, also read the following vignette: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html</a></p>
+<p>For details, see the <a href="https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.html">function reference</a> and the <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html"><code>ggpiestats()</code> article</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="ggbarstats">
@@ -647,7 +637,6 @@
 <p>To study the association between two categorical variables:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/ggbarstats.html">ggbarstats</a></span><span class="op">(</span></span>
 <span>  data             <span class="op">=</span> <span class="va">movies_long</span>,</span>
@@ -660,7 +649,7 @@
 <span>  palette          <span class="op">=</span> <span class="st">"RColorBrewer::Set2"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggbarstats1-1.png" alt="Stacked bar chart showing MPAA ratings distribution by movie genre with chi-squared test results" width="100%"></p>
-<p>There is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable. Following example is a case where the theoretical question is about proportions for different levels of a single nominal variable:</p>
+<p>There is also a <code>grouped_</code> variant of this function that makes it easy to repeat the same operation across a <strong>single</strong> grouping variable. The following example is a case where the theoretical question is about proportions for different levels of a single nominal variable:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
@@ -672,8 +661,7 @@
 <span>  palette      <span class="op">=</span> <span class="st">"ggsci::default_ucscgb"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggbarstats2-1.png" alt="Grouped bar charts showing cylinder distribution for automatic and manual transmission vehicles" width="100%"></p>
-<p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.html</a></p>
-<p>For more, also read the following vignette: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html</a></p>
+<p>For details, see the <a href="https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.html">function reference</a> and the <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html"><code>ggbarstats()</code> article</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="ggcoefstats">
@@ -683,18 +671,16 @@
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## model</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">mpg</span> <span class="op">~</span> <span class="va">am</span> <span class="op">*</span> <span class="va">cyl</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/ggcoefstats.html">ggcoefstats</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-ggcoefstats1-1.png" alt="Dot-and-whisker plot showing regression coefficients for mpg model with confidence intervals" width="100%"></p>
-<p>Details about underlying functions used to create graphics and statistical tests carried out can be found in the function documentation: <a href="https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html</a></p>
-<p>For more, also read the following vignette: <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcoefstats.html" class="uri">https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcoefstats.html</a></p>
+<p>For details, see the <a href="https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html">function reference</a> and the <a href="https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcoefstats.html"><code>ggcoefstats()</code> article</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="extracting-expressions-and-data-frames-with-statistical-details">Extracting expressions and data frames with statistical details<a class="anchor" aria-label="anchor" href="#extracting-expressions-and-data-frames-with-statistical-details"></a>
 </h3>
-<p><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> also offers a convenience function to extract data frames with statistical details that are used to create expressions displayed in <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> plots.</p>
+<p><a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> also offers convenience functions to extract the expressions displayed in its plots and the data frames with statistical details used to create them.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
@@ -785,11 +771,10 @@
 <div class="section level3">
 <h3 id="using-ggstatsplot-statistical-details-with-custom-plots">Using <code>{ggstatsplot}</code> statistical details with custom plots<a class="anchor" aria-label="anchor" href="#using-ggstatsplot-statistical-details-with-custom-plots"></a>
 </h3>
-<p>Sometimes you may not like the default plots produced by <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a>. In such cases, you can use other <strong>custom</strong> plots (from <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> or other plotting packages) and still use <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> functions to display results from relevant statistical test.</p>
-<p>For example, in the following chunk, we will create our own plot using <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> package, and use <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> function for extracting expression:</p>
+<p>Sometimes you may not like the default plots produced by <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a>. In such cases, you can use other <strong>custom</strong> plots (from <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> or other plotting packages) and still use <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> functions to display results from relevant statistical tests.</p>
+<p>For example, in the following chunk, we create our own plot using <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a> and use <a href="https://www.indrapatil.com/ggstatsplot/">ggstatsplot</a> to extract the expression:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## loading the needed libraries</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## using `{ggstatsplot}` to get expression with statistical results</span></span>

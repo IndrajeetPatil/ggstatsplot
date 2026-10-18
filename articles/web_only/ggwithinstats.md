@@ -24,8 +24,8 @@ To illustrate how this function can be used, we will use the `bugs_long`
 dataset throughout this vignette. This data set, “Bugs”, provides the
 extent to which men and women want to kill arthropods that vary in
 frighteningness (low, high) and disgustingness (low, high). Each
-participant rates their attitudes towards all arthropods. Subset of the
-data reported by [Ryan et
+participant rates their attitudes towards all arthropods. It is a subset
+of the data reported by [Ryan et
 al. (2013)](https://www.sciencedirect.com/science/article/pii/S0747563213000277).
 Note that this is a repeated measures design because the same
 participant gave four different ratings across four different conditions
@@ -175,7 +175,6 @@ make each plot have different colors or themes.
 For example,
 
 \
-`## selecting subset of the data`\
 `df_disgust`` ``<-`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``bugs_long``, ``condition`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"LDHF"``, ``"HDHF"``)``)`\
 \
 `## parametric t-test`\
@@ -247,8 +246,8 @@ For example,
 
 ## Grouped analysis with `grouped_ggwithinstats`
 
-What if we want to carry out this same analysis but for each region (or
-gender)?
+What if we want to carry out this same analysis separately for each
+gender?
 
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) provides a
 special helper function for such instances: `grouped_ggwithinstats`.
@@ -258,9 +257,8 @@ variable** and then combines list of individual plots into a single
 plot. Note that the grouping variable can be anything: conditions in a
 given study, groups in a study sample, different studies, etc.
 
-Let’s carry out the analysis separately for each gender. Also, let’s
-carry out pairwise comparisons to see if there are differences between
-every pair of conditions.
+Let’s also carry out pairwise comparisons to see if there are
+differences between every pair of conditions.
 
 \
 [`grouped_ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggwithinstats.md)`(`\
@@ -361,7 +359,7 @@ approaches:
 - the *standard* narrative approach, which provides interpretive context
   for the reported statistics.
 
-For example, let’s see the following example:
+For example:
 
 \
 [`ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)`(``WRS2``::`[`WineTasting`](https://rdrr.io/pkg/WRS2/man/WineTasting.html)`, ``Wine``, ``Taste``, subject.id ``=`` ``Taster``)`
@@ -372,16 +370,15 @@ The narrative context (assuming `type = "parametric"`) can complement
 this plot either as a figure caption or in the main text-
 
 > Fisher’s repeated measures one-way ANOVA revealed that, across 22
-> friends to taste each of the three wines, there was a statistically
-> significant difference across persons preference for each wine. The
-> effect size $`(\omega_{p}^2 = 0.02)`$ was small, as per Field’s (2013)
+> tasters who each rated three wines, there was a statistically
+> significant difference in preference between the wines. The effect
+> size $`(\omega_{p}^2 = 0.02)`$ was small, as per Field’s (2013)
 > conventions. The Bayes Factor for the same analysis revealed that the
 > data were 8.41 times more probable under the alternative hypothesis as
 > compared to the null hypothesis. This can be considered moderate
 > evidence (Jeffreys, 1961) in favor of the alternative hypothesis. This
 > global effect was followed by post hoc pairwise *t*-tests, which
-> revealed that Wine C was preferred across participants to be the least
-> desirable compared to Wines A and B.
+> revealed that Wine C was rated lower than Wines A and B.
 
 Similar reporting style can be followed when the function performs
 *t*-test instead of a one-way ANOVA.

@@ -232,8 +232,7 @@ appreciate the distributions within any given continent. For example,
 although Asian countries are doing much better than African countries,
 on average, Afghanistan has a particularly grim average for the Asian
 continent, possibly reflecting the war and the political turmoil.</p>
-<p>So far we have used the default box + violin plot, but there are
-other available options:</p>
+<p>Here are a few more options:</p>
 <ul>
 <li><p>The <code>type</code> (of test) argument also accepts the
 following abbreviations: <code>"p"</code> (for <em>parametric</em>),
@@ -259,8 +258,7 @@ not necessarily recommended, to make each plot have different colors or
 themes.</p>
 <p>For example,</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## selecting subset of the data</span></span>
-<span><span class="va">df_year</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://jennybc.github.io/gapminder/reference/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">year</span> <span class="op">==</span> <span class="fl">2007</span> <span class="op">|</span> <span class="va">year</span> <span class="op">==</span> <span class="fl">1957</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">df_year</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu">gapminder</span><span class="fu">::</span><span class="va"><a href="https://jennybc.github.io/gapminder/reference/gapminder.html" class="external-link">gapminder</a></span>, <span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1957</span>, <span class="fl">2007</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">df_year</span>,</span>
@@ -488,7 +486,7 @@ and</p></li>
 <li><p>the <em>standard</em> narrative approach, which provides
 interpretive context for the reported statistics.</p></li>
 </ul>
-<p>For example, let’s see the following example:</p>
+<p>For example:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggbetweenstats.html">ggbetweenstats</a></span><span class="op">(</span><span class="va">ToothGrowth</span>, <span class="va">supp</span>, <span class="va">len</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggbetweenstats_files/figure-html/reporting-1.png" class="r-plt" alt="" width="100%"></p>

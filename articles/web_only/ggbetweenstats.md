@@ -113,8 +113,7 @@ countries, on average, Afghanistan has a particularly grim average for
 the Asian continent, possibly reflecting the war and the political
 turmoil.
 
-So far we have used the default box + violin plot, but there are other
-available options:
+Here are a few more options:
 
 - The `type` (of test) argument also accepts the following
   abbreviations: `"p"` (for *parametric*), `"np"` (for *nonparametric*),
@@ -139,8 +138,7 @@ recommended, to make each plot have different colors or themes.
 For example,
 
 \
-`## selecting subset of the data`\
-`df_year`` ``<-`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``gapminder``::`[`gapminder`](https://jennybc.github.io/gapminder/reference/gapminder.html)`, ``year`` ``==`` ``2007`` ``|`` ``year`` ``==`` ``1957``)`\
+`df_year`` ``<-`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``gapminder``::`[`gapminder`](https://jennybc.github.io/gapminder/reference/gapminder.html)`, ``year`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``1957``, ``2007``)``)`\
 \
 `p1`` ``<-`` `[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(`\
 `  data ``=`` ``df_year``,`\
@@ -336,7 +334,7 @@ approaches:
 - the *standard* narrative approach, which provides interpretive context
   for the reported statistics.
 
-For example, let’s see the following example:
+For example:
 
 \
 [`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(``ToothGrowth``, ``supp``, ``len``)`

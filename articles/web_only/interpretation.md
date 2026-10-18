@@ -58,7 +58,7 @@ support H₁. This makes interpretation intuitive: zero means balanced
 evidence, and distance from zero indicates strength regardless of
 direction.
 
-## Interpreting Negative Log Bayes Factors
+## Interpreting Log Bayes Factors
 
 A commonly used classification scheme (Lee & Wagenmakers, 2014, adapted
 from Jeffreys, 1961) labels the strength of evidence as follows:

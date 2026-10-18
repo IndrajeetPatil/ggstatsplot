@@ -26,10 +26,8 @@ and ACT tests. ACT composite scores may range from 1 - 36. National
 norms have a mean of 20.
 
 \
-`## loading needed libraries`\
 [`library`](https://rdrr.io/r/base/library.html)`(`[`psych`](https://personality-project.org/r/psych/)`)`\
 \
-`## looking at the structure of the data using glimpse`\
 `dplyr``::`[`glimpse`](https://pillar.r-lib.org/reference/glimpse.html)`(``psych``::`[`sat.act`](https://rdrr.io/pkg/psych/man/sat.act.html)`)`\
 `#> Rows: 700`\
 `#> Columns: 6`\
@@ -164,7 +162,7 @@ approaches:
 - the *standard* narrative approach, which provides interpretive context
   for the reported statistics.
 
-For example, let’s see the following example:
+For example:
 
 \
 [`gghistostats`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)`(``trees``, ``Height``, test.value ``=`` ``75``)`

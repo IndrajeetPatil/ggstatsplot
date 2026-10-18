@@ -79,7 +79,6 @@ see
 
 \
 [`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`\
-[`library`](https://rdrr.io/r/base/library.html)`(`[`ggsignif`](https://const-ae.github.io/ggsignif/)`)`\
 \
 `## converting to factor`\
 `mtcars``$``cyl`` ``<-`` `[`as.factor`](https://rdrr.io/r/base/factor.html)`(``mtcars``$``cyl``)`\
@@ -123,9 +122,6 @@ see
 ### Example-2: within-subjects
 
 \
-[`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`\
-[`library`](https://rdrr.io/r/base/library.html)`(`[`ggsignif`](https://const-ae.github.io/ggsignif/)`)`\
-\
 `## creating a basic plot`\
 `p`` ``<-`` `[`ggplot`](https://ggplot2.tidyverse.org/reference/ggplot.html)`(``WRS2``::`[`WineTasting`](https://rdrr.io/pkg/WRS2/man/WineTasting.html)`, `[`aes`](https://ggplot2.tidyverse.org/reference/aes.html)`(``Wine``, ``Taste``)``)`` ``+`\
 `  `[`geom_boxplot`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html)`(``)`\
@@ -164,14 +160,13 @@ see
 `` ## using `geom_signif` to display results ``\
 `p`` ``+`\
 `  ``ggsignif``::`[`geom_signif`](https://const-ae.github.io/ggsignif/reference/stat_signif.html)`(`\
-`    comparisons      ``=`` ``df``$``groups``,`\
-`    map_signif_level ``=`` ``TRUE``,`\
-`    tip_length       ``=`` ``0.01``,`\
-`    y_position       ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``6.5``, ``6.65``, ``6.8``)``,`\
-`    annotations      ``=`` `[`as.character`](https://rdrr.io/r/base/character.html)`(``df``$``expression``)``,`\
-`    test             ``=`` ``NULL``,`\
-`    na.rm            ``=`` ``TRUE``,`\
-`    parse            ``=`` ``TRUE`\
+`    comparisons ``=`` ``df``$``groups``,`\
+`    tip_length  ``=`` ``0.01``,`\
+`    y_position  ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``6.5``, ``6.65``, ``6.8``)``,`\
+`    annotations ``=`` `[`as.character`](https://rdrr.io/r/base/character.html)`(``df``$``expression``)``,`\
+`    test        ``=`` ``NULL``,`\
+`    na.rm       ``=`` ``TRUE``,`\
+`    parse       ``=`` ``TRUE`\
 `  ``)`
 
 ![](pairwise_files/figure-html/ggsignif2-1.png)

@@ -32,7 +32,7 @@ counts. This vignette provides examples of both (see examples below).
 
 To help demonstrate how `ggpiestats` can be used with categorical (also
 known as nominal) data, a modified version of the original `Titanic`
-dataset (from the `datasets` library) has been provided in the
+dataset (from the `datasets` package) has been provided in the
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package with the
 name `Titanic_full`. The Titanic Passenger Survival Dataset provides
 information “on the fate of passengers on the fatal maiden voyage of the

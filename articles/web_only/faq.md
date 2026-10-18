@@ -200,10 +200,8 @@ stable yet.
 `# creating expression out of these results`\
 `df_results`` ``<-`` ``statsExpressions``::`[`add_expression_col`](https://www.indrapatil.com/statsExpressions/reference/add_expression_col.html)`(`\
 `  data           ``=`` ``results``,`\
-`  no.parameters  ``=`` ``0L``,`\
 `  statistic.text ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`[`quote`](https://rdrr.io/r/base/substitute.html)`(``italic``(``"T"``)``)``)``,`\
-`  effsize.text   ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`[`quote`](https://rdrr.io/r/base/substitute.html)`(``widehat``(``italic``(``tau``)``)``[``"Kendall"``]``)``)``,`\
-`  n              ``=`` ``results``$``n.obs``[[``1``]``]`\
+`  effsize.text   ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`[`quote`](https://rdrr.io/r/base/substitute.html)`(``widehat``(``italic``(``tau``)``)``[``"Kendall"``]``)``)`\
 `)`\
 \
 `# using custom expression in plot`\
@@ -338,7 +336,7 @@ such as asterisks? You will have to customize them yourself:
 \
 `` # using `statsExpressions::pairwise_comparisons()` function to create a data frame with results ``\
 `df`` ``<-`` ``statsExpressions``::`[`pairwise_comparisons`](https://www.indrapatil.com/statsExpressions/reference/pairwise_comparisons.html)`(``mtcars``, ``cyl``, ``wt``)`` ``|>`\
-`  ``dplyr``::`[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``groups ``=`` ``purrr``::`[`pmap`](https://purrr.tidyverse.org/reference/pmap.html)`(``.l ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``group1``, ``group2``)``, .f ``=`` ``c``)``)`` ``|>`\
+`  ``dplyr``::`[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``groups ``=`` ``purrr``::`[`map2`](https://purrr.tidyverse.org/reference/map2.html)`(``group1``, ``group2``, ``c``)``)`` ``|>`\
 `  ``dplyr``::`[`arrange`](https://dplyr.tidyverse.org/reference/arrange.html)`(``group1``)`` ``|>`\
 `  ``dplyr``::`[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``asterisk_label ``=`` ``dplyr``::`[`case_when`](https://dplyr.tidyverse.org/reference/case-and-replace-when.html)`(`\
 `    ``p.value`` ``<`` ``0.001`` ``~`` ``"***"``,`\
@@ -364,7 +362,6 @@ such as asterisks? You will have to customize them yourself:
 `p`` ``+`\
 `  ``ggsignif``::`[`geom_signif`](https://const-ae.github.io/ggsignif/reference/stat_signif.html)`(`\
 `    comparisons ``=`` ``df``$``groups``,`\
-`    map_signif_level ``=`` ``TRUE``,`\
 `    annotations ``=`` ``df``$``asterisk_label``,`\
 `    y_position ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``5.5``, ``5.75``, ``6.0``)``,`\
 `    test ``=`` ``NULL``,`\
@@ -554,7 +551,7 @@ automatically; either store them (as above) or wrap the call in
 [`print()`](https://rdrr.io/r/base/print.html).
 
 That said, if repeating function execution across multiple columns in a
-data frame is what you want to do, I will recommend a [`{purrr}`-based
+data frame is what you want to do, I recommend a [`{purrr}`-based
 solution](https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data-frame).
 
 This solution would work for `x` and `y` arguments, but not for the

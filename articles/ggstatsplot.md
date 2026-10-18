@@ -30,7 +30,6 @@ Before discussing benefits of this approach, we will show an example
 (Figure 1).
 
 \
-\
 [`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)`(``iris``, ``Species``, ``Sepal.Length``)`
 
 ![Example plot from the \`{ggstatsplot}\` package illustrating its
@@ -58,7 +57,7 @@ both data visualization ([Cleveland, 1985](#ref-cleveland1985); [Grant,
 Association, 2019](#ref-apa2019); [van Doorn et al.,
 2021](#ref-van2020jasp)). Without
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/), getting these
-statistical details and customizing a plot would require significant
+statistical details and customizing a plot would require a significant
 amount of time and effort. In other words, this package removes the
 trade-off often faced by researchers between ease and thoroughness of
 data exploration and further cements good data exploration habits.

@@ -32,7 +32,7 @@ counts. This vignette provides examples of both (see examples below).
 
 To help demonstrate how `ggbarstats` can be used with categorical (also
 known as nominal) data, a modified version of the original `Titanic`
-dataset (from the `datasets` library) has been provided in the
+dataset (from the `datasets` package) has been provided in the
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) package with the
 name `Titanic_full`. The Titanic Passenger Survival Dataset provides
 information “on the fate of passengers on the fatal maiden voyage of the
@@ -171,31 +171,13 @@ combination of `Boat`, `Month`, and `Fish`.
 
 \
 \
-`# (this is completely fictional; I don't know first thing about fishing!)`\
-\
-`fishing`` ``<-`` ``tibble``::`[`as_tibble`](https://tibble.tidyverse.org/reference/as_tibble.html)`(`[`data.frame`](https://rdrr.io/r/base/data.frame.html)`(`\
-`  Boat ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`[`rep`](https://rdrr.io/r/base/rep.html)`(``"B"``, ``4``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"A"``, ``4``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"A"``, ``4``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"B"``, ``4``)``)``,`\
-`  Month ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`[`rep`](https://rdrr.io/r/base/rep.html)`(``"February"``, ``2``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"March"``, ``2``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"February"``, ``2``)``, `[`rep`](https://rdrr.io/r/base/rep.html)`(``"March"``, ``2``)``)``,`\
-`  Fish ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(`\
-`    ``"Bass"``,`\
-`    ``"Catfish"``,`\
-`    ``"Cod"``,`\
-`    ``"Haddock"``,`\
-`    ``"Cod"``,`\
-`    ``"Haddock"``,`\
-`    ``"Bass"``,`\
-`    ``"Catfish"``,`\
-`    ``"Bass"``,`\
-`    ``"Catfish"``,`\
-`    ``"Cod"``,`\
-`    ``"Haddock"``,`\
-`    ``"Cod"``,`\
-`    ``"Haddock"``,`\
-`    ``"Bass"``,`\
-`    ``"Catfish"`\
-`  ``)``,`\
+`# (this is completely fictional; I don't know the first thing about fishing!)`\
+`fishing`` ``<-`` ``tibble``::`[`tibble`](https://tibble.tidyverse.org/reference/tibble.html)`(`\
+`  Boat ``=`` `[`rep`](https://rdrr.io/r/base/rep.html)`(`[`c`](https://rdrr.io/r/base/c.html)`(``"B"``, ``"A"``, ``"B"``)``, times ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``4``, ``8``, ``4``)``)``,`\
+`  Month ``=`` `[`rep`](https://rdrr.io/r/base/rep.html)`(`[`c`](https://rdrr.io/r/base/c.html)`(``"February"``, ``"March"``)``, each ``=`` ``2``, times ``=`` ``4``)``,`\
+`  Fish ``=`` `[`rep`](https://rdrr.io/r/base/rep.html)`(`[`c`](https://rdrr.io/r/base/c.html)`(``"Bass"``, ``"Catfish"``, ``"Cod"``, ``"Haddock"``, ``"Cod"``, ``"Haddock"``, ``"Bass"``, ``"Catfish"``)``, times ``=`` ``2``)``,`\
 `  SumOfCaught ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``25``, ``20``, ``35``, ``40``, ``40``, ``25``, ``30``, ``42``, ``40``, ``30``, ``33``, ``26``, ``100``, ``30``, ``20``, ``20``)`\
-`)``)`\
+`)`\
 \
 `fishing`\
 `#> ``# A tibble: 16 × 4`\
@@ -234,9 +216,9 @@ test of independence), our command would be:
 `  counts ``=`` ``SumOfCaught``,`\
 `  label ``=`` ``"both"``,`\
 `  palette ``=`` ``"ggsci::default_jama"``,`\
-`  title ``=`` ``"Type fish caught by month"``,`\
+`  title ``=`` ``"Type of fish caught by month"``,`\
 `  caption ``=`` ``"Source: completely made up"``,`\
-`  legend.title ``=`` ``"Type fish caught: "`\
+`  legend.title ``=`` ``"Type of fish caught: "`\
 `)`
 
 ![](ggbarstats_files/figure-html/ggbarstats8-1.png)
@@ -381,7 +363,7 @@ approaches:
 - the *standard* narrative approach, which provides interpretive context
   for the reported statistics.
 
-For example, let’s see the following example:
+For example:
 
 \
 [`ggbarstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)`(``mtcars``, ``am``, ``cyl``)`

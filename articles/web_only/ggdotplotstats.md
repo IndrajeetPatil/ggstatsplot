@@ -29,7 +29,6 @@ subset of the fuel economy data that the EPA makes available on
 <https://fueleconomy.gov>.
 
 \
-`## looking at the structure of the data using glimpse`\
 `dplyr``::`[`glimpse`](https://pillar.r-lib.org/reference/glimpse.html)`(``ggplot2``::`[`mpg`](https://ggplot2.tidyverse.org/reference/mpg.html)`)`\
 `#> Rows: 234`\
 `#> Columns: 11`\
@@ -49,14 +48,13 @@ Let’s say we want to visualize the distribution of mileage by car
 manufacturer.
 
 \
-`## removing factor level with very few no. of observations`\
+`## keeping only the two most common cylinder types`\
 `df`` ``<-`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``ggplot2``::`[`mpg`](https://ggplot2.tidyverse.org/reference/mpg.html)`, ``cyl`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"4"``, ``"6"``)``)`\
 \
-`` ## creating a vector of colors using `paletteer` package ``\
+`` ## one color per manufacturer from a `{paletteer}` palette ``\
 `palette_vector`` ``<-`` ``paletteer``::`[`paletteer_d`](https://emilhvitfeldt.github.io/paletteer/reference/paletteer_d.html)`(`\
 `  palette ``=`` ``"palettetown::venusaur"``,`\
-`  n ``=`` `[`nlevels`](https://rdrr.io/r/base/nlevels.html)`(`[`as.factor`](https://rdrr.io/r/base/factor.html)`(``df``$``manufacturer``)``)``,`\
-`  type ``=`` ``"discrete"`\
+`  n ``=`` ``dplyr``::`[`n_distinct`](https://dplyr.tidyverse.org/reference/n_distinct.html)`(``df``$``manufacturer``)`\
 `)`\
 \
 [`ggdotplotstats`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md)`(`\

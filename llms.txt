@@ -109,8 +109,8 @@ file an issue on GitHub:
 |:---|:---|:---|
 | [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md) | **violin plots** | for comparisons *between* groups/conditions |
 | [`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md) | **violin plots** | for comparisons *within* groups/conditions |
-| [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md) | **histograms** | for distribution about numeric variable |
-| [`ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md) | **dot plots/charts** | for distribution about labeled numeric variable |
+| [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md) | **histograms** | for distribution of a numeric variable |
+| [`ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md) | **dot plots/charts** | for distribution of a labeled numeric variable |
 | [`ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md) | **scatterplots** | for correlation between two variables |
 | [`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md) | **correlation matrices** | for correlations between multiple variables |
 | [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md) | **pie charts** | for categorical data |
@@ -213,13 +213,10 @@ repeat the same operation across a **single** grouping variable:
 and Comedy genres with statistical
 annotations](reference/figures/README-ggbetweenstats2-1.png)
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html)
+and the [`ggbetweenstats()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html).
 
 ### `ggwithinstats()`
 
@@ -239,11 +236,9 @@ analysis.
 
 \
 [`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`\
-[`library`](https://rdrr.io/r/base/library.html)`(`[`WRS2`](https://r-forge.r-project.org/projects/psychor/)`)`` ``## for data`\
-[`library`](https://rdrr.io/r/base/library.html)`(`[`afex`](https://afex.singmann.science/)`)`` ``## to run ANOVA`\
 \
 [`ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md)`(`\
-`  data       ``=`` ``WineTasting``,`\
+`  data       ``=`` ``WRS2``::`[`WineTasting`](https://rdrr.io/pkg/WRS2/man/WineTasting.html)`,`\
 `  x          ``=`` ``Wine``,`\
 `  y          ``=`` ``Taste``,`\
 `  subject.id ``=`` ``Taster``,`\
@@ -254,11 +249,10 @@ analysis.
 with paired data paths and statistical
 results](reference/figures/README-ggwithinstats1-1.png)
 
-As with the
+As with
 [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md),
 this function also has a `grouped_` variant that makes repeating the
-same analysis across a single grouping variable quicker. We will see an
-example with only repeated measurements-
+same analysis across a single grouping variable quicker:
 
 \
 [`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`\
@@ -278,13 +272,10 @@ example with only repeated measurements-
 by condition for Europe and North
 America](reference/figures/README-ggwithinstats2-1.png)
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggwithinstats.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.html)
+and the [`ggwithinstats()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggwithinstats.html).
 
 ### `gghistostats()`
 
@@ -331,13 +322,10 @@ to repeat the same operation across a **single** grouping variable:
 Comedy genres with statistical
 tests](reference/figures/README-gghistostats2-1.png)
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/gghistostats.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.html)
+and the [`gghistostats()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html).
 
 ### `ggdotplotstats()`
 
@@ -386,13 +374,10 @@ all levels of a single grouping variable.
 for 4 and 6 cylinder
 vehicles](reference/figures/README-ggdotplotstats2-1.png)
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.html)
+and the [`ggdotplotstats()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html).
 
 ### `ggscatterstats()`
 
@@ -428,7 +413,7 @@ to repeat the same operation across a **single** grouping variable.
 `  label.expression ``=`` ``length`` ``>`` ``200``,`\
 `  xlab             ``=`` ``"IMDB rating"``,`\
 `  ggtheme          ``=`` ``ggplot2``::`[`theme_grey`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
-`  ggplot.component ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``ggplot2``::`[`scale_x_continuous`](https://ggplot2.tidyverse.org/reference/scale_continuous.html)`(``breaks ``=`` `[`seq`](https://rdrr.io/r/base/seq.html)`(``2``, ``9``, ``1``)``, limits ``=`` ``(`[`c`](https://rdrr.io/r/base/c.html)`(``2``, ``9``)``)``)``)``,`\
+`  ggplot.component ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``ggplot2``::`[`scale_x_continuous`](https://ggplot2.tidyverse.org/reference/scale_continuous.html)`(``breaks ``=`` `[`seq`](https://rdrr.io/r/base/seq.html)`(``2``, ``9``, ``1``)``, limits ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``2``, ``9``)``)``)``,`\
 `  plotgrid.args    ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``1``)``,`\
 `  annotation.args  ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Relationship between movie length and IMDB ratings"``)`\
 `)`
@@ -437,13 +422,10 @@ to repeat the same operation across a **single** grouping variable.
 and Comedy genres with correlation
 annotations](reference/figures/README-ggscatterstats2-1.png)
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.html)
+and the [`ggscatterstats()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html).
 
 ### `ggcorrmat()`
 
@@ -458,7 +440,6 @@ appearance of the correlation matrix.
 \
 [`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`\
 \
-`## as a default this function outputs a correlation matrix plot`\
 [`ggcorrmat`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)`(`\
 `  data     ``=`` ``ggplot2``::`[`msleep`](https://ggplot2.tidyverse.org/reference/msleep.html)`,`\
 `  colors   ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"#B2182B"``, ``"white"``, ``"#4D4D4D"``)``,`\
@@ -470,9 +451,9 @@ appearance of the correlation matrix.
 correlations with significance
 indicators](reference/figures/README-ggcorrmat1-1.png)
 
-If there are `NA`s present in the selected variables, the legend will
-display minimum, mode, and maximum number of pairs used for correlation
-tests.
+If the number of complete observations differs across pairs of variables
+(e.g., due to `NA`s), the legend displays the minimum, mode, and maximum
+sample sizes used for the correlation tests.
 
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable:
@@ -492,13 +473,10 @@ to repeat the same operation across a **single** grouping variable:
 ![Grouped correlation matrices for Action and Comedy movie genres
 showing robust correlations](reference/figures/README-ggcorrmat2-1.png)
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.html)
+and the [`ggcorrmat()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html).
 
 ### `ggpiestats()`
 
@@ -529,8 +507,8 @@ groups in mtcars data with contingency table
 analysis](reference/figures/README-ggpiestats1-1.png)
 
 There is also a `grouped_` variant of this function that makes it easy
-to repeat the same operation across a **single** grouping variable.
-Following example is a case where the theoretical question is about
+to repeat the same operation across a **single** grouping variable. The
+following example is a case where the theoretical question is about
 proportions for different levels of a single nominal variable:
 
 \
@@ -548,13 +526,10 @@ proportions for different levels of a single nominal variable:
 manual transmission
 vehicles](reference/figures/README-ggpiestats2-1.png)
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.html)
+and the [`ggpiestats()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html).
 
 ### `ggbarstats()`
 
@@ -568,7 +543,6 @@ To study the association between two categorical variables:
 
 \
 [`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`\
-[`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`\
 \
 [`ggbarstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)`(`\
 `  data             ``=`` ``movies_long``,`\
@@ -586,8 +560,8 @@ with chi-squared test
 results](reference/figures/README-ggbarstats1-1.png)
 
 There is also a `grouped_` variant of this function that makes it easy
-to repeat the same operation across a **single** grouping variable.
-Following example is a case where the theoretical question is about
+to repeat the same operation across a **single** grouping variable. The
+following example is a case where the theoretical question is about
 proportions for different levels of a single nominal variable:
 
 \
@@ -605,13 +579,10 @@ proportions for different levels of a single nominal variable:
 manual transmission
 vehicles](reference/figures/README-ggbarstats2-1.png)
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.html)
+and the [`ggbarstats()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html).
 
 ### `ggcoefstats()`
 
@@ -627,7 +598,6 @@ from
 \
 [`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`\
 \
-`## model`\
 `mod`` ``<-`` ``stats``::`[`lm`](https://rdrr.io/r/stats/lm.html)`(``formula ``=`` ``mpg`` ``~`` ``am`` ``*`` ``cyl``, data ``=`` ``mtcars``)`\
 \
 [`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(``mod``)`
@@ -635,20 +605,16 @@ from
 ![Dot-and-whisker plot showing regression coefficients for mpg model
 with confidence intervals](reference/figures/README-ggcoefstats1-1.png)
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcoefstats.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html)
+and the [`ggcoefstats()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcoefstats.html).
 
 ### Extracting expressions and data frames with statistical details
 
-[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) also offers a
-convenience function to extract data frames with statistical details
-that are used to create expressions displayed in
-[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) plots.
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) also offers
+convenience functions to extract the expressions displayed in its plots
+and the data frames with statistical details used to create them.
 
 \
 [`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`\
@@ -747,15 +713,14 @@ Sometimes you may not like the default plots produced by
 you can use other **custom** plots (from
 [ggplot2](https://ggplot2.tidyverse.org) or other plotting packages) and
 still use [ggstatsplot](https://www.indrapatil.com/ggstatsplot/)
-functions to display results from relevant statistical test.
+functions to display results from relevant statistical tests.
 
-For example, in the following chunk, we will create our own plot using
-[ggplot2](https://ggplot2.tidyverse.org) package, and use
-[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) function for
-extracting expression:
+For example, in the following chunk, we create our own plot using
+[ggplot2](https://ggplot2.tidyverse.org) and use
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) to extract the
+expression:
 
 \
-`## loading the needed libraries`\
 [`set.seed`](https://rdrr.io/r/base/Random.html)`(``123``)`\
 [`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`\
 \
@@ -860,6 +825,7 @@ wrapper around [ggstatsplot](https://www.indrapatil.com/ggstatsplot/).
 ## Grouped variants of primary functions
 
 Convenience functions to repeat analysis across a single grouping
+variable
 
 - [`grouped_ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbarstats.md)
   : Grouped bar charts with statistical tests

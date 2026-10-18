@@ -31,8 +31,8 @@ datasets to explore data-specific hypotheses using regression models.
 ## General structure of the plots
 
 Although the statistical models displayed in the plot may differ based
-on the class of models being investigated, there are few aspects of the
-plot that will be invariant across models:
+on the class of models being investigated, there are a few aspects of
+the plot that will be invariant across models:
 
 - The dot-whisker plot contains a dot representing the **estimate** and
   their **confidence intervals** (`95%` is the default). The estimate
@@ -41,7 +41,7 @@ plot that will be invariant across models:
   $`\chi^{2}`$-, and `z`-statistic), etc. The confidence intervals can
   sometimes be asymmetric if bootstrapping was used.
 
-- The label attached to dot will provide more details from the
+- The label attached to each dot will provide more details from the
   statistical test carried out and it will typically contain estimate,
   statistic, and *p*-value.
 
@@ -306,9 +306,6 @@ Another example with `frailty` term.
 omnibus ANOVA (`aov`)
 
 \
-[`library`](https://rdrr.io/r/base/library.html)`(`[`ggplot2`](https://ggplot2.tidyverse.org)`)`\
-\
-`# model`\
 `mod_aov`` ``<-`` ``stats``::`[`aov`](https://rdrr.io/r/stats/aov.html)`(``formula ``=`` ``rating`` ``~`` ``mpaa`` ``*`` ``genre``, data ``=`` ``movies_long``)`\
 \
 [`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`\
@@ -443,10 +440,10 @@ coefficients.
 \
 `# model object`\
 `br`` ``<-`` ``gamm4``::``gamm4``(`\
-`    formula ``=`` ``y`` ``~`` ``s``(``x0``)`` ``+`` ``x1`` ``+`` ``s``(``x2``)``,`\
-`    data ``=`` ``dat``,`\
-`    random ``=`` ``~`` ``(``1`` ``|`` ``fac``)`\
-`  ``)`\
+`  formula ``=`` ``y`` ``~`` ``s``(``x0``)`` ``+`` ``x1`` ``+`` ``s``(``x2``)``,`\
+`  data ``=`` ``dat``,`\
+`  random ``=`` ``~`` ``(``1`` ``|`` ``fac``)`\
+`)`\
 \
 `# looking at the classes of the objects contained in the list`\
 `purrr``::`[`map`](https://purrr.tidyverse.org/reference/map.html)`(``br``, ``class``)`\
@@ -494,7 +491,6 @@ study/effect.
 [`ggcoefstats`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)`(`\
 `  x ``=`` ``df``,`\
 `  meta.analytic.effect ``=`` ``TRUE``,`\
-`  bf.message ``=`` ``TRUE``,`\
 `  meta.type ``=`` ``"parametric"``,`\
 `  title ``=`` ``"parametric random-effects meta-analysis"`\
 `)`
