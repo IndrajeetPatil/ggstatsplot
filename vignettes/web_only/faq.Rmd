@@ -188,10 +188,8 @@ results <- correlation(df, method = "kendall") |>
 # creating expression out of these results
 df_results <- statsExpressions::add_expression_col(
   data           = results,
-  no.parameters  = 0L,
   statistic.text = list(quote(italic("T"))),
-  effsize.text   = list(quote(widehat(italic(tau))["Kendall"])),
-  n              = results$n.obs[[1]]
+  effsize.text   = list(quote(widehat(italic(tau))["Kendall"]))
 )
 
 # using custom expression in plot
