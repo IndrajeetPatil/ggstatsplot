@@ -14,7 +14,6 @@ test_that("checking default outputs", {
   )
 })
 
-
 # modification with ggplot2 ----------------------------------------------
 
 test_that("modification with ggplot2 works as expected", {
