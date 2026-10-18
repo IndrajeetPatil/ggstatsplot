@@ -149,8 +149,8 @@ ggscatterstats <- function(
       corr_test,
       list(
         data = data,
-        x = {{ x }},
-        y = {{ y }},
+        x = x,
+        y = y,
         conf.level = conf.level,
         digits = digits,
         tr = tr,

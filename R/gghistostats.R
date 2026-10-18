@@ -103,7 +103,7 @@ gghistostats <- function(
       one_sample_test,
       list(
         data = data,
-        x = {{ x }},
+        x = x,
         test.value = test.value,
         alternative = alternative,
         conf.level = conf.level,
