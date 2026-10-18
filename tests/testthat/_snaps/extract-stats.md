@@ -124,15 +124,15 @@
 # checking if extract_stats works for grouped plots
 
     Code
-      p8 <- grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
-      extracted_data <- extract_stats(p8)
+      p <- grouped_ggpiestats(mtcars, x = cyl, grouping.var = am)
+      extracted_data <- extract_stats(p)
       summary(extracted_data)
     Output
            Length Class             Mode
       [1,] 7      ggstatsplot_stats list
       [2,] 7      ggstatsplot_stats list
     Code
-      extract_subtitle(p8)
+      extract_subtitle(p)
     Output
       [[1]]
       list(chi["gof"]^2 * "(" * 2 * ")" == "7.68", italic(p) == "0.02", 
@@ -145,7 +145,7 @@
               "0.00", "0.74" * "]", italic("n")["obs"] == "13")
       
     Code
-      extract_caption(p8)
+      extract_caption(p)
     Output
       [[1]]
       list(log[e] * (BF["01"]) == "-0.16", italic("a")["Gunel-Dickey"] == 
