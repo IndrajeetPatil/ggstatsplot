@@ -18,33 +18,30 @@
 #' @param x The condition (or repeated-measures) variable from `data`.
 #' @inheritParams ggbetweenstats
 #' @param point.path,centrality.path Logical that decides whether individual
-#'   data points and means, respectively, should be connected using
-#'   [`ggplot2::geom_path()`]. Both default to `TRUE`. Note that `point.path`
-#'   argument is relevant only when there are two groups (i.e., in case of a
-#'   *t*-test). In case of large number of data points, it is advisable to set
-#'   `point.path = FALSE` as these lines can overwhelm the plot.
+#'   data points and centrality measures, respectively, are connected using
+#'   [`ggplot2::geom_path()`] (Default: `TRUE`). `point.path` is relevant only
+#'   when there are two groups (i.e., for a *t*-test). With many data points,
+#'   consider `point.path = FALSE`, as these lines can overwhelm the plot.
 #' @param centrality.path.args,point.path.args A list of additional aesthetic
-#'   arguments passed on to [`ggplot2::geom_path()`] connecting mean points and
-#'   raw data points, respectively.
-#' @param subject.id Across repeated measures conditions, each row in the
-#'   dataset must correspond to a unique unit (e.g., subject or participant).
-#'   If your data frame is already in such a format, you can ignore the
-#'   `subject.id` argument (the function will use row number to pair
-#'   observations). **But if you are not sure, it is always better to specify
-#'   this argument.** Each subject must appear at most once per level of `x`.
-#'   Rows with a missing `x` or `subject.id` are ignored, and subjects with a
-#'   missing value (i.e., `NA`) of the dependent variable in any condition are
-#'   dropped using a list-wise approach (see
-#'   [statsExpressions::complete_subjects()]), so the plot, its labels, and the
-#'   statistical results are all based on the same complete subjects.
+#'   arguments passed to [`ggplot2::geom_path()`] connecting centrality measures
+#'   and raw data points, respectively.
+#' @param subject.id The subject (or repeated measures) identifier from `data`.
+#'   Each subject must appear at most once per level of `x`. If `NULL`
+#'   (default), observations are paired by their row order within each level
+#'   of `x`. **If you are not sure the data are sorted this way, specify this
+#'   argument.** Rows with a missing `x` or `subject.id` are ignored, and
+#'   subjects with a missing (`NA`) dependent variable in any condition are
+#'   dropped list-wise (see [statsExpressions::complete_subjects()]), so the
+#'   plot, its labels, and the statistical results are all based on the same
+#'   complete subjects.
 #'
 #' @inheritSection statsExpressions::centrality_description Centrality measures
 #' @inheritSection statsExpressions::two_sample_test Two-sample tests
 #' @inheritSection statsExpressions::oneway_anova One-way ANOVA
 #' @inheritSection statsExpressions::pairwise_comparisons Pairwise comparison tests
 #'
-#' @seealso \code{\link{grouped_ggbetweenstats}}, \code{\link{ggbetweenstats}},
-#'  \code{\link{grouped_ggwithinstats}}
+#' @seealso [grouped_ggwithinstats()], [ggbetweenstats()],
+#'   [grouped_ggbetweenstats()]
 #'
 #' @autoglobal
 #'
@@ -70,18 +67,17 @@
 #' # looking at the plot
 #' p
 #'
+#' # extracting details from statistical tests
+#' extract_stats(p)
+#'
 #' # if the data are already arranged in repeated-measures order, `subject.id`
 #' # can be omitted
 #' ggwithinstats(
 #'   data             = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
 #'   x                = condition,
 #'   y                = desire,
-#'   pairwise.display = "none",
 #'   results.subtitle = FALSE
 #' )
-#'
-#' # extracting details from statistical tests
-#' extract_stats(p)
 #'
 #' # use a stricter alpha threshold for significant pairwise comparisons
 #' ggwithinstats(
@@ -255,20 +251,19 @@ ggwithinstats <- function(
 }
 
 
-#' @title Violin plots for group or condition comparisons in within-subjects
-#'   designs repeated across all levels of a grouping variable
+#' @title Grouped box/violin plots for repeated measures comparisons
 #' @name grouped_ggwithinstats
 #'
 #' @description
 #'
-#' A combined plot of comparison plots created for levels of a grouping variable.
+#' Applies [`ggwithinstats()`] across all levels of `grouping.var` and combines
+#' the resulting plots using [`combine_plots()`].
 #'
 #' @inheritParams ggwithinstats
 #' @inheritDotParams ggwithinstats -title
 #' @inheritParams grouped_ggbetweenstats
 #'
-#' @seealso \code{\link{ggwithinstats}}, \code{\link{ggbetweenstats}},
-#' \code{\link{grouped_ggbetweenstats}}
+#' @seealso [ggwithinstats()], [ggbetweenstats()], [grouped_ggbetweenstats()]
 #'
 #' @autoglobal
 #'

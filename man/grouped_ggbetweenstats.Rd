@@ -2,8 +2,7 @@
 % Please edit documentation in R/ggbetweenstats.R
 \name{grouped_ggbetweenstats}
 \alias{grouped_ggbetweenstats}
-\title{Violin plots for group or condition comparisons in between-subjects
-designs repeated across all levels of a grouping variable}
+\title{Grouped box/violin plots for between-subjects comparisons}
 \usage{
 grouped_ggbetweenstats(
   data,
@@ -38,24 +37,22 @@ Available options are:
 \item \code{"none"}
 }
 
-You can use this argument to make sure that your plot is not uber-cluttered
-when you have multiple groups being compared and scores of pairwise
-comparisons being displayed. Pairwise comparisons are carried out (and
-displayed) only when \code{x} has three or more levels. For \code{type = "bayes"},
-there are no \emph{p}-values, so all comparisons are displayed unless this is
-\code{"none"}.}
+Use this to keep the plot uncluttered when many groups are compared.
+Pairwise comparisons are carried out (and displayed) only when \code{x} has
+three or more levels. For \code{type = "bayes"}, there are no \emph{p}-values, so all
+comparisons are displayed unless this is \code{"none"}.}
     \item{\code{pairwise.alpha}}{Numeric alpha threshold used to decide which pairwise
 comparisons are displayed when \code{pairwise.display = "significant"} or
 \code{pairwise.display = "non-significant"} (Default: \code{0.05}). It is compared
 against \emph{p}-values adjusted using \code{p.adjust.method}.}
-    \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
-parametric test} (Default: \code{TRUE}).}
-    \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: \code{TRUE}). Setting this to \code{FALSE}
-also skips the automatic Bayes Factor caption. See the individual
-annotation arguments to control other plot details.}
-    \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
+    \item{\code{bf.message}}{Logical that decides whether to display the Bayes Factor in
+favor of the \emph{null} hypothesis as a caption. Relevant only for parametric
+tests (Default: \code{TRUE}).}
+    \item{\code{results.subtitle}}{Logical that decides whether the results of
+statistical tests are displayed as a subtitle (Default: \code{TRUE}). Setting
+this to \code{FALSE} also skips the automatic Bayes Factor caption. Other plot
+details have their own arguments.}
+    \item{\code{subtitle}}{The text for the plot subtitle. Used only if
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption. It will be replaced by the
 Bayes Factor caption whenever that is displayed (see \code{bf.message}).}
@@ -70,11 +67,9 @@ Function decides which central tendency measure to show depending on the
 \item \strong{MAP estimator} for Bayesian statistics
 }
 
-If you want a different centrality parameter, you can specify this using
-\code{centrality.type} argument.}
-    \item{\code{centrality.type}}{Decides which centrality parameter is to be displayed.
-The default is to choose the same as \code{type} argument. You can specify this
-to be:
+Use \code{centrality.type} to choose a different centrality measure.}
+    \item{\code{centrality.type}}{Decides which centrality measure is displayed. Defaults
+to the same value as \code{type}. Can be one of:
 \itemize{
 \item \code{"parametric"} (for \strong{mean})
 \item \code{"nonparametric"} (for \strong{median})
@@ -82,40 +77,34 @@ to be:
 \item \code{"bayes"} (for \strong{MAP estimator})
 }
 
-Just as \code{type} argument, abbreviations are also accepted.}
-    \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to
-the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
-    \item{\code{boxplot.args}}{A list of additional aesthetic arguments passed on to
+As with \code{type}, abbreviations are accepted.}
+    \item{\code{point.args}}{A list of additional aesthetic arguments passed to
+\code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
+    \item{\code{boxplot.args}}{A list of additional aesthetic arguments passed to
 \code{\link[ggplot2:geom_boxplot]{ggplot2::geom_boxplot()}}. By default, the whiskers extend to 1.5 times
-the interquartile range (IQR) from the box (Tukey-style). To customize
-whisker length, you can use the \code{coef} parameter, e.g.,
-\code{boxplot.args = list(coef = 3)} for whiskers extending to the most extreme
-observations within 3 * IQR of the hinges.}
-    \item{\code{violin.args}}{A list of additional aesthetic arguments to be passed to
-the \code{\link[ggplot2:geom_violin]{ggplot2::geom_violin()}}.}
-    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
-by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
-variants of all primary functions. Default is \code{NULL}. The argument should
-be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
+the interquartile range (IQR) from the box (Tukey-style). Use \code{coef} to
+change this, e.g., \code{boxplot.args = list(coef = 3)} extends the whiskers to
+the most extreme observations within 3 * IQR of the hinges.}
+    \item{\code{violin.args}}{A list of additional aesthetic arguments passed to
+\code{\link[ggplot2:geom_violin]{ggplot2::geom_violin()}}.}
+    \item{\code{ggplot.component}}{A \code{{ggplot2}} component, or a list of components, to
+add to the plot (Default: \code{NULL}). This is mostly helpful for the
+\code{grouped_} variants, where it is applied to each individual plot.}
     \item{\code{palette}}{Name of the discrete palette in \code{"package::palette"} format
 to be used for coloring (via \code{{paletteer}}). Run
 \code{View(paletteer::palettes_d_names)} to see all available options.}
-    \item{\code{centrality.point.args,centrality.label.args}}{A list of additional aesthetic
-arguments to be passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} and
-\code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}} geoms, which are involved in centrality
-plotting.}
-    \item{\code{ggsignif.args}}{A list of additional aesthetic arguments to be passed to
+    \item{\code{centrality.point.args,centrality.label.args}}{A list of additional
+aesthetic arguments passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} and
+\code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}}, respectively, which display the
+centrality measure.}
+    \item{\code{ggsignif.args}}{A list of additional aesthetic arguments passed to
 \code{\link[ggsignif:geom_signif]{ggsignif::geom_signif()}}.}
-    \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
-\code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
-(e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
-etc.). But note that sometimes these themes will remove some of the details
-that \code{{ggstatsplot}} plots typically contain. For example, if relevant,
-\code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
-label on the secondary Y-axis. Some themes (e.g.
-\code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
-thus the details as well.}
+    \item{\code{ggtheme}}{A \code{{ggplot2}} theme (Default: \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}). Any
+\code{{ggplot2}} theme (e.g., \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}) or theme from an
+extension package (e.g., \code{ggthemes::theme_fivethirtyeight()}) can be used.
+Note that some themes remove plot details. For example,
+\code{ggthemes::theme_fivethirtyeight()} removes the secondary Y-axis, which
+\code{\link[=ggbetweenstats]{ggbetweenstats()}} uses to show details about pairwise comparisons.}
     \item{\code{x}}{The grouping (or independent) variable from \code{data}.}
     \item{\code{y}}{The response (or outcome or dependent) variable from \code{data}.}
     \item{\code{type}}{A character specifying the type of statistical approach:
@@ -159,8 +148,8 @@ for character variables). Rows with a missing value in this variable are
 removed.}
 
 \item{plotgrid.args}{A \code{list} of additional arguments passed to
-\code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}, except for \code{guides} argument which is already
-separately specified here.}
+\code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}, except for \code{guides}, which has its own
+argument.}
 
 \item{annotation.args}{A \code{list} of additional arguments passed to
 \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
@@ -171,9 +160,8 @@ A \code{patchwork} object combining one plot per level of
 it returns a list with the statistical details for each of these plots.
 }
 \description{
-Helper function for \code{ggstatsplot::ggbetweenstats()} to apply this function
-across multiple levels of a given factor and combine the resulting plots
-using \code{ggstatsplot::combine_plots()}.
+Applies \code{\link[=ggbetweenstats]{ggbetweenstats()}} across all levels of \code{grouping.var} and combines
+the resulting plots using \code{\link[=combine_plots]{combine_plots()}}.
 }
 \examples{
 \dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}
@@ -202,13 +190,12 @@ grouped_ggbetweenstats(
   grouping.var = mpaa,
   ggplot.component = scale_y_continuous(
     breaks = seq(1, 9, 1),
-    limits = (c(1, 9))
+    limits = c(1, 9)
   ),
   annotation.args = list(title = "Ratings by genre for different MPAA ratings")
 )
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link{ggbetweenstats}}, \code{\link{ggwithinstats}},
-\code{\link{grouped_ggwithinstats}}
+\code{\link[=ggbetweenstats]{ggbetweenstats()}}, \code{\link[=ggwithinstats]{ggwithinstats()}}, \code{\link[=grouped_ggwithinstats]{grouped_ggwithinstats()}}
 }

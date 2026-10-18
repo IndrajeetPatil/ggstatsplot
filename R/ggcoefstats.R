@@ -11,25 +11,19 @@
 #' class of models being investigated, there are a few aspects of the plot that
 #' will be invariant across models:
 #'
-#'   - The dot-whisker plot contains a dot representing the **estimate** and their
-#'     **confidence intervals** (`95%` is the default). The estimate can either be
-#'     effect sizes (for tests that depend on the `F`-statistic) or regression
-#'     coefficients (for tests with `t`-, `chi^2`-, and `z`-statistic), etc. The
-#'     function will, by default, display a helpful `x`-axis label that should
-#'     clear up what estimates are being displayed. The confidence intervals can
-#'     sometimes be asymmetric if bootstrapping was used.
+#'   - Each dot represents an **estimate**, and its whiskers the **confidence
+#'     interval** (`95%` by default). Estimates can be effect sizes (for tests
+#'     based on the `F`-statistic) or regression coefficients (for tests based
+#'     on the `t`-, `chi^2`-, or `z`-statistic), etc. The confidence intervals
+#'     can be asymmetric if bootstrapping was used.
 #'
-#'   - The label attached to each dot will provide more details from the statistical
-#'     test carried out and it will typically contain estimate, statistic, and
-#'     *p*-value.
+#'   - The label attached to each dot provides details from the statistical
+#'     test, typically the estimate, statistic, and *p*-value.
 #'
-#'   - The caption will contain diagnostic information, if available, about
-#'     models that can be useful for model selection: The smaller the Akaike's
-#'     Information Criterion (**AIC**) and the Bayesian Information Criterion
-#'     (**BIC**) values, the "better" the model is.
-#'
-#'   - The output of this function will be a `{ggplot2}` object and, thus,
-#'     it can be further modified (e.g. change themes) with `{ggplot2}`.
+#'   - The caption contains model diagnostics, if available, that can be useful
+#'     for model selection: the smaller the Akaike's Information Criterion
+#'     (**AIC**) and the Bayesian Information Criterion (**BIC**) values, the
+#'     "better" the model.
 #'
 #' @section Summary of graphics:
 #'
@@ -47,61 +41,57 @@
 #' @param statistic Relevant statistic for the model (`"t"`, `"f"`, `"z"`, or
 #'   `"chi"`) in the label. Relevant only if `x` is a *data frame*; if it is
 #'   `NULL` (default), no labels are shown for data frames.
-#' @param effectsize.type This is the same as `es_type` argument of
-#'   [`parameters::model_parameters()`]. Defaults to `"omega"` (the unbiased
-#'   estimator), and relevant for ANOVA-like objects.
+#' @param effectsize.type Effect size for ANOVA-like objects, passed as the
+#'   `es_type` argument of [`parameters::model_parameters()`] (Default:
+#'   `"omega"`, the unbiased estimator).
 #' @param bf.message Logical that decides whether results from running a
 #'   Bayesian meta-analysis assuming that the effect size *d* varies across
 #'   studies with standard deviation *t* (i.e., a random-effects analysis)
-#'   should be displayed in caption. Relevant only if
-#'   `meta.analytic.effect = TRUE` and `meta.type = "parametric"`. Defaults to
-#'   `TRUE`.
-#' @param subtitle The text for the plot subtitle. The input to this argument
-#'   will be ignored if `meta.analytic.effect` is set to `TRUE`.
+#'   are displayed in the caption. Relevant only if
+#'   `meta.analytic.effect = TRUE` and `meta.type = "parametric"` (Default:
+#'   `TRUE`).
+#' @param subtitle The text for the plot subtitle. Ignored if
+#'   `meta.analytic.effect = TRUE`.
 #' @param caption The text for the plot caption. It will be replaced by model
 #'   fit indices (AIC and BIC), if available, or by the Bayesian meta-analysis
 #'   results (see `bf.message`).
 #' @param xlab Label for `x` axis. If `NULL` (default), `"estimate"` is used.
 #' @param ylab Label for `y` axis. If `NULL` (default), `"term"` is used.
-#' @param conf.int Logical. Decides whether to display confidence intervals as
-#'   error bars (Default: `TRUE`).
-#' @param conf.level Numeric deciding level of confidence or credible intervals
-#'   (Default: `0.95`).
+#' @param conf.int Logical that decides whether to display confidence intervals
+#'   as error bars (Default: `TRUE`).
 #' @param meta.analytic.effect Logical that decides whether to display a
 #'   subtitle with results from a meta-analysis via linear (mixed-effects)
-#'   models (default: `FALSE`). If `TRUE`, input to argument `subtitle` will be
-#'   ignored. This will be mostly relevant if a data frame with estimates and
-#'   their standard errors is entered.
+#'   models (Default: `FALSE`). If `TRUE`, `subtitle` is ignored. This is mostly
+#'   relevant if a data frame with estimates and their standard errors is
+#'   entered.
 #' @param meta.type Type of statistics used to carry out random-effects
 #'   meta-analysis. If `"parametric"` (default), [`metafor::rma()`] will be
 #'   used. If `"robust"`, [`metaplus::metaplus()`] will be used. If `"bayes"`,
 #'   [`metaBMA::meta_random()`] will be used.
 #' @param exclude.intercept Logical that decides whether the intercept should be
 #'   excluded from the plot (Default: `FALSE`).
-#' @param errorbar.args Additional arguments that will be passed to
-#'   [`ggplot2::geom_errorbar()`] geom. Please see documentation for that
-#'   function to know more about these arguments.
-#' @param vline Decides whether to display a vertical line at `0` (Default:
-#'   `TRUE`).
-#' @param vline.args Additional arguments that will be passed to
-#'   [`ggplot2::geom_vline()`] geom. Please see documentation for that function
-#'   to know more about these arguments.
-#' @param sort If `"none"` (default) do not sort, `"ascending"` sort by
-#'   increasing coefficient value, or `"descending"` sort by decreasing
-#'   coefficient value.
-#' @param stats.labels Logical. Decides whether the statistic and *p*-values for
-#'   each coefficient are to be attached to each dot as a text label using
-#'   `{ggrepel}` (Default: `TRUE`).
+#' @param errorbar.args A list of additional arguments passed to
+#'   [`ggplot2::geom_errorbar()`].
+#' @param vline Logical that decides whether to display a vertical line at `0`
+#'   (Default: `TRUE`).
+#' @param vline.args A list of additional arguments passed to
+#'   [`ggplot2::geom_vline()`].
+#' @param sort If `"none"` (default), do not sort; if `"ascending"` or
+#'   `"descending"`, sort by increasing or decreasing coefficient value,
+#'   respectively.
+#' @param stats.labels Logical that decides whether the statistic and *p*-value
+#'   for each coefficient are attached to its dot as a label using `{ggrepel}`
+#'   (Default: `TRUE`).
 #' @param stats.label.color Color for the labels: either a single color or a
 #'   vector with one color per term. If set to `NULL` (default), colors will be
 #'   chosen from the specified `palette`.
-#' @param stats.label.args Additional arguments that will be passed to
+#' @param stats.label.args A list of additional arguments passed to
 #'   [`ggrepel::geom_label_repel()`].
 #' @param only.significant If `TRUE`, only stats labels for significant effects
 #'   (*p* < `0.05`) are shown (Default: `FALSE`). This can be helpful when a
 #'   large number of regression coefficients are to be displayed in a single
 #'   plot.
-#' @param ... Additional arguments to tidying method. For more, see
+#' @param ... Additional arguments passed to
 #'   [`parameters::model_parameters()`].
 #' @inheritParams ggbetweenstats
 #'
@@ -111,17 +101,16 @@
 #'
 #' @note
 #'
-#' 1. In case you want to carry out meta-analysis, you will be asked to install
-#'   the needed packages (`{metafor}`, `{metaplus}`, or `{metaBMA}`) if they are
-#'   unavailable.
+#' 1. For meta-analysis, you will be asked to install the needed package
+#'   (`{metafor}`, `{metaplus}`, or `{metaBMA}`) if it is unavailable.
 #'
 #' 2. Rows with a missing `estimate` are always removed. If labels are
 #'   requested, rows where `statistic`, `std.error`, or `p.value` is missing
 #'   are kept but get no label.
 #'
-#' 3. Given the rapid pace at which new methods are added to these packages, it
-#'   is recommended that you install development versions of `{easystats}`
-#'   packages using the `install_latest()` function from `{easystats}`.
+#' 3. New model classes are frequently added to `{easystats}` packages, so it
+#'   can help to install their development versions with
+#'   `easystats::install_latest()`.
 #'
 #' @inherit ggbetweenstats return
 #'

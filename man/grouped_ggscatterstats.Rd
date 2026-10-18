@@ -2,8 +2,8 @@
 % Please edit documentation in R/ggscatterstats.R
 \name{grouped_ggscatterstats}
 \alias{grouped_ggscatterstats}
-\title{Scatterplot with marginal distributions for all levels of a grouping
-variable}
+\title{Grouped scatterplots with marginal distributions and statistical
+results}
 \usage{
 grouped_ggscatterstats(
   data,
@@ -28,23 +28,21 @@ ungrouped before they are entered as \code{data}.}
 determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).
 While using this argument with \code{\link[purrr:pmap]{purrr::pmap()}}, you will have to provide
 a quoted expression (e.g. \code{quote(y < 4 & z < 20)}).}
-    \item{\code{point.label.args}}{A list of additional aesthetic arguments to be passed
-to \code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}} geom used to display the labels.}
-    \item{\code{smooth.line.args}}{A list of additional aesthetic arguments to be passed
-to \code{\link[ggplot2:geom_smooth]{ggplot2::geom_smooth()}} geom used to display the regression line. Its
+    \item{\code{point.label.args}}{A list of additional aesthetic arguments passed to
+\code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}}, which displays the point labels.}
+    \item{\code{smooth.line.args}}{A list of additional aesthetic arguments passed to
+\code{\link[ggplot2:geom_smooth]{ggplot2::geom_smooth()}}, which displays the regression line. Its
 confidence band uses \code{conf.level}.}
-    \item{\code{marginal}}{Decides whether marginal distributions will be plotted on
-axes using \code{{ggside}} functions. The default is \code{TRUE}.}
+    \item{\code{marginal}}{Logical that decides whether marginal distributions are
+plotted on the axes using \code{{ggside}} (Default: \code{TRUE}).}
     \item{\code{point.width.jitter,point.height.jitter}}{Amount of jitter (in data
 units) in \code{x} and \code{y} direction, respectively, passed to
-\code{\link[ggplot2:position_jitter]{ggplot2::position_jitter()}}. Defaults to \code{0} (no jitter). Note that the
-jitter should not be specified in the \code{point.args}
-because this information will be passed to two different \code{geom}s: one
-displaying the \strong{points} and the other displaying the \strong{labels} for
-these points.}
+\code{\link[ggplot2:position_jitter]{ggplot2::position_jitter()}} (Default: \code{0}, i.e., no jitter). Do not
+specify the jitter in \code{point.args}, because it is shared by the \strong{points}
+and their \strong{labels}.}
     \item{\code{xsidehistogram.args,ysidehistogram.args}}{A list of arguments passed to
-respective \code{geom_}s from the \code{{ggside}} package to change the marginal
-distribution histograms.}
+\code{\link[ggside:geom_xsidehistogram]{ggside::geom_xsidehistogram()}} and \code{\link[ggside:geom_ysidehistogram]{ggside::geom_ysidehistogram()}},
+respectively, to change the marginal histograms.}
     \item{\code{xsidehistogram.scale,ysidehistogram.scale}}{A list of arguments passed
 to \code{ggside::scale_xsidey_continuous()} and
 \code{ggside::scale_ysidex_continuous()}, respectively, to control the
@@ -87,33 +85,28 @@ value corresponds to scale for fixed effects.}
 variable name for \code{x} will be used.}
     \item{\code{ylab}}{Label for \code{y} axis variable. If \code{NULL} (default),
 variable name for \code{y} will be used.}
-    \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
-parametric test} (Default: \code{TRUE}).}
-    \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: \code{TRUE}). Setting this to \code{FALSE}
-also skips the automatic Bayes Factor caption. See the individual
-annotation arguments to control other plot details.}
-    \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
+    \item{\code{bf.message}}{Logical that decides whether to display the Bayes Factor in
+favor of the \emph{null} hypothesis as a caption. Relevant only for parametric
+tests (Default: \code{TRUE}).}
+    \item{\code{results.subtitle}}{Logical that decides whether the results of
+statistical tests are displayed as a subtitle (Default: \code{TRUE}). Setting
+this to \code{FALSE} also skips the automatic Bayes Factor caption. Other plot
+details have their own arguments.}
+    \item{\code{subtitle}}{The text for the plot subtitle. Used only if
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption. It will be replaced by the
 Bayes Factor caption whenever that is displayed (see \code{bf.message}).}
-    \item{\code{point.args}}{A list of additional aesthetic arguments to be passed to
-the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
-    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
-by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
-variants of all primary functions. Default is \code{NULL}. The argument should
-be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
-    \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
-\code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
-(e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
-etc.). But note that sometimes these themes will remove some of the details
-that \code{{ggstatsplot}} plots typically contain. For example, if relevant,
-\code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
-label on the secondary Y-axis. Some themes (e.g.
-\code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
-thus the details as well.}
+    \item{\code{point.args}}{A list of additional aesthetic arguments passed to
+\code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
+    \item{\code{ggplot.component}}{A \code{{ggplot2}} component, or a list of components, to
+add to the plot (Default: \code{NULL}). This is mostly helpful for the
+\code{grouped_} variants, where it is applied to each individual plot.}
+    \item{\code{ggtheme}}{A \code{{ggplot2}} theme (Default: \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}). Any
+\code{{ggplot2}} theme (e.g., \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}) or theme from an
+extension package (e.g., \code{ggthemes::theme_fivethirtyeight()}) can be used.
+Note that some themes remove plot details. For example,
+\code{ggthemes::theme_fivethirtyeight()} removes the secondary Y-axis, which
+\code{\link[=ggbetweenstats]{ggbetweenstats()}} uses to show details about pairwise comparisons.}
   }}
 
 \item{grouping.var}{A single grouping variable. A separate plot is created
@@ -122,8 +115,8 @@ for character variables). Rows with a missing value in this variable are
 removed.}
 
 \item{plotgrid.args}{A \code{list} of additional arguments passed to
-\code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}, except for \code{guides} argument which is already
-separately specified here.}
+\code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}, except for \code{guides}, which has its own
+argument.}
 
 \item{annotation.args}{A \code{list} of additional arguments passed to
 \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
@@ -134,8 +127,8 @@ A \code{patchwork} object combining one plot per level of
 it returns a list with the statistical details for each of these plots.
 }
 \description{
-Grouped scatterplots from \code{{ggplot2}} combined with marginal distribution
-plots with statistical details added as a subtitle.
+Applies \code{\link[=ggscatterstats]{ggscatterstats()}} across all levels of \code{grouping.var} and combines
+the resulting plots using \code{\link[=combine_plots]{combine_plots()}}.
 }
 \details{
 Rows with a missing value in either \code{x} or \code{y} are removed before
@@ -146,7 +139,7 @@ For details, see:
 }
 \examples{
 \dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}
-# to ensure reproducibility
+# for reproducibility
 set.seed(123)
 
 library(dplyr, warn.conflicts = FALSE)
@@ -161,8 +154,7 @@ grouped_ggscatterstats(
   ggplot.component = list(geom_rug(sides = "b"))
 )
 
-# using labeling
-# (also show how to modify basic plot from within function call)
+# label points matching an expression
 grouped_ggscatterstats(
   data             = filter(ggplot2::mpg, cyl != 5),
   x                = displ,
@@ -174,7 +166,7 @@ grouped_ggscatterstats(
   ggplot.component = scale_y_continuous(sec.axis = dup_axis())
 )
 
-# labeling without expression
+# label all points
 grouped_ggscatterstats(
   data            = filter(movies_long, rating == 7, genre \%in\% c("Drama", "Comedy")),
   x               = budget,
@@ -184,22 +176,8 @@ grouped_ggscatterstats(
   label.var       = "title",
   annotation.args = list(tag_levels = "a")
 )
-
-# customize marginal histogram bins and scales
-grouped_ggscatterstats(
-  data = filter(movies_long, genre \%in\% c("Drama", "Comedy")),
-  x = rating,
-  y = length,
-  grouping.var = genre,
-  results.subtitle = FALSE,
-  xsidehistogram.args = list(fill = "#4285F4", color = "black", na.rm = TRUE, bins = 20),
-  ysidehistogram.args = list(fill = "#EA4335", color = "black", na.rm = TRUE, binwidth = 10),
-  xsidehistogram.scale = list(breaks = seq(0, 200, 50)),
-  ysidehistogram.scale = list(breaks = seq(0, 200, 50))
-)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link{ggscatterstats}}, \code{\link{ggcorrmat}},
-\code{\link{grouped_ggcorrmat}}
+\code{\link[=ggscatterstats]{ggscatterstats()}}, \code{\link[=ggcorrmat]{ggcorrmat()}}, \code{\link[=grouped_ggcorrmat]{grouped_ggcorrmat()}}
 }

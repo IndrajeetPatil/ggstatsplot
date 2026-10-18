@@ -100,27 +100,21 @@ Default: \code{c("#EA4335", "white", "#4285F4")} (red–white–blue).}
 coefficients. Default: \code{pch = "cross"}. The caption explaining the
 insignificance marker is added only for \code{pch = "cross"} (or \code{4}).}
 
-\item{ggcorrplot.args}{A list of additional (mostly aesthetic) arguments that
-will be passed to \code{\link[ggcorrplot:ggcorrplot]{ggcorrplot::ggcorrplot()}} function. The list should
-avoid any of the following arguments since they are already internally
-being used: \code{corr}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors}, \code{type},
-\code{lab}, \code{pch}, \code{legend.title}, \code{digits}.}
+\item{ggcorrplot.args}{A list of additional (mostly aesthetic) arguments
+passed to \code{\link[ggcorrplot:ggcorrplot]{ggcorrplot::ggcorrplot()}}. Do not include the following
+arguments, which are set internally: \code{corr}, \code{p.mat}, \code{sig.level},
+\code{ggtheme}, \code{colors}, \code{type}, \code{lab}, \code{pch}, \code{legend.title}, \code{digits}.}
 
-\item{ggtheme}{A \code{{ggplot2}} theme. Default value is
-\code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
-(e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
-etc.). But note that sometimes these themes will remove some of the details
-that \code{{ggstatsplot}} plots typically contain. For example, if relevant,
-\code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
-label on the secondary Y-axis. Some themes (e.g.
-\code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
-thus the details as well.}
+\item{ggtheme}{A \code{{ggplot2}} theme (Default: \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}). Any
+\code{{ggplot2}} theme (e.g., \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}) or theme from an
+extension package (e.g., \code{ggthemes::theme_fivethirtyeight()}) can be used.
+Note that some themes remove plot details. For example,
+\code{ggthemes::theme_fivethirtyeight()} removes the secondary Y-axis, which
+\code{\link[=ggbetweenstats]{ggbetweenstats()}} uses to show details about pairwise comparisons.}
 
-\item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
-by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
-variants of all primary functions. Default is \code{NULL}. The argument should
-be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
+\item{ggplot.component}{A \code{{ggplot2}} component, or a list of components, to
+add to the plot (Default: \code{NULL}). This is mostly helpful for the
+\code{grouped_} variants, where it is applied to each individual plot.}
 
 \item{title}{The text for the plot title.}
 
@@ -129,7 +123,7 @@ be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} function
 \item{caption}{The text for the plot caption. If the insignificance marker
 caption is shown (see \code{pch}), this text is displayed above it.}
 
-\item{...}{Currently ignored.}
+\item{...}{Additional arguments (currently ignored).}
 }
 \value{
 A \code{ggplot} object, which can be further modified with \code{{ggplot2}}
@@ -190,6 +184,6 @@ ggcorrmat(airquality)
 ggcorrmat(iris, cor.vars = c(Sepal.Length, Petal.Length, Petal.Width))
 }
 \seealso{
-\code{\link{grouped_ggcorrmat}} \code{\link{ggscatterstats}}
-\code{\link{grouped_ggscatterstats}}
+\code{\link[=grouped_ggcorrmat]{grouped_ggcorrmat()}}, \code{\link[=ggscatterstats]{ggscatterstats()}},
+\code{\link[=grouped_ggscatterstats]{grouped_ggscatterstats()}}
 }

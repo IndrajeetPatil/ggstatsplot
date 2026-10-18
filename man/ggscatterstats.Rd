@@ -73,9 +73,9 @@ addition to numeric arguments, several named values are also recognized:
 of \code{1/2}, \code{sqrt(2)/2}, and \code{1}, respectively. In case of an ANOVA, this
 value corresponds to scale for fixed effects.}
 
-\item{bf.message}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
-parametric test} (Default: \code{TRUE}).}
+\item{bf.message}{Logical that decides whether to display the Bayes Factor in
+favor of the \emph{null} hypothesis as a caption. Relevant only for parametric
+tests (Default: \code{TRUE}).}
 
 \item{tr}{Trim level for the mean when carrying out \code{robust} tests. In case
 of an error, try reducing the value of \code{tr}, which is by default set to
@@ -88,10 +88,10 @@ value as suffix, e.g. \code{digits = "scientific4"} to have scientific
 notation with 4 decimal places, or \code{digits = "signif5"} for 5
 significant figures (see also \code{\link[=signif]{signif()}}).}
 
-\item{results.subtitle}{Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: \code{TRUE}). Setting this to \code{FALSE}
-also skips the automatic Bayes Factor caption. See the individual
-annotation arguments to control other plot details.}
+\item{results.subtitle}{Logical that decides whether the results of
+statistical tests are displayed as a subtitle (Default: \code{TRUE}). Setting
+this to \code{FALSE} also skips the automatic Bayes Factor caption. Other plot
+details have their own arguments.}
 
 \item{label.var}{Variable to use for point labels entered as a symbol (e.g.
 \code{var1}).}
@@ -101,30 +101,28 @@ determines the subset of data points to label (e.g. \code{y < 4 & z < 20}).
 While using this argument with \code{\link[purrr:pmap]{purrr::pmap()}}, you will have to provide
 a quoted expression (e.g. \code{quote(y < 4 & z < 20)}).}
 
-\item{marginal}{Decides whether marginal distributions will be plotted on
-axes using \code{{ggside}} functions. The default is \code{TRUE}.}
+\item{marginal}{Logical that decides whether marginal distributions are
+plotted on the axes using \code{{ggside}} (Default: \code{TRUE}).}
 
-\item{point.args}{A list of additional aesthetic arguments to be passed to
-the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
+\item{point.args}{A list of additional aesthetic arguments passed to
+\code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
 
 \item{point.width.jitter, point.height.jitter}{Amount of jitter (in data
 units) in \code{x} and \code{y} direction, respectively, passed to
-\code{\link[ggplot2:position_jitter]{ggplot2::position_jitter()}}. Defaults to \code{0} (no jitter). Note that the
-jitter should not be specified in the \code{point.args}
-because this information will be passed to two different \code{geom}s: one
-displaying the \strong{points} and the other displaying the \strong{labels} for
-these points.}
+\code{\link[ggplot2:position_jitter]{ggplot2::position_jitter()}} (Default: \code{0}, i.e., no jitter). Do not
+specify the jitter in \code{point.args}, because it is shared by the \strong{points}
+and their \strong{labels}.}
 
-\item{point.label.args}{A list of additional aesthetic arguments to be passed
-to \code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}} geom used to display the labels.}
+\item{point.label.args}{A list of additional aesthetic arguments passed to
+\code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}}, which displays the point labels.}
 
-\item{smooth.line.args}{A list of additional aesthetic arguments to be passed
-to \code{\link[ggplot2:geom_smooth]{ggplot2::geom_smooth()}} geom used to display the regression line. Its
+\item{smooth.line.args}{A list of additional aesthetic arguments passed to
+\code{\link[ggplot2:geom_smooth]{ggplot2::geom_smooth()}}, which displays the regression line. Its
 confidence band uses \code{conf.level}.}
 
 \item{xsidehistogram.args, ysidehistogram.args}{A list of arguments passed to
-respective \code{geom_}s from the \code{{ggside}} package to change the marginal
-distribution histograms.}
+\code{\link[ggside:geom_xsidehistogram]{ggside::geom_xsidehistogram()}} and \code{\link[ggside:geom_ysidehistogram]{ggside::geom_ysidehistogram()}},
+respectively, to change the marginal histograms.}
 
 \item{xsidehistogram.scale, ysidehistogram.scale}{A list of arguments passed
 to \code{ggside::scale_xsidey_continuous()} and
@@ -140,29 +138,24 @@ variable name for \code{y} will be used.}
 
 \item{title}{The text for the plot title.}
 
-\item{subtitle}{The text for the plot subtitle. Will work only if
+\item{subtitle}{The text for the plot subtitle. Used only if
 \code{results.subtitle = FALSE}.}
 
 \item{caption}{The text for the plot caption. It will be replaced by the
 Bayes Factor caption whenever that is displayed (see \code{bf.message}).}
 
-\item{ggtheme}{A \code{{ggplot2}} theme. Default value is
-\code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
-(e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
-etc.). But note that sometimes these themes will remove some of the details
-that \code{{ggstatsplot}} plots typically contain. For example, if relevant,
-\code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
-label on the secondary Y-axis. Some themes (e.g.
-\code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
-thus the details as well.}
+\item{ggtheme}{A \code{{ggplot2}} theme (Default: \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}). Any
+\code{{ggplot2}} theme (e.g., \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}) or theme from an
+extension package (e.g., \code{ggthemes::theme_fivethirtyeight()}) can be used.
+Note that some themes remove plot details. For example,
+\code{ggthemes::theme_fivethirtyeight()} removes the secondary Y-axis, which
+\code{\link[=ggbetweenstats]{ggbetweenstats()}} uses to show details about pairwise comparisons.}
 
-\item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
-by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
-variants of all primary functions. Default is \code{NULL}. The argument should
-be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
+\item{ggplot.component}{A \code{{ggplot2}} component, or a list of components, to
+add to the plot (Default: \code{NULL}). This is mostly helpful for the
+\code{grouped_} variants, where it is applied to each individual plot.}
 
-\item{...}{Currently ignored.}
+\item{...}{Additional arguments (currently ignored).}
 }
 \value{
 A \code{ggplot} object, which can be further modified with \code{{ggplot2}}
@@ -181,10 +174,9 @@ For details, see:
 \url{https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html}
 }
 \note{
-The plot uses \code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}} to attempt to keep labels
-from overlapping to the largest degree possible. As a consequence plot
-times will slow down massively (and the plot file will grow in size) if you
-have a lot of labels that overlap.
+Point labels use \code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}} to keep them from
+overlapping, so plotting can become very slow (and the plot file large) if
+many labels overlap.
 }
 \section{Summary of graphics}{
 \tabular{lll}{
@@ -250,6 +242,5 @@ ggscatterstats(
 
 }
 \seealso{
-\code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
-\code{\link{grouped_ggcorrmat}}
+\code{\link[=grouped_ggscatterstats]{grouped_ggscatterstats()}}, \code{\link[=ggcorrmat]{ggcorrmat()}}, \code{\link[=grouped_ggcorrmat]{grouped_ggcorrmat()}}
 }

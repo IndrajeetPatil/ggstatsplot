@@ -11,30 +11,27 @@
 #' ```{r child="man/rmd-fragments/ggscatterstats_graphics.Rmd"}
 #' ```
 #'
-#' @param ... Currently ignored.
 #' @param label.var Variable to use for point labels entered as a symbol (e.g.
 #'   `var1`).
 #' @param label.expression An expression evaluating to a logical vector that
 #'   determines the subset of data points to label (e.g. `y < 4 & z < 20`).
 #'   While using this argument with [`purrr::pmap()`], you will have to provide
 #'   a quoted expression (e.g. `quote(y < 4 & z < 20)`).
-#' @param point.label.args A list of additional aesthetic arguments to be passed
-#'   to [`ggrepel::geom_label_repel()`] geom used to display the labels.
-#' @param smooth.line.args A list of additional aesthetic arguments to be passed
-#'   to [`ggplot2::geom_smooth()`] geom used to display the regression line. Its
+#' @param point.label.args A list of additional aesthetic arguments passed to
+#'   [`ggrepel::geom_label_repel()`], which displays the point labels.
+#' @param smooth.line.args A list of additional aesthetic arguments passed to
+#'   [`ggplot2::geom_smooth()`], which displays the regression line. Its
 #'   confidence band uses `conf.level`.
-#' @param marginal Decides whether marginal distributions will be plotted on
-#'   axes using `{ggside}` functions. The default is `TRUE`.
+#' @param marginal Logical that decides whether marginal distributions are
+#'   plotted on the axes using `{ggside}` (Default: `TRUE`).
 #' @param point.width.jitter,point.height.jitter Amount of jitter (in data
 #'   units) in `x` and `y` direction, respectively, passed to
-#'   [`ggplot2::position_jitter()`]. Defaults to `0` (no jitter). Note that the
-#'   jitter should not be specified in the `point.args`
-#'   because this information will be passed to two different `geom`s: one
-#'   displaying the **points** and the other displaying the **labels** for
-#'   these points.
+#'   [`ggplot2::position_jitter()`] (Default: `0`, i.e., no jitter). Do not
+#'   specify the jitter in `point.args`, because it is shared by the **points**
+#'   and their **labels**.
 #' @param xsidehistogram.args,ysidehistogram.args A list of arguments passed to
-#'   respective `geom_`s from the `{ggside}` package to change the marginal
-#'   distribution histograms.
+#'   [`ggside::geom_xsidehistogram()`] and [`ggside::geom_ysidehistogram()`],
+#'   respectively, to change the marginal histograms.
 #' @param xsidehistogram.scale,ysidehistogram.scale A list of arguments passed
 #'   to `ggside::scale_xsidey_continuous()` and
 #'   `ggside::scale_ysidex_continuous()`, respectively, to control the
@@ -45,8 +42,7 @@
 #'
 #' @inheritSection statsExpressions::corr_test Correlation analyses
 #'
-#' @seealso \code{\link{grouped_ggscatterstats}}, \code{\link{ggcorrmat}},
-#' \code{\link{grouped_ggcorrmat}}
+#' @seealso [grouped_ggscatterstats()], [ggcorrmat()], [grouped_ggcorrmat()]
 #'
 #' @autoglobal
 #'
@@ -59,10 +55,9 @@
 #' <https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html>
 #'
 #' @note
-#' The plot uses [`ggrepel::geom_label_repel()`] to attempt to keep labels
-#' from overlapping to the largest degree possible. As a consequence plot
-#' times will slow down massively (and the plot file will grow in size) if you
-#' have a lot of labels that overlap.
+#' Point labels use [`ggrepel::geom_label_repel()`] to keep them from
+#' overlapping, so plotting can become very slow (and the plot file large) if
+#' many labels overlap.
 #'
 #' @examples
 #' set.seed(123)
@@ -239,21 +234,20 @@ ggscatterstats <- function(
 }
 
 
-#' @title Scatterplot with marginal distributions for all levels of a grouping
-#'   variable
+#' @title Grouped scatterplots with marginal distributions and statistical
+#'   results
 #' @name grouped_ggscatterstats
 #'
 #' @description
 #'
-#' Grouped scatterplots from `{ggplot2}` combined with marginal distribution
-#' plots with statistical details added as a subtitle.
+#' Applies [`ggscatterstats()`] across all levels of `grouping.var` and combines
+#' the resulting plots using [`combine_plots()`].
 #'
 #' @inheritParams ggscatterstats
 #' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams ggscatterstats -title
 #'
-#' @seealso \code{\link{ggscatterstats}}, \code{\link{ggcorrmat}},
-#' \code{\link{grouped_ggcorrmat}}
+#' @seealso [ggscatterstats()], [ggcorrmat()], [grouped_ggcorrmat()]
 #'
 #' @autoglobal
 #'
@@ -261,7 +255,7 @@ ggscatterstats <- function(
 #' @inherit grouped_ggbetweenstats return
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
-#' # to ensure reproducibility
+#' # for reproducibility
 #' set.seed(123)
 #'
 #' library(dplyr, warn.conflicts = FALSE)
@@ -276,8 +270,7 @@ ggscatterstats <- function(
 #'   ggplot.component = list(geom_rug(sides = "b"))
 #' )
 #'
-#' # using labeling
-#' # (also show how to modify basic plot from within function call)
+#' # label points matching an expression
 #' grouped_ggscatterstats(
 #'   data             = filter(ggplot2::mpg, cyl != 5),
 #'   x                = displ,
@@ -289,7 +282,7 @@ ggscatterstats <- function(
 #'   ggplot.component = scale_y_continuous(sec.axis = dup_axis())
 #' )
 #'
-#' # labeling without expression
+#' # label all points
 #' grouped_ggscatterstats(
 #'   data            = filter(movies_long, rating == 7, genre %in% c("Drama", "Comedy")),
 #'   x               = budget,
@@ -298,19 +291,6 @@ ggscatterstats <- function(
 #'   bf.message      = FALSE,
 #'   label.var       = "title",
 #'   annotation.args = list(tag_levels = "a")
-#' )
-#'
-#' # customize marginal histogram bins and scales
-#' grouped_ggscatterstats(
-#'   data = filter(movies_long, genre %in% c("Drama", "Comedy")),
-#'   x = rating,
-#'   y = length,
-#'   grouping.var = genre,
-#'   results.subtitle = FALSE,
-#'   xsidehistogram.args = list(fill = "#4285F4", color = "black", na.rm = TRUE, bins = 20),
-#'   ysidehistogram.args = list(fill = "#EA4335", color = "black", na.rm = TRUE, binwidth = 10),
-#'   xsidehistogram.scale = list(breaks = seq(0, 200, 50)),
-#'   ysidehistogram.scale = list(breaks = seq(0, 200, 50))
 #' )
 #' @export
 grouped_ggscatterstats <- .make_grouped_fn(ggscatterstats)

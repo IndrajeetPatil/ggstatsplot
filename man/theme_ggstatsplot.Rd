@@ -10,12 +10,9 @@ theme_ggstatsplot()
 A \code{{ggplot2}} theme object.
 }
 \description{
-Common theme used across all plots generated in \code{{ggstatsplot}} and \emph{assumed}
-by the author to be aesthetically pleasing to the user. The theme is a
-wrapper around \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}.
-
-All \code{{ggstatsplot}} functions have a \code{ggtheme} parameter that lets you choose
-a different theme.
+Theme used by default in all \code{{ggstatsplot}} plots, built on
+\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}. Use the \code{ggtheme} argument of any \code{{ggstatsplot}}
+function to choose a different theme.
 }
 \examples{
 library(ggplot2)

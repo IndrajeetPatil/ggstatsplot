@@ -19,7 +19,6 @@
 #' ```{r child="man/rmd-fragments/ggdotplotstats_graphics.Rmd"}
 #' ```
 #'
-#' @param ... Currently ignored.
 #' @param y Label or grouping variable. Each level of `y` is shown as a single
 #'   dot: if a level has several rows, `x` is summarized using the centrality
 #'   measure for the chosen `type` (see above), and the one-sample test is then
@@ -31,8 +30,8 @@
 #'
 #' @inheritSection statsExpressions::one_sample_test One-sample tests
 #'
-#' @seealso \code{\link{grouped_gghistostats}}, \code{\link{gghistostats}},
-#'  \code{\link{grouped_ggdotplotstats}}
+#' @seealso [grouped_ggdotplotstats()], [gghistostats()],
+#'   [grouped_gghistostats()]
 #'
 #' @autoglobal
 #'
@@ -197,16 +196,14 @@ ggdotplotstats <- function(
 #'
 #' @description
 #'
-#' Helper function for `ggstatsplot::ggdotplotstats()` to apply this function
-#' across multiple levels of a given factor and combine the resulting plots
-#' using `ggstatsplot::combine_plots()`.
+#' Applies [`ggdotplotstats()`] across all levels of `grouping.var` and combines
+#' the resulting plots using [`combine_plots()`].
 #'
 #' @inheritParams ggdotplotstats
 #' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams ggdotplotstats -title
 #'
-#' @seealso \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},
-#'  \code{\link{gghistostats}}
+#' @seealso [ggdotplotstats()], [gghistostats()], [grouped_gghistostats()]
 #'
 #' @autoglobal
 #'
@@ -218,10 +215,9 @@ ggdotplotstats <- function(
 #' set.seed(123)
 #' library(dplyr, warn.conflicts = FALSE)
 #'
-#' # removing factor level with very few no. of observations
+#' # drop the 5-cylinder cars, which have very few observations
 #' df <- filter(ggplot2::mpg, cyl %in% c("4", "6", "8"))
 #'
-#' # plot
 #' grouped_ggdotplotstats(
 #'   data            = df,
 #'   x               = cty,

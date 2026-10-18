@@ -2,8 +2,7 @@
 % Please edit documentation in R/ggcorrmat.R
 \name{grouped_ggcorrmat}
 \alias{grouped_ggcorrmat}
-\title{Visualization of a correlogram (or correlation matrix) for all
-levels of a grouping variable}
+\title{Grouped visualizations of correlation matrices}
 \usage{
 grouped_ggcorrmat(
   data,
@@ -43,11 +42,10 @@ low (negative correlations), mid (zero), and high (positive correlations).
 Must be a \strong{diverging} palette so that the sign of the correlation is
 visually obvious.
 Default: \code{c("#EA4335", "white", "#4285F4")} (red–white–blue).}
-    \item{\code{ggcorrplot.args}}{A list of additional (mostly aesthetic) arguments that
-will be passed to \code{\link[ggcorrplot:ggcorrplot]{ggcorrplot::ggcorrplot()}} function. The list should
-avoid any of the following arguments since they are already internally
-being used: \code{corr}, \code{p.mat}, \code{sig.level}, \code{ggtheme}, \code{colors}, \code{type},
-\code{lab}, \code{pch}, \code{legend.title}, \code{digits}.}
+    \item{\code{ggcorrplot.args}}{A list of additional (mostly aesthetic) arguments
+passed to \code{\link[ggcorrplot:ggcorrplot]{ggcorrplot::ggcorrplot()}}. Do not include the following
+arguments, which are set internally: \code{corr}, \code{p.mat}, \code{sig.level},
+\code{ggtheme}, \code{colors}, \code{type}, \code{lab}, \code{pch}, \code{legend.title}, \code{digits}.}
     \item{\code{subtitle}}{The text for the plot subtitle.}
     \item{\code{caption}}{The text for the plot caption. If the insignificance marker
 caption is shown (see \code{pch}), this text is displayed above it.}
@@ -83,20 +81,15 @@ value corresponds to scale for fixed effects.}
     \item{\code{p.adjust.method}}{Adjustment method for \emph{p}-values for multiple
 comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, \code{"none"}.}
-    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
-by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
-variants of all primary functions. Default is \code{NULL}. The argument should
-be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
-    \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
-\code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
-(e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
-etc.). But note that sometimes these themes will remove some of the details
-that \code{{ggstatsplot}} plots typically contain. For example, if relevant,
-\code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
-label on the secondary Y-axis. Some themes (e.g.
-\code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
-thus the details as well.}
+    \item{\code{ggplot.component}}{A \code{{ggplot2}} component, or a list of components, to
+add to the plot (Default: \code{NULL}). This is mostly helpful for the
+\code{grouped_} variants, where it is applied to each individual plot.}
+    \item{\code{ggtheme}}{A \code{{ggplot2}} theme (Default: \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}). Any
+\code{{ggplot2}} theme (e.g., \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}) or theme from an
+extension package (e.g., \code{ggthemes::theme_fivethirtyeight()}) can be used.
+Note that some themes remove plot details. For example,
+\code{ggthemes::theme_fivethirtyeight()} removes the secondary Y-axis, which
+\code{\link[=ggbetweenstats]{ggbetweenstats()}} uses to show details about pairwise comparisons.}
   }}
 
 \item{grouping.var}{A single grouping variable. A separate plot is created
@@ -105,8 +98,8 @@ for character variables). Rows with a missing value in this variable are
 removed.}
 
 \item{plotgrid.args}{A \code{list} of additional arguments passed to
-\code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}, except for \code{guides} argument which is already
-separately specified here.}
+\code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}, except for \code{guides}, which has its own
+argument.}
 
 \item{annotation.args}{A \code{list} of additional arguments passed to
 \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
@@ -116,9 +109,8 @@ A \code{patchwork} object combining one plot per level of
 \code{grouping.var} (see \code{\link[=combine_plots]{combine_plots()}}).
 }
 \description{
-Helper function for \code{ggstatsplot::ggcorrmat()} to apply this function across
-multiple levels of a given factor and combine the resulting plots using
-\code{ggstatsplot::combine_plots()}.
+Applies \code{\link[=ggcorrmat]{ggcorrmat()}} across all levels of \code{grouping.var} and combines the
+resulting plots using \code{\link[=combine_plots]{combine_plots()}}.
 }
 \details{
 Missing values are handled using pairwise deletion (each
@@ -137,12 +129,10 @@ grouped_ggcorrmat(
   grouping.var = Species,
   type = "robust",
   colors = c("#0072B2", "white", "#D55E00"),
-  p.adjust.method = "holm",
   plotgrid.args = list(ncol = 1L),
   annotation.args = list(tag_levels = "i")
 )
 }
 \seealso{
-\code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},
-\code{\link{grouped_ggscatterstats}}
+\code{\link[=ggcorrmat]{ggcorrmat()}}, \code{\link[=ggscatterstats]{ggscatterstats()}}, \code{\link[=grouped_ggscatterstats]{grouped_ggscatterstats()}}
 }

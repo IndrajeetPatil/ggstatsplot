@@ -11,27 +11,25 @@
 #' ```{r child="man/rmd-fragments/gghistostats_graphics.Rmd"}
 #' ```
 #'
-#' @param ... Currently ignored.
 #' @param binwidth The width of the histogram bins. Can be specified as a
 #'   numeric value, or a function that calculates width from `x`. The default is
 #'   to use `(max(x) - min(x)) / sqrt(N)`. If all values of `x` are identical,
 #'   `0.1` (or `abs(x) / 1000`, if larger) is used instead. You should always
 #'   check this value and explore multiple widths to find the one that best
 #'   illustrates the stories in your data.
-#' @param bin.args A list of additional aesthetic arguments to be passed to the
-#'   [`ggplot2::stat_bin()`] used to display the bins. Do not specify `binwidth`
-#'   argument in this list since it has already been specified using the
-#'   dedicated argument.
-#' @param centrality.line.args A list of additional aesthetic arguments to be
-#'   passed to the [`ggplot2::geom_vline()`] used to display the lines
-#'   corresponding to the centrality parameter.
+#' @param bin.args A list of additional aesthetic arguments passed to
+#'   [`ggplot2::stat_bin()`], which displays the bins. Use the dedicated
+#'   `binwidth` argument (not this list) to set the bin width.
+#' @param centrality.line.args A list of additional aesthetic arguments passed
+#'   to [`ggplot2::geom_vline()`], which displays the line for the centrality
+#'   measure.
 #' @inheritParams statsExpressions::one_sample_test
 #' @inheritParams ggbetweenstats
 #'
 #' @inheritSection statsExpressions::one_sample_test One-sample tests
 #'
-#' @seealso \code{\link{grouped_gghistostats}}, \code{\link{ggdotplotstats}},
-#'  \code{\link{grouped_ggdotplotstats}}
+#' @seealso [grouped_gghistostats()], [ggdotplotstats()],
+#'   [grouped_ggdotplotstats()]
 #'
 #' @autoglobal
 #'
@@ -185,9 +183,8 @@ gghistostats <- function(
 #'
 #' @description
 #'
-#' Helper function for `ggstatsplot::gghistostats()` to apply this function
-#' across multiple levels of a given factor and combine the resulting plots
-#' using `ggstatsplot::combine_plots()`.
+#' Applies [`gghistostats()`] across all levels of `grouping.var` and combines
+#' the resulting plots using [`combine_plots()`].
 #'
 #' @inheritParams gghistostats
 #' @inheritParams grouped_ggbetweenstats
@@ -196,8 +193,7 @@ gghistostats <- function(
 #'   the full data (not per group), so that all plots share the same bin width.
 #' @inheritDotParams gghistostats -title
 #'
-#' @seealso \code{\link{gghistostats}}, \code{\link{ggdotplotstats}},
-#'  \code{\link{grouped_ggdotplotstats}}
+#' @seealso [gghistostats()], [ggdotplotstats()], [grouped_ggdotplotstats()]
 #'
 #' @autoglobal
 #'
@@ -208,7 +204,6 @@ gghistostats <- function(
 #' # for reproducibility
 #' set.seed(123)
 #'
-#' # plot
 #' grouped_gghistostats(
 #'   data            = iris,
 #'   x               = Sepal.Length,

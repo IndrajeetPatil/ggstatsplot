@@ -2,51 +2,37 @@
 #'
 #' @description
 #'
-#' `{ggstatsplot}` is an extension of `{ggplot2}` package. It creates
-#'   graphics with details from statistical tests included in the plots
-#'   themselves. It provides an easier `API` to generate information-rich plots
-#'   for statistical analysis of continuous (violin plots, scatterplots,
-#'   histograms, dot plots, dot-and-whisker plots) or categorical (pie and bar
-#'   charts) data. Currently, it supports the most common types of statistical
-#'   tests: parametric, nonparametric, robust, and Bayesian versions of
-#'   *t*-test/ANOVA, correlation analyses, contingency table analysis,
-#'   meta-analysis, and regression analyses.
+#' `{ggstatsplot}` is an extension of `{ggplot2}` that creates graphics with
+#' details from statistical tests included in the plots themselves. It provides
+#' an easier API to generate information-rich plots for statistical analysis of
+#' continuous (box/violin plots, scatterplots, histograms, dot plots,
+#' dot-and-whisker plots) or categorical (pie and bar charts) data. It supports
+#' the most common types of statistical tests: parametric, nonparametric,
+#' robust, and Bayesian versions of *t*-test/ANOVA, correlation analyses,
+#' contingency table analysis, meta-analysis, and regression analyses.
 #'
 #' @details
 #'
 #' The main functions are:
 #'
-#'   - `ggbetweenstats()` function to produce information-rich comparison plot
-#'   *between* different groups or conditions with `{ggplot2}` and details from
-#'   the statistical tests in the subtitle.
+#'   - [`ggbetweenstats()`]: box/violin plots for comparisons *between* groups
+#'     or conditions.
+#'   - [`ggwithinstats()`]: box/violin plots for comparisons *within* groups or
+#'     conditions (repeated measures).
+#'   - [`ggscatterstats()`]: scatterplots with marginal distributions from
+#'     `{ggside}`.
+#'   - [`ggpiestats()`] and [`ggbarstats()`]: pie charts and stacked bar charts
+#'     for categorical data.
+#'   - [`gghistostats()`]: histograms for a single numeric variable, with
+#'     results from a one-sample test.
+#'   - [`ggdotplotstats()`]: Cleveland-style dot plots for labeled numeric data,
+#'     with results from a one-sample test.
+#'   - [`ggcorrmat()`]: correlation matrices.
+#'   - [`ggcoefstats()`]: dot-and-whisker plots for regression analyses.
 #'
-#'   - `ggwithinstats()` function to produce information-rich comparison plot
-#'   *within* different groups or conditions with `{ggplot2}` and details from
-#'   the statistical tests in the subtitle.
-#'
-#'   - `ggscatterstats()` function to produce `{ggplot2}` scatterplots along
-#'   with marginal distribution plots from `{ggside}` package and details from
-#'   the statistical tests in the subtitle.
-#'
-#'   - `ggpiestats()` function to produce pie chart with details from the
-#'   statistical tests in the subtitle.
-#'
-#'   - `ggbarstats()` function to produce stacked bar chart with details from
-#'   the statistical tests in the subtitle.
-#'
-#'   - `gghistostats()` function to produce histogram for a single variable with
-#'   results from one sample test displayed in the subtitle.
-#'
-#'   - `ggdotplotstats()` function to produce Cleveland-style dot plots/charts
-#'   for a single variable with labels and results from one sample test
-#'   displayed in the subtitle.
-#'
-#'   - `ggcorrmat()` function to visualize the correlation matrix.
-#'
-#'   - `ggcoefstats()` function to visualize results from regression analyses.
-#'
-#'   - `combine_plots()` helper function to combine multiple `{ggstatsplot}`
-#'   plots using [`patchwork::wrap_plots()`].
+#' All of them except `ggcoefstats()` have `grouped_` variants that repeat the
+#' analysis across the levels of a grouping variable and combine the plots with
+#' [`combine_plots()`].
 #'
 #' References: Patil (2021) \doi{10.21105/joss.03167}.
 #'
