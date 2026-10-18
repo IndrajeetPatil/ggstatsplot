@@ -145,3 +145,25 @@ test_that("histogram bins are drawn when all values are identical", {
   )
   expect_identical(sum(bins$count), 10)
 })
+
+test_that("histogram is drawn when all values are identical", {
+  set.seed(123)
+  expect_doppelganger(
+    title = "all values identical",
+    fig = gghistostats(
+      data.frame(x = rep(5, 10L)),
+      x,
+      results.subtitle = FALSE
+    )
+  )
+
+  set.seed(123)
+  expect_doppelganger(
+    title = "all values identical and large",
+    fig = gghistostats(
+      data.frame(x = rep(1e20, 10L)),
+      x,
+      results.subtitle = FALSE
+    )
+  )
+})
