@@ -56,10 +56,8 @@ norms have a mean of 20.
 
 ```{r}
 #| label = "psychact"
-## loading needed libraries
 library(psych)
 
-## looking at the structure of the data using glimpse
 dplyr::glimpse(psych::sat.act)
 ```
 
@@ -168,7 +166,7 @@ extract_stats(p)$subtitle_data
 ```{asis, file="../../man/md-fragments/reporting.md"}
 ```
 
-For example, let's see the following example:
+For example:
 
 ```{r}
 #| label = "reporting"

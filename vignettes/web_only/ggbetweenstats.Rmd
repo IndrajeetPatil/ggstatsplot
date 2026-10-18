@@ -136,8 +136,7 @@ given continent. For example, although Asian countries are doing much better
 than African countries, on average, Afghanistan has a particularly grim average
 for the Asian continent, possibly reflecting the war and the political turmoil.
 
-So far we have used the default box + violin plot, but there are other
-available options:
+Here are a few more options:
 
   - The `type` (of test) argument also accepts the following abbreviations:
     `"p"` (for *parametric*), `"np"` (for *nonparametric*), `"r"` (for
@@ -164,8 +163,7 @@ For example,
 #| fig.height = 10,
 #| fig.width = 12
 
-## selecting subset of the data
-df_year <- dplyr::filter(gapminder::gapminder, year == 2007 | year == 1957)
+df_year <- dplyr::filter(gapminder::gapminder, year %in% c(1957, 2007))
 
 p1 <- ggbetweenstats(
   data = df_year,
@@ -323,7 +321,7 @@ extract_stats(p)$pairwise_comparisons_data
 ```{asis, file="../../man/md-fragments/reporting.md"}
 ```
 
-For example, let's see the following example:
+For example:
 
 ```{r}
 #| label = "reporting",

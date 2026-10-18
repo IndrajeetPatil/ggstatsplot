@@ -46,7 +46,7 @@ examples of both (see examples below).
 
 To help demonstrate how `ggbarstats` can be used with categorical (also known as
 nominal) data, a modified version of the original `Titanic` dataset (from the
-`datasets` library) has been provided in the `{ggstatsplot}` package with the name
+`datasets` package) has been provided in the `{ggstatsplot}` package with the name
 `Titanic_full`. The Titanic Passenger Survival Dataset provides information "on
 the fate of passengers on the fatal maiden voyage of the ocean liner *Titanic*,
 including economic status (class), sex, age, and survival."
@@ -177,31 +177,13 @@ unique combination of `Boat`, `Month`, and `Fish`.
 #| fig.width = 9
 
 
-# (this is completely fictional; I don't know first thing about fishing!)
-
-fishing <- tibble::as_tibble(data.frame(
-  Boat = c(rep("B", 4), rep("A", 4), rep("A", 4), rep("B", 4)),
-  Month = c(rep("February", 2), rep("March", 2), rep("February", 2), rep("March", 2)),
-  Fish = c(
-    "Bass",
-    "Catfish",
-    "Cod",
-    "Haddock",
-    "Cod",
-    "Haddock",
-    "Bass",
-    "Catfish",
-    "Bass",
-    "Catfish",
-    "Cod",
-    "Haddock",
-    "Cod",
-    "Haddock",
-    "Bass",
-    "Catfish"
-  ),
+# (this is completely fictional; I don't know the first thing about fishing!)
+fishing <- tibble::tibble(
+  Boat = rep(c("B", "A", "B"), times = c(4, 8, 4)),
+  Month = rep(c("February", "March"), each = 2, times = 4),
+  Fish = rep(c("Bass", "Catfish", "Cod", "Haddock", "Cod", "Haddock", "Bass", "Catfish"), times = 2),
   SumOfCaught = c(25, 20, 35, 40, 40, 25, 30, 42, 40, 30, 33, 26, 100, 30, 20, 20)
-))
+)
 
 fishing
 ```
@@ -223,9 +205,9 @@ ggbarstats(
   counts = SumOfCaught,
   label = "both",
   palette = "ggsci::default_jama",
-  title = "Type fish caught by month",
+  title = "Type of fish caught by month",
   caption = "Source: completely made up",
-  legend.title = "Type fish caught: "
+  legend.title = "Type of fish caught: "
 )
 ```
 
@@ -323,7 +305,7 @@ level of the grouping variable.
 ```{asis, file="../../man/md-fragments/reporting.md"}
 ```
 
-For example, let's see the following example:
+For example:
 
 ```{r}
 #| label = "reporting",

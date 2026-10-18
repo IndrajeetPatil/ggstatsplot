@@ -85,7 +85,7 @@ reference:
       - ggcoefstats
 
   - title: Grouped variants of primary functions
-    desc: Convenience functions to repeat analysis across a single grouping
+    desc: Convenience functions to repeat analysis across a single grouping variable
     contents:
       - starts_with("grouped_")
 

@@ -188,10 +188,8 @@ results <- correlation(df, method = "kendall") |>
 # creating expression out of these results
 df_results <- statsExpressions::add_expression_col(
   data           = results,
-  no.parameters  = 0L,
   statistic.text = list(quote(italic("T"))),
-  effsize.text   = list(quote(widehat(italic(tau))["Kendall"])),
-  n              = results$n.obs[[1]]
+  effsize.text   = list(quote(widehat(italic(tau))["Kendall"]))
 )
 
 # using custom expression in plot
@@ -324,7 +322,7 @@ p <- ggbetweenstats(mtcars, cyl, wt, pairwise.display = "none")
 
 # using `statsExpressions::pairwise_comparisons()` function to create a data frame with results
 df <- statsExpressions::pairwise_comparisons(mtcars, cyl, wt) |>
-  dplyr::mutate(groups = purrr::pmap(.l = list(group1, group2), .f = c)) |>
+  dplyr::mutate(groups = purrr::map2(group1, group2, c)) |>
   dplyr::arrange(group1) |>
   dplyr::mutate(asterisk_label = dplyr::case_when(
     p.value < 0.001 ~ "***",
@@ -339,7 +337,6 @@ df
 p +
   ggsignif::geom_signif(
     comparisons = df$groups,
-    map_signif_level = TRUE,
     annotations = df$asterisk_label,
     y_position = c(5.5, 5.75, 6.0),
     test = NULL,
@@ -519,7 +516,7 @@ Note that plots created inside a `for` loop are not printed automatically;
 either store them (as above) or wrap the call in `print()`.
 
 That said, if repeating function execution across multiple columns in a
-data frame is what you want to do, I will recommend a
+data frame is what you want to do, I recommend a
 [`{purrr}`-based solution](https://www.indrapatil.com/ggstatsplot/articles/web_only/purrr_examples.html#repeating-function-execution-across-multiple-columns-in-a-data-frame).
 
 This solution would work for `x` and `y` arguments, but not for the

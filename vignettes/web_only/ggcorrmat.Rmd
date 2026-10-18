@@ -127,8 +127,6 @@ Let's have a look at the data-
 
 ```{r}
 #| label = "diamonds"
-library(ggplot2)
-
 dplyr::glimpse(ggplot2::diamonds)
 ```
 

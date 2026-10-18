@@ -79,7 +79,6 @@ For more examples of data frame outputs from
 #| fig.height = 5
 
 library(ggplot2)
-library(ggsignif)
 
 ## converting to factor
 mtcars$cyl <- as.factor(mtcars$cyl)
@@ -114,9 +113,6 @@ p +
 #| label = "ggsignif2",
 #| fig.height = 7
 
-library(ggplot2)
-library(ggsignif)
-
 ## creating a basic plot
 p <- ggplot(WRS2::WineTasting, aes(Wine, Taste)) +
   geom_boxplot()
@@ -139,14 +135,13 @@ df
 ## using `geom_signif` to display results
 p +
   ggsignif::geom_signif(
-    comparisons      = df$groups,
-    map_signif_level = TRUE,
-    tip_length       = 0.01,
-    y_position       = c(6.5, 6.65, 6.8),
-    annotations      = as.character(df$expression),
-    test             = NULL,
-    na.rm            = TRUE,
-    parse            = TRUE
+    comparisons = df$groups,
+    tip_length  = 0.01,
+    y_position  = c(6.5, 6.65, 6.8),
+    annotations = as.character(df$expression),
+    test        = NULL,
+    na.rm       = TRUE,
+    parse       = TRUE
   )
 ```
 

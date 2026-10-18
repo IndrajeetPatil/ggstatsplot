@@ -110,8 +110,8 @@ file an issue on GitHub:
 |:---|:---|:---|
 | `ggbetweenstats()` | **violin plots** | for comparisons *between* groups/conditions |
 | `ggwithinstats()` | **violin plots** | for comparisons *within* groups/conditions |
-| `gghistostats()` | **histograms** | for distribution about numeric variable |
-| `ggdotplotstats()` | **dot plots/charts** | for distribution about labeled numeric variable |
+| `gghistostats()` | **histograms** | for distribution of a numeric variable |
+| `ggdotplotstats()` | **dot plots/charts** | for distribution of a labeled numeric variable |
 | `ggscatterstats()` | **scatterplots** | for correlation between two variables |
 | `ggcorrmat()` | **correlation matrices** | for correlations between multiple variables |
 | `ggpiestats()` | **pie charts** | for categorical data |
@@ -207,13 +207,10 @@ grouped_ggbetweenstats(
 
 <img src="man/figures/README-ggbetweenstats2-1.png" alt="Grouped violin plots comparing movie length by MPAA rating for Action and Comedy genres with statistical annotations" width="100%" />
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.html)
+and the [`ggbetweenstats()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbetweenstats.html).
 
 ### `ggwithinstats()`
 
@@ -232,11 +229,9 @@ analysis.
 
 ``` r
 set.seed(123)
-library(WRS2) ## for data
-library(afex) ## to run ANOVA
 
 ggwithinstats(
-  data       = WineTasting,
+  data       = WRS2::WineTasting,
   x          = Wine,
   y          = Taste,
   subject.id = Taster,
@@ -246,10 +241,9 @@ ggwithinstats(
 
 <img src="man/figures/README-ggwithinstats1-1.png" alt="Within-subjects violin plot showing wine taste ratings by wine type with paired data paths and statistical results" width="100%" />
 
-As with the `ggbetweenstats()`, this function also has a `grouped_`
-variant that makes repeating the same analysis across a single grouping
-variable quicker. We will see an example with only repeated
-measurements-
+As with `ggbetweenstats()`, this function also has a `grouped_` variant
+that makes repeating the same analysis across a single grouping variable
+quicker:
 
 ``` r
 set.seed(123)
@@ -268,13 +262,10 @@ grouped_ggwithinstats(
 
 <img src="man/figures/README-ggwithinstats2-1.png" alt="Grouped within-subjects violin plots showing desire to kill arthropods by condition for Europe and North America" width="100%" />
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggwithinstats.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.html)
+and the [`ggwithinstats()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggwithinstats.html).
 
 ### `gghistostats()`
 
@@ -318,13 +309,10 @@ grouped_gghistostats(
 
 <img src="man/figures/README-gghistostats2-1.png" alt="Grouped histograms showing movie budget distributions for Action and Comedy genres with statistical tests" width="100%" />
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/gghistostats.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.html)
+and the [`gghistostats()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/gghistostats.html).
 
 ### `ggdotplotstats()`
 
@@ -370,13 +358,10 @@ grouped_ggdotplotstats(
 
 <img src="man/figures/README-ggdotplotstats2-1.png" alt="Grouped dot plots showing city miles per gallon by car manufacturer for 4 and 6 cylinder vehicles" width="100%" />
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.html)
+and the [`ggdotplotstats()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggdotplotstats.html).
 
 ### `ggscatterstats()`
 
@@ -411,7 +396,7 @@ grouped_ggscatterstats(
   label.expression = length > 200,
   xlab             = "IMDB rating",
   ggtheme          = ggplot2::theme_grey(),
-  ggplot.component = list(ggplot2::scale_x_continuous(breaks = seq(2, 9, 1), limits = (c(2, 9)))),
+  ggplot.component = list(ggplot2::scale_x_continuous(breaks = seq(2, 9, 1), limits = c(2, 9))),
   plotgrid.args    = list(nrow = 1),
   annotation.args  = list(title = "Relationship between movie length and IMDB ratings")
 )
@@ -419,13 +404,10 @@ grouped_ggscatterstats(
 
 <img src="man/figures/README-ggscatterstats2-1.png" alt="Grouped scatterplots showing IMDB rating vs movie length for Action and Comedy genres with correlation annotations" width="100%" />
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.html)
+and the [`ggscatterstats()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggscatterstats.html).
 
 ### `ggcorrmat()`
 
@@ -439,7 +421,6 @@ the appearance of the correlation matrix.
 ``` r
 set.seed(123)
 
-## as a default this function outputs a correlation matrix plot
 ggcorrmat(
   data     = ggplot2::msleep,
   colors   = c("#B2182B", "white", "#4D4D4D"),
@@ -450,9 +431,9 @@ ggcorrmat(
 
 <img src="man/figures/README-ggcorrmat1-1.png" alt="Correlation matrix heatmap for mammals sleep dataset showing pairwise correlations with significance indicators" width="100%" />
 
-If there are `NA`s present in the selected variables, the legend will
-display minimum, mode, and maximum number of pairs used for correlation
-tests.
+If the number of complete observations differs across pairs of variables
+(e.g., due to `NA`s), the legend displays the minimum, mode, and maximum
+sample sizes used for the correlation tests.
 
 There is also a `grouped_` variant of this function that makes it easy
 to repeat the same operation across a **single** grouping variable:
@@ -472,13 +453,10 @@ grouped_ggcorrmat(
 
 <img src="man/figures/README-ggcorrmat2-1.png" alt="Grouped correlation matrices for Action and Comedy movie genres showing robust correlations" width="100%" />
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.html)
+and the [`ggcorrmat()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcorrmat.html).
 
 ### `ggpiestats()`
 
@@ -508,8 +486,8 @@ ggpiestats(
 <img src="man/figures/README-ggpiestats1-1.png" alt="Pie charts showing transmission type distribution across cylinder groups in mtcars data with contingency table analysis" width="100%" />
 
 There is also a `grouped_` variant of this function that makes it easy
-to repeat the same operation across a **single** grouping variable.
-Following example is a case where the theoretical question is about
+to repeat the same operation across a **single** grouping variable. The
+following example is a case where the theoretical question is about
 proportions for different levels of a single nominal variable:
 
 ``` r
@@ -526,13 +504,10 @@ grouped_ggpiestats(
 
 <img src="man/figures/README-ggpiestats2-1.png" alt="Grouped pie charts showing cylinder distribution for automatic and manual transmission vehicles" width="100%" />
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.html)
+and the [`ggpiestats()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggpiestats.html).
 
 ### `ggbarstats()`
 
@@ -544,7 +519,6 @@ To study the association between two categorical variables:
 
 ``` r
 set.seed(123)
-library(ggplot2)
 
 ggbarstats(
   data             = movies_long,
@@ -561,8 +535,8 @@ ggbarstats(
 <img src="man/figures/README-ggbarstats1-1.png" alt="Stacked bar chart showing MPAA ratings distribution by movie genre with chi-squared test results" width="100%" />
 
 There is also a `grouped_` variant of this function that makes it easy
-to repeat the same operation across a **single** grouping variable.
-Following example is a case where the theoretical question is about
+to repeat the same operation across a **single** grouping variable. The
+following example is a case where the theoretical question is about
 proportions for different levels of a single nominal variable:
 
 ``` r
@@ -579,13 +553,10 @@ grouped_ggbarstats(
 
 <img src="man/figures/README-ggbarstats2-1.png" alt="Grouped bar charts showing cylinder distribution for automatic and manual transmission vehicles" width="100%" />
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.html)
+and the [`ggbarstats()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggbarstats.html).
 
 ### `ggcoefstats()`
 
@@ -598,7 +569,6 @@ summary indices are also extracted from
 ``` r
 set.seed(123)
 
-## model
 mod <- stats::lm(formula = mpg ~ am * cyl, data = mtcars)
 
 ggcoefstats(mod)
@@ -606,19 +576,16 @@ ggcoefstats(mod)
 
 <img src="man/figures/README-ggcoefstats1-1.png" alt="Dot-and-whisker plot showing regression coefficients for mpg model with confidence intervals" width="100%" />
 
-Details about underlying functions used to create graphics and
-statistical tests carried out can be found in the function
-documentation:
-<https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html>
-
-For more, also read the following vignette:
-<https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcoefstats.html>
+For details, see the [function
+reference](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.html)
+and the [`ggcoefstats()`
+article](https://www.indrapatil.com/ggstatsplot/articles/web_only/ggcoefstats.html).
 
 ### Extracting expressions and data frames with statistical details
 
-`{ggstatsplot}` also offers a convenience function to extract data
-frames with statistical details that are used to create expressions
-displayed in `{ggstatsplot}` plots.
+`{ggstatsplot}` also offers convenience functions to extract the
+expressions displayed in its plots and the data frames with statistical
+details used to create them.
 
 ``` r
 set.seed(123)
@@ -715,14 +682,12 @@ package: <https://www.indrapatil.com/statsExpressions/>
 Sometimes you may not like the default plots produced by
 `{ggstatsplot}`. In such cases, you can use other **custom** plots (from
 `{ggplot2}` or other plotting packages) and still use `{ggstatsplot}`
-functions to display results from relevant statistical test.
+functions to display results from relevant statistical tests.
 
-For example, in the following chunk, we will create our own plot using
-`{ggplot2}` package, and use `{ggstatsplot}` function for extracting
-expression:
+For example, in the following chunk, we create our own plot using
+`{ggplot2}` and use `{ggstatsplot}` to extract the expression:
 
 ``` r
-## loading the needed libraries
 set.seed(123)
 library(ggplot2)
 
