@@ -1,12 +1,12 @@
 # shared fixtures for test-combine-plots.R
 
 iris_species_plot <- function(species) {
-  ggplot(
+  ggplot2::ggplot(
     data = subset(datasets::iris, Species == species),
-    aes(x = Sepal.Length, y = Sepal.Width)
+    ggplot2::aes(x = Sepal.Length, y = Sepal.Width)
   ) +
-    geom_point() +
-    labs(title = species)
+    ggplot2::geom_point() +
+    ggplot2::labs(title = species)
 }
 
 iris_plotlist <- list(
