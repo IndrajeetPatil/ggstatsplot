@@ -16,7 +16,7 @@ extract_caption(p)
 
 - p:
 
-  A plot from `{ggstatsplot}` package
+  A plot from `{ggstatsplot}`.
 
 ## Value
 

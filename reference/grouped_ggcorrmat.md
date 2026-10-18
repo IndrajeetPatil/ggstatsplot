@@ -1,10 +1,10 @@
-# Visualization of a correlogram (or correlation matrix) for all levels of a grouping variable
+# Grouped visualizations of correlation matrices
 
-Helper function for
-[`ggstatsplot::ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
-to apply this function across multiple levels of a given factor and
-combine the resulting plots using
-[`ggstatsplot::combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
+Applies
+[`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
+across all levels of `grouping.var` and combines the resulting plots
+using
+[`combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
 
 ## Usage
 
@@ -73,17 +73,15 @@ grouped_ggcorrmat(
     (negative correlations), mid (zero), and high (positive
     correlations). Must be a **diverging** palette so that the sign of
     the correlation is visually obvious. Default:
-    `c("#EA4335", "white", "#4285F4")` (red–white–blue).
+    `c("#EA4335", "white", "#4285F4")` (red-white-blue).
 
   `ggcorrplot.args`
 
-  : A list of additional (mostly aesthetic) arguments that will be
-    passed to
-    [`ggcorrplot::ggcorrplot()`](https://rpkgs.datanovia.com/ggcorrplot/reference/ggcorrplot.html)
-    function. The list should avoid any of the following arguments since
-    they are already internally being used: `corr`, `p.mat`,
-    `sig.level`, `ggtheme`, `colors`, `type`, `lab`, `pch`,
-    `legend.title`, `digits`.
+  : A list of additional (mostly aesthetic) arguments passed to
+    [`ggcorrplot::ggcorrplot()`](https://rpkgs.datanovia.com/ggcorrplot/reference/ggcorrplot.html).
+    Do not include the following arguments, which are set internally:
+    `corr`, `p.mat`, `sig.level`, `ggtheme`, `colors`, `type`, `lab`,
+    `pch`, `legend.title`, `digits`.
 
   `subtitle`
 
@@ -149,28 +147,23 @@ grouped_ggcorrmat(
 
   `ggplot.component`
 
-  : A `ggplot` component to be added to the plot prepared by
-    `{ggstatsplot}`. This argument is primarily helpful for `grouped_`
-    variants of all primary functions. Default is `NULL`. The argument
-    should be entered as a `{ggplot2}` function or a list of `{ggplot2}`
-    functions.
+  : A `{ggplot2}` component, or a list of components, to add to the plot
+    (Default: `NULL`). This is mostly helpful for the `grouped_`
+    variants, where it is applied to each individual plot.
 
   `ggtheme`
 
-  : A `{ggplot2}` theme. Default value is
-    [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md).
-    Any of the `{ggplot2}` themes (e.g.,
-    [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)),
-    or themes from extension packages are allowed (e.g.,
-    `ggthemes::theme_fivethirtyeight()`, `hrbrthemes::theme_ipsum_ps()`,
-    etc.). But note that sometimes these themes will remove some of the
-    details that `{ggstatsplot}` plots typically contain. For example,
-    if relevant,
+  : A `{ggplot2}` theme (Default:
+    [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md)).
+    Any `{ggplot2}` theme (e.g.,
+    [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html))
+    or theme from an extension package (e.g.,
+    `ggthemes::theme_fivethirtyeight()`) can be used. Note that some
+    themes remove plot details. For example,
+    `ggthemes::theme_fivethirtyeight()` removes the secondary Y-axis,
+    which
     [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
-    shows details about multiple comparison test as a label on the
-    secondary Y-axis. Some themes (e.g.
-    `ggthemes::theme_fivethirtyeight()`) will remove the secondary
-    Y-axis and thus the details as well.
+    uses to show details about pairwise comparisons.
 
 - grouping.var:
 
@@ -182,8 +175,7 @@ grouped_ggcorrmat(
 
   A `list` of additional arguments passed to
   [`patchwork::wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html),
-  except for `guides` argument which is already separately specified
-  here.
+  except for `guides`, which has its own argument.
 
 - annotation.args:
 
@@ -207,9 +199,9 @@ For details, see:
 
 ## See also
 
-[`ggcorrmat`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md),
-[`ggscatterstats`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md),
-[`grouped_ggscatterstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggscatterstats.md)
+[`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md),
+[`ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md),
+[`grouped_ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggscatterstats.md)
 
 ## Examples
 
@@ -221,7 +213,6 @@ grouped_ggcorrmat(
   grouping.var = Species,
   type = "robust",
   colors = c("#0072B2", "white", "#D55E00"),
-  p.adjust.method = "holm",
   plotgrid.args = list(ncol = 1L),
   annotation.args = list(tag_levels = "i")
 )

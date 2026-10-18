@@ -177,17 +177,15 @@ warning.</p></dd>
 
 
 <dt id="arg-subject-id">subject.id<a class="anchor" aria-label="anchor" href="#arg-subject-id"></a></dt>
-<dd><p>Across repeated measures conditions, each row in the
-dataset must correspond to a unique unit (e.g., subject or participant).
-If your data frame is already in such a format, you can ignore the
-<code>subject.id</code> argument (the function will use row number to pair
-observations). <strong>But if you are not sure, it is always better to specify
-this argument.</strong> Each subject must appear at most once per level of <code>x</code>.
-Rows with a missing <code>x</code> or <code>subject.id</code> are ignored, and subjects with a
-missing value (i.e., <code>NA</code>) of the dependent variable in any condition are
-dropped using a list-wise approach (see
-<code><a href="https://www.indrapatil.com/statsExpressions/reference/complete_subjects.html" class="external-link">statsExpressions::complete_subjects()</a></code>), so the plot, its labels, and the
-statistical results are all based on the same complete subjects.</p></dd>
+<dd><p>The subject (or repeated measures) identifier from <code>data</code>.
+Each subject must appear at most once per level of <code>x</code>. If <code>NULL</code>
+(default), observations are paired by their row order within each level
+of <code>x</code>. <strong>If you are not sure the data are sorted this way, specify this
+argument.</strong> Rows with a missing <code>x</code> or <code>subject.id</code> are ignored, and
+subjects with a missing (<code>NA</code>) dependent variable in any condition are
+dropped list-wise (see <code><a href="https://www.indrapatil.com/statsExpressions/reference/complete_subjects.html" class="external-link">statsExpressions::complete_subjects()</a></code>), so the
+plot, its labels, and the statistical results are all based on the same
+complete subjects.</p></dd>
 
 
 <dt id="arg-pairwise-display">pairwise.display<a class="anchor" aria-label="anchor" href="#arg-pairwise-display"></a></dt>
@@ -196,12 +194,10 @@ Available options are:</p><ul><li><p><code>"significant"</code> (abbreviation ac
 <li><p><code>"non-significant"</code> (abbreviation accepted: <code>"ns"</code>)</p></li>
 <li><p><code>"all"</code></p></li>
 <li><p><code>"none"</code></p></li>
-</ul><p>You can use this argument to make sure that your plot is not uber-cluttered
-when you have multiple groups being compared and scores of pairwise
-comparisons being displayed. Pairwise comparisons are carried out (and
-displayed) only when <code>x</code> has three or more levels. For <code>type = "bayes"</code>,
-there are no <em>p</em>-values, so all comparisons are displayed unless this is
-<code>"none"</code>.</p></dd>
+</ul><p>Use this to keep the plot uncluttered when many groups are compared.
+Pairwise comparisons are carried out (and displayed) only when <code>x</code> has
+three or more levels. For <code>type = "bayes"</code>, there are no <em>p</em>-values, so all
+comparisons are displayed unless this is <code>"none"</code>.</p></dd>
 
 
 <dt id="arg-pairwise-alpha">pairwise.alpha<a class="anchor" aria-label="anchor" href="#arg-pairwise-alpha"></a></dt>
@@ -227,16 +223,16 @@ value corresponds to scale for fixed effects.</p></dd>
 
 
 <dt id="arg-bf-message">bf.message<a class="anchor" aria-label="anchor" href="#arg-bf-message"></a></dt>
-<dd><p>Logical that decides whether to display Bayes Factor in
-favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
-parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
+<dd><p>Logical that decides whether to display the Bayes Factor in
+favor of the <em>null</em> hypothesis as a caption. Relevant only for parametric
+tests (Default: <code>TRUE</code>).</p></dd>
 
 
 <dt id="arg-results-subtitle">results.subtitle<a class="anchor" aria-label="anchor" href="#arg-results-subtitle"></a></dt>
-<dd><p>Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: <code>TRUE</code>). Setting this to <code>FALSE</code>
-also skips the automatic Bayes Factor caption. See the individual
-annotation arguments to control other plot details.</p></dd>
+<dd><p>Logical that decides whether the results of
+statistical tests are displayed as a subtitle (Default: <code>TRUE</code>). Setting
+this to <code>FALSE</code> also skips the automatic Bayes Factor caption. Other plot
+details have their own arguments.</p></dd>
 
 
 <dt id="arg-xlab">xlab<a class="anchor" aria-label="anchor" href="#arg-xlab"></a></dt>
@@ -259,7 +255,7 @@ Bayes Factor caption whenever that is displayed (see <code>bf.message</code>).</
 
 
 <dt id="arg-subtitle">subtitle<a class="anchor" aria-label="anchor" href="#arg-subtitle"></a></dt>
-<dd><p>The text for the plot subtitle. Will work only if
+<dd><p>The text for the plot subtitle. Used only if
 <code>results.subtitle = FALSE</code>.</p></dd>
 
 
@@ -298,77 +294,69 @@ Function decides which central tendency measure to show depending on the
 <li><p><strong>median</strong> for non-parametric statistics</p></li>
 <li><p><strong>trimmed mean</strong> for robust statistics</p></li>
 <li><p><strong>MAP estimator</strong> for Bayesian statistics</p></li>
-</ul><p>If you want a different centrality parameter, you can specify this using
-<code>centrality.type</code> argument.</p></dd>
+</ul><p>Use <code>centrality.type</code> to choose a different centrality measure.</p></dd>
 
 
 <dt id="arg-centrality-type">centrality.type<a class="anchor" aria-label="anchor" href="#arg-centrality-type"></a></dt>
-<dd><p>Decides which centrality parameter is to be displayed.
-The default is to choose the same as <code>type</code> argument. You can specify this
-to be:</p><ul><li><p><code>"parametric"</code> (for <strong>mean</strong>)</p></li>
+<dd><p>Decides which centrality measure is displayed. Defaults
+to the same value as <code>type</code>. Can be one of:</p><ul><li><p><code>"parametric"</code> (for <strong>mean</strong>)</p></li>
 <li><p><code>"nonparametric"</code> (for <strong>median</strong>)</p></li>
 <li><p><code>"robust"</code> (for <strong>trimmed mean</strong>)</p></li>
 <li><p><code>"bayes"</code> (for <strong>MAP estimator</strong>)</p></li>
-</ul><p>Just as <code>type</code> argument, abbreviations are also accepted.</p></dd>
+</ul><p>As with <code>type</code>, abbreviations are accepted.</p></dd>
 
 
 <dt id="arg-centrality-point-args-centrality-label-args">centrality.point.args, centrality.label.args<a class="anchor" aria-label="anchor" href="#arg-centrality-point-args-centrality-label-args"></a></dt>
-<dd><p>A list of additional aesthetic
-arguments to be passed to <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code> and
-<code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code> geoms, which are involved in centrality
-plotting.</p></dd>
+<dd><p>A list of additional
+aesthetic arguments passed to <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code> and
+<code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code>, respectively, which display the
+centrality measure.</p></dd>
 
 
 <dt id="arg-centrality-path-args-point-path-args">centrality.path.args, point.path.args<a class="anchor" aria-label="anchor" href="#arg-centrality-path-args-point-path-args"></a></dt>
 <dd><p>A list of additional aesthetic
-arguments passed on to <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">ggplot2::geom_path()</a></code> connecting mean points and
-raw data points, respectively.</p></dd>
+arguments passed to <code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">ggplot2::geom_path()</a></code> connecting centrality measures
+and raw data points, respectively.</p></dd>
 
 
 <dt id="arg-point-args">point.args<a class="anchor" aria-label="anchor" href="#arg-point-args"></a></dt>
-<dd><p>A list of additional aesthetic arguments to be passed to
-the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code>.</p></dd>
+<dd><p>A list of additional aesthetic arguments passed to
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code>.</p></dd>
 
 
 <dt id="arg-point-path-centrality-path">point.path, centrality.path<a class="anchor" aria-label="anchor" href="#arg-point-path-centrality-path"></a></dt>
 <dd><p>Logical that decides whether individual
-data points and means, respectively, should be connected using
-<code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">ggplot2::geom_path()</a></code>. Both default to <code>TRUE</code>. Note that <code>point.path</code>
-argument is relevant only when there are two groups (i.e., in case of a
-<em>t</em>-test). In case of large number of data points, it is advisable to set
-<code>point.path = FALSE</code> as these lines can overwhelm the plot.</p></dd>
+data points and centrality measures, respectively, are connected using
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">ggplot2::geom_path()</a></code> (Default: <code>TRUE</code>). <code>point.path</code> is relevant only
+when there are two groups (i.e., for a <em>t</em>-test). With many data points,
+consider <code>point.path = FALSE</code>, as these lines can overwhelm the plot.</p></dd>
 
 
 <dt id="arg-boxplot-args">boxplot.args<a class="anchor" aria-label="anchor" href="#arg-boxplot-args"></a></dt>
-<dd><p>A list of additional aesthetic arguments passed on to
+<dd><p>A list of additional aesthetic arguments passed to
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">ggplot2::geom_boxplot()</a></code>. By default, the whiskers extend to 1.5 times
-the interquartile range (IQR) from the box (Tukey-style). To customize
-whisker length, you can use the <code>coef</code> parameter, e.g.,
-<code>boxplot.args = list(coef = 3)</code> for whiskers extending to the most extreme
-observations within 3 * IQR of the hinges.</p></dd>
+the interquartile range (IQR) from the box (Tukey-style). Use <code>coef</code> to
+change this, e.g., <code>boxplot.args = list(coef = 3)</code> extends the whiskers to
+the most extreme observations within 3 * IQR of the hinges.</p></dd>
 
 
 <dt id="arg-violin-args">violin.args<a class="anchor" aria-label="anchor" href="#arg-violin-args"></a></dt>
-<dd><p>A list of additional aesthetic arguments to be passed to
-the <code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" class="external-link">ggplot2::geom_violin()</a></code>.</p></dd>
+<dd><p>A list of additional aesthetic arguments passed to
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_violin.html" class="external-link">ggplot2::geom_violin()</a></code>.</p></dd>
 
 
 <dt id="arg-ggsignif-args">ggsignif.args<a class="anchor" aria-label="anchor" href="#arg-ggsignif-args"></a></dt>
-<dd><p>A list of additional aesthetic arguments to be passed to
+<dd><p>A list of additional aesthetic arguments passed to
 <code><a href="https://const-ae.github.io/ggsignif/reference/stat_signif.html" class="external-link">ggsignif::geom_signif()</a></code>.</p></dd>
 
 
 <dt id="arg-ggtheme">ggtheme<a class="anchor" aria-label="anchor" href="#arg-ggtheme"></a></dt>
-<dd><p>A <code>{ggplot2}</code> theme. Default value is
-<code><a href="theme_ggstatsplot.html">theme_ggstatsplot()</a></code>. Any of the <code>{ggplot2}</code> themes (e.g.,
-<code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_bw()</a></code>), or themes from extension packages are allowed
-(e.g., <code>ggthemes::theme_fivethirtyeight()</code>, <code>hrbrthemes::theme_ipsum_ps()</code>,
-etc.). But note that sometimes these themes will remove some of the details
-that <code>{ggstatsplot}</code> plots typically contain. For example, if relevant,
-<code><a href="ggbetweenstats.html">ggbetweenstats()</a></code> shows details about multiple comparison test as a
-label on the secondary Y-axis. Some themes (e.g.
-<code>ggthemes::theme_fivethirtyeight()</code>) will remove the secondary Y-axis and
-thus the details as well.</p></dd>
+<dd><p>A <code>{ggplot2}</code> theme (Default: <code><a href="theme_ggstatsplot.html">theme_ggstatsplot()</a></code>). Any
+<code>{ggplot2}</code> theme (e.g., <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_bw()</a></code>) or theme from an
+extension package (e.g., <code>ggthemes::theme_fivethirtyeight()</code>) can be used.
+Note that some themes remove plot details. For example,
+<code>ggthemes::theme_fivethirtyeight()</code> removes the secondary Y-axis, which
+<code><a href="ggbetweenstats.html">ggbetweenstats()</a></code> uses to show details about pairwise comparisons.</p></dd>
 
 
 <dt id="arg-palette">palette<a class="anchor" aria-label="anchor" href="#arg-palette"></a></dt>
@@ -378,10 +366,9 @@ to be used for coloring (via <code>{paletteer}</code>). Run
 
 
 <dt id="arg-ggplot-component">ggplot.component<a class="anchor" aria-label="anchor" href="#arg-ggplot-component"></a></dt>
-<dd><p>A <code>ggplot</code> component to be added to the plot prepared
-by <code>{ggstatsplot}</code>. This argument is primarily helpful for <code>grouped_</code>
-variants of all primary functions. Default is <code>NULL</code>. The argument should
-be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
+<dd><p>A <code>{ggplot2}</code> component, or a list of components, to
+add to the plot (Default: <code>NULL</code>). This is mostly helpful for the
+<code>grouped_</code> variants, where it is applied to each individual plot.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -489,8 +476,8 @@ observations, and removal of incomplete subjects.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="grouped_ggbetweenstats.html">grouped_ggbetweenstats</a></code>, <code><a href="ggbetweenstats.html">ggbetweenstats</a></code>,
-<code><a href="grouped_ggwithinstats.html">grouped_ggwithinstats</a></code></p></div>
+    <div class="dont-index"><p><code><a href="grouped_ggwithinstats.html">grouped_ggwithinstats()</a></code>, <code><a href="ggbetweenstats.html">ggbetweenstats()</a></code>,
+<code><a href="grouped_ggbetweenstats.html">grouped_ggbetweenstats()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -511,17 +498,6 @@ observations, and removal of incomplete subjects.</p>
 <span class="r-in"><span><span class="co"># looking at the plot</span></span></span>
 <span class="r-in"><span><span class="va">p</span></span></span>
 <span class="r-plt img"><img src="ggwithinstats-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># if the data are already arranged in repeated-measures order, `subject.id`</span></span></span>
-<span class="r-in"><span><span class="co"># can be omitted</span></span></span>
-<span class="r-in"><span><span class="fu">ggwithinstats</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  data             <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">bugs_long</span>, <span class="va">condition</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"HDHF"</span>, <span class="st">"HDLF"</span><span class="op">)</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  x                <span class="op">=</span> <span class="va">condition</span>,</span></span>
-<span class="r-in"><span>  y                <span class="op">=</span> <span class="va">desire</span>,</span></span>
-<span class="r-in"><span>  pairwise.display <span class="op">=</span> <span class="st">"none"</span>,</span></span>
-<span class="r-in"><span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="ggwithinstats-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># extracting details from statistical tests</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="extract_stats.html">extract_stats</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
@@ -557,6 +533,16 @@ observations, and removal of incomplete subjects.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ggstatsplot_stats" "list"             </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># if the data are already arranged in repeated-measures order, `subject.id`</span></span></span>
+<span class="r-in"><span><span class="co"># can be omitted</span></span></span>
+<span class="r-in"><span><span class="fu">ggwithinstats</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  data             <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">bugs_long</span>, <span class="va">condition</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"HDHF"</span>, <span class="st">"HDLF"</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  x                <span class="op">=</span> <span class="va">condition</span>,</span></span>
+<span class="r-in"><span>  y                <span class="op">=</span> <span class="va">desire</span>,</span></span>
+<span class="r-in"><span>  results.subtitle <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ggwithinstats-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># use a stricter alpha threshold for significant pairwise comparisons</span></span></span>
 <span class="r-in"><span><span class="fu">ggwithinstats</span><span class="op">(</span></span></span>

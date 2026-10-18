@@ -186,7 +186,7 @@ variable name for <code>y</code> will be used.</p></dd>
 
 
 <dt id="arg-subtitle">subtitle<a class="anchor" aria-label="anchor" href="#arg-subtitle"></a></dt>
-<dd><p>The text for the plot subtitle. Will work only if
+<dd><p>The text for the plot subtitle. Used only if
 <code>results.subtitle = FALSE</code>.</p></dd>
 
 
@@ -228,14 +228,14 @@ value corresponds to scale for fixed effects.</p></dd>
 
 
 <dt id="arg-bf-message">bf.message<a class="anchor" aria-label="anchor" href="#arg-bf-message"></a></dt>
-<dd><p>Logical that decides whether to display Bayes Factor in
-favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
-parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
+<dd><p>Logical that decides whether to display the Bayes Factor in
+favor of the <em>null</em> hypothesis as a caption. Relevant only for parametric
+tests (Default: <code>TRUE</code>).</p></dd>
 
 
 <dt id="arg-conf-int">conf.int<a class="anchor" aria-label="anchor" href="#arg-conf-int"></a></dt>
-<dd><p>Logical. Decides whether to display confidence intervals as
-error bars (Default: <code>TRUE</code>).</p></dd>
+<dd><p>Logical that decides whether to display confidence intervals
+as error bars (Default: <code>TRUE</code>).</p></dd>
 
 
 <dt id="arg-conf-level">conf.level<a class="anchor" aria-label="anchor" href="#arg-conf-level"></a></dt>
@@ -259,21 +259,20 @@ significant figures (see also <code><a href="https://rdrr.io/r/base/Round.html" 
 
 
 <dt id="arg-results-subtitle">results.subtitle<a class="anchor" aria-label="anchor" href="#arg-results-subtitle"></a></dt>
-<dd><p>Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: <code>TRUE</code>). Setting this to <code>FALSE</code>
-also skips the automatic Bayes Factor caption. See the individual
-annotation arguments to control other plot details.</p></dd>
+<dd><p>Logical that decides whether the results of
+statistical tests are displayed as a subtitle (Default: <code>TRUE</code>). Setting
+this to <code>FALSE</code> also skips the automatic Bayes Factor caption. Other plot
+details have their own arguments.</p></dd>
 
 
 <dt id="arg-point-args">point.args<a class="anchor" aria-label="anchor" href="#arg-point-args"></a></dt>
-<dd><p>A list of additional aesthetic arguments to be passed to
-the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code>.</p></dd>
+<dd><p>A list of additional aesthetic arguments passed to
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code>.</p></dd>
 
 
 <dt id="arg-errorbar-args">errorbar.args<a class="anchor" aria-label="anchor" href="#arg-errorbar-args"></a></dt>
-<dd><p>Additional arguments that will be passed to
-<code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">ggplot2::geom_errorbar()</a></code> geom. Please see documentation for that
-function to know more about these arguments.</p></dd>
+<dd><p>A list of additional arguments passed to
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">ggplot2::geom_errorbar()</a></code>.</p></dd>
 
 
 <dt id="arg-centrality-plotting">centrality.plotting<a class="anchor" aria-label="anchor" href="#arg-centrality-plotting"></a></dt>
@@ -284,44 +283,37 @@ Function decides which central tendency measure to show depending on the
 <li><p><strong>median</strong> for non-parametric statistics</p></li>
 <li><p><strong>trimmed mean</strong> for robust statistics</p></li>
 <li><p><strong>MAP estimator</strong> for Bayesian statistics</p></li>
-</ul><p>If you want a different centrality parameter, you can specify this using
-<code>centrality.type</code> argument.</p></dd>
+</ul><p>Use <code>centrality.type</code> to choose a different centrality measure.</p></dd>
 
 
 <dt id="arg-centrality-type">centrality.type<a class="anchor" aria-label="anchor" href="#arg-centrality-type"></a></dt>
-<dd><p>Decides which centrality parameter is to be displayed.
-The default is to choose the same as <code>type</code> argument. You can specify this
-to be:</p><ul><li><p><code>"parametric"</code> (for <strong>mean</strong>)</p></li>
+<dd><p>Decides which centrality measure is displayed. Defaults
+to the same value as <code>type</code>. Can be one of:</p><ul><li><p><code>"parametric"</code> (for <strong>mean</strong>)</p></li>
 <li><p><code>"nonparametric"</code> (for <strong>median</strong>)</p></li>
 <li><p><code>"robust"</code> (for <strong>trimmed mean</strong>)</p></li>
 <li><p><code>"bayes"</code> (for <strong>MAP estimator</strong>)</p></li>
-</ul><p>Just as <code>type</code> argument, abbreviations are also accepted.</p></dd>
+</ul><p>As with <code>type</code>, abbreviations are accepted.</p></dd>
 
 
 <dt id="arg-centrality-line-args">centrality.line.args<a class="anchor" aria-label="anchor" href="#arg-centrality-line-args"></a></dt>
-<dd><p>A list of additional aesthetic arguments to be
-passed to the <code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline()</a></code> used to display the lines
-corresponding to the centrality parameter.</p></dd>
+<dd><p>A list of additional aesthetic arguments passed
+to <code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline()</a></code>, which displays the line for the centrality
+measure.</p></dd>
 
 
 <dt id="arg-ggplot-component">ggplot.component<a class="anchor" aria-label="anchor" href="#arg-ggplot-component"></a></dt>
-<dd><p>A <code>ggplot</code> component to be added to the plot prepared
-by <code>{ggstatsplot}</code>. This argument is primarily helpful for <code>grouped_</code>
-variants of all primary functions. Default is <code>NULL</code>. The argument should
-be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
+<dd><p>A <code>{ggplot2}</code> component, or a list of components, to
+add to the plot (Default: <code>NULL</code>). This is mostly helpful for the
+<code>grouped_</code> variants, where it is applied to each individual plot.</p></dd>
 
 
 <dt id="arg-ggtheme">ggtheme<a class="anchor" aria-label="anchor" href="#arg-ggtheme"></a></dt>
-<dd><p>A <code>{ggplot2}</code> theme. Default value is
-<code><a href="theme_ggstatsplot.html">theme_ggstatsplot()</a></code>. Any of the <code>{ggplot2}</code> themes (e.g.,
-<code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_bw()</a></code>), or themes from extension packages are allowed
-(e.g., <code>ggthemes::theme_fivethirtyeight()</code>, <code>hrbrthemes::theme_ipsum_ps()</code>,
-etc.). But note that sometimes these themes will remove some of the details
-that <code>{ggstatsplot}</code> plots typically contain. For example, if relevant,
-<code><a href="ggbetweenstats.html">ggbetweenstats()</a></code> shows details about multiple comparison test as a
-label on the secondary Y-axis. Some themes (e.g.
-<code>ggthemes::theme_fivethirtyeight()</code>) will remove the secondary Y-axis and
-thus the details as well.</p></dd>
+<dd><p>A <code>{ggplot2}</code> theme (Default: <code><a href="theme_ggstatsplot.html">theme_ggstatsplot()</a></code>). Any
+<code>{ggplot2}</code> theme (e.g., <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_bw()</a></code>) or theme from an
+extension package (e.g., <code>ggthemes::theme_fivethirtyeight()</code>) can be used.
+Note that some themes remove plot details. For example,
+<code>ggthemes::theme_fivethirtyeight()</code> removes the secondary Y-axis, which
+<code><a href="ggbetweenstats.html">ggbetweenstats()</a></code> uses to show details about pairwise comparisons.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -357,8 +349,8 @@ plotting and analysis.</p>
 </ul><p><strong>Hypothesis testing</strong></p><table class="table table"><tr><td>Type</td><td>Test</td><td>Function used</td></tr><tr><td>Parametric</td><td>One-sample Student's <em>t</em>-test</td><td><code><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">stats::t.test()</a></code></td></tr><tr><td>Non-parametric</td><td>One-sample Wilcoxon test</td><td><code><a href="https://rdrr.io/r/stats/wilcox.test.html" class="external-link">stats::wilcox.test()</a></code></td></tr><tr><td>Robust</td><td>Bootstrap-<em>t</em> method for one-sample test</td><td><code><a href="https://rdrr.io/pkg/WRS2/man/trimcibt.html" class="external-link">WRS2::trimcibt()</a></code></td></tr><tr><td>Bayesian</td><td>One-sample Student's <em>t</em>-test</td><td><code><a href="https://rdrr.io/pkg/BayesFactor/man/ttestBF.html" class="external-link">BayesFactor::ttestBF()</a></code></td></tr></table><p><strong>Effect size estimation</strong></p><table class="table table"><tr><td>Type</td><td>Effect size</td><td>CI available?</td><td>Function used</td></tr><tr><td>Parametric</td><td>Cohen's <em>d</em>, Hedges' <em>g</em></td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::cohens_d()</a></code>, <code><a href="https://easystats.github.io/effectsize/reference/cohens_d.html" class="external-link">effectsize::hedges_g()</a></code></td></tr><tr><td>Non-parametric</td><td><em>r</em> (rank-biserial correlation)</td><td>Yes</td><td><code><a href="https://easystats.github.io/effectsize/reference/rank_biserial.html" class="external-link">effectsize::rank_biserial()</a></code></td></tr><tr><td>Robust</td><td>trimmed mean</td><td>Yes</td><td><code><a href="https://rdrr.io/pkg/WRS2/man/trimcibt.html" class="external-link">WRS2::trimcibt()</a></code></td></tr><tr><td>Bayesian</td><td>difference</td><td>Yes</td><td><code><a href="https://easystats.github.io/bayestestR/reference/describe_posterior.html" class="external-link">bayestestR::describe_posterior()</a></code></td></tr></table></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="grouped_gghistostats.html">grouped_gghistostats</a></code>, <code><a href="gghistostats.html">gghistostats</a></code>,
-<code><a href="grouped_ggdotplotstats.html">grouped_ggdotplotstats</a></code></p></div>
+    <div class="dont-index"><p><code><a href="grouped_ggdotplotstats.html">grouped_ggdotplotstats()</a></code>, <code><a href="gghistostats.html">gghistostats()</a></code>,
+<code><a href="grouped_gghistostats.html">grouped_gghistostats()</a></code></p></div>
     </div>
 
     <div class="section level2">

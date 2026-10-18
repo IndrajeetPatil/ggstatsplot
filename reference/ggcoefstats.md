@@ -8,26 +8,19 @@ Although the statistical models displayed in the plot may differ based
 on the class of models being investigated, there are a few aspects of
 the plot that will be invariant across models:
 
-- The dot-whisker plot contains a dot representing the **estimate** and
-  their **confidence intervals** (`95%` is the default). The estimate
-  can either be effect sizes (for tests that depend on the
-  `F`-statistic) or regression coefficients (for tests with `t`-,
-  `chi^2`-, and `z`-statistic), etc. The function will, by default,
-  display a helpful `x`-axis label that should clear up what estimates
-  are being displayed. The confidence intervals can sometimes be
-  asymmetric if bootstrapping was used.
+- Each dot represents an **estimate**, and its whiskers the **confidence
+  interval** (`95%` by default). Estimates can be effect sizes (for
+  tests based on the `F`-statistic) or regression coefficients (for
+  tests based on the `t`-, `chi^2`-, or `z`-statistic), etc. The
+  confidence intervals can be asymmetric if bootstrapping was used.
 
-- The label attached to each dot will provide more details from the
-  statistical test carried out and it will typically contain estimate,
-  statistic, and *p*-value.
+- The label attached to each dot provides details from the statistical
+  test, typically the estimate, statistic, and *p*-value.
 
-- The caption will contain diagnostic information, if available, about
-  models that can be useful for model selection: The smaller the
-  Akaike's Information Criterion (**AIC**) and the Bayesian Information
-  Criterion (**BIC**) values, the "better" the model is.
-
-- The output of this function will be a `{ggplot2}` object and, thus, it
-  can be further modified (e.g. change themes) with `{ggplot2}`.
+- The caption contains model diagnostics, if available, that can be
+  useful for model selection: the smaller the Akaike's Information
+  Criterion (**AIC**) and the Bayesian Information Criterion (**BIC**)
+  values, the "better" the model.
 
 ## Usage
 
@@ -86,13 +79,13 @@ ggcoefstats(
 
 - conf.int:
 
-  Logical. Decides whether to display confidence intervals as error bars
-  (Default: `TRUE`).
+  Logical that decides whether to display confidence intervals as error
+  bars (Default: `TRUE`).
 
 - conf.level:
 
-  Numeric deciding level of confidence or credible intervals (Default:
-  `0.95`).
+  Scalar between `0` and `1` (default: `95%` confidence/credible
+  intervals, `0.95`).
 
 - digits:
 
@@ -110,18 +103,17 @@ ggcoefstats(
 
 - effectsize.type:
 
-  This is the same as `es_type` argument of
-  [`parameters::model_parameters()`](https://easystats.github.io/parameters/reference/model_parameters.html).
-  Defaults to `"omega"` (the unbiased estimator), and relevant for
-  ANOVA-like objects.
+  Effect size for ANOVA-like objects, passed as the `es_type` argument
+  of
+  [`parameters::model_parameters()`](https://easystats.github.io/parameters/reference/model_parameters.html)
+  (Default: `"omega"`, the unbiased estimator).
 
 - meta.analytic.effect:
 
   Logical that decides whether to display a subtitle with results from a
-  meta-analysis via linear (mixed-effects) models (default: `FALSE`). If
-  `TRUE`, input to argument `subtitle` will be ignored. This will be
-  mostly relevant if a data frame with estimates and their standard
-  errors is entered.
+  meta-analysis via linear (mixed-effects) models (Default: `FALSE`). If
+  `TRUE`, `subtitle` is ignored. This is mostly relevant if a data frame
+  with estimates and their standard errors is entered.
 
 - meta.type:
 
@@ -138,16 +130,16 @@ ggcoefstats(
 
   Logical that decides whether results from running a Bayesian
   meta-analysis assuming that the effect size *d* varies across studies
-  with standard deviation *t* (i.e., a random-effects analysis) should
-  be displayed in caption. Relevant only if
-  `meta.analytic.effect = TRUE` and `meta.type = "parametric"`. Defaults
-  to `TRUE`.
+  with standard deviation *t* (i.e., a random-effects analysis) are
+  displayed in the caption. Relevant only if
+  `meta.analytic.effect = TRUE` and `meta.type = "parametric"` (Default:
+  `TRUE`).
 
 - sort:
 
-  If `"none"` (default) do not sort, `"ascending"` sort by increasing
-  coefficient value, or `"descending"` sort by decreasing coefficient
-  value.
+  If `"none"` (default), do not sort; if `"ascending"` or
+  `"descending"`, sort by increasing or decreasing coefficient value,
+  respectively.
 
 - xlab:
 
@@ -163,8 +155,8 @@ ggcoefstats(
 
 - subtitle:
 
-  The text for the plot subtitle. The input to this argument will be
-  ignored if `meta.analytic.effect` is set to `TRUE`.
+  The text for the plot subtitle. Ignored if
+  `meta.analytic.effect = TRUE`.
 
 - caption:
 
@@ -180,32 +172,29 @@ ggcoefstats(
 
 - point.args:
 
-  A list of additional aesthetic arguments to be passed to the
+  A list of additional aesthetic arguments passed to
   [`ggplot2::geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html).
 
 - errorbar.args:
 
-  Additional arguments that will be passed to
-  [`ggplot2::geom_errorbar()`](https://ggplot2.tidyverse.org/reference/geom_linerange.html)
-  geom. Please see documentation for that function to know more about
-  these arguments.
+  A list of additional arguments passed to
+  [`ggplot2::geom_errorbar()`](https://ggplot2.tidyverse.org/reference/geom_linerange.html).
 
 - vline:
 
-  Decides whether to display a vertical line at `0` (Default: `TRUE`).
+  Logical that decides whether to display a vertical line at `0`
+  (Default: `TRUE`).
 
 - vline.args:
 
-  Additional arguments that will be passed to
-  [`ggplot2::geom_vline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html)
-  geom. Please see documentation for that function to know more about
-  these arguments.
+  A list of additional arguments passed to
+  [`ggplot2::geom_vline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html).
 
 - stats.labels:
 
-  Logical. Decides whether the statistic and *p*-values for each
-  coefficient are to be attached to each dot as a text label using
-  `{ggrepel}` (Default: `TRUE`).
+  Logical that decides whether the statistic and *p*-value for each
+  coefficient are attached to its dot as a label using `{ggrepel}`
+  (Default: `TRUE`).
 
 - stats.label.color:
 
@@ -215,7 +204,7 @@ ggcoefstats(
 
 - stats.label.args:
 
-  Additional arguments that will be passed to
+  A list of additional arguments passed to
   [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html).
 
 - palette:
@@ -226,24 +215,21 @@ ggcoefstats(
 
 - ggtheme:
 
-  A `{ggplot2}` theme. Default value is
-  [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md).
-  Any of the `{ggplot2}` themes (e.g.,
-  [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)),
-  or themes from extension packages are allowed (e.g.,
-  `ggthemes::theme_fivethirtyeight()`, `hrbrthemes::theme_ipsum_ps()`,
-  etc.). But note that sometimes these themes will remove some of the
-  details that `{ggstatsplot}` plots typically contain. For example, if
-  relevant,
+  A `{ggplot2}` theme (Default:
+  [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md)).
+  Any `{ggplot2}` theme (e.g.,
+  [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html))
+  or theme from an extension package (e.g.,
+  `ggthemes::theme_fivethirtyeight()`) can be used. Note that some
+  themes remove plot details. For example,
+  `ggthemes::theme_fivethirtyeight()` removes the secondary Y-axis,
+  which
   [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
-  shows details about multiple comparison test as a label on the
-  secondary Y-axis. Some themes (e.g.
-  `ggthemes::theme_fivethirtyeight()`) will remove the secondary Y-axis
-  and thus the details as well.
+  uses to show details about pairwise comparisons.
 
 - ...:
 
-  Additional arguments to tidying method. For more, see
+  Additional arguments passed to
   [`parameters::model_parameters()`](https://easystats.github.io/parameters/reference/model_parameters.html).
 
 ## Value
@@ -260,18 +246,16 @@ For details, see:
 
 ## Note
 
-1.  In case you want to carry out meta-analysis, you will be asked to
-    install the needed packages (`{metafor}`, `{metaplus}`, or
-    `{metaBMA}`) if they are unavailable.
+1.  For meta-analysis, you will be asked to install the needed package
+    (`{metafor}`, `{metaplus}`, or `{metaBMA}`) if it is unavailable.
 
 2.  Rows with a missing `estimate` are always removed. If labels are
     requested, rows where `statistic`, `std.error`, or `p.value` is
     missing are kept but get no label.
 
-3.  Given the rapid pace at which new methods are added to these
-    packages, it is recommended that you install development versions of
-    `{easystats}` packages using the `install_latest()` function from
-    `{easystats}`.
+3.  New model classes are frequently added to `{easystats}` packages, so
+    it can help to install their development versions with
+    `easystats::install_latest()`.
 
 ## Summary of graphics
 

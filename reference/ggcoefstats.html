@@ -6,22 +6,17 @@ labels.
 Although the statistical models displayed in the plot may differ based on the
 class of models being investigated, there are a few aspects of the plot that
 will be invariant across models:
-The dot-whisker plot contains a dot representing the estimate and their
-confidence intervals (95% is the default). The estimate can either be
-effect sizes (for tests that depend on the F-statistic) or regression
-coefficients (for tests with t-, chi^2-, and z-statistic), etc. The
-function will, by default, display a helpful x-axis label that should
-clear up what estimates are being displayed. The confidence intervals can
-sometimes be asymmetric if bootstrapping was used.
-The label attached to each dot will provide more details from the statistical
-test carried out and it will typically contain estimate, statistic, and
-p-value.
-The caption will contain diagnostic information, if available, about
-models that can be useful for model selection: The smaller the Akaike's
-Information Criterion (AIC) and the Bayesian Information Criterion
-(BIC) values, the &quot;better&quot; the model is.
-The output of this function will be a {ggplot2} object and, thus,
-it can be further modified (e.g. change themes) with {ggplot2}.
+Each dot represents an estimate, and its whiskers the confidence
+interval (95% by default). Estimates can be effect sizes (for tests
+based on the F-statistic) or regression coefficients (for tests based
+on the t-, chi^2-, or z-statistic), etc. The confidence intervals
+can be asymmetric if bootstrapping was used.
+The label attached to each dot provides details from the statistical
+test, typically the estimate, statistic, and p-value.
+The caption contains model diagnostics, if available, that can be useful
+for model selection: the smaller the Akaike's Information Criterion
+(AIC) and the Bayesian Information Criterion (BIC) values, the
+&quot;better&quot; the model.
 
 "><meta property="og:description" content="Plot with the regression coefficients' point estimates as dots with
 confidence interval whiskers and other statistical details included as
@@ -29,22 +24,17 @@ labels.
 Although the statistical models displayed in the plot may differ based on the
 class of models being investigated, there are a few aspects of the plot that
 will be invariant across models:
-The dot-whisker plot contains a dot representing the estimate and their
-confidence intervals (95% is the default). The estimate can either be
-effect sizes (for tests that depend on the F-statistic) or regression
-coefficients (for tests with t-, chi^2-, and z-statistic), etc. The
-function will, by default, display a helpful x-axis label that should
-clear up what estimates are being displayed. The confidence intervals can
-sometimes be asymmetric if bootstrapping was used.
-The label attached to each dot will provide more details from the statistical
-test carried out and it will typically contain estimate, statistic, and
-p-value.
-The caption will contain diagnostic information, if available, about
-models that can be useful for model selection: The smaller the Akaike's
-Information Criterion (AIC) and the Bayesian Information Criterion
-(BIC) values, the &quot;better&quot; the model is.
-The output of this function will be a {ggplot2} object and, thus,
-it can be further modified (e.g. change themes) with {ggplot2}.
+Each dot represents an estimate, and its whiskers the confidence
+interval (95% by default). Estimates can be effect sizes (for tests
+based on the F-statistic) or regression coefficients (for tests based
+on the t-, chi^2-, or z-statistic), etc. The confidence intervals
+can be asymmetric if bootstrapping was used.
+The label attached to each dot provides details from the statistical
+test, typically the estimate, statistic, and p-value.
+The caption contains model diagnostics, if available, that can be useful
+for model selection: the smaller the Akaike's Information Criterion
+(AIC) and the Bayesian Information Criterion (BIC) values, the
+&quot;better&quot; the model.
 
 "><meta property="og:image" content="https://www.indrapatil.com/ggstatsplot/reference/figures/card.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:creator" content="@patilindrajeets"><meta name="twitter:site" content="@patilindrajeets"><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-3BQ49J7KYH"></script><script>
   window.dataLayer = window.dataLayer || [];
@@ -140,22 +130,17 @@ confidence interval whiskers and other statistical details included as
 labels.</p>
 <p>Although the statistical models displayed in the plot may differ based on the
 class of models being investigated, there are a few aspects of the plot that
-will be invariant across models:</p><ul><li><p>The dot-whisker plot contains a dot representing the <strong>estimate</strong> and their
-<strong>confidence intervals</strong> (<code>95%</code> is the default). The estimate can either be
-effect sizes (for tests that depend on the <code>F</code>-statistic) or regression
-coefficients (for tests with <code>t</code>-, <code>chi^2</code>-, and <code>z</code>-statistic), etc. The
-function will, by default, display a helpful <code>x</code>-axis label that should
-clear up what estimates are being displayed. The confidence intervals can
-sometimes be asymmetric if bootstrapping was used.</p></li>
-<li><p>The label attached to each dot will provide more details from the statistical
-test carried out and it will typically contain estimate, statistic, and
-<em>p</em>-value.</p></li>
-<li><p>The caption will contain diagnostic information, if available, about
-models that can be useful for model selection: The smaller the Akaike's
-Information Criterion (<strong>AIC</strong>) and the Bayesian Information Criterion
-(<strong>BIC</strong>) values, the "better" the model is.</p></li>
-<li><p>The output of this function will be a <code>{ggplot2}</code> object and, thus,
-it can be further modified (e.g. change themes) with <code>{ggplot2}</code>.</p></li>
+will be invariant across models:</p><ul><li><p>Each dot represents an <strong>estimate</strong>, and its whiskers the <strong>confidence
+interval</strong> (<code>95%</code> by default). Estimates can be effect sizes (for tests
+based on the <code>F</code>-statistic) or regression coefficients (for tests based
+on the <code>t</code>-, <code>chi^2</code>-, or <code>z</code>-statistic), etc. The confidence intervals
+can be asymmetric if bootstrapping was used.</p></li>
+<li><p>The label attached to each dot provides details from the statistical
+test, typically the estimate, statistic, and <em>p</em>-value.</p></li>
+<li><p>The caption contains model diagnostics, if available, that can be useful
+for model selection: the smaller the Akaike's Information Criterion
+(<strong>AIC</strong>) and the Bayesian Information Criterion (<strong>BIC</strong>) values, the
+"better" the model.</p></li>
 </ul></div>
 
     <div class="section level2">
@@ -214,13 +199,13 @@ needed for error bars, <code>statistic</code> and <code>p.value</code> for label
 
 
 <dt id="arg-conf-int">conf.int<a class="anchor" aria-label="anchor" href="#arg-conf-int"></a></dt>
-<dd><p>Logical. Decides whether to display confidence intervals as
-error bars (Default: <code>TRUE</code>).</p></dd>
+<dd><p>Logical that decides whether to display confidence intervals
+as error bars (Default: <code>TRUE</code>).</p></dd>
 
 
 <dt id="arg-conf-level">conf.level<a class="anchor" aria-label="anchor" href="#arg-conf-level"></a></dt>
-<dd><p>Numeric deciding level of confidence or credible intervals
-(Default: <code>0.95</code>).</p></dd>
+<dd><p>Scalar between <code>0</code> and <code>1</code> (default: <code>95%</code>
+confidence/credible intervals, <code>0.95</code>).</p></dd>
 
 
 <dt id="arg-digits">digits<a class="anchor" aria-label="anchor" href="#arg-digits"></a></dt>
@@ -238,17 +223,17 @@ excluded from the plot (Default: <code>FALSE</code>).</p></dd>
 
 
 <dt id="arg-effectsize-type">effectsize.type<a class="anchor" aria-label="anchor" href="#arg-effectsize-type"></a></dt>
-<dd><p>This is the same as <code>es_type</code> argument of
-<code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code>. Defaults to <code>"omega"</code> (the unbiased
-estimator), and relevant for ANOVA-like objects.</p></dd>
+<dd><p>Effect size for ANOVA-like objects, passed as the
+<code>es_type</code> argument of <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code> (Default:
+<code>"omega"</code>, the unbiased estimator).</p></dd>
 
 
 <dt id="arg-meta-analytic-effect">meta.analytic.effect<a class="anchor" aria-label="anchor" href="#arg-meta-analytic-effect"></a></dt>
 <dd><p>Logical that decides whether to display a
 subtitle with results from a meta-analysis via linear (mixed-effects)
-models (default: <code>FALSE</code>). If <code>TRUE</code>, input to argument <code>subtitle</code> will be
-ignored. This will be mostly relevant if a data frame with estimates and
-their standard errors is entered.</p></dd>
+models (Default: <code>FALSE</code>). If <code>TRUE</code>, <code>subtitle</code> is ignored. This is mostly
+relevant if a data frame with estimates and their standard errors is
+entered.</p></dd>
 
 
 <dt id="arg-meta-type">meta.type<a class="anchor" aria-label="anchor" href="#arg-meta-type"></a></dt>
@@ -262,15 +247,15 @@ used. If <code>"robust"</code>, <code><a href="https://rdrr.io/pkg/metaplus/man/
 <dd><p>Logical that decides whether results from running a
 Bayesian meta-analysis assuming that the effect size <em>d</em> varies across
 studies with standard deviation <em>t</em> (i.e., a random-effects analysis)
-should be displayed in caption. Relevant only if
-<code>meta.analytic.effect = TRUE</code> and <code>meta.type = "parametric"</code>. Defaults to
-<code>TRUE</code>.</p></dd>
+are displayed in the caption. Relevant only if
+<code>meta.analytic.effect = TRUE</code> and <code>meta.type = "parametric"</code> (Default:
+<code>TRUE</code>).</p></dd>
 
 
 <dt id="arg-sort">sort<a class="anchor" aria-label="anchor" href="#arg-sort"></a></dt>
-<dd><p>If <code>"none"</code> (default) do not sort, <code>"ascending"</code> sort by
-increasing coefficient value, or <code>"descending"</code> sort by decreasing
-coefficient value.</p></dd>
+<dd><p>If <code>"none"</code> (default), do not sort; if <code>"ascending"</code> or
+<code>"descending"</code>, sort by increasing or decreasing coefficient value,
+respectively.</p></dd>
 
 
 <dt id="arg-xlab">xlab<a class="anchor" aria-label="anchor" href="#arg-xlab"></a></dt>
@@ -286,8 +271,8 @@ coefficient value.</p></dd>
 
 
 <dt id="arg-subtitle">subtitle<a class="anchor" aria-label="anchor" href="#arg-subtitle"></a></dt>
-<dd><p>The text for the plot subtitle. The input to this argument
-will be ignored if <code>meta.analytic.effect</code> is set to <code>TRUE</code>.</p></dd>
+<dd><p>The text for the plot subtitle. Ignored if
+<code>meta.analytic.effect = TRUE</code>.</p></dd>
 
 
 <dt id="arg-caption">caption<a class="anchor" aria-label="anchor" href="#arg-caption"></a></dt>
@@ -304,31 +289,29 @@ plot.</p></dd>
 
 
 <dt id="arg-point-args">point.args<a class="anchor" aria-label="anchor" href="#arg-point-args"></a></dt>
-<dd><p>A list of additional aesthetic arguments to be passed to
-the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code>.</p></dd>
+<dd><p>A list of additional aesthetic arguments passed to
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code>.</p></dd>
 
 
 <dt id="arg-errorbar-args">errorbar.args<a class="anchor" aria-label="anchor" href="#arg-errorbar-args"></a></dt>
-<dd><p>Additional arguments that will be passed to
-<code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">ggplot2::geom_errorbar()</a></code> geom. Please see documentation for that
-function to know more about these arguments.</p></dd>
+<dd><p>A list of additional arguments passed to
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">ggplot2::geom_errorbar()</a></code>.</p></dd>
 
 
 <dt id="arg-vline">vline<a class="anchor" aria-label="anchor" href="#arg-vline"></a></dt>
-<dd><p>Decides whether to display a vertical line at <code>0</code> (Default:
-<code>TRUE</code>).</p></dd>
+<dd><p>Logical that decides whether to display a vertical line at <code>0</code>
+(Default: <code>TRUE</code>).</p></dd>
 
 
 <dt id="arg-vline-args">vline.args<a class="anchor" aria-label="anchor" href="#arg-vline-args"></a></dt>
-<dd><p>Additional arguments that will be passed to
-<code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline()</a></code> geom. Please see documentation for that function
-to know more about these arguments.</p></dd>
+<dd><p>A list of additional arguments passed to
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">ggplot2::geom_vline()</a></code>.</p></dd>
 
 
 <dt id="arg-stats-labels">stats.labels<a class="anchor" aria-label="anchor" href="#arg-stats-labels"></a></dt>
-<dd><p>Logical. Decides whether the statistic and <em>p</em>-values for
-each coefficient are to be attached to each dot as a text label using
-<code>{ggrepel}</code> (Default: <code>TRUE</code>).</p></dd>
+<dd><p>Logical that decides whether the statistic and <em>p</em>-value
+for each coefficient are attached to its dot as a label using <code>{ggrepel}</code>
+(Default: <code>TRUE</code>).</p></dd>
 
 
 <dt id="arg-stats-label-color">stats.label.color<a class="anchor" aria-label="anchor" href="#arg-stats-label-color"></a></dt>
@@ -338,7 +321,7 @@ chosen from the specified <code>palette</code>.</p></dd>
 
 
 <dt id="arg-stats-label-args">stats.label.args<a class="anchor" aria-label="anchor" href="#arg-stats-label-args"></a></dt>
-<dd><p>Additional arguments that will be passed to
+<dd><p>A list of additional arguments passed to
 <code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code>.</p></dd>
 
 
@@ -349,20 +332,16 @@ to be used for coloring (via <code>{paletteer}</code>). Run
 
 
 <dt id="arg-ggtheme">ggtheme<a class="anchor" aria-label="anchor" href="#arg-ggtheme"></a></dt>
-<dd><p>A <code>{ggplot2}</code> theme. Default value is
-<code><a href="theme_ggstatsplot.html">theme_ggstatsplot()</a></code>. Any of the <code>{ggplot2}</code> themes (e.g.,
-<code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_bw()</a></code>), or themes from extension packages are allowed
-(e.g., <code>ggthemes::theme_fivethirtyeight()</code>, <code>hrbrthemes::theme_ipsum_ps()</code>,
-etc.). But note that sometimes these themes will remove some of the details
-that <code>{ggstatsplot}</code> plots typically contain. For example, if relevant,
-<code><a href="ggbetweenstats.html">ggbetweenstats()</a></code> shows details about multiple comparison test as a
-label on the secondary Y-axis. Some themes (e.g.
-<code>ggthemes::theme_fivethirtyeight()</code>) will remove the secondary Y-axis and
-thus the details as well.</p></dd>
+<dd><p>A <code>{ggplot2}</code> theme (Default: <code><a href="theme_ggstatsplot.html">theme_ggstatsplot()</a></code>). Any
+<code>{ggplot2}</code> theme (e.g., <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_bw()</a></code>) or theme from an
+extension package (e.g., <code>ggthemes::theme_fivethirtyeight()</code>) can be used.
+Note that some themes remove plot details. For example,
+<code>ggthemes::theme_fivethirtyeight()</code> removes the secondary Y-axis, which
+<code><a href="ggbetweenstats.html">ggbetweenstats()</a></code> uses to show details about pairwise comparisons.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Additional arguments to tidying method. For more, see
+<dd><p>Additional arguments passed to
 <code><a href="https://easystats.github.io/parameters/reference/model_parameters.html" class="external-link">parameters::model_parameters()</a></code>.</p></dd>
 
 </dl></div>
@@ -380,15 +359,14 @@ the plot as data frames.</p>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
 
-<ol><li><p>In case you want to carry out meta-analysis, you will be asked to install
-the needed packages (<code>{metafor}</code>, <code>{metaplus}</code>, or <code>{metaBMA}</code>) if they are
-unavailable.</p></li>
+<ol><li><p>For meta-analysis, you will be asked to install the needed package
+(<code>{metafor}</code>, <code>{metaplus}</code>, or <code>{metaBMA}</code>) if it is unavailable.</p></li>
 <li><p>Rows with a missing <code>estimate</code> are always removed. If labels are
 requested, rows where <code>statistic</code>, <code>std.error</code>, or <code>p.value</code> is missing
 are kept but get no label.</p></li>
-<li><p>Given the rapid pace at which new methods are added to these packages, it
-is recommended that you install development versions of <code>{easystats}</code>
-packages using the <code>install_latest()</code> function from <code>{easystats}</code>.</p></li>
+<li><p>New model classes are frequently added to <code>{easystats}</code> packages, so it
+can help to install their development versions with
+<code>easystats::install_latest()</code>.</p></li>
 </ol></div>
     <div class="section level2">
     <h2 id="summary-of-graphics">Summary of graphics<a class="anchor" aria-label="anchor" href="#summary-of-graphics"></a></h2>

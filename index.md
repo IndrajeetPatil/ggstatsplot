@@ -571,7 +571,6 @@ proportions for different levels of a single nominal variable:
 `  data         ``=`` ``mtcars``,`\
 `  x            ``=`` ``cyl``,`\
 `  grouping.var ``=`` ``am``,`\
-`  label.repel  ``=`` ``TRUE``,`\
 `  palette      ``=`` ``"ggsci::default_ucscgb"`\
 `)`
 

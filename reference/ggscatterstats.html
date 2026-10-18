@@ -179,9 +179,9 @@ value corresponds to scale for fixed effects.</p></dd>
 
 
 <dt id="arg-bf-message">bf.message<a class="anchor" aria-label="anchor" href="#arg-bf-message"></a></dt>
-<dd><p>Logical that decides whether to display Bayes Factor in
-favor of the <em>null</em> hypothesis. This argument is relevant only <strong>for
-parametric test</strong> (Default: <code>TRUE</code>).</p></dd>
+<dd><p>Logical that decides whether to display the Bayes Factor in
+favor of the <em>null</em> hypothesis as a caption. Relevant only for parametric
+tests (Default: <code>TRUE</code>).</p></dd>
 
 
 <dt id="arg-tr">tr<a class="anchor" aria-label="anchor" href="#arg-tr"></a></dt>
@@ -200,10 +200,10 @@ significant figures (see also <code><a href="https://rdrr.io/r/base/Round.html" 
 
 
 <dt id="arg-results-subtitle">results.subtitle<a class="anchor" aria-label="anchor" href="#arg-results-subtitle"></a></dt>
-<dd><p>Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: <code>TRUE</code>). Setting this to <code>FALSE</code>
-also skips the automatic Bayes Factor caption. See the individual
-annotation arguments to control other plot details.</p></dd>
+<dd><p>Logical that decides whether the results of
+statistical tests are displayed as a subtitle (Default: <code>TRUE</code>). Setting
+this to <code>FALSE</code> also skips the automatic Bayes Factor caption. Other plot
+details have their own arguments.</p></dd>
 
 
 <dt id="arg-label-var">label.var<a class="anchor" aria-label="anchor" href="#arg-label-var"></a></dt>
@@ -219,40 +219,38 @@ a quoted expression (e.g. <code>quote(y &lt; 4 &amp; z &lt; 20)</code>).</p></dd
 
 
 <dt id="arg-marginal">marginal<a class="anchor" aria-label="anchor" href="#arg-marginal"></a></dt>
-<dd><p>Decides whether marginal distributions will be plotted on
-axes using <code>{ggside}</code> functions. The default is <code>TRUE</code>.</p></dd>
+<dd><p>Logical that decides whether marginal distributions are
+plotted on the axes using <code>{ggside}</code> (Default: <code>TRUE</code>).</p></dd>
 
 
 <dt id="arg-point-args">point.args<a class="anchor" aria-label="anchor" href="#arg-point-args"></a></dt>
-<dd><p>A list of additional aesthetic arguments to be passed to
-the <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code>.</p></dd>
+<dd><p>A list of additional aesthetic arguments passed to
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">ggplot2::geom_point()</a></code>.</p></dd>
 
 
 <dt id="arg-point-width-jitter-point-height-jitter">point.width.jitter, point.height.jitter<a class="anchor" aria-label="anchor" href="#arg-point-width-jitter-point-height-jitter"></a></dt>
 <dd><p>Amount of jitter (in data
 units) in <code>x</code> and <code>y</code> direction, respectively, passed to
-<code><a href="https://ggplot2.tidyverse.org/reference/position_jitter.html" class="external-link">ggplot2::position_jitter()</a></code>. Defaults to <code>0</code> (no jitter). Note that the
-jitter should not be specified in the <code>point.args</code>
-because this information will be passed to two different <code>geom</code>s: one
-displaying the <strong>points</strong> and the other displaying the <strong>labels</strong> for
-these points.</p></dd>
+<code><a href="https://ggplot2.tidyverse.org/reference/position_jitter.html" class="external-link">ggplot2::position_jitter()</a></code> (Default: <code>0</code>, i.e., no jitter). Do not
+specify the jitter in <code>point.args</code>, because it is shared by the <strong>points</strong>
+and their <strong>labels</strong>.</p></dd>
 
 
 <dt id="arg-point-label-args">point.label.args<a class="anchor" aria-label="anchor" href="#arg-point-label-args"></a></dt>
-<dd><p>A list of additional aesthetic arguments to be passed
-to <code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code> geom used to display the labels.</p></dd>
+<dd><p>A list of additional aesthetic arguments passed to
+<code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code>, which displays the point labels.</p></dd>
 
 
 <dt id="arg-smooth-line-args">smooth.line.args<a class="anchor" aria-label="anchor" href="#arg-smooth-line-args"></a></dt>
-<dd><p>A list of additional aesthetic arguments to be passed
-to <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">ggplot2::geom_smooth()</a></code> geom used to display the regression line. Its
+<dd><p>A list of additional aesthetic arguments passed to
+<code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">ggplot2::geom_smooth()</a></code>, which displays the regression line. Its
 confidence band uses <code>conf.level</code>.</p></dd>
 
 
 <dt id="arg-xsidehistogram-args-ysidehistogram-args">xsidehistogram.args, ysidehistogram.args<a class="anchor" aria-label="anchor" href="#arg-xsidehistogram-args-ysidehistogram-args"></a></dt>
 <dd><p>A list of arguments passed to
-respective <code>geom_</code>s from the <code>{ggside}</code> package to change the marginal
-distribution histograms.</p></dd>
+<code><a href="https://rdrr.io/pkg/ggside/man/geom_xsidehistogram.html" class="external-link">ggside::geom_xsidehistogram()</a></code> and <code><a href="https://rdrr.io/pkg/ggside/man/geom_xsidehistogram.html" class="external-link">ggside::geom_ysidehistogram()</a></code>,
+respectively, to change the marginal histograms.</p></dd>
 
 
 <dt id="arg-xsidehistogram-scale-ysidehistogram-scale">xsidehistogram.scale, ysidehistogram.scale<a class="anchor" aria-label="anchor" href="#arg-xsidehistogram-scale-ysidehistogram-scale"></a></dt>
@@ -278,7 +276,7 @@ variable name for <code>y</code> will be used.</p></dd>
 
 
 <dt id="arg-subtitle">subtitle<a class="anchor" aria-label="anchor" href="#arg-subtitle"></a></dt>
-<dd><p>The text for the plot subtitle. Will work only if
+<dd><p>The text for the plot subtitle. Used only if
 <code>results.subtitle = FALSE</code>.</p></dd>
 
 
@@ -288,27 +286,22 @@ Bayes Factor caption whenever that is displayed (see <code>bf.message</code>).</
 
 
 <dt id="arg-ggtheme">ggtheme<a class="anchor" aria-label="anchor" href="#arg-ggtheme"></a></dt>
-<dd><p>A <code>{ggplot2}</code> theme. Default value is
-<code><a href="theme_ggstatsplot.html">theme_ggstatsplot()</a></code>. Any of the <code>{ggplot2}</code> themes (e.g.,
-<code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_bw()</a></code>), or themes from extension packages are allowed
-(e.g., <code>ggthemes::theme_fivethirtyeight()</code>, <code>hrbrthemes::theme_ipsum_ps()</code>,
-etc.). But note that sometimes these themes will remove some of the details
-that <code>{ggstatsplot}</code> plots typically contain. For example, if relevant,
-<code><a href="ggbetweenstats.html">ggbetweenstats()</a></code> shows details about multiple comparison test as a
-label on the secondary Y-axis. Some themes (e.g.
-<code>ggthemes::theme_fivethirtyeight()</code>) will remove the secondary Y-axis and
-thus the details as well.</p></dd>
+<dd><p>A <code>{ggplot2}</code> theme (Default: <code><a href="theme_ggstatsplot.html">theme_ggstatsplot()</a></code>). Any
+<code>{ggplot2}</code> theme (e.g., <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_bw()</a></code>) or theme from an
+extension package (e.g., <code>ggthemes::theme_fivethirtyeight()</code>) can be used.
+Note that some themes remove plot details. For example,
+<code>ggthemes::theme_fivethirtyeight()</code> removes the secondary Y-axis, which
+<code><a href="ggbetweenstats.html">ggbetweenstats()</a></code> uses to show details about pairwise comparisons.</p></dd>
 
 
 <dt id="arg-ggplot-component">ggplot.component<a class="anchor" aria-label="anchor" href="#arg-ggplot-component"></a></dt>
-<dd><p>A <code>ggplot</code> component to be added to the plot prepared
-by <code>{ggstatsplot}</code>. This argument is primarily helpful for <code>grouped_</code>
-variants of all primary functions. Default is <code>NULL</code>. The argument should
-be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
+<dd><p>A <code>{ggplot2}</code> component, or a list of components, to
+add to the plot (Default: <code>NULL</code>). This is mostly helpful for the
+<code>grouped_</code> variants, where it is applied to each individual plot.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Currently ignored.</p></dd>
+<dd><p>Additional arguments (currently ignored).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -326,10 +319,9 @@ plotting and analysis.</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
-    <p>The plot uses <code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code> to attempt to keep labels
-from overlapping to the largest degree possible. As a consequence plot
-times will slow down massively (and the plot file will grow in size) if you
-have a lot of labels that overlap.</p>
+    <p>Point labels use <code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_label_repel()</a></code> to keep them from
+overlapping, so plotting can become very slow (and the plot file large) if
+many labels overlap.</p>
     </div>
     <div class="section level2">
     <h2 id="summary-of-graphics">Summary of graphics<a class="anchor" aria-label="anchor" href="#summary-of-graphics"></a></h2>
@@ -347,8 +339,7 @@ have a lot of labels that overlap.</p>
 </ul><p><strong>Hypothesis testing and effect size estimation</strong></p><table class="table table"><tr><td>Type</td><td>Test</td><td>CI available?</td><td>Function used</td></tr><tr><td>Parametric</td><td>Pearson's correlation coefficient</td><td>Yes</td><td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code></td></tr><tr><td>Non-parametric</td><td>Spearman's rank correlation coefficient</td><td>Yes</td><td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code></td></tr><tr><td>Robust</td><td>Winsorized Pearson's correlation coefficient</td><td>Yes</td><td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code></td></tr><tr><td>Bayesian</td><td>Bayesian Pearson's correlation coefficient</td><td>Yes</td><td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code></td></tr></table></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="grouped_ggscatterstats.html">grouped_ggscatterstats</a></code>, <code><a href="ggcorrmat.html">ggcorrmat</a></code>,
-<code><a href="grouped_ggcorrmat.html">grouped_ggcorrmat</a></code></p></div>
+    <div class="dont-index"><p><code><a href="grouped_ggscatterstats.html">grouped_ggscatterstats()</a></code>, <code><a href="ggcorrmat.html">ggcorrmat()</a></code>, <code><a href="grouped_ggcorrmat.html">grouped_ggcorrmat()</a></code></p></div>
     </div>
 
     <div class="section level2">

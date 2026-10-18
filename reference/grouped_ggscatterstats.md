@@ -1,7 +1,10 @@
-# Scatterplot with marginal distributions for all levels of a grouping variable
+# Grouped scatterplots with marginal distributions and statistical results
 
-Grouped scatterplots from `{ggplot2}` combined with marginal
-distribution plots with statistical details added as a subtitle.
+Applies
+[`ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)
+across all levels of `grouping.var` and combines the resulting plots
+using
+[`combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
 
 ## Usage
 
@@ -44,36 +47,38 @@ grouped_ggscatterstats(
 
   `point.label.args`
 
-  : A list of additional aesthetic arguments to be passed to
-    [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html)
-    geom used to display the labels.
+  : A list of additional aesthetic arguments passed to
+    [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html),
+    which displays the point labels.
 
   `smooth.line.args`
 
-  : A list of additional aesthetic arguments to be passed to
-    [`ggplot2::geom_smooth()`](https://ggplot2.tidyverse.org/reference/geom_smooth.html)
-    geom used to display the regression line. Its confidence band uses
+  : A list of additional aesthetic arguments passed to
+    [`ggplot2::geom_smooth()`](https://ggplot2.tidyverse.org/reference/geom_smooth.html),
+    which displays the regression line. Its confidence band uses
     `conf.level`.
 
   `marginal`
 
-  : Decides whether marginal distributions will be plotted on axes using
-    `{ggside}` functions. The default is `TRUE`.
+  : Logical that decides whether marginal distributions are plotted on
+    the axes using `{ggside}` (Default: `TRUE`).
 
   `point.width.jitter,point.height.jitter`
 
   : Amount of jitter (in data units) in `x` and `y` direction,
     respectively, passed to
-    [`ggplot2::position_jitter()`](https://ggplot2.tidyverse.org/reference/position_jitter.html).
-    Defaults to `0` (no jitter). Note that the jitter should not be
-    specified in the `point.args` because this information will be
-    passed to two different `geom`s: one displaying the **points** and
-    the other displaying the **labels** for these points.
+    [`ggplot2::position_jitter()`](https://ggplot2.tidyverse.org/reference/position_jitter.html)
+    (Default: `0`, i.e., no jitter). Do not specify the jitter in
+    `point.args`, because it is shared by the **points** and their
+    **labels**.
 
   `xsidehistogram.args,ysidehistogram.args`
 
-  : A list of arguments passed to respective `geom_`s from the
-    `{ggside}` package to change the marginal distribution histograms.
+  : A list of arguments passed to
+    [`ggside::geom_xsidehistogram()`](https://rdrr.io/pkg/ggside/man/geom_xsidehistogram.html)
+    and
+    [`ggside::geom_ysidehistogram()`](https://rdrr.io/pkg/ggside/man/geom_xsidehistogram.html),
+    respectively, to change the marginal histograms.
 
   `xsidehistogram.scale,ysidehistogram.scale`
 
@@ -154,20 +159,20 @@ grouped_ggscatterstats(
 
   `bf.message`
 
-  : Logical that decides whether to display Bayes Factor in favor of the
-    *null* hypothesis. This argument is relevant only **for parametric
-    test** (Default: `TRUE`).
+  : Logical that decides whether to display the Bayes Factor in favor of
+    the *null* hypothesis as a caption. Relevant only for parametric
+    tests (Default: `TRUE`).
 
   `results.subtitle`
 
-  : Decides whether the results of statistical tests are to be displayed
-    as a subtitle (Default: `TRUE`). Setting this to `FALSE` also skips
-    the automatic Bayes Factor caption. See the individual annotation
-    arguments to control other plot details.
+  : Logical that decides whether the results of statistical tests are
+    displayed as a subtitle (Default: `TRUE`). Setting this to `FALSE`
+    also skips the automatic Bayes Factor caption. Other plot details
+    have their own arguments.
 
   `subtitle`
 
-  : The text for the plot subtitle. Will work only if
+  : The text for the plot subtitle. Used only if
     `results.subtitle = FALSE`.
 
   `caption`
@@ -177,33 +182,28 @@ grouped_ggscatterstats(
 
   `point.args`
 
-  : A list of additional aesthetic arguments to be passed to the
+  : A list of additional aesthetic arguments passed to
     [`ggplot2::geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html).
 
   `ggplot.component`
 
-  : A `ggplot` component to be added to the plot prepared by
-    `{ggstatsplot}`. This argument is primarily helpful for `grouped_`
-    variants of all primary functions. Default is `NULL`. The argument
-    should be entered as a `{ggplot2}` function or a list of `{ggplot2}`
-    functions.
+  : A `{ggplot2}` component, or a list of components, to add to the plot
+    (Default: `NULL`). This is mostly helpful for the `grouped_`
+    variants, where it is applied to each individual plot.
 
   `ggtheme`
 
-  : A `{ggplot2}` theme. Default value is
-    [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md).
-    Any of the `{ggplot2}` themes (e.g.,
-    [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)),
-    or themes from extension packages are allowed (e.g.,
-    `ggthemes::theme_fivethirtyeight()`, `hrbrthemes::theme_ipsum_ps()`,
-    etc.). But note that sometimes these themes will remove some of the
-    details that `{ggstatsplot}` plots typically contain. For example,
-    if relevant,
+  : A `{ggplot2}` theme (Default:
+    [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md)).
+    Any `{ggplot2}` theme (e.g.,
+    [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html))
+    or theme from an extension package (e.g.,
+    `ggthemes::theme_fivethirtyeight()`) can be used. Note that some
+    themes remove plot details. For example,
+    `ggthemes::theme_fivethirtyeight()` removes the secondary Y-axis,
+    which
     [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
-    shows details about multiple comparison test as a label on the
-    secondary Y-axis. Some themes (e.g.
-    `ggthemes::theme_fivethirtyeight()`) will remove the secondary
-    Y-axis and thus the details as well.
+    uses to show details about pairwise comparisons.
 
 - grouping.var:
 
@@ -215,8 +215,7 @@ grouped_ggscatterstats(
 
   A `list` of additional arguments passed to
   [`patchwork::wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html),
-  except for `guides` argument which is already separately specified
-  here.
+  except for `guides`, which has its own argument.
 
 - annotation.args:
 
@@ -242,14 +241,14 @@ For details, see:
 
 ## See also
 
-[`ggscatterstats`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md),
-[`ggcorrmat`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md),
-[`grouped_ggcorrmat`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggcorrmat.md)
+[`ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md),
+[`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md),
+[`grouped_ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggcorrmat.md)
 
 ## Examples
 
 ``` r
-# to ensure reproducibility
+# for reproducibility
 set.seed(123)
 
 library(dplyr, warn.conflicts = FALSE)
@@ -265,8 +264,7 @@ grouped_ggscatterstats(
 )
 
 
-# using labeling
-# (also show how to modify basic plot from within function call)
+# label points matching an expression
 grouped_ggscatterstats(
   data             = filter(ggplot2::mpg, cyl != 5),
   x                = displ,
@@ -279,7 +277,7 @@ grouped_ggscatterstats(
 )
 
 
-# labeling without expression
+# label all points
 grouped_ggscatterstats(
   data            = filter(movies_long, rating == 7, genre %in% c("Drama", "Comedy")),
   x               = budget,
@@ -288,19 +286,5 @@ grouped_ggscatterstats(
   bf.message      = FALSE,
   label.var       = "title",
   annotation.args = list(tag_levels = "a")
-)
-
-
-# customize marginal histogram bins and scales
-grouped_ggscatterstats(
-  data = filter(movies_long, genre %in% c("Drama", "Comedy")),
-  x = rating,
-  y = length,
-  grouping.var = genre,
-  results.subtitle = FALSE,
-  xsidehistogram.args = list(fill = "#4285F4", color = "black", na.rm = TRUE, bins = 20),
-  ysidehistogram.args = list(fill = "#EA4335", color = "black", na.rm = TRUE, binwidth = 10),
-  xsidehistogram.scale = list(breaks = seq(0, 200, 50)),
-  ysidehistogram.scale = list(breaks = seq(0, 200, 50))
 )
 ```

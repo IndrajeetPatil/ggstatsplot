@@ -218,7 +218,7 @@ comparisons. Possible methods are: <code>"holm"</code> (default), <code>"hochber
 low (negative correlations), mid (zero), and high (positive correlations).
 Must be a <strong>diverging</strong> palette so that the sign of the correlation is
 visually obvious.
-Default: <code>c("#EA4335", "white", "#4285F4")</code> (red–white–blue).</p></dd>
+Default: <code>c("#EA4335", "white", "#4285F4")</code> (red-white-blue).</p></dd>
 
 
 <dt id="arg-pch">pch<a class="anchor" aria-label="anchor" href="#arg-pch"></a></dt>
@@ -228,31 +228,25 @@ insignificance marker is added only for <code>pch = "cross"</code> (or <code>4</
 
 
 <dt id="arg-ggcorrplot-args">ggcorrplot.args<a class="anchor" aria-label="anchor" href="#arg-ggcorrplot-args"></a></dt>
-<dd><p>A list of additional (mostly aesthetic) arguments that
-will be passed to <code><a href="https://rpkgs.datanovia.com/ggcorrplot/reference/ggcorrplot.html" class="external-link">ggcorrplot::ggcorrplot()</a></code> function. The list should
-avoid any of the following arguments since they are already internally
-being used: <code>corr</code>, <code>p.mat</code>, <code>sig.level</code>, <code>ggtheme</code>, <code>colors</code>, <code>type</code>,
-<code>lab</code>, <code>pch</code>, <code>legend.title</code>, <code>digits</code>.</p></dd>
+<dd><p>A list of additional (mostly aesthetic) arguments
+passed to <code><a href="https://rpkgs.datanovia.com/ggcorrplot/reference/ggcorrplot.html" class="external-link">ggcorrplot::ggcorrplot()</a></code>. Do not include the following
+arguments, which are set internally: <code>corr</code>, <code>p.mat</code>, <code>sig.level</code>,
+<code>ggtheme</code>, <code>colors</code>, <code>type</code>, <code>lab</code>, <code>pch</code>, <code>legend.title</code>, <code>digits</code>.</p></dd>
 
 
 <dt id="arg-ggtheme">ggtheme<a class="anchor" aria-label="anchor" href="#arg-ggtheme"></a></dt>
-<dd><p>A <code>{ggplot2}</code> theme. Default value is
-<code><a href="theme_ggstatsplot.html">theme_ggstatsplot()</a></code>. Any of the <code>{ggplot2}</code> themes (e.g.,
-<code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_bw()</a></code>), or themes from extension packages are allowed
-(e.g., <code>ggthemes::theme_fivethirtyeight()</code>, <code>hrbrthemes::theme_ipsum_ps()</code>,
-etc.). But note that sometimes these themes will remove some of the details
-that <code>{ggstatsplot}</code> plots typically contain. For example, if relevant,
-<code><a href="ggbetweenstats.html">ggbetweenstats()</a></code> shows details about multiple comparison test as a
-label on the secondary Y-axis. Some themes (e.g.
-<code>ggthemes::theme_fivethirtyeight()</code>) will remove the secondary Y-axis and
-thus the details as well.</p></dd>
+<dd><p>A <code>{ggplot2}</code> theme (Default: <code><a href="theme_ggstatsplot.html">theme_ggstatsplot()</a></code>). Any
+<code>{ggplot2}</code> theme (e.g., <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_bw()</a></code>) or theme from an
+extension package (e.g., <code>ggthemes::theme_fivethirtyeight()</code>) can be used.
+Note that some themes remove plot details. For example,
+<code>ggthemes::theme_fivethirtyeight()</code> removes the secondary Y-axis, which
+<code><a href="ggbetweenstats.html">ggbetweenstats()</a></code> uses to show details about pairwise comparisons.</p></dd>
 
 
 <dt id="arg-ggplot-component">ggplot.component<a class="anchor" aria-label="anchor" href="#arg-ggplot-component"></a></dt>
-<dd><p>A <code>ggplot</code> component to be added to the plot prepared
-by <code>{ggstatsplot}</code>. This argument is primarily helpful for <code>grouped_</code>
-variants of all primary functions. Default is <code>NULL</code>. The argument should
-be entered as a <code>{ggplot2}</code> function or a list of <code>{ggplot2}</code> functions.</p></dd>
+<dd><p>A <code>{ggplot2}</code> component, or a list of components, to
+add to the plot (Default: <code>NULL</code>). This is mostly helpful for the
+<code>grouped_</code> variants, where it is applied to each individual plot.</p></dd>
 
 
 <dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
@@ -269,7 +263,7 @@ caption is shown (see <code>pch</code>), this text is displayed above it.</p></d
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Currently ignored.</p></dd>
+<dd><p>Additional arguments (currently ignored).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -303,8 +297,8 @@ Partial correlations use only complete cases.</p>
 </ul><p><strong>Hypothesis testing and effect size estimation</strong></p><table class="table table"><tr><td>Type</td><td>Test</td><td>CI available?</td><td>Function used</td></tr><tr><td>Parametric</td><td>Pearson's correlation coefficient</td><td>Yes</td><td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code></td></tr><tr><td>Non-parametric</td><td>Spearman's rank correlation coefficient</td><td>Yes</td><td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code></td></tr><tr><td>Robust</td><td>Winsorized Pearson's correlation coefficient</td><td>Yes</td><td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code></td></tr><tr><td>Bayesian</td><td>Bayesian Pearson's correlation coefficient</td><td>Yes</td><td><code><a href="https://easystats.github.io/correlation/reference/correlation.html" class="external-link">correlation::correlation()</a></code></td></tr></table></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="grouped_ggcorrmat.html">grouped_ggcorrmat</a></code> <code><a href="ggscatterstats.html">ggscatterstats</a></code>
-<code><a href="grouped_ggscatterstats.html">grouped_ggscatterstats</a></code></p></div>
+    <div class="dont-index"><p><code><a href="grouped_ggcorrmat.html">grouped_ggcorrmat()</a></code>, <code><a href="ggscatterstats.html">ggscatterstats()</a></code>,
+<code><a href="grouped_ggscatterstats.html">grouped_ggscatterstats()</a></code></p></div>
     </div>
 
     <div class="section level2">

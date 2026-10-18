@@ -55,10 +55,10 @@ ggpiestats(
 
 - y:
 
-  The variable to use as the **columns** in the contingency table.
-  Default is `NULL`. If `NULL`, one-sample proportion test (a goodness
-  of fit test) will be run for the `x` variable. Otherwise an
-  appropriate association test will be run.
+  The variable to use as the **columns** in the contingency table. If
+  `NULL` (default), a one-sample proportion test (a goodness of fit
+  test) is run for the `x` variable. Otherwise, an appropriate
+  association test is run.
 
 - counts:
 
@@ -94,20 +94,19 @@ ggpiestats(
 
 - results.subtitle:
 
-  Decides whether the results of statistical tests are to be displayed
-  as a subtitle (Default: `TRUE`). Setting this to `FALSE` also skips
-  the automatic Bayes Factor caption. See the individual annotation
-  arguments to control other plot details.
+  Logical that decides whether the results of statistical tests are
+  displayed as a subtitle (Default: `TRUE`). Setting this to `FALSE`
+  also skips the automatic Bayes Factor caption. Other plot details have
+  their own arguments.
 
 - label:
 
-  Character that decides what information needs to be displayed on the
-  label in each pie slice. Possible options are `"percentage"`
-  (default), `"counts"`, `"both"`.
+  Character that decides what each label displays: `"percentage"`
+  (default), `"counts"`, or `"both"`.
 
 - label.args:
 
-  Additional aesthetic arguments that will be passed to
+  A list of additional aesthetic arguments passed to
   [`ggplot2::geom_label()`](https://ggplot2.tidyverse.org/reference/geom_text.html)
   (or
   [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html)
@@ -115,8 +114,8 @@ ggpiestats(
 
 - label.repel:
 
-  Whether labels should be repelled using `{ggrepel}` package. This can
-  be helpful in case of overlapping labels (Default: `FALSE`).
+  Logical that decides whether labels are repelled using `{ggrepel}` to
+  avoid overlaps (Default: `FALSE`).
 
 - digits:
 
@@ -129,23 +128,21 @@ ggpiestats(
 
 - proportion.test:
 
-  Decides whether proportion test for `x` variable is to be carried out
-  for each level of `y`. Defaults to `results.subtitle`. In
-  [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md),
-  only *p*-values from this test will be displayed. Always `FALSE` when
+  Logical that decides whether a proportion test for `x` is carried out
+  for each level of `y`. Defaults to `results.subtitle`.
+  [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
+  displays only the *p*-values from this test. Always `FALSE` when
   `type = "bayes"`, when `y` is `NULL`, or when `x` has only one level.
 
 - digits.perc:
 
-  Numeric that decides number of decimal places for percentage labels
-  (Default: `0L`).
+  Number of decimal places for percentage labels (Default: `0L`).
 
 - bf.message:
 
-  Logical that decides whether to display Bayes Factor in favor of the
-  *null* hypothesis as a caption. This argument is relevant only for
-  non-Bayesian `type`s and unpaired designs (`paired = FALSE`) (Default:
-  `TRUE`).
+  Logical that decides whether to display the Bayes Factor in favor of
+  the *null* hypothesis as a caption. Relevant only for non-Bayesian
+  `type`s and unpaired designs (`paired = FALSE`) (Default: `TRUE`).
 
 - ratio:
 
@@ -178,7 +175,7 @@ ggpiestats(
 
 - subtitle:
 
-  The text for the plot subtitle. Will work only if
+  The text for the plot subtitle. Used only if
   `results.subtitle = FALSE`.
 
 - caption:
@@ -193,20 +190,17 @@ ggpiestats(
 
 - ggtheme:
 
-  A `{ggplot2}` theme. Default value is
-  [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md).
-  Any of the `{ggplot2}` themes (e.g.,
-  [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)),
-  or themes from extension packages are allowed (e.g.,
-  `ggthemes::theme_fivethirtyeight()`, `hrbrthemes::theme_ipsum_ps()`,
-  etc.). But note that sometimes these themes will remove some of the
-  details that `{ggstatsplot}` plots typically contain. For example, if
-  relevant,
+  A `{ggplot2}` theme (Default:
+  [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md)).
+  Any `{ggplot2}` theme (e.g.,
+  [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html))
+  or theme from an extension package (e.g.,
+  `ggthemes::theme_fivethirtyeight()`) can be used. Note that some
+  themes remove plot details. For example,
+  `ggthemes::theme_fivethirtyeight()` removes the secondary Y-axis,
+  which
   [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
-  shows details about multiple comparison test as a label on the
-  secondary Y-axis. Some themes (e.g.
-  `ggthemes::theme_fivethirtyeight()`) will remove the secondary Y-axis
-  and thus the details as well.
+  uses to show details about pairwise comparisons.
 
 - palette:
 
@@ -216,11 +210,9 @@ ggpiestats(
 
 - ggplot.component:
 
-  A `ggplot` component to be added to the plot prepared by
-  `{ggstatsplot}`. This argument is primarily helpful for `grouped_`
-  variants of all primary functions. Default is `NULL`. The argument
-  should be entered as a `{ggplot2}` function or a list of `{ggplot2}`
-  functions.
+  A `{ggplot2}` component, or a list of components, to add to the plot
+  (Default: `NULL`). This is mostly helpful for the `grouped_` variants,
+  where it is applied to each individual plot.
 
 - ...:
 
@@ -255,15 +247,10 @@ When there is a two-way table, `x` has more than two levels, and
 `paired = FALSE`, pairwise contingency table analyses (Fisher's exact
 tests) are computed using
 [`statsExpressions::pairwise_contingency_table()`](https://www.indrapatil.com/statsExpressions/reference/pairwise_contingency_table.html).
-These pairwise results are **not** displayed in the plot because bar and
-pie charts lack a natural visual representation for pairwise
-significance annotations (unlike box/violin plots, which use bracket
-annotations). Additionally, there is no established convention for
-overlaying pairwise comparisons on pie charts, and both `ggpiestats()`
-and
-[`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
-are designed to remain visually congruent. The pairwise results are
-available as a data frame via
+These results are **not** displayed in the plot: unlike the brackets in
+box/violin plots, pie and bar charts (which are designed to stay
+visually congruent) have no natural or established way to show pairwise
+comparisons. Retrieve them as a data frame with
 `extract_stats(plot)$pairwise_comparisons_data`.
 
 ## Contingency table analyses
@@ -328,9 +315,9 @@ Bayesian test is run instead.
 
 ## See also
 
-[`grouped_ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggpiestats.md),
-[`ggbarstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md),
-[`grouped_ggbarstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbarstats.md)
+[`grouped_ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggpiestats.md),
+[`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md),
+[`grouped_ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbarstats.md)
 
 ## Examples
 

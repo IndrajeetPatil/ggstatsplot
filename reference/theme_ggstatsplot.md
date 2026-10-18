@@ -1,12 +1,9 @@
 # Default theme used in `{ggstatsplot}`
 
-Common theme used across all plots generated in `{ggstatsplot}` and
-*assumed* by the author to be aesthetically pleasing to the user. The
-theme is a wrapper around
+Theme used by default in all `{ggstatsplot}` plots, built on
 [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html).
-
-All `{ggstatsplot}` functions have a `ggtheme` parameter that lets you
-choose a different theme.
+Use the `ggtheme` argument of any `{ggstatsplot}` function to choose a
+different theme.
 
 ## Usage
 

@@ -16,7 +16,7 @@ A data frame with 1,579 rows and 8 variables
 
 - year. Year of release.
 
-- budget. Total budget (if known) in US dollars
+- budget. Total budget (if known) in US dollars.
 
 - length. Length in minutes.
 

@@ -2,11 +2,10 @@
 
 Wrapper around
 [`patchwork::wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html)
-that will return a combined grid of plots with annotations. In case you
-want to create a grid of plots, it is **highly recommended** that you
-use `{patchwork}` package directly and not this wrapper around it which
-is mostly useful with `{ggstatsplot}` plots. It is exported only for
-backward compatibility.
+that returns a combined grid of plots with annotations. It is mostly
+useful with `{ggstatsplot}` plots and is exported only for backward
+compatibility; to create a grid of plots, it is **highly recommended**
+that you use `{patchwork}` directly.
 
 ## Usage
 
@@ -30,8 +29,7 @@ combine_plots(
 
   A `list` of additional arguments passed to
   [`patchwork::wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html),
-  except for `guides` argument which is already separately specified
-  here.
+  except for `guides`, which has its own argument.
 
 - annotation.args:
 
@@ -63,17 +61,15 @@ A `patchwork` object: a combined plot with annotation labels.
 ``` r
 library(ggplot2)
 
-# first plot
 p1 <- ggplot(
-  data = subset(iris, iris$Species == "setosa"),
+  data = subset(iris, Species == "setosa"),
   aes(x = Sepal.Length, y = Sepal.Width)
 ) +
   geom_point() +
   labs(title = "setosa")
 
-# second plot
 p2 <- ggplot(
-  data = subset(iris, iris$Species == "versicolor"),
+  data = subset(iris, Species == "versicolor"),
   aes(x = Sepal.Length, y = Sepal.Width)
 ) +
   geom_point() +

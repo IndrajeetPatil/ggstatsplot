@@ -88,15 +88,13 @@ ggwithinstats(
 
 - subject.id:
 
-  Across repeated measures conditions, each row in the dataset must
-  correspond to a unique unit (e.g., subject or participant). If your
-  data frame is already in such a format, you can ignore the
-  `subject.id` argument (the function will use row number to pair
-  observations). **But if you are not sure, it is always better to
-  specify this argument.** Each subject must appear at most once per
-  level of `x`. Rows with a missing `x` or `subject.id` are ignored, and
-  subjects with a missing value (i.e., `NA`) of the dependent variable
-  in any condition are dropped using a list-wise approach (see
+  The subject (or repeated measures) identifier from `data`. Each
+  subject must appear at most once per level of `x`. If `NULL`
+  (default), observations are paired by their row order within each
+  level of `x`. **If you are not sure the data are sorted this way,
+  specify this argument.** Rows with a missing `x` or `subject.id` are
+  ignored, and subjects with a missing (`NA`) dependent variable in any
+  condition are dropped list-wise (see
   [`statsExpressions::complete_subjects()`](https://www.indrapatil.com/statsExpressions/reference/complete_subjects.html)),
   so the plot, its labels, and the statistical results are all based on
   the same complete subjects.
@@ -114,12 +112,10 @@ ggwithinstats(
 
   - `"none"`
 
-  You can use this argument to make sure that your plot is not
-  uber-cluttered when you have multiple groups being compared and scores
-  of pairwise comparisons being displayed. Pairwise comparisons are
-  carried out (and displayed) only when `x` has three or more levels.
-  For `type = "bayes"`, there are no *p*-values, so all comparisons are
-  displayed unless this is `"none"`.
+  Use this to keep the plot uncluttered when many groups are compared.
+  Pairwise comparisons are carried out (and displayed) only when `x` has
+  three or more levels. For `type = "bayes"`, there are no *p*-values,
+  so all comparisons are displayed unless this is `"none"`.
 
 - pairwise.alpha:
 
@@ -145,16 +141,16 @@ ggwithinstats(
 
 - bf.message:
 
-  Logical that decides whether to display Bayes Factor in favor of the
-  *null* hypothesis. This argument is relevant only **for parametric
-  test** (Default: `TRUE`).
+  Logical that decides whether to display the Bayes Factor in favor of
+  the *null* hypothesis as a caption. Relevant only for parametric tests
+  (Default: `TRUE`).
 
 - results.subtitle:
 
-  Decides whether the results of statistical tests are to be displayed
-  as a subtitle (Default: `TRUE`). Setting this to `FALSE` also skips
-  the automatic Bayes Factor caption. See the individual annotation
-  arguments to control other plot details.
+  Logical that decides whether the results of statistical tests are
+  displayed as a subtitle (Default: `TRUE`). Setting this to `FALSE`
+  also skips the automatic Bayes Factor caption. Other plot details have
+  their own arguments.
 
 - xlab:
 
@@ -177,7 +173,7 @@ ggwithinstats(
 
 - subtitle:
 
-  The text for the plot subtitle. Will work only if
+  The text for the plot subtitle. Used only if
   `results.subtitle = FALSE`.
 
 - digits:
@@ -221,13 +217,12 @@ ggwithinstats(
 
   - **MAP estimator** for Bayesian statistics
 
-  If you want a different centrality parameter, you can specify this
-  using `centrality.type` argument.
+  Use `centrality.type` to choose a different centrality measure.
 
 - centrality.type:
 
-  Decides which centrality parameter is to be displayed. The default is
-  to choose the same as `type` argument. You can specify this to be:
+  Decides which centrality measure is displayed. Defaults to the same
+  value as `type`. Can be one of:
 
   - `"parametric"` (for **mean**)
 
@@ -237,73 +232,68 @@ ggwithinstats(
 
   - `"bayes"` (for **MAP estimator**)
 
-  Just as `type` argument, abbreviations are also accepted.
+  As with `type`, abbreviations are accepted.
 
 - centrality.point.args, centrality.label.args:
 
-  A list of additional aesthetic arguments to be passed to
+  A list of additional aesthetic arguments passed to
   [`ggplot2::geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html)
   and
-  [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html)
-  geoms, which are involved in centrality plotting.
+  [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html),
+  respectively, which display the centrality measure.
 
 - centrality.path.args, point.path.args:
 
-  A list of additional aesthetic arguments passed on to
+  A list of additional aesthetic arguments passed to
   [`ggplot2::geom_path()`](https://ggplot2.tidyverse.org/reference/geom_path.html)
-  connecting mean points and raw data points, respectively.
+  connecting centrality measures and raw data points, respectively.
 
 - point.args:
 
-  A list of additional aesthetic arguments to be passed to the
+  A list of additional aesthetic arguments passed to
   [`ggplot2::geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html).
 
 - point.path, centrality.path:
 
-  Logical that decides whether individual data points and means,
-  respectively, should be connected using
-  [`ggplot2::geom_path()`](https://ggplot2.tidyverse.org/reference/geom_path.html).
-  Both default to `TRUE`. Note that `point.path` argument is relevant
-  only when there are two groups (i.e., in case of a *t*-test). In case
-  of large number of data points, it is advisable to set
-  `point.path = FALSE` as these lines can overwhelm the plot.
+  Logical that decides whether individual data points and centrality
+  measures, respectively, are connected using
+  [`ggplot2::geom_path()`](https://ggplot2.tidyverse.org/reference/geom_path.html)
+  (Default: `TRUE`). `point.path` is relevant only when there are two
+  groups (i.e., for a *t*-test). With many data points, consider
+  `point.path = FALSE`, as these lines can overwhelm the plot.
 
 - boxplot.args:
 
-  A list of additional aesthetic arguments passed on to
+  A list of additional aesthetic arguments passed to
   [`ggplot2::geom_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html).
   By default, the whiskers extend to 1.5 times the interquartile range
-  (IQR) from the box (Tukey-style). To customize whisker length, you can
-  use the `coef` parameter, e.g., `boxplot.args = list(coef = 3)` for
-  whiskers extending to the most extreme observations within 3 \* IQR of
-  the hinges.
+  (IQR) from the box (Tukey-style). Use `coef` to change this, e.g.,
+  `boxplot.args = list(coef = 3)` extends the whiskers to the most
+  extreme observations within 3 \* IQR of the hinges.
 
 - violin.args:
 
-  A list of additional aesthetic arguments to be passed to the
+  A list of additional aesthetic arguments passed to
   [`ggplot2::geom_violin()`](https://ggplot2.tidyverse.org/reference/geom_violin.html).
 
 - ggsignif.args:
 
-  A list of additional aesthetic arguments to be passed to
+  A list of additional aesthetic arguments passed to
   [`ggsignif::geom_signif()`](https://const-ae.github.io/ggsignif/reference/stat_signif.html).
 
 - ggtheme:
 
-  A `{ggplot2}` theme. Default value is
-  [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md).
-  Any of the `{ggplot2}` themes (e.g.,
-  [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)),
-  or themes from extension packages are allowed (e.g.,
-  `ggthemes::theme_fivethirtyeight()`, `hrbrthemes::theme_ipsum_ps()`,
-  etc.). But note that sometimes these themes will remove some of the
-  details that `{ggstatsplot}` plots typically contain. For example, if
-  relevant,
+  A `{ggplot2}` theme (Default:
+  [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md)).
+  Any `{ggplot2}` theme (e.g.,
+  [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html))
+  or theme from an extension package (e.g.,
+  `ggthemes::theme_fivethirtyeight()`) can be used. Note that some
+  themes remove plot details. For example,
+  `ggthemes::theme_fivethirtyeight()` removes the secondary Y-axis,
+  which
   [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
-  shows details about multiple comparison test as a label on the
-  secondary Y-axis. Some themes (e.g.
-  `ggthemes::theme_fivethirtyeight()`) will remove the secondary Y-axis
-  and thus the details as well.
+  uses to show details about pairwise comparisons.
 
 - palette:
 
@@ -313,11 +303,9 @@ ggwithinstats(
 
 - ggplot.component:
 
-  A `ggplot` component to be added to the plot prepared by
-  `{ggstatsplot}`. This argument is primarily helpful for `grouped_`
-  variants of all primary functions. Default is `NULL`. The argument
-  should be entered as a `{ggplot2}` function or a list of `{ggplot2}`
-  functions.
+  A `{ggplot2}` component, or a list of components, to add to the plot
+  (Default: `NULL`). This is mostly helpful for the `grouped_` variants,
+  where it is applied to each individual plot.
 
 - ...:
 
@@ -524,9 +512,9 @@ Not supported.
 
 ## See also
 
-[`grouped_ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbetweenstats.md),
-[`ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md),
-[`grouped_ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggwithinstats.md)
+[`grouped_ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggwithinstats.md),
+[`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md),
+[`grouped_ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbetweenstats.md)
 
 ## Examples
 
@@ -546,17 +534,6 @@ p <- ggwithinstats(
 
 # looking at the plot
 p
-
-
-# if the data are already arranged in repeated-measures order, `subject.id`
-# can be omitted
-ggwithinstats(
-  data             = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
-  x                = condition,
-  y                = desire,
-  pairwise.display = "none",
-  results.subtitle = FALSE
-)
 
 
 # extracting details from statistical tests
@@ -593,6 +570,16 @@ extract_stats(p)
 #> 
 #> attr(,"class")
 #> [1] "ggstatsplot_stats" "list"             
+
+# if the data are already arranged in repeated-measures order, `subject.id`
+# can be omitted
+ggwithinstats(
+  data             = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+  x                = condition,
+  y                = desire,
+  results.subtitle = FALSE
+)
+
 
 # use a stricter alpha threshold for significant pairwise comparisons
 ggwithinstats(

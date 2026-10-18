@@ -1,6 +1,6 @@
 # Package index
 
-## Hypothesis about group differences
+## Hypotheses about group differences
 
 - [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
   : Box/Violin plots for between-subjects comparisons
@@ -11,21 +11,21 @@
 - [`ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md)
   : Dot plot/chart for labeled numeric data
 
-## Hypothesis about correlation
+## Hypotheses about correlation
 
 - [`ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggscatterstats.md)
   : Scatterplot with marginal distributions and statistical results
 - [`ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/ggcorrmat.md)
   : Visualization of a correlation matrix
 
-## Hypothesis about composition of categorical variables
+## Hypotheses about composition of categorical variables
 
 - [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)
   : Pie charts with statistical tests
 - [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
   : Stacked bar charts with statistical tests
 
-## Hypothesis about regression coefficients
+## Hypotheses about regression coefficients
 
 - [`ggcoefstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggcoefstats.md)
   : Dot-and-whisker plots for regression analyses
@@ -38,11 +38,9 @@ variable
 - [`grouped_ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbarstats.md)
   : Grouped bar charts with statistical tests
 - [`grouped_ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbetweenstats.md)
-  : Violin plots for group or condition comparisons in between-subjects
-  designs repeated across all levels of a grouping variable
+  : Grouped box/violin plots for between-subjects comparisons
 - [`grouped_ggcorrmat()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggcorrmat.md)
-  : Visualization of a correlogram (or correlation matrix) for all
-  levels of a grouping variable
+  : Grouped visualizations of correlation matrices
 - [`grouped_ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggdotplotstats.md)
   : Grouped dot plots/charts for labeled numeric data
 - [`grouped_gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_gghistostats.md)
@@ -50,11 +48,10 @@ variable
 - [`grouped_ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggpiestats.md)
   : Grouped pie charts with statistical tests
 - [`grouped_ggscatterstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggscatterstats.md)
-  : Scatterplot with marginal distributions for all levels of a grouping
-  variable
+  : Grouped scatterplots with marginal distributions and statistical
+  results
 - [`grouped_ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggwithinstats.md)
-  : Violin plots for group or condition comparisons in within-subjects
-  designs repeated across all levels of a grouping variable
+  : Grouped box/violin plots for repeated measures comparisons
 
 ## Helper functions
 

@@ -1,10 +1,10 @@
 # Grouped histograms for distribution of a numeric variable
 
-Helper function for
-[`ggstatsplot::gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)
-to apply this function across multiple levels of a given factor and
-combine the resulting plots using
-[`ggstatsplot::combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
+Applies
+[`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)
+across all levels of `grouping.var` and combines the resulting plots
+using
+[`combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
 
 ## Usage
 
@@ -51,8 +51,7 @@ grouped_gghistostats(
 
   A `list` of additional arguments passed to
   [`patchwork::wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html),
-  except for `guides` argument which is already separately specified
-  here.
+  except for `guides`, which has its own argument.
 
 - annotation.args:
 
@@ -66,17 +65,16 @@ grouped_gghistostats(
 
   `bin.args`
 
-  : A list of additional aesthetic arguments to be passed to the
-    [`ggplot2::stat_bin()`](https://ggplot2.tidyverse.org/reference/geom_histogram.html)
-    used to display the bins. Do not specify `binwidth` argument in this
-    list since it has already been specified using the dedicated
-    argument.
+  : A list of additional aesthetic arguments passed to
+    [`ggplot2::stat_bin()`](https://ggplot2.tidyverse.org/reference/geom_histogram.html),
+    which displays the bins. Use the dedicated `binwidth` argument (not
+    this list) to set the bin width.
 
   `centrality.line.args`
 
-  : A list of additional aesthetic arguments to be passed to the
-    [`ggplot2::geom_vline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html)
-    used to display the lines corresponding to the centrality parameter.
+  : A list of additional aesthetic arguments passed to
+    [`ggplot2::geom_vline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html),
+    which displays the line for the centrality measure.
 
   `type`
 
@@ -142,20 +140,20 @@ grouped_gghistostats(
 
   `bf.message`
 
-  : Logical that decides whether to display Bayes Factor in favor of the
-    *null* hypothesis. This argument is relevant only **for parametric
-    test** (Default: `TRUE`).
+  : Logical that decides whether to display the Bayes Factor in favor of
+    the *null* hypothesis as a caption. Relevant only for parametric
+    tests (Default: `TRUE`).
 
   `results.subtitle`
 
-  : Decides whether the results of statistical tests are to be displayed
-    as a subtitle (Default: `TRUE`). Setting this to `FALSE` also skips
-    the automatic Bayes Factor caption. See the individual annotation
-    arguments to control other plot details.
+  : Logical that decides whether the results of statistical tests are
+    displayed as a subtitle (Default: `TRUE`). Setting this to `FALSE`
+    also skips the automatic Bayes Factor caption. Other plot details
+    have their own arguments.
 
   `subtitle`
 
-  : The text for the plot subtitle. Will work only if
+  : The text for the plot subtitle. Used only if
     `results.subtitle = FALSE`.
 
   `caption`
@@ -178,14 +176,12 @@ grouped_gghistostats(
 
     - **MAP estimator** for Bayesian statistics
 
-    If you want a different centrality parameter, you can specify this
-    using `centrality.type` argument.
+    Use `centrality.type` to choose a different centrality measure.
 
   `centrality.type`
 
-  : Decides which centrality parameter is to be displayed. The default
-    is to choose the same as `type` argument. You can specify this to
-    be:
+  : Decides which centrality measure is displayed. Defaults to the same
+    value as `type`. Can be one of:
 
     - `"parametric"` (for **mean**)
 
@@ -195,32 +191,27 @@ grouped_gghistostats(
 
     - `"bayes"` (for **MAP estimator**)
 
-    Just as `type` argument, abbreviations are also accepted.
+    As with `type`, abbreviations are accepted.
 
   `ggplot.component`
 
-  : A `ggplot` component to be added to the plot prepared by
-    `{ggstatsplot}`. This argument is primarily helpful for `grouped_`
-    variants of all primary functions. Default is `NULL`. The argument
-    should be entered as a `{ggplot2}` function or a list of `{ggplot2}`
-    functions.
+  : A `{ggplot2}` component, or a list of components, to add to the plot
+    (Default: `NULL`). This is mostly helpful for the `grouped_`
+    variants, where it is applied to each individual plot.
 
   `ggtheme`
 
-  : A `{ggplot2}` theme. Default value is
-    [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md).
-    Any of the `{ggplot2}` themes (e.g.,
-    [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)),
-    or themes from extension packages are allowed (e.g.,
-    `ggthemes::theme_fivethirtyeight()`, `hrbrthemes::theme_ipsum_ps()`,
-    etc.). But note that sometimes these themes will remove some of the
-    details that `{ggstatsplot}` plots typically contain. For example,
-    if relevant,
+  : A `{ggplot2}` theme (Default:
+    [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md)).
+    Any `{ggplot2}` theme (e.g.,
+    [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html))
+    or theme from an extension package (e.g.,
+    `ggthemes::theme_fivethirtyeight()`) can be used. Note that some
+    themes remove plot details. For example,
+    `ggthemes::theme_fivethirtyeight()` removes the secondary Y-axis,
+    which
     [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
-    shows details about multiple comparison test as a label on the
-    secondary Y-axis. Some themes (e.g.
-    `ggthemes::theme_fivethirtyeight()`) will remove the secondary
-    Y-axis and thus the details as well.
+    uses to show details about pairwise comparisons.
 
 ## Value
 
@@ -240,9 +231,9 @@ For details, see:
 
 ## See also
 
-[`gghistostats`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md),
-[`ggdotplotstats`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md),
-[`grouped_ggdotplotstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggdotplotstats.md)
+[`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md),
+[`ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md),
+[`grouped_ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggdotplotstats.md)
 
 ## Examples
 
@@ -250,7 +241,6 @@ For details, see:
 # for reproducibility
 set.seed(123)
 
-# plot
 grouped_gghistostats(
   data            = iris,
   x               = Sepal.Length,

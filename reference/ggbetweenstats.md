@@ -91,12 +91,10 @@ ggbetweenstats(
 
   - `"none"`
 
-  You can use this argument to make sure that your plot is not
-  uber-cluttered when you have multiple groups being compared and scores
-  of pairwise comparisons being displayed. Pairwise comparisons are
-  carried out (and displayed) only when `x` has three or more levels.
-  For `type = "bayes"`, there are no *p*-values, so all comparisons are
-  displayed unless this is `"none"`.
+  Use this to keep the plot uncluttered when many groups are compared.
+  Pairwise comparisons are carried out (and displayed) only when `x` has
+  three or more levels. For `type = "bayes"`, there are no *p*-values,
+  so all comparisons are displayed unless this is `"none"`.
 
 - pairwise.alpha:
 
@@ -122,16 +120,16 @@ ggbetweenstats(
 
 - bf.message:
 
-  Logical that decides whether to display Bayes Factor in favor of the
-  *null* hypothesis. This argument is relevant only **for parametric
-  test** (Default: `TRUE`).
+  Logical that decides whether to display the Bayes Factor in favor of
+  the *null* hypothesis as a caption. Relevant only for parametric tests
+  (Default: `TRUE`).
 
 - results.subtitle:
 
-  Decides whether the results of statistical tests are to be displayed
-  as a subtitle (Default: `TRUE`). Setting this to `FALSE` also skips
-  the automatic Bayes Factor caption. See the individual annotation
-  arguments to control other plot details.
+  Logical that decides whether the results of statistical tests are
+  displayed as a subtitle (Default: `TRUE`). Setting this to `FALSE`
+  also skips the automatic Bayes Factor caption. Other plot details have
+  their own arguments.
 
 - xlab:
 
@@ -154,7 +152,7 @@ ggbetweenstats(
 
 - subtitle:
 
-  The text for the plot subtitle. Will work only if
+  The text for the plot subtitle. Used only if
   `results.subtitle = FALSE`.
 
 - digits:
@@ -198,13 +196,12 @@ ggbetweenstats(
 
   - **MAP estimator** for Bayesian statistics
 
-  If you want a different centrality parameter, you can specify this
-  using `centrality.type` argument.
+  Use `centrality.type` to choose a different centrality measure.
 
 - centrality.type:
 
-  Decides which centrality parameter is to be displayed. The default is
-  to choose the same as `type` argument. You can specify this to be:
+  Decides which centrality measure is displayed. Defaults to the same
+  value as `type`. Can be one of:
 
   - `"parametric"` (for **mean**)
 
@@ -214,55 +211,52 @@ ggbetweenstats(
 
   - `"bayes"` (for **MAP estimator**)
 
-  Just as `type` argument, abbreviations are also accepted.
+  As with `type`, abbreviations are accepted.
 
 - centrality.point.args, centrality.label.args:
 
-  A list of additional aesthetic arguments to be passed to
+  A list of additional aesthetic arguments passed to
   [`ggplot2::geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html)
   and
-  [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html)
-  geoms, which are involved in centrality plotting.
+  [`ggrepel::geom_label_repel()`](https://ggrepel.slowkow.com/reference/geom_text_repel.html),
+  respectively, which display the centrality measure.
 
 - point.args:
 
-  A list of additional aesthetic arguments to be passed to the
+  A list of additional aesthetic arguments passed to
   [`ggplot2::geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html).
 
 - boxplot.args:
 
-  A list of additional aesthetic arguments passed on to
+  A list of additional aesthetic arguments passed to
   [`ggplot2::geom_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html).
   By default, the whiskers extend to 1.5 times the interquartile range
-  (IQR) from the box (Tukey-style). To customize whisker length, you can
-  use the `coef` parameter, e.g., `boxplot.args = list(coef = 3)` for
-  whiskers extending to the most extreme observations within 3 \* IQR of
-  the hinges.
+  (IQR) from the box (Tukey-style). Use `coef` to change this, e.g.,
+  `boxplot.args = list(coef = 3)` extends the whiskers to the most
+  extreme observations within 3 \* IQR of the hinges.
 
 - violin.args:
 
-  A list of additional aesthetic arguments to be passed to the
+  A list of additional aesthetic arguments passed to
   [`ggplot2::geom_violin()`](https://ggplot2.tidyverse.org/reference/geom_violin.html).
 
 - ggsignif.args:
 
-  A list of additional aesthetic arguments to be passed to
+  A list of additional aesthetic arguments passed to
   [`ggsignif::geom_signif()`](https://const-ae.github.io/ggsignif/reference/stat_signif.html).
 
 - ggtheme:
 
-  A `{ggplot2}` theme. Default value is
-  [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md).
-  Any of the `{ggplot2}` themes (e.g.,
-  [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)),
-  or themes from extension packages are allowed (e.g.,
-  `ggthemes::theme_fivethirtyeight()`, `hrbrthemes::theme_ipsum_ps()`,
-  etc.). But note that sometimes these themes will remove some of the
-  details that `{ggstatsplot}` plots typically contain. For example, if
-  relevant, `ggbetweenstats()` shows details about multiple comparison
-  test as a label on the secondary Y-axis. Some themes (e.g.
-  `ggthemes::theme_fivethirtyeight()`) will remove the secondary Y-axis
-  and thus the details as well.
+  A `{ggplot2}` theme (Default:
+  [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md)).
+  Any `{ggplot2}` theme (e.g.,
+  [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html))
+  or theme from an extension package (e.g.,
+  `ggthemes::theme_fivethirtyeight()`) can be used. Note that some
+  themes remove plot details. For example,
+  `ggthemes::theme_fivethirtyeight()` removes the secondary Y-axis,
+  which `ggbetweenstats()` uses to show details about pairwise
+  comparisons.
 
 - palette:
 
@@ -272,11 +266,9 @@ ggbetweenstats(
 
 - ggplot.component:
 
-  A `ggplot` component to be added to the plot prepared by
-  `{ggstatsplot}`. This argument is primarily helpful for `grouped_`
-  variants of all primary functions. Default is `NULL`. The argument
-  should be entered as a `{ggplot2}` function or a list of `{ggplot2}`
-  functions.
+  A `{ggplot2}` component, or a list of components, to add to the plot
+  (Default: `NULL`). This is mostly helpful for the `grouped_` variants,
+  where it is applied to each individual plot.
 
 - ...:
 
@@ -499,9 +491,9 @@ Not supported.
 
 ## See also
 
-[`grouped_ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbetweenstats.md),
-[`ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md),
-[`grouped_ggwithinstats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggwithinstats.md)
+[`grouped_ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbetweenstats.md),
+[`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md),
+[`grouped_ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggwithinstats.md)
 
 ## Examples
 

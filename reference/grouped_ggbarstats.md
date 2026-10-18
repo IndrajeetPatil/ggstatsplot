@@ -1,10 +1,10 @@
 # Grouped bar charts with statistical tests
 
-Helper function for
-[`ggstatsplot::ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
-to apply this function across multiple levels of a given factor and
-combine the resulting plots using
-[`ggstatsplot::combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
+Applies
+[`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
+across all levels of `grouping.var` and combines the resulting plots
+using
+[`combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
 
 ## Usage
 
@@ -34,12 +34,12 @@ grouped_ggbarstats(
 
   `label.args`
 
-  : Additional aesthetic arguments that will be passed to
+  : A list of additional aesthetic arguments passed to
     [`ggplot2::geom_label()`](https://ggplot2.tidyverse.org/reference/geom_text.html).
 
   `sample.size.label.args`
 
-  : Additional aesthetic arguments that will be passed to
+  : A list of additional aesthetic arguments passed to
     [`ggplot2::geom_text()`](https://ggplot2.tidyverse.org/reference/geom_text.html).
 
   `xlab`
@@ -62,37 +62,34 @@ grouped_ggbarstats(
 
   `y`
 
-  : The variable to use as the **columns** in the contingency table.
-    Default is `NULL`. If `NULL`, one-sample proportion test (a goodness
-    of fit test) will be run for the `x` variable. Otherwise an
-    appropriate association test will be run.
+  : The variable to use as the **columns** in the contingency table. If
+    `NULL` (default), a one-sample proportion test (a goodness of fit
+    test) is run for the `x` variable. Otherwise, an appropriate
+    association test is run.
 
   `proportion.test`
 
-  : Decides whether proportion test for `x` variable is to be carried
-    out for each level of `y`. Defaults to `results.subtitle`. In
-    [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md),
-    only *p*-values from this test will be displayed. Always `FALSE`
-    when `type = "bayes"`, when `y` is `NULL`, or when `x` has only one
+  : Logical that decides whether a proportion test for `x` is carried
+    out for each level of `y`. Defaults to `results.subtitle`.
+    [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
+    displays only the *p*-values from this test. Always `FALSE` when
+    `type = "bayes"`, when `y` is `NULL`, or when `x` has only one
     level.
 
   `bf.message`
 
-  : Logical that decides whether to display Bayes Factor in favor of the
-    *null* hypothesis as a caption. This argument is relevant only for
-    non-Bayesian `type`s and unpaired designs (`paired = FALSE`)
-    (Default: `TRUE`).
+  : Logical that decides whether to display the Bayes Factor in favor of
+    the *null* hypothesis as a caption. Relevant only for non-Bayesian
+    `type`s and unpaired designs (`paired = FALSE`) (Default: `TRUE`).
 
   `digits.perc`
 
-  : Numeric that decides number of decimal places for percentage labels
-    (Default: `0L`).
+  : Number of decimal places for percentage labels (Default: `0L`).
 
   `label`
 
-  : Character that decides what information needs to be displayed on the
-    label in each pie slice. Possible options are `"percentage"`
-    (default), `"counts"`, `"both"`.
+  : Character that decides what each label displays: `"percentage"`
+    (default), `"counts"`, or `"both"`.
 
   `legend.title`
 
@@ -107,14 +104,14 @@ grouped_ggbarstats(
 
   `results.subtitle`
 
-  : Decides whether the results of statistical tests are to be displayed
-    as a subtitle (Default: `TRUE`). Setting this to `FALSE` also skips
-    the automatic Bayes Factor caption. See the individual annotation
-    arguments to control other plot details.
+  : Logical that decides whether the results of statistical tests are
+    displayed as a subtitle (Default: `TRUE`). Setting this to `FALSE`
+    also skips the automatic Bayes Factor caption. Other plot details
+    have their own arguments.
 
   `subtitle`
 
-  : The text for the plot subtitle. Will work only if
+  : The text for the plot subtitle. Used only if
     `results.subtitle = FALSE`.
 
   `caption`
@@ -124,11 +121,9 @@ grouped_ggbarstats(
 
   `ggplot.component`
 
-  : A `ggplot` component to be added to the plot prepared by
-    `{ggstatsplot}`. This argument is primarily helpful for `grouped_`
-    variants of all primary functions. Default is `NULL`. The argument
-    should be entered as a `{ggplot2}` function or a list of `{ggplot2}`
-    functions.
+  : A `{ggplot2}` component, or a list of components, to add to the plot
+    (Default: `NULL`). This is mostly helpful for the `grouped_`
+    variants, where it is applied to each individual plot.
 
   `palette`
 
@@ -138,20 +133,17 @@ grouped_ggbarstats(
 
   `ggtheme`
 
-  : A `{ggplot2}` theme. Default value is
-    [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md).
-    Any of the `{ggplot2}` themes (e.g.,
-    [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html)),
-    or themes from extension packages are allowed (e.g.,
-    `ggthemes::theme_fivethirtyeight()`, `hrbrthemes::theme_ipsum_ps()`,
-    etc.). But note that sometimes these themes will remove some of the
-    details that `{ggstatsplot}` plots typically contain. For example,
-    if relevant,
+  : A `{ggplot2}` theme (Default:
+    [`theme_ggstatsplot()`](https://www.indrapatil.com/ggstatsplot/reference/theme_ggstatsplot.md)).
+    Any `{ggplot2}` theme (e.g.,
+    [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html))
+    or theme from an extension package (e.g.,
+    `ggthemes::theme_fivethirtyeight()`) can be used. Note that some
+    themes remove plot details. For example,
+    `ggthemes::theme_fivethirtyeight()` removes the secondary Y-axis,
+    which
     [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
-    shows details about multiple comparison test as a label on the
-    secondary Y-axis. Some themes (e.g.
-    `ggthemes::theme_fivethirtyeight()`) will remove the secondary
-    Y-axis and thus the details as well.
+    uses to show details about pairwise comparisons.
 
   `type`
 
@@ -224,8 +216,7 @@ grouped_ggbarstats(
 
   A `list` of additional arguments passed to
   [`patchwork::wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html),
-  except for `guides` argument which is already separately specified
-  here.
+  except for `guides`, which has its own argument.
 
 - annotation.args:
 
@@ -251,9 +242,9 @@ For details, see:
 
 ## See also
 
-[`ggbarstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md),
-[`ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md),
-[`grouped_ggpiestats`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggpiestats.md)
+[`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md),
+[`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md),
+[`grouped_ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggpiestats.md)
 
 ## Examples
 
