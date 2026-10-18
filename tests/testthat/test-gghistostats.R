@@ -137,4 +137,11 @@ test_that("histogram bins are drawn when all values are identical", {
     gghistostats(data.frame(x = 3), x, results.subtitle = FALSE)
   )
   expect_identical(sum(bins$count), 1)
+
+  # the fallback width is scaled up for values too large for `0.1` bins
+  expect_identical(.binwidth(rep(-1e20, 2L)), 1e17)
+  bins <- ggplot2::layer_data(
+    gghistostats(data.frame(x = rep(1e20, 10L)), x, results.subtitle = FALSE)
+  )
+  expect_identical(sum(bins$count), 10)
 })
