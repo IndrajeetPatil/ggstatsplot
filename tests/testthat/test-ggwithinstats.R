@@ -4,10 +4,10 @@ skip_if_not_installed("afex")
 skip_if_not_installed("WRS2")
 skip_if_not_installed("rstantools")
 
-test_that("defaults plots", {
+test_that("default plots", {
   set.seed(123)
   expect_doppelganger(
-    title = "defaults plots - two groups",
+    title = "default plots - two groups",
     fig = ggwithinstats(
       data = data_bugs_2,
       x = condition,
@@ -23,7 +23,7 @@ test_that("defaults plots", {
 
   set.seed(123)
   expect_doppelganger(
-    title = "defaults plots - more than two groups",
+    title = "default plots - more than two groups",
     fig = ggwithinstats(
       data = WRS2::WineTasting,
       x = Wine,

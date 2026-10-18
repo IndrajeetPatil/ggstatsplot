@@ -14,13 +14,12 @@ test_that("checking default outputs", {
   )
 })
 
-
 # modification with ggplot2 ----------------------------------------------
 
 test_that("modification with ggplot2 works as expected", {
   set.seed(123)
   expect_doppelganger(
-    title = "modification with ggplot2 ",
+    title = "modification with ggplot2",
     fig = suppressMessages(ggdotplotstats(
       data = morley_new,
       x = Speed,
