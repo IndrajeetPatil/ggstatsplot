@@ -40,9 +40,9 @@ ungrouped before they are entered as \code{data}.}
 
 \item{binwidth}{The width of the histogram bins. Can be specified as a
 numeric value, or a function that calculates width from \code{x}. The default is
-to use \code{(max(x) - min(x)) / sqrt(N)}. You should always check this value
-and explore multiple widths to find the best to illustrate the stories in
-your data.}
+to use \code{(max(x) - min(x)) / sqrt(N)}, or \code{0.1} if all values of \code{x} are
+identical. You should always check this value and explore multiple widths
+to find the best to illustrate the stories in your data.}
 
 \item{xlab}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}

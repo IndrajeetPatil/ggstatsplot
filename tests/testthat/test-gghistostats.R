@@ -124,3 +124,17 @@ test_that("default binwidth ignores missing values", {
     .binwidth(stats::na.omit(ggplot2::msleep$brainwt))
   )
 })
+
+test_that("histogram bins are drawn when all values are identical", {
+  expect_identical(.binwidth(c(5, 5, NA)), 0.1)
+
+  bins <- ggplot2::layer_data(
+    gghistostats(data.frame(x = rep(5, 10L)), x, results.subtitle = FALSE)
+  )
+  expect_identical(sum(bins$count), 10)
+
+  bins <- ggplot2::layer_data(
+    gghistostats(data.frame(x = 3), x, results.subtitle = FALSE)
+  )
+  expect_identical(sum(bins$count), 1)
+})

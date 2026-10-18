@@ -14,9 +14,9 @@
 #' @param ... Currently ignored.
 #' @param binwidth The width of the histogram bins. Can be specified as a
 #'   numeric value, or a function that calculates width from `x`. The default is
-#'   to use `(max(x) - min(x)) / sqrt(N)`. You should always check this value
-#'   and explore multiple widths to find the best to illustrate the stories in
-#'   your data.
+#'   to use `(max(x) - min(x)) / sqrt(N)`, or `0.1` if all values of `x` are
+#'   identical. You should always check this value and explore multiple widths
+#'   to find the best to illustrate the stories in your data.
 #' @param bin.args A list of additional aesthetic arguments to be passed to the
 #'   [`ggplot2::stat_bin()`] used to display the bins. Do not specify `binwidth`
 #'   argument in this list since it has already been specified using the
@@ -168,7 +168,9 @@ gghistostats <- function(
 #' @noRd
 .binwidth <- function(x) {
   x <- x[!is.na(x)]
-  diff(range(x)) / sqrt(length(x))
+  x_range <- diff(range(x))
+  # for zero-range data, use the width that `ggplot2::stat_bin()` falls back to
+  if (x_range > 0) x_range / sqrt(length(x)) else 0.1
 }
 
 

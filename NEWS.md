@@ -17,6 +17,10 @@
 - `ggbarstats()` no longer displays empty proportion test labels above the
   bars when `x` has only one level, matching `ggpiestats()`.
 
+- `gghistostats()` and `grouped_gghistostats()` now draw the histogram when all
+  values of `x` are identical (including a single observation). Previously, the
+  default bin width was zero, so no bins were drawn.
+
 # ggstatsplot 1.1.3
 
 ## BUG FIXES
