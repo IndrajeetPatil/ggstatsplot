@@ -14,6 +14,9 @@
   the non-missing values of `x`, as `gghistostats()` does. Previously, missing
   values were counted in the sample size, making the bins too narrow.
 
+- `ggbarstats()` no longer displays empty proportion test labels above the
+  bars when `x` has only one level, matching `ggpiestats()`.
+
 # ggstatsplot 1.1.3
 
 ## BUG FIXES

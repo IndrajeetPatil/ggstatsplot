@@ -21,7 +21,8 @@
 #' @param proportion.test Decides whether proportion test for `x` variable is to
 #'   be carried out for each level of `y`. Defaults to `results.subtitle`. In
 #'   [`ggbarstats()`], only *p*-values from this test will be displayed. Always
-#'   `FALSE` when `type = "bayes"` or when `y` is `NULL`.
+#'   `FALSE` when `type = "bayes"`, when `y` is `NULL`, or when `x` has only one
+#'   level.
 #' @param bf.message Logical that decides whether to display Bayes Factor in
 #'   favor of the *null* hypothesis as a caption. This argument is relevant
 #'   only for non-Bayesian `type`s and unpaired designs (`paired = FALSE`)

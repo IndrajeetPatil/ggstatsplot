@@ -113,7 +113,7 @@ ggbarstats <- function(
   x_levels <- prep$x_levels
   y_levels <- prep$y_levels
 
-  if (type == "bayes" || y_levels < 2L) {
+  if (type == "bayes" || x_levels < 2L || y_levels < 2L) {
     proportion.test <- FALSE
   }
 
