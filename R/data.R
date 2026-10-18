@@ -10,7 +10,7 @@
 #'
 #'   - title. Title of the movie.
 #'   - year. Year of release.
-#'   - budget. Total budget (if known) in US dollars
+#'   - budget. Total budget (if known) in US dollars.
 #'   - length. Length in minutes.
 #'   - rating. Average IMDB user rating.
 #'   - votes. Number of IMDB users who rated this movie.
@@ -66,7 +66,7 @@
 #'   - id. Dummy identity number for each flower (150 flowers in total).
 #'   - Species. The species are *Iris setosa*, *versicolor*, and *virginica*.
 #'   - condition. Factor giving a detailed description of the attribute
-#'     (Four levels: `"Petal.Length"`, `"Petal.Width"`,  `"Sepal.Length"`,
+#'     (Four levels: `"Petal.Length"`, `"Petal.Width"`, `"Sepal.Length"`,
 #'     `"Sepal.Width"`).
 #'   - attribute. What attribute is being measured (`"Sepal"` or `"Petal"`).
 #'   - measure. What aspect of the attribute is being measured (`"Length"` or `"Width"`).

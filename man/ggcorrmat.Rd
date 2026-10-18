@@ -94,7 +94,7 @@ comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 low (negative correlations), mid (zero), and high (positive correlations).
 Must be a \strong{diverging} palette so that the sign of the correlation is
 visually obvious.
-Default: \code{c("#EA4335", "white", "#4285F4")} (red–white–blue).}
+Default: \code{c("#EA4335", "white", "#4285F4")} (red-white-blue).}
 
 \item{pch}{Decides the point shape to be used for insignificant correlation
 coefficients. Default: \code{pch = "cross"}. The caption explaining the

@@ -41,7 +41,7 @@ insignificance marker is added only for \code{pch = "cross"} (or \code{4}).}
 low (negative correlations), mid (zero), and high (positive correlations).
 Must be a \strong{diverging} palette so that the sign of the correlation is
 visually obvious.
-Default: \code{c("#EA4335", "white", "#4285F4")} (red–white–blue).}
+Default: \code{c("#EA4335", "white", "#4285F4")} (red-white-blue).}
     \item{\code{ggcorrplot.args}}{A list of additional (mostly aesthetic) arguments
 passed to \code{\link[ggcorrplot:ggcorrplot]{ggcorrplot::ggcorrplot()}}. Do not include the following
 arguments, which are set internally: \code{corr}, \code{p.mat}, \code{sig.level},

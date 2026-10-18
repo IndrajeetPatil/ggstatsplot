@@ -36,7 +36,7 @@
 #'   low (negative correlations), mid (zero), and high (positive correlations).
 #'   Must be a **diverging** palette so that the sign of the correlation is
 #'   visually obvious.
-#'   Default: `c("#EA4335", "white", "#4285F4")` (red–white–blue).
+#'   Default: `c("#EA4335", "white", "#4285F4")` (red-white-blue).
 #' @param ggcorrplot.args A list of additional (mostly aesthetic) arguments
 #'   passed to [`ggcorrplot::ggcorrplot()`]. Do not include the following
 #'   arguments, which are set internally: `corr`, `p.mat`, `sig.level`,
