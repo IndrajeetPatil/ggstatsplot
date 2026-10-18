@@ -59,8 +59,9 @@ utils::globalVariables(".pre")
 #'
 #' @description
 #'
-#' This function splits the data frame into a list, with the length of the list
-#' equal to the factor levels of the grouping variable.
+#' This function splits the data frame by the levels of the grouping variable.
+#' It returns a list with two elements: `data`, a list with one data frame per
+#' level, and `title`, a character vector with the corresponding level names.
 #'
 #' @inheritParams ggbetweenstats
 #' @param grouping.var A single grouping variable. A separate plot is created
