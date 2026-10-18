@@ -29,7 +29,7 @@ test_that("edge cases", {
   expect_dropped_levels_plots(ggpiestats)
 
   smokers <- tibble::tibble(
-    smoker = factor(c("no", "no", "no", "no", "no"), levels = c("yes", "no"))
+    smoker = factor(rep("no", 5L), levels = c("yes", "no"))
   )
 
   set.seed(123)

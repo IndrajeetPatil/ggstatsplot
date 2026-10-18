@@ -69,7 +69,7 @@ test_that("subtitle output", {
 # grouped_ggdotplotstats works -----------------------------------------------
 
 test_that("grouped_ggdotplotstats works", {
-  # removing factor level with very few no. of observations
+  # drop the `cyl` level with very few observations
   df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6", "8"))
 
   set.seed(123)

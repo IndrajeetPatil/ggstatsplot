@@ -18,7 +18,7 @@ test_that("plotting features work as expected", {
       ggplot2::labs(x = "Transmission", y = "Weight")
   )
 
-  # edge case
+  # only three observations per group
   df_small <- data.frame(
     centrality.a = c(1.1, 0.9, 0.94, 1.58, 1.2, 1.4),
     group = c("a", "a", "a", "b", "b", "b")

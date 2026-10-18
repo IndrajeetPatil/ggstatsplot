@@ -99,7 +99,7 @@ test_that("grouped plots work", {
     title = "grouped plots - default",
     variant = snapshot_variant,
     fig = grouped_ggwithinstats(
-      data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+      data = dplyr::filter(bugs_long, condition %in% c("HDHF", "HDLF")),
       x = condition,
       y = desire,
       subject.id = subject,

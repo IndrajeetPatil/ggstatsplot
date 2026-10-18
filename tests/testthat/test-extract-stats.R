@@ -91,7 +91,7 @@ test_that("checking if extract_stats works for grouped plots", {
     extract_caption(p8)
   })
 
-  # Explicitly test that extract functions return list for grouped plots
+  # extract functions return one element per group for grouped plots
   set.seed(123)
   p9 <- grouped_gghistostats(iris, Sepal.Length, grouping.var = Species)
   subtitle_result <- extract_subtitle(p9)
