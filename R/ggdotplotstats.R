@@ -201,7 +201,7 @@ ggdotplotstats <- function(
 #' @description
 #'
 #' Helper function for `ggstatsplot::ggdotplotstats()` to apply this function
-#' across multiple levels of a given factor and combining the resulting plots
+#' across multiple levels of a given factor and combine the resulting plots
 #' using `ggstatsplot::combine_plots()`.
 #'
 #' @inheritParams ggdotplotstats

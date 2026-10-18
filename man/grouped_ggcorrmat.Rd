@@ -117,7 +117,7 @@ A \code{patchwork} object combining one plot per level of
 }
 \description{
 Helper function for \code{ggstatsplot::ggcorrmat()} to apply this function across
-multiple levels of a given factor and combining the resulting plots using
+multiple levels of a given factor and combine the resulting plots using
 \code{ggstatsplot::combine_plots()}.
 }
 \details{

@@ -138,7 +138,7 @@ it returns a list with the statistical details for each of these plots.
 }
 \description{
 Helper function for \code{ggstatsplot::ggpiestats()} to apply this
-function across multiple levels of a given factor and combining the
+function across multiple levels of a given factor and combine the
 resulting plots using \code{ggstatsplot::combine_plots()}.
 }
 \details{
