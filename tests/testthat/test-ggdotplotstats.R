@@ -14,13 +14,12 @@ test_that("checking default outputs", {
   )
 })
 
-
 # modification with ggplot2 ----------------------------------------------
 
 test_that("modification with ggplot2 works as expected", {
   set.seed(123)
   expect_doppelganger(
-    title = "modification with ggplot2 ",
+    title = "modification with ggplot2",
     fig = suppressMessages(ggdotplotstats(
       data = morley_new,
       x = Speed,
@@ -69,7 +68,7 @@ test_that("subtitle output", {
 # grouped_ggdotplotstats works -----------------------------------------------
 
 test_that("grouped_ggdotplotstats works", {
-  # removing factor level with very few no. of observations
+  # drop the `cyl` level with very few observations
   df <- dplyr::filter(ggplot2::mpg, cyl %in% c("4", "6", "8"))
 
   set.seed(123)

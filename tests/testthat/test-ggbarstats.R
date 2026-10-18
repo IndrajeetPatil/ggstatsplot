@@ -7,60 +7,8 @@ test_that("checking default outputs", {
 # changing labels and aesthetics -------------------------------------------
 
 test_that("changing labels and aesthetics", {
-  set.seed(123)
-  expect_doppelganger(
-    title = "checking percentage labels",
-    fig = ggbarstats(
-      data = mtcars,
-      x = cyl,
-      y = am,
-      label = "percentage",
-      results.subtitle = FALSE
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "checking count labels",
-    fig = ggbarstats(
-      data = mtcars,
-      x = cyl,
-      y = am,
-      label = "counts",
-      results.subtitle = FALSE
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "checking percentage and count labels",
-    fig = ggbarstats(
-      data = mtcars,
-      x = cyl,
-      y = am,
-      label = "both",
-      results.subtitle = FALSE
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "changing aesthetics works",
-    fig = suppressWarnings(
-      ggbarstats(
-        data = mtcars,
-        x = am,
-        y = cyl,
-        digits.perc = 2L,
-        title = "mtcars dataset",
-        palette = "wesanderson::Royal2",
-        ggtheme = ggplot2::theme_bw(),
-        label = "counts",
-        legend.title = "transmission",
-        results.subtitle = FALSE
-      )
-    )
-  )
+  expect_label_plots(ggbarstats, data = mtcars, x = cyl, y = am)
+  expect_custom_aesthetics_plot(ggbarstats)
 
   epoch_levels <- c("Before", "After")
   mode_levels <- c("A", "P", "C", "T")
@@ -82,20 +30,7 @@ test_that("changing labels and aesthetics", {
 # edge cases ---------------------------------------------------------
 
 test_that("edge cases", {
-  # dropped level dataset
-  mtcars_small <- dplyr::filter(mtcars, am == "0")
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "works with dropped levels",
-    fig = ggbarstats(mtcars_small, cyl, am)
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "prop test fails with dropped levels",
-    fig = ggbarstats(mtcars_small, am, cyl)
-  )
+  expect_dropped_levels_plots(ggbarstats)
 
   # no proportion test labels when `x` has a single level
   p_label_layers <- function(p) {
@@ -105,7 +40,7 @@ test_that("edge cases", {
     )
     sum(layer_labels == ".p.label")
   }
-  expect_identical(p_label_layers(ggbarstats(mtcars_small, am, cyl)), 0L)
+  expect_identical(p_label_layers(ggbarstats(mtcars_automatic, am, cyl)), 0L)
   expect_identical(p_label_layers(ggbarstats(mtcars, am, cyl)), 1L)
 
   too_many_levels <- tibble::tibble(x = factor(seq_len(25L)))
@@ -159,17 +94,5 @@ test_that("grouped_ggbarstats works", {
 # grouped_ggbarstats edge cases --------------------
 
 test_that("edge case behavior", {
-  set.seed(123)
-  expect_doppelganger(
-    title = "common legend when levels are dropped",
-    fig = grouped_ggbarstats(
-      data = dropped_levels_counts,
-      x = measurement,
-      y = flag,
-      grouping.var = dataset,
-      counts = count,
-      results.subtitle = FALSE,
-      proportion.test = FALSE
-    )
-  )
+  expect_grouped_common_legend_plot(grouped_ggbarstats)
 })

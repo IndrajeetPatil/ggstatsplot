@@ -7,57 +7,8 @@ test_that("checking default outputs", {
 # changing labels and aesthetics -------------------------------------------
 
 test_that("changing labels and aesthetics", {
-  set.seed(123)
-  expect_doppelganger(
-    title = "checking percentage labels",
-    fig = ggpiestats(
-      mtcars,
-      x = cyl,
-      label = "percentage",
-      results.subtitle = FALSE
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "checking count labels",
-    fig = ggpiestats(
-      mtcars,
-      x = cyl,
-      label = "counts",
-      results.subtitle = FALSE
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "checking percentage and count labels",
-    fig = ggpiestats(
-      mtcars,
-      x = cyl,
-      label = "both",
-      results.subtitle = FALSE
-    )
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "changing aesthetics works",
-    fig = suppressWarnings(
-      ggpiestats(
-        mtcars,
-        x = am,
-        y = cyl,
-        digits.perc = 2L,
-        title = "mtcars dataset",
-        palette = "wesanderson::Royal2",
-        ggtheme = ggplot2::theme_bw(),
-        label = "counts",
-        legend.title = "transmission",
-        results.subtitle = FALSE
-      )
-    )
-  )
+  expect_label_plots(ggpiestats, data = mtcars, x = cyl)
+  expect_custom_aesthetics_plot(ggpiestats)
 
   set.seed(123)
   expect_doppelganger(
@@ -75,23 +26,10 @@ test_that("changing labels and aesthetics", {
 # edge cases ---------------------------------------------------------
 
 test_that("edge cases", {
-  # dropped level dataset
-  mtcars_small <- dplyr::filter(mtcars, am == "0")
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "works with dropped levels",
-    fig = ggpiestats(mtcars_small, cyl, am)
-  )
-
-  set.seed(123)
-  expect_doppelganger(
-    title = "prop test fails with dropped levels",
-    fig = ggpiestats(mtcars_small, am, cyl)
-  )
+  expect_dropped_levels_plots(ggpiestats)
 
   smokers <- tibble::tibble(
-    smoker = factor(c("no", "no", "no", "no", "no"), levels = c("yes", "no"))
+    smoker = factor(rep("no", 5L), levels = c("yes", "no"))
   )
 
   set.seed(123)
@@ -149,17 +87,5 @@ test_that("grouped_ggpiestats works", {
 # grouped_ggpiestats edge cases --------------------
 
 test_that("edge case behavior", {
-  set.seed(123)
-  expect_doppelganger(
-    title = "common legend when levels are dropped",
-    fig = grouped_ggpiestats(
-      dropped_levels_counts,
-      x = measurement,
-      y = flag,
-      grouping.var = dataset,
-      counts = count,
-      results.subtitle = FALSE,
-      proportion.test = FALSE
-    )
-  )
+  expect_grouped_common_legend_plot(grouped_ggpiestats)
 })

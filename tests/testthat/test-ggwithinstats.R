@@ -4,10 +4,10 @@ skip_if_not_installed("afex")
 skip_if_not_installed("WRS2")
 skip_if_not_installed("rstantools")
 
-test_that("defaults plots", {
+test_that("default plots", {
   set.seed(123)
   expect_doppelganger(
-    title = "defaults plots - two groups",
+    title = "default plots - two groups",
     fig = ggwithinstats(
       data = data_bugs_2,
       x = condition,
@@ -23,7 +23,7 @@ test_that("defaults plots", {
 
   set.seed(123)
   expect_doppelganger(
-    title = "defaults plots - more than two groups",
+    title = "default plots - more than two groups",
     fig = ggwithinstats(
       data = WRS2::WineTasting,
       x = Wine,
@@ -99,7 +99,7 @@ test_that("grouped plots work", {
     title = "grouped plots - default",
     variant = snapshot_variant,
     fig = grouped_ggwithinstats(
-      data = filter(bugs_long, condition %in% c("HDHF", "HDLF")),
+      data = dplyr::filter(bugs_long, condition %in% c("HDHF", "HDLF")),
       x = condition,
       y = desire,
       subject.id = subject,
@@ -116,19 +116,13 @@ test_that("subject.id pairs unsorted rows and drops incomplete subjects", {
   set.seed(123)
   df_shuffled <- data_bugs_2[sample(nrow(data_bugs_2)), ]
 
+  subtitle_statistic <- function(data) {
+    p <- ggwithinstats(data, condition, desire, subject.id = subject)
+    extract_stats(p)$subtitle_data$statistic
+  }
   expect_identical(
-    extract_stats(ggwithinstats(
-      df_shuffled,
-      condition,
-      desire,
-      subject.id = subject
-    ))$subtitle_data$statistic,
-    extract_stats(ggwithinstats(
-      data_bugs_2,
-      condition,
-      desire,
-      subject.id = subject
-    ))$subtitle_data$statistic
+    subtitle_statistic(df_shuffled),
+    subtitle_statistic(data_bugs_2)
   )
 
   set.seed(123)
