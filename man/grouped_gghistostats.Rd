@@ -28,8 +28,8 @@ for character variables). Rows with a missing value in this variable are
 removed.}
 
 \item{binwidth}{The width of the histogram bins (see \code{\link[=gghistostats]{gghistostats()}}). If
-\code{NULL} (default), it is computed once from the full data (not per group),
-so that all plots share the same bin width.}
+\code{NULL} (default), it is computed once from the non-missing values of \code{x} in
+the full data (not per group), so that all plots share the same bin width.}
 
 \item{plotgrid.args}{A \code{list} of additional arguments passed to
 \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}, except for \code{guides} argument which is already

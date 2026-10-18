@@ -10,6 +10,10 @@
   any column, including non-numeric columns not used in the correlations,
   switched the legend to minimum, mode, and maximum sample sizes.
 
+- `grouped_gghistostats()` now computes its default common bin width from
+  the non-missing values of `x`, as `gghistostats()` does. Previously, missing
+  values were counted in the sample size, making the bins too narrow.
+
 # ggstatsplot 1.1.3
 
 ## BUG FIXES
