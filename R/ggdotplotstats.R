@@ -147,7 +147,6 @@ ggdotplotstats <- function(
   plot_dot <- ggplot(data, mapping = aes({{ x }}, y = rank)) +
     exec(geom_point, !!!point.args) +
     scale_y_continuous(
-      name = ylab,
       labels = pull(data, {{ y }}),
       breaks = data$rank,
       sec.axis = dup_axis(

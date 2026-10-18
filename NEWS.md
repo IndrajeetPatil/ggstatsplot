@@ -2,6 +2,10 @@
 
 ## BUG FIXES
 
+- `ggdotplotstats()` now labels the `y` axis with the name of the `y`
+  variable when `ylab = NULL` (default), as documented. Previously, no `y`
+  axis title was shown unless `ylab` was supplied.
+
 - `ggcorrmat()` now uses all numeric variables when `cor.vars = NULL` is
   passed explicitly, as documented, instead of failing with an error.
 
