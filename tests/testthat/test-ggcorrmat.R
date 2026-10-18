@@ -72,7 +72,7 @@ test_that("ggcorrmat works as expected with changed defaults", {
       p.adjust.method = "hommel",
       matrix.type = "upper"
     ) +
-      labs(caption = NULL)
+      ggplot2::labs(caption = NULL)
   )
 
   set.seed(123)

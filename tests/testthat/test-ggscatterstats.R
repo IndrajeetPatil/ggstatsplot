@@ -36,8 +36,8 @@ test_that("aesthetic modifications work", {
         na.rm = TRUE
       )
     ) +
-      scale_x_continuous(breaks = seq(1, 6, 1), limits = c(1, 6)) +
-      scale_y_continuous(breaks = seq(10, 40, 10), limits = c(10, 40))
+      ggplot2::scale_x_continuous(breaks = seq(1, 6, 1), limits = c(1, 6)) +
+      ggplot2::scale_y_continuous(breaks = seq(10, 40, 10), limits = c(10, 40))
   )
 })
 
@@ -150,7 +150,9 @@ test_that("grouped_ggscatterstats plotting works as expected", {
       grouping.var = vore,
       xlab = "total sleep",
       ylab = "body weight",
-      ggplot.component = scale_y_continuous(breaks = seq(0, 6000, 1000))
+      ggplot.component = ggplot2::scale_y_continuous(
+        breaks = seq(0, 6000, 1000)
+      )
     )
   )
 })
