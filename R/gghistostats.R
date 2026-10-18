@@ -16,7 +16,7 @@
 #'   numeric value, or a function that calculates width from `x`. The default is
 #'   to use `(max(x) - min(x)) / sqrt(N)`, or `0.1` if all values of `x` are
 #'   identical. You should always check this value and explore multiple widths
-#'   to find the best to illustrate the stories in your data.
+#'   to find the one that best illustrates the stories in your data.
 #' @param bin.args A list of additional aesthetic arguments to be passed to the
 #'   [`ggplot2::stat_bin()`] used to display the bins. Do not specify `binwidth`
 #'   argument in this list since it has already been specified using the
