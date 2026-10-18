@@ -265,14 +265,7 @@ For details, see:
 
 \section{Centrality measures}{
 
-
-
-The table below provides summary about:
-\itemize{
-\item statistical test carried out for inferential statistics
-\item type of effect size estimate and a measure of uncertainty for this estimate
-\item functions used internally to compute these details
-}\tabular{lll}{
+\tabular{lll}{
    Type \tab Measure \tab Function used \cr
    Parametric \tab mean \tab \code{datawizard::describe_distribution()} \cr
    Non-parametric \tab median \tab \code{datawizard::describe_distribution()} \cr
@@ -286,11 +279,11 @@ The table below provides summary about:
 
 
 
-The table below provides summary about:
+Below is a summary of:
 \itemize{
-\item statistical test carried out for inferential statistics
-\item type of effect size estimate and a measure of uncertainty for this estimate
-\item functions used internally to compute these details
+\item the statistical test carried out for inferential statistics
+\item the type of effect size estimate and a measure of uncertainty for this estimate
+\item the functions used internally to compute these details
 }
 \subsection{Between-subjects}{
 
@@ -343,11 +336,11 @@ observations, and removal of incomplete subjects.
 
 
 
-The table below provides summary about:
+Below is a summary of:
 \itemize{
-\item statistical test carried out for inferential statistics
-\item type of effect size estimate and a measure of uncertainty for this estimate
-\item functions used internally to compute these details
+\item the statistical test carried out for inferential statistics
+\item the type of effect size estimate and a measure of uncertainty for this estimate
+\item the functions used internally to compute these details
 }
 \subsection{Between-subjects}{
 
@@ -400,11 +393,11 @@ observations, and removal of incomplete subjects.
 
 
 
-The table below provides summary about:
+Below is a summary of:
 \itemize{
-\item statistical test carried out for inferential statistics
-\item type of effect size estimate and a measure of uncertainty for this estimate
-\item functions used internally to compute these details
+\item the statistical test carried out for inferential statistics
+\item the type of effect size estimate and a measure of uncertainty for this estimate
+\item the functions used internally to compute these details
 }
 \subsection{Between-subjects}{
 
