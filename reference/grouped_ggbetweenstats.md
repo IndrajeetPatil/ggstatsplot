@@ -1,10 +1,10 @@
 # Violin plots for group or condition comparisons in between-subjects designs repeated across all levels of a grouping variable
 
 Helper function for
-[`ggstatsplot::ggbetweenstats`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
+[`ggstatsplot::ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
 to apply this function across multiple levels of a given factor and
 combine the resulting plots using
-[`ggstatsplot::combine_plots`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
+[`ggstatsplot::combine_plots()`](https://www.indrapatil.com/ggstatsplot/reference/combine_plots.md).
 
 ## Usage
 
