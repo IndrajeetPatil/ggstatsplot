@@ -323,27 +323,26 @@ ggcoefstats <- function(
 
   if (stats.labels) {
     tidy_df_labels <- .prepare_stats_label_data(tidy_df, only.significant)
+
     # no label layer if no term is left to label (e.g. no significant effects)
-    stats.labels <- nrow(tidy_df_labels) > 0L
-  }
-
-  if (stats.labels) {
-    stats.label.color <- .prepare_stats_label_colors(
-      tidy_df,
-      tidy_df_labels,
-      stats.label.color,
-      palette
-    )
-
-    plot_coef <- plot_coef +
-      exec(
-        ggrepel::geom_label_repel,
-        data = tidy_df_labels,
-        mapping = aes(x = estimate, y = term, label = expression),
-        parse = TRUE,
-        color = stats.label.color,
-        !!!stats.label.args
+    if (nrow(tidy_df_labels) > 0L) {
+      stats.label.color <- .prepare_stats_label_colors(
+        tidy_df,
+        tidy_df_labels,
+        stats.label.color,
+        palette
       )
+
+      plot_coef <- plot_coef +
+        exec(
+          ggrepel::geom_label_repel,
+          data = tidy_df_labels,
+          mapping = aes(x = estimate, y = term, label = expression),
+          parse = TRUE,
+          color = stats.label.color,
+          !!!stats.label.args
+        )
+    }
   }
 
   # annotations ---------------------------------------------
