@@ -87,15 +87,12 @@
   )
 
   # pairwise tests only for unpaired two-way tables with 3+ `x` levels
-  mpc_df <- NULL
-  if (x_levels > 2L && y_levels > 1L && !isTRUE(paired)) {
-    mpc_df <- purrr::possibly(
-      function(...) suppressWarnings(pairwise_contingency_table(...)),
-      otherwise = NULL
-    )(
+  mpc_df <- if (x_levels > 2L && y_levels > 1L && !isTRUE(paired)) {
+    .eval_f(
+      pairwise_contingency_table,
       data = data,
-      x = {{ x }},
-      y = {{ y }},
+      x = as_string(x),
+      y = as_string(y),
       digits = digits,
       conf.level = conf.level,
       alternative = alternative,
