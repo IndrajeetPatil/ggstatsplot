@@ -71,7 +71,12 @@ extract_stats <- function(p) .map_plots(p, .extract_stats)
   }
 }
 
-.pluck_plot_env <- function(p, data) purrr::pluck(p, "plot_env", data)
+# Statistical data frames are either bound directly in the plot environment or
+# kept in the `stats_output` list returned by the subtitle/caption helpers.
+.pluck_plot_env <- function(p, data) {
+  purrr::pluck(p, "plot_env", data) %||%
+    purrr::pluck(p, "plot_env", "stats_output", data)
+}
 
 .extract_stats <- function(p) {
   structure(

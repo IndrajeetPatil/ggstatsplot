@@ -44,7 +44,8 @@
 #' @inheritParams ggpiestats
 #'
 #' @return A named list with elements `subtitle`, `caption`, `subtitle_df`,
-#'   `caption_df`, and `mpc_df`.
+#'   `caption_df`, and `mpc_df`. Callers store it as `stats_output`, where
+#'   `extract_stats()` looks up the data frames.
 #'
 #' @autoglobal
 #' @noRd
