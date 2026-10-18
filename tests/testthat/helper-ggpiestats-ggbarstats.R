@@ -8,6 +8,9 @@ mpg_short <- dplyr::filter(
   trans %in% c("auto(l4)", "auto(l5)")
 )
 
+# automatic-transmission cars only, so `am` has a single (dropped) level
+mtcars_automatic <- dplyr::filter(datasets::mtcars, am == "0")
+
 # pre-aggregated counts where some `dataset` groups lack `measurement` levels
 dropped_levels_counts <- data.frame(
   dataset = c("a", "b", "c", "c", "c", "c"),
@@ -15,6 +18,75 @@ dropped_levels_counts <- data.frame(
   flag = c("no", "no", "yes", "no", "yes", "no"),
   count = c(6, 8, 8, 62, 6, 33)
 )
+
+# one plot per `label` value; `...` is passed on to `plot_fn`
+expect_label_plots <- function(plot_fn, ...) {
+  label_titles <- c(
+    percentage = "checking percentage labels",
+    counts = "checking count labels",
+    both = "checking percentage and count labels"
+  )
+
+  for (label in names(label_titles)) {
+    set.seed(123)
+    vdiffr::expect_doppelganger(
+      title = label_titles[[label]],
+      fig = plot_fn(..., label = label, results.subtitle = FALSE)
+    )
+  }
+}
+
+# custom digits, title, palette, theme, and legend title
+expect_custom_aesthetics_plot <- function(plot_fn) {
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "changing aesthetics works",
+    fig = suppressWarnings(plot_fn(
+      data = mtcars,
+      x = am,
+      y = cyl,
+      digits.perc = 2L,
+      title = "mtcars dataset",
+      palette = "wesanderson::Royal2",
+      ggtheme = ggplot2::theme_bw(),
+      label = "counts",
+      legend.title = "transmission",
+      results.subtitle = FALSE
+    ))
+  )
+}
+
+# plots where `y` or `x` has a single level
+expect_dropped_levels_plots <- function(plot_fn) {
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "works with dropped levels",
+    fig = plot_fn(mtcars_automatic, cyl, am)
+  )
+
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "prop test fails with dropped levels",
+    fig = plot_fn(mtcars_automatic, am, cyl)
+  )
+}
+
+# grouped plots share one legend even when some groups lack `x` levels
+expect_grouped_common_legend_plot <- function(grouped_plot_fn) {
+  set.seed(123)
+  vdiffr::expect_doppelganger(
+    title = "common legend when levels are dropped",
+    fig = grouped_plot_fn(
+      data = dropped_levels_counts,
+      x = measurement,
+      y = flag,
+      grouping.var = dataset,
+      counts = count,
+      results.subtitle = FALSE,
+      proportion.test = FALSE
+    )
+  )
+}
 
 # default plots for one-way, unpaired two-way, and paired two-way tables, with
 # and without `NA`s
