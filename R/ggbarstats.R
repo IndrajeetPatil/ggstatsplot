@@ -245,7 +245,7 @@ ggbarstats <- function(
 #' @seealso \code{\link{ggbarstats}}, \code{\link{ggpiestats}},
 #'  \code{\link{grouped_ggpiestats}}
 #'
-#' @inherit ggbarstats references details
+#' @inherit ggbarstats details
 #' @inherit grouped_ggbetweenstats return
 #'
 #' @autoglobal

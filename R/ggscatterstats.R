@@ -259,7 +259,7 @@ ggscatterstats <- function(
 #'
 #' @autoglobal
 #'
-#' @inherit ggscatterstats references details
+#' @inherit ggscatterstats details
 #' @inherit grouped_ggbetweenstats return
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")

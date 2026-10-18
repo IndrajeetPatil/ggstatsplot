@@ -324,8 +324,6 @@ ggbetweenstats <- function(
 #' @seealso \code{\link{ggbetweenstats}}, \code{\link{ggwithinstats}},
 #'  \code{\link{grouped_ggwithinstats}}
 #'
-#' @inherit ggbetweenstats references
-#'
 #' @returns A `patchwork` object combining one plot per level of
 #'   `grouping.var` (see [`combine_plots()`]). Applying [`extract_stats()`] to
 #'   it returns a list with the statistical details for each of these plots.

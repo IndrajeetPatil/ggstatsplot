@@ -235,7 +235,7 @@ ggcorrmat <- function(
 #' @seealso \code{\link{ggcorrmat}}, \code{\link{ggscatterstats}},
 #'   \code{\link{grouped_ggscatterstats}}
 #'
-#' @inherit ggcorrmat references details
+#' @inherit ggcorrmat details
 #'
 #' @returns A `patchwork` object combining one plot per level of
 #'   `grouping.var` (see [`combine_plots()`]).

@@ -203,7 +203,7 @@ gghistostats <- function(
 #'
 #' @autoglobal
 #'
-#' @inherit gghistostats references details
+#' @inherit gghistostats details
 #' @inherit grouped_ggbetweenstats return
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")

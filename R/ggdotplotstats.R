@@ -212,7 +212,7 @@ ggdotplotstats <- function(
 #'
 #' @autoglobal
 #'
-#' @inherit ggdotplotstats references details
+#' @inherit ggdotplotstats details
 #' @inherit grouped_ggbetweenstats return
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")

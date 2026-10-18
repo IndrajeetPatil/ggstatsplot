@@ -277,7 +277,7 @@ ggpiestats <- function(
 #'
 #' @autoglobal
 #'
-#' @inherit ggpiestats references details
+#' @inherit ggpiestats details
 #' @inherit grouped_ggbetweenstats return
 #'
 #' @examplesIf identical(Sys.getenv("NOT_CRAN"), "true")
