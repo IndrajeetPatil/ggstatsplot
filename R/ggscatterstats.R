@@ -42,7 +42,6 @@
 #'   Default is `list()` (no modifications).
 #' @inheritParams statsExpressions::corr_test
 #' @inheritParams ggbetweenstats
-#' @inheritParams gghistostats
 #'
 #' @inheritSection statsExpressions::corr_test Correlation analyses
 #'
