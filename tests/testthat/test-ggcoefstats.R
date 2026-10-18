@@ -124,15 +124,13 @@ test_that("term ordering is preserved in the plotted top-to-bottom order", {
     estimate = c(0.3, -0.4, 1.1)
   )
 
-  expect_identical(
-    levels(.preprocess_tidy_data(df, sort = "none")$term),
-    rev(df$term)
-  )
+  term_levels <- function(sort) {
+    levels(.preprocess_tidy_data(df, sort = sort)$term)
+  }
 
-  expect_identical(
-    levels(.preprocess_tidy_data(df, sort = "ascending")$term),
-    rev(df$term[c(2L, 1L, 3L)])
-  )
+  # factor levels run bottom-to-top, i.e. in reverse of the plotted order
+  expect_identical(term_levels("none"), rev(df$term))
+  expect_identical(term_levels("ascending"), rev(c("second", "first", "third")))
 
   expect_identical(
     as.character(
@@ -221,32 +219,20 @@ test_that("stats label helpers cover filtering and color branches", {
   )
 
   label_data <- tibble::tibble(term = "a", expression = list("alpha"))
+  label_colors <- function(colors) {
+    .prepare_stats_label_colors(df_labels, label_data, colors, "ggthemes::gdoc")
+  }
 
   # palette colors are sized by the labeled terms, not by all terms
   expect_identical(
-    .prepare_stats_label_colors(df_labels, label_data, NULL, "ggthemes::gdoc"),
+    label_colors(NULL),
     paletteer::paletteer_d("ggthemes::gdoc", 1L)
   )
-
   expect_identical(
-    .prepare_stats_label_colors(
-      df_labels,
-      label_data,
-      c("firebrick", "grey50", "forestgreen"),
-      "ggthemes::gdoc"
-    ),
+    label_colors(c("firebrick", "grey50", "forestgreen")),
     "firebrick"
   )
-
-  expect_identical(
-    .prepare_stats_label_colors(
-      df_labels,
-      label_data,
-      "firebrick",
-      "ggthemes::gdoc"
-    ),
-    "firebrick"
-  )
+  expect_identical(label_colors("firebrick"), "firebrick")
 
   df_30_terms <- tibble::tibble(
     term = c(letters, LETTERS[1:4]),

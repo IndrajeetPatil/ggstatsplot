@@ -260,14 +260,11 @@ test_that("empty condition levels are dropped after filtering missing subject.id
     centrality.plotting = FALSE
   )
 
-  expect_identical(
-    sum(vapply(
-      built_plot$plot$layers,
-      \(layer) inherits(layer$geom, "GeomPath"),
-      logical(1)
-    )),
-    1L
+  path_layers <- purrr::keep(
+    built_plot$plot$layers,
+    \(layer) inherits(layer$geom, "GeomPath")
   )
+  expect_length(path_layers, 1L)
 })
 
 test_that("subject.id column stays available to user-supplied layers", {

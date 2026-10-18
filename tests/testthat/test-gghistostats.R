@@ -117,10 +117,12 @@ test_that("default binwidth ignores missing values", {
     grouping.var = vore,
     results.subtitle = FALSE
   )
+  binwidths <- purrr::map_dbl(
+    as.list(p),
+    \(plot) plot$layers[[1L]]$stat_params$binwidth
+  )
   expect_identical(
-    unique(purrr::map_dbl(as.list(p), \(x) {
-      x$layers[[1L]]$stat_params$binwidth
-    })),
+    unique(binwidths),
     .binwidth(stats::na.omit(ggplot2::msleep$brainwt))
   )
 })
