@@ -34,7 +34,7 @@
 #'
 #' For plots from `grouped_*` functions, a list with one such element per plot.
 #'
-#' @param p A plot from `{ggstatsplot}` package
+#' @param p A plot from `{ggstatsplot}`.
 #'
 #' @autoglobal
 #'

@@ -13,7 +13,7 @@ extract_subtitle(p)
 extract_caption(p)
 }
 \arguments{
-\item{p}{A plot from \code{{ggstatsplot}} package}
+\item{p}{A plot from \code{{ggstatsplot}}.}
 }
 \value{
 For \code{extract_stats()}, a list with the following elements, each either a

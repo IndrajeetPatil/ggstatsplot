@@ -32,8 +32,8 @@ removed.}
 the full data (not per group), so that all plots share the same bin width.}
 
 \item{plotgrid.args}{A \code{list} of additional arguments passed to
-\code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}, except for \code{guides} argument which is already
-separately specified here.}
+\code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}, except for \code{guides}, which has its own
+argument.}
 
 \item{annotation.args}{A \code{list} of additional arguments passed to
 \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
@@ -41,13 +41,12 @@ separately specified here.}
 \item{...}{
   Arguments passed on to \code{\link{gghistostats}}
   \describe{
-    \item{\code{bin.args}}{A list of additional aesthetic arguments to be passed to the
-\code{\link[ggplot2:stat_bin]{ggplot2::stat_bin()}} used to display the bins. Do not specify \code{binwidth}
-argument in this list since it has already been specified using the
-dedicated argument.}
-    \item{\code{centrality.line.args}}{A list of additional aesthetic arguments to be
-passed to the \code{\link[ggplot2:geom_vline]{ggplot2::geom_vline()}} used to display the lines
-corresponding to the centrality parameter.}
+    \item{\code{bin.args}}{A list of additional aesthetic arguments passed to
+\code{\link[ggplot2:stat_bin]{ggplot2::stat_bin()}}, which displays the bins. Use the dedicated
+\code{binwidth} argument (not this list) to set the bin width.}
+    \item{\code{centrality.line.args}}{A list of additional aesthetic arguments passed
+to \code{\link[ggplot2:geom_vline]{ggplot2::geom_vline()}}, which displays the line for the centrality
+measure.}
     \item{\code{type}}{A character specifying the type of statistical approach:
 \itemize{
 \item \code{"parametric"}
@@ -85,14 +84,14 @@ of \code{1/2}, \code{sqrt(2)/2}, and \code{1}, respectively. In case of an ANOVA
 value corresponds to scale for fixed effects.}
     \item{\code{xlab}}{Label for \code{x} axis variable. If \code{NULL} (default),
 variable name for \code{x} will be used.}
-    \item{\code{bf.message}}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
-parametric test} (Default: \code{TRUE}).}
-    \item{\code{results.subtitle}}{Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: \code{TRUE}). Setting this to \code{FALSE}
-also skips the automatic Bayes Factor caption. See the individual
-annotation arguments to control other plot details.}
-    \item{\code{subtitle}}{The text for the plot subtitle. Will work only if
+    \item{\code{bf.message}}{Logical that decides whether to display the Bayes Factor in
+favor of the \emph{null} hypothesis as a caption. Relevant only for parametric
+tests (Default: \code{TRUE}).}
+    \item{\code{results.subtitle}}{Logical that decides whether the results of
+statistical tests are displayed as a subtitle (Default: \code{TRUE}). Setting
+this to \code{FALSE} also skips the automatic Bayes Factor caption. Other plot
+details have their own arguments.}
+    \item{\code{subtitle}}{The text for the plot subtitle. Used only if
 \code{results.subtitle = FALSE}.}
     \item{\code{caption}}{The text for the plot caption. It will be replaced by the
 Bayes Factor caption whenever that is displayed (see \code{bf.message}).}
@@ -107,11 +106,9 @@ Function decides which central tendency measure to show depending on the
 \item \strong{MAP estimator} for Bayesian statistics
 }
 
-If you want a different centrality parameter, you can specify this using
-\code{centrality.type} argument.}
-    \item{\code{centrality.type}}{Decides which centrality parameter is to be displayed.
-The default is to choose the same as \code{type} argument. You can specify this
-to be:
+Use \code{centrality.type} to choose a different centrality measure.}
+    \item{\code{centrality.type}}{Decides which centrality measure is displayed. Defaults
+to the same value as \code{type}. Can be one of:
 \itemize{
 \item \code{"parametric"} (for \strong{mean})
 \item \code{"nonparametric"} (for \strong{median})
@@ -119,21 +116,16 @@ to be:
 \item \code{"bayes"} (for \strong{MAP estimator})
 }
 
-Just as \code{type} argument, abbreviations are also accepted.}
-    \item{\code{ggplot.component}}{A \code{ggplot} component to be added to the plot prepared
-by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
-variants of all primary functions. Default is \code{NULL}. The argument should
-be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
-    \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
-\code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
-(e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
-etc.). But note that sometimes these themes will remove some of the details
-that \code{{ggstatsplot}} plots typically contain. For example, if relevant,
-\code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
-label on the secondary Y-axis. Some themes (e.g.
-\code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
-thus the details as well.}
+As with \code{type}, abbreviations are accepted.}
+    \item{\code{ggplot.component}}{A \code{{ggplot2}} component, or a list of components, to
+add to the plot (Default: \code{NULL}). This is mostly helpful for the
+\code{grouped_} variants, where it is applied to each individual plot.}
+    \item{\code{ggtheme}}{A \code{{ggplot2}} theme (Default: \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}). Any
+\code{{ggplot2}} theme (e.g., \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}) or theme from an
+extension package (e.g., \code{ggthemes::theme_fivethirtyeight()}) can be used.
+Note that some themes remove plot details. For example,
+\code{ggthemes::theme_fivethirtyeight()} removes the secondary Y-axis, which
+\code{\link[=ggbetweenstats]{ggbetweenstats()}} uses to show details about pairwise comparisons.}
   }}
 }
 \value{
@@ -142,9 +134,8 @@ A \code{patchwork} object combining one plot per level of
 it returns a list with the statistical details for each of these plots.
 }
 \description{
-Helper function for \code{ggstatsplot::gghistostats()} to apply this function
-across multiple levels of a given factor and combine the resulting plots
-using \code{ggstatsplot::combine_plots()}.
+Applies \code{\link[=gghistostats]{gghistostats()}} across all levels of \code{grouping.var} and combines
+the resulting plots using \code{\link[=combine_plots]{combine_plots()}}.
 }
 \details{
 Missing values in \code{x} are removed before plotting and analysis.
@@ -157,7 +148,6 @@ For details, see:
 # for reproducibility
 set.seed(123)
 
-# plot
 grouped_gghistostats(
   data            = iris,
   x               = Sepal.Length,
@@ -169,6 +159,5 @@ grouped_gghistostats(
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link{gghistostats}}, \code{\link{ggdotplotstats}},
-\code{\link{grouped_ggdotplotstats}}
+\code{\link[=gghistostats]{gghistostats()}}, \code{\link[=ggdotplotstats]{ggdotplotstats()}}, \code{\link[=grouped_ggdotplotstats]{grouped_ggdotplotstats()}}
 }

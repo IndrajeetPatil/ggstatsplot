@@ -47,9 +47,9 @@ and counted (with zero observations) in the statistical test. Use
 \code{\link[=droplevels]{droplevels()}} beforehand if this is not intended.}
 
 \item{y}{The variable to use as the \strong{columns} in the contingency table.
-Default is \code{NULL}. If \code{NULL}, one-sample proportion test (a goodness of fit
-test) will be run for the \code{x} variable. Otherwise an appropriate
-association test will be run.}
+If \code{NULL} (default), a one-sample proportion test (a goodness of fit test)
+is run for the \code{x} variable. Otherwise, an appropriate association test is
+run.}
 
 \item{counts}{The variable in data containing counts, or \code{NULL} if each row
 represents a single observation.}
@@ -75,20 +75,19 @@ supported for frequentist tests (McNemar's test). For a two-way table with
 independence for unpaired data is run instead. For one-way tables
 (\code{y = NULL}), \code{paired} has no effect.}
 
-\item{results.subtitle}{Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: \code{TRUE}). Setting this to \code{FALSE}
-also skips the automatic Bayes Factor caption. See the individual
-annotation arguments to control other plot details.}
+\item{results.subtitle}{Logical that decides whether the results of
+statistical tests are displayed as a subtitle (Default: \code{TRUE}). Setting
+this to \code{FALSE} also skips the automatic Bayes Factor caption. Other plot
+details have their own arguments.}
 
-\item{label}{Character that decides what information needs to be displayed
-on the label in each pie slice. Possible options are \code{"percentage"}
-(default), \code{"counts"}, \code{"both"}.}
+\item{label}{Character that decides what each label displays: \code{"percentage"}
+(default), \code{"counts"}, or \code{"both"}.}
 
-\item{label.args}{Additional aesthetic arguments that will be passed to
+\item{label.args}{A list of additional aesthetic arguments passed to
 \code{\link[ggplot2:geom_label]{ggplot2::geom_label()}}.}
 
-\item{sample.size.label.args}{Additional aesthetic arguments that will be
-passed to \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}}.}
+\item{sample.size.label.args}{A list of additional aesthetic arguments passed
+to \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}}.}
 
 \item{digits}{Number of digits for rounding or significant figures. May also
 be \code{"signif"} to return significant figures or \code{"scientific"}
@@ -97,19 +96,19 @@ value as suffix, e.g. \code{digits = "scientific4"} to have scientific
 notation with 4 decimal places, or \code{digits = "signif5"} for 5
 significant figures (see also \code{\link[=signif]{signif()}}).}
 
-\item{proportion.test}{Decides whether proportion test for \code{x} variable is to
-be carried out for each level of \code{y}. Defaults to \code{results.subtitle}. In
-\code{\link[=ggbarstats]{ggbarstats()}}, only \emph{p}-values from this test will be displayed. Always
+\item{proportion.test}{Logical that decides whether a proportion test for
+\code{x} is carried out for each level of \code{y}. Defaults to \code{results.subtitle}.
+\code{\link[=ggbarstats]{ggbarstats()}} displays only the \emph{p}-values from this test. Always
 \code{FALSE} when \code{type = "bayes"}, when \code{y} is \code{NULL}, or when \code{x} has only one
 level.}
 
-\item{digits.perc}{Numeric that decides number of decimal places for
-percentage labels (Default: \code{0L}).}
+\item{digits.perc}{Number of decimal places for percentage labels (Default:
+\code{0L}).}
 
-\item{bf.message}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis as a caption. This argument is relevant
-only for non-Bayesian \code{type}s and unpaired designs (\code{paired = FALSE})
-(Default: \code{TRUE}).}
+\item{bf.message}{Logical that decides whether to display the Bayes Factor in
+favor of the \emph{null} hypothesis as a caption. Relevant only for
+non-Bayesian \code{type}s and unpaired designs (\code{paired = FALSE}) (Default:
+\code{TRUE}).}
 
 \item{ratio}{A vector of proportions: the expected proportions for the
 proportion test (should sum to \code{1}). Default is \code{NULL}, which means the null
@@ -131,7 +130,7 @@ comparisons. Possible methods are: \code{"holm"} (default), \code{"hochberg"},
 
 \item{title}{The text for the plot title.}
 
-\item{subtitle}{The text for the plot subtitle. Will work only if
+\item{subtitle}{The text for the plot subtitle. Used only if
 \code{results.subtitle = FALSE}.}
 
 \item{caption}{The text for the plot caption. It will be replaced by the
@@ -146,25 +145,20 @@ each level of \code{y}.}
 
 \item{ylab}{Label for \code{y} axis. If \code{NULL} (default), no label is shown.}
 
-\item{ggtheme}{A \code{{ggplot2}} theme. Default value is
-\code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
-(e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
-etc.). But note that sometimes these themes will remove some of the details
-that \code{{ggstatsplot}} plots typically contain. For example, if relevant,
-\code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
-label on the secondary Y-axis. Some themes (e.g.
-\code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
-thus the details as well.}
+\item{ggtheme}{A \code{{ggplot2}} theme (Default: \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}). Any
+\code{{ggplot2}} theme (e.g., \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}) or theme from an
+extension package (e.g., \code{ggthemes::theme_fivethirtyeight()}) can be used.
+Note that some themes remove plot details. For example,
+\code{ggthemes::theme_fivethirtyeight()} removes the secondary Y-axis, which
+\code{\link[=ggbetweenstats]{ggbetweenstats()}} uses to show details about pairwise comparisons.}
 
 \item{palette}{Name of the discrete palette in \code{"package::palette"} format
 to be used for coloring (via \code{{paletteer}}). Run
 \code{View(paletteer::palettes_d_names)} to see all available options.}
 
-\item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
-by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
-variants of all primary functions. Default is \code{NULL}. The argument should
-be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
+\item{ggplot.component}{A \code{{ggplot2}} component, or a list of components, to
+add to the plot (Default: \code{NULL}). This is mostly helpful for the
+\code{grouped_} variants, where it is applied to each individual plot.}
 
 \item{...}{Currently ignored.}
 }
@@ -257,13 +251,10 @@ test is run instead.
 When there is a two-way table, \code{x} has more than two levels, and
 \code{paired = FALSE}, pairwise contingency table analyses (Fisher's exact tests)
 are computed using \code{\link[statsExpressions:pairwise_contingency_table]{statsExpressions::pairwise_contingency_table()}}. These
-pairwise results are \strong{not} displayed in the plot because bar and pie charts
-lack a natural visual representation for pairwise significance annotations
-(unlike box/violin plots, which use bracket annotations). Additionally, there
-is no established convention for overlaying pairwise comparisons on pie
-charts, and both \code{ggpiestats()} and \code{ggbarstats()} are designed to remain
-visually congruent. The pairwise results are available as a data frame via
-\code{extract_stats(plot)$pairwise_comparisons_data}.
+results are \strong{not} displayed in the plot: unlike the brackets in box/violin
+plots, pie and bar charts (which are designed to stay visually congruent)
+have no natural or established way to show pairwise comparisons. Retrieve
+them as a data frame with \code{extract_stats(plot)$pairwise_comparisons_data}.
 }
 
 \examples{
@@ -294,6 +285,5 @@ ggbarstats(as.data.frame(Titanic), x = Survived, y = Sex, counts = Freq)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link{grouped_ggbarstats}}, \code{\link{ggpiestats}},
-\code{\link{grouped_ggpiestats}}
+\code{\link[=grouped_ggbarstats]{grouped_ggbarstats()}}, \code{\link[=ggpiestats]{ggpiestats()}}, \code{\link[=grouped_ggpiestats]{grouped_ggpiestats()}}
 }

@@ -49,11 +49,11 @@ needed for error bars, \code{statistic} and \code{p.value} for labels, and
 \code{"chi"}) in the label. Relevant only if \code{x} is a \emph{data frame}; if it is
 \code{NULL} (default), no labels are shown for data frames.}
 
-\item{conf.int}{Logical. Decides whether to display confidence intervals as
-error bars (Default: \code{TRUE}).}
+\item{conf.int}{Logical that decides whether to display confidence intervals
+as error bars (Default: \code{TRUE}).}
 
-\item{conf.level}{Numeric deciding level of confidence or credible intervals
-(Default: \code{0.95}).}
+\item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
+confidence/credible intervals, \code{0.95}).}
 
 \item{digits}{Number of digits for rounding or significant figures. May also
 be \code{"signif"} to return significant figures or \code{"scientific"}
@@ -65,15 +65,15 @@ significant figures (see also \code{\link[=signif]{signif()}}).}
 \item{exclude.intercept}{Logical that decides whether the intercept should be
 excluded from the plot (Default: \code{FALSE}).}
 
-\item{effectsize.type}{This is the same as \code{es_type} argument of
-\code{\link[parameters:model_parameters]{parameters::model_parameters()}}. Defaults to \code{"omega"} (the unbiased
-estimator), and relevant for ANOVA-like objects.}
+\item{effectsize.type}{Effect size for ANOVA-like objects, passed as the
+\code{es_type} argument of \code{\link[parameters:model_parameters]{parameters::model_parameters()}} (Default:
+\code{"omega"}, the unbiased estimator).}
 
 \item{meta.analytic.effect}{Logical that decides whether to display a
 subtitle with results from a meta-analysis via linear (mixed-effects)
-models (default: \code{FALSE}). If \code{TRUE}, input to argument \code{subtitle} will be
-ignored. This will be mostly relevant if a data frame with estimates and
-their standard errors is entered.}
+models (Default: \code{FALSE}). If \code{TRUE}, \code{subtitle} is ignored. This is mostly
+relevant if a data frame with estimates and their standard errors is
+entered.}
 
 \item{meta.type}{Type of statistics used to carry out random-effects
 meta-analysis. If \code{"parametric"} (default), \code{\link[metafor:rma]{metafor::rma()}} will be
@@ -83,13 +83,13 @@ used. If \code{"robust"}, \code{\link[metaplus:metaplus]{metaplus::metaplus()}} 
 \item{bf.message}{Logical that decides whether results from running a
 Bayesian meta-analysis assuming that the effect size \emph{d} varies across
 studies with standard deviation \emph{t} (i.e., a random-effects analysis)
-should be displayed in caption. Relevant only if
-\code{meta.analytic.effect = TRUE} and \code{meta.type = "parametric"}. Defaults to
-\code{TRUE}.}
+are displayed in the caption. Relevant only if
+\code{meta.analytic.effect = TRUE} and \code{meta.type = "parametric"} (Default:
+\code{TRUE}).}
 
-\item{sort}{If \code{"none"} (default) do not sort, \code{"ascending"} sort by
-increasing coefficient value, or \code{"descending"} sort by decreasing
-coefficient value.}
+\item{sort}{If \code{"none"} (default), do not sort; if \code{"ascending"} or
+\code{"descending"}, sort by increasing or decreasing coefficient value,
+respectively.}
 
 \item{xlab}{Label for \code{x} axis. If \code{NULL} (default), \code{"estimate"} is used.}
 
@@ -97,8 +97,8 @@ coefficient value.}
 
 \item{title}{The text for the plot title.}
 
-\item{subtitle}{The text for the plot subtitle. The input to this argument
-will be ignored if \code{meta.analytic.effect} is set to \code{TRUE}.}
+\item{subtitle}{The text for the plot subtitle. Ignored if
+\code{meta.analytic.effect = TRUE}.}
 
 \item{caption}{The text for the plot caption. It will be replaced by model
 fit indices (AIC and BIC), if available, or by the Bayesian meta-analysis
@@ -109,47 +109,41 @@ results (see \code{bf.message}).}
 large number of regression coefficients are to be displayed in a single
 plot.}
 
-\item{point.args}{A list of additional aesthetic arguments to be passed to
-the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
+\item{point.args}{A list of additional aesthetic arguments passed to
+\code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
 
-\item{errorbar.args}{Additional arguments that will be passed to
-\code{\link[ggplot2:geom_errorbar]{ggplot2::geom_errorbar()}} geom. Please see documentation for that
-function to know more about these arguments.}
+\item{errorbar.args}{A list of additional arguments passed to
+\code{\link[ggplot2:geom_errorbar]{ggplot2::geom_errorbar()}}.}
 
-\item{vline}{Decides whether to display a vertical line at \code{0} (Default:
-\code{TRUE}).}
+\item{vline}{Logical that decides whether to display a vertical line at \code{0}
+(Default: \code{TRUE}).}
 
-\item{vline.args}{Additional arguments that will be passed to
-\code{\link[ggplot2:geom_vline]{ggplot2::geom_vline()}} geom. Please see documentation for that function
-to know more about these arguments.}
+\item{vline.args}{A list of additional arguments passed to
+\code{\link[ggplot2:geom_vline]{ggplot2::geom_vline()}}.}
 
-\item{stats.labels}{Logical. Decides whether the statistic and \emph{p}-values for
-each coefficient are to be attached to each dot as a text label using
-\code{{ggrepel}} (Default: \code{TRUE}).}
+\item{stats.labels}{Logical that decides whether the statistic and \emph{p}-value
+for each coefficient are attached to its dot as a label using \code{{ggrepel}}
+(Default: \code{TRUE}).}
 
 \item{stats.label.color}{Color for the labels: either a single color or a
 vector with one color per term. If set to \code{NULL} (default), colors will be
 chosen from the specified \code{palette}.}
 
-\item{stats.label.args}{Additional arguments that will be passed to
+\item{stats.label.args}{A list of additional arguments passed to
 \code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}}.}
 
 \item{palette}{Name of the discrete palette in \code{"package::palette"} format
 to be used for coloring (via \code{{paletteer}}). Run
 \code{View(paletteer::palettes_d_names)} to see all available options.}
 
-\item{ggtheme}{A \code{{ggplot2}} theme. Default value is
-\code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
-(e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
-etc.). But note that sometimes these themes will remove some of the details
-that \code{{ggstatsplot}} plots typically contain. For example, if relevant,
-\code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
-label on the secondary Y-axis. Some themes (e.g.
-\code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
-thus the details as well.}
+\item{ggtheme}{A \code{{ggplot2}} theme (Default: \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}). Any
+\code{{ggplot2}} theme (e.g., \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}) or theme from an
+extension package (e.g., \code{ggthemes::theme_fivethirtyeight()}) can be used.
+Note that some themes remove plot details. For example,
+\code{ggthemes::theme_fivethirtyeight()} removes the secondary Y-axis, which
+\code{\link[=ggbetweenstats]{ggbetweenstats()}} uses to show details about pairwise comparisons.}
 
-\item{...}{Additional arguments to tidying method. For more, see
+\item{...}{Additional arguments passed to
 \code{\link[parameters:model_parameters]{parameters::model_parameters()}}.}
 }
 \value{
@@ -166,22 +160,17 @@ Although the statistical models displayed in the plot may differ based on the
 class of models being investigated, there are a few aspects of the plot that
 will be invariant across models:
 \itemize{
-\item The dot-whisker plot contains a dot representing the \strong{estimate} and their
-\strong{confidence intervals} (\verb{95\%} is the default). The estimate can either be
-effect sizes (for tests that depend on the \code{F}-statistic) or regression
-coefficients (for tests with \code{t}-, \code{chi^2}-, and \code{z}-statistic), etc. The
-function will, by default, display a helpful \code{x}-axis label that should
-clear up what estimates are being displayed. The confidence intervals can
-sometimes be asymmetric if bootstrapping was used.
-\item The label attached to each dot will provide more details from the statistical
-test carried out and it will typically contain estimate, statistic, and
-\emph{p}-value.
-\item The caption will contain diagnostic information, if available, about
-models that can be useful for model selection: The smaller the Akaike's
-Information Criterion (\strong{AIC}) and the Bayesian Information Criterion
-(\strong{BIC}) values, the "better" the model is.
-\item The output of this function will be a \code{{ggplot2}} object and, thus,
-it can be further modified (e.g. change themes) with \code{{ggplot2}}.
+\item Each dot represents an \strong{estimate}, and its whiskers the \strong{confidence
+interval} (\verb{95\%} by default). Estimates can be effect sizes (for tests
+based on the \code{F}-statistic) or regression coefficients (for tests based
+on the \code{t}-, \code{chi^2}-, or \code{z}-statistic), etc. The confidence intervals
+can be asymmetric if bootstrapping was used.
+\item The label attached to each dot provides details from the statistical
+test, typically the estimate, statistic, and \emph{p}-value.
+\item The caption contains model diagnostics, if available, that can be useful
+for model selection: the smaller the Akaike's Information Criterion
+(\strong{AIC}) and the Bayesian Information Criterion (\strong{BIC}) values, the
+"better" the model.
 }
 }
 \details{
@@ -190,15 +179,14 @@ For details, see:
 }
 \note{
 \enumerate{
-\item In case you want to carry out meta-analysis, you will be asked to install
-the needed packages (\code{{metafor}}, \code{{metaplus}}, or \code{{metaBMA}}) if they are
-unavailable.
+\item For meta-analysis, you will be asked to install the needed package
+(\code{{metafor}}, \code{{metaplus}}, or \code{{metaBMA}}) if it is unavailable.
 \item Rows with a missing \code{estimate} are always removed. If labels are
 requested, rows where \code{statistic}, \code{std.error}, or \code{p.value} is missing
 are kept but get no label.
-\item Given the rapid pace at which new methods are added to these packages, it
-is recommended that you install development versions of \code{{easystats}}
-packages using the \code{install_latest()} function from \code{{easystats}}.
+\item New model classes are frequently added to \code{{easystats}} packages, so it
+can help to install their development versions with
+\code{easystats::install_latest()}.
 }
 }
 \section{Summary of graphics}{

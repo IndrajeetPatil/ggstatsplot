@@ -2,12 +2,9 @@
 #'
 #' @description
 #'
-#' Common theme used across all plots generated in `{ggstatsplot}` and *assumed*
-#' by the author to be aesthetically pleasing to the user. The theme is a
-#' wrapper around [`ggplot2::theme_bw()`].
-#'
-#' All `{ggstatsplot}` functions have a `ggtheme` parameter that lets you choose
-#' a different theme.
+#' Theme used by default in all `{ggstatsplot}` plots, built on
+#' [`ggplot2::theme_bw()`]. Use the `ggtheme` argument of any `{ggstatsplot}`
+#' function to choose a different theme.
 #'
 #' @returns A `{ggplot2}` theme object.
 #'

@@ -55,7 +55,7 @@ variable name for \code{y} will be used.}
 
 \item{title}{The text for the plot title.}
 
-\item{subtitle}{The text for the plot subtitle. Will work only if
+\item{subtitle}{The text for the plot subtitle. Used only if
 \code{results.subtitle = FALSE}.}
 
 \item{caption}{The text for the plot caption. It will be replaced by the
@@ -89,12 +89,12 @@ addition to numeric arguments, several named values are also recognized:
 of \code{1/2}, \code{sqrt(2)/2}, and \code{1}, respectively. In case of an ANOVA, this
 value corresponds to scale for fixed effects.}
 
-\item{bf.message}{Logical that decides whether to display Bayes Factor in
-favor of the \emph{null} hypothesis. This argument is relevant only \strong{for
-parametric test} (Default: \code{TRUE}).}
+\item{bf.message}{Logical that decides whether to display the Bayes Factor in
+favor of the \emph{null} hypothesis as a caption. Relevant only for parametric
+tests (Default: \code{TRUE}).}
 
-\item{conf.int}{Logical. Decides whether to display confidence intervals as
-error bars (Default: \code{TRUE}).}
+\item{conf.int}{Logical that decides whether to display confidence intervals
+as error bars (Default: \code{TRUE}).}
 
 \item{conf.level}{Scalar between \code{0} and \code{1} (default: \verb{95\%}
 confidence/credible intervals, \code{0.95}).}
@@ -110,17 +110,16 @@ value as suffix, e.g. \code{digits = "scientific4"} to have scientific
 notation with 4 decimal places, or \code{digits = "signif5"} for 5
 significant figures (see also \code{\link[=signif]{signif()}}).}
 
-\item{results.subtitle}{Decides whether the results of statistical tests are
-to be displayed as a subtitle (Default: \code{TRUE}). Setting this to \code{FALSE}
-also skips the automatic Bayes Factor caption. See the individual
-annotation arguments to control other plot details.}
+\item{results.subtitle}{Logical that decides whether the results of
+statistical tests are displayed as a subtitle (Default: \code{TRUE}). Setting
+this to \code{FALSE} also skips the automatic Bayes Factor caption. Other plot
+details have their own arguments.}
 
-\item{point.args}{A list of additional aesthetic arguments to be passed to
-the \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
+\item{point.args}{A list of additional aesthetic arguments passed to
+\code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
 
-\item{errorbar.args}{Additional arguments that will be passed to
-\code{\link[ggplot2:geom_errorbar]{ggplot2::geom_errorbar()}} geom. Please see documentation for that
-function to know more about these arguments.}
+\item{errorbar.args}{A list of additional arguments passed to
+\code{\link[ggplot2:geom_errorbar]{ggplot2::geom_errorbar()}}.}
 
 \item{centrality.plotting}{Logical that decides whether central tendency
 measure is to be displayed as a point with a label (Default: \code{TRUE}).
@@ -133,12 +132,10 @@ Function decides which central tendency measure to show depending on the
 \item \strong{MAP estimator} for Bayesian statistics
 }
 
-If you want a different centrality parameter, you can specify this using
-\code{centrality.type} argument.}
+Use \code{centrality.type} to choose a different centrality measure.}
 
-\item{centrality.type}{Decides which centrality parameter is to be displayed.
-The default is to choose the same as \code{type} argument. You can specify this
-to be:
+\item{centrality.type}{Decides which centrality measure is displayed. Defaults
+to the same value as \code{type}. Can be one of:
 \itemize{
 \item \code{"parametric"} (for \strong{mean})
 \item \code{"nonparametric"} (for \strong{median})
@@ -146,27 +143,22 @@ to be:
 \item \code{"bayes"} (for \strong{MAP estimator})
 }
 
-Just as \code{type} argument, abbreviations are also accepted.}
+As with \code{type}, abbreviations are accepted.}
 
-\item{centrality.line.args}{A list of additional aesthetic arguments to be
-passed to the \code{\link[ggplot2:geom_vline]{ggplot2::geom_vline()}} used to display the lines
-corresponding to the centrality parameter.}
+\item{centrality.line.args}{A list of additional aesthetic arguments passed
+to \code{\link[ggplot2:geom_vline]{ggplot2::geom_vline()}}, which displays the line for the centrality
+measure.}
 
-\item{ggplot.component}{A \code{ggplot} component to be added to the plot prepared
-by \code{{ggstatsplot}}. This argument is primarily helpful for \code{grouped_}
-variants of all primary functions. Default is \code{NULL}. The argument should
-be entered as a \code{{ggplot2}} function or a list of \code{{ggplot2}} functions.}
+\item{ggplot.component}{A \code{{ggplot2}} component, or a list of components, to
+add to the plot (Default: \code{NULL}). This is mostly helpful for the
+\code{grouped_} variants, where it is applied to each individual plot.}
 
-\item{ggtheme}{A \code{{ggplot2}} theme. Default value is
-\code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
-\code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
-(e.g., \code{ggthemes::theme_fivethirtyeight()}, \code{hrbrthemes::theme_ipsum_ps()},
-etc.). But note that sometimes these themes will remove some of the details
-that \code{{ggstatsplot}} plots typically contain. For example, if relevant,
-\code{\link[=ggbetweenstats]{ggbetweenstats()}} shows details about multiple comparison test as a
-label on the secondary Y-axis. Some themes (e.g.
-\code{ggthemes::theme_fivethirtyeight()}) will remove the secondary Y-axis and
-thus the details as well.}
+\item{ggtheme}{A \code{{ggplot2}} theme (Default: \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}). Any
+\code{{ggplot2}} theme (e.g., \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}) or theme from an
+extension package (e.g., \code{ggthemes::theme_fivethirtyeight()}) can be used.
+Note that some themes remove plot details. For example,
+\code{ggthemes::theme_fivethirtyeight()} removes the secondary Y-axis, which
+\code{\link[=ggbetweenstats]{ggbetweenstats()}} uses to show details about pairwise comparisons.}
 
 \item{...}{Currently ignored.}
 }
@@ -256,6 +248,6 @@ extract_stats(p)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\code{\link{grouped_gghistostats}}, \code{\link{gghistostats}},
-\code{\link{grouped_ggdotplotstats}}
+\code{\link[=grouped_ggdotplotstats]{grouped_ggdotplotstats()}}, \code{\link[=gghistostats]{gghistostats()}},
+\code{\link[=grouped_gghistostats]{grouped_gghistostats()}}
 }

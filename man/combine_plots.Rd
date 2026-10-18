@@ -16,8 +16,8 @@ combine_plots(
 \item{plotlist}{A list containing \code{ggplot} objects.}
 
 \item{plotgrid.args}{A \code{list} of additional arguments passed to
-\code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}, except for \code{guides} argument which is already
-separately specified here.}
+\code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}, except for \code{guides}, which has its own
+argument.}
 
 \item{annotation.args}{A \code{list} of additional arguments passed to
 \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
@@ -37,26 +37,23 @@ patchwork (see example).}
 A \code{patchwork} object: a combined plot with annotation labels.
 }
 \description{
-Wrapper around \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}} that will return a combined grid
-of plots with annotations. In case you want to create a grid of plots, it is
-\strong{highly recommended} that you use \code{{patchwork}} package directly and not
-this wrapper around it which is mostly useful with \code{{ggstatsplot}} plots. It
-is exported only for backward compatibility.
+Wrapper around \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}} that returns a combined grid of
+plots with annotations. It is mostly useful with \code{{ggstatsplot}} plots and is
+exported only for backward compatibility; to create a grid of plots, it is
+\strong{highly recommended} that you use \code{{patchwork}} directly.
 }
 \examples{
 library(ggplot2)
 
-# first plot
 p1 <- ggplot(
-  data = subset(iris, iris$Species == "setosa"),
+  data = subset(iris, Species == "setosa"),
   aes(x = Sepal.Length, y = Sepal.Width)
 ) +
   geom_point() +
   labs(title = "setosa")
 
-# second plot
 p2 <- ggplot(
-  data = subset(iris, iris$Species == "versicolor"),
+  data = subset(iris, Species == "versicolor"),
   aes(x = Sepal.Length, y = Sepal.Width)
 ) +
   geom_point() +

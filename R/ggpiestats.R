@@ -15,29 +15,27 @@
 #'   and counted (with zero observations) in the statistical test. Use
 #'   [`droplevels()`] beforehand if this is not intended.
 #' @param y The variable to use as the **columns** in the contingency table.
-#'   Default is `NULL`. If `NULL`, one-sample proportion test (a goodness of fit
-#'   test) will be run for the `x` variable. Otherwise an appropriate
-#'   association test will be run.
-#' @param proportion.test Decides whether proportion test for `x` variable is to
-#'   be carried out for each level of `y`. Defaults to `results.subtitle`. In
-#'   [`ggbarstats()`], only *p*-values from this test will be displayed. Always
+#'   If `NULL` (default), a one-sample proportion test (a goodness of fit test)
+#'   is run for the `x` variable. Otherwise, an appropriate association test is
+#'   run.
+#' @param proportion.test Logical that decides whether a proportion test for
+#'   `x` is carried out for each level of `y`. Defaults to `results.subtitle`.
+#'   [`ggbarstats()`] displays only the *p*-values from this test. Always
 #'   `FALSE` when `type = "bayes"`, when `y` is `NULL`, or when `x` has only one
 #'   level.
-#' @param bf.message Logical that decides whether to display Bayes Factor in
-#'   favor of the *null* hypothesis as a caption. This argument is relevant
-#'   only for non-Bayesian `type`s and unpaired designs (`paired = FALSE`)
-#'   (Default: `TRUE`).
-#' @param digits.perc Numeric that decides number of decimal places for
-#'   percentage labels (Default: `0L`).
-#' @param label Character that decides what information needs to be displayed
-#'   on the label in each pie slice. Possible options are `"percentage"`
-#'   (default), `"counts"`, `"both"`.
-#' @param label.args Additional aesthetic arguments that will be passed to
+#' @param bf.message Logical that decides whether to display the Bayes Factor in
+#'   favor of the *null* hypothesis as a caption. Relevant only for
+#'   non-Bayesian `type`s and unpaired designs (`paired = FALSE`) (Default:
+#'   `TRUE`).
+#' @param digits.perc Number of decimal places for percentage labels (Default:
+#'   `0L`).
+#' @param label Character that decides what each label displays: `"percentage"`
+#'   (default), `"counts"`, or `"both"`.
+#' @param label.args A list of additional aesthetic arguments passed to
 #'   [`ggplot2::geom_label()`] (or [`ggrepel::geom_label_repel()`] if
 #'   `label.repel = TRUE`).
-#' @param label.repel Whether labels should be repelled using `{ggrepel}`
-#'   package. This can be helpful in case of overlapping labels (Default:
-#'   `FALSE`).
+#' @param label.repel Logical that decides whether labels are repelled using
+#'   `{ggrepel}` to avoid overlaps (Default: `FALSE`).
 #' @param legend.title Title text for the legend. If `NULL` (default), the name
 #'   of the `x` variable is used.
 #' @inheritParams ggbetweenstats
@@ -49,16 +47,12 @@
 #' When there is a two-way table, `x` has more than two levels, and
 #' `paired = FALSE`, pairwise contingency table analyses (Fisher's exact tests)
 #' are computed using [statsExpressions::pairwise_contingency_table()]. These
-#' pairwise results are **not** displayed in the plot because bar and pie charts
-#' lack a natural visual representation for pairwise significance annotations
-#' (unlike box/violin plots, which use bracket annotations). Additionally, there
-#' is no established convention for overlaying pairwise comparisons on pie
-#' charts, and both `ggpiestats()` and `ggbarstats()` are designed to remain
-#' visually congruent. The pairwise results are available as a data frame via
-#' `extract_stats(plot)$pairwise_comparisons_data`.
+#' results are **not** displayed in the plot: unlike the brackets in box/violin
+#' plots, pie and bar charts (which are designed to stay visually congruent)
+#' have no natural or established way to show pairwise comparisons. Retrieve
+#' them as a data frame with `extract_stats(plot)$pairwise_comparisons_data`.
 #'
-#' @seealso \code{\link{grouped_ggpiestats}}, \code{\link{ggbarstats}},
-#'  \code{\link{grouped_ggbarstats}}
+#' @seealso [grouped_ggpiestats()], [ggbarstats()], [grouped_ggbarstats()]
 #'
 #' @autoglobal
 #'
@@ -261,16 +255,17 @@ ggpiestats <- function(
 
 #' @title Grouped pie charts with statistical tests
 #' @name grouped_ggpiestats
-#' @description Helper function for `ggstatsplot::ggpiestats()` to apply this
-#'   function across multiple levels of a given factor and combine the
-#'   resulting plots using `ggstatsplot::combine_plots()`.
+#'
+#' @description
+#'
+#' Applies [`ggpiestats()`] across all levels of `grouping.var` and combines the
+#' resulting plots using [`combine_plots()`].
 #'
 #' @inheritParams ggpiestats
 #' @inheritParams grouped_ggbetweenstats
 #' @inheritDotParams ggpiestats -title
 #'
-#' @seealso \code{\link{ggbarstats}}, \code{\link{ggpiestats}},
-#'  \code{\link{grouped_ggbarstats}}
+#' @seealso [ggpiestats()], [ggbarstats()], [grouped_ggbarstats()]
 #'
 #' @autoglobal
 #'
