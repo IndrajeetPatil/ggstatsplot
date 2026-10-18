@@ -207,8 +207,8 @@ observations within 3 * IQR of the hinges.}
 \item{violin.args}{A list of additional aesthetic arguments to be passed to
 the \code{\link[ggplot2:geom_violin]{ggplot2::geom_violin()}}.}
 
-\item{ggsignif.args}{A list of additional aesthetic
-arguments to be passed to \code{\link[ggsignif:geom_signif]{ggsignif::geom_signif()}}.}
+\item{ggsignif.args}{A list of additional aesthetic arguments to be passed to
+\code{\link[ggsignif:geom_signif]{ggsignif::geom_signif()}}.}
 
 \item{ggtheme}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,

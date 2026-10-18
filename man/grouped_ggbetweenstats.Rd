@@ -104,8 +104,8 @@ to be used for coloring (via \code{{paletteer}}). Run
 arguments to be passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} and
 \code{\link[ggrepel:geom_label_repel]{ggrepel::geom_label_repel()}} geoms, which are involved in centrality
 plotting.}
-    \item{\code{ggsignif.args}}{A list of additional aesthetic
-arguments to be passed to \code{\link[ggsignif:geom_signif]{ggsignif::geom_signif()}}.}
+    \item{\code{ggsignif.args}}{A list of additional aesthetic arguments to be passed to
+\code{\link[ggsignif:geom_signif]{ggsignif::geom_signif()}}.}
     \item{\code{ggtheme}}{A \code{{ggplot2}} theme. Default value is
 \code{\link[=theme_ggstatsplot]{theme_ggstatsplot()}}. Any of the \code{{ggplot2}} themes (e.g.,
 \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}), or themes from extension packages are allowed
@@ -171,9 +171,9 @@ A \code{patchwork} object combining one plot per level of
 it returns a list with the statistical details for each of these plots.
 }
 \description{
-Helper function for \code{ggstatsplot::ggbetweenstats} to apply this function
+Helper function for \code{ggstatsplot::ggbetweenstats()} to apply this function
 across multiple levels of a given factor and combine the resulting plots
-using \code{ggstatsplot::combine_plots}.
+using \code{ggstatsplot::combine_plots()}.
 }
 \examples{
 \dontshow{if (identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}

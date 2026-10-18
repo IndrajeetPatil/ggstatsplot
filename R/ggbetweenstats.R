@@ -90,8 +90,8 @@
 #'   arguments to be passed to [`ggplot2::geom_point()`] and
 #'   [`ggrepel::geom_label_repel()`] geoms, which are involved in centrality
 #'   plotting.
-#' @param ggsignif.args A list of additional aesthetic
-#'   arguments to be passed to [`ggsignif::geom_signif()`].
+#' @param ggsignif.args A list of additional aesthetic arguments to be passed to
+#'   [`ggsignif::geom_signif()`].
 #' @param ggtheme A `{ggplot2}` theme. Default value is
 #'   [`ggstatsplot::theme_ggstatsplot()`]. Any of the `{ggplot2}` themes (e.g.,
 #'   [`ggplot2::theme_bw()`]), or themes from extension packages are allowed
@@ -119,7 +119,7 @@
 #'   versions, so equal variances are not assumed.
 #'
 #' Users who need non-default values for these settings can call
-#' \code{{statsExpressions}} directly.
+#' `{statsExpressions}` directly.
 #'
 #' @inheritSection statsExpressions::centrality_description Centrality measures
 #' @inheritSection statsExpressions::two_sample_test Two-sample tests
@@ -310,9 +310,9 @@ ggbetweenstats <- function(
 #'
 #' @description
 #'
-#' Helper function for `ggstatsplot::ggbetweenstats` to apply this function
+#' Helper function for `ggstatsplot::ggbetweenstats()` to apply this function
 #' across multiple levels of a given factor and combine the resulting plots
-#' using `ggstatsplot::combine_plots`.
+#' using `ggstatsplot::combine_plots()`.
 #'
 #' @inheritParams ggbetweenstats
 #' @inheritParams .grouped_list

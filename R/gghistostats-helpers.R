@@ -13,7 +13,6 @@
 #'   [`statsExpressions::centrality_description()`].
 #' @inheritParams statsExpressions::one_sample_test
 #'
-#' @keywords internal
 #' @autoglobal
 #' @noRd
 .histo_labeller <- function(plot, x, centrality.line.args, ...) {
