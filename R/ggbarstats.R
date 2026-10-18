@@ -113,7 +113,7 @@ ggbarstats <- function(
   x_levels <- prep$x_levels
   y_levels <- prep$y_levels
 
-  if (type == "bayes" || y_levels < 2L) {
+  if (type == "bayes" || x_levels < 2L || y_levels < 2L) {
     proportion.test <- FALSE
   }
 
@@ -235,7 +235,7 @@ ggbarstats <- function(
 #' @description
 #'
 #' Helper function for `ggstatsplot::ggbarstats()` to apply this function across
-#' multiple levels of a given factor and combining the resulting plots using
+#' multiple levels of a given factor and combine the resulting plots using
 #' `ggstatsplot::combine_plots()`.
 #'
 #' @inheritParams ggbarstats

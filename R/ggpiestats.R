@@ -21,7 +21,8 @@
 #' @param proportion.test Decides whether proportion test for `x` variable is to
 #'   be carried out for each level of `y`. Defaults to `results.subtitle`. In
 #'   [`ggbarstats()`], only *p*-values from this test will be displayed. Always
-#'   `FALSE` when `type = "bayes"` or when `y` is `NULL`.
+#'   `FALSE` when `type = "bayes"`, when `y` is `NULL`, or when `x` has only one
+#'   level.
 #' @param bf.message Logical that decides whether to display Bayes Factor in
 #'   favor of the *null* hypothesis as a caption. This argument is relevant
 #'   only for non-Bayesian `type`s and unpaired designs (`paired = FALSE`)
@@ -264,7 +265,7 @@ ggpiestats <- function(
 #' @title Grouped pie charts with statistical tests
 #' @name grouped_ggpiestats
 #' @description Helper function for `ggstatsplot::ggpiestats()` to apply this
-#'   function across multiple levels of a given factor and combining the
+#'   function across multiple levels of a given factor and combine the
 #'   resulting plots using `ggstatsplot::combine_plots()`.
 #'
 #' @inheritParams ggpiestats

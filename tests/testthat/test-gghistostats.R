@@ -106,3 +106,21 @@ test_that("grouped_gghistostats plotting works as expected", {
     ))
   )
 })
+
+test_that("default binwidth ignores missing values", {
+  expect_identical(.binwidth(c(1, 5, NA)), .binwidth(c(1, 5)))
+
+  # common binwidth for grouped plots is based on non-missing values only
+  p <- grouped_gghistostats(
+    data = ggplot2::msleep,
+    x = brainwt,
+    grouping.var = vore,
+    results.subtitle = FALSE
+  )
+  expect_identical(
+    unique(purrr::map_dbl(as.list(p), \(x) {
+      x$layers[[1L]]$stat_params$binwidth
+    })),
+    .binwidth(stats::na.omit(ggplot2::msleep$brainwt))
+  )
+})
