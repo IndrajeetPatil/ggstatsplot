@@ -1,6 +1,6 @@
 # Changelog
 
-## ggstatsplot 1.1.3.9000
+## ggstatsplot 1.1.4
 
 ### BUG FIXES
 
@@ -37,6 +37,22 @@
   now draw the histogram when all values of `x` are identical (including
   a single observation). Previously, the default bin width was zero, so
   no bins were drawn.
+
+- [`ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbarstats.md)
+  and
+  [`ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/ggpiestats.md)
+  now show the test of independence in the subtitle when `x` or `y` has
+  an empty level, such as an unused factor level. Previously, the
+  subtitle was silently dropped. This fix comes from
+  [statsExpressions](https://www.indrapatil.com/statsExpressions/).
+
+- [`gghistostats()`](https://www.indrapatil.com/ggstatsplot/reference/gghistostats.md)
+  and
+  [`ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md)
+  with a one-sided `alternative` now report a one-sided confidence
+  interval for the effect size in the subtitle, matching the one-sided
+  *p*-value. This fix comes from
+  [statsExpressions](https://www.indrapatil.com/statsExpressions/).
 
 ## ggstatsplot 1.1.3
 
