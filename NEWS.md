@@ -1,4 +1,4 @@
-# ggstatsplot 1.1.3.9000
+# ggstatsplot 1.1.4
 
 ## BUG FIXES
 
@@ -24,6 +24,15 @@
 - `gghistostats()` and `grouped_gghistostats()` now draw the histogram when all
   values of `x` are identical (including a single observation). Previously, the
   default bin width was zero, so no bins were drawn.
+
+- `ggbarstats()` and `ggpiestats()` now show the test of independence in the
+  subtitle when `x` or `y` has an empty level, such as an unused factor level.
+  Previously, the subtitle was silently dropped. This fix comes from
+  `{statsExpressions}`.
+
+- `gghistostats()` and `ggdotplotstats()` with a one-sided `alternative` now
+  report a one-sided confidence interval for the effect size in the subtitle,
+  matching the one-sided *p*-value. This fix comes from `{statsExpressions}`.
 
 # ggstatsplot 1.1.3
 
