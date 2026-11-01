@@ -1,13 +1,27 @@
 # .grouped_list -----------------------------------------------------
 
+# Assert the structure directly: a `str()` snapshot also captured base R's
+# print layout, which changes between R versions.
 test_that(".grouped_list works with non-syntactic group names", {
-  set.seed(123)
-  expect_snapshot({
-    sleep |>
-      rename("my non-syntactic name" = group) |>
-      .grouped_list(grouping.var = `my non-syntactic name`) |>
-      str()
-  })
+  grp <- "my non-syntactic name"
+  result <- sleep |>
+    rename("my non-syntactic name" = group) |>
+    .grouped_list(grouping.var = `my non-syntactic name`)
+
+  expect_named(result, c("data", "title"))
+  expect_identical(result$title, c("1", "2"))
+  expect_s3_class(result$data, "vctrs_list_of")
+  expect_identical(purrr::map_int(result$data, nrow), c(10L, 10L))
+  expect_identical(
+    purrr::map(result$data, names),
+    rep(list(c("extra", grp, "ID")), 2L)
+  )
+  expect_true(all(purrr::map_lgl(result$data, \(d) is.factor(d[[grp]]))))
+  expect_identical(
+    purrr::map(result$data, \(d) unique(as.character(d[[grp]]))),
+    list("1", "2")
+  )
+  expect_identical(result$data[[1L]]$extra, sleep$extra[sleep$group == "1"])
 })
 
 test_that(".grouped_list drops NA rows in grouping variable", {
