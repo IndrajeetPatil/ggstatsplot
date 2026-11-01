@@ -6,7 +6,12 @@ on:
 
 name: test-coverage
 
+permissions:
+  contents: read
+
 jobs:
   test-coverage:
     uses: IndrajeetPatil/workflows/.github/workflows/test-coverage.yaml@main
-    secrets: inherit
+    # Pass only the secret this workflow uses, not every repository secret.
+    secrets:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
