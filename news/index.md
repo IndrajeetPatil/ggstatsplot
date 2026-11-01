@@ -2,6 +2,8 @@
 
 ## ggstatsplot 1.1.4
 
+CRAN release: 2026-10-22
+
 ### BUG FIXES
 
 - [`ggdotplotstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggdotplotstats.md)
