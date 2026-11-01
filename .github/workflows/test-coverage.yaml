@@ -6,6 +6,9 @@ on:
 
 name: test-coverage
 
+permissions:
+  contents: read
+
 jobs:
   test-coverage:
     uses: IndrajeetPatil/workflows/.github/workflows/test-coverage.yaml@main
