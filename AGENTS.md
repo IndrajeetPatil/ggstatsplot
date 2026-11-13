@@ -97,6 +97,11 @@ User-invoked prompts (`address-review.md` and `simplify-codebase.md`) live in
 `.github/prompts/`. Keep each topic in exactly one place: this file for
 every-session rules, a skill or prompt for task-specific procedures.
 
+## Benchmarks
+
+See [benchmarks/README.md](benchmarks/README.md) for API coverage policy,
+workload catalogue, local execution, and interpretation of CodSpeed results.
+
 ## Pull requests
 
 Open pull requests as ready for review. Unless asked, do not wait for CI after

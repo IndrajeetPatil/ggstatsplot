@@ -1,0 +1,26 @@
+name: Benchmarks
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, edited, ready_for_review]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: benchmarks-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  benchmarks:
+    if: >-
+      !github.event.pull_request.draft &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      (github.event.pull_request.number == 1182 ||
+      (startsWith(github.head_ref, 'release-') &&
+      contains(github.event.pull_request.title, 'CRAN Release')))
+    permissions:
+      contents: read
+      id-token: write
+    uses: IndrajeetPatil/workflows/.github/workflows/r-benchmarks.yaml@main

@@ -38,8 +38,10 @@ README.html
 ^_typos\.toml$
 ^air\.toml$
 ^appveyor\.yml$
+^benchmarks$
 ^codecov\.yaml$
 ^codemeta\.json$
+^codspeed\.yml$
 ^cran-comments\.md$
 ^data-raw$
 ^doc$

@@ -1,0 +1,19 @@
+benchmarks:
+  - name: ggbetweenstats
+    exec: Rscript --vanilla benchmarks/run.R ggbetweenstats
+  - name: ggwithinstats
+    exec: Rscript --vanilla benchmarks/run.R ggwithinstats
+  - name: gghistostats
+    exec: Rscript --vanilla benchmarks/run.R gghistostats
+  - name: ggdotplotstats
+    exec: Rscript --vanilla benchmarks/run.R ggdotplotstats
+  - name: ggpiestats
+    exec: Rscript --vanilla benchmarks/run.R ggpiestats
+  - name: ggbarstats
+    exec: Rscript --vanilla benchmarks/run.R ggbarstats
+  - name: ggscatterstats
+    exec: Rscript --vanilla benchmarks/run.R ggscatterstats
+  - name: ggcorrmat
+    exec: Rscript --vanilla benchmarks/run.R ggcorrmat
+  - name: ggcoefstats
+    exec: Rscript --vanilla benchmarks/run.R ggcoefstats
