@@ -1,4 +1,4 @@
-# Each command includes R startup, dependency loading, and five API calls.
+# Each command includes R startup, dependency loading, and one plot build.
 args <- commandArgs(TRUE)
 stopifnot(length(args) == 1L)
 hair_eye <- as.data.frame(datasets::HairEyeColor)
@@ -38,11 +38,9 @@ workload <- switch(
   stop("Unknown benchmark: ", args[[1L]], call. = FALSE)
 )
 
-for (iteration in seq_len(5L)) {
-  # Plot layers and default statistical messages can use random computations.
-  set.seed(123L)
-  plot <- workload()
-  stopifnot(inherits(plot, "ggplot"))
-  built <- ggplot2::ggplot_build(plot)
-  stopifnot(length(built$data) > 0L, nrow(built$layout$layout) > 0L)
-}
+# Plot layers and default statistical messages can use random computations.
+set.seed(123L)
+plot <- workload()
+stopifnot(inherits(plot, "ggplot"))
+built <- ggplot2::ggplot_build(plot)
+stopifnot(length(built$data) > 0L, nrow(built$layout$layout) > 0L)

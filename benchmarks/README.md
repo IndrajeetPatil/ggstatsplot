@@ -2,11 +2,11 @@
 
 The [CodSpeed CLI](https://github.com/CodSpeedHQ/codspeed) measures the nine main
 plot constructors through its executable harness. Each target constructs and
-builds five plots using `ggplot2::ggplot_build()`, checking the plot class and
+builds one plot using `ggplot2::ggplot_build()`, checking the plot class and
 built layout. It includes R startup, dependency loading, fixture preparation,
 and plot building; coefficient plots also include fitting a small linear model.
 It does not measure graphics-device rendering or file export. Random jitter is
-seeded before every call, including default statistical computations.
+seeded before the call, including default statistical computations.
 
 ## Coverage policy
 
@@ -67,7 +67,12 @@ measures all targets in `codspeed.yml`.
   originate in this repository, use a `release-x.y.z` branch, and have a title
   containing `CRAN Release`. PR creation, commits, reopening, title edits, and
   marking ready for review re-evaluate the gate.
-- Ordinary PRs skip the benchmark job. There are no push or manual triggers.
+- PR #1182 also runs benchmarks to establish initial measurements before the
+  release-only policy takes effect. This exception is removed after a complete
+  upload and PR comment.
+- In-progress runs finish even when another PR event queues a run, preserving
+  measurements from long simulations.
+- Other ordinary PRs skip the benchmark job. There are no push or manual triggers.
 - CPU simulation measures user-space CPU work and excludes system calls.
   These complete R commands can be flagged as dominated by system calls, so
   simulated values understate total elapsed cost. Native profiles may show
