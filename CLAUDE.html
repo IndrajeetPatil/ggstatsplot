@@ -146,6 +146,11 @@
 </ul><p>User-invoked prompts (<code>address-review.md</code> and <code>simplify-codebase.md</code>) live in <code>.github/prompts/</code>. Keep each topic in exactly one place: this file for every-session rules, a skill or prompt for task-specific procedures.</p>
 </div>
 <div class="section level2">
+<h2 id="continuous-integration">Continuous integration<a class="anchor" aria-label="anchor" href="#continuous-integration"></a></h2>
+<p>Workflows under <code>.github/workflows/</code> are thin callers of shared reusable workflows; the <code>maintain-ci</code> skill covers changing them.</p>
+<ul><li>Reference <code>IndrajeetPatil/workflows</code> reusable workflows as <code>@main</code>, never a commit SHA. The owner maintains them and is the only person who can contribute to this repository, so there is no external-contributor risk, and <code>@main</code> keeps it on the latest version. Code scanners (CodeQL <code>actions/unpinned-tag</code>, zizmor <code>unpinned-uses</code>) flag this by design: do not report it or propose a pin; dismiss such alerts as “won’t fix” with this reason.</li>
+</ul></div>
+<div class="section level2">
 <h2 id="benchmarks">Benchmarks<a class="anchor" aria-label="anchor" href="#benchmarks"></a></h2>
 <p>See <a href="benchmarks/README.html">benchmarks/README.md</a> for API coverage policy, workload catalogue, local execution, and interpretation of CodSpeed results.</p>
 </div>
