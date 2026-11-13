@@ -1,0 +1,22 @@
+name: Benchmarks
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: benchmarks-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  benchmarks:
+    permissions:
+      contents: read
+      id-token: write
+    uses: IndrajeetPatil/workflows/.github/workflows/r-benchmarks.yaml@ci/r-benchmarks-workflow
