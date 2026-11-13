@@ -67,12 +67,9 @@ measures all targets in `codspeed.yml`.
   originate in this repository, use a `release-x.y.z` branch, and have a title
   containing `CRAN Release`. PR creation, commits, reopening, title edits, and
   marking ready for review re-evaluate the gate.
-- PR #1182 also runs benchmarks to establish initial measurements before the
-  release-only policy takes effect. This exception is removed after a complete
-  upload and PR comment.
 - In-progress runs finish even when another PR event queues a run, preserving
   measurements from long simulations.
-- Other ordinary PRs skip the benchmark job. There are no push or manual triggers.
+- Ordinary PRs skip the benchmark job. There are no push or manual triggers.
 - CPU simulation measures user-space CPU work and excludes system calls.
   These complete R commands can be flagged as dominated by system calls, so
   simulated values understate total elapsed cost. Native profiles may show
