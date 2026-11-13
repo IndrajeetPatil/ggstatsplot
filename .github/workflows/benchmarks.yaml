@@ -17,9 +17,8 @@ jobs:
     if: >-
       !github.event.pull_request.draft &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      (github.event.pull_request.number == 1182 ||
-      (startsWith(github.head_ref, 'release-') &&
-      contains(github.event.pull_request.title, 'CRAN Release')))
+      startsWith(github.head_ref, 'release-') &&
+      contains(github.event.pull_request.title, 'CRAN Release')
     permissions:
       contents: read
       id-token: write
