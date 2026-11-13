@@ -19,4 +19,4 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    uses: IndrajeetPatil/workflows/.github/workflows/r-benchmarks.yaml@ci/r-benchmarks-workflow
+    uses: IndrajeetPatil/workflows/.github/workflows/r-benchmarks.yaml@main
