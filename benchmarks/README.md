@@ -63,8 +63,11 @@ measures all targets in `codspeed.yml`.
   versions. Dependencies are resolved from the package repository, not locked.
 - Import this repository into CodSpeed through its GitHub App. Uploads use
   short-lived GitHub OIDC tokens via `id-token: write`.
-- PRs record candidates; pushes to `main` establish comparison baselines.
-  New or renamed targets need matching default-branch measurements.
+- Only ready release-candidate PRs targeting `main` run benchmarks. They must
+  originate in this repository, use a `release-x.y.z` branch, and have a title
+  containing `CRAN Release`. PR creation, commits, reopening, title edits, and
+  marking ready for review re-evaluate the gate.
+- Ordinary PRs skip the benchmark job. There are no push or manual triggers.
 - CPU simulation measures user-space CPU work and excludes system calls.
   These complete R commands can be flagged as dominated by system calls, so
   simulated values understate total elapsed cost. Native profiles may show
@@ -73,3 +76,22 @@ measures all targets in `codspeed.yml`.
   rounded report values alone does not establish sub-percent variance.
 - Configure regression thresholds and merge requirements in CodSpeed and GitHub
   settings; the workflow requires successful execution and upload.
+
+## Release performance review
+
+Before CRAN submission, follow `.agents/skills/create-release/SKILL.md`: verify
+successful execution and upload for the current release-candidate head, then
+compare its saved CodSpeed run with the run for the previous accepted CRAN
+release's submitted commit. Record the two run links, compared commits, observed
+changes, environment differences, and the disposition of major regressions in
+the release PR. Investigate significant unexplained slowdowns before submission.
+
+Release-only scheduling does not continuously populate CodSpeed's default-branch
+baseline. A green execution/upload job or an automatic report with no compatible
+base is not evidence of no regression; use an explicit comparison of saved runs.
+Check that targets, datasets, repetition counts, R, and dependencies are
+comparable. New or changed targets need a compatible reference. If no previous
+release has compatible measurements, record that limitation and preserve this
+candidate's measurements as the reference if that exact commit is accepted.
+The benchmark job is a performance-review input, not an automatic block on the
+manual CRAN submission workflow.

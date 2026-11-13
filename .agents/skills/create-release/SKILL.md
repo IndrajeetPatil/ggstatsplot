@@ -50,6 +50,19 @@ then publish the GitHub Release from `main` only after CRAN acceptance.
    actionable review thread. After each fix, rerun the affected validation,
    commit and push it, and re-fetch the live thread and check state.
 
+
+9. Before submission, verify that `Benchmarks` ran successfully for the current
+   ready release PR head and uploaded its results. The caller selects same-repo
+   `release-x.y.z` branches targeting `main` with `CRAN Release` in the title;
+   ordinary PRs skip it. Follow `benchmarks/README.md` for measurement scope.
+   Compare the saved run against the previous accepted CRAN release's submitted
+   commit, checking compatible workloads and environments. Record both run links,
+   commits, changes, and the disposition of major regressions in the release PR.
+   Investigate significant unexplained slowdowns before submitting. A green
+   upload or a report without a compatible base does not prove no regression.
+   If a compatible prior release run is unavailable, record that limitation;
+   preserve this run as a reference only if this exact candidate is accepted.
+
 ## Submit while the pull request stays open
 
 1. Keep the `CRAN Release` pull request open. Verify that the worktree is clean
