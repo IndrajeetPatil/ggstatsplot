@@ -104,5 +104,5 @@ workload catalogue, local execution, and interpretation of CodSpeed results.
 
 ## Pull requests
 
-Open pull requests as ready for review. Unless asked, do not wait for CI after
-pushing; report that checks were triggered and link the pull request.
+Open pull requests as ready for review. After pushing, wait for CI and fix any
+failures, then get Codex approval on the current head before squash-merging.
