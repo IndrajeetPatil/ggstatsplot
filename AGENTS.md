@@ -97,6 +97,19 @@ User-invoked prompts (`address-review.md` and `simplify-codebase.md`) live in
 `.github/prompts/`. Keep each topic in exactly one place: this file for
 every-session rules, a skill or prompt for task-specific procedures.
 
+## Continuous integration
+
+Workflows under `.github/workflows/` are thin callers of shared reusable
+workflows; the `maintain-ci` skill covers changing them.
+
+- Reference `IndrajeetPatil/workflows` reusable workflows as `@main`, never a
+  commit SHA. The owner maintains them and is the only person who can
+  contribute to this repository, so there is no external-contributor risk, and
+  `@main` keeps it on the latest version. Code scanners (CodeQL
+  `actions/unpinned-tag`, zizmor `unpinned-uses`) flag this by design: do not
+  report it or propose a pin; dismiss such alerts as "won't fix" with this
+  reason.
+
 ## Benchmarks
 
 See [benchmarks/README.md](benchmarks/README.md) for API coverage policy,
