@@ -79,16 +79,18 @@ extract_stats <- function(p) .map_plots(p, .extract_stats)
 }
 
 .extract_stats <- function(p) {
+  fields <- c(
+    subtitle_data = "subtitle_df",
+    caption_data = "caption_df",
+    pairwise_comparisons_data = "mpc_df",
+    descriptive_data = "descriptive_df",
+    one_sample_data = "onesample_df",
+    tidy_data = "tidy_df",
+    glance_data = "glance_df"
+  )
+
   structure(
-    list(
-      subtitle_data = .pluck_plot_env(p, "subtitle_df"),
-      caption_data = .pluck_plot_env(p, "caption_df"),
-      pairwise_comparisons_data = .pluck_plot_env(p, "mpc_df"),
-      descriptive_data = .pluck_plot_env(p, "descriptive_df"),
-      one_sample_data = .pluck_plot_env(p, "onesample_df"),
-      tidy_data = .pluck_plot_env(p, "tidy_df"),
-      glance_data = .pluck_plot_env(p, "glance_df")
-    ),
+    purrr::map(fields, \(field) .pluck_plot_env(p, field)),
     class = c("ggstatsplot_stats", "list")
   )
 }
