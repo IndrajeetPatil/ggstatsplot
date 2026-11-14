@@ -7,8 +7,8 @@ vignette: >
   %\VignetteIndexEntry{Graphic design and statistical reporting principles}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-bibliography: paper.bib
-csl: apa.csl
+bibliography: ../paper.bib
+csl: ../apa.csl
 ---
 
 ```{r}
