@@ -121,4 +121,9 @@ workload catalogue, local execution, and interpretation of CodSpeed results.
 ## Pull requests
 
 Open pull requests as ready for review. After pushing, wait for CI and fix any
-failures, then get Codex approval on the current head before squash-merging.
+failures. Squash-merge only after all required builds are green and Codex has
+approved the current head, with no unresolved findings and the reviewed commit
+matching the head. Because only the repository owner can contribute, a coding
+agent may use admin privileges to squash-merge when GitHub's required human
+approval is the only remaining blocker. Never use admin privileges to bypass
+builds or Codex approval.
