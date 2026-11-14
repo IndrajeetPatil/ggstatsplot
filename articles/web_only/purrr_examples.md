@@ -634,8 +634,7 @@ you can run the following code and check the individual `grouped_` plots
 ## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an
-issue on `GitHub`:
-<https://github.com/IndrajeetPatil/ggstatsplot/issues>
+issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 ## Citation
 

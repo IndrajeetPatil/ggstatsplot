@@ -571,8 +571,7 @@ This solution would work for `x` and `y` arguments, but not for the
 ## Suggestions
 
 If you find any bugs or have any suggestions/remarks, please file an
-issue on `GitHub`:
-<https://github.com/IndrajeetPatil/ggstatsplot/issues>
+issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
 
 ## Citation
 
