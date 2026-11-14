@@ -173,7 +173,7 @@ onesample_data <- function(data, x, y, digits = 2L, ratio = NULL) {
     grouped_chi_squared_summary,
     by = as_name(ensym(y))
   ) |>
-    rowwise() |>
+    as_tibble() |>
     mutate(
       .label = glue(
         "list(~chi['gof']^2~({df})=={format_value(statistic, digits)}, ",
@@ -181,8 +181,7 @@ onesample_data <- function(data, x, y, digits = 2L, ratio = NULL) {
         "~italic(n)=='{.prettyNum(counts)}')"
       ),
       .p.label = glue("list(~italic(p)=='{format_value(p.value, digits)}')")
-    ) |>
-    ungroup()
+    )
 }
 
 
@@ -191,15 +190,13 @@ onesample_data <- function(data, x, y, digits = 2L, ratio = NULL) {
 #' @autoglobal
 #' @noRd
 .chisq_test_safe <- function(data, x, ratio) {
-  purrr::possibly(
-    function(...) suppressWarnings(contingency_table(...)),
-    otherwise = tibble(
+  .eval_f(contingency_table, data, x, ratio = ratio) %||%
+    tibble(
       statistic = NA_real_,
       p.value = NA_real_,
       df = NA_real_,
       method = "Chi-squared test for given probabilities"
     )
-  )(data, x, ratio = ratio)
 }
 
 

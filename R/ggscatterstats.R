@@ -211,26 +211,18 @@ ggscatterstats <- function(
       .eval_f(
         ggside::geom_xsidehistogram,
         mapping = aes(y = after_stat(count)),
-        !!!.with_default_bins(xsidehistogram.args)
+        !!!utils::modifyList(list(bins = 30L), xsidehistogram.args)
       ) +
       .eval_f(
         ggside::geom_ysidehistogram,
         mapping = aes(x = after_stat(count)),
-        !!!.with_default_bins(ysidehistogram.args)
+        !!!utils::modifyList(list(bins = 30L), ysidehistogram.args)
       ) +
       exec(ggside::scale_ysidex_continuous, !!!ysidehistogram.scale) +
       exec(ggside::scale_xsidey_continuous, !!!xsidehistogram.scale)
   }
 
   plot_scatter
-}
-
-#' @noRd
-.with_default_bins <- function(args) {
-  if (!any(c("bins", "binwidth") %in% names(args))) {
-    args[["bins"]] <- 30L
-  }
-  args
 }
 
 
