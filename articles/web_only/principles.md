@@ -354,10 +354,9 @@ when `NA`s are present across correlation variables.
 But why would combining statistical analysis with data visualization be
 helpful? We list a few reasons below-
 
-- A recent survey (Nuijten, Hartgerink, van Assen, Epskamp, &
-  Wicherts, 2016) revealed that one in eight papers in major psychology
-  journals contained a grossly inconsistent *p*-value that may have
-  affected the statistical conclusion.
+- A recent survey (Nuijten et al., 2016) revealed that one in eight
+  papers in major psychology journals contained a grossly inconsistent
+  *p*-value that may have affected the statistical conclusion.
   [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) helps avoid
   such reporting errors: Since the plot and the statistical analysis are
   yoked together, the chances of making an error in reporting the
@@ -435,21 +434,19 @@ You can cite this package/vignette as:
       }
 
 Association, A. P. (2009). *Publication Manual of the American
-Psychological Association, 6th Edition*. Washington, DC: American
-Psychological Association.
+Psychological Association, 6th Edition*. American Psychological
+Association.
 
-Cleveland, W. S. (1985). *The Elements of Graphing Data* (1st edition.).
-Monterey, Cal: Wadsworth, Inc.
+Cleveland, W. S. (1985). *The Elements of Graphing Data* (1st edition).
+Wadsworth, Inc.
 
 Nuijten, M. B., Hartgerink, C. H. J., van Assen, M. A. L. M., Epskamp,
 S., & Wicherts, J. M. (2016). The prevalence of statistical reporting
 errors in psychology (19852013). *Behavior Research Methods*, *48*(4),
-1205–1226.
-doi:[10.3758/s13428-015-0664-2](https://doi.org/10.3758/s13428-015-0664-2)
+1205–1226. <https://doi.org/10.3758/s13428-015-0664-2>
 
 Tufte, E. R. (2001). *The Visual Display of Quantitative Information*
-(2nd ed.). Cheshire, Conn: Graphics Press.
+(2nd edition). Graphics Press.
 
 Wickham, H. (2014). Tidy Data. *Journal of Statistical Software*,
-*59*(1), 1–23.
-doi:[10.18637/jss.v059.i10](https://doi.org/10.18637/jss.v059.i10)
+*59*(1), 1–23. <https://doi.org/10.18637/jss.v059.i10>

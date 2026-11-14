@@ -171,6 +171,11 @@ see
 
 ![](pairwise_files/figure-html/ggsignif2-1.png)
 
+## Suggestions
+
+If you find any bugs or have any suggestions/remarks, please file an
+issue on GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
+
 ## Citation
 
 You can cite this package/vignette as:
