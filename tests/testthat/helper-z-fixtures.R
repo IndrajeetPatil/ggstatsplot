@@ -16,25 +16,14 @@ df_meta <- tibble::tibble(
 
 morley_new <- dplyr::mutate(
   datasets::morley,
-  Expt = dplyr::case_when(
-    Expt == 1L ~ "1st",
-    Expt == 2L ~ "2nd",
-    Expt == 3L ~ "3rd",
-    Expt == 4L ~ "4th",
-    Expt == 5L ~ "5th"
-  )
+  Expt = c("1st", "2nd", "3rd", "4th", "5th")[Expt]
 ) |>
   tibble::as_tibble()
 
 morley_new[c(3L, 23L, 87L), 3L] <- NA_integer_
 
-fixture_data <- new.env(parent = emptyenv())
-utils::data("bugs_long", package = "statsExpressions", envir = fixture_data)
-
 data_bugs_2 <- dplyr::filter(
-  fixture_data$bugs_long,
+  statsExpressions::bugs_long,
   subject <= 30L,
   condition %in% c("HDLF", "HDHF")
 )
-
-rm(fixture_data)

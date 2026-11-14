@@ -22,3 +22,12 @@ library(ggstatsplot)
 
 # for reproducibility
 set.seed(123)
+
+# attach suggested packages, or skip evaluating code if any is unavailable
+load_suggested <- function(pkgs) {
+  if (all(purrr::map_lgl(pkgs, requireNamespace, quietly = TRUE))) {
+    purrr::walk(pkgs, library, character.only = TRUE)
+  } else {
+    knitr::opts_chunk$set(eval = FALSE)
+  }
+}

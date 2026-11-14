@@ -327,18 +327,9 @@ evidence (Jeffreys, 1961) in favor of the alternative hypothesis.
 Similar reporting style can be followed when the function performs one-sample
 goodness-of-fit test instead of a $\chi^2$-test.
 
-## Suggestions
-
-If you find any bugs or have any suggestions/remarks, please file an issue on
-GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
-
-## Citation {#citation}
-
-You can cite this package/vignette as:
-
 ```{r}
-#| label = "citation",
+#| label = "footer",
 #| echo = FALSE,
-#| comment = ""
-citation("ggstatsplot")
+#| results = "asis"
+cat(knitr::knit_child(text = readLines("_footer.Rmd"), quiet = TRUE))
 ```

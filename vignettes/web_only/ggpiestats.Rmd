@@ -211,18 +211,9 @@ The [bar-chart reporting example](ggbarstats.html#reporting) also applies to
 `ggpiestats()`: the statistical analysis is the same, while the graphical
 representation differs.
 
-## Suggestions
-
-If you find any bugs or have any suggestions/remarks, please file an issue on
-GitHub: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
-
-## Citation {#citation}
-
-You can cite this package/vignette as:
-
 ```{r}
-#| label = "citation",
+#| label = "footer",
 #| echo = FALSE,
-#| comment = ""
-citation("ggstatsplot")
+#| results = "asis"
+cat(knitr::knit_child(text = readLines("_footer.Rmd"), quiet = TRUE))
 ```

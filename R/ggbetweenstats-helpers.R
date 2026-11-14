@@ -118,16 +118,37 @@
       tr = tr
     ))
 
-    plot <- suppressWarnings(.centrality_ggrepel(
-      plot = plot,
-      centrality_df = centrality_df,
-      x = !!x,
-      y = !!y,
-      centrality.path = centrality.path,
-      centrality.path.args = centrality.path.args,
-      centrality.point.args = centrality.point.args,
-      centrality.label.args = centrality.label.args
-    ))
+    suppressWarnings({
+      # line connecting centrality values across groups
+      if (isTRUE(centrality.path)) {
+        plot <- plot +
+          exec(
+            geom_path,
+            data = centrality_df,
+            mapping = aes(!!x, !!y, group = 1L),
+            inherit.aes = FALSE,
+            !!!centrality.path.args
+          )
+      }
+
+      # centrality value of each group and its label
+      plot <- plot +
+        exec(
+          geom_point,
+          mapping = aes(!!x, !!y),
+          data = centrality_df,
+          inherit.aes = FALSE,
+          !!!centrality.point.args
+        ) +
+        exec(
+          ggrepel::geom_label_repel,
+          data = centrality_df,
+          mapping = aes(!!x, !!y, label = expression),
+          inherit.aes = FALSE,
+          parse = TRUE,
+          !!!centrality.label.args
+        )
+    })
   } else {
     centrality_df <- suppressWarnings(centrality_description(data, !!x, !!y)) # nocov
   }
@@ -166,73 +187,31 @@
   }
 
   # annotations
-  .aesthetic_addon(
-    plot = plot,
-    x = pull(data, !!x),
-    xlab = xlab %||% as_name(x),
-    ylab = ylab %||% as_name(y),
-    title = title,
-    subtitle = subtitle,
-    caption = caption,
-    seclabel = seclabel,
-    ggtheme = ggtheme,
-    palette = palette,
-    ggplot.component = ggplot.component
-  )
+
+  # Validate the requested number of discrete colors before plot rendering.
+  paletteer::paletteer_d(palette, nlevels(pull(data, !!x)))
+  xlab <- xlab %||% as_name(x)
+
+  plot +
+    labs(
+      x = xlab,
+      y = ylab %||% as_name(y),
+      title = title,
+      subtitle = subtitle,
+      caption = caption,
+      color = xlab
+    ) +
+    ggtheme +
+    # no matter the theme, the following ought to be part of a ggstatsplot plot
+    theme(legend.position = "none", panel.grid.major.x = element_blank()) +
+    paletteer::scale_color_paletteer_d(palette) +
+    scale_y_continuous(
+      sec.axis = dup_axis(name = seclabel, breaks = NULL, labels = NULL)
+    ) +
+    # this is the hail mary way for users to override these defaults
+    ggplot.component
 }
 
-
-#' @title Adding labels for centrality values
-#' @name .centrality_ggrepel
-#'
-#' @param plot A `ggplot` object for which means are to be displayed.
-#' @param centrality_df A data frame produced by
-#'   [statsExpressions::centrality_description()].
-#' @inheritParams ggbetweenstats
-#' @inheritParams ggwithinstats
-#' @inheritParams ggrepel::geom_label_repel
-#'
-#' @autoglobal
-#' @noRd
-.centrality_ggrepel <- function(
-  plot,
-  centrality_df,
-  x,
-  y,
-  centrality.path,
-  centrality.path.args,
-  centrality.point.args,
-  centrality.label.args
-) {
-  # lines connecting mean values across groups
-  if (isTRUE(centrality.path)) {
-    plot <- plot +
-      exec(
-        geom_path,
-        data = centrality_df,
-        mapping = aes({{ x }}, {{ y }}, group = 1L),
-        inherit.aes = FALSE,
-        !!!centrality.path.args
-      )
-  }
-
-  plot + # highlight the mean of each group
-    exec(
-      geom_point,
-      mapping = aes({{ x }}, {{ y }}),
-      data = centrality_df,
-      inherit.aes = FALSE,
-      !!!centrality.point.args
-    ) + # attach the labels with means to the plot
-    exec(
-      ggrepel::geom_label_repel,
-      data = centrality_df,
-      mapping = aes({{ x }}, {{ y }}, label = expression),
-      inherit.aes = FALSE,
-      parse = TRUE,
-      !!!centrality.label.args
-    )
-}
 
 #' @title Adding `geom_signif` to `ggplot`
 #' @name .ggsignif_adder
@@ -243,29 +222,6 @@
 #' @inheritParams ggbetweenstats
 #'
 #' @autoglobal
-#'
-#' @examples
-#' set.seed(123)
-#' library(ggplot2)
-#'
-#' # plot
-#' p <- ggplot(iris, aes(Species, Sepal.Length)) +
-#'   geom_boxplot()
-#'
-#' # data frame with pairwise comparison test results
-#' df_pair <- pairwise_comparisons(
-#'   data = iris,
-#'   x = Species,
-#'   y = Sepal.Length
-#' )
-#'
-#' # adding a geom for pairwise comparisons
-#' ggstatsplot:::.ggsignif_adder(
-#'   plot = p,
-#'   data = iris,
-#'   y = Sepal.Length,
-#'   mpc_df = df_pair
-#' )
 #' @noRd
 .ggsignif_adder <- function(
   plot,
@@ -347,17 +303,6 @@
 #' @param test.description Text describing the details of the test.
 #' @inheritParams ggbetweenstats
 #'
-#' @examples
-#' .pairwise_seclabel("Student's t-test")
-#'
-#' # non-significant pairwise comparisons
-#' .pairwise_seclabel("Student's t-test", pairwise.display = "non-significant")
-#'
-#' # all pairwise comparisons
-#' .pairwise_seclabel("Student's t-test", pairwise.display = "all")
-#'
-#' # custom alpha threshold
-#' .pairwise_seclabel("Student's t-test", pairwise.alpha = 0.01)
 #' @autoglobal
 #' @noRd
 .pairwise_seclabel <- function(
@@ -396,51 +341,4 @@
   } else {
     "all"
   }
-}
-
-
-#' @title Making aesthetic modifications to the plot
-#' @name .aesthetic_addon
-#'
-#' @param plot Plot to be aesthetically modified.
-#' @param x A factor with the `x` axis values; its number of levels sets how
-#'   many palette colors are needed.
-#' @param seclabel A label for secondary axis.
-#' @inheritParams ggbetweenstats
-#'
-#' @noRd
-.aesthetic_addon <- function(
-  plot,
-  x,
-  xlab,
-  ylab,
-  title,
-  subtitle,
-  caption,
-  seclabel,
-  ggtheme,
-  palette,
-  ggplot.component
-) {
-  # Validate the requested number of discrete colors before plot rendering.
-  paletteer::paletteer_d(palette, nlevels(x))
-
-  plot +
-    labs(
-      x = xlab,
-      y = ylab,
-      title = title,
-      subtitle = subtitle,
-      caption = caption,
-      color = xlab
-    ) +
-    ggtheme +
-    # no matter the theme, the following ought to be part of a ggstatsplot plot
-    theme(legend.position = "none", panel.grid.major.x = element_blank()) +
-    paletteer::scale_color_paletteer_d(palette) +
-    scale_y_continuous(
-      sec.axis = dup_axis(name = seclabel, breaks = NULL, labels = NULL)
-    ) +
-    # this is the hail mary way for users to override these defaults
-    ggplot.component
 }

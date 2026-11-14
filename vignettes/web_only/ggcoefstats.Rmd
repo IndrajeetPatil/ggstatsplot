@@ -14,29 +14,7 @@ vignette: >
 #| include = FALSE
 
 source("../setup.R")
-```
-
-```{r}
-#| label = "suggested_pkgs",
-#| include = FALSE
-
-pkgs <- c(
-  "BayesFactor",
-  "lme4",
-  "metaBMA",
-  "metafor",
-  "metaplus",
-  "survival"
-)
-
-successfully_loaded <- purrr::map_lgl(pkgs, requireNamespace, quietly = TRUE)
-can_evaluate <- all(successfully_loaded)
-
-if (can_evaluate) {
-  purrr::walk(pkgs, library, character.only = TRUE)
-} else {
-  knitr::opts_chunk$set(eval = FALSE)
-}
+load_suggested(c("BayesFactor", "lme4", "metaBMA", "metafor", "metaplus", "survival"))
 ```
 
 ---
@@ -528,18 +506,9 @@ models supported in these packages will be supported by `ggcoefstats()`. In
 particular, classes of objects for which there is no column for `estimate`
 (e.g., `kmeans`, `optim`, `muhaz`, `survdiff`, `zoo`, etc.) are not supported.
 
-## Suggestions
-
-If you find any bugs or have any suggestions/remarks, please file an issue on
-`GitHub`: <https://github.com/IndrajeetPatil/ggstatsplot/issues>
-
-## Citation {#citation}
-
-You can cite this package/vignette as:
-
 ```{r}
-#| label = "citation",
+#| label = "footer",
 #| echo = FALSE,
-#| comment = ""
-citation("ggstatsplot")
+#| results = "asis"
+cat(knitr::knit_child(text = readLines("_footer.Rmd"), quiet = TRUE))
 ```
