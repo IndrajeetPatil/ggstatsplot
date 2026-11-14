@@ -82,6 +82,9 @@ only renders `README.Rmd`; it does not regenerate roxygen output.
   chunks. `man/md-fragments/*.md` are included by vignettes with `asis` file
   chunks. In articles, use `asis` file chunks rather than `child=`: pkgdown
   renders them from a temporary file, so relative child paths do not resolve.
+  The closing sections shared by the articles live in
+  `vignettes/web_only/_footer.Rmd`, which contains R code and is therefore
+  knitted from a chunk with `knitr::knit_child(text = readLines(...))`.
 
 ## Repository skills and prompts
 
