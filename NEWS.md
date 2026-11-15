@@ -710,7 +710,7 @@ read the `NEWS` for that package:
 
   - `ggpiestats` and `ggbarstats` don't support returning dataframes. See FAQ
     vignette on how to get these dataframes:
-    <https://www.indrapatil.com/ggstatsplot/articles/web_only/faq.html#faq-1>
+    <https://www.indrapatil.com/ggstatsplot/articles/web_only/faq.html#extract-stats>
 
   - `ggpiestats` and `ggbarstats` were not supposed to support returning Bayes
     Factor for paired contingency table analysis, which is not supported in
