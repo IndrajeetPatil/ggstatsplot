@@ -96,3 +96,7 @@ test_that("grouped_ggbarstats works", {
 test_that("edge case behavior", {
   expect_grouped_common_legend_plot(grouped_ggbarstats)
 })
+
+test_that("panels keep all levels of `x` when `x` is a string", {
+  expect_grouped_x_levels_kept(grouped_ggbarstats)
+})
