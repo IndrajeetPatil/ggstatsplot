@@ -150,6 +150,9 @@
 #' # use a stricter alpha threshold for significant pairwise comparisons
 #' ggbetweenstats(mtcars, cyl, mpg, pairwise.alpha = 0.001)
 #'
+#' # Bayesian tests, which show all pairwise comparisons
+#' ggbetweenstats(mtcars, cyl, mpg, type = "bayes")
+#'
 #' # modifying defaults
 #' ggbetweenstats(
 #'   morley,
