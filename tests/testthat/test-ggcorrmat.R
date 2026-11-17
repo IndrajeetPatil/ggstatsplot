@@ -42,7 +42,7 @@ test_that("Bayesian correlation matrix marks no cell as non-significant", {
   p <- ggcorrmat(anscombe, type = "bayes")
 
   # no cell is crossed out, so there is no p-value adjustment caption
-  expect_identical(nrow(ggplot2::layer_data(p, 3L)), 0L)
+  expect_shape(ggplot2::layer_data(p, 3L), nrow = 0L)
   expect_null(ggplot2::get_labs(p)$caption)
 })
 

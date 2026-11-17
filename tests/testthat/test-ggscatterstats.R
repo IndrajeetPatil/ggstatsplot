@@ -86,9 +86,9 @@ test_that("all points are labelled when `label.expression` is not supplied", {
     function(l) inherits(l$geom, "GeomLabelRepel"),
     logical(1L)
   ))
-  expect_identical(
-    nrow(ggplot2::layer_data(p, label_layer)),
-    nrow(tidyr::drop_na(df, sleep_total, sleep_cycle))
+  expect_shape(
+    ggplot2::layer_data(p, label_layer),
+    nrow = nrow(tidyr::drop_na(df, sleep_total, sleep_cycle))
   )
 })
 
