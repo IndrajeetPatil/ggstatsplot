@@ -34,6 +34,12 @@
   report a one-sided confidence interval for the effect size in the subtitle,
   matching the one-sided *p*-value. This fix comes from `{statsExpressions}`.
 
+- `grouped_ggbarstats()` and `grouped_ggpiestats()` now use the same levels of
+  `x` in every panel when `x` is supplied as a string, as they already did for
+  an unquoted column name. Previously, levels absent from a group were dropped
+  from its panel, so the same level could get a different fill color in
+  different panels.
+
 # ggstatsplot 1.1.3
 
 ## BUG FIXES
