@@ -273,7 +273,12 @@
       } else {
         0.05 # nocov
       },
-      step_increase = if (n_comps > 1L) n_comps / (20 * (n_comps - 1L)) else 0
+      step_increase = if (n_comps > 1L) {
+        n_comps / (20 * (n_comps - 1L))
+      } else {
+        # a single comparison needs no step, and no example shows only one
+        0 # nocov
+      }
     ),
     ggsignif.args
   )
