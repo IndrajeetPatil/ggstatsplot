@@ -45,13 +45,20 @@ only renders `README.Rmd`; it does not regenerate roxygen output.
 
 - `tests/testthat.R` runs tests only on Linux and macOS, so there are no
   Windows snapshot variants.
-- Codecov requires 100% project and patch coverage.
+
+- CI requires 100% line and branch coverage (covr's `covr.branch_coverage`),
+  and Codecov requires 100% project and patch coverage. A `switch()` without a
+  default leaves an untaken "no match" branch, so make its last case the
+  default or use a lookup vector.
+
 - Set seeds before tests that use random or Bayesian computations. Suppress
   warnings only when a test intentionally exercises a warning-producing path.
+
 - Plot output is covered by `vdiffr` snapshots (`expect_doppelganger()`) in
   `tests/testthat/_snaps/`. A few use `variant =` for platform (`darwin/`,
   `linux/`) or R-version (`r-4.7/`) differences; add a variant only when the
   difference is confirmed to be renderer-specific.
+
 - Treat broad snapshot diffs after dependency updates as likely renderer churn.
   Compare the old and new dependency builds under the same R and graphics
   stack; if both reproduce the same SVG changes, restore the repository
