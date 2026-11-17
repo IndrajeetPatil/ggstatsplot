@@ -37,6 +37,15 @@ test_that("single sample size is shown when all pairs share the same `n`", {
   expect_identical(legend_title(anscombe_na), expected)
 })
 
+test_that("Bayesian correlation matrix marks no cell as non-significant", {
+  set.seed(123)
+  p <- ggcorrmat(anscombe, type = "bayes")
+
+  # no cell is crossed out, so there is no p-value adjustment caption
+  expect_identical(nrow(ggplot2::layer_data(p, 3L)), 0L)
+  expect_null(ggplot2::get_labs(p)$caption)
+})
+
 # changing defaults -------------------------------------------
 
 test_that("ggcorrmat works as expected with changed defaults", {

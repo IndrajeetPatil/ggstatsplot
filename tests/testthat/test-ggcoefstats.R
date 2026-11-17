@@ -201,6 +201,11 @@ test_that("tidy data without statistic inputs disables stats labels", {
   )
 })
 
+test_that("no vertical line is drawn when `vline = FALSE`", {
+  p <- ggcoefstats(lm(mpg ~ wt, data = mtcars), vline = FALSE)
+  expect_no_vline(p)
+})
+
 test_that("stats label helpers cover filtering and color branches", {
   df_labels <- tibble::tibble(
     term = c("a", "b", "c"),

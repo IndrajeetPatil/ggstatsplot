@@ -14,6 +14,17 @@ test_that("checking default outputs", {
   )
 })
 
+test_that("centrality line is omitted when `centrality.plotting = FALSE`", {
+  p <- ggdotplotstats(
+    ggplot2::mpg,
+    cty,
+    cyl,
+    centrality.plotting = FALSE,
+    results.subtitle = FALSE
+  )
+  expect_no_vline(p)
+})
+
 # modification with ggplot2 ----------------------------------------------
 
 test_that("modification with ggplot2 works as expected", {
