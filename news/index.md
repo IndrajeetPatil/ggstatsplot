@@ -56,6 +56,14 @@ CRAN release: 2026-10-22
   *p*-value. This fix comes from
   [statsExpressions](https://www.indrapatil.com/statsExpressions/).
 
+- [`grouped_ggbarstats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggbarstats.md)
+  and
+  [`grouped_ggpiestats()`](https://www.indrapatil.com/ggstatsplot/reference/grouped_ggpiestats.md)
+  now use the same levels of `x` in every panel when `x` is supplied as
+  a string, as they already did for an unquoted column name. Previously,
+  levels absent from a group were dropped from its panel, so the same
+  level could get a different fill color in different panels.
+
 ## ggstatsplot 1.1.3
 
 CRAN release: 2026-10-17

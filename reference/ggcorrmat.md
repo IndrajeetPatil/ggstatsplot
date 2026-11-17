@@ -242,10 +242,20 @@ set.seed(123)
 ggcorrmat(iris)
 
 
-# with data containing NAs (uses pairwise complete observations)
-ggcorrmat(airquality)
+# with data containing NAs (uses pairwise complete observations) and
+# Spearman's rank correlations
+ggcorrmat(airquality, type = "nonparametric")
 
 
-# selecting specific variables
-ggcorrmat(iris, cor.vars = c(Sepal.Length, Petal.Length, Petal.Width))
+# selecting specific variables and using robust partial correlations
+ggcorrmat(
+  iris,
+  cor.vars = c(Sepal.Length, Petal.Length, Petal.Width),
+  type = "robust",
+  partial = TRUE
+)
+
+
+# Bayesian correlations
+ggcorrmat(iris, type = "bayes")
 ```

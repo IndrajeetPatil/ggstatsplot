@@ -307,13 +307,23 @@ Partial correlations use only complete cases.</p>
 <span class="r-in"><span><span class="fu">ggcorrmat</span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ggcorrmat-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># with data containing NAs (uses pairwise complete observations)</span></span></span>
-<span class="r-in"><span><span class="fu">ggcorrmat</span><span class="op">(</span><span class="va">airquality</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># with data containing NAs (uses pairwise complete observations) and</span></span></span>
+<span class="r-in"><span><span class="co"># Spearman's rank correlations</span></span></span>
+<span class="r-in"><span><span class="fu">ggcorrmat</span><span class="op">(</span><span class="va">airquality</span>, type <span class="op">=</span> <span class="st">"nonparametric"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ggcorrmat-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># selecting specific variables</span></span></span>
-<span class="r-in"><span><span class="fu">ggcorrmat</span><span class="op">(</span><span class="va">iris</span>, cor.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">Sepal.Length</span>, <span class="va">Petal.Length</span>, <span class="va">Petal.Width</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># selecting specific variables and using robust partial correlations</span></span></span>
+<span class="r-in"><span><span class="fu">ggcorrmat</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">iris</span>,</span></span>
+<span class="r-in"><span>  cor.vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">Sepal.Length</span>, <span class="va">Petal.Length</span>, <span class="va">Petal.Width</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  type <span class="op">=</span> <span class="st">"robust"</span>,</span></span>
+<span class="r-in"><span>  partial <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ggcorrmat-3.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Bayesian correlations</span></span></span>
+<span class="r-in"><span><span class="fu">ggcorrmat</span><span class="op">(</span><span class="va">iris</span>, type <span class="op">=</span> <span class="st">"bayes"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="ggcorrmat-4.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

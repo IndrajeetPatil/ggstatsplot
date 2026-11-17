@@ -113,12 +113,11 @@
 </ul></div>
 <div class="section level2">
 <h2 id="testing">Testing<a class="anchor" aria-label="anchor" href="#testing"></a></h2>
-<ul><li>
-<code>tests/testthat.R</code> runs tests only on Linux and macOS, so there are no Windows snapshot variants.</li>
-<li>Codecov requires 100% project and patch coverage.</li>
-<li>Set seeds before tests that use random or Bayesian computations. Suppress warnings only when a test intentionally exercises a warning-producing path.</li>
-<li>Plot output is covered by <code>vdiffr</code> snapshots (<code>expect_doppelganger()</code>) in <code>tests/testthat/_snaps/</code>. A few use <code>variant =</code> for platform (<code>darwin/</code>, <code>linux/</code>) or R-version (<code>r-4.7/</code>) differences; add a variant only when the difference is confirmed to be renderer-specific.</li>
-<li>Treat broad snapshot diffs after dependency updates as likely renderer churn. Compare the old and new dependency builds under the same R and graphics stack; if both reproduce the same SVG changes, restore the repository snapshots rather than committing them. Confirm legitimate baseline updates against the snapshot artifact the R-CMD-check workflow uploads on failure.</li>
+<ul><li><p><code>tests/testthat.R</code> runs tests only on Linux and macOS, so there are no Windows snapshot variants.</p></li>
+<li><p>CI requires 100% line and branch coverage (covr’s <code>covr.branch_coverage</code>), and Codecov requires 100% project and patch coverage. A <code><a href="https://rdrr.io/r/base/switch.html" class="external-link">switch()</a></code> without a default leaves an untaken “no match” branch, so make its last case the default or use a lookup vector.</p></li>
+<li><p>Set seeds before tests that use random or Bayesian computations. Suppress warnings only when a test intentionally exercises a warning-producing path.</p></li>
+<li><p>Plot output is covered by <code>vdiffr</code> snapshots (<code>expect_doppelganger()</code>) in <code>tests/testthat/_snaps/</code>. A few use <code>variant =</code> for platform (<code>darwin/</code>, <code>linux/</code>) or R-version (<code>r-4.7/</code>) differences; add a variant only when the difference is confirmed to be renderer-specific.</p></li>
+<li><p>Treat broad snapshot diffs after dependency updates as likely renderer churn. Compare the old and new dependency builds under the same R and graphics stack; if both reproduce the same SVG changes, restore the repository snapshots rather than committing them. Confirm legitimate baseline updates against the snapshot artifact the R-CMD-check workflow uploads on failure.</p></li>
 </ul></div>
 <div class="section level2">
 <h2 id="code-conventions">Code conventions<a class="anchor" aria-label="anchor" href="#code-conventions"></a></h2>
