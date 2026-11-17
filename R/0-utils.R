@@ -115,11 +115,8 @@ utils::globalVariables(".pre")
 #' @autoglobal
 #' @noRd
 .stabilize_x_factor <- function(data, x, ...) {
-  x <- enquo(x)
-  if (quo_is_symbol(x)) {
-    data <- mutate(data, !!x := factor(!!x, levels(as.factor(!!x))))
-  }
-  data
+  x <- ensym(x)
+  mutate(data, !!x := factor(!!x, levels(as.factor(!!x))))
 }
 
 

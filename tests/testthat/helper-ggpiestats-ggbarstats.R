@@ -88,6 +88,33 @@ expect_grouped_common_legend_plot <- function(grouped_plot_fn) {
   )
 }
 
+# every panel uses all levels of `x`, whether `x` is a symbol or a string
+expect_grouped_x_levels_kept <- function(grouped_plot_fn) {
+  levels_data <- data.frame(
+    g = rep(c("a", "b"), each = 6L),
+    x = c("p", "p", "q", "q", "r", "r", "q", "q", "r", "r", "r", "q"),
+    y = rep(c("u", "v"), 6L)
+  )
+  fill_levels <- function(p) {
+    lapply(1:2, function(i) {
+      ggplot2::ggplot_build(p[[i]])$plot$scales$get_scales("fill")$get_limits()
+    })
+  }
+  expected <- list(c("p", "q", "r"), c("p", "q", "r"))
+
+  for (x_arg in list(quote(x), "x")) {
+    p <- rlang::inject(grouped_plot_fn(
+      levels_data,
+      x = !!x_arg,
+      y = y,
+      grouping.var = g,
+      results.subtitle = FALSE,
+      proportion.test = FALSE
+    ))
+    expect_identical(fill_levels(p), expected)
+  }
+}
+
 # default plots for one-way, unpaired two-way, and paired two-way tables, with
 # and without `NA`s
 expect_default_contingency_plots <- function(plot_fn) {

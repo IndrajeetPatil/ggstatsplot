@@ -19,6 +19,16 @@ test_that("checking default outputs", {
   )
 })
 
+test_that("centrality line is omitted when `centrality.plotting = FALSE`", {
+  p <- gghistostats(
+    ggplot2::mpg,
+    cty,
+    centrality.plotting = FALSE,
+    results.subtitle = FALSE
+  )
+  expect_no_vline(p)
+})
+
 # aesthetic modifications work --------------------------------------
 
 test_that("aesthetic modifications work", {

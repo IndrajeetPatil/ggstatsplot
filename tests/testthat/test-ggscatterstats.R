@@ -71,6 +71,27 @@ test_that("labeling variables and expressions work as expected", {
   )
 })
 
+test_that("all points are labelled when `label.expression` is not supplied", {
+  df <- dplyr::filter(ggplot2::msleep, conservation == "lc")
+  p <- ggscatterstats(
+    data = df,
+    x = sleep_total,
+    y = sleep_cycle,
+    label.var = order,
+    marginal = FALSE,
+    results.subtitle = FALSE
+  )
+  label_layer <- which(vapply(
+    p$layers,
+    function(l) inherits(l$geom, "GeomLabelRepel"),
+    logical(1L)
+  ))
+  expect_shape(
+    ggplot2::layer_data(p, label_layer),
+    nrow = nrow(tidyr::drop_na(df, sleep_total, sleep_cycle))
+  )
+})
+
 # subtitle output ----------------------------------------------------------
 
 test_that("subtitle output - ggscatterstats", {
