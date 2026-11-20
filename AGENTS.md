@@ -103,9 +103,10 @@ only when the task matches it:
   add, remove, or move a dependency.
 - `maintain-ci`: change or debug workflows under `.github/workflows/`.
 
-User-invoked prompts (`address-review.md` and `simplify-codebase.md`) live in
-`.github/prompts/`. Keep each topic in exactly one place: this file for
-every-session rules, a skill or prompt for task-specific procedures.
+User-invoked prompts (`address-review.md`, `simplify-codebase.md`, and
+`update-deps.md`) live in `.github/prompts/`. Keep each topic in exactly one
+place: this file for every-session rules, a skill or prompt for task-specific
+procedures.
 
 ## Continuous integration
 
