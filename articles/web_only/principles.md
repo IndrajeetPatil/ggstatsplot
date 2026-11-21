@@ -2,7 +2,10 @@
 
 ------------------------------------------------------------------------
 
-> **This vignette is still work in progress.**
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) makes a few
+deliberate choices about how data are displayed and how statistical
+results are reported. This article explains the principles behind those
+choices, and the places where the package knowingly departs from them.
 
 ## Graphic design principles
 
@@ -364,6 +367,26 @@ helpful? We list a few reasons below-
   copy-paste them from a different statistics software program (like
   SPSS, SAS, and so on).
 
+- Summary statistics can hide very different patterns in the data:
+  datasets with nearly identical means, standard deviations, and
+  correlations can look nothing alike when plotted. Showing the raw data
+  next to the test results lets the reader judge whether a statistical
+  model is a sensible description of the data, and spot outliers, skew,
+  or ceiling effects that a test statistic alone would not reveal.
+
+- A *p*-value says nothing about how large an effect is. Every subtitle
+  therefore reports an effect size together with its confidence
+  interval, so that the practical importance of a result, and the
+  uncertainty around it, is shown by default rather than left as an
+  afterthought.
+
+- The results remain available for further use.
+  [`extract_stats()`](https://www.indrapatil.com/ggstatsplot/reference/extract_stats.md)
+  returns the data frames behind the subtitle, caption, and pairwise
+  comparisons, so the numbers in the plot can be reused in tables or
+  text without being retyped (see the
+  [FAQ](https://www.indrapatil.com/ggstatsplot/articles/web_only/faq.html#extract-stats)).
+
 The default setting in
 [ggstatsplot](https://www.indrapatil.com/ggstatsplot/) is to produce
 plots with statistical details included. More often than not, these
@@ -393,6 +416,44 @@ reporting statistical details:
 
 - With the exception of *p*-values, most statistics are rounded to two
   decimal places by default.
+
+### Choice of statistical approach
+
+No single test suits every dataset. Most
+[ggstatsplot](https://www.indrapatil.com/ggstatsplot/) functions
+therefore take a `type` argument that switches between four families of
+analysis, while the plot itself stays the same:
+
+- `"parametric"` (default): classical tests that assume, for example,
+  normally distributed residuals.
+
+- `"nonparametric"`: rank-based tests that make fewer distributional
+  assumptions.
+
+- `"robust"`: tests based on trimmed means or other robust estimators,
+  which are less sensitive to outliers and heavy tails.
+
+- `"bayes"`: Bayesian estimation and Bayes Factors, which quantify
+  evidence for both the alternative and the null hypothesis.
+
+The package does not choose among these on the user’s behalf, nor does
+it test assumptions automatically (see the
+[FAQ](https://www.indrapatil.com/ggstatsplot/articles/web_only/faq.html#assumption-checks)).
+The displayed data are meant to inform that choice: a heavily skewed
+distribution or a few extreme observations visible in the plot are a cue
+to consider a non-parametric or robust alternative.
+
+When several comparisons are carried out at once, as with pairwise
+comparisons in
+[`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
+and
+[`ggwithinstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggwithinstats.md),
+*p*-values are adjusted for multiple comparisons (Holm’s method by
+default; see `p.adjust.method`). The adjustment method is stated in the
+plot, so the reader knows how the reported *p*-values were obtained. See
+the [pairwise
+comparisons](https://www.indrapatil.com/ggstatsplot/articles/web_only/pairwise.md)
+article for details.
 
 ### Dealing with null results
 
