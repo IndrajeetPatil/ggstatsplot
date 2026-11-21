@@ -36,8 +36,9 @@ then publish the GitHub Release from `main` only after CRAN acceptance.
    `AGENTS.md`.
 4. Update `cran-comments.md` accurately, including the release type and
    version. Mention a CRAN issue only when the repository evidence supports
-   it. Report reverse-dependency results only from an actual check against the
-   current CRAN reverse dependencies; otherwise drop that section.
+   it. Do not run reverse-dependency checks (`revdepcheck`): CRAN runs them
+   on submission, so a local run only costs time. Leave a reverse-dependency
+   results section out of `cran-comments.md`, and remove a stale one.
 5. Do not refresh dependencies merely because this is a release.
 6. Run the full validation gate from `AGENTS.md`.
 7. Clean build artifacts (`make clean`), inspect the complete diff, commit the
