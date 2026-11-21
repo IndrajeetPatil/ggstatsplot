@@ -134,8 +134,10 @@ feedback, and reply to comments; resolve threads once handled. After changes,
 repeat the checks. Codex reviews every pull request automatically and decides
 itself whether later pushes need another review, so never comment
 `@codex review`; the only exception is a single comment once exhausted review
-usage has refreshed. Squash-merge only after all required builds are green and
-Codex has approved, with no unresolved findings. Because
+usage has refreshed. Never write `@codex` anywhere else in a pull request title,
+body, or comment, not even inside backticks: Codex treats any mention as a task
+request and skips its automatic review. Squash-merge only after all required
+builds are green and Codex has approved, with no unresolved findings. Because
 only the repository owner can contribute, a coding agent may use admin
 privileges to squash-merge when GitHub's required human approval is the only
 remaining blocker. Never use admin privileges to bypass builds or Codex
