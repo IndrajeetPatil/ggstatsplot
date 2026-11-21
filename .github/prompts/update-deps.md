@@ -36,9 +36,13 @@ instructions for you to follow:
 ## Simplify
 
 Once the dependency update is green, review relevant changelogs and current
-documentation for upgraded packages. Apply small compatibility simplifications
-only when they reduce local complexity or remove a workaround without changing
-behavior, and rerun the affected checks after each change.
+documentation for upgraded packages and CLIs. Apply small compatibility
+simplifications only when they reduce local complexity or remove a workaround
+without changing behavior, and rerun the affected checks after each change.
+Check whether changes in CLIs or dependencies also allow updating or
+simplifying artifacts relevant for agentic engineering: keep `AGENTS.md`,
+agentic skills (under `.agents/skills/`), and their referenced assets or
+instructions aligned whenever tool flags, behaviors, or capabilities change.
 
 ## Pull request
 
