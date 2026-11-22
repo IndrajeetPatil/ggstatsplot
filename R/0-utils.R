@@ -1,10 +1,6 @@
-# grouped functions built without a `.pre` hook capture `.pre = NULL`, so
-# codetools reports `.pre(...)` as a call to an undefined global function
-utils::globalVariables(".pre")
-
 # nocov start
 .p_adjust_text <- function(method) {
-  recode(insight::format_capitalize(method), BH = "FDR", Fdr = "FDR")
+  if (method %in% c("BH", "fdr")) "FDR" else insight::format_capitalize(method)
 }
 # nocov end
 
@@ -37,7 +33,11 @@ utils::globalVariables(".pre")
 
 # nocov start
 #' @noRd
-.make_grouped_fn <- function(.fn, .pre = NULL, guides = "collect") {
+.make_grouped_fn <- function(
+  .fn,
+  .pre = \(data, ...) data,
+  guides = "collect"
+) {
   function(
     data,
     ...,
@@ -45,10 +45,7 @@ utils::globalVariables(".pre")
     plotgrid.args = list(),
     annotation.args = list()
   ) {
-    if (!is.null(.pre)) {
-      data <- .pre(data, ...)
-    }
-    .grouped_list(data, {{ grouping.var }}) |>
+    .grouped_list(.pre(data, ...), {{ grouping.var }}) |>
       purrr::pmap(.f = .fn, ...) |>
       combine_plots(plotgrid.args, annotation.args, guides = guides)
   }
