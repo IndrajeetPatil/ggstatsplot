@@ -58,6 +58,12 @@ roxygen output.
   default leaves an untaken “no match” branch, so make its last case the
   default or use a lookup vector.
 
+- A separate CI job requires 100% coverage from examples and vignettes
+  alone (`covr::package_coverage(type = c("examples", "vignettes"))`).
+  Most `# nocov` markers exclude code that the tests cover but the
+  examples do not, so do not remove a marker because the test suite
+  covers its code.
+
 - Set seeds before tests that use random or Bayesian computations.
   Suppress warnings only when a test intentionally exercises a
   warning-producing path.
