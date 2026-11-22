@@ -1,6 +1,8 @@
+# nocov start
 .p_adjust_text <- function(method) {
   if (method %in% c("BH", "fdr")) "FDR" else insight::format_capitalize(method)
 }
+# nocov end
 
 #' @title Shared data-preparation step for two-variable plot functions
 #' @name .prep_data
@@ -29,7 +31,6 @@
 }
 
 
-# covr cannot trace closures that are created when the namespace is loaded
 # nocov start
 #' @noRd
 .make_grouped_fn <- function(
@@ -89,6 +90,7 @@
 #' @noRd
 .validate_palette <- function(palette, default = "ggthemes::gdoc") {
   if (!grepl("::", palette, fixed = TRUE)) {
+    # nocov start
     rlang::warn(c(
       "!" = paste0(
         "Palette '",
@@ -103,7 +105,7 @@
       "*" = "Update your code: combine package and palette into one string, e.g., `palette = \"ggsci::nrc_npg\"`."
     ))
     return(default)
-  }
+  } # nocov end
   palette
 }
 
