@@ -170,11 +170,9 @@ gghistostats <- function(
     return(x_range / sqrt(length(x)))
   }
 
-  # nocov start
   # for zero-range data, use the width that `ggplot2::stat_bin()` falls back
   # to, scaled up for large values so that bin edges and axes stay resolvable
   max(0.1, abs(x[[1L]]) / 1000)
-  # nocov end
 }
 
 

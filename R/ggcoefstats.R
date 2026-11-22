@@ -362,11 +362,9 @@ ggcoefstats <- function(
 
 #' @noRd
 .preprocess_tidy_data <- function(data, sort) {
-  # nocov start
   if (is.null(data) || !"estimate" %in% names(data)) {
     rlang::abort("The tidy data frame *must* contain 'estimate' column.")
   }
-  # nocov end
 
   # create a new term column if it's not present
   if (!"term" %in% names(data)) {
@@ -374,7 +372,6 @@ ggcoefstats <- function(
   }
 
   # check if there are repeated terms (relevant for `maov`, `lqm`, etc.)
-  # nocov start
   if (anyDuplicated(data$term)) {
     data <- tidyr::unite(
       data,
@@ -391,7 +388,6 @@ ggcoefstats <- function(
   if (anyDuplicated(data$term)) {
     rlang::abort("Elements in `term` column must be unique.")
   }
-  # nocov end
 
   data <- parameters::sort_parameters(data, sort = sort, column = "estimate")
 
@@ -424,5 +420,5 @@ ggcoefstats <- function(
     return(stats.label.color[data$term %in% label_data$term])
   }
 
-  stats.label.color # nocov
+  stats.label.color
 }

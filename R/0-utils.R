@@ -1,12 +1,6 @@
-# grouped functions built without a `.pre` hook capture `.pre = NULL`, so
-# codetools reports `.pre(...)` as a call to an undefined global function
-utils::globalVariables(".pre")
-
-# nocov start
 .p_adjust_text <- function(method) {
-  recode(insight::format_capitalize(method), BH = "FDR", Fdr = "FDR")
+  if (method %in% c("BH", "fdr")) "FDR" else insight::format_capitalize(method)
 }
-# nocov end
 
 #' @title Shared data-preparation step for two-variable plot functions
 #' @name .prep_data
@@ -35,9 +29,14 @@ utils::globalVariables(".pre")
 }
 
 
+# covr cannot trace closures that are created when the namespace is loaded
 # nocov start
 #' @noRd
-.make_grouped_fn <- function(.fn, .pre = NULL, guides = "collect") {
+.make_grouped_fn <- function(
+  .fn,
+  .pre = \(data, ...) data,
+  guides = "collect"
+) {
   function(
     data,
     ...,
@@ -45,10 +44,7 @@ utils::globalVariables(".pre")
     plotgrid.args = list(),
     annotation.args = list()
   ) {
-    if (!is.null(.pre)) {
-      data <- .pre(data, ...)
-    }
-    .grouped_list(data, {{ grouping.var }}) |>
+    .grouped_list(.pre(data, ...), {{ grouping.var }}) |>
       purrr::pmap(.f = .fn, ...) |>
       combine_plots(plotgrid.args, annotation.args, guides = guides)
   }
@@ -93,7 +89,6 @@ utils::globalVariables(".pre")
 #' @noRd
 .validate_palette <- function(palette, default = "ggthemes::gdoc") {
   if (!grepl("::", palette, fixed = TRUE)) {
-    # nocov start
     rlang::warn(c(
       "!" = paste0(
         "Palette '",
@@ -108,7 +103,7 @@ utils::globalVariables(".pre")
       "*" = "Update your code: combine package and palette into one string, e.g., `palette = \"ggsci::nrc_npg\"`."
     ))
     return(default)
-  } # nocov end
+  }
   palette
 }
 

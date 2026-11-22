@@ -150,7 +150,7 @@
         )
     })
   } else {
-    centrality_df <- suppressWarnings(centrality_description(data, !!x, !!y)) # nocov
+    centrality_df <- suppressWarnings(centrality_description(data, !!x, !!y))
   }
 
   # sample size labels on x-axis
@@ -248,7 +248,7 @@
     # proceed only if there are any comparisons left to display
     if (nrow(mpc_df) == 0L) {
       return(plot)
-    } # nocov
+    }
   }
 
   # arrange the data frame so that annotations are properly aligned
@@ -271,13 +271,13 @@
       margin_top = if (y_range > 0) {
         0.05 + (0.025 * max(0, y_values)) / y_range
       } else {
-        0.05 # nocov
+        0.05
       },
       step_increase = if (n_comps > 1L) {
         n_comps / (20 * (n_comps - 1L))
       } else {
-        # a single comparison needs no step, and no example shows only one
-        0 # nocov
+        # a single comparison needs no step
+        0
       }
     ),
     ggsignif.args
