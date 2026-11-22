@@ -148,18 +148,46 @@ interpretation of CodSpeed results.
 
 ## Pull requests
 
-Open pull requests as ready for review. Watch CI and review comments
-after opening and updating a pull request. Fix build failures, address
-review feedback, and reply to comments; resolve threads once handled.
-After changes, repeat the checks. Codex reviews every pull request
-automatically and decides itself whether later pushes need another
-review, so never comment `@codex review`; the only exception is a single
-comment once exhausted review usage has refreshed. Never write `@codex`
-anywhere else in a pull request title, body, or comment, not even inside
-backticks: Codex treats any mention as a task request and skips its
-automatic review. Squash-merge only after all required builds are green
-and Codex has approved, with no unresolved findings. Because only the
-repository owner can contribute, a coding agent may use admin privileges
-to squash-merge when GitHub’s required human approval is the only
-remaining blocker. Never use admin privileges to bypass builds or Codex
-approval.
+Follow these rules without relying on any instructions outside this
+repository:
+
+- Write every commit message and PR title as a Conventional Commit,
+  `type(scope): description`, lowercase and imperative, with an allowed
+  type (`build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`,
+  `refactor`, `revert`, `style`, `test`). Keep the PR title and body in
+  sync with the net diff.
+
+- Open every PR ready for review with `gh pr create`, never as a draft.
+
+- Never add agent or tool attribution to commits, PRs, or comments.
+
+- After opening or pushing, wait for hosted CI to finish. Inspect failed
+  jobs, fix the cause, run the local checks (`make check` and
+  `make hooks`), push, and repeat. Skipped, queued, or failing required
+  checks are not success.
+
+- If an automatic AI review (Codex, for the owner) runs on the PR, wait
+  for its result instead of requesting one. Fix merited findings, reply
+  to and resolve addressed threads, and continue until the review
+  approves the current head with no unresolved findings. Never write
+  `@codex` anywhere in a PR, even in backticks: it cancels the automatic
+  review. Say “a Codex review request” instead.
+
+- If Codex reports exhausted usage, leave the PR open and report it; no
+  other reviewer or silence counts as approval. Once usage refreshes,
+  comment `@codex review` once; only this case needs the comment.
+
+- Once CI is green and the review gate is met, squash-merge, then verify
+  the merged state. Recheck the head, threads, and checks immediately
+  before merging, and never bypass branch protections. Because only the
+  repository owner can contribute, a coding agent may use admin
+  privileges to squash-merge when GitHub’s required human approval is
+  the only remaining blocker. Never use admin privileges to bypass
+  builds or Codex approval.
+
+- Update a PR branch from `main` only to resolve conflicts or pick up a
+  change the PR depends on, never just to bring it up to date.
+
+- Report local validation, hosted CI, review, and merge state
+  separately. If an external blocker stops completion, leave the PR open
+  and say so.
