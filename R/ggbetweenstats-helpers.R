@@ -107,17 +107,18 @@
   centrality.path = FALSE,
   centrality.path.args = list()
 ) {
+  # centrality description used for centrality geoms and x-axis sample size labels
+  centrality_df <- suppressWarnings(centrality_description(
+    data,
+    !!x,
+    !!y,
+    type = centrality.type,
+    digits = digits,
+    tr = tr
+  ))
+
   # centrality tagging
   if (isTRUE(centrality.plotting)) {
-    centrality_df <- suppressWarnings(centrality_description(
-      data,
-      !!x,
-      !!y,
-      type = centrality.type,
-      digits = digits,
-      tr = tr
-    ))
-
     suppressWarnings({
       # line connecting centrality values across groups
       if (isTRUE(centrality.path)) {
@@ -149,8 +150,6 @@
           !!!centrality.label.args
         )
     })
-  } else {
-    centrality_df <- suppressWarnings(centrality_description(data, !!x, !!y)) # nocov
   }
 
   # sample size labels on x-axis
