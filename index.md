@@ -312,7 +312,7 @@ to repeat the same operation across a **single** grouping variable:
 `  type              ``=`` ``"nonparametric"``,`\
 `  xlab              ``=`` ``"Movies budget (in million US$)"``,`\
 `  grouping.var      ``=`` ``genre``,`\
-`  ggtheme           ``=`` ``ggthemes``::``theme_tufte``(``)``,`\
+`  ggtheme           ``=`` ``ggthemes``::`[`theme_tufte`](https://jrnold.github.io/ggthemes/reference/theme_tufte.html)`(``)``,`\
 `  ``` ## modify the defaults from `{ggstatsplot}` for each plot ``\
 `  plotgrid.args     ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nrow ``=`` ``1``)``,`\
 `  annotation.args   ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``title ``=`` ``"Movies budgets for different genres"``)`\

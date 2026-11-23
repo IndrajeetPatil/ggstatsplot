@@ -150,9 +150,9 @@ so we pass the variable name as a string `x = "continent"`.
 `    digits ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``1``, ``2``, ``3``)``,`\
 `    palette ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"nord::aurora"``, ``"ochRe::parliament"``, ``"awtools::bpalette"``)``,`\
 `    ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
-`      ``ggthemes``::``theme_stata``(``)``,`\
+`      ``ggthemes``::`[`theme_stata`](https://jrnold.github.io/ggthemes/reference/theme_stata.html)`(``)``,`\
 `      ``ggplot2``::`[`theme_classic`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
-`      ``ggthemes``::``theme_fivethirtyeight``(``)`\
+`      ``ggthemes``::`[`theme_fivethirtyeight`](https://jrnold.github.io/ggthemes/reference/theme_fivethirtyeight.html)`(``)`\
 `    ``)`\
 `  ``)``,`\
 `  .f ``=`` ``ggbetweenstats`\
@@ -219,9 +219,9 @@ response times across trials.
 `    ``)``,`\
 `    ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `      ``ggplot2``::`[`theme_linedraw`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
-`      ``ggthemes``::``theme_few``(``)``,`\
-`      ``ggthemes``::``theme_solarized``(``)``,`\
-`      ``ggthemes``::``theme_gdocs``(``)`\
+`      ``ggthemes``::`[`theme_few`](https://jrnold.github.io/ggthemes/reference/theme_few.html)`(``)``,`\
+`      ``ggthemes``::`[`theme_solarized`](https://jrnold.github.io/ggthemes/reference/theme_solarized.html)`(``)``,`\
+`      ``ggthemes``::`[`theme_gdocs`](https://jrnold.github.io/ggthemes/reference/theme_gdocs.html)`(``)`\
 `    ``)`\
 `  ``)``,`\
 `  .f ``=`` ``ggwithinstats`\
@@ -285,7 +285,7 @@ This time we’ll put all the code in one block-
 `      `[`list`](https://rdrr.io/r/base/list.html)`(``fill ``=`` ``"#D55E00"``)`\
 `    ``)``,`\
 `    ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
-`      ``ggthemes``::``theme_tufte``(``)``,`\
+`      ``ggthemes``::`[`theme_tufte`](https://jrnold.github.io/ggthemes/reference/theme_tufte.html)`(``)``,`\
 `      ``ggplot2``::`[`theme_classic`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
 `      ``ggplot2``::`[`theme_light`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)`\
 `    ``)`\
@@ -341,8 +341,8 @@ methodology as the earlier examples.
 `    ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `      ``ggplot2``::`[`theme_linedraw`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
 `      ``ggplot2``::`[`theme_classic`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
-`      ``ggthemes``::``theme_fivethirtyeight``(``)``,`\
-`      ``ggthemes``::``theme_tufte``(``)`\
+`      ``ggthemes``::`[`theme_fivethirtyeight`](https://jrnold.github.io/ggthemes/reference/theme_fivethirtyeight.html)`(``)``,`\
+`      ``ggthemes``::`[`theme_tufte`](https://jrnold.github.io/ggthemes/reference/theme_tufte.html)`(``)`\
 `    ``)`\
 `  ``)``,`\
 `  .f ``=`` ``ggcorrmat`\
@@ -396,7 +396,7 @@ methodology as the earlier examples.
 `        ``ggplot2``::`[`theme_classic`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
 `        ``ggplot2``::`[`theme_bw`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
 `        ``ggplot2``::`[`theme_minimal`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
-`        ``ggthemes``::``theme_clean``(``)`\
+`        ``ggthemes``::`[`theme_clean`](https://jrnold.github.io/ggthemes/reference/theme_clean.html)`(``)`\
 `      ``)`\
 `    ``)``,`\
 `    .f ``=`` ``gghistostats`\
@@ -452,9 +452,9 @@ methodology as the earlier examples.
 `      ``)``,`\
 `      ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `        ``ggplot2``::`[`theme_minimal`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``base_family ``=`` ``"serif"``)``,`\
-`        ``ggthemes``::``theme_tufte``(``)``,`\
-`        ``ggthemes``::``theme_calc``(``)``,`\
-`        ``ggthemes``::``theme_hc``(``style ``=`` ``"darkunica"``)`\
+`        ``ggthemes``::`[`theme_tufte`](https://jrnold.github.io/ggthemes/reference/theme_tufte.html)`(``)``,`\
+`        ``ggthemes``::`[`theme_calc`](https://jrnold.github.io/ggthemes/reference/theme_calc.html)`(``)``,`\
+`        ``ggthemes``::`[`theme_hc`](https://jrnold.github.io/ggthemes/reference/theme_hc.html)`(``style ``=`` ``"darkunica"``)`\
 `      ``)`\
 `    ``)``,`\
 `    .f ``=`` ``ggdotplotstats`\
@@ -509,8 +509,8 @@ methodology as the earlier examples.
 `      ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `        ``ggplot2``::`[`theme_grey`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
 `        ``ggplot2``::`[`theme_bw`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
-`        ``ggthemes``::``theme_tufte``(``)``,`\
-`        ``ggthemes``::``theme_economist``(``)`\
+`        ``ggthemes``::`[`theme_tufte`](https://jrnold.github.io/ggthemes/reference/theme_tufte.html)`(``)``,`\
+`        ``ggthemes``::`[`theme_economist`](https://jrnold.github.io/ggthemes/reference/theme_economist.html)`(``)`\
 `      ``)``,`\
 `      proportion.test ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``TRUE``, ``FALSE``, ``TRUE``, ``FALSE``)``,`\
 `      type ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``"p"``, ``"p"``, ``"bf"``, ``"p"``)`\
@@ -568,8 +568,8 @@ methodology as the earlier examples.
 `      ggtheme ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
 `        ``ggplot2``::`[`theme_grey`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
 `        ``ggplot2``::`[`theme_bw`](https://ggplot2.tidyverse.org/reference/ggtheme.html)`(``)``,`\
-`        ``ggthemes``::``theme_tufte``(``)``,`\
-`        ``ggthemes``::``theme_economist``(``)`\
+`        ``ggthemes``::`[`theme_tufte`](https://jrnold.github.io/ggthemes/reference/theme_tufte.html)`(``)``,`\
+`        ``ggthemes``::`[`theme_economist`](https://jrnold.github.io/ggthemes/reference/theme_economist.html)`(``)`\
 `      ``)`\
 `    ``)``,`\
 `    .f ``=`` ``ggbarstats`\

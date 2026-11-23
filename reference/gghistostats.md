@@ -143,10 +143,10 @@ gghistostats(
   Any `{ggplot2}` theme (e.g.,
   [`ggplot2::theme_bw()`](https://ggplot2.tidyverse.org/reference/ggtheme.html))
   or theme from an extension package (e.g.,
-  `ggthemes::theme_fivethirtyeight()`) can be used. Note that some
-  themes remove plot details. For example,
-  `ggthemes::theme_fivethirtyeight()` removes the secondary Y-axis,
-  which
+  [`ggthemes::theme_fivethirtyeight()`](https://jrnold.github.io/ggthemes/reference/theme_fivethirtyeight.html))
+  can be used. Note that some themes remove plot details. For example,
+  [`ggthemes::theme_fivethirtyeight()`](https://jrnold.github.io/ggthemes/reference/theme_fivethirtyeight.html)
+  removes the secondary Y-axis, which
   [`ggbetweenstats()`](https://www.indrapatil.com/ggstatsplot/reference/ggbetweenstats.md)
   uses to show details about pairwise comparisons.
 
