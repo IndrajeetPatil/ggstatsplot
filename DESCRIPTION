@@ -24,11 +24,11 @@ Depends:
     R (>= 4.5.0)
 Imports:
     correlation (>= 0.8.8),
-    datawizard (>= 1.4.1),
+    datawizard (>= 1.5.0),
     dplyr (>= 1.2.1),
     forcats (>= 1.0.1),
     ggcorrplot (>= 0.3.0),
-    ggplot2 (>= 4.0.3),
+    ggplot2 (>= 4.0.4),
     ggrepel (>= 0.9.8),
     ggside (>= 0.4.1),
     ggsignif (>= 0.6.4),
@@ -37,10 +37,10 @@ Imports:
     paletteer (>= 1.7.0),
     parameters (>= 0.30.0),
     patchwork (>= 1.3.2),
-    performance (>= 0.19.0),
+    performance (>= 0.20.0),
     purrr (>= 1.2.2),
     rlang (>= 1.3.0),
-    statsExpressions (>= 2.2.1),
+    statsExpressions (>= 2.2.2),
     tidyr (>= 1.3.2),
     utils
 Suggests:
