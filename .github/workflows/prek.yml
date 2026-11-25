@@ -1,10 +1,5 @@
 name: prek
 
-# Runs the repository's prek hooks on every pull request. This file is
-# identical in every non-template repository whose hooks need no project
-# dependencies; web apps use templates/prek-web-app.yml. The hook config alone
-# decides what runs, so a hook that should never run is left out of the
-# config, not skipped here.
 on:
   pull_request:
     branches: [main]
@@ -12,35 +7,6 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   prek:
-    name: prek hooks
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-
-    steps:
-      - name: Restrict to IndrajeetPatil repositories
-        if: github.repository_owner != 'IndrajeetPatil'
-        run: |
-          echo "::error::This workflow is private and only available to repositories under IndrajeetPatil."
-          exit 1
-
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      # A hook that rewrites a file fails the step.
-      - name: Run prek hooks
-        uses: j178/prek-action@7b101f8338a08d2bd6fdb3625e4e7692428763a3 # v3.1.1
-        with:
-          # Newest prek in this action revision's SHA256 table, so every
-          # download stays checksum-verified and moves with the action pin.
-          prek-version: latest-known
-          extra-args: --all-files --stage pre-commit
-        env:
-          # Read-only token for hooks that call gh, such as actions.lock checks.
-          GH_TOKEN: ${{ github.token }}
+    uses: IndrajeetPatil/workflows/.github/workflows/prek.yml@main
